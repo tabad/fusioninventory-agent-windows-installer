@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file was created by NSISDialogDesigner 0.9.16.0
+http://coolsoft.altervista.org/nsisdialogdesigner
+Do not edit manually!
+-->
+<Dialog Name="HelpPage" Title="Dialog title..." Subtitle="Dialog subtitle...">
+  <Label Name="Label1" Location="0, 0" Size="448, 16" Text="Press Page Down to see the rest of the help." TabIndex="0" />
+  <TextBox Name="TextBox1" Location="0, 24" Size="448, 168" ReadOnly="True" TabIndex="1" Multiline="True" />
+  <Button Name="Button1" Location="384, 224" Size="75, 24" Text="Button1" TabIndex="2" />
+</Dialog>
