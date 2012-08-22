@@ -768,18 +768,30 @@ Function .onInitSilentMode
          ; Some options could have been overwritten. Fixing them...
 
          ; Fixing the ${IO_CA-CERT-DIR} option
-         ;    With sense in Windows platform x64 architecture
+         ;    With sense in Windows platform x64 architecture when you
+         ;    swap the x86 package by the x64 package, or vice versa
          ${ReadINIOption} $R0 "${IOS_COMMANDLINE}" "${IO_CA-CERT-DIR}"
          ${If} "$R0" == ""
-            ${ReadINIOption} $R0 "${IOS_DEFAULT}" "${IO_CA-CERT-DIR}"
+            ${ReadINIOption} $R0 "${IOS_FINAL}" "${IO_CA-CERT-DIR}"
+            !if ${INSTALLER_PLATFORM_ARCHITECTURE} == 32
+               ${WordReplace} "$R0" "$PROGRAMFILES64\" "$PROGRAMFILES32\" "+1" "$R0"
+            !else
+               ${WordReplace} "$R0" "$PROGRAMFILES32\" "$PROGRAMFILES64\" "+1" "$R0"
+            !endif
             ${WriteINIOption} "${IOS_FINAL}" "${IO_CA-CERT-DIR}" "$R0"
          ${EndIf}
 
          ; Fixing the ${IO_CA-CERT-FILE} option
-         ;    With sense in Windows platform x64 architecture
+         ;    With sense in Windows platform x64 architecture when you
+         ;    swap the x86 package by the x64 package, or vice versa
          ${ReadINIOption} $R0 "${IOS_COMMANDLINE}" "${IO_CA-CERT-FILE}"
          ${If} "$R0" == ""
-            ${ReadINIOption} $R0 "${IOS_DEFAULT}" "${IO_CA-CERT-FILE}"
+            ${ReadINIOption} $R0 "${IOS_FINAL}" "${IO_CA-CERT-FILE}"
+            !if ${INSTALLER_PLATFORM_ARCHITECTURE} == 32
+               ${WordReplace} "$R0" "$PROGRAMFILES64\" "$PROGRAMFILES32\" "+1" "$R0"
+            !else
+               ${WordReplace} "$R0" "$PROGRAMFILES32\" "$PROGRAMFILES64\" "+1" "$R0"
+            !endif
             ${WriteINIOption} "${IOS_FINAL}" "${IO_CA-CERT-FILE}" "$R0"
          ${EndIf}
 
@@ -791,10 +803,16 @@ Function .onInitSilentMode
          ${EndIf}
 
          ; Fixing the ${IO_LOGFILE} option
-         ;    With sense in Windows platform x64 architecture
+         ;    With sense in Windows platform x64 architecture when you
+         ;    swap the x86 package by the x64 package, or vice versa
          ${ReadINIOption} $R0 "${IOS_COMMANDLINE}" "${IO_LOGFILE}"
          ${If} "$R0" == ""
-            ${ReadINIOption} $R0 "${IOS_DEFAULT}" "${IO_LOGFILE}"
+            ${ReadINIOption} $R0 "${IOS_FINAL}" "${IO_LOGFILE}"
+            !if ${INSTALLER_PLATFORM_ARCHITECTURE} == 32
+               ${WordReplace} "$R0" "$PROGRAMFILES64\" "$PROGRAMFILES32\" "+1" "$R0"
+            !else
+               ${WordReplace} "$R0" "$PROGRAMFILES32\" "$PROGRAMFILES64\" "+1" "$R0"
+            !endif
             ${WriteINIOption} "${IOS_FINAL}" "${IO_LOGFILE}" "$R0"
          ${EndIf}
       ${EndIf}
@@ -853,18 +871,30 @@ Function .onInitVisualMode
          ; Some options could have been overwritten. Fixing them...
 
          ; Fixing the ${IO_CA-CERT-DIR} option
-         ;    With sense in Windows platform x64 architecture
+         ;    With sense in Windows platform x64 architecture when you
+         ;    swap the x86 package by the x64 package, or vice versa
          ${ReadINIOption} $R0 "${IOS_COMMANDLINE}" "${IO_CA-CERT-DIR}"
          ${If} "$R0" == ""
-            ${ReadINIOption} $R0 "${IOS_DEFAULT}" "${IO_CA-CERT-DIR}"
+            ${ReadINIOption} $R0 "${IOS_DEFAULTGUI}" "${IO_CA-CERT-DIR}"
+            !if ${INSTALLER_PLATFORM_ARCHITECTURE} == 32
+               ${WordReplace} "$R0" "$PROGRAMFILES64\" "$PROGRAMFILES32\" "+1" "$R0"
+            !else
+               ${WordReplace} "$R0" "$PROGRAMFILES32\" "$PROGRAMFILES64\" "+1" "$R0"
+            !endif
             ${WriteINIOption} "${IOS_DEFAULTGUI}" "${IO_CA-CERT-DIR}" "$R0"
          ${EndIf}
 
          ; Fixing the ${IO_CA-CERT-FILE} option
-         ;    With sense in Windows platform x64 architecture
+         ;    With sense in Windows platform x64 architecture when you
+         ;    swap the x86 package by the x64 package, or vice versa
          ${ReadINIOption} $R0 "${IOS_COMMANDLINE}" "${IO_CA-CERT-FILE}"
          ${If} "$R0" == ""
-            ${ReadINIOption} $R0 "${IOS_DEFAULT}" "${IO_CA-CERT-FILE}"
+            ${ReadINIOption} $R0 "${IOS_DEFAULTGUI}" "${IO_CA-CERT-FILE}"
+            !if ${INSTALLER_PLATFORM_ARCHITECTURE} == 32
+               ${WordReplace} "$R0" "$PROGRAMFILES64\" "$PROGRAMFILES32\" "+1" "$R0"
+            !else
+               ${WordReplace} "$R0" "$PROGRAMFILES32\" "$PROGRAMFILES64\" "+1" "$R0"
+            !endif
             ${WriteINIOption} "${IOS_DEFAULTGUI}" "${IO_CA-CERT-FILE}" "$R0"
          ${EndIf}
 
@@ -876,10 +906,16 @@ Function .onInitVisualMode
          ${EndIf}
 
          ; Fixing the ${IO_LOGFILE} option
-         ;    With sense in Windows platform x64 architecture
+         ;    With sense in Windows platform x64 architecture when you
+         ;    swap the x86 package by the x64 package, or vice versa
          ${ReadINIOption} $R0 "${IOS_COMMANDLINE}" "${IO_LOGFILE}"
          ${If} "$R0" == ""
-            ${ReadINIOption} $R0 "${IOS_DEFAULT}" "${IO_LOGFILE}"
+            ${ReadINIOption} $R0 "${IOS_DEFAULTGUI}" "${IO_LOGFILE}"
+            !if ${INSTALLER_PLATFORM_ARCHITECTURE} == 32
+               ${WordReplace} "$R0" "$PROGRAMFILES64\" "$PROGRAMFILES32\" "+1" "$R0"
+            !else
+               ${WordReplace} "$R0" "$PROGRAMFILES32\" "$PROGRAMFILES64\" "+1" "$R0"
+            !endif
             ${WriteINIOption} "${IOS_DEFAULTGUI}" "${IO_LOGFILE}" "$R0"
          ${EndIf}
       ${EndIf}
