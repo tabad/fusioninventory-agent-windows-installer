@@ -302,7 +302,7 @@ Function InitINIOptionSectionDefault
    ${WriteINIOption} "$R0" "${IO_ACCEPTLICENSE}" "0" 
    ${WriteINIOption} "$R0" "${IO_ADD-FIREWALL-EXCEPTION}" "0" 
    ${WriteINIOption} "$R0" "${IO_BACKEND-COLLECT-TIMEOUT}" "30" 
-   !if ${INSTALLER_PLATFORM_ARCHITECTURE} == 32
+   !if ${INSTALLER_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
       ${WriteINIOption} "$R0" "${IO_CA-CERT-DIR}" "$PROGRAMFILES32\${PRODUCT_INTERNAL_NAME}\certs" 
       ${WriteINIOption} "$R0" "${IO_CA-CERT-FILE}" "$PROGRAMFILES32\${PRODUCT_INTERNAL_NAME}\certs\cert.pem" 
    !else
@@ -318,7 +318,7 @@ Function InitINIOptionSectionDefault
    ${WriteINIOption} "$R0" "${IO_HTTPD-IP}" "0.0.0.0" 
    ${WriteINIOption} "$R0" "${IO_HTTPD-PORT}" "62354" 
    ${WriteINIOption} "$R0" "${IO_HTTPD-TRUST}" "127.0.0.1/32" 
-   !if ${INSTALLER_PLATFORM_ARCHITECTURE} == 32
+   !if ${INSTALLER_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
       ${WriteINIOption} "$R0" "${IO_INSTALLDIR}" "$PROGRAMFILES32\${PRODUCT_INTERNAL_NAME}" 
    !else
       ${WriteINIOption} "$R0" "${IO_INSTALLDIR}" "$PROGRAMFILES64\${PRODUCT_INTERNAL_NAME}" 
@@ -326,7 +326,7 @@ Function InitINIOptionSectionDefault
    ${WriteINIOption} "$R0" "${IO_INSTALLTASKS}" "${INSTALLTASK_DEFAULT}" 
    ${WriteINIOption} "$R0" "${IO_INSTALLTYPE}" "${INSTALLTYPE_FROMCURRENTCONFIG}" 
    ${WriteINIOption} "$R0" "${IO_LOCAL}" "" 
-   !if ${INSTALLER_PLATFORM_ARCHITECTURE} == 32
+   !if ${INSTALLER_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
       ${WriteINIOption} "$R0" "${IO_LOGFILE}" "$PROGRAMFILES32\${PRODUCT_INTERNAL_NAME}\agent-log.txt" 
    !else
       ${WriteINIOption} "$R0" "${IO_LOGFILE}" "$PROGRAMFILES64\${PRODUCT_INTERNAL_NAME}\agent-log.txt" 

@@ -44,12 +44,13 @@ SetCompressor /FINAL /SOLID lzma
 
 !define LABEL_PLATFORM_ARCHITECTURE_32 "x86"
 !define LABEL_PLATFORM_ARCHITECTURE_64 "x64"
-!define DEFAULT_INSTALLER_PLATFORM_ARCHITECTURE 32
+!define DEFAULT_INSTALLER_PLATFORM_ARCHITECTURE ${LABEL_PLATFORM_ARCHITECTURE_32}
 
 ; Use MakeNSIS '/D' option for choose the architecture
 !ifdef INSTALLER_PLATFORM_ARCHITECTURE
-   !if ${INSTALLER_PLATFORM_ARCHITECTURE} != 32
-      !if ${INSTALLER_PLATFORM_ARCHITECTURE} != 64
+   !if ${INSTALLER_PLATFORM_ARCHITECTURE} != ${LABEL_PLATFORM_ARCHITECTURE_32}
+      !if ${INSTALLER_PLATFORM_ARCHITECTURE} != ${LABEL_PLATFORM_ARCHITECTURE_64}
+         !undef INSTALLER_PLATFORM_ARCHITECTURE 
          !define INSTALLER_PLATFORM_ARCHITECTURE ${DEFAULT_INSTALLER_PLATFORM_ARCHITECTURE}
       !endif
    !endif
@@ -71,7 +72,7 @@ SetCompressor /FINAL /SOLID lzma
 !define PRODUCT_INST_ROOT_KEY "HKEY_LOCAL_MACHINE"
 !define PRODUCT_UNINST_ROOT_KEY "HKEY_LOCAL_MACHINE"
 
-!if ${INSTALLER_PLATFORM_ARCHITECTURE} == 32
+!if ${INSTALLER_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
    !define PRODUCT_INSTALLER "fusioninventory-agent_windows-${LABEL_PLATFORM_ARCHITECTURE_32}_${PRODUCT_VERSION}.exe"
    !define PRODUCT_WEB_FOR_UPDATES "http://prebuilt.fusioninventory.org/stable/windows-${LABEL_PLATFORM_ARCHITECTURE_32}/"
 !else
@@ -85,7 +86,7 @@ SetCompressor /FINAL /SOLID lzma
 !define PRODUCT_BUILD_ID_FILE "${FIAIDIR}\Include\BuildID.nsh"
 !searchparse /file "${PRODUCT_BUILD_ID_FILE}" `!define PREVIOUS_PRODUCT_X86_BUILD_ID "` PREVIOUS_PRODUCT_X86_BUILD_ID `"`
 !searchparse /file "${PRODUCT_BUILD_ID_FILE}" `!define PREVIOUS_PRODUCT_X64_BUILD_ID "` PREVIOUS_PRODUCT_X64_BUILD_ID `"`
-!if ${INSTALLER_PLATFORM_ARCHITECTURE} == 32
+!if ${INSTALLER_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
    !define /math PRODUCT_BUILD_ID ${PREVIOUS_PRODUCT_X86_BUILD_ID} + 1
    !undef PREVIOUS_PRODUCT_X86_BUILD_ID
    !define PREVIOUS_PRODUCT_X86_BUILD_ID ${PRODUCT_BUILD_ID}
@@ -102,21 +103,12 @@ SetCompressor /FINAL /SOLID lzma
 !undef PREVIOUS_PRODUCT_X86_BUILD_ID
 !undef PREVIOUS_PRODUCT_X64_BUILD_ID
 
-!if ${INSTALLER_PLATFORM_ARCHITECTURE} == 32
-   !define 7ZIP_DIR "..\Tools\7zip\${LABEL_PLATFORM_ARCHITECTURE_32}"
-   !define DMIDECODE_DIR "..\Tools\dmidecode\${LABEL_PLATFORM_ARCHITECTURE_32}"
-   !define HDPARM_DIR "..\Tools\hdparm\${LABEL_PLATFORM_ARCHITECTURE_32}" 
-   !define SED_DIR "..\Tools\sed\${LABEL_PLATFORM_ARCHITECTURE_32}" 
-   !define SETACL_DIR "..\Tools\setacl\${LABEL_PLATFORM_ARCHITECTURE_32}" 
-   !define STRAWBERRY_DIR "..\Perl\Strawberry\5.16.1.1\${LABEL_PLATFORM_ARCHITECTURE_32}"
-!else
-   !define 7ZIP_DIR "..\Tools\7zip\${LABEL_PLATFORM_ARCHITECTURE_64}"
-   !define DMIDECODE_DIR "..\Tools\dmidecode\${LABEL_PLATFORM_ARCHITECTURE_32}"
-   !define HDPARM_DIR "..\Tools\hdparm\${LABEL_PLATFORM_ARCHITECTURE_32}" 
-   !define SED_DIR "..\Tools\sed\${LABEL_PLATFORM_ARCHITECTURE_32}" 
-   !define SETACL_DIR "..\Tools\setacl\${LABEL_PLATFORM_ARCHITECTURE_64}" 
-   !define STRAWBERRY_DIR "..\Perl\Strawberry\5.16.1.1\${LABEL_PLATFORM_ARCHITECTURE_64}"
-!endif
+!define 7ZIP_DIR "..\Tools\7zip\${INSTALLER_PLATFORM_ARCHITECTURE}"
+!define DMIDECODE_DIR "..\Tools\dmidecode\${LABEL_PLATFORM_ARCHITECTURE_32}"
+!define HDPARM_DIR "..\Tools\hdparm\${LABEL_PLATFORM_ARCHITECTURE_32}" 
+!define SED_DIR "..\Tools\sed\${LABEL_PLATFORM_ARCHITECTURE_32}" 
+!define SETACL_DIR "..\Tools\setacl\${INSTALLER_PLATFORM_ARCHITECTURE}" 
+!define STRAWBERRY_DIR "..\Perl\Strawberry\5.16.1.1\${INSTALLER_PLATFORM_ARCHITECTURE}"
 
 
 ;--------------------------------
@@ -129,7 +121,7 @@ SetCompressor /FINAL /SOLID lzma
 ; Installer Attributes
 
 BrandingText "${PRODUCT_PUBLISHER}"
-!if ${INSTALLER_PLATFORM_ARCHITECTURE} == 32
+!if ${INSTALLER_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
    Caption "${PRODUCT_NAME} ${PRODUCT_VERSION} (${LABEL_PLATFORM_ARCHITECTURE_32} edition) Setup"
    Name "${PRODUCT_NAME} ${PRODUCT_VERSION} (${LABEL_PLATFORM_ARCHITECTURE_32} edition)"
    InstallDir "$PROGRAMFILES32\${PRODUCT_INTERNAL_NAME}"
@@ -773,7 +765,7 @@ Function .onInitSilentMode
          ${ReadINIOption} $R0 "${IOS_COMMANDLINE}" "${IO_CA-CERT-DIR}"
          ${If} "$R0" == ""
             ${ReadINIOption} $R0 "${IOS_FINAL}" "${IO_CA-CERT-DIR}"
-            !if ${INSTALLER_PLATFORM_ARCHITECTURE} == 32
+            !if ${INSTALLER_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
                ${WordReplace} "$R0" "$PROGRAMFILES64\" "$PROGRAMFILES32\" "+1" "$R0"
             !else
                ${WordReplace} "$R0" "$PROGRAMFILES32\" "$PROGRAMFILES64\" "+1" "$R0"
@@ -787,7 +779,7 @@ Function .onInitSilentMode
          ${ReadINIOption} $R0 "${IOS_COMMANDLINE}" "${IO_CA-CERT-FILE}"
          ${If} "$R0" == ""
             ${ReadINIOption} $R0 "${IOS_FINAL}" "${IO_CA-CERT-FILE}"
-            !if ${INSTALLER_PLATFORM_ARCHITECTURE} == 32
+            !if ${INSTALLER_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
                ${WordReplace} "$R0" "$PROGRAMFILES64\" "$PROGRAMFILES32\" "+1" "$R0"
             !else
                ${WordReplace} "$R0" "$PROGRAMFILES32\" "$PROGRAMFILES64\" "+1" "$R0"
@@ -808,7 +800,7 @@ Function .onInitSilentMode
          ${ReadINIOption} $R0 "${IOS_COMMANDLINE}" "${IO_LOGFILE}"
          ${If} "$R0" == ""
             ${ReadINIOption} $R0 "${IOS_FINAL}" "${IO_LOGFILE}"
-            !if ${INSTALLER_PLATFORM_ARCHITECTURE} == 32
+            !if ${INSTALLER_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
                ${WordReplace} "$R0" "$PROGRAMFILES64\" "$PROGRAMFILES32\" "+1" "$R0"
             !else
                ${WordReplace} "$R0" "$PROGRAMFILES32\" "$PROGRAMFILES64\" "+1" "$R0"
@@ -876,7 +868,7 @@ Function .onInitVisualMode
          ${ReadINIOption} $R0 "${IOS_COMMANDLINE}" "${IO_CA-CERT-DIR}"
          ${If} "$R0" == ""
             ${ReadINIOption} $R0 "${IOS_DEFAULTGUI}" "${IO_CA-CERT-DIR}"
-            !if ${INSTALLER_PLATFORM_ARCHITECTURE} == 32
+            !if ${INSTALLER_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
                ${WordReplace} "$R0" "$PROGRAMFILES64\" "$PROGRAMFILES32\" "+1" "$R0"
             !else
                ${WordReplace} "$R0" "$PROGRAMFILES32\" "$PROGRAMFILES64\" "+1" "$R0"
@@ -890,7 +882,7 @@ Function .onInitVisualMode
          ${ReadINIOption} $R0 "${IOS_COMMANDLINE}" "${IO_CA-CERT-FILE}"
          ${If} "$R0" == ""
             ${ReadINIOption} $R0 "${IOS_DEFAULTGUI}" "${IO_CA-CERT-FILE}"
-            !if ${INSTALLER_PLATFORM_ARCHITECTURE} == 32
+            !if ${INSTALLER_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
                ${WordReplace} "$R0" "$PROGRAMFILES64\" "$PROGRAMFILES32\" "+1" "$R0"
             !else
                ${WordReplace} "$R0" "$PROGRAMFILES32\" "$PROGRAMFILES64\" "+1" "$R0"
@@ -911,7 +903,7 @@ Function .onInitVisualMode
          ${ReadINIOption} $R0 "${IOS_COMMANDLINE}" "${IO_LOGFILE}"
          ${If} "$R0" == ""
             ${ReadINIOption} $R0 "${IOS_DEFAULTGUI}" "${IO_LOGFILE}"
-            !if ${INSTALLER_PLATFORM_ARCHITECTURE} == 32
+            !if ${INSTALLER_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
                ${WordReplace} "$R0" "$PROGRAMFILES64\" "$PROGRAMFILES32\" "+1" "$R0"
             !else
                ${WordReplace} "$R0" "$PROGRAMFILES32\" "$PROGRAMFILES64\" "+1" "$R0"
