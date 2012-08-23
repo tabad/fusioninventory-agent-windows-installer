@@ -40,7 +40,11 @@ SetCompressor /FINAL /SOLID lzma
 ;--------------------------------
 ; Definitions
 
-!define FIAIDIR ".\FusionInventory-Agent"
+!ifndef OS_BUILDER_NO_WINDOWS
+   !define FIAIDIR ".\FusionInventory-Agent"
+!else
+   !define FIAIDIR "./FusionInventory-Agent"
+!endif
 
 !define LABEL_PLATFORM_ARCHITECTURE_32 "x86"
 !define LABEL_PLATFORM_ARCHITECTURE_64 "x64"
@@ -83,7 +87,11 @@ SetCompressor /FINAL /SOLID lzma
 !define FILE_VERSION "${PRODUCT_VERSION_MAJOR}.${PRODUCT_VERSION_MINOR}.${PRODUCT_VERSION_RELEASE}.${PRODUCT_VERSION_BUILD}"
 !define VI_PRODUCT_VERSION "${FILE_VERSION}"
 
-!define PRODUCT_BUILD_ID_FILE "${FIAIDIR}\Include\BuildID.nsh"
+!ifndef OS_BUILDER_NO_WINDOWS
+   !define PRODUCT_BUILD_ID_FILE "${FIAIDIR}\Include\BuildID.nsh"
+!else
+   !define PRODUCT_BUILD_ID_FILE "${FIAIDIR}/Include/BuildID.nsh"
+!endif
 !searchparse /file "${PRODUCT_BUILD_ID_FILE}" `!define PREVIOUS_PRODUCT_X86_BUILD_ID "` PREVIOUS_PRODUCT_X86_BUILD_ID `"`
 !searchparse /file "${PRODUCT_BUILD_ID_FILE}" `!define PREVIOUS_PRODUCT_X64_BUILD_ID "` PREVIOUS_PRODUCT_X64_BUILD_ID `"`
 !if ${INSTALLER_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
@@ -95,11 +103,20 @@ SetCompressor /FINAL /SOLID lzma
    !undef PREVIOUS_PRODUCT_X64_BUILD_ID
    !define PREVIOUS_PRODUCT_X64_BUILD_ID ${PRODUCT_BUILD_ID}
 !endif
-!system `echo ; > "${PRODUCT_BUILD_ID_FILE}"`
-!system `echo ; Do not edit! >> "${PRODUCT_BUILD_ID_FILE}"`
-!system `echo ; >> "${PRODUCT_BUILD_ID_FILE}"`
-!system `echo !define PREVIOUS_PRODUCT_X86_BUILD_ID "${PREVIOUS_PRODUCT_X86_BUILD_ID}" >> "${PRODUCT_BUILD_ID_FILE}"`
-!system `echo !define PREVIOUS_PRODUCT_X64_BUILD_ID "${PREVIOUS_PRODUCT_X64_BUILD_ID}" >> "${PRODUCT_BUILD_ID_FILE}"`
+!ifndef OS_BUILDER_NO_WINDOWS
+   !system `echo ; > "${PRODUCT_BUILD_ID_FILE}"`
+   !system `echo ; Do not edit! >> "${PRODUCT_BUILD_ID_FILE}"`
+   !system `echo ; >> "${PRODUCT_BUILD_ID_FILE}"`
+   !system `echo !define PREVIOUS_PRODUCT_X86_BUILD_ID "${PREVIOUS_PRODUCT_X86_BUILD_ID}" >> "${PRODUCT_BUILD_ID_FILE}"`
+   !system `echo !define PREVIOUS_PRODUCT_X64_BUILD_ID "${PREVIOUS_PRODUCT_X64_BUILD_ID}" >> "${PRODUCT_BUILD_ID_FILE}"`
+!else
+   !system `echo ';' > "${PRODUCT_BUILD_ID_FILE}"`
+   !system `echo '; Do not edit!' >> "${PRODUCT_BUILD_ID_FILE}"`
+   !system `echo ';' >> "${PRODUCT_BUILD_ID_FILE}"`
+   !system `echo '!define PREVIOUS_PRODUCT_X86_BUILD_ID "${PREVIOUS_PRODUCT_X86_BUILD_ID}"' >> "${PRODUCT_BUILD_ID_FILE}"`
+   !system `echo '!define PREVIOUS_PRODUCT_X64_BUILD_ID "${PREVIOUS_PRODUCT_X64_BUILD_ID}"' >> "${PRODUCT_BUILD_ID_FILE}"`
+!endif
+
 !undef PREVIOUS_PRODUCT_X86_BUILD_ID
 !undef PREVIOUS_PRODUCT_X64_BUILD_ID
 
