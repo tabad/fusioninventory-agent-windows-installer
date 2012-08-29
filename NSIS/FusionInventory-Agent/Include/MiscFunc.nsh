@@ -41,6 +41,7 @@
 !include FileFunc.nsh
 !include WordFunc.nsh
 !include "${FIAIDIR}\Include\INIFunc.nsh"
+!include "${FIAIDIR}\Include\FileFunc.nsh"
 !include "${FIAIDIR}\Include\RegFunc.nsh"
 !include "${FIAIDIR}\Include\WindowsInfo.nsh"
 !include "${FIAIDIR}\Include\WinServicesFunc.nsh"
@@ -247,16 +248,10 @@ Function InstallFusionInventoryAgent
 
    ; Create $R0\fusioninventory-agent.bat
    FileOpen $R1 "$R0\fusioninventory-agent.bat" w
-   FileWrite $R1 "@echo off"
-   FileWriteByte $R1 "13"
-   FileWriteByte $R1 "10"
-   FileWrite $R1 "cd perl/bin"
-   FileWriteByte $R1 "13"
-   FileWriteByte $R1 "10"
-   FileWrite $R1 "perl fusioninventory-agent %*"
-   FileWriteByte $R1 "13"
-   FileWriteByte $R1 "10"
-   FileWrite $R1 "cd ../.."
+   ${FileWriteLine} $R1 "@echo off"
+   ${FileWriteLine} $R1 "cd perl/bin"
+   ${FileWriteLine} $R1 "perl fusioninventory-agent %*"
+   ${FileWriteLine} $R1 "cd ../.."
    FileClose $R1
 
    ; Install $R0\{license,readme,thanks}.txt
