@@ -22,14 +22,14 @@
    ------------------------------------------------------------------------
 
    @package   FusionInventory Agent Installer for Microsoft Windows
-   @file      .\FusionInventory Agent\Include\INIFunc.nsh     
+   @file      .\FusionInventory Agent\Include\INIFunc.nsh
    @author    Tomas Abad
    @copyright Copyright (c) 2010-2012 FusionInventory Team
    @license   [...]
    @link      http://www.fusioninventory.org/
    @link      http://forge.fusioninventory.org/projects/fusioninventory-agent
    @since     2012
- 
+
    ------------------------------------------------------------------------
 */
 
@@ -87,6 +87,8 @@
 !define IO_RUNNOW "runnow"
 !define IO_SCAN-HOMEDIRS "scan-homedirs"
 !define IO_SERVER "server"
+!define IO_SERVICE-START-TYPE "service-start-type"
+!define IO_SERVICE-STATUS "service-status"
 !define IO_SILENTMODE "silentmode"
 !define IO_TAG "tag"
 !define IO_TASK-DAYLY-MODIFIER "task-dayly-modifier"
@@ -156,6 +158,20 @@
 !define TASK_SNMPQUERY "snmpquery"
 !define TASK_WAKEONLAN "wakeonlan"
 
+!define SERVICE_STARTTYPE_BOOT 0
+!define SERVICE_STARTTYPE_SYSTEM 1
+!define SERVICE_STARTTYPE_AUTO 2
+!define SERVICE_STARTTYPE_DEMAND 3
+!define SERVICE_STARTTYPE_DISABLED 4
+
+!define SERVICE_STATUS_STOPPED 1
+!define SERVICE_STATUS_START_PENDING 2
+!define SERVICE_STATUS_STOP_PENDING 3
+!define SERVICE_STATUS_RUNNING 4
+!define SERVICE_STATUS_CONTINUE_PENDING 5
+!define SERVICE_STATUS_PAUSE_PENDING 6
+!define SERVICE_STATUS_PAUSED 7
+
 
 ; ReadINIOption
 !define ReadINIOption "!insertmacro ReadINIOption"
@@ -177,115 +193,11 @@
 !define DeleteINIOptionSection "!insertmacro DeleteINIOptionSection"
 
 !macro DeleteINIOptionSection INISection
-   DeleteINISec "${INI_OPTIONS_FILE}" "${INISection}" 
+   DeleteINISec "${INI_OPTIONS_FILE}" "${INISection}"
 !macroend
 
 
-; InitINIOptionsSectionCurrentConfig 
-!define InitINIOptionSectionCurrentConfig "Call InitINIOptionSectionCurrentConfig"
-
-!macro TransferKeyToOption KeyName OptionName
-   ${registry::Read} "${PRODUCT_INST_ROOT_KEY}\$R1" "${KeyName}" $R2 $R3
-   ${If} "$R2" != ""
-      ; Write option into $R0 section 
-      ${If} "${OptionName}" == ""
-         ${WriteINIOption} "$R0" "${KeyName}" "$R2" 
-      ${Else}
-         ${WriteINIOption} "$R0" "${OptionName}" "$R2" 
-      ${EndIf}
-   ${EndIf}
-!macroend
-
-!macro TransferKeyToOptionMultiValue KeyName KeyValue OptionName OptionValue
-   ${registry::Read} "${PRODUCT_INST_ROOT_KEY}\$R1" "${KeyName}" $R2 $R3
-   ${If} "$R2" == "${KeyValue}"
-      ; Write option into $R0 section 
-      ${ReadINIOption} $R4 "$R0" "${OptionName}" 
-      ${If} "$R4" == ""
-         ${WriteINIOption} "$R0" "${OptionName}" "${OptionValue}" 
-      ${Else}
-         ${WriteINIOption} "$R0" "${OptionName}" "$R4,${OptionValue}" 
-      ${EndIf}
-   ${EndIf}
-!macroend
-
-Function InitINIOptionSectionCurrentConfig
-   ; Push $R0, $R1, $R2, $R3 & $R4 onto the stack
-   Push $R0
-   Push $R1
-   Push $R2
-   Push $R3
-   Push $R4
-
-   ; Set default section
-   StrCpy $R0 "${IOS_CURRENTCONFIG}"
-
-   ; Delete section
-   ${DeleteINIOptionSection} "$R0"
-
-   ; Get current install subkey
-   Call GetCurrentInstallSubkey
-   Pop $R1
-
-   ; Transfer deprecated key to option
-   !insertmacro TransferKeyToOption "${IO_NO-SOCKET}" "${IO_NO-HTTPD}"
-   !insertmacro TransferKeyToOption "${IO_RPC-IP}" "${IO_HTTPD-IP}"
-   !insertmacro TransferKeyToOption "${IO_RPC-PORT}" "${IO_HTTPD-PORT}"
-   !insertmacro TransferKeyToOption "${IO_RPC-TRUST-LOCALHOST}" "${IO_HTTPD-TRUST}"
-
-   ; Transfer deprecated key to multi-value option 
-   !insertmacro TransferKeyToOptionMultiValue "${IO_NO-INVENTORY}" "1" "${IO_NO-TASK}" "${TASK_INVENTORY}"
-   !insertmacro TransferKeyToOptionMultiValue "${IO_NO-NETDISCOVERY}" "1" "${IO_NO-TASK}" "${TASK_NETDISCOVERY}"
-   !insertmacro TransferKeyToOptionMultiValue "${IO_NO-OCSDEPLOY}" "1" "${IO_NO-TASK}" "${TASK_OCSDEPLOY}"
-   !insertmacro TransferKeyToOptionMultiValue "${IO_NO-SNMPQUERY}" "1" "${IO_NO-TASK}" "${TASK_SNMPQUERY}"
-   !insertmacro TransferKeyToOptionMultiValue "${IO_NO-WAKEONLAN}" "1" "${IO_NO-TASK}" "${TASK_WAKEONLAN}"
-   !insertmacro TransferKeyToOptionMultiValue "${IO_NO-PRINTER}" "1" "${IO_NO-CATEGORY}" "${CATEGORY_PRINTER}"
-   !insertmacro TransferKeyToOptionMultiValue "${IO_NO-SOFTWARE}" "1" "${IO_NO-CATEGORY}" "${CATEGORY_SOFTWARE}"
-
-   ; Transfer key to option
-   !insertmacro TransferKeyToOption "${IO_BACKEND-COLLECT-TIMEOUT}" ""
-   !insertmacro TransferKeyToOption "${IO_CA-CERT-DIR}" ""
-   !insertmacro TransferKeyToOption "${IO_CA-CERT-FILE}" ""
-   !insertmacro TransferKeyToOption "${IO_DEBUG}" ""
-   !insertmacro TransferKeyToOption "${IO_DELAYTIME}" ""
-   !insertmacro TransferKeyToOption "${IO_HTML}" ""
-   !insertmacro TransferKeyToOption "${IO_HTTPD-IP}" ""
-   !insertmacro TransferKeyToOption "${IO_HTTPD-PORT}" ""
-   !insertmacro TransferKeyToOption "${IO_HTTPD-TRUST}" ""
-   !insertmacro TransferKeyToOption "${IO_INSTALLDIR}" ""
-   !insertmacro TransferKeyToOption "${IO_LOCAL}" ""
-   !insertmacro TransferKeyToOption "${IO_LOGFILE}" ""
-   !insertmacro TransferKeyToOption "${IO_LOGFILE-MAXSIZE}" ""
-   !insertmacro TransferKeyToOption "${IO_LOGGER}" ""
-   !insertmacro TransferKeyToOption "${IO_NO-CATEGORY}" ""
-   !insertmacro TransferKeyToOption "${IO_NO-HTTPD}" ""
-   !insertmacro TransferKeyToOption "${IO_NO-P2P}" ""
-   !insertmacro TransferKeyToOption "${IO_NO-SSL-CHECK}" ""
-   !insertmacro TransferKeyToOption "${IO_NO-TASK}" ""
-   !insertmacro TransferKeyToOption "${IO_PASSWORD}" ""
-   !insertmacro TransferKeyToOption "${IO_PROXY}" ""
-   !insertmacro TransferKeyToOption "${IO_SCAN-HOMEDIRS}" ""
-   !insertmacro TransferKeyToOption "${IO_SERVER}" ""
-   !insertmacro TransferKeyToOption "${IO_TAG}" ""
-   !insertmacro TransferKeyToOption "${IO_TIMEOUT}" ""
-   !insertmacro TransferKeyToOption "${IO_USER}" ""
-   !insertmacro TransferKeyToOption "${IO_WAIT}" ""
-
-   ; ToDo
-   ; Get execmode
-   ; Get firewall configuration
-   ; Active/Deactive NSIS sections
-
-   ; Pop $R4, $R3, $R2, $R1 and $R0 off of the stack
-   Pop $R4
-   Pop $R3
-   Pop $R2
-   Pop $R1
-   Pop $R0
-FunctionEnd
-
-
-; InitINIOptionsSectionDefault 
+; InitINIOptionsSectionDefault
 !define InitINIOptionSectionDefault "Call InitINIOptionSectionDefault"
 
 Function InitINIOptionSectionDefault
@@ -299,59 +211,61 @@ Function InitINIOptionSectionDefault
    ${DeleteINIOptionSection} "$R0"
 
    ; Write default options values
-   ${WriteINIOption} "$R0" "${IO_ACCEPTLICENSE}" "0" 
-   ${WriteINIOption} "$R0" "${IO_ADD-FIREWALL-EXCEPTION}" "0" 
-   ${WriteINIOption} "$R0" "${IO_BACKEND-COLLECT-TIMEOUT}" "30" 
+   ${WriteINIOption} "$R0" "${IO_ACCEPTLICENSE}" "0"
+   ${WriteINIOption} "$R0" "${IO_ADD-FIREWALL-EXCEPTION}" "0"
+   ${WriteINIOption} "$R0" "${IO_BACKEND-COLLECT-TIMEOUT}" "30"
    !if ${INSTALLER_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
-      ${WriteINIOption} "$R0" "${IO_CA-CERT-DIR}" "$PROGRAMFILES32\${PRODUCT_INTERNAL_NAME}\certs" 
-      ${WriteINIOption} "$R0" "${IO_CA-CERT-FILE}" "$PROGRAMFILES32\${PRODUCT_INTERNAL_NAME}\certs\cert.pem" 
+      ${WriteINIOption} "$R0" "${IO_CA-CERT-DIR}" "$PROGRAMFILES32\${PRODUCT_INTERNAL_NAME}\certs"
+      ${WriteINIOption} "$R0" "${IO_CA-CERT-FILE}" "$PROGRAMFILES32\${PRODUCT_INTERNAL_NAME}\certs\cert.pem"
    !else
-      ${WriteINIOption} "$R0" "${IO_CA-CERT-DIR}" "$PROGRAMFILES64\${PRODUCT_INTERNAL_NAME}\certs" 
-      ${WriteINIOption} "$R0" "${IO_CA-CERT-FILE}" "$PROGRAMFILES64\${PRODUCT_INTERNAL_NAME}\certs\cert.pem" 
+      ${WriteINIOption} "$R0" "${IO_CA-CERT-DIR}" "$PROGRAMFILES64\${PRODUCT_INTERNAL_NAME}\certs"
+      ${WriteINIOption} "$R0" "${IO_CA-CERT-FILE}" "$PROGRAMFILES64\${PRODUCT_INTERNAL_NAME}\certs\cert.pem"
    !endif
-   ${WriteINIOption} "$R0" "${IO_CA-CERT-URI}" "" 
-   ${WriteINIOption} "$R0" "${IO_DEBUG}" "0" 
-   ${WriteINIOption} "$R0" "${IO_DELAYTIME}" "3600" 
-   ${WriteINIOption} "$R0" "${IO_EXECMODE}" "${EXECMODE_CURRENTCONF}" 
-   ${WriteINIOption} "$R0" "${IO_HELP}" "0" 
-   ${WriteINIOption} "$R0" "${IO_HTML}" "0" 
-   ${WriteINIOption} "$R0" "${IO_HTTPD-IP}" "0.0.0.0" 
-   ${WriteINIOption} "$R0" "${IO_HTTPD-PORT}" "62354" 
-   ${WriteINIOption} "$R0" "${IO_HTTPD-TRUST}" "127.0.0.1/32" 
+   ${WriteINIOption} "$R0" "${IO_CA-CERT-URI}" ""
+   ${WriteINIOption} "$R0" "${IO_DEBUG}" "0"
+   ${WriteINIOption} "$R0" "${IO_DELAYTIME}" "3600"
+   ${WriteINIOption} "$R0" "${IO_EXECMODE}" "${EXECMODE_CURRENTCONF}"
+   ${WriteINIOption} "$R0" "${IO_HELP}" "0"
+   ${WriteINIOption} "$R0" "${IO_HTML}" "0"
+   ${WriteINIOption} "$R0" "${IO_HTTPD-IP}" "0.0.0.0"
+   ${WriteINIOption} "$R0" "${IO_HTTPD-PORT}" "62354"
+   ${WriteINIOption} "$R0" "${IO_HTTPD-TRUST}" "127.0.0.1/32"
    !if ${INSTALLER_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
-      ${WriteINIOption} "$R0" "${IO_INSTALLDIR}" "$PROGRAMFILES32\${PRODUCT_INTERNAL_NAME}" 
+      ${WriteINIOption} "$R0" "${IO_INSTALLDIR}" "$PROGRAMFILES32\${PRODUCT_INTERNAL_NAME}"
    !else
-      ${WriteINIOption} "$R0" "${IO_INSTALLDIR}" "$PROGRAMFILES64\${PRODUCT_INTERNAL_NAME}" 
+      ${WriteINIOption} "$R0" "${IO_INSTALLDIR}" "$PROGRAMFILES64\${PRODUCT_INTERNAL_NAME}"
    !endif
-   ${WriteINIOption} "$R0" "${IO_INSTALLTASKS}" "${INSTALLTASK_DEFAULT}" 
-   ${WriteINIOption} "$R0" "${IO_INSTALLTYPE}" "${INSTALLTYPE_FROMCURRENTCONFIG}" 
-   ${WriteINIOption} "$R0" "${IO_LOCAL}" "" 
+   ${WriteINIOption} "$R0" "${IO_INSTALLTASKS}" "${INSTALLTASK_DEFAULT}"
+   ${WriteINIOption} "$R0" "${IO_INSTALLTYPE}" "${INSTALLTYPE_FROMCURRENTCONFIG}"
+   ${WriteINIOption} "$R0" "${IO_LOCAL}" ""
    !if ${INSTALLER_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
-      ${WriteINIOption} "$R0" "${IO_LOGFILE}" "$PROGRAMFILES32\${PRODUCT_INTERNAL_NAME}\agent-log.txt" 
+      ${WriteINIOption} "$R0" "${IO_LOGFILE}" "$PROGRAMFILES32\${PRODUCT_INTERNAL_NAME}\agent-log.txt"
    !else
-      ${WriteINIOption} "$R0" "${IO_LOGFILE}" "$PROGRAMFILES64\${PRODUCT_INTERNAL_NAME}\agent-log.txt" 
+      ${WriteINIOption} "$R0" "${IO_LOGFILE}" "$PROGRAMFILES64\${PRODUCT_INTERNAL_NAME}\agent-log.txt"
    !endif
-   ${WriteINIOption} "$R0" "${IO_LOGFILE-MAXSIZE}" "5" 
-   ${WriteINIOption} "$R0" "${IO_LOGGER}" "${LOGGER_FILE}" 
-   ${WriteINIOption} "$R0" "${IO_NO-CATEGORY}" "" 
-   ${WriteINIOption} "$R0" "${IO_NO-HTTPD}" "0" 
-   ${WriteINIOption} "$R0" "${IO_NO-P2P}" "0" 
-   ${WriteINIOption} "$R0" "${IO_NO-SSL-CHECK}" "0" 
-   ${WriteINIOption} "$R0" "${IO_NO-TASK}" "" 
-   ${WriteINIOption} "$R0" "${IO_PASSWORD}" "" 
-   ${WriteINIOption} "$R0" "${IO_PROXY}" "" 
-   ${WriteINIOption} "$R0" "${IO_RUNNOW}" "0" 
-   ${WriteINIOption} "$R0" "${IO_SCAN-HOMEDIRS}" "0" 
-   ${WriteINIOption} "$R0" "${IO_SERVER}" "https://servername/glpi/plugins/fusioninventory/" 
-   ${WriteINIOption} "$R0" "${IO_SILENTMODE}" "0" 
-   ${WriteINIOption} "$R0" "${IO_TAG}" "" 
-   ${WriteINIOption} "$R0" "${IO_TASK-DAYLY-MODIFIER}" "1" 
-   ${WriteINIOption} "$R0" "${IO_TASK-FREQUENCY}" "${FREQUENCY_HOURLY}" 
-   ${WriteINIOption} "$R0" "${IO_TASK-HOURLY-MODIFIER}" "1" 
-   ${WriteINIOption} "$R0" "${IO_TASK-MINUTE-MODIFIER}" "15" 
+   ${WriteINIOption} "$R0" "${IO_LOGFILE-MAXSIZE}" "5"
+   ${WriteINIOption} "$R0" "${IO_LOGGER}" "${LOGGER_FILE}"
+   ${WriteINIOption} "$R0" "${IO_NO-CATEGORY}" ""
+   ${WriteINIOption} "$R0" "${IO_NO-HTTPD}" "0"
+   ${WriteINIOption} "$R0" "${IO_NO-P2P}" "0"
+   ${WriteINIOption} "$R0" "${IO_NO-SSL-CHECK}" "0"
+   ${WriteINIOption} "$R0" "${IO_NO-TASK}" ""
+   ${WriteINIOption} "$R0" "${IO_PASSWORD}" ""
+   ${WriteINIOption} "$R0" "${IO_PROXY}" ""
+   ${WriteINIOption} "$R0" "${IO_RUNNOW}" "0"
+   ${WriteINIOption} "$R0" "${IO_SCAN-HOMEDIRS}" "0"
+   ${WriteINIOption} "$R0" "${IO_SERVER}" "https://servername/glpi/plugins/fusioninventory/"
+   ${WriteINIOption} "$R0" "${IO_SERVICE-START-TYPE}" ""
+   ${WriteINIOption} "$R0" "${IO_SERVICE-STATUS}" ""
+   ${WriteINIOption} "$R0" "${IO_SILENTMODE}" "0"
+   ${WriteINIOption} "$R0" "${IO_TAG}" ""
+   ${WriteINIOption} "$R0" "${IO_TASK-DAYLY-MODIFIER}" "1"
+   ${WriteINIOption} "$R0" "${IO_TASK-FREQUENCY}" "${FREQUENCY_HOURLY}"
+   ${WriteINIOption} "$R0" "${IO_TASK-HOURLY-MODIFIER}" "1"
+   ${WriteINIOption} "$R0" "${IO_TASK-MINUTE-MODIFIER}" "15"
    ${WriteINIOption} "$R0" "${IO_TIMEOUT}" "180"
-   ${WriteINIOption} "$R0" "${IO_USER}" "" 
-   ${WriteINIOption} "$R0" "${IO_WAIT}" "0" 
+   ${WriteINIOption} "$R0" "${IO_USER}" ""
+   ${WriteINIOption} "$R0" "${IO_WAIT}" "0"
 
    ; Pop $R0 off of the stack
    Pop $R0
@@ -412,7 +326,7 @@ Function CopyINIOptionSection
 
          ${DoWhile} $R4 > 0
             Pop $R2
-            ${ReadINIOption} $R3 "$R0" "$R2" 
+            ${ReadINIOption} $R3 "$R0" "$R2"
             ${WriteINIOption} "Reverse-$R1" "$R2" "$R3"
             IntOp $R4 $R4 - 1
          ${Loop}
@@ -423,7 +337,7 @@ Function CopyINIOptionSection
 
          ${DoWhile} $R4 > 0
             Pop $R2
-            ${ReadINIOption} $R3 "Reverse-$R1" "$R2" 
+            ${ReadINIOption} $R3 "Reverse-$R1" "$R2"
             ${WriteINIOption} "$R1" "$R2" "$R3"
             IntOp $R4 $R4 - 1
          ${Loop}
@@ -435,13 +349,13 @@ Function CopyINIOptionSection
 
          ; Set the error flag
          SetErrors
-      ${EndIf} 
+      ${EndIf}
    ${Else}
       ; Source section doesn't exists
 
       ; Set the error flag
       SetErrors
-   ${EndIf} 
+   ${EndIf}
 
    ; Pop $R4, $R3, $R2, $R1 & $R0 off of the stack
    Pop $R4
@@ -499,7 +413,7 @@ Function UpdateINIOptionSection
 
          ${DoWhile} $R4 > 0
             Pop $R2
-            ${ReadINIOption} $R3 "$R1" "$R2" 
+            ${ReadINIOption} $R3 "$R1" "$R2"
             ${WriteINIOption} "$R0" "$R2" "$R3"
             IntOp $R4 $R4 - 1
          ${Loop}

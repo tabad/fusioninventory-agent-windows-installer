@@ -173,6 +173,7 @@ Var IncompatibleTargetPlatformArchitecture
 
 !include LogicLib.nsh
 !include MUI2.nsh 
+!include WordFunc.nsh
 !include "${FIAIDIR}\Include\CommandLineParser.nsh"
 !include "${FIAIDIR}\Include\INIFunc.nsh"
 !include "${FIAIDIR}\Include\LangStrings.nsh"
@@ -425,6 +426,7 @@ Section "-Init" SecInit
    ; Get current quiet uninstall string (Debug)
    ${GetCurrentQuietUninstallString} $R0
    DetailPrint "Current Quiet Uninstall String: '$R0'"
+
    ; Windows information (Debug)
    ${GetWindowsName} $R0
    DetailPrint "WindowsName: $R0"
@@ -457,6 +459,9 @@ Section "-Init" SecInit
    ; Uninstall current agent 
    ${UninstallCurrentAgent} $R0
    DetailPrint "Agent Uninstalled with Code: '$R0'"
+
+   ; Remove Windows service (be sure)
+   ${RemoveFusionInventoryService}
 
    ; Create directories
    ${ReadINIOption} $R0 "${IOS_FINAL}" "${IO_INSTALLDIR}"
@@ -520,14 +525,17 @@ Section "-End" SecEnd
    StrCpy $0 "End"
    DetailPrint "$(Msg_InstallingSection)"
 
-   ; InstallFusionInventoryService (Debug)
-   ${InstallFussionInventoryService}
-
    ; AddUninstallInformation
    ${AddUninstallInformation}
  
    ; WriteConfigurationOptions
    ${WriteConfigurationOptions}
+
+   ; InstallFusionInventoryService
+   ${ReadINIOption} $R0 "${IOS_FINAL}" "${IO_EXECMODE}"
+   ${If} "$R0" == "${EXECMODE_SERVICE}"
+      ${InstallFusionInventoryService}
+   ${EndIf}
 SectionEnd
 
 !insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
@@ -550,6 +558,9 @@ Section "-un.InitSection"
 
    ; Set mode at which commands print their status
    SetDetailsPrint textonly
+
+   ; Remove Windows service
+   ${RemoveFusionInventoryService}
 
    ; Delete file $R0\fusioninventory-agent.bat
    delete "$R0\fusioninventory-agent.bat"
@@ -747,6 +758,8 @@ Function .onInitSilentMode
       ${ReadINIOption} $R0 "${IOS_FINAL}" "${IO_EXECMODE}"
       ${If} "$R0" == "${EXECMODE_CURRENTCONF}"
          ${WriteINIOption} "${IOS_FINAL}" "${IO_EXECMODE}" "${EXECMODE_SERVICE}"
+         ${WriteINIOption} "${IOS_FINAL}" "${IO_SERVICE-START-TYPE}" "${SERVICE_STARTTYPE_AUTO}"
+         ${WriteINIOption} "${IOS_FINAL}" "${IO_SERVICE-STATUS}" "${SERVICE_STATUS_RUNNING}"
       ${EndIf}
    ${Else}
       ; The agent is already installed
@@ -764,6 +777,8 @@ Function .onInitSilentMode
          ${ReadINIOption} $R0 "${IOS_FINAL}" "${IO_EXECMODE}"
          ${If} "$R0" == "${EXECMODE_CURRENTCONF}"
             ${WriteINIOption} "${IOS_FINAL}" "${IO_EXECMODE}" "${EXECMODE_SERVICE}"
+            ${WriteINIOption} "${IOS_FINAL}" "${IO_SERVICE-START-TYPE}" "${SERVICE_STARTTYPE_AUTO}"
+            ${WriteINIOption} "${IOS_FINAL}" "${IO_SERVICE-STATUS}" "${SERVICE_STATUS_RUNNING}"
          ${EndIf}
       ${Else}
          ; Install the agent from current configuration   
@@ -850,9 +865,14 @@ Function .onInitVisualMode
       ${ReadINIOption} $R0 "${IOS_DEFAULTGUI}" "${IO_EXECMODE}"
       ${If} "$R0" == "${EXECMODE_CURRENTCONF}"
          ${WriteINIOption} "${IOS_DEFAULTGUI}" "${IO_EXECMODE}" "${EXECMODE_SERVICE}"
+         ${WriteINIOption} "${IOS_DEFAULTGUI}" "${IO_SERVICE-START-TYPE}" "${SERVICE_STARTTYPE_AUTO}"
+         ${WriteINIOption} "${IOS_DEFAULTGUI}" "${IO_SERVICE-STATUS}" "${SERVICE_STATUS_RUNNING}"
       ${EndIf}
    ${Else}
       ; The agent is already installed
+
+      ; Note: Whether you change this block of code, please, remember also to do the necessary changesi
+      ;       into function InstallModePage Leave in ${FIAIDIR}\Contrib\ModernUI2\Pages\InstallModePage.nsh
 
       ; What kind of installation is requested?
       ${ReadINIOption} $R0 "${IOS_COMMANDLINE}" "${IO_INSTALLTYPE}"
@@ -867,6 +887,8 @@ Function .onInitVisualMode
          ${ReadINIOption} $R0 "${IOS_DEFAULTGUI}" "${IO_EXECMODE}"
          ${If} "$R0" == "${EXECMODE_CURRENTCONF}"
             ${WriteINIOption} "${IOS_DEFAULTGUI}" "${IO_EXECMODE}" "${EXECMODE_SERVICE}"
+            ${WriteINIOption} "${IOS_DEFAULTGUI}" "${IO_SERVICE-START-TYPE}" "${SERVICE_STARTTYPE_AUTO}"
+            ${WriteINIOption} "${IOS_DEFAULTGUI}" "${IO_SERVICE-STATUS}" "${SERVICE_STATUS_RUNNING}"
          ${EndIf}
       ${Else}
          ; Install the agent from current configuration   

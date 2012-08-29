@@ -42,8 +42,9 @@
 
 
 !include LogicLib.nsh
+!include WordFunc.nsh
 !include "${FIAIDIR}\Include\INIFunc.nsh"
-!include "${FIAIDIR}\Include\RegFunc.nsh"
+!include "${FIAIDIR}\Include\MiscFunc.nsh"
 !include "${FIAIDIR}\Contrib\ModernUI2\Pages\InstallModePageLangStrings.nsh"
 
 
@@ -157,6 +158,13 @@ Function InstallModePage_Leave
          ${CopyINIOptionSection} "${IOS_DEFAULT}" "${IOS_GUI}"
          ${UpdateINIOptionSection} "${IOS_GUI}" "${IOS_COMMANDLINE}"
          ${WriteINIOption} "${IOS_GUI}" "${IO_INSTALLTYPE}" "${INSTALLTYPE_FROMSCRATCH}"
+
+         ${ReadINIOption} $R0 "${IOS_GUI}" "${IO_EXECMODE}"
+         ${If} "$R0" == "${EXECMODE_CURRENTCONF}"
+            ${WriteINIOption} "${IOS_GUI}" "${IO_EXECMODE}" "${EXECMODE_SERVICE}"
+            ${WriteINIOption} "${IOS_GUI}" "${IO_SERVICE-START-TYPE}" "${SERVICE_STARTTYPE_AUTO}"
+            ${WriteINIOption} "${IOS_GUI}" "${IO_SERVICE-STATUS}" "${SERVICE_STATUS_RUNNING}"
+         ${EndIf}
       ${EndIf}
    ${Else}
       ; ${INSTALLTYPE_FROMCURRENTCONFIG}
@@ -169,6 +177,57 @@ Function InstallModePage_Leave
          ${UpdateINIOptionSection} "${IOS_GUI}" "${IOS_CURRENTCONFIG}"
          ${UpdateINIOptionSection} "${IOS_GUI}" "${IOS_COMMANDLINE}"
          ${WriteINIOption} "${IOS_GUI}" "${IO_INSTALLTYPE}" "${INSTALLTYPE_FROMCURRENTCONFIG}"
+
+         ; Some options could have been overwritten. Fixing them...
+
+         ; Fixing the ${IO_CA-CERT-DIR} option
+         ;    With sense in Windows platform x64 architecture when you
+         ;    swap the x86 package by the x64 package, or vice versa
+         ${ReadINIOption} $R0 "${IOS_COMMANDLINE}" "${IO_CA-CERT-DIR}"
+         ${If} "$R0" == ""
+            ${ReadINIOption} $R0 "${IOS_GUI}" "${IO_CA-CERT-DIR}"
+            !if ${INSTALLER_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
+               ${WordReplace} "$R0" "$PROGRAMFILES64\" "$PROGRAMFILES32\" "+1" "$R0"
+            !else
+               ${WordReplace} "$R0" "$PROGRAMFILES32\" "$PROGRAMFILES64\" "+1" "$R0"
+            !endif
+            ${WriteINIOption} "${IOS_GUI}" "${IO_CA-CERT-DIR}" "$R0"
+         ${EndIf}
+
+         ; Fixing the ${IO_CA-CERT-FILE} option
+         ;    With sense in Windows platform x64 architecture when you
+         ;    swap the x86 package by the x64 package, or vice versa
+         ${ReadINIOption} $R0 "${IOS_COMMANDLINE}" "${IO_CA-CERT-FILE}"
+         ${If} "$R0" == ""
+            ${ReadINIOption} $R0 "${IOS_GUI}" "${IO_CA-CERT-FILE}"
+            !if ${INSTALLER_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
+               ${WordReplace} "$R0" "$PROGRAMFILES64\" "$PROGRAMFILES32\" "+1" "$R0"
+            !else
+               ${WordReplace} "$R0" "$PROGRAMFILES32\" "$PROGRAMFILES64\" "+1" "$R0"
+            !endif
+            ${WriteINIOption} "${IOS_GUI}" "${IO_CA-CERT-FILE}" "$R0"
+         ${EndIf}
+
+         ; Fixing the ${IO_EXECMODE} option
+         ${ReadINIOption} $R0 "${IOS_GUI}" "${IO_EXECMODE}"
+         ${If} "$R0" == "${EXECMODE_CURRENTCONF}"
+            ${ReadINIOption} $R0 "${IOS_CURRENTCONFIG}" "${IO_EXECMODE}"
+            ${WriteINIOption} "${IOS_GUI}" "${IO_EXECMODE}" "$R0"
+         ${EndIf}
+
+         ; Fixing the ${IO_LOGFILE} option
+         ;    With sense in Windows platform x64 architecture when you
+         ;    swap the x86 package by the x64 package, or vice versa
+         ${ReadINIOption} $R0 "${IOS_COMMANDLINE}" "${IO_LOGFILE}"
+         ${If} "$R0" == ""
+            ${ReadINIOption} $R0 "${IOS_GUI}" "${IO_LOGFILE}"
+            !if ${INSTALLER_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
+               ${WordReplace} "$R0" "$PROGRAMFILES64\" "$PROGRAMFILES32\" "+1" "$R0"
+            !else
+               ${WordReplace} "$R0" "$PROGRAMFILES32\" "$PROGRAMFILES64\" "+1" "$R0"
+            !endif
+            ${WriteINIOption} "${IOS_GUI}" "${IO_LOGFILE}" "$R0"
+         ${EndIf}
       ${EndIf}
    ${EndIf}
 
