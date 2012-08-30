@@ -385,12 +385,12 @@ Function InstallFusionInventoryAgentTaskNetwork
 
    ; Install $R0\perl\agent\FusionInventory
    SetOutPath "$R0\perl\agent\"
-   File /r "${STRAWBERRY_DIR}\cpan\sources\FusionInventory-Agent-Task-Network-1.0.0\lib\FusionInventory"
+   File /r "${STRAWBERRY_DIR}\cpan\sources\FusionInventory-Agent-Task-Network-1.0.1\lib\FusionInventory"
 
    ; Install $R0\perl\bin\fusioninventory-{netdiscovery,netinventory}
    SetOutPath "$R0\perl\bin\"
-   File "${STRAWBERRY_DIR}\cpan\sources\FusionInventory-Agent-Task-Network-1.0.0\fusioninventory-netdiscovery"
-   File "${STRAWBERRY_DIR}\cpan\sources\FusionInventory-Agent-Task-Network-1.0.0\fusioninventory-netinventory"
+   File "${STRAWBERRY_DIR}\cpan\sources\FusionInventory-Agent-Task-Network-1.0.1\fusioninventory-netdiscovery"
+   File "${STRAWBERRY_DIR}\cpan\sources\FusionInventory-Agent-Task-Network-1.0.1\fusioninventory-netinventory"
 
    ; Set mode at which commands print their status
    SetDetailsPrint lastused

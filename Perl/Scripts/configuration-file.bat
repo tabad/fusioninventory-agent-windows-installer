@@ -64,7 +64,7 @@ set CPAN_MIRROR_PATH_PREFIX=/CPAN/authors/id
 set FUSINV_AGENT=/F/FU/FUSINV/FusionInventory-Agent-2.2.5.tar.gz
 set FUSINV_TASK_DEPLOY=/F/FU/FUSINV/FusionInventory-Agent-Task-Deploy-2.0.2.tar.gz
 set FUSINV_TASK_ESX=/F/FU/FUSINV/FusionInventory-Agent-Task-ESX-2.2.0.tar.gz
-set FUSINV_TASK_NETWORK=/G/GR/GROUSSE/FusionInventory-Agent-Task-Network-1.0.0.tar.gz
+set FUSINV_TASK_NETWORK=/G/GO/GONERI/FusionInventory-Agent-Task-Network-1.0.1.tar.gz
 set FUSINV_TASKS=%FUSINV_TASK_DEPLOY% %FUSINV_TASK_ESX% %FUSINV_TASK_NETWORK%
 ::    Other needed modules
 set OTHER_NEEDED_MODULES=Win32::Daemon Net::NBName

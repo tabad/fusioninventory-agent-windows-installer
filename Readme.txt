@@ -92,7 +92,9 @@ Current state
       .- FusionInventory Agent v2.2.5
          .- FusionInventory Agent Task Deploy v2.0.2
          .- FusionInventory Agent Task ESX v2.2.0
-         .- FusionInventory Agent Task Network v1.0.1
+         .- FusionInventory Agent Distribution Network v1.0.1
+            .- FusionInventory Agent Task NetInventory v2.2.0
+            .- FusionInventory Agent Task NetDiscovery v2.2.0
 
       .- Strawberry Perl Portable Edition v5.16.1.1 (Aug 2012) for x84
       .- Strawberry Perl Portable Edition v5.16.1.1 (Aug 2012) for x64
@@ -127,7 +129,7 @@ Current state
 |           |   |       |-- FusionInventory-Agent-2.2.5
 |           |   |       |-- FusionInventory-Agent-Task-Deploy-2.0.2
 |           |   |       |-- FusionInventory-Agent-Task-ESX-2.2.0
-|           |   |       `-- FusionInventory-Agent-Task-Network-1.0.0
+|           |   |       `-- FusionInventory-Agent-Task-Network-1.0.1
 |           |   |-- data
 |           |   |-- licenses
 |           |   |-- perl
@@ -143,7 +145,7 @@ Current state
 |               |       |-- FusionInventory-Agent-2.2.5
 |               |       |-- FusionInventory-Agent-Task-Deploy-2.0.2
 |               |       |-- FusionInventory-Agent-Task-ESX-2.2.0
-|               |       `-- FusionInventory-Agent-Task-Network-1.0.0
+|               |       `-- FusionInventory-Agent-Task-Network-1.0.1
 |               |-- data
 |               |-- licenses
 |               |-- perl
