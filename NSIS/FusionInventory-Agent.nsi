@@ -120,6 +120,8 @@ SetCompressor /FINAL /SOLID lzma
 !undef PREVIOUS_PRODUCT_X86_BUILD_ID
 !undef PREVIOUS_PRODUCT_X64_BUILD_ID
 
+!define INSTALLER_HELP_FILE "fusioninventory-agent_windows-${INSTALLER_PLATFORM_ARCHITECTURE}_${PRODUCT_VERSION}.rtf"
+
 !define 7ZIP_DIR "..\Tools\7zip\${INSTALLER_PLATFORM_ARCHITECTURE}"
 !define DMIDECODE_DIR "..\Tools\dmidecode\${LABEL_PLATFORM_ARCHITECTURE_32}"
 !define HDPARM_DIR "..\Tools\hdparm\${LABEL_PLATFORM_ARCHITECTURE_32}" 
@@ -614,6 +616,9 @@ SectionEnd
 ; Callback Installer Functions
 
 Function .onInit
+   ; Push $R0 onto the stack
+   Push $R0
+
    ; ClosePadLock 
    ${ClosePadLock}
 
@@ -661,6 +666,18 @@ Function .onInit
       StrCpy $CommandLineSyntaxError 1
    ${EndIf}
 
+   ; Check for dump help file
+   ${If} $CommandLineSyntaxError = 0
+   ${AndIfNot} ${Silent}
+      ${ReadINIOption} $R0 "${IOS_COMMANDLINE}" "${IO_DUMPHELP}"
+      ${If} $R0 = 1
+         ; Dump help file
+         Call BuildHelpFile
+         CopyFiles /SILENT /FILESONLY "$PLUGINSDIR\${INSTALLER_HELP_FILE}" "$EXEDIR\${INSTALLER_HELP_FILE}"
+         Abort
+      ${EndIf}
+   ${EndIf}
+
    ; Check for silent installation mode
    ${If} ${Silent}
       ; Silent installation mode
@@ -681,6 +698,9 @@ Function .onInit
          Call .onInitVisualMode
       ${EndIf}
    ${EndIf}
+
+   ; Pop $R0 off of the stack
+   Pop $R0
 FunctionEnd
 
 Function .onInstSuccess

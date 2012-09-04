@@ -283,6 +283,21 @@ Function GetCommandLineOptions
        ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 
+   ; Search for '/dumphelp' option.
+   ${CommandLineOptionsSearchBlock} "/dumphelp" "${IO_DUMPHELP}"
+       ; Check $R3 domain
+       ${If} "$R3" != ""
+          ; Syntax error.
+          SetErrors
+          StrCpy $R7 1
+          ${FileWriteLine} $R9 "Syntax error. '$R2' is a switch, it has no values."
+          ${Break}
+       ${Else}
+          ; Override $R3
+          StrCpy $R3 1
+       ${EndIf}
+   ${EndCommandLineOptionsSearchBlock}
+
    ; Search for '/execmode' option.
    ${CommandLineOptionsSearchBlock} "/execmode=" "${IO_EXECMODE}"
        ; Check $R3 domain
