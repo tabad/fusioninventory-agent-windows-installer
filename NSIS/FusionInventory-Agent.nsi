@@ -75,14 +75,8 @@ SetCompressor /FINAL /SOLID lzma
 !define PRODUCT_UNINSTALLER "Uninstall.exe"
 !define PRODUCT_INST_ROOT_KEY "HKEY_LOCAL_MACHINE"
 !define PRODUCT_UNINST_ROOT_KEY "HKEY_LOCAL_MACHINE"
-
-!if ${INSTALLER_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
-   !define PRODUCT_INSTALLER "fusioninventory-agent_windows-${LABEL_PLATFORM_ARCHITECTURE_32}_${PRODUCT_VERSION}.exe"
-   !define PRODUCT_WEB_FOR_UPDATES "http://prebuilt.fusioninventory.org/stable/windows-${LABEL_PLATFORM_ARCHITECTURE_32}/"
-!else
-   !define PRODUCT_INSTALLER "fusioninventory-agent_windows-${LABEL_PLATFORM_ARCHITECTURE_64}_${PRODUCT_VERSION}.exe"
-   !define PRODUCT_WEB_FOR_UPDATES "http://prebuilt.fusioninventory.org/stable/windows-${LABEL_PLATFORM_ARCHITECTURE_64}/"
-!endif
+!define PRODUCT_INSTALLER "fusioninventory-agent_windows-${INSTALLER_PLATFORM_ARCHITECTURE}_${PRODUCT_VERSION}.exe"
+!define PRODUCT_WEB_FOR_UPDATES "http://prebuilt.fusioninventory.org/stable/windows-${INSTALLER_PLATFORM_ARCHITECTURE}/"
 
 !define FILE_VERSION "${PRODUCT_VERSION_MAJOR}.${PRODUCT_VERSION_MINOR}.${PRODUCT_VERSION_RELEASE}.${PRODUCT_VERSION_BUILD}"
 !define VI_PRODUCT_VERSION "${FILE_VERSION}"
