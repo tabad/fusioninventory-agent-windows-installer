@@ -846,6 +846,13 @@ Function .onInitSilentMode
             ${WriteINIOption} "${IOS_FINAL}" "${IO_EXECMODE}" "$R0"
          ${EndIf}
 
+         ; Fixing the ${IO_SERVICE-START-TYPE} and ${IO_SERVICE-STATUS} options
+         ${ReadINIOption} $R0 "${IOS_COMMANDLINE}" "${IO_EXECMODE}"
+         ${If} "$R0" == "${EXECMODE_SERVICE}"
+            ${WriteINIOption} "${IOS_FINAL}" "${IO_SERVICE-START-TYPE}" "${SERVICE_STARTTYPE_AUTO}"
+            ${WriteINIOption} "${IOS_FINAL}" "${IO_SERVICE-STATUS}" "${SERVICE_STATUS_RUNNING}"
+         ${EndIf}
+
          ; Fixing the ${IO_LOGFILE} option
          ;    With sense in Windows platform x64 architecture when you
          ;    swap the x86 package by the x64 package, or vice versa
@@ -954,6 +961,13 @@ Function .onInitVisualMode
          ${If} "$R0" == "${EXECMODE_CURRENTCONF}"
             ${ReadINIOption} $R0 "${IOS_CURRENTCONFIG}" "${IO_EXECMODE}"
             ${WriteINIOption} "${IOS_DEFAULTGUI}" "${IO_EXECMODE}" "$R0"
+         ${EndIf}
+
+         ; Fixing the ${IO_SERVICE-START-TYPE} and ${IO_SERVICE-STATUS} options
+         ${ReadINIOption} $R0 "${IOS_COMMANDLINE}" "${IO_EXECMODE}"
+         ${If} "$R0" == "${EXECMODE_SERVICE}"
+            ${WriteINIOption} "${IOS_DEFAULTGUI}" "${IO_SERVICE-START-TYPE}" "${SERVICE_STARTTYPE_AUTO}"
+            ${WriteINIOption} "${IOS_DEFAULTGUI}" "${IO_SERVICE-STATUS}" "${SERVICE_STATUS_RUNNING}"
          ${EndIf}
 
          ; Fixing the ${IO_LOGFILE} option

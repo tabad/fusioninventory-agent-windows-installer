@@ -215,6 +215,13 @@ Function InstallModePage_Leave
             ${WriteINIOption} "${IOS_GUI}" "${IO_EXECMODE}" "$R0"
          ${EndIf}
 
+         ; Fixing the ${IO_SERVICE-START-TYPE} and ${IO_SERVICE-STATUS} options
+         ${ReadINIOption} $R0 "${IOS_COMMANDLINE}" "${IO_EXECMODE}"
+         ${If} "$R0" == "${EXECMODE_SERVICE}"
+            ${WriteINIOption} "${IOS_GUI}" "${IO_SERVICE-START-TYPE}" "${SERVICE_STARTTYPE_AUTO}"
+            ${WriteINIOption} "${IOS_GUI}" "${IO_SERVICE-STATUS}" "${SERVICE_STATUS_RUNNING}"
+         ${EndIf}
+
          ; Fixing the ${IO_LOGFILE} option
          ;    With sense in Windows platform x64 architecture when you
          ;    swap the x86 package by the x64 package, or vice versa
