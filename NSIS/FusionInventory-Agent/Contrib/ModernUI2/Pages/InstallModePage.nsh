@@ -171,7 +171,7 @@ Function InstallModePage_Leave
       ${ReadINIOption} $R0 "${IOS_GUI}" "${IO_INSTALLTYPE}"
 
       ${If} "$R0" != "${INSTALLTYPE_FROMCURRENTCONFIG}"
-         ; ${INSTALLTYPE_FROMSCRATCH} -> ${INSTALLTYPE_FROMSCRATCH}
+         ; ${INSTALLTYPE_FROMSCRATCH} -> ${INSTALLTYPE_FROMCURRENTCONFIG}
          ${InitINIOptionSectionCurrentConfig}
          ${CopyINIOptionSection} "${IOS_DEFAULT}" "${IOS_GUI}"
          ${UpdateINIOptionSection} "${IOS_GUI}" "${IOS_CURRENTCONFIG}"
