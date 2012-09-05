@@ -22,14 +22,14 @@
    ------------------------------------------------------------------------
 
    @package   FusionInventory Agent Installer for Microsoft Windows
-   @file      .\FusionInventory Agent\Contrib\ModernUI2\Pages\HelpPage.nsh     
+   @file      .\FusionInventory Agent\Contrib\ModernUI2\Pages\HelpPage.nsh
    @author    Tomas Abad
    @copyright Copyright (c) 2010-2012 FusionInventory Team
    @license   [...]
    @link      http://www.fusioninventory.org/
    @link      http://forge.fusioninventory.org/projects/fusioninventory-agent
    @since     2012
- 
+
    ------------------------------------------------------------------------
 */
 
@@ -72,11 +72,11 @@ Function HelpPage_Create
    ${Else}
       !insertmacro MUI_HEADER_TEXT "$(hCtl_HelpPage_Text_SyntaxError)" "$(hCtl_HelpPage_SubText)"
    ${EndIf}
-  
+
    ; === Label1 (type: Label) ===
    ${NSD_CreateLabel} 0u 0u 294u 9u "$(hCtl_HelpPage_Label1_Text)"
    Pop $hCtl_HelpPage_Label1
-  
+
    ; === RichEdit1 (type: RichEdit20A) ===
    nsDialogs::CreateControl RichEdit20A \
       ${WS_VISIBLE}|${WS_CHILD}|${WS_TABSTOP}|${WS_VSCROLL}|${ES_MULTILINE}|${ES_READONLY} \
@@ -85,7 +85,7 @@ Function HelpPage_Create
    Pop $hCtl_HelpPage_RichEdit1
 
    Call BuildHelpFile
-   nsRichEdit::Load $hCtl_HelpPage_RichEdit1 "$PLUGINSDIR\${INSTALLER_HELP_FILE}" 
+   nsRichEdit::Load $hCtl_HelpPage_RichEdit1 "$PLUGINSDIR\${INSTALLER_HELP_FILE}"
 
    ; === Button1 (type: Button) ===
    ${NSD_CreateButton} 249u 126u 49u 14u "$(hCtl_HelpPage_Button1_Text)"
@@ -97,7 +97,7 @@ Function HelpPage_Create
    Push $R0
    GetDlgItem $R0 $HWNDPARENT 1
    ShowWindow $R0 ${SW_HIDE}
-   Pop $R0 
+   Pop $R0
 FunctionEnd
 
 
@@ -114,7 +114,7 @@ Function HelpPage_Show
       ; Abort
       Abort
    ${EndIf}
-       
+
    Call HelpPage_Create
    nsDialogs::Show $hCtl_HelpPage
 
@@ -137,7 +137,7 @@ Function BuildHelpFile
    ; Pushes $Rx onto the stack
    Push $R0
    Push $R9
- 
+
    ; Create an empty help file
    Delete "$PLUGINSDIR\${INSTALLER_HELP_FILE}"
    FileOpen $R0 "$PLUGINSDIR\${INSTALLER_HELP_FILE}" w
@@ -147,7 +147,7 @@ Function BuildHelpFile
    ${FileWriteLine} $R0 `{\*\generator Msftedit 5.41.15.1515;}\viewkind4\uc1\f0\fs16`
 
    ; Name
-   ${FileWriteLine} $R0 `\pard\b $(hCtl_HelpPage_Help_Name)\b0\par` 
+   ${FileWriteLine} $R0 `\pard\b $(hCtl_HelpPage_Help_Name)\b0\par`
    ${FileWriteLine} $R0 `\pard\li400 ${PRODUCT_INSTALLER} - $(^Name) v${PRODUCT_VERSION} Setup\par`
    ${FileWriteLine} $R0 `\par`
    ${FileWriteLine} $R0 ``
@@ -172,7 +172,7 @@ Function BuildHelpFile
    ${Else}
       StrCpy $R9 $(hCtl_HelpPage_Help_Yes)
    ${EndIf}
-   
+
    ${FileWriteLine} $R0 `\pard\li400 /acceptlicense\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_acceptlicense_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
@@ -188,7 +188,7 @@ Function BuildHelpFile
    ${Else}
       StrCpy $R9 $(hCtl_HelpPage_Help_Yes)
    ${EndIf}
-   
+
    ${FileWriteLine} $R0 `\pard\li400 /add-firewall-exception\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_add-firewall-exception_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
@@ -197,7 +197,7 @@ Function BuildHelpFile
    ; /backend-collect-timeout
    ${ReadINIOption} $R9 "Default" "backend-collect-timeout"
    ${EscapeSpecialRTFCharacters} $R9 $R9
-   
+
    ${FileWriteLine} $R0 `\pard\li400 /backend-collect-timeout=<\i timeout\i0 >\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_backend-collect-timeout_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
@@ -207,9 +207,9 @@ Function BuildHelpFile
    ${ReadINIOption} $R9 "Default" "ca-cert-dir"
    ${EscapeSpecialRTFCharacters} $R9 $R9
    ${If} "$R9" == ""
-      StrCpy $R9 "$\"$\"" 
+      StrCpy $R9 "$\"$\""
    ${EndIf}
-   
+
    ${FileWriteLine} $R0 `\pard\li400 /ca-cert-dir=<\i absolute_pathname\i0 >\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_ca-cert-dir_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
@@ -219,9 +219,9 @@ Function BuildHelpFile
    ${ReadINIOption} $R9 "Default" "ca-cert-file"
    ${EscapeSpecialRTFCharacters} $R9 $R9
    ${If} "$R9" == ""
-      StrCpy $R9 "$\"$\"" 
+      StrCpy $R9 "$\"$\""
    ${EndIf}
-   
+
    ${FileWriteLine} $R0 `\pard\li400 /ca-cert-file=<\i filename\i0 >\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_ca-cert-file_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
@@ -233,9 +233,9 @@ Function BuildHelpFile
    ${ReadINIOption} $R9 "Default" "ca-cert-uri"
    ${EscapeSpecialRTFCharacters} $R9 $R9
    ${If} "$R9" == ""
-      StrCpy $R9 "$\"$\"" 
+      StrCpy $R9 "$\"$\""
    ${EndIf}
-   
+
    ${FileWriteLine} $R0 `\pard\li400 /ca-cert-uri=<\i URI\i0 >\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_ca-cert-uri_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
@@ -251,7 +251,7 @@ Function BuildHelpFile
    ${Else}
       StrCpy $R9 $(hCtl_HelpPage_Help_Yes)
    ${EndIf}
-   
+
    ${FileWriteLine} $R0 `\pard\li400 /debug\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_debug_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
@@ -260,7 +260,7 @@ Function BuildHelpFile
    ; /delaytime
    ${ReadINIOption} $R9 "Default" "delaytime"
    ${EscapeSpecialRTFCharacters} $R9 $R9
-   
+
    ${FileWriteLine} $R0 `\pard\li400 /delaytime=<\i limit\i0 >\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_delaytime_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
@@ -273,7 +273,7 @@ Function BuildHelpFile
    ; /execmode
    ${ReadINIOption} $R9 "Default" "execmode"
    ${EscapeSpecialRTFCharacters} $R9 $R9
-   
+
    ${FileWriteLine} $R0 `\pard\li400 /execmode=\{service|task|manual|currentconf\}\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_execmode_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
@@ -295,7 +295,7 @@ Function BuildHelpFile
    ${Else}
       StrCpy $R9 $(hCtl_HelpPage_Help_Yes)
    ${EndIf}
-   
+
    ${FileWriteLine} $R0 `\pard\li400 /html\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_html_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
@@ -312,7 +312,7 @@ Function BuildHelpFile
    ; /httpd-ip
    ${ReadINIOption} $R9 "Default" "httpd-ip"
    ${EscapeSpecialRTFCharacters} $R9 $R9
-   
+
    ${FileWriteLine} $R0 `\pard\li400 /httpd-ip=<\i ip\i0 >\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_httpd-ip_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
@@ -323,7 +323,7 @@ Function BuildHelpFile
    ; /httpd-port
    ${ReadINIOption} $R9 "Default" "httpd-port"
    ${EscapeSpecialRTFCharacters} $R9 $R9
-   
+
    ${FileWriteLine} $R0 `\pard\li400 /httpd-port=<\i port\i0 >\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_httpd-port_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
@@ -334,7 +334,7 @@ Function BuildHelpFile
    ; /httpd-trust
    ${ReadINIOption} $R9 "Default" "httpd-trust"
    ${EscapeSpecialRTFCharacters} $R9 $R9
-   
+
    ${FileWriteLine} $R0 `\pard\li400 /httpd-trust=<\i cidr\i0 >\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_httpd-trust_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
@@ -345,7 +345,7 @@ Function BuildHelpFile
    ; /installdir
    ${ReadINIOption} $R9 "Default" "installdir"
    ${EscapeSpecialRTFCharacters} $R9 $R9
-   
+
    ${FileWriteLine} $R0 `\pard\li400 /installdir=<\i absolute_pathname\i0 >\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_installdir_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
@@ -356,7 +356,7 @@ Function BuildHelpFile
    ; /installtasks
    ${ReadINIOption} $R9 "Default" "installtasks"
    ${EscapeSpecialRTFCharacters} $R9 $R9
-   
+
    ${FileWriteLine} $R0 `\pard\li400 /installtasks=\{[<\i task\i0 >][,<\i task\i0 >][...]|<\i macro\i0 >\}\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_installtasks_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
@@ -369,7 +369,7 @@ Function BuildHelpFile
    ; /installtype
    ${ReadINIOption} $R9 "Default" "installtype"
    ${EscapeSpecialRTFCharacters} $R9 $R9
-   
+
    ${FileWriteLine} $R0 `\pard\li400 /installtype=\{from-scratch|from-current-config\}\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_installtype_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
@@ -381,9 +381,9 @@ Function BuildHelpFile
    ${ReadINIOption} $R9 "Default" "local"
    ${EscapeSpecialRTFCharacters} $R9 $R9
    ${If} "$R9" == ""
-      StrCpy $R9 "$\"$\"" 
+      StrCpy $R9 "$\"$\""
    ${EndIf}
-   
+
    ${FileWriteLine} $R0 `\pard\li400 /local=<\i absolute_pathname\i0 >\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_local_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
@@ -397,9 +397,9 @@ Function BuildHelpFile
    ${ReadINIOption} $R9 "Default" "logfile"
    ${EscapeSpecialRTFCharacters} $R9 $R9
    ${If} "$R9" == ""
-      StrCpy $R9 "$\"$\"" 
+      StrCpy $R9 "$\"$\""
    ${EndIf}
-   
+
    ${FileWriteLine} $R0 `\pard\li400 /logfile=<\i filename\i0 >\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_logfile_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
@@ -410,7 +410,7 @@ Function BuildHelpFile
    ; /logfile-maxsize
    ${ReadINIOption} $R9 "Default" "logfile-maxsize"
    ${EscapeSpecialRTFCharacters} $R9 $R9
-   
+
    ${FileWriteLine} $R0 `\pard\li400 /logfile-maxsize=<\i size\i0 >\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_logfile-maxsize_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
@@ -421,7 +421,7 @@ Function BuildHelpFile
    ; /logger
    ${ReadINIOption} $R9 "Default" "logger"
    ${EscapeSpecialRTFCharacters} $R9 $R9
-   
+
    ${FileWriteLine} $R0 `\pard\li400 /logger=\{[<\i backend\i0 >][,<\i backend\i0 >]\}\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_logger_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
@@ -433,9 +433,9 @@ Function BuildHelpFile
    ${ReadINIOption} $R9 "Default" "no-category"
    ${EscapeSpecialRTFCharacters} $R9 $R9
    ${If} "$R9" == ""
-      StrCpy $R9 "$\"$\"" 
+      StrCpy $R9 "$\"$\""
    ${EndIf}
-   
+
    ${FileWriteLine} $R0 `\pard\li400 /no-category=\{[<\i category\i0 >][,<\i category\i0 >][...]\}\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_no-category_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
@@ -463,7 +463,7 @@ Function BuildHelpFile
    ${Else}
       StrCpy $R9 $(hCtl_HelpPage_Help_Yes)
    ${EndIf}
-   
+
    ${FileWriteLine} $R0 `\pard\li400 /no-httpd\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_no-httpd_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
@@ -477,7 +477,7 @@ Function BuildHelpFile
    ${Else}
       StrCpy $R9 $(hCtl_HelpPage_Help_Yes)
    ${EndIf}
-   
+
    ${FileWriteLine} $R0 `\pard\li400 /no-p2p\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_no-p2p_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
@@ -497,7 +497,7 @@ Function BuildHelpFile
    ${Else}
       StrCpy $R9 $(hCtl_HelpPage_Help_Yes)
    ${EndIf}
-   
+
    ${FileWriteLine} $R0 `\pard\li400 /no-ssl-check\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_no-ssl-check_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
@@ -509,9 +509,9 @@ Function BuildHelpFile
    ${ReadINIOption} $R9 "Default" "no-task"
    ${EscapeSpecialRTFCharacters} $R9 $R9
    ${If} "$R9" == ""
-      StrCpy $R9 "$\"$\"" 
+      StrCpy $R9 "$\"$\""
    ${EndIf}
-   
+
    ${FileWriteLine} $R0 `\pard\li400 /no-task=\{[<\i task\i0 >][,<\i task\i0 >][...]\}\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_no-task_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
@@ -529,9 +529,9 @@ Function BuildHelpFile
    ${ReadINIOption} $R9 "Default" "password"
    ${EscapeSpecialRTFCharacters} $R9 $R9
    ${If} "$R9" == ""
-      StrCpy $R9 "$\"$\"" 
+      StrCpy $R9 "$\"$\""
    ${EndIf}
-   
+
    ${FileWriteLine} $R0 `\pard\li400 /password=<\i password\i0 >\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_password_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
@@ -543,9 +543,9 @@ Function BuildHelpFile
    ${ReadINIOption} $R9 "Default" "proxy"
    ${EscapeSpecialRTFCharacters} $R9 $R9
    ${If} "$R9" == ""
-      StrCpy $R9 "$\"$\"" 
+      StrCpy $R9 "$\"$\""
    ${EndIf}
-   
+
    ${FileWriteLine} $R0 `\pard\li400 /proxy=<\i URI\i0 >\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_proxy_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
@@ -561,7 +561,7 @@ Function BuildHelpFile
    ${Else}
       StrCpy $R9 $(hCtl_HelpPage_Help_Yes)
    ${EndIf}
-   
+
    ${FileWriteLine} $R0 `\pard\li400 /runnow\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_runnow_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
@@ -575,7 +575,7 @@ Function BuildHelpFile
    ${Else}
       StrCpy $R9 $(hCtl_HelpPage_Help_Yes)
    ${EndIf}
-   
+
    ${FileWriteLine} $R0 `\pard\li400 /S\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_S_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
@@ -591,7 +591,7 @@ Function BuildHelpFile
    ${Else}
       StrCpy $R9 $(hCtl_HelpPage_Help_Yes)
    ${EndIf}
-   
+
    ${FileWriteLine} $R0 `\pard\li400 /scan-homedirs\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_scan-homedirs_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
@@ -601,9 +601,9 @@ Function BuildHelpFile
    ${ReadINIOption} $R9 "Default" "server"
    ${EscapeSpecialRTFCharacters} $R9 $R9
    ${If} "$R9" == ""
-      StrCpy $R9 "$\"$\"" 
+      StrCpy $R9 "$\"$\""
    ${EndIf}
-   
+
    ${FileWriteLine} $R0 `\pard\li400 /server=[<\i URI\i0 >][,<\i URI\i0 >[...]] \par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_server_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
@@ -623,9 +623,9 @@ Function BuildHelpFile
    ${ReadINIOption} $R9 "Default" "tag"
    ${EscapeSpecialRTFCharacters} $R9 $R9
    ${If} "$R9" == ""
-      StrCpy $R9 "$\"$\"" 
+      StrCpy $R9 "$\"$\""
    ${EndIf}
-   
+
    ${FileWriteLine} $R0 `\pard\li400 /tag=<\i tag\i0 >\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_tag_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
@@ -636,7 +636,7 @@ Function BuildHelpFile
    ; /task-dayly-modifier
    ${ReadINIOption} $R9 "Default" "task-dayly-modifier"
    ${EscapeSpecialRTFCharacters} $R9 $R9
-   
+
    ${FileWriteLine} $R0 `\pard\li400 /task-dayly-modifier=<\i modifier\i0 >\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_task-dayly-modifier_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
@@ -647,7 +647,7 @@ Function BuildHelpFile
    ; /task-frequency
    ${ReadINIOption} $R9 "Default" "task-frequency"
    ${EscapeSpecialRTFCharacters} $R9 $R9
-   
+
    ${FileWriteLine} $R0 `\pard\li400 /task-frequency=\{minute|hourly|dayly\}\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_task-frequency_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
@@ -658,7 +658,7 @@ Function BuildHelpFile
    ; /task-hourly-modifier
    ${ReadINIOption} $R9 "Default" "task-hourly-modifier"
    ${EscapeSpecialRTFCharacters} $R9 $R9
-   
+
    ${FileWriteLine} $R0 `\pard\li400 /task-hourly-modifier=<\i modifier\i0 >\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_task-hourly-modifier_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
@@ -669,7 +669,7 @@ Function BuildHelpFile
    ; /task-minute-modifier
    ${ReadINIOption} $R9 "Default" "task-minute-modifier"
    ${EscapeSpecialRTFCharacters} $R9 $R9
-   
+
    ${FileWriteLine} $R0 `\pard\li400 /task-minute-modifier=<\i modifier\i0 >\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_task-minute-modifier_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
@@ -680,7 +680,7 @@ Function BuildHelpFile
    ; /timeout
    ${ReadINIOption} $R9 "Default" "timeout"
    ${EscapeSpecialRTFCharacters} $R9 $R9
-   
+
    ${FileWriteLine} $R0 `\pard\li400 /timeout=<\i timeout\i0 >\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_timeout_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
@@ -692,9 +692,9 @@ Function BuildHelpFile
    ${ReadINIOption} $R9 "Default" "user"
    ${EscapeSpecialRTFCharacters} $R9 $R9
    ${If} "$R9" == ""
-      StrCpy $R9 "$\"$\"" 
+      StrCpy $R9 "$\"$\""
    ${EndIf}
-   
+
    ${FileWriteLine} $R0 `\pard\li400 /user=<\i user\i0 >\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_user_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
@@ -705,7 +705,7 @@ Function BuildHelpFile
    ; /wait
    ${ReadINIOption} $R9 "Default" "wait"
    ${EscapeSpecialRTFCharacters} $R9 $R9
-   
+
    ${FileWriteLine} $R0 `\pard\li400 /wait=<\i limit\i0 >\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_wait_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`

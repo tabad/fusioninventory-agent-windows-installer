@@ -22,14 +22,14 @@
    ------------------------------------------------------------------------
 
    @package   FusionInventory Agent Installer for Microsoft Windows
-   @file      .\FusionInventory Agent\Contrib\ModernUI2\Pages\InstallModePage.nsh     
+   @file      .\FusionInventory Agent\Contrib\ModernUI2\Pages\InstallModePage.nsh
    @author    Tomas Abad
    @copyright Copyright (c) 2010-2012 FusionInventory Team
    @license   [...]
    @link      http://www.fusioninventory.org/
    @link      http://forge.fusioninventory.org/projects/fusioninventory-agent
    @since     2012
- 
+
    ------------------------------------------------------------------------
 */
 
@@ -74,7 +74,7 @@ Function InstallModePage_Create
      Abort
    ${EndIf}
    !insertmacro MUI_HEADER_TEXT "$(hCtl_InstallModePage_Text)" "$(hCtl_InstallModePage_SubText)"
- 
+
    ; === Label1 (type: Label) ===
    ${NSD_CreateLabel} 0u 0u 294u 36u "$(hCtl_InstallModePage_Label1_Text)"
    Pop $hCtl_InstallModePage_Label1
@@ -83,7 +83,7 @@ Function InstallModePage_Create
    ${NSD_CreateRadioButton} 16u 41u 252u 14u "$(hCtl_InstallModePage_RadioButton1_Text)"
    Pop $hCtl_InstallModePage_RadioButton1
    ${NSD_AddStyle} $hCtl_InstallModePage_RadioButton1 ${WS_GROUP}
- 
+
    ; === Label2 (type: Label) ===
    ${NSD_CreateLabel} 32u 54u 236u 23u "$(hCtl_InstallModePage_Label2_Text)"
    Pop $hCtl_InstallModePage_Label2
@@ -102,7 +102,7 @@ Function InstallModePage_Create
    ; Default values
    ${ReadINIOption} $R0 "${IOS_GUI}" "${IO_INSTALLTYPE}"
 
-   ${If} "$R0" == "${INSTALLTYPE_FROMSCRATCH}" 
+   ${If} "$R0" == "${INSTALLTYPE_FROMSCRATCH}"
       ; Check RadioButton1
       ${NSD_Check} $hCtl_InstallModePage_RadioButton1
       ${NSD_Uncheck} $hCtl_InstallModePage_RadioButton2
@@ -127,7 +127,7 @@ Function InstallModePage_Show
 
    ; Is FusionInventory Agent installed?
    ${IsFusionInventoryAgentInstalled} $R0
- 
+
    ${If} $R0 = 0
       ; The agent is not installed yet
       Pop $R0

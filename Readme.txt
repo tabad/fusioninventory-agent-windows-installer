@@ -87,7 +87,7 @@ What do you need
 
 Current state
 -------------
-   Nowadays, the contents of the project is: 
+   Nowadays, the contents of the project is:
 
       .- FusionInventory Agent v2.2.5
          .- FusionInventory Agent Task Deploy v2.0.2

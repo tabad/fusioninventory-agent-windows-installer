@@ -22,14 +22,14 @@
    ------------------------------------------------------------------------
 
    @package   FusionInventory Agent Installer for Microsoft Windows
-   @file      .\FusionInventory Agent\Include\CommandLineParser.nsh     
+   @file      .\FusionInventory Agent\Include\CommandLineParser.nsh
    @author    Tomas Abad
    @copyright Copyright (c) 2010-2012 FusionInventory Team
    @license   [...]
    @link      http://www.fusioninventory.org/
    @link      http://forge.fusioninventory.org/projects/fusioninventory-agent
    @since     2012
- 
+
    ------------------------------------------------------------------------
 */
 
@@ -70,7 +70,7 @@
          ${IfNot} ${Errors}
             ${FileWriteLine} $R9 "...'$R2' found!"
 
-            ; Remove the first occurrence of $R2$R3 from $R0 
+            ; Remove the first occurrence of $R2$R3 from $R0
             ${WordReplace} "$R0" "$R2$R3" "" "+1" $R1
             ${If} "$R0" == "$R1"
                ${WordReplace} "$R0" "$R2$\'$R3$\'" "" "+1" $R1
@@ -82,19 +82,19 @@
                ${EndIf}
             ${EndIf}
             ${Trim} $R0 "$R1"
- 
+
             ${FileWriteLine} $R9 "New parameters (without '$R2[|$\'|$\"|$\`]$R3[$\`|$\"|$\'|]'): '$R0'"
 
             ; Check whether option $R2 already exist in Options.ini
             ${ReadINIOption} $R5 "$R8" "$R4"
 
             ${If} ${Errors}
-               ; It's the first occurrence of $R2 into the command line 
+               ; It's the first occurrence of $R2 into the command line
 
                ; Checks about $R3 below
                ; See examples inside 'GetCommandLineOptions' macro definition.
 !macroend
- 
+
 
 !define EndCommandLineOptionsSearchBlock "!insertmacro EndCommandLineOptionsSearchBlock"
 
@@ -107,8 +107,8 @@
 
                ${FileWriteLine} $R9 "'$R4=$R3' written into the section [$R8] of the file '$PLUGINSDIR\Options.ini'"
             ${Else}
-               ; It's the second occurrence of $R2 into the command line 
-               ; Syntax error. Only one occurrence is allowed. 
+               ; It's the second occurrence of $R2 into the command line
+               ; Syntax error. Only one occurrence is allowed.
                SetErrors
                StrCpy $R7 1
                ${FileWriteLine} $R9 "Syntax error. Only one occurrence of '$R2' is allowed into the command line."
@@ -128,7 +128,7 @@
 
 
 !define GetCommandLineOptions "Call GetCommandLineOptions"
- 
+
 Function GetCommandLineOptions
    ; $R0 Command line parameters
    ; $R1 Command line parameters (auxiliary string)
@@ -158,23 +158,23 @@ Function GetCommandLineOptions
    ; Set Options.ini file section
    StrCpy $R8 "${IOS_COMMANDLINE}"
 
-   ; Create an empty command line parser logfile 
+   ; Create an empty command line parser logfile
    Delete "${COMMANDLINE_PARSER_LOGFILE}"
-   FileOpen $R9 "${COMMANDLINE_PARSER_LOGFILE}" w 
+   FileOpen $R9 "${COMMANDLINE_PARSER_LOGFILE}" w
 
    ; Delete '$R8' section from Options.ini
-   ${DeleteINIOptionSection} "$R8" 
+   ${DeleteINIOptionSection} "$R8"
 
    ; Get command line parameters
    ${GetParameters} $R0
 
    ${FileWriteLine} $R9 "$$CMDLINE: '$CMDLINE'"
    ${FileWriteLine} $R9 "GetParameters(): '$R0'"
- 
+
    ; Search for '/acceptlicense' option.
    ${CommandLineOptionsSearchBlock} "/acceptlicense" "${IO_ACCEPTLICENSE}"
        ; Check $R3 domain
-       ${If} "$R3" != "" 
+       ${If} "$R3" != ""
           ; Syntax error.
           SetErrors
           StrCpy $R7 1
@@ -189,7 +189,7 @@ Function GetCommandLineOptions
    ; Search for '/add-firewall-exception' option.
    ${CommandLineOptionsSearchBlock} "/add-firewall-exception" "${IO_ADD-FIREWALL-EXCEPTION}"
        ; Check $R3 domain
-       ${If} "$R3" != "" 
+       ${If} "$R3" != ""
           ; Syntax error.
           SetErrors
           StrCpy $R7 1
@@ -205,7 +205,7 @@ Function GetCommandLineOptions
    ${CommandLineOptionsSearchBlock} "/backend-collect-timeout=" "${IO_BACKEND-COLLECT-TIMEOUT}"
        ; Check $R3 domain
        ; ToDo
-       ${If} $R3 < 0 
+       ${If} $R3 < 0
        ${OrIf} $R3 > 600
           ; Syntax error.
           SetErrors
@@ -219,7 +219,7 @@ Function GetCommandLineOptions
    ${CommandLineOptionsSearchBlock} "/ca-cert-dir=" "${IO_CA-CERT-DIR}"
        ; Check $R3 domain
        ; ToDo
-       ${If} $R3 != $R3 
+       ${If} $R3 != $R3
           ; Syntax error.
           SetErrors
           StrCpy $R7 1
@@ -232,7 +232,7 @@ Function GetCommandLineOptions
    ${CommandLineOptionsSearchBlock} "/ca-cert-file=" "${IO_CA-CERT-FILE}"
        ; Check $R3 domain
        ; ToDo
-       ${If} $R3 != $R3 
+       ${If} $R3 != $R3
           ; Syntax error.
           SetErrors
           StrCpy $R7 1
@@ -245,7 +245,7 @@ Function GetCommandLineOptions
    ${CommandLineOptionsSearchBlock} "/ca-cert-uri=" "${IO_CA-CERT-URI}"
        ; Check $R3 domain
        ; ToDo
-       ${If} $R3 != $R3 
+       ${If} $R3 != $R3
           ; Syntax error.
           SetErrors
           StrCpy $R7 1
@@ -257,7 +257,7 @@ Function GetCommandLineOptions
    ; Search for '/debug' option.
    ${CommandLineOptionsSearchBlock} "/debug" "${IO_DEBUG}"
        ; Check $R3 domain
-       ${If} "$R3" != "" 
+       ${If} "$R3" != ""
           ; Syntax error.
           SetErrors
           StrCpy $R7 1
@@ -273,7 +273,7 @@ Function GetCommandLineOptions
    ${CommandLineOptionsSearchBlock} "/delaytime=" "${IO_DELAYTIME}"
        ; Check $R3 domain
        ; ToDo
-       ${If} $R3 < 0 
+       ${If} $R3 < 0
        ${OrIf} $R3 > 86400
           ; Syntax error.
           SetErrors
@@ -302,9 +302,9 @@ Function GetCommandLineOptions
    ${CommandLineOptionsSearchBlock} "/execmode=" "${IO_EXECMODE}"
        ; Check $R3 domain
        ${If} "$R3" != "${EXECMODE_SERVICE}"
-       ${AndIf} "$R3" != "${EXECMODE_TASK}" 
-       ${AndIf} "$R3" != "${EXECMODE_MANUAL}" 
-       ${AndIf} "$R3" != "${EXECMODE_CURRENTCONF}" 
+       ${AndIf} "$R3" != "${EXECMODE_TASK}"
+       ${AndIf} "$R3" != "${EXECMODE_MANUAL}"
+       ${AndIf} "$R3" != "${EXECMODE_CURRENTCONF}"
           ; Syntax error.
           SetErrors
           StrCpy $R7 1
@@ -316,7 +316,7 @@ Function GetCommandLineOptions
    ; Search for '/help' option.
    ${CommandLineOptionsSearchBlock} "/help" "${IO_HELP}"
        ; Check $R3 domain
-       ${If} "$R3" != "" 
+       ${If} "$R3" != ""
           ; Syntax error.
           SetErrors
           StrCpy $R7 1
@@ -331,7 +331,7 @@ Function GetCommandLineOptions
    ; Search for '/html' option.
    ${CommandLineOptionsSearchBlock} "/html" "${IO_HTML}"
        ; Check $R3 domain
-       ${If} "$R3" != "" 
+       ${If} "$R3" != ""
           ; Syntax error.
           SetErrors
           StrCpy $R7 1
@@ -346,7 +346,7 @@ Function GetCommandLineOptions
    ; Search for '/httpd' option.
    ${CommandLineOptionsSearchBlock} "/httpd" "${IO_NO-HTTPD}"
        ; Check $R3 domain
-       ${If} "$R3" != "" 
+       ${If} "$R3" != ""
           ; Syntax error.
           SetErrors
           StrCpy $R7 1
@@ -362,7 +362,7 @@ Function GetCommandLineOptions
    ${CommandLineOptionsSearchBlock} "/httpd-ip=" "${IO_HTTPD-IP}"
        ; Check $R3 domain
        ; ToDo
-       ${If} $R3 != $R3 
+       ${If} $R3 != $R3
           ; Syntax error.
           SetErrors
           StrCpy $R7 1
@@ -375,7 +375,7 @@ Function GetCommandLineOptions
    ${CommandLineOptionsSearchBlock} "/httpd-port=" "${IO_HTTPD-PORT}"
        ; Check $R3 domain
        ; ToDo
-       ${If} $R3 < 0 
+       ${If} $R3 < 0
        ${OrIf} $R3 > 65535
           ; Syntax error.
           SetErrors
@@ -389,7 +389,7 @@ Function GetCommandLineOptions
    ${CommandLineOptionsSearchBlock} "/httpd-trust=" "${IO_HTTPD-TRUST}"
        ; Check $R3 domain
        ; ToDo
-       ${If} $R3 != $R3 
+       ${If} $R3 != $R3
           ; Syntax error.
           SetErrors
           StrCpy $R7 1
@@ -402,7 +402,7 @@ Function GetCommandLineOptions
    ${CommandLineOptionsSearchBlock} "/installdir=" "${IO_INSTALLDIR}"
        ; Check $R3 domain
        ; ToDo
-       ${If} $R3 != $R3 
+       ${If} $R3 != $R3
           ; Syntax error.
           SetErrors
           StrCpy $R7 1
@@ -415,7 +415,7 @@ Function GetCommandLineOptions
    ${CommandLineOptionsSearchBlock} "/installtasks=" "${IO_INSTALLTASKS}"
        ; Check $R3 domain
        ; ToDo
-       ${If} $R3 != $R3 
+       ${If} $R3 != $R3
           ; Syntax error.
           SetErrors
           StrCpy $R7 1
@@ -436,12 +436,12 @@ Function GetCommandLineOptions
           ${Break}
        ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
- 
+
    ; Search for '/local' option.
    ${CommandLineOptionsSearchBlock} "/local=" "${IO_LOCAL}"
        ; Check $R3 domain
        ; ToDo
-       ${If} $R3 != $R3 
+       ${If} $R3 != $R3
           ; Syntax error.
           SetErrors
           StrCpy $R7 1
@@ -454,7 +454,7 @@ Function GetCommandLineOptions
    ${CommandLineOptionsSearchBlock} "/logfile=" "${IO_LOGFILE}"
        ; Check $R3 domain
        ; ToDo
-       ${If} $R3 != $R3 
+       ${If} $R3 != $R3
           ; Syntax error.
           SetErrors
           StrCpy $R7 1
@@ -466,7 +466,7 @@ Function GetCommandLineOptions
    ; Search for '/logfile-maxsize' option.
    ${CommandLineOptionsSearchBlock} "/logfile-maxsize=" "${IO_LOGFILE-MAXSIZE}"
        ; Check $R3 domain
-       ${If} $R3 < 0 
+       ${If} $R3 < 0
           ; Syntax error.
           SetErrors
           StrCpy $R7 1
@@ -479,7 +479,7 @@ Function GetCommandLineOptions
    ${CommandLineOptionsSearchBlock} "/logger=" "${IO_LOGGER}"
        ; Check $R3 domain
        ; ToDo
-       ${If} $R3 != $R3 
+       ${If} $R3 != $R3
           ; Syntax error.
           SetErrors
           StrCpy $R7 1
@@ -492,7 +492,7 @@ Function GetCommandLineOptions
    ${CommandLineOptionsSearchBlock} "/no-category=" "${IO_NO-CATEGORY}"
        ; Check $R3 domain
        ; ToDo
-       ${If} $R3 != $R3 
+       ${If} $R3 != $R3
           ; Syntax error.
           SetErrors
           StrCpy $R7 1
@@ -504,7 +504,7 @@ Function GetCommandLineOptions
    ; Search for '/no-debug' option.
    ${CommandLineOptionsSearchBlock} "/no-debug" "${IO_DEBUG}"
        ; Check $R3 domain
-       ${If} "$R3" != "" 
+       ${If} "$R3" != ""
           ; Syntax error.
           SetErrors
           StrCpy $R7 1
@@ -519,7 +519,7 @@ Function GetCommandLineOptions
    ; Search for '/no-html' option.
    ${CommandLineOptionsSearchBlock} "/no-html" "${IO_HTML}"
        ; Check $R3 domain
-       ${If} "$R3" != "" 
+       ${If} "$R3" != ""
           ; Syntax error.
           SetErrors
           StrCpy $R7 1
@@ -534,7 +534,7 @@ Function GetCommandLineOptions
    ; Search for '/no-httpd' option.
    ${CommandLineOptionsSearchBlock} "/no-httpd" "${IO_NO-HTTPD}"
        ; Check $R3 domain
-       ${If} "$R3" != "" 
+       ${If} "$R3" != ""
           ; Syntax error.
           SetErrors
           StrCpy $R7 1
@@ -549,7 +549,7 @@ Function GetCommandLineOptions
    ; Search for '/no-p2p' option.
    ${CommandLineOptionsSearchBlock} "/no-p2p" "${IO_NO-P2P}"
        ; Check $R3 domain
-       ${If} "$R3" != "" 
+       ${If} "$R3" != ""
           ; Syntax error.
           SetErrors
           StrCpy $R7 1
@@ -564,7 +564,7 @@ Function GetCommandLineOptions
    ; Search for '/no-scan-homedirs' option.
    ${CommandLineOptionsSearchBlock} "/no-scan-homedirs" "${IO_SCAN-HOMEDIRS}"
        ; Check $R3 domain
-       ${If} "$R3" != "" 
+       ${If} "$R3" != ""
           ; Syntax error.
           SetErrors
           StrCpy $R7 1
@@ -579,7 +579,7 @@ Function GetCommandLineOptions
    ; Search for '/no-ssl-check' option.
    ${CommandLineOptionsSearchBlock} "/no-ssl-check" "${IO_NO-SSL-CHECK}"
        ; Check $R3 domain
-       ${If} "$R3" != "" 
+       ${If} "$R3" != ""
           ; Syntax error.
           SetErrors
           StrCpy $R7 1
@@ -595,7 +595,7 @@ Function GetCommandLineOptions
    ${CommandLineOptionsSearchBlock} "/no-task=" "${IO_NO-TASK}"
        ; Check $R3 domain
        ; ToDo
-       ${If} $R3 != $R3 
+       ${If} $R3 != $R3
           ; Syntax error.
           SetErrors
           StrCpy $R7 1
@@ -607,7 +607,7 @@ Function GetCommandLineOptions
    ; Search for '/p2p' option.
    ${CommandLineOptionsSearchBlock} "/p2p" "${IO_NO-P2P}"
        ; Check $R3 domain
-       ${If} "$R3" != "" 
+       ${If} "$R3" != ""
           ; Syntax error.
           SetErrors
           StrCpy $R7 1
@@ -623,7 +623,7 @@ Function GetCommandLineOptions
    ${CommandLineOptionsSearchBlock} "/password=" "${IO_PASSWORD}"
        ; Check $R3 domain
        ; ToDo
-       ${If} $R3 != $R3 
+       ${If} $R3 != $R3
           ; Syntax error.
           SetErrors
           StrCpy $R7 1
@@ -636,7 +636,7 @@ Function GetCommandLineOptions
    ${CommandLineOptionsSearchBlock} "/proxy=" "${IO_PROXY}"
        ; Check $R3 domain
        ; ToDo
-       ${If} $R3 != $R3 
+       ${If} $R3 != $R3
           ; Syntax error.
           SetErrors
           StrCpy $R7 1
@@ -648,7 +648,7 @@ Function GetCommandLineOptions
    ; Search for '/runnow' option.
    ${CommandLineOptionsSearchBlock} "/runnow" "${IO_RUNNOW}"
        ; Check $R3 domain
-       ${If} "$R3" != "" 
+       ${If} "$R3" != ""
           ; Syntax error.
           SetErrors
           StrCpy $R7 1
@@ -663,7 +663,7 @@ Function GetCommandLineOptions
    ; Search for '/scan-homedirs' option.
    ${CommandLineOptionsSearchBlock} "/scan-homedirs" "${IO_SCAN-HOMEDIRS}"
        ; Check $R3 domain
-       ${If} "$R3" != "" 
+       ${If} "$R3" != ""
           ; Syntax error.
           SetErrors
           StrCpy $R7 1
@@ -679,7 +679,7 @@ Function GetCommandLineOptions
    ${CommandLineOptionsSearchBlock} "/server=" "${IO_SERVER}"
        ; Check $R3 domain
        ; ToDo
-       ${If} $R3 != $R3 
+       ${If} $R3 != $R3
           ; Syntax error.
           SetErrors
           StrCpy $R7 1
@@ -691,7 +691,7 @@ Function GetCommandLineOptions
    ; Search for '/ssl-check' option.
    ${CommandLineOptionsSearchBlock} "/ssl-check" "${IO_NO-SSL-CHECK}"
        ; Check $R3 domain
-       ${If} "$R3" != "" 
+       ${If} "$R3" != ""
           ; Syntax error.
           SetErrors
           StrCpy $R7 1
@@ -707,7 +707,7 @@ Function GetCommandLineOptions
    ${CommandLineOptionsSearchBlock} "/tag=" "${IO_TAG}"
        ; Check $R3 domain
        ; ToDo
-       ${If} $R3 != $R3 
+       ${If} $R3 != $R3
           ; Syntax error.
           SetErrors
           StrCpy $R7 1
@@ -746,8 +746,8 @@ Function GetCommandLineOptions
    ${CommandLineOptionsSearchBlock} "/task-frequency=" "${IO_TASK-FREQUENCY}"
        ; Check $R3 domain
        ${If} $R3 != "${FREQUENCY_MINUTE}"
-       ${AndIf} $R3 != "${FREQUENCY_HOURLY}" 
-       ${AndIf} $R3 != "${FREQUENCY_DAYLY}" 
+       ${AndIf} $R3 != "${FREQUENCY_HOURLY}"
+       ${AndIf} $R3 != "${FREQUENCY_DAYLY}"
           ; Syntax error.
           SetErrors
           StrCpy $R7 1
@@ -774,7 +774,7 @@ Function GetCommandLineOptions
    ${CommandLineOptionsSearchBlock} "/timeout=" "${IO_TIMEOUT}"
        ; Check $R3 domain
        ; ToDo
-       ${If} $R3 < 0 
+       ${If} $R3 < 0
        ${OrIf} $R3 > 600
           ; Syntax error.
           SetErrors
@@ -788,7 +788,7 @@ Function GetCommandLineOptions
    ${CommandLineOptionsSearchBlock} "/user=" "${IO_USER}"
       ; Check $R3 domain
       ; ToDo
-      ${If} $R3 != $R3 
+      ${If} $R3 != $R3
          ; Syntax error.
          SetErrors
          StrCpy $R7 1
@@ -801,7 +801,7 @@ Function GetCommandLineOptions
    ${CommandLineOptionsSearchBlock} "/wait=" "${IO_WAIT}"
        ; Check $R3 domain
        ; ToDo
-       ${If} $R3 < 0 
+       ${If} $R3 < 0
        ${OrIf} $R3 > 86400
           ; Syntax error.
           SetErrors
@@ -814,7 +814,7 @@ Function GetCommandLineOptions
    ; Search for '/S' option.
    ${CommandLineOptionsSearchBlock} "/S" "${IO_SILENTMODE}"
                ; Check $R3 domain
-               ${If} "$R3" != "" 
+               ${If} "$R3" != ""
                   ; Syntax error.
                   SetErrors
                   StrCpy $R7 1
@@ -832,8 +832,8 @@ Function GetCommandLineOptions
 
                ${FileWriteLine} $R9 "'$R4=$R3' written into the section [$R8] of the file '$PLUGINSDIR\Options.ini'"
             ${Else}
-               ; It's the nth occurrence of $R2 into the command line 
-               ; It's allowed in this case. 
+               ; It's the nth occurrence of $R2 into the command line
+               ; It's allowed in this case.
                Nop
             ${EndIf}
 
@@ -864,7 +864,7 @@ Function GetCommandLineOptions
          ${IfNot} ${Errors}
             ${FileWriteLine} $R9 "...'$R2' found!"
 
-            ; Remove the first occurrence of $R2$R3 from $R0 
+            ; Remove the first occurrence of $R2$R3 from $R0
             ${WordReplace} "$R0" "$R2$R3" "" "+1" $R1
             ${If} "$R0" == "$R1"
                ${WordReplace} "$R0" "$R2$\'$R3$\'" "" "+1" $R1
@@ -880,7 +880,7 @@ Function GetCommandLineOptions
             ${FileWriteLine} $R9 "New parameters (without '$R2[|$\'|$\"|$\`]$R3[$\`|$\"|$\'|]'): '$R0'"
 
             ; Check $R3 domain
-            ${If} "$R3" != "" 
+            ${If} "$R3" != ""
                ; Syntax error.
                SetErrors
                StrCpy $R7 1
@@ -901,7 +901,7 @@ Function GetCommandLineOptions
    ${FileWriteLine} $R9 "--------------------"
    ${FileWriteLine} $R9 "End of command line parser"
 
-   ; Trim 
+   ; Trim
    ${TrimLeft} $R1 "$R0"
    ${TrimRight} $R0 "$R1"
 
@@ -918,7 +918,7 @@ Function GetCommandLineOptions
          ${FileWriteLine} $R9 "Syntax error. For more information see above."
    ${EndIf}
 
-   ; Close the command line parser logfile 
+   ; Close the command line parser logfile
    FileClose $R9
 
    ; Pop $R9, $R8, $R7, $R5, $R4, $R3, $R2, $R1 & $R0 off of the stack

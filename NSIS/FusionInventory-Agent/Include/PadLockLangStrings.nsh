@@ -22,14 +22,14 @@
    ------------------------------------------------------------------------
 
    @package   FusionInventory Agent Installer for Microsoft Windows
-   @file      .\FusionInventory Agent\Include\PadLockLangStrings.nsh     
+   @file      .\FusionInventory Agent\Include\PadLockLangStrings.nsh
    @author    Tomas Abad
    @copyright Copyright (c) 2010-2012 FusionInventory Team
    @license   [...]
    @link      http://www.fusioninventory.org/
    @link      http://forge.fusioninventory.org/projects/fusioninventory-agent
    @since     2012
- 
+
    ------------------------------------------------------------------------
 */
 
@@ -41,8 +41,8 @@
 ;--------------------------------
 ; LangString Variables
 
-;   LangString: ClosePadLock_Text 
-; For use with: MessageBox in function ClosePadLock 
+;   LangString: ClosePadLock_Text
+; For use with: MessageBox in function ClosePadLock
 ;
 LangString ClosePadLock_Text ${LANG_ENGLISH} \
 "Another installation or uninstallation process of ${PRODUCT_NAME} ${PRODUCT_VERSION} is already running."

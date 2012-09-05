@@ -22,14 +22,14 @@
    ------------------------------------------------------------------------
 
    @package   FusionInventory Agent Installer for Microsoft Windows
-   @file      .\FusionInventory Agent\Include\WindowsInfo.nsh     
+   @file      .\FusionInventory Agent\Include\WindowsInfo.nsh
    @author    Tomas Abad
    @copyright Copyright (c) 2010-2012 FusionInventory Team
    @license   [...]
    @link      http://www.fusioninventory.org/
    @link      http://forge.fusioninventory.org/projects/fusioninventory-agent
    @since     2012
- 
+
    ------------------------------------------------------------------------
 */
 
@@ -154,7 +154,7 @@
 !define GetWindowsServicePackMajor "!insertmacro GetWindowsServicePackMajor"
 
 !macro GetWindowsServicePackMajor ResultVar
-   ; Gets the installed service pack major version (e.g. 6). 
+   ; Gets the installed service pack major version (e.g. 6).
    GetVersion::WindowsServicePackMajor
    Pop "${ResultVar}"
 !macroend
@@ -164,7 +164,7 @@
 !define GetWindowsServicePackMinor "!insertmacro GetWindowsServicePackMinor"
 
 !macro GetWindowsServicePackMinor ResultVar
-   ; Gets the installed service pack minor version (e.g. 0). 
+   ; Gets the installed service pack minor version (e.g. 0).
    GetVersion::WindowsServicePackMinor
    Pop "${ResultVar}"
 !macroend

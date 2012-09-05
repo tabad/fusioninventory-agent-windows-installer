@@ -22,14 +22,14 @@
    ------------------------------------------------------------------------
 
    @package   FusionInventory Agent Installer for Microsoft Windows
-   @file      .\FusionInventory Agent\Include\RegFunc.nsh     
+   @file      .\FusionInventory Agent\Include\RegFunc.nsh
    @author    Tomas Abad
    @copyright Copyright (c) 2010-2012 FusionInventory Team
    @license   [...]
    @link      http://www.fusioninventory.org/
    @link      http://forge.fusioninventory.org/projects/fusioninventory-agent
    @since     2012
- 
+
    ------------------------------------------------------------------------
 */
 
@@ -45,7 +45,7 @@
 
 ; AddUninstallInformation
 !define AddUninstallInformation "Call AddUninstallInformation"
- 
+
 Function AddUninstallInformation
    ; Push $R0, $R1 & $R2 onto the stack
    Push $R0
@@ -145,8 +145,8 @@ FunctionEnd
 !insertmacro EraseConfigurationOptions ""
 !insertmacro EraseConfigurationOptions "un."
 
-!define EraseConfigurationOptions "Call EraseConfigurationOptions" 
-!define un.EraseConfigurationOptions "Call un.EraseConfigurationOptions" 
+!define EraseConfigurationOptions "Call EraseConfigurationOptions"
+!define un.EraseConfigurationOptions "Call un.EraseConfigurationOptions"
 
 
 ; EraseUninstallInformation
@@ -166,8 +166,8 @@ FunctionEnd
 !insertmacro EraseUninstallInformation ""
 !insertmacro EraseUninstallInformation "un."
 
-!define EraseUninstallInformation "Call EraseUninstallInformation" 
-!define un.EraseUninstallInformation "Call un.EraseUninstallInformation" 
+!define EraseUninstallInformation "Call EraseUninstallInformation"
+!define un.EraseUninstallInformation "Call un.EraseUninstallInformation"
 
 
 ; GetCurrentInstallLocation
@@ -192,7 +192,7 @@ Function GetCurrentInstallLocation
    Pop $R1
 
    ${If} "$R1" != ""
-      ; Get current install location 
+      ; Get current install location
       ${registry::Read} "${PRODUCT_UNINST_ROOT_KEY}\$R1" "InstallLocation" $R2 $R3
 
       ${If} "$R2" != ""
@@ -206,7 +206,7 @@ Function GetCurrentInstallLocation
    Pop $R2
    Pop $R1
 
-   ; Exchanges the top element of the stack with $R0 
+   ; Exchanges the top element of the stack with $R0
    Exch $R0
 FunctionEnd
 
@@ -231,10 +231,10 @@ Function GetCurrentInstallSubkey
 
       ; Check if the subkey SOFTWARE\${PRODUCT_INTERNAL_NAME} exist
       StrCpy $R1 "SOFTWARE\${PRODUCT_INTERNAL_NAME}"
-      ${registry::KeyExists} "${PRODUCT_INST_ROOT_KEY}\$R1" $R0 
+      ${registry::KeyExists} "${PRODUCT_INST_ROOT_KEY}\$R1" $R0
       ${If} $R0 = 0
          ; Subkey found
-         StrCpy $R0 "$R1" 
+         StrCpy $R0 "$R1"
       ${Else}
          ; Subkey not found
          StrCpy $R0 ""
@@ -244,17 +244,17 @@ Function GetCurrentInstallSubkey
 
       ; Check if the subkey SOFTWARE\${PRODUCT_INTERNAL_NAME} exist
       StrCpy $R1 "SOFTWARE\${PRODUCT_INTERNAL_NAME}"
-      ${registry::KeyExists} "${PRODUCT_INST_ROOT_KEY}\$R1" $R0 
-      ${If} $R0 = 0 
+      ${registry::KeyExists} "${PRODUCT_INST_ROOT_KEY}\$R1" $R0
+      ${If} $R0 = 0
          ; Subkey found
-         StrCpy $R0 "$R1" 
+         StrCpy $R0 "$R1"
       ${Else}
          ; Check if the subkey SOFTWARE\Wow6432Node\${PRODUCT_INTERNAL_NAME} exist
          StrCpy $R1 "SOFTWARE\Wow6432Node\${PRODUCT_INTERNAL_NAME}"
-         ${registry::KeyExists} "${PRODUCT_INST_ROOT_KEY}\$R1" $R0 
+         ${registry::KeyExists} "${PRODUCT_INST_ROOT_KEY}\$R1" $R0
          ${If} $R0 = 0
             ; Subkey found
-            StrCpy $R0 "$R1" 
+            StrCpy $R0 "$R1"
          ${Else}
             ; Subkey not found
             StrCpy $R0 ""
@@ -265,7 +265,7 @@ Function GetCurrentInstallSubkey
    ; Pop $R1 off of the stack
    Pop $R1
 
-   ; Exchanges the top element of the stack with $R0 
+   ; Exchanges the top element of the stack with $R0
    Exch $R0
 FunctionEnd
 
@@ -293,7 +293,7 @@ Function GetCurrentQuietUninstallString
    Pop $R1
 
    ${If} "$R1" != ""
-      ; Get current quiet uninstall string 
+      ; Get current quiet uninstall string
       ${registry::Read} "${PRODUCT_UNINST_ROOT_KEY}\$R1" "QuietUninstallString" $R2 $R3
 
       ${If} "$R2" != ""
@@ -316,7 +316,7 @@ Function GetCurrentQuietUninstallString
    Pop $R2
    Pop $R1
 
-   ; Exchanges the top element of the stack with $R0 
+   ; Exchanges the top element of the stack with $R0
    Exch $R0
 FunctionEnd
 
@@ -344,7 +344,7 @@ Function GetCurrentUninstallString
    Pop $R1
 
    ${If} "$R1" != ""
-      ; Get current uninstall string 
+      ; Get current uninstall string
       ${registry::Read} "${PRODUCT_UNINST_ROOT_KEY}\$R1" "UninstallString" $R2 $R3
 
       ${If} "$R2" != ""
@@ -358,7 +358,7 @@ Function GetCurrentUninstallString
    Pop $R2
    Pop $R1
 
-   ; Exchanges the top element of the stack with $R0 
+   ; Exchanges the top element of the stack with $R0
    Exch $R0
 FunctionEnd
 
@@ -384,17 +384,17 @@ Function GetCurrentUninstallSubkey
       ; Check if the subkey SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME} exist
       ;    This subkey is now deprecated
       StrCpy $R1 "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
-      ${registry::KeyExists} "${PRODUCT_INST_ROOT_KEY}\$R1" $R0 
+      ${registry::KeyExists} "${PRODUCT_INST_ROOT_KEY}\$R1" $R0
       ${If} $R0 = 0
          ; Subkey found
-         StrCpy $R0 "$R1" 
+         StrCpy $R0 "$R1"
       ${Else}
          ; Check if the subkey SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_INTERNAL_NAME} exist
          StrCpy $R1 "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_INTERNAL_NAME}"
-         ${registry::KeyExists} "${PRODUCT_INST_ROOT_KEY}\$R1" $R0 
+         ${registry::KeyExists} "${PRODUCT_INST_ROOT_KEY}\$R1" $R0
          ${If} $R0 = 0
             ; Subkey found
-            StrCpy $R0 "$R1" 
+            StrCpy $R0 "$R1"
          ${Else}
             ; Subkey not found
             StrCpy $R0 ""
@@ -406,24 +406,24 @@ Function GetCurrentUninstallSubkey
       ; Check if the subkey SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME} exist
       ;    This subkey is now deprecated
       StrCpy $R1 "SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
-      ${registry::KeyExists} "${PRODUCT_INST_ROOT_KEY}\$R1" $R0 
-      ${If} $R0 = 0 
+      ${registry::KeyExists} "${PRODUCT_INST_ROOT_KEY}\$R1" $R0
+      ${If} $R0 = 0
          ; Subkey found
-         StrCpy $R0 "$R1" 
+         StrCpy $R0 "$R1"
       ${Else}
          ; Check if the subkey SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_INTERNAL_NAME} exist
          StrCpy $R1 "SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_INTERNAL_NAME}"
-         ${registry::KeyExists} "${PRODUCT_INST_ROOT_KEY}\$R1" $R0 
+         ${registry::KeyExists} "${PRODUCT_INST_ROOT_KEY}\$R1" $R0
          ${If} $R0 = 0
             ; Subkey found
-            StrCpy $R0 "$R1" 
+            StrCpy $R0 "$R1"
          ${Else}
             ; Check if the subkey SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_INTERNAL_NAME} exist
             StrCpy $R1 "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_INTERNAL_NAME}"
-            ${registry::KeyExists} "${PRODUCT_INST_ROOT_KEY}\$R1" $R0 
+            ${registry::KeyExists} "${PRODUCT_INST_ROOT_KEY}\$R1" $R0
             ${If} $R0 = 0
                ; Subkey found
-               StrCpy $R0 "$R1" 
+               StrCpy $R0 "$R1"
             ${Else}
                ; Subkey not found
                StrCpy $R0 ""
@@ -435,7 +435,7 @@ Function GetCurrentUninstallSubkey
    ; Pop $R1 off of the stack
    Pop $R1
 
-   ; Exchanges the top element of the stack with $R0 
+   ; Exchanges the top element of the stack with $R0
    Exch $R0
 FunctionEnd
 
@@ -455,7 +455,7 @@ FunctionEnd
 
 
 ; WriteConfigurationOptions
-!define WriteConfigurationOptions "Call WriteConfigurationOptions" 
+!define WriteConfigurationOptions "Call WriteConfigurationOptions"
 
 Function WriteConfigurationOptions
    ; Push $R0 $R1 & $R2 onto the stack

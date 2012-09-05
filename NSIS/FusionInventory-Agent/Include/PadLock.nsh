@@ -22,14 +22,14 @@
    ------------------------------------------------------------------------
 
    @package   FusionInventory Agent Installer for Microsoft Windows
-   @file      .\FusionInventory Agent\Include\PadLock.nsh     
+   @file      .\FusionInventory Agent\Include\PadLock.nsh
    @author    Tomas Abad
    @copyright Copyright (c) 2010-2012 FusionInventory Team
    @license   [...]
    @link      http://www.fusioninventory.org/
    @link      http://forge.fusioninventory.org/projects/fusioninventory-agent
    @since     2012
- 
+
    ------------------------------------------------------------------------
 */
 
@@ -52,7 +52,7 @@ Function "${Un}ClosePadLock"
    System::Call 'kernel32::CreateMutex(i 0, i 0, t "${PRODUCT_INTERNAL_NAME} ${PRODUCT_VERSION} (Switch ${Un})") i .r1 ?e'
    Pop $R0
 
-   ${If} $R0 != 0 
+   ${If} $R0 != 0
       ${IfNot} ${Silent}
          MessageBox MB_OK|MB_ICONEXCLAMATION "$(ClosePadLock_Text)" /SD IDOK
       ${EndIf}

@@ -22,14 +22,14 @@
    ------------------------------------------------------------------------
 
    @package   FusionInventory Agent Installer for Microsoft Windows
-   @file      .\FusionInventory Agent\Include\StrFunc.nsh     
+   @file      .\FusionInventory Agent\Include\StrFunc.nsh
    @author    Tomas Abad
    @copyright Copyright (c) 2010-2012 FusionInventory Team
    @license   [...]
    @link      http://www.fusioninventory.org/
    @link      http://forge.fusioninventory.org/projects/fusioninventory-agent
    @since     2012
- 
+
    ------------------------------------------------------------------------
 */
 
@@ -67,7 +67,7 @@ Function EscapeSpecialRTFCharacters
          ${Case} "\"
          ${Case} "{"
          ${Case} "}"
-            StrCpy $R3 "\$R2$R3" 
+            StrCpy $R3 "\$R2$R3"
             ${Break}
          ${CaseElse}
             StrCpy $R3 "$R2$R3"

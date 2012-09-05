@@ -22,14 +22,14 @@
    ------------------------------------------------------------------------
 
    @package   FusionInventory Agent Installer for Microsoft Windows
-   @file      .\FusionInventory-Agent.nsi     
+   @file      .\FusionInventory-Agent.nsi
    @author    Tomas Abad
    @copyright Copyright (c) 2010-2012 FusionInventory Team
    @license   [...]
    @link      http://www.fusioninventory.org/
    @link      http://forge.fusioninventory.org/projects/fusioninventory-agent
    @since     2012
- 
+
    ------------------------------------------------------------------------
 */
 
@@ -54,7 +54,7 @@ SetCompressor /FINAL /SOLID lzma
 !ifdef INSTALLER_PLATFORM_ARCHITECTURE
    !if ${INSTALLER_PLATFORM_ARCHITECTURE} != ${LABEL_PLATFORM_ARCHITECTURE_32}
       !if ${INSTALLER_PLATFORM_ARCHITECTURE} != ${LABEL_PLATFORM_ARCHITECTURE_64}
-         !undef INSTALLER_PLATFORM_ARCHITECTURE 
+         !undef INSTALLER_PLATFORM_ARCHITECTURE
          !define INSTALLER_PLATFORM_ARCHITECTURE ${DEFAULT_INSTALLER_PLATFORM_ARCHITECTURE}
       !endif
    !endif
@@ -104,11 +104,11 @@ SetCompressor /FINAL /SOLID lzma
    !define PREVIOUS_PRODUCT_X64_BUILD_ID ${PRODUCT_BUILD_ID}
 !endif
 !ifndef OS_BUILDER_NO_WINDOWS
-   !system `echo ; > "${PRODUCT_BUILD_ID_FILE}"`
-   !system `echo ; Do not edit! >> "${PRODUCT_BUILD_ID_FILE}"`
-   !system `echo ; >> "${PRODUCT_BUILD_ID_FILE}"`
-   !system `echo !define PREVIOUS_PRODUCT_X86_BUILD_ID "${PREVIOUS_PRODUCT_X86_BUILD_ID}" >> "${PRODUCT_BUILD_ID_FILE}"`
-   !system `echo !define PREVIOUS_PRODUCT_X64_BUILD_ID "${PREVIOUS_PRODUCT_X64_BUILD_ID}" >> "${PRODUCT_BUILD_ID_FILE}"`
+   !system `echo ;> "${PRODUCT_BUILD_ID_FILE}"`
+   !system `echo ; Do not edit!>> "${PRODUCT_BUILD_ID_FILE}"`
+   !system `echo ;>> "${PRODUCT_BUILD_ID_FILE}"`
+   !system `echo !define PREVIOUS_PRODUCT_X86_BUILD_ID "${PREVIOUS_PRODUCT_X86_BUILD_ID}">> "${PRODUCT_BUILD_ID_FILE}"`
+   !system `echo !define PREVIOUS_PRODUCT_X64_BUILD_ID "${PREVIOUS_PRODUCT_X64_BUILD_ID}">> "${PRODUCT_BUILD_ID_FILE}"`
 !else
    !system `echo ';' > "${PRODUCT_BUILD_ID_FILE}"`
    !system `echo '; Do not edit!' >> "${PRODUCT_BUILD_ID_FILE}"`
@@ -124,14 +124,14 @@ SetCompressor /FINAL /SOLID lzma
 
 !define 7ZIP_DIR "..\Tools\7zip\${INSTALLER_PLATFORM_ARCHITECTURE}"
 !define DMIDECODE_DIR "..\Tools\dmidecode\${LABEL_PLATFORM_ARCHITECTURE_32}"
-!define HDPARM_DIR "..\Tools\hdparm\${LABEL_PLATFORM_ARCHITECTURE_32}" 
-!define SED_DIR "..\Tools\sed\${LABEL_PLATFORM_ARCHITECTURE_32}" 
-!define SETACL_DIR "..\Tools\setacl\${INSTALLER_PLATFORM_ARCHITECTURE}" 
+!define HDPARM_DIR "..\Tools\hdparm\${LABEL_PLATFORM_ARCHITECTURE_32}"
+!define SED_DIR "..\Tools\sed\${LABEL_PLATFORM_ARCHITECTURE_32}"
+!define SETACL_DIR "..\Tools\setacl\${INSTALLER_PLATFORM_ARCHITECTURE}"
 !define STRAWBERRY_DIR "..\Perl\Strawberry\5.16.1.1\${INSTALLER_PLATFORM_ARCHITECTURE}"
 
 
 ;--------------------------------
-; Compiler 
+; Compiler
 
 !addplugindir ".\Plugins"
 
@@ -174,7 +174,7 @@ Var IncompatibleTargetPlatformArchitecture
 ; Includes
 
 !include LogicLib.nsh
-!include MUI2.nsh 
+!include MUI2.nsh
 !include WordFunc.nsh
 !include "${FIAIDIR}\Include\CommandLineParser.nsh"
 !include "${FIAIDIR}\Include\INIFunc.nsh"
@@ -315,7 +315,7 @@ Page custom InstallModePage_Show InstallModePage_Leave ""
 
 
 ;--------------------------------
-; Modern UI 2.0 Language Files 
+; Modern UI 2.0 Language Files
 ;    (After Pages Always)
 
 !insertmacro MUI_LANGUAGE "English"
@@ -399,7 +399,7 @@ InstType "$(InstType_Minimal)"
 
 Section "-Init" SecInit
    AddSize 1024
- 
+
    ; Debug
    StrCpy $0 "Init"
    DetailPrint "$(Msg_InstallingSection)"
@@ -458,7 +458,7 @@ Section "-Init" SecInit
    DetailPrint "Registry Install SubKey: $PRODUCT_INST_SUBKEY"
    DetailPrint "Registry Uninstall SubKey: $PRODUCT_UNINST_SUBKEY"
 
-   ; Uninstall current agent 
+   ; Uninstall current agent
    ${UninstallCurrentAgent} $R0
    DetailPrint "Agent Uninstalled with Code: '$R0'"
 
@@ -522,14 +522,14 @@ SectionGroupEnd
 
 Section "-End" SecEnd
    AddSize 1024
- 
+
    ; Debug
    StrCpy $0 "End"
    DetailPrint "$(Msg_InstallingSection)"
 
    ; AddUninstallInformation
    ${AddUninstallInformation}
- 
+
    ; WriteConfigurationOptions
    ${WriteConfigurationOptions}
 
@@ -566,19 +566,19 @@ Section "-un.InitSection"
 
    ; Delete file $R0\fusioninventory-agent.bat
    delete "$R0\fusioninventory-agent.bat"
- 
+
    ; Delete file $R0\license.txt
    delete "$R0\license.txt"
- 
+
    ; Delete file $R0\readme.txt
    delete "$R0\readme.txt"
- 
+
    ; Delete file $R0\thanks.txt
    delete "$R0\thanks.txt"
- 
+
    ; Delete file $R0\${PRODUCT_UNINSTALLER}
    delete "$R0\${PRODUCT_UNINSTALLER}"
- 
+
    ; Delete directory $R0\certs (whether is empty)
    RMDir "$R0\certs"
 
@@ -619,7 +619,7 @@ Function .onInit
    ; Push $R0 onto the stack
    Push $R0
 
-   ; ClosePadLock 
+   ; ClosePadLock
    ${ClosePadLock}
 
    ; Set default language
@@ -653,7 +653,7 @@ Function .onInit
 
    ; Initialize global variables
    ${InitGlobalVariables}
-   
+
    ; GetCommandLineOptions
    ${GetCommandLineOptions}
 
@@ -725,7 +725,7 @@ FunctionEnd
 ; Callback Uninstaller Functions
 
 Function un.onInit
-   ; ClosePadLock 
+   ; ClosePadLock
    ${un.ClosePadLock}
 
    ; Set default language
@@ -766,7 +766,7 @@ Function .onInitSilentMode
 
    ; Is FusionInventory Agent installed?
    ${IsFusionInventoryAgentInstalled} $R0
- 
+
    ${If} $R0 = 0
       ; The agent is not installed yet
 
@@ -801,8 +801,8 @@ Function .onInitSilentMode
             ${WriteINIOption} "${IOS_FINAL}" "${IO_SERVICE-STATUS}" "${SERVICE_STATUS_RUNNING}"
          ${EndIf}
       ${Else}
-         ; Install the agent from current configuration   
- 
+         ; Install the agent from current configuration
+
          ; Build the ${IOS_FINAL} section in the Options.ini file
          ${InitINIOptionSectionCurrentConfig}
          ${CopyINIOptionSection} "${IOS_DEFAULT}" "${IOS_FINAL}"
@@ -880,7 +880,7 @@ Function .onInitVisualMode
 
    ; Is FusionInventory Agent installed?
    ${IsFusionInventoryAgentInstalled} $R0
- 
+
    ${If} $R0 = 0
       ; The agent is not installed yet
 
@@ -918,8 +918,8 @@ Function .onInitVisualMode
             ${WriteINIOption} "${IOS_DEFAULTGUI}" "${IO_SERVICE-STATUS}" "${SERVICE_STATUS_RUNNING}"
          ${EndIf}
       ${Else}
-         ; Install the agent from current configuration   
- 
+         ; Install the agent from current configuration
+
          ; Build the ${IOS_DEFAULTGUI} section in the Options.ini file
          ${InitINIOptionSectionCurrentConfig}
          ${CopyINIOptionSection} "${IOS_DEFAULT}" "${IOS_DEFAULTGUI}"

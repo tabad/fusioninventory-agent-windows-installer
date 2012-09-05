@@ -22,14 +22,14 @@
    ------------------------------------------------------------------------
 
    @package   FusionInventory Agent Installer for Microsoft Windows
-   @file      .\FusionInventory Agent\Contrib\Modern UI 2\Pages\HelpPageLangStrings.nsh     
+   @file      .\FusionInventory Agent\Contrib\Modern UI 2\Pages\HelpPageLangStrings.nsh
    @author    Tomas Abad
    @copyright Copyright (c) 2010-2012 FusionInventory Team
    @license   [...]
    @link      http://www.fusioninventory.org/
    @link      http://forge.fusioninventory.org/projects/fusioninventory-agent
    @since     2012
- 
+
    ------------------------------------------------------------------------
 */
 
@@ -152,13 +152,13 @@ LangString hCtl_HelpPage_Help_Option_debug_Paragraph_1 ${LANG_FRENCH} "fTurn the
 LangString hCtl_HelpPage_Help_Option_debug_Paragraph_1 ${LANG_SPANISH} "Activa el modo de depuración. (Por defecto: $R9)"
 
 ; hCtl_HelpPage_Help_Option_delaytime_Paragraph_1
-LangString hCtl_HelpPage_Help_Option_delaytime_Paragraph_1 ${LANG_ENGLISH} "Sets an initial delay before first contact with a remote destination (see option \i /server\i0 ). This delay is calculated at random between \i limit/2\i0  and \i limit\i0  seconds. (Default: $R9 seconds)" 
-LangString hCtl_HelpPage_Help_Option_delaytime_Paragraph_1 ${LANG_FRENCH} "fSets an initial delay before first contact with a remote destination (see option \i /server\i0 ). This delay is calculated at random between \i limit/2\i0  and \i limit\i0  seconds. (Default: $R9 seconds)" 
-LangString hCtl_HelpPage_Help_Option_delaytime_Paragraph_1 ${LANG_SPANISH} "Establece una demora inicial antes de primer contacto con un destino remoto (ver opción \i /server\i0 ). Esta demora se calcula al azar entre \i limit/2\i0  y \i limit\i0  segundos. (Por defecto: $R9 segundos)" 
+LangString hCtl_HelpPage_Help_Option_delaytime_Paragraph_1 ${LANG_ENGLISH} "Sets an initial delay before first contact with a remote destination (see option \i /server\i0 ). This delay is calculated at random between \i limit/2\i0  and \i limit\i0  seconds. (Default: $R9 seconds)"
+LangString hCtl_HelpPage_Help_Option_delaytime_Paragraph_1 ${LANG_FRENCH} "fSets an initial delay before first contact with a remote destination (see option \i /server\i0 ). This delay is calculated at random between \i limit/2\i0  and \i limit\i0  seconds. (Default: $R9 seconds)"
+LangString hCtl_HelpPage_Help_Option_delaytime_Paragraph_1 ${LANG_SPANISH} "Establece una demora inicial antes de primer contacto con un destino remoto (ver opción \i /server\i0 ). Esta demora se calcula al azar entre \i limit/2\i0  y \i limit\i0  segundos. (Por defecto: $R9 segundos)"
 
 ; hCtl_HelpPage_Help_Option_delaytime_Paragraph_2
-LangString hCtl_HelpPage_Help_Option_delaytime_Paragraph_2 ${LANG_ENGLISH} "This option is ignored for remote destinations, after the first contact with each one, in favor of the specific server parameter (PROLOG FREQ)." 
-LangString hCtl_HelpPage_Help_Option_delaytime_Paragraph_2 ${LANG_FRENCH} "fThis option is ignored for remote destinations, after the first contact with each one, in favor of the specific server parameter (PROLOG FREQ)." 
+LangString hCtl_HelpPage_Help_Option_delaytime_Paragraph_2 ${LANG_ENGLISH} "This option is ignored for remote destinations, after the first contact with each one, in favor of the specific server parameter (PROLOG FREQ)."
+LangString hCtl_HelpPage_Help_Option_delaytime_Paragraph_2 ${LANG_FRENCH} "fThis option is ignored for remote destinations, after the first contact with each one, in favor of the specific server parameter (PROLOG FREQ)."
 LangString hCtl_HelpPage_Help_Option_delaytime_Paragraph_2 ${LANG_SPANISH} "Esta opción se omite para los destinos remotos, después del primer contacto con cada uno, en favor del parámetro específico del servidor (PROLOG FREQ)."
 
 ; hCtl_HelpPage_Help_Option_delaytime_Paragraph_3
