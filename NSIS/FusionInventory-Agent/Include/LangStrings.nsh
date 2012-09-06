@@ -321,9 +321,9 @@ LangString InstType_Minimal ${LANG_SPANISH} "Mínima"
 ;   LangString: SectionGroup_FusionInventoryAgentTasks
 ; For use with: SectionGroup SecGrpFusionInventoryAgentTasks
 ;
-LangString SectionGroup_FusionInventoryAgentTasks ${LANG_ENGLISH} "${PRODUCT_NAME} Tasks"
-LangString SectionGroup_FusionInventoryAgentTasks ${LANG_FRENCH} "${PRODUCT_NAME} fTasks"
-LangString SectionGroup_FusionInventoryAgentTasks ${LANG_SPANISH} "Tareas de ${PRODUCT_NAME}"
+LangString SectionGroup_FusionInventoryAgentTasks ${LANG_ENGLISH} "${PRODUCT_NAME}"
+LangString SectionGroup_FusionInventoryAgentTasks ${LANG_FRENCH} "${PRODUCT_NAME}"
+LangString SectionGroup_FusionInventoryAgentTasks ${LANG_SPANISH} "${PRODUCT_NAME}"
 
 ;   LangString: Msg_InstallingSection
 ; For use with: Sections SecInventory&WakeOnLan, SecDeploy, SecESX,
@@ -336,30 +336,36 @@ LangString Msg_InstallingSection ${LANG_SPANISH} "Instalando Sección $0..."
 ;   LangString: SecInventory&WakeOnLan_Description
 ; For use with: XPUI_DESCRIPTION_TEXT ${SecInventory&WakeOnLan}
 ;
-LangString SecInventory&WakeOnLan_Description ${LANG_ENGLISH} "Inventory && WakeOnLan"
-LangString SecInventory&WakeOnLan_Description ${LANG_FRENCH} "fInventory && WakeOnLan"
-LangString SecInventory&WakeOnLan_Description ${LANG_SPANISH} "sInventory && WakeOnLan"
+LangString SecInventory&WakeOnLan_Description ${LANG_ENGLISH} "Tasks Inventory ${FIA_TASK_INVENTORY_RELEASE} \
+and WakeOnLan ${FIA_TASK_WAKEONLAN_RELEASE}."
+LangString SecInventory&WakeOnLan_Description ${LANG_FRENCH} "fTasks Inventory ${FIA_TASK_INVENTORY_RELEASE} \
+and WakeOnLan ${FIA_TASK_WAKEONLAN_RELEASE}."
+LangString SecInventory&WakeOnLan_Description ${LANG_SPANISH} "Tareas Inventory ${FIA_TASK_INVENTORY_RELEASE} \
+y WakeOnLan ${FIA_TASK_WAKEONLAN_RELEASE}."
 
 ;   LangString: SecDeploy_Description
 ; For use with: XPUI_DESCRIPTION_TEXT ${SecDeploy}
 ;
-LangString SecDeploy_Description ${LANG_ENGLISH} "Deploy"
-LangString SecDeploy_Description ${LANG_FRENCH} "fDeploy"
-LangString SecDeploy_Description ${LANG_SPANISH} "sDeploy"
+LangString SecDeploy_Description ${LANG_ENGLISH} "Task Deploy ${FIA_TASK_DEPLOY_RELEASE}."
+LangString SecDeploy_Description ${LANG_FRENCH} "fTask Deploy ${FIA_TASK_DEPLOY_RELEASE}."
+LangString SecDeploy_Description ${LANG_SPANISH} "Tarea Deploy ${FIA_TASK_DEPLOY_RELEASE}."
 
 ;   LangString: SecESX_Description
 ; For use with: XPUI_DESCRIPTION_TEXT ${SecESX}
 ;
-LangString SecESX_Description ${LANG_ENGLISH} "ESX"
-LangString SecESX_Description ${LANG_FRENCH} "fESX"
-LangString SecESX_Description ${LANG_SPANISH} "sESX"
+LangString SecESX_Description ${LANG_ENGLISH} "Task ESX ${FIA_TASK_ESX_RELEASE}."
+LangString SecESX_Description ${LANG_FRENCH} "fTask ESX ${FIA_TASK_ESX_RELEASE}."
+LangString SecESX_Description ${LANG_SPANISH} "Tarea ESX ${FIA_TASK_ESX_RELEASE}."
 
 ;   LangString: SecNetwork_Description
 ; For use with: XPUI_DESCRIPTION_TEXT ${SecNetwork}
 ;
-LangString SecNetwork_Description ${LANG_ENGLISH} "Network"
-LangString SecNetwork_Description ${LANG_FRENCH} "fNetwork"
-LangString SecNetwork_Description ${LANG_SPANISH} "sNetwork"
+LangString SecNetwork_Description ${LANG_ENGLISH} "Distribution Network ${FIA_TASK_NETWORK_RELEASE}. \
+Includes tasks NetDiscovery ${FIA_TASK_NETDISCOVERY_RELEASE} and NetInventory ${FIA_TASK_NETINVENTORY_RELEASE}."
+LangString SecNetwork_Description ${LANG_FRENCH} "fDistribution Network ${FIA_TASK_NETWORK_RELEASE}. \
+Includes tasks NetDiscovery ${FIA_TASK_NETDISCOVERY_RELEASE} and NetInventory ${FIA_TASK_NETINVENTORY_RELEASE}."
+LangString SecNetwork_Description ${LANG_SPANISH} "Distribución Network ${FIA_TASK_NETWORK_RELEASE}. \
+Incluye tareas NetDiscovery ${FIA_TASK_NETDISCOVERY_RELEASE} y NetInventory ${FIA_TASK_NETINVENTORY_RELEASE}."
 
 
 !endif
