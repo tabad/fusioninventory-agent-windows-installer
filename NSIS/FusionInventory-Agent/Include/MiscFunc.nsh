@@ -256,9 +256,9 @@ Function InstallFusionInventoryAgent
 
    ; Install $R0\{license,readme,thanks}.txt
    SetOutPath "$R0\"
-   File /oname=license.txt "${STRAWBERRY_DIR}\cpan\sources\FusionInventory-Agent-2.2.5\LICENSE"
-   File /oname=readme.txt "${STRAWBERRY_DIR}\cpan\sources\FusionInventory-Agent-2.2.5\README"
-   File /oname=thanks.txt "${STRAWBERRY_DIR}\cpan\sources\FusionInventory-Agent-2.2.5\THANKS"
+   File /oname=license.txt "${FIA_DIR}\LICENSE"
+   File /oname=readme.txt "${FIA_DIR}\README"
+   File /oname=thanks.txt "${FIA_DIR}\THANKS"
    nsExec::Exec '"$PLUGINSDIR\sed.exe" -i -e "s/$$/\r/" "$R0\license.txt"'
    nsExec::Exec '"$PLUGINSDIR\sed.exe" -i -e "s/$$/\r/" "$R0\readme.txt"'
    nsExec::Exec '"$PLUGINSDIR\sed.exe" -i -e "s/$$/\r/" "$R0\thanks.txt"'
@@ -266,11 +266,11 @@ Function InstallFusionInventoryAgent
 
    ; Install $R0\etc
    SetOutPath "$R0\etc\"
-   File /r "${STRAWBERRY_DIR}\cpan\sources\FusionInventory-Agent-2.2.5\etc\"
+   File /r "${FIA_DIR}\etc\"
 
    ; Install $R0\perl\agent\FusionInventory
    SetOutPath "$R0\perl\agent\"
-   File /r "${STRAWBERRY_DIR}\cpan\sources\FusionInventory-Agent-2.2.5\lib\FusionInventory"
+   File /r "${FIA_DIR}\lib\FusionInventory"
 
    ; Install $R0\perl\bin\7z.{dll,exe}
    ;         $R0\perl\bin\dmidecode.exe
@@ -282,14 +282,14 @@ Function InstallFusionInventoryAgent
    File "${7ZIP_DIR}\7z.exe"
    File "${DMIDECODE_DIR}\dmidecode.exe"
    File "${HDPARM_DIR}\hdparm.exe"
-   File "${STRAWBERRY_DIR}\cpan\sources\FusionInventory-Agent-2.2.5\fusioninventory-agent"
-   File "${STRAWBERRY_DIR}\cpan\sources\FusionInventory-Agent-2.2.5\fusioninventory-injector"
-   File "${STRAWBERRY_DIR}\cpan\sources\FusionInventory-Agent-2.2.5\fusioninventory-win32-service"
-   File "${STRAWBERRY_DIR}\cpan\sources\FusionInventory-Agent-2.2.5\memconf"
+   File "${FIA_DIR}\fusioninventory-agent"
+   File "${FIA_DIR}\fusioninventory-injector"
+   File "${FIA_DIR}\fusioninventory-win32-service"
+   File "${FIA_DIR}\memconf"
 
    ; Install $R0\share
    SetOutPath "$R0\share\"
-   File /r "${STRAWBERRY_DIR}\cpan\sources\FusionInventory-Agent-2.2.5\share\"
+   File /r "${FIA_DIR}\share\"
 
    ; Set mode at which commands print their status
    SetDetailsPrint lastused
@@ -319,7 +319,7 @@ Function InstallFusionInventoryAgentTaskDeploy
 
    ; Install $R0\perl\agent\FusionInventory
    SetOutPath "$R0\perl\agent\"
-   File /r "${STRAWBERRY_DIR}\cpan\sources\FusionInventory-Agent-Task-Deploy-2.0.2\lib\FusionInventory"
+   File /r "${FIA_TASK_DEPLOY_DIR}\lib\FusionInventory"
 
    ; Set mode at which commands print their status
    SetDetailsPrint lastused
@@ -350,11 +350,11 @@ Function InstallFusionInventoryAgentTaskESX
 
    ; Install $R0\perl\agent\FusionInventory
    SetOutPath "$R0\perl\agent\"
-   File /r "${STRAWBERRY_DIR}\cpan\sources\FusionInventory-Agent-Task-ESX-2.2.0\lib\FusionInventory"
+   File /r "${FIA_TASK_ESX_DIR}\lib\FusionInventory"
 
    ; Install $R0\perl\bin\fusioninventory-esx
    SetOutPath "$R0\perl\bin\"
-   File "${STRAWBERRY_DIR}\cpan\sources\FusionInventory-Agent-Task-ESX-2.2.0\fusioninventory-esx"
+   File "${FIA_TASK_ESX_DIR}\fusioninventory-esx"
 
    ; Set mode at which commands print their status
    SetDetailsPrint lastused
@@ -385,12 +385,12 @@ Function InstallFusionInventoryAgentTaskNetwork
 
    ; Install $R0\perl\agent\FusionInventory
    SetOutPath "$R0\perl\agent\"
-   File /r "${STRAWBERRY_DIR}\cpan\sources\FusionInventory-Agent-Task-Network-1.0.1\lib\FusionInventory"
+   File /r "${FIA_TASK_NETWORK_DIR}\lib\FusionInventory"
 
    ; Install $R0\perl\bin\fusioninventory-{netdiscovery,netinventory}
    SetOutPath "$R0\perl\bin\"
-   File "${STRAWBERRY_DIR}\cpan\sources\FusionInventory-Agent-Task-Network-1.0.1\fusioninventory-netdiscovery"
-   File "${STRAWBERRY_DIR}\cpan\sources\FusionInventory-Agent-Task-Network-1.0.1\fusioninventory-netinventory"
+   File "${FIA_TASK_NETWORK_DIR}\fusioninventory-netdiscovery"
+   File "${FIA_TASK_NETWORK_DIR}\fusioninventory-netinventory"
 
    ; Set mode at which commands print their status
    SetDetailsPrint lastused

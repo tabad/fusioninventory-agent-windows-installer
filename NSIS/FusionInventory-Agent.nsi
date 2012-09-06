@@ -40,6 +40,9 @@ SetCompressor /FINAL /SOLID lzma
 ;--------------------------------
 ; Definitions
 
+; Notes: FusionInventory Agent (FIA)
+;        FusionInventory Agent Installer (FIAI)
+
 !ifndef OS_BUILDER_NO_WINDOWS
    !define FIAIDIR ".\FusionInventory-Agent"
 !else
@@ -61,6 +64,12 @@ SetCompressor /FINAL /SOLID lzma
 !else
    !define INSTALLER_PLATFORM_ARCHITECTURE ${DEFAULT_INSTALLER_PLATFORM_ARCHITECTURE}
 !endif
+
+!define STRAWBERRY_RELEASE "5.16.1.1"
+!define FIA_RELEASE "2.2.5"
+!define FIA_TASK_DEPLOY_RELEASE "2.0.2"
+!define FIA_TASK_ESX_RELEASE "2.2.0"
+!define FIA_TASK_NETWORK_RELEASE "1.0.1"
 
 !define PRODUCT_NAME "FusionInventory Agent"
 !define PRODUCT_INTERNAL_NAME "FusionInventory-Agent"
@@ -114,14 +123,19 @@ SetCompressor /FINAL /SOLID lzma
 !undef PREVIOUS_PRODUCT_X86_BUILD_ID
 !undef PREVIOUS_PRODUCT_X64_BUILD_ID
 
-!define INSTALLER_HELP_FILE "fusioninventory-agent_windows-${INSTALLER_PLATFORM_ARCHITECTURE}_${PRODUCT_VERSION}.rtf"
-
 !define 7ZIP_DIR "..\Tools\7zip\${INSTALLER_PLATFORM_ARCHITECTURE}"
 !define DMIDECODE_DIR "..\Tools\dmidecode\${LABEL_PLATFORM_ARCHITECTURE_32}"
 !define HDPARM_DIR "..\Tools\hdparm\${LABEL_PLATFORM_ARCHITECTURE_32}"
 !define SED_DIR "..\Tools\sed\${LABEL_PLATFORM_ARCHITECTURE_32}"
 !define SETACL_DIR "..\Tools\setacl\${INSTALLER_PLATFORM_ARCHITECTURE}"
-!define STRAWBERRY_DIR "..\Perl\Strawberry\5.16.1.1\${INSTALLER_PLATFORM_ARCHITECTURE}"
+!define STRAWBERRY_DIR "..\Perl\Strawberry\${STRAWBERRY_RELEASE}\${INSTALLER_PLATFORM_ARCHITECTURE}"
+
+!define FIA_DIR "${STRAWBERRY_DIR}\cpan\sources\FusionInventory-Agent-${FIA_RELEASE}"
+!define FIA_TASK_DEPLOY_DIR "${STRAWBERRY_DIR}\cpan\sources\FusionInventory-Agent-Task-Deploy-${FIA_TASK_DEPLOY_RELEASE}"
+!define FIA_TASK_ESX_DIR "${STRAWBERRY_DIR}\cpan\sources\FusionInventory-Agent-Task-ESX-${FIA_TASK_ESX_RELEASE}"
+!define FIA_TASK_NETWORK_DIR "${STRAWBERRY_DIR}\cpan\sources\FusionInventory-Agent-Task-Network-${FIA_TASK_NETWORK_RELEASE}"
+
+!define INSTALLER_HELP_FILE "fusioninventory-agent_windows-${INSTALLER_PLATFORM_ARCHITECTURE}_${PRODUCT_VERSION}.rtf"
 
 
 ;--------------------------------
