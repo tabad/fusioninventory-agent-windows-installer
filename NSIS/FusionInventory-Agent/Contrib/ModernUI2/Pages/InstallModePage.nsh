@@ -43,9 +43,9 @@
 
 !include LogicLib.nsh
 !include WordFunc.nsh
-!include "${FIAIDIR}\Include\INIFunc.nsh"
-!include "${FIAIDIR}\Include\MiscFunc.nsh"
-!include "${FIAIDIR}\Contrib\ModernUI2\Pages\InstallModePageLangStrings.nsh"
+!include "${FIAI_DIR}\Include\INIFunc.nsh"
+!include "${FIAI_DIR}\Include\MiscFunc.nsh"
+!include "${FIAI_DIR}\Contrib\ModernUI2\Pages\InstallModePageLangStrings.nsh"
 
 
 ;--------------------------------
@@ -186,7 +186,7 @@ Function InstallModePage_Leave
          ${ReadINIOption} $R0 "${IOS_COMMANDLINE}" "${IO_CA-CERT-DIR}"
          ${If} "$R0" == ""
             ${ReadINIOption} $R0 "${IOS_GUI}" "${IO_CA-CERT-DIR}"
-            !if ${INSTALLER_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
+            !if ${FIAI_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
                ${WordReplace} "$R0" "$PROGRAMFILES64\" "$PROGRAMFILES32\" "+1" "$R0"
             !else
                ${WordReplace} "$R0" "$PROGRAMFILES32\" "$PROGRAMFILES64\" "+1" "$R0"
@@ -200,7 +200,7 @@ Function InstallModePage_Leave
          ${ReadINIOption} $R0 "${IOS_COMMANDLINE}" "${IO_CA-CERT-FILE}"
          ${If} "$R0" == ""
             ${ReadINIOption} $R0 "${IOS_GUI}" "${IO_CA-CERT-FILE}"
-            !if ${INSTALLER_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
+            !if ${FIAI_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
                ${WordReplace} "$R0" "$PROGRAMFILES64\" "$PROGRAMFILES32\" "+1" "$R0"
             !else
                ${WordReplace} "$R0" "$PROGRAMFILES32\" "$PROGRAMFILES64\" "+1" "$R0"
@@ -228,7 +228,7 @@ Function InstallModePage_Leave
          ${ReadINIOption} $R0 "${IOS_COMMANDLINE}" "${IO_LOGFILE}"
          ${If} "$R0" == ""
             ${ReadINIOption} $R0 "${IOS_GUI}" "${IO_LOGFILE}"
-            !if ${INSTALLER_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
+            !if ${FIAI_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
                ${WordReplace} "$R0" "$PROGRAMFILES64\" "$PROGRAMFILES32\" "+1" "$R0"
             !else
                ${WordReplace} "$R0" "$PROGRAMFILES32\" "$PROGRAMFILES64\" "+1" "$R0"

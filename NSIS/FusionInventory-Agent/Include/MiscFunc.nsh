@@ -40,11 +40,11 @@
 
 !include FileFunc.nsh
 !include WordFunc.nsh
-!include "${FIAIDIR}\Include\INIFunc.nsh"
-!include "${FIAIDIR}\Include\FileFunc.nsh"
-!include "${FIAIDIR}\Include\RegFunc.nsh"
-!include "${FIAIDIR}\Include\WindowsInfo.nsh"
-!include "${FIAIDIR}\Include\WinServicesFunc.nsh"
+!include "${FIAI_DIR}\Include\INIFunc.nsh"
+!include "${FIAI_DIR}\Include\FileFunc.nsh"
+!include "${FIAI_DIR}\Include\RegFunc.nsh"
+!include "${FIAI_DIR}\Include\WindowsInfo.nsh"
+!include "${FIAI_DIR}\Include\WinServicesFunc.nsh"
 
 
 ; InitGlobalVariables
@@ -65,7 +65,7 @@
          StrCpy $PRODUCT_INST_SUBKEY "SOFTWARE\${PRODUCT_INTERNAL_NAME}"
          StrCpy $PRODUCT_UNINST_SUBKEY "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_INTERNAL_NAME}"
 
-         ${If} ${INSTALLER_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_64}
+         ${If} ${FIAI_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_64}
             ; Platform 32bits / Installer 64bits !!!
             StrCpy $IncompatibleTargetPlatformArchitecture 1
          ${EndIf}
@@ -74,7 +74,7 @@
          SetRegView 32
       ${Else}
          ; Platform 64bits
-         ${If} ${INSTALLER_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
+         ${If} ${FIAI_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
             ; Platform 64bits / Installer 32bits
             StrCpy $PRODUCT_INST_SUBKEY "SOFTWARE\Wow6432Node\${PRODUCT_INTERNAL_NAME}"
             StrCpy $PRODUCT_UNINST_SUBKEY "SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_INTERNAL_NAME}"
@@ -422,7 +422,7 @@ Function InstallStrawberryPerl
 
    ; Install $R0\perl\bin
    SetOutPath "$R0\perl\bin\"
-   !if ${INSTALLER_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
+   !if ${FIAI_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
       ;File "${STRAWBERRY_DIR}\c\bin\libeay32_.dll"
       ;File "${STRAWBERRY_DIR}\c\bin\libiconv-2_.dll"
       ;File "${STRAWBERRY_DIR}\c\bin\libxml2-2_.dll"

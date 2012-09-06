@@ -39,7 +39,7 @@
 
 
 !include LogicLib.nsh
-!include "${FIAIDIR}\Include\PadLockLangStrings.nsh"
+!include "${FIAI_DIR}\Include\PadLockLangStrings.nsh"
 
 
 ; ClosePadLock

@@ -41,9 +41,9 @@
 !include FileFunc.nsh
 !include LogicLib.nsh
 !include WordFunc.nsh
-!include "${FIAIDIR}\Include\FileFunc.nsh"
-!include "${FIAIDIR}\Include\INIFunc.nsh"
-!include "${FIAIDIR}\Include\StrFunc.nsh"
+!include "${FIAI_DIR}\Include\FileFunc.nsh"
+!include "${FIAI_DIR}\Include\INIFunc.nsh"
+!include "${FIAI_DIR}\Include\StrFunc.nsh"
 
 
 ; Define command line parser logfile

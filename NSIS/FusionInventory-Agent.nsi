@@ -44,25 +44,25 @@ SetCompressor /FINAL /SOLID lzma
 ;        FusionInventory Agent Installer (FIAI)
 
 !ifndef OS_BUILDER_NO_WINDOWS
-   !define FIAIDIR ".\FusionInventory-Agent"
+   !define FIAI_DIR ".\FusionInventory-Agent"
 !else
-   !define FIAIDIR "./FusionInventory-Agent"
+   !define FIAI_DIR "./FusionInventory-Agent"
 !endif
 
 !define LABEL_PLATFORM_ARCHITECTURE_32 "x86"
 !define LABEL_PLATFORM_ARCHITECTURE_64 "x64"
-!define DEFAULT_INSTALLER_PLATFORM_ARCHITECTURE ${LABEL_PLATFORM_ARCHITECTURE_32}
+!define DEFAULT_FIAI_PLATFORM_ARCHITECTURE ${LABEL_PLATFORM_ARCHITECTURE_32}
 
 ; Use MakeNSIS '/D' option for choose the architecture
-!ifdef INSTALLER_PLATFORM_ARCHITECTURE
-   !if ${INSTALLER_PLATFORM_ARCHITECTURE} != ${LABEL_PLATFORM_ARCHITECTURE_32}
-      !if ${INSTALLER_PLATFORM_ARCHITECTURE} != ${LABEL_PLATFORM_ARCHITECTURE_64}
-         !undef INSTALLER_PLATFORM_ARCHITECTURE
-         !define INSTALLER_PLATFORM_ARCHITECTURE ${DEFAULT_INSTALLER_PLATFORM_ARCHITECTURE}
+!ifdef FIAI_PLATFORM_ARCHITECTURE
+   !if ${FIAI_PLATFORM_ARCHITECTURE} != ${LABEL_PLATFORM_ARCHITECTURE_32}
+      !if ${FIAI_PLATFORM_ARCHITECTURE} != ${LABEL_PLATFORM_ARCHITECTURE_64}
+         !undef FIAI_PLATFORM_ARCHITECTURE
+         !define FIAI_PLATFORM_ARCHITECTURE ${DEFAULT_FIAI_PLATFORM_ARCHITECTURE}
       !endif
    !endif
 !else
-   !define INSTALLER_PLATFORM_ARCHITECTURE ${DEFAULT_INSTALLER_PLATFORM_ARCHITECTURE}
+   !define FIAI_PLATFORM_ARCHITECTURE ${DEFAULT_FIAI_PLATFORM_ARCHITECTURE}
 !endif
 
 !define STRAWBERRY_RELEASE "5.16.1.1"
@@ -84,20 +84,20 @@ SetCompressor /FINAL /SOLID lzma
 !define PRODUCT_UNINSTALLER "Uninstall.exe"
 !define PRODUCT_INST_ROOT_KEY "HKEY_LOCAL_MACHINE"
 !define PRODUCT_UNINST_ROOT_KEY "HKEY_LOCAL_MACHINE"
-!define PRODUCT_INSTALLER "fusioninventory-agent_windows-${INSTALLER_PLATFORM_ARCHITECTURE}_${PRODUCT_VERSION}.exe"
-!define PRODUCT_WEB_FOR_UPDATES "http://prebuilt.fusioninventory.org/stable/windows-${INSTALLER_PLATFORM_ARCHITECTURE}/"
+!define PRODUCT_INSTALLER "fusioninventory-agent_windows-${FIAI_PLATFORM_ARCHITECTURE}_${PRODUCT_VERSION}.exe"
+!define PRODUCT_WEB_FOR_UPDATES "http://prebuilt.fusioninventory.org/stable/windows-${FIAI_PLATFORM_ARCHITECTURE}/"
 
 !define FILE_VERSION "${PRODUCT_VERSION_MAJOR}.${PRODUCT_VERSION_MINOR}.${PRODUCT_VERSION_RELEASE}.${PRODUCT_VERSION_BUILD}"
 !define VI_PRODUCT_VERSION "${FILE_VERSION}"
 
 !ifndef OS_BUILDER_NO_WINDOWS
-   !define PRODUCT_BUILD_ID_FILE "${FIAIDIR}\Include\BuildID.nsh"
+   !define PRODUCT_BUILD_ID_FILE "${FIAI_DIR}\Include\BuildID.nsh"
 !else
-   !define PRODUCT_BUILD_ID_FILE "${FIAIDIR}/Include/BuildID.nsh"
+   !define PRODUCT_BUILD_ID_FILE "${FIAI_DIR}/Include/BuildID.nsh"
 !endif
 !searchparse /file "${PRODUCT_BUILD_ID_FILE}" `!define PREVIOUS_PRODUCT_X86_BUILD_ID "` PREVIOUS_PRODUCT_X86_BUILD_ID `"`
 !searchparse /file "${PRODUCT_BUILD_ID_FILE}" `!define PREVIOUS_PRODUCT_X64_BUILD_ID "` PREVIOUS_PRODUCT_X64_BUILD_ID `"`
-!if ${INSTALLER_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
+!if ${FIAI_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
    !define /math PRODUCT_BUILD_ID ${PREVIOUS_PRODUCT_X86_BUILD_ID} + 1
    !undef PREVIOUS_PRODUCT_X86_BUILD_ID
    !define PREVIOUS_PRODUCT_X86_BUILD_ID ${PRODUCT_BUILD_ID}
@@ -123,19 +123,19 @@ SetCompressor /FINAL /SOLID lzma
 !undef PREVIOUS_PRODUCT_X86_BUILD_ID
 !undef PREVIOUS_PRODUCT_X64_BUILD_ID
 
-!define 7ZIP_DIR "..\Tools\7zip\${INSTALLER_PLATFORM_ARCHITECTURE}"
+!define 7ZIP_DIR "..\Tools\7zip\${FIAI_PLATFORM_ARCHITECTURE}"
 !define DMIDECODE_DIR "..\Tools\dmidecode\${LABEL_PLATFORM_ARCHITECTURE_32}"
 !define HDPARM_DIR "..\Tools\hdparm\${LABEL_PLATFORM_ARCHITECTURE_32}"
 !define SED_DIR "..\Tools\sed\${LABEL_PLATFORM_ARCHITECTURE_32}"
-!define SETACL_DIR "..\Tools\setacl\${INSTALLER_PLATFORM_ARCHITECTURE}"
-!define STRAWBERRY_DIR "..\Perl\Strawberry\${STRAWBERRY_RELEASE}\${INSTALLER_PLATFORM_ARCHITECTURE}"
+!define SETACL_DIR "..\Tools\setacl\${FIAI_PLATFORM_ARCHITECTURE}"
+!define STRAWBERRY_DIR "..\Perl\Strawberry\${STRAWBERRY_RELEASE}\${FIAI_PLATFORM_ARCHITECTURE}"
 
 !define FIA_DIR "${STRAWBERRY_DIR}\cpan\sources\FusionInventory-Agent-${FIA_RELEASE}"
 !define FIA_TASK_DEPLOY_DIR "${STRAWBERRY_DIR}\cpan\sources\FusionInventory-Agent-Task-Deploy-${FIA_TASK_DEPLOY_RELEASE}"
 !define FIA_TASK_ESX_DIR "${STRAWBERRY_DIR}\cpan\sources\FusionInventory-Agent-Task-ESX-${FIA_TASK_ESX_RELEASE}"
 !define FIA_TASK_NETWORK_DIR "${STRAWBERRY_DIR}\cpan\sources\FusionInventory-Agent-Task-Network-${FIA_TASK_NETWORK_RELEASE}"
 
-!define INSTALLER_HELP_FILE "fusioninventory-agent_windows-${INSTALLER_PLATFORM_ARCHITECTURE}_${PRODUCT_VERSION}.rtf"
+!define FIAI_HELP_FILE "fusioninventory-agent_windows-${FIAI_PLATFORM_ARCHITECTURE}_${PRODUCT_VERSION}.rtf"
 
 
 ;--------------------------------
@@ -148,7 +148,7 @@ SetCompressor /FINAL /SOLID lzma
 ; Installer Attributes
 
 BrandingText "${PRODUCT_PUBLISHER}"
-!if ${INSTALLER_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
+!if ${FIAI_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
    Caption "${PRODUCT_NAME} ${PRODUCT_VERSION} (${LABEL_PLATFORM_ARCHITECTURE_32} edition) Setup"
    Name "${PRODUCT_NAME} ${PRODUCT_VERSION} (${LABEL_PLATFORM_ARCHITECTURE_32} edition)"
    InstallDir "$PROGRAMFILES32\${PRODUCT_INTERNAL_NAME}"
@@ -184,14 +184,14 @@ Var IncompatibleTargetPlatformArchitecture
 !include LogicLib.nsh
 !include MUI2.nsh
 !include WordFunc.nsh
-!include "${FIAIDIR}\Include\CommandLineParser.nsh"
-!include "${FIAIDIR}\Include\INIFunc.nsh"
-!include "${FIAIDIR}\Include\LangStrings.nsh"
-!include "${FIAIDIR}\Include\MiscFunc.nsh"
-!include "${FIAIDIR}\Include\PadLock.nsh"
-!include "${FIAIDIR}\Include\RegFunc.nsh"
-!include "${FIAIDIR}\Include\Registry.nsh"
-!include "${FIAIDIR}\Include\WinServicesFunc.nsh"
+!include "${FIAI_DIR}\Include\CommandLineParser.nsh"
+!include "${FIAI_DIR}\Include\INIFunc.nsh"
+!include "${FIAI_DIR}\Include\LangStrings.nsh"
+!include "${FIAI_DIR}\Include\MiscFunc.nsh"
+!include "${FIAI_DIR}\Include\PadLock.nsh"
+!include "${FIAI_DIR}\Include\RegFunc.nsh"
+!include "${FIAI_DIR}\Include\Registry.nsh"
+!include "${FIAI_DIR}\Include\WinServicesFunc.nsh"
 
 
 ;--------------------------------
@@ -199,25 +199,25 @@ Var IncompatibleTargetPlatformArchitecture
 
 ; Page header
 ; The icon for the installer
-!define MUI_ICON "${FIAIDIR}\Contrib\Graphics\Icons\Installer.ico"
+!define MUI_ICON "${FIAI_DIR}\Contrib\Graphics\Icons\Installer.ico"
 ; The icon for the uninstaller
-!define MUI_UNICON "${FIAIDIR}\Contrib\Graphics\Icons\Uninstaller.ico"
+!define MUI_UNICON "${FIAI_DIR}\Contrib\Graphics\Icons\Uninstaller.ico"
 ; Display an image on the header of the page
 !define MUI_HEADERIMAGE
 ; Bitmap image to display on the header of installers pages
-!define MUI_HEADERIMAGE_BITMAP  "${FIAIDIR}\Contrib\Skins\Default\HeaderRightMUI2.bmp"
+!define MUI_HEADERIMAGE_BITMAP  "${FIAI_DIR}\Contrib\Skins\Default\HeaderRightMUI2.bmp"
 ; Bitmap image to display on the header of uninstaller pages
-!define MUI_HEADERIMAGE_UNBITMAP "${FIAIDIR}\Contrib\Skins\Default\HeaderRightMUI2.bmp"
+!define MUI_HEADERIMAGE_UNBITMAP "${FIAI_DIR}\Contrib\Skins\Default\HeaderRightMUI2.bmp"
 ; Display the header image on the right side instead of the left side
 !define MUI_HEADERIMAGE_RIGHT
 
 ; Installer welcome/finish page
 ; Bitmap for the Welcome page and the Finish page
-!define MUI_WELCOMEFINISHPAGE_BITMAP "${FIAIDIR}\Contrib\Skins\Default\WelcomeMUI2.bmp"
+!define MUI_WELCOMEFINISHPAGE_BITMAP "${FIAI_DIR}\Contrib\Skins\Default\WelcomeMUI2.bmp"
 
 ; Uninstaller welcome/finish page
 ; Bitmap for the Welcome page and the Finish page
-!define MUI_UNWELCOMEFINISHPAGE_BITMAP "${FIAIDIR}\Contrib\Skins\Default\WelcomeMUI2.bmp"
+!define MUI_UNWELCOMEFINISHPAGE_BITMAP "${FIAI_DIR}\Contrib\Skins\Default\WelcomeMUI2.bmp"
 
 ; Components page
 ; A small description area on the bottom of the page
@@ -278,8 +278,8 @@ Var IncompatibleTargetPlatformArchitecture
 ;--------------------------------
 ; Custom Pages Functions
 
-!include "${FIAIDIR}\Contrib\ModernUI2\Pages\HelpPage.nsh"
-!include "${FIAIDIR}\Contrib\ModernUI2\Pages\InstallModePage.nsh"
+!include "${FIAI_DIR}\Contrib\ModernUI2\Pages\HelpPage.nsh"
+!include "${FIAI_DIR}\Contrib\ModernUI2\Pages\InstallModePage.nsh"
 
 
 ;--------------------------------
@@ -287,7 +287,7 @@ Var IncompatibleTargetPlatformArchitecture
 
 Page custom HelpPage_Show HelpPage_Leave ""
 !insertmacro MUI_PAGE_WELCOME
-!insertmacro MUI_PAGE_LICENSE "${FIAIDIR}\LicenseEnglish.rtf"
+!insertmacro MUI_PAGE_LICENSE "${FIAI_DIR}\LicenseEnglish.rtf"
 Page custom InstallModePage_Show InstallModePage_Leave ""
 !insertmacro MUI_PAGE_COMPONENTS
 !insertmacro MUI_PAGE_DIRECTORY
@@ -341,8 +341,8 @@ ReserveFile ".\Plugins\nsRichEdit.dll"
 ReserveFile ".\Plugins\registry.dll"
 ReserveFile ".\Plugins\SimpleFC.dll"
 ReserveFile ".\Plugins\SimpleSC.dll"
-ReserveFile "${FIAIDIR}\INI\Options.ini"
-ReserveFile "${FIAIDIR}\LicenseEnglish.rtf"
+ReserveFile "${FIAI_DIR}\INI\Options.ini"
+ReserveFile "${FIAI_DIR}\LicenseEnglish.rtf"
 ReserveFile "${SED_DIR}\libiconv2.dll"
 ReserveFile "${SED_DIR}\libintl3.dll"
 ReserveFile "${SED_DIR}\regex2.dll"
@@ -460,7 +460,7 @@ Section "-Init" SecInit
    DetailPrint "WindowsPlatformArchitecture: $R0"
 
    ; Installer platform (Debug)
-   DetailPrint "Installer platform architecture: ${INSTALLER_PLATFORM_ARCHITECTURE}"
+   DetailPrint "Installer platform architecture: ${FIAI_PLATFORM_ARCHITECTURE}"
 
    ; Registry subkey (Debug)
    DetailPrint "Registry Install SubKey: $PRODUCT_INST_SUBKEY"
@@ -644,7 +644,7 @@ Function .onInit
 
    ; Extract file Options.ini
    SetOutPath "$PLUGINSDIR"
-   File "${FIAIDIR}\INI\Options.ini"
+   File "${FIAI_DIR}\INI\Options.ini"
 
    ; Extract files ${SED_DIR}\libiconv2.dll
    ;               ${SED_DIR}\libintl3.dll
@@ -681,7 +681,7 @@ Function .onInit
       ${If} $R0 = 1
          ; Dump help file
          Call BuildHelpFile
-         CopyFiles /SILENT /FILESONLY "$PLUGINSDIR\${INSTALLER_HELP_FILE}" "$EXEDIR\${INSTALLER_HELP_FILE}"
+         CopyFiles /SILENT /FILESONLY "$PLUGINSDIR\${FIAI_HELP_FILE}" "$EXEDIR\${FIAI_HELP_FILE}"
          Abort
       ${EndIf}
    ${EndIf}
@@ -750,7 +750,7 @@ Function un.onInit
 
    ;; Extract file Options.ini
    ;SetOutPath "$PLUGINSDIR"
-   ;File "${FIAIDIR}\INI\Options.ini"
+   ;File "${FIAI_DIR}\INI\Options.ini"
 
    ; Initialize global variables
    ${un.InitGlobalVariables}
@@ -825,7 +825,7 @@ Function .onInitSilentMode
          ${ReadINIOption} $R0 "${IOS_COMMANDLINE}" "${IO_CA-CERT-DIR}"
          ${If} "$R0" == ""
             ${ReadINIOption} $R0 "${IOS_FINAL}" "${IO_CA-CERT-DIR}"
-            !if ${INSTALLER_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
+            !if ${FIAI_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
                ${WordReplace} "$R0" "$PROGRAMFILES64\" "$PROGRAMFILES32\" "+1" "$R0"
             !else
                ${WordReplace} "$R0" "$PROGRAMFILES32\" "$PROGRAMFILES64\" "+1" "$R0"
@@ -839,7 +839,7 @@ Function .onInitSilentMode
          ${ReadINIOption} $R0 "${IOS_COMMANDLINE}" "${IO_CA-CERT-FILE}"
          ${If} "$R0" == ""
             ${ReadINIOption} $R0 "${IOS_FINAL}" "${IO_CA-CERT-FILE}"
-            !if ${INSTALLER_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
+            !if ${FIAI_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
                ${WordReplace} "$R0" "$PROGRAMFILES64\" "$PROGRAMFILES32\" "+1" "$R0"
             !else
                ${WordReplace} "$R0" "$PROGRAMFILES32\" "$PROGRAMFILES64\" "+1" "$R0"
@@ -867,7 +867,7 @@ Function .onInitSilentMode
          ${ReadINIOption} $R0 "${IOS_COMMANDLINE}" "${IO_LOGFILE}"
          ${If} "$R0" == ""
             ${ReadINIOption} $R0 "${IOS_FINAL}" "${IO_LOGFILE}"
-            !if ${INSTALLER_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
+            !if ${FIAI_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
                ${WordReplace} "$R0" "$PROGRAMFILES64\" "$PROGRAMFILES32\" "+1" "$R0"
             !else
                ${WordReplace} "$R0" "$PROGRAMFILES32\" "$PROGRAMFILES64\" "+1" "$R0"
@@ -907,7 +907,7 @@ Function .onInitVisualMode
       ; The agent is already installed
 
       ; Note: Whether you change this block of code, please, remember also to do the necessary changesi
-      ;       into function InstallModePage Leave in ${FIAIDIR}\Contrib\ModernUI2\Pages\InstallModePage.nsh
+      ;       into function InstallModePage Leave in ${FIAI_DIR}\Contrib\ModernUI2\Pages\InstallModePage.nsh
 
       ; What kind of installation is requested?
       ${ReadINIOption} $R0 "${IOS_COMMANDLINE}" "${IO_INSTALLTYPE}"
@@ -942,7 +942,7 @@ Function .onInitVisualMode
          ${ReadINIOption} $R0 "${IOS_COMMANDLINE}" "${IO_CA-CERT-DIR}"
          ${If} "$R0" == ""
             ${ReadINIOption} $R0 "${IOS_DEFAULTGUI}" "${IO_CA-CERT-DIR}"
-            !if ${INSTALLER_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
+            !if ${FIAI_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
                ${WordReplace} "$R0" "$PROGRAMFILES64\" "$PROGRAMFILES32\" "+1" "$R0"
             !else
                ${WordReplace} "$R0" "$PROGRAMFILES32\" "$PROGRAMFILES64\" "+1" "$R0"
@@ -956,7 +956,7 @@ Function .onInitVisualMode
          ${ReadINIOption} $R0 "${IOS_COMMANDLINE}" "${IO_CA-CERT-FILE}"
          ${If} "$R0" == ""
             ${ReadINIOption} $R0 "${IOS_DEFAULTGUI}" "${IO_CA-CERT-FILE}"
-            !if ${INSTALLER_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
+            !if ${FIAI_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
                ${WordReplace} "$R0" "$PROGRAMFILES64\" "$PROGRAMFILES32\" "+1" "$R0"
             !else
                ${WordReplace} "$R0" "$PROGRAMFILES32\" "$PROGRAMFILES64\" "+1" "$R0"
@@ -984,7 +984,7 @@ Function .onInitVisualMode
          ${ReadINIOption} $R0 "${IOS_COMMANDLINE}" "${IO_LOGFILE}"
          ${If} "$R0" == ""
             ${ReadINIOption} $R0 "${IOS_DEFAULTGUI}" "${IO_LOGFILE}"
-            !if ${INSTALLER_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
+            !if ${FIAI_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
                ${WordReplace} "$R0" "$PROGRAMFILES64\" "$PROGRAMFILES32\" "+1" "$R0"
             !else
                ${WordReplace} "$R0" "$PROGRAMFILES32\" "$PROGRAMFILES64\" "+1" "$R0"

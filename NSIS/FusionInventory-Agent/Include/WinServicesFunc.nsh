@@ -39,8 +39,8 @@
 
 
 !include LogicLib.nsh
-!include "${FIAIDIR}\Include\INIFunc.nsh"
-!include "${FIAIDIR}\Include\WinServicesFuncLangStrings.nsh"
+!include "${FIAI_DIR}\Include\INIFunc.nsh"
+!include "${FIAI_DIR}\Include\WinServicesFuncLangStrings.nsh"
 
 
 ; Define timeout (in seconds) for Start, Stop, Pause, Continue and Restart operations

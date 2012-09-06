@@ -42,9 +42,9 @@
 
 
 !include LogicLib.nsh
-!include "${FIAIDIR}\Include\INIFunc.nsh"
-!include "${FIAIDIR}\Include\FileFunc.nsh"
-!include "${FIAIDIR}\Contrib\ModernUI2\Pages\HelpPageLangStrings.nsh"
+!include "${FIAI_DIR}\Include\INIFunc.nsh"
+!include "${FIAI_DIR}\Include\FileFunc.nsh"
+!include "${FIAI_DIR}\Contrib\ModernUI2\Pages\HelpPageLangStrings.nsh"
 
 
 ;--------------------------------
@@ -85,7 +85,7 @@ Function HelpPage_Create
    Pop $hCtl_HelpPage_RichEdit1
 
    Call BuildHelpFile
-   nsRichEdit::Load $hCtl_HelpPage_RichEdit1 "$PLUGINSDIR\${INSTALLER_HELP_FILE}"
+   nsRichEdit::Load $hCtl_HelpPage_RichEdit1 "$PLUGINSDIR\${FIAI_HELP_FILE}"
 
    ; === Button1 (type: Button) ===
    ${NSD_CreateButton} 249u 126u 49u 14u "$(hCtl_HelpPage_Button1_Text)"
@@ -139,8 +139,8 @@ Function BuildHelpFile
    Push $R9
 
    ; Create an empty help file
-   Delete "$PLUGINSDIR\${INSTALLER_HELP_FILE}"
-   FileOpen $R0 "$PLUGINSDIR\${INSTALLER_HELP_FILE}" w
+   Delete "$PLUGINSDIR\${FIAI_HELP_FILE}"
+   FileOpen $R0 "$PLUGINSDIR\${FIAI_HELP_FILE}" w
 
    ; Header
    ${FileWriteLine} $R0 `{\rtf1\ansi\ansicpg1252\deff0\deflang3082{\fonttbl{\f0\fswiss\fcharset0 Courier New;}}`

@@ -38,9 +38,9 @@
 !define __FIAI_REGFUNC_INCLUDE__
 
 
-!include "${FIAIDIR}\Include\INIFunc.nsh"
-!include "${FIAIDIR}\Include\Registry.nsh"
-!include "${FIAIDIR}\Include\WindowsInfo.nsh"
+!include "${FIAI_DIR}\Include\INIFunc.nsh"
+!include "${FIAI_DIR}\Include\Registry.nsh"
+!include "${FIAI_DIR}\Include\WindowsInfo.nsh"
 
 
 ; AddUninstallInformation
@@ -59,7 +59,7 @@ Function AddUninstallInformation
    Call EraseUninstallInformation
 
    ; Register key 'Architecture'
-   !if ${INSTALLER_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
+   !if ${FIAI_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
       ${registry::Write} "${PRODUCT_UNINST_ROOT_KEY}\$PRODUCT_UNINST_SUBKEY" "Architecture" "32" "REG_DWORD" $R2
    !else
       ${registry::Write} "${PRODUCT_UNINST_ROOT_KEY}\$PRODUCT_UNINST_SUBKEY" "Architecture" "64" "REG_DWORD" $R2
@@ -73,7 +73,7 @@ Function AddUninstallInformation
    ${registry::Write} "${PRODUCT_UNINST_ROOT_KEY}\$PRODUCT_UNINST_SUBKEY" "DisplayIcon" "$R1\${PRODUCT_UNINSTALLER}" "REG_SZ" $R2
 
    ; Register key 'DisplayName'
-   !if ${INSTALLER_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
+   !if ${FIAI_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
       ${registry::Write} "${PRODUCT_UNINST_ROOT_KEY}\$PRODUCT_UNINST_SUBKEY" "DisplayName" "${PRODUCT_NAME} ${PRODUCT_VERSION} (${LABEL_PLATFORM_ARCHITECTURE_32} edition)" "REG_SZ" $R2
    !else
       ${registry::Write} "${PRODUCT_UNINST_ROOT_KEY}\$PRODUCT_UNINST_SUBKEY" "DisplayName" "${PRODUCT_NAME} ${PRODUCT_VERSION} (${LABEL_PLATFORM_ARCHITECTURE_64} edition)" "REG_SZ" $R2
