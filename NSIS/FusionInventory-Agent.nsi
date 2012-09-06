@@ -76,7 +76,6 @@ SetCompressor /FINAL /SOLID lzma
 !define FIA_TASK_NETINVENTORY_RELEASE "2.2.0"
 !define FIA_TASK_WAKEONLAN_RELEASE "1.0"
 
-
 !define PRODUCT_NAME "FusionInventory Agent"
 !define PRODUCT_INTERNAL_NAME "FusionInventory-Agent"
 !define PRODUCT_VERSION_MAJOR "2"
