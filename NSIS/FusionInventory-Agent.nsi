@@ -668,7 +668,7 @@ Function .onInit
    ; Check for incompatible target platform architecture
    ${If} $IncompatibleTargetPlatformArchitecture != 0
       ; Platform 32bits / Installer 64bits !!!
-      MessageBox MB_OK|MB_ICONEXCLAMATION "$(Msg_IncompatibleTargetPlatformArchitecture)" /SD IDOK
+      MessageBox MB_OK|MB_ICONSTOP "$(Msg_IncompatibleTargetPlatformArchitecture)" /SD IDOK
       Abort
    ${EndIf}
 

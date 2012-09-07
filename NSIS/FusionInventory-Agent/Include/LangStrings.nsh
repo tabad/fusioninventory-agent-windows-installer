@@ -328,11 +328,11 @@ LangString SectionGroup_FusionInventoryAgentTasks ${LANG_SPANISH} "${PRODUCT_NAM
 ;   LangString: Msg_IncompatibleTargetPlatformArchitecture
 ; For use with: .onInit
 ;
-LangString Msg_IncompatibleTargetPlatformArchitecture ${LANG_ENGLISH} "It is not possible to install '${PRODUCT_INSTALLER}' \
+LangString Msg_IncompatibleTargetPlatformArchitecture ${LANG_ENGLISH} "It is not possible to install $(^Name) \
 in a Microsoft Windows operative system over a ${LABEL_PLATFORM_ARCHITECTURE_32} platform architecture."
-LangString Msg_IncompatibleTargetPlatformArchitecture ${LANG_FRENCH} "fIt is not possible to install '${PRODUCT_INSTALLER}' \
+LangString Msg_IncompatibleTargetPlatformArchitecture ${LANG_FRENCH} "fIt is not possible to install $(^Name) \
 in a Microsoft Windows operative system over a ${LABEL_PLATFORM_ARCHITECTURE_32} platform architecture."
-LangString Msg_IncompatibleTargetPlatformArchitecture ${LANG_SPANISH} "No es posible instalar '${PRODUCT_INSTALLER}' \
+LangString Msg_IncompatibleTargetPlatformArchitecture ${LANG_SPANISH} "No es posible instalar $(^Name) \
 en un sistema operativo Microsoft Windows sobre una plataforma de arquitectura ${LABEL_PLATFORM_ARCHITECTURE_32}."
 
 ;   LangString: Msg_InstallingSection
