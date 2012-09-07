@@ -129,7 +129,7 @@ FunctionEnd
 
 
 Function HelpPage_Button1_Click
-   nsRichEdit::Print $hCtl_HelpPage_RichEdit1 "$(^Name) ${PRODUCT_VERSION} Setup"
+   nsRichEdit::Print $hCtl_HelpPage_RichEdit1 "$(^Name)"
 FunctionEnd
 
 
