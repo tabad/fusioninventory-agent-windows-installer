@@ -105,7 +105,7 @@ Function HelpPage_Show
    ; Pushes $R0 onto the stack
    Push $R0
 
-   ${ReadINIOption} $R0 "CommandLine" "help"
+   ${ReadINIOption} $R0 "${IOS_COMMANDLINE}" "${IO_HELP}"
    ${If} $CommandLineSyntaxError = 0
    ${AndIf} $R0 = 0
       ; Pop $R0 off of the stack
@@ -165,7 +165,7 @@ Function BuildHelpFile
    ${FileWriteLine} $R0 ``
 
    ; /acceptlicense
-   ${ReadINIOption} $R9 "Default" "acceptlicense"
+   ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_ACCEPTLICENSE}"
    ${EscapeSpecialRTFCharacters} $R9 $R9
    ${If} $R9 = 0
       StrCpy $R9 $(hCtl_HelpPage_Help_No)
@@ -181,7 +181,7 @@ Function BuildHelpFile
    ${FileWriteLine} $R0 ``
 
    ; /add-firewall-exception
-   ${ReadINIOption} $R9 "Default" "add-firewall-exception"
+   ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_ADD-FIREWALL-EXCEPTION}"
    ${EscapeSpecialRTFCharacters} $R9 $R9
    ${If} $R9 = 0
       StrCpy $R9 $(hCtl_HelpPage_Help_No)
@@ -195,7 +195,7 @@ Function BuildHelpFile
    ${FileWriteLine} $R0 ``
 
    ; /backend-collect-timeout
-   ${ReadINIOption} $R9 "Default" "backend-collect-timeout"
+   ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_BACKEND-COLLECT-TIMEOUT}"
    ${EscapeSpecialRTFCharacters} $R9 $R9
 
    ${FileWriteLine} $R0 `\pard\li400 /backend-collect-timeout=<\i timeout\i0 >\par`
@@ -204,7 +204,7 @@ Function BuildHelpFile
    ${FileWriteLine} $R0 ``
 
    ; /ca-cert-dir
-   ${ReadINIOption} $R9 "Default" "ca-cert-dir"
+   ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_CA-CERT-DIR}"
    ${EscapeSpecialRTFCharacters} $R9 $R9
    ${If} "$R9" == ""
       StrCpy $R9 "$\"$\""
@@ -216,7 +216,7 @@ Function BuildHelpFile
    ${FileWriteLine} $R0 ``
 
    ; /ca-cert-file
-   ${ReadINIOption} $R9 "Default" "ca-cert-file"
+   ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_CA-CERT-FILE}"
    ${EscapeSpecialRTFCharacters} $R9 $R9
    ${If} "$R9" == ""
       StrCpy $R9 "$\"$\""
@@ -230,7 +230,7 @@ Function BuildHelpFile
    ${FileWriteLine} $R0 ``
 
    ; /ca-cert-uri
-   ${ReadINIOption} $R9 "Default" "ca-cert-uri"
+   ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_CA-CERT-URI}"
    ${EscapeSpecialRTFCharacters} $R9 $R9
    ${If} "$R9" == ""
       StrCpy $R9 "$\"$\""
@@ -244,7 +244,7 @@ Function BuildHelpFile
    ${FileWriteLine} $R0 ``
 
    ; /debug
-   ${ReadINIOption} $R9 "Default" "debug"
+   ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_DEBUG}"
    ${EscapeSpecialRTFCharacters} $R9 $R9
    ${If} $R9 = 0
       StrCpy $R9 $(hCtl_HelpPage_Help_No)
@@ -258,7 +258,7 @@ Function BuildHelpFile
    ${FileWriteLine} $R0 ``
 
    ; /delaytime
-   ${ReadINIOption} $R9 "Default" "delaytime"
+   ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_DELAYTIME}"
    ${EscapeSpecialRTFCharacters} $R9 $R9
 
    ${FileWriteLine} $R0 `\pard\li400 /delaytime=<\i limit\i0 >\par`
@@ -271,7 +271,7 @@ Function BuildHelpFile
    ${FileWriteLine} $R0 ``
 
    ; /execmode
-   ${ReadINIOption} $R9 "Default" "execmode"
+   ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_EXECMODE}"
    ${EscapeSpecialRTFCharacters} $R9 $R9
 
    ${FileWriteLine} $R0 `\pard\li400 /execmode=\{service|task|manual|currentconf\}\par`
@@ -288,7 +288,7 @@ Function BuildHelpFile
    ${FileWriteLine} $R0 ``
 
    ; /html
-   ${ReadINIOption} $R9 "Default" "html"
+   ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_HTML}"
    ${EscapeSpecialRTFCharacters} $R9 $R9
    ${If} $R9 = 0
       StrCpy $R9 $(hCtl_HelpPage_Help_No)
@@ -310,7 +310,7 @@ Function BuildHelpFile
    ${FileWriteLine} $R0 ``
 
    ; /httpd-ip
-   ${ReadINIOption} $R9 "Default" "httpd-ip"
+   ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_HTTPD-IP}"
    ${EscapeSpecialRTFCharacters} $R9 $R9
 
    ${FileWriteLine} $R0 `\pard\li400 /httpd-ip=<\i ip\i0 >\par`
@@ -321,7 +321,7 @@ Function BuildHelpFile
    ${FileWriteLine} $R0 ``
 
    ; /httpd-port
-   ${ReadINIOption} $R9 "Default" "httpd-port"
+   ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_HTTPD-PORT}"
    ${EscapeSpecialRTFCharacters} $R9 $R9
 
    ${FileWriteLine} $R0 `\pard\li400 /httpd-port=<\i port\i0 >\par`
@@ -332,7 +332,7 @@ Function BuildHelpFile
    ${FileWriteLine} $R0 ``
 
    ; /httpd-trust
-   ${ReadINIOption} $R9 "Default" "httpd-trust"
+   ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_HTTPD-TRUST}"
    ${EscapeSpecialRTFCharacters} $R9 $R9
 
    ${FileWriteLine} $R0 `\pard\li400 /httpd-trust=<\i cidr\i0 >\par`
@@ -343,7 +343,7 @@ Function BuildHelpFile
    ${FileWriteLine} $R0 ``
 
    ; /installdir
-   ${ReadINIOption} $R9 "Default" "installdir"
+   ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_INSTALLDIR}"
    ${EscapeSpecialRTFCharacters} $R9 $R9
 
    ${FileWriteLine} $R0 `\pard\li400 /installdir=<\i absolute_pathname\i0 >\par`
@@ -354,7 +354,7 @@ Function BuildHelpFile
    ${FileWriteLine} $R0 ``
 
    ; /installtasks
-   ${ReadINIOption} $R9 "Default" "installtasks"
+   ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_INSTALLTASKS}"
    ${EscapeSpecialRTFCharacters} $R9 $R9
 
    ${FileWriteLine} $R0 `\pard\li400 /installtasks=\{[<\i task\i0 >][,<\i task\i0 >][...]|<\i macro\i0 >\}\par`
@@ -367,7 +367,7 @@ Function BuildHelpFile
    ${FileWriteLine} $R0 ``
 
    ; /installtype
-   ${ReadINIOption} $R9 "Default" "installtype"
+   ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_INSTALLTYPE}"
    ${EscapeSpecialRTFCharacters} $R9 $R9
 
    ${FileWriteLine} $R0 `\pard\li400 /installtype=\{from-scratch|from-current-config\}\par`
@@ -378,7 +378,7 @@ Function BuildHelpFile
    ${FileWriteLine} $R0 ``
 
    ; /local
-   ${ReadINIOption} $R9 "Default" "local"
+   ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_LOCAL}"
    ${EscapeSpecialRTFCharacters} $R9 $R9
    ${If} "$R9" == ""
       StrCpy $R9 "$\"$\""
@@ -394,7 +394,7 @@ Function BuildHelpFile
    ${FileWriteLine} $R0 ``
 
    ; /logfile
-   ${ReadINIOption} $R9 "Default" "logfile"
+   ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_LOGFILE}"
    ${EscapeSpecialRTFCharacters} $R9 $R9
    ${If} "$R9" == ""
       StrCpy $R9 "$\"$\""
@@ -408,7 +408,7 @@ Function BuildHelpFile
    ${FileWriteLine} $R0 ``
 
    ; /logfile-maxsize
-   ${ReadINIOption} $R9 "Default" "logfile-maxsize"
+   ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_LOGFILE-MAXSIZE}"
    ${EscapeSpecialRTFCharacters} $R9 $R9
 
    ${FileWriteLine} $R0 `\pard\li400 /logfile-maxsize=<\i size\i0 >\par`
@@ -419,7 +419,7 @@ Function BuildHelpFile
    ${FileWriteLine} $R0 ``
 
    ; /logger
-   ${ReadINIOption} $R9 "Default" "logger"
+   ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_LOGGER}"
    ${EscapeSpecialRTFCharacters} $R9 $R9
 
    ${FileWriteLine} $R0 `\pard\li400 /logger=\{[<\i backend\i0 >][,<\i backend\i0 >]\}\par`
@@ -430,7 +430,7 @@ Function BuildHelpFile
    ${FileWriteLine} $R0 ``
 
    ; /no-category
-   ${ReadINIOption} $R9 "Default" "no-category"
+   ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_NO-CATEGORY}"
    ${EscapeSpecialRTFCharacters} $R9 $R9
    ${If} "$R9" == ""
       StrCpy $R9 "$\"$\""
@@ -456,7 +456,7 @@ Function BuildHelpFile
    ${FileWriteLine} $R0 ``
 
    ; /no-httpd
-   ${ReadINIOption} $R9 "Default" "no-httpd"
+   ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_NO-HTTPD}"
    ${EscapeSpecialRTFCharacters} $R9 $R9
    ${If} $R9 = 0
       StrCpy $R9 $(hCtl_HelpPage_Help_No)
@@ -470,7 +470,7 @@ Function BuildHelpFile
    ${FileWriteLine} $R0 ``
 
    ; /no-p2p
-   ${ReadINIOption} $R9 "Default" "no-p2p"
+   ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_NO-P2P}"
    ${EscapeSpecialRTFCharacters} $R9 $R9
    ${If} $R9 = 0
       StrCpy $R9 $(hCtl_HelpPage_Help_No)
@@ -490,7 +490,7 @@ Function BuildHelpFile
    ${FileWriteLine} $R0 ``
 
    ; /no-ssl-check
-   ${ReadINIOption} $R9 "Default" "no-ssl-check"
+   ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_NO-SSL-CHECK}"
    ${EscapeSpecialRTFCharacters} $R9 $R9
    ${If} $R9 = 0
       StrCpy $R9 $(hCtl_HelpPage_Help_No)
@@ -506,7 +506,7 @@ Function BuildHelpFile
    ${FileWriteLine} $R0 ``
 
    ; /no-task
-   ${ReadINIOption} $R9 "Default" "no-task"
+   ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_NO-TASK}"
    ${EscapeSpecialRTFCharacters} $R9 $R9
    ${If} "$R9" == ""
       StrCpy $R9 "$\"$\""
@@ -526,7 +526,7 @@ Function BuildHelpFile
    ${FileWriteLine} $R0 ``
 
    ; /password
-   ${ReadINIOption} $R9 "Default" "password"
+   ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_PASSWORD}"
    ${EscapeSpecialRTFCharacters} $R9 $R9
    ${If} "$R9" == ""
       StrCpy $R9 "$\"$\""
@@ -540,7 +540,7 @@ Function BuildHelpFile
    ${FileWriteLine} $R0 ``
 
    ; /proxy
-   ${ReadINIOption} $R9 "Default" "proxy"
+   ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_PROXY}"
    ${EscapeSpecialRTFCharacters} $R9 $R9
    ${If} "$R9" == ""
       StrCpy $R9 "$\"$\""
@@ -554,7 +554,7 @@ Function BuildHelpFile
    ${FileWriteLine} $R0 ``
 
    ; /runnow
-   ${ReadINIOption} $R9 "Default" "runnow"
+   ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_RUNNOW}"
    ${EscapeSpecialRTFCharacters} $R9 $R9
    ${If} $R9 = 0
       StrCpy $R9 $(hCtl_HelpPage_Help_No)
@@ -568,7 +568,7 @@ Function BuildHelpFile
    ${FileWriteLine} $R0 ``
 
    ; /S
-   ${ReadINIOption} $R9 "Default" "silentmode"
+   ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_SILENTMODE}"
    ${EscapeSpecialRTFCharacters} $R9 $R9
    ${If} $R9 = 0
       StrCpy $R9 $(hCtl_HelpPage_Help_No)
@@ -584,7 +584,7 @@ Function BuildHelpFile
    ${FileWriteLine} $R0 ``
 
    ; /scan-homedirs
-   ${ReadINIOption} $R9 "Default" "scan-homedirs"
+   ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_SCAN-HOMEDIRS}"
    ${EscapeSpecialRTFCharacters} $R9 $R9
    ${If} $R9 = 0
       StrCpy $R9 $(hCtl_HelpPage_Help_No)
@@ -598,7 +598,7 @@ Function BuildHelpFile
    ${FileWriteLine} $R0 ``
 
    ; /server
-   ${ReadINIOption} $R9 "Default" "server"
+   ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_SERVER}"
    ${EscapeSpecialRTFCharacters} $R9 $R9
    ${If} "$R9" == ""
       StrCpy $R9 "$\"$\""
@@ -620,7 +620,7 @@ Function BuildHelpFile
    ${FileWriteLine} $R0 ``
 
    ; /tag
-   ${ReadINIOption} $R9 "Default" "tag"
+   ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_TAG}"
    ${EscapeSpecialRTFCharacters} $R9 $R9
    ${If} "$R9" == ""
       StrCpy $R9 "$\"$\""
@@ -634,7 +634,7 @@ Function BuildHelpFile
    ${FileWriteLine} $R0 ``
 
    ; /task-dayly-modifier
-   ${ReadINIOption} $R9 "Default" "task-dayly-modifier"
+   ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_TASK-DAYLY-MODIFIER}"
    ${EscapeSpecialRTFCharacters} $R9 $R9
 
    ${FileWriteLine} $R0 `\pard\li400 /task-dayly-modifier=<\i modifier\i0 >\par`
@@ -645,7 +645,7 @@ Function BuildHelpFile
    ${FileWriteLine} $R0 ``
 
    ; /task-frequency
-   ${ReadINIOption} $R9 "Default" "task-frequency"
+   ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_TASK-FREQUENCY}"
    ${EscapeSpecialRTFCharacters} $R9 $R9
 
    ${FileWriteLine} $R0 `\pard\li400 /task-frequency=\{minute|hourly|dayly\}\par`
@@ -656,7 +656,7 @@ Function BuildHelpFile
    ${FileWriteLine} $R0 ``
 
    ; /task-hourly-modifier
-   ${ReadINIOption} $R9 "Default" "task-hourly-modifier"
+   ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_TASK-HOURLY-MODIFIER}"
    ${EscapeSpecialRTFCharacters} $R9 $R9
 
    ${FileWriteLine} $R0 `\pard\li400 /task-hourly-modifier=<\i modifier\i0 >\par`
@@ -667,7 +667,7 @@ Function BuildHelpFile
    ${FileWriteLine} $R0 ``
 
    ; /task-minute-modifier
-   ${ReadINIOption} $R9 "Default" "task-minute-modifier"
+   ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_TASK-MINUTE-MODIFIER}"
    ${EscapeSpecialRTFCharacters} $R9 $R9
 
    ${FileWriteLine} $R0 `\pard\li400 /task-minute-modifier=<\i modifier\i0 >\par`
@@ -678,7 +678,7 @@ Function BuildHelpFile
    ${FileWriteLine} $R0 ``
 
    ; /timeout
-   ${ReadINIOption} $R9 "Default" "timeout"
+   ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_TIMEOUT}"
    ${EscapeSpecialRTFCharacters} $R9 $R9
 
    ${FileWriteLine} $R0 `\pard\li400 /timeout=<\i timeout\i0 >\par`
@@ -689,7 +689,7 @@ Function BuildHelpFile
    ${FileWriteLine} $R0 ``
 
    ; /user
-   ${ReadINIOption} $R9 "Default" "user"
+   ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_USER}"
    ${EscapeSpecialRTFCharacters} $R9 $R9
    ${If} "$R9" == ""
       StrCpy $R9 "$\"$\""
@@ -703,7 +703,7 @@ Function BuildHelpFile
    ${FileWriteLine} $R0 ``
 
    ; /wait
-   ${ReadINIOption} $R9 "Default" "wait"
+   ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_WAIT}"
    ${EscapeSpecialRTFCharacters} $R9 $R9
 
    ${FileWriteLine} $R0 `\pard\li400 /wait=<\i limit\i0 >\par`
