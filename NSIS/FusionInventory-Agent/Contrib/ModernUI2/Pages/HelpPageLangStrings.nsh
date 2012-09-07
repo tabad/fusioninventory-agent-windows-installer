@@ -102,9 +102,9 @@ LangString hCtl_HelpPage_Help_Option ${LANG_FRENCH} "fOption"
 LangString hCtl_HelpPage_Help_Option ${LANG_SPANISH} "Opción"
 
 ; hCtl_HelpPage_Help_Option_acceptlicense_Paragraph_1
-LangString hCtl_HelpPage_Help_Option_acceptlicense_Paragraph_1 ${LANG_ENGLISH} "You accept and acknowledge that you have read, and understand, the terms and conditions of ${PRODUCT_NAME} v${PRODUCT_VERSION} license. (By default: $R9)"
-LangString hCtl_HelpPage_Help_Option_acceptlicense_Paragraph_1 ${LANG_FRENCH} "fYou accept and acknowledge that you have read, and understand, the terms and conditions of ${PRODUCT_NAME} v${PRODUCT_VERSION} license. (By default: $R9)"
-LangString hCtl_HelpPage_Help_Option_acceptlicense_Paragraph_1 ${LANG_SPANISH} "Acepta y reconoce que ha leído y entendido los términos y condiciones de la licencia de ${PRODUCT_NAME} v${PRODUCT_VERSION}. (Por defecto: $R9)"
+LangString hCtl_HelpPage_Help_Option_acceptlicense_Paragraph_1 ${LANG_ENGLISH} "You accept and acknowledge that you have read, and understand, the terms and conditions of ${PRODUCT_NAME} ${PRODUCT_VERSION} license. (By default: $R9)"
+LangString hCtl_HelpPage_Help_Option_acceptlicense_Paragraph_1 ${LANG_FRENCH} "fYou accept and acknowledge that you have read, and understand, the terms and conditions of ${PRODUCT_NAME} ${PRODUCT_VERSION} license. (By default: $R9)"
+LangString hCtl_HelpPage_Help_Option_acceptlicense_Paragraph_1 ${LANG_SPANISH} "Acepta y reconoce que ha leído y entendido los términos y condiciones de la licencia de ${PRODUCT_NAME} ${PRODUCT_VERSION}. (Por defecto: $R9)"
 
 ; hCtl_HelpPage_Help_Option_acceptlicense_Paragraph_2
 LangString hCtl_HelpPage_Help_Option_acceptlicense_Paragraph_2 ${LANG_ENGLISH} "You must user this option if you perform the installation in silent mode (\i /S\i0 )."

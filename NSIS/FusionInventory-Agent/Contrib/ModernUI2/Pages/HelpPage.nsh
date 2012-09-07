@@ -129,7 +129,7 @@ FunctionEnd
 
 
 Function HelpPage_Button1_Click
-   nsRichEdit::Print $hCtl_HelpPage_RichEdit1 "$(^Name) v${PRODUCT_VERSION} Setup"
+   nsRichEdit::Print $hCtl_HelpPage_RichEdit1 "$(^Name) ${PRODUCT_VERSION} Setup"
 FunctionEnd
 
 
@@ -148,7 +148,7 @@ Function BuildHelpFile
 
    ; Name
    ${FileWriteLine} $R0 `\pard\b $(hCtl_HelpPage_Help_Name)\b0\par`
-   ${FileWriteLine} $R0 `\pard\li400 ${PRODUCT_INSTALLER} - $(^Name) v${PRODUCT_VERSION} Setup\par`
+   ${FileWriteLine} $R0 `\pard\li400 ${PRODUCT_INSTALLER} - $(^Name) ${PRODUCT_VERSION} Setup\par`
    ${FileWriteLine} $R0 `\par`
    ${FileWriteLine} $R0 ``
 
