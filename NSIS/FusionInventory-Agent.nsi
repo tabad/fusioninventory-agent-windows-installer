@@ -282,6 +282,7 @@ Var IncompatibleTargetPlatformArchitecture
 ; Website or file which the user can select to view using the link
 !define MUI_FINISHPAGE_LINK_LOCATION http://fusioninventory.org/
 
+
 ;--------------------------------
 ; Modern UI 2.0 Custom Fuctions
 
