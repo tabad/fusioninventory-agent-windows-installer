@@ -254,14 +254,11 @@ Function BuildHelpFile
    ; /debug
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_DEBUG}"
    ${EscapeSpecialRTFCharacters} $R9 $R9
-   ${If} $R9 = 0
-      StrCpy $R9 $(hCtl_HelpPage_Help_No)
-   ${Else}
-      StrCpy $R9 $(hCtl_HelpPage_Help_Yes)
-   ${EndIf}
 
    ${FileWriteLine} $R0 `\pard\li400 /debug\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_debug_Paragraph_1)\par`
+   ${FileWriteLine} $R0 `\par`
+   ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_debug_Paragraph_2)\par`
    ${FileWriteLine} $R0 `\par`
    ${FileWriteLine} $R0 ``
 
@@ -448,12 +445,6 @@ Function BuildHelpFile
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_no-category_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_no-category_Paragraph_2)\par`
-   ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 ``
-
-   ; /no-debug
-   ${FileWriteLine} $R0 `\pard\li400 /no-debug\par`
-   ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_no-debug_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
    ${FileWriteLine} $R0 ``
 

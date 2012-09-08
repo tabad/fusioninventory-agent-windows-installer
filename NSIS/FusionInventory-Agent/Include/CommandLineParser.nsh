@@ -263,17 +263,15 @@ Function GetCommandLineOptions
    ${EndCommandLineOptionsSearchBlock}
 
    ; Search for '/debug' option.
-   ${CommandLineOptionsSearchBlock} "/debug" "${IO_DEBUG}"
+   ${CommandLineOptionsSearchBlock} "/debug=" "${IO_DEBUG}"
        ; Check $R3 domain
-       ${If} "$R3" != ""
+       ${If} $R3 < 0
+       ${OrIf} $R3 > 2
           ; Syntax error.
           SetErrors
           StrCpy $R7 1
-          ${FileWriteLine} $R9 "Syntax error. '$R2' is a switch, it has no values."
+          ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
           ${Break}
-       ${Else}
-          ; Override $R3
-          StrCpy $R3 1
        ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 
@@ -506,21 +504,6 @@ Function GetCommandLineOptions
           StrCpy $R7 1
           ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
           ${Break}
-       ${EndIf}
-   ${EndCommandLineOptionsSearchBlock}
-
-   ; Search for '/no-debug' option.
-   ${CommandLineOptionsSearchBlock} "/no-debug" "${IO_DEBUG}"
-       ; Check $R3 domain
-       ${If} "$R3" != ""
-          ; Syntax error.
-          SetErrors
-          StrCpy $R7 1
-          ${FileWriteLine} $R9 "Syntax error. '$R2' is a switch, it has no values."
-          ${Break}
-       ${Else}
-          ; Override $R3
-          StrCpy $R3 0
        ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 

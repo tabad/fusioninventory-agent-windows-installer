@@ -155,9 +155,29 @@ LangString hCtl_HelpPage_Help_Option_ca-cert-uri_Paragraph_2 ${LANG_FRENCH} "fTh
 LangString hCtl_HelpPage_Help_Option_ca-cert-uri_Paragraph_2 ${LANG_SPANISH} "El archivo del certificado de autoridad (CA) será guardado en el directorio base obtenido de la ruta resultante de concatenar \i /ca-cert-dir\i0  y \i /ca-cert-file\i0 , en ese orden."
 
 ; hCtl_HelpPage_Help_Option_debug_Paragraph_1
-LangString hCtl_HelpPage_Help_Option_debug_Paragraph_1 ${LANG_ENGLISH} "Turn the debug mode on. (By default: $R9)"
-LangString hCtl_HelpPage_Help_Option_debug_Paragraph_1 ${LANG_FRENCH} "fTurn the debug mode on. (By default: $R9)"
-LangString hCtl_HelpPage_Help_Option_debug_Paragraph_1 ${LANG_SPANISH} "Activa el modo de depuración. (Por defecto: $R9)"
+LangString hCtl_HelpPage_Help_Option_debug_Paragraph_1 ${LANG_ENGLISH} "Set the debug level of the agent. (By default: $R9)"
+LangString hCtl_HelpPage_Help_Option_debug_Paragraph_1 ${LANG_FRENCH} "fSet the debug level of the agent. (By default: $R9)"
+LangString hCtl_HelpPage_Help_Option_debug_Paragraph_1 ${LANG_SPANISH} "Establece el nivel de depuración del agente. (Por defecto: $R9)"
+
+; hCtl_HelpPage_Help_Option_debug_Paragraph_2
+LangString hCtl_HelpPage_Help_Option_debug_Paragraph_2 ${LANG_ENGLISH} \
+"The debug level can be any of the following:\par \
+\par \
+\tab 0: Debug off\par \
+\tab 1: Normal debug\par \
+\tab 2: Full debug"
+LangString hCtl_HelpPage_Help_Option_debug_Paragraph_2 ${LANG_FRENCH} \
+"fThe debug level can be any of the following:\par \
+\par \
+\tab 0: Debug off\par \
+\tab 1: Normal debug\par \
+\tab 2: Full debug"
+LangString hCtl_HelpPage_Help_Option_debug_Paragraph_2 ${LANG_SPANISH} \
+"El nivel de depuración puede ser cualquiera de los siguientes:\par \
+\par \
+\tab 0: Sin depuración\par \
+\tab 1: Depuración normal\par \
+\tab 2: Depuración completa"
 
 ; hCtl_HelpPage_Help_Option_delaytime_Paragraph_1
 LangString hCtl_HelpPage_Help_Option_delaytime_Paragraph_1 ${LANG_ENGLISH} "Sets an initial delay before first contact with a remote destination (see option \i /server\i0 ). This delay is calculated at random between \i limit/2\i0  and \i limit\i0  seconds. (Default: $R9 seconds)"
@@ -374,11 +394,6 @@ LangString hCtl_HelpPage_Help_Option_no-category_Paragraph_2 ${LANG_SPANISH} \
 \tab ToDo\par \
 \par \
 Si indica una cadena vacía ($\"$\"), todas las categorías de elementos serán inventariadas."
-
-; hCtl_HelpPage_Help_Option_no-debug_Paragraph_1
-LangString hCtl_HelpPage_Help_Option_no-debug_Paragraph_1 ${LANG_ENGLISH} "This option is the opposite of \i /debug\i0 . See \i /debug\i0  for more information."
-LangString hCtl_HelpPage_Help_Option_no-debug_Paragraph_1 ${LANG_FRENCH} "fThis option is the opposite of \i /debug\i0 . See \i /debug\i0  for more information."
-LangString hCtl_HelpPage_Help_Option_no-debug_Paragraph_1 ${LANG_SPANISH} "Esta opción es la opuesta a \i /debug\i0 . Vea \i /debug\i0  para más información."
 
 ; hCtl_HelpPage_Help_Option_no-html_Paragraph_1
 LangString hCtl_HelpPage_Help_Option_no-html_Paragraph_1 ${LANG_ENGLISH} "This option is the opposite of \i /html\i0 . See \i /html\i0  for more information."
