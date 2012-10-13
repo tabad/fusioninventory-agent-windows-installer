@@ -28,7 +28,7 @@
 :: ------------------------------------------------------------------------
 ::
 :: @package   FusionInventory Agent Installer for Microsoft Windows
-:: @file      .\Perl\Scripts\show-all-modules-dependence.bat    
+:: @file      .\Perl\Scripts\delete-perl-modules-and-dependencies-temporary-files.bat
 :: @author    Tomas Abad
 :: @copyright Copyright (c) 2010-2012 FusionInventory Team
 :: @license   GNU GPL version 2 or (at your option) any later version
@@ -41,8 +41,39 @@
 
 
 @echo off
-:: load configuration file
-call .\configuration-file.bat
 
-:: show all modules dependence 
-perl %drivep%\perl\bin\cpanm --auto-cleanup 1 --quiet --scandeps --local-lib-contained %FUSINV_AGENT% %FUSINV_TASKS% %OTHER_NEEDED_MODULES%
+set MINGW_PATH=%SYSTEMDRIVE%\MinGW
+
+if not exist "%MINGW_PATH%" goto not_installed
+:: MinGW/MSYS is already installed
+
+:: load proxy environment
+call .\load-proxy-environment.bat
+
+:: load gnu utilities environment
+call .\load-gnu-utilities-environment.bat
+
+:: launch the bash shell script
+"%MSYS_PATH%\bin\bash.exe" %~dpn0.sh %*
+
+:: unload gnu utilities environment
+call .\unload-gnu-utilities-environment.bat
+
+:: unload proxy environment
+call .\unload-proxy-environment.bat
+
+goto end_of_file
+
+:not_installed
+:: MinGW/MSYS is not installed
+
+echo.
+echo It seems that MinGW/MSYS is not installed into "%MINGW_PATH%".
+echo Please, launch 'install-gnu-utilities-collection.bat' to install
+echo MinGW/MSYS ^(www.mingw.org^) and try again.
+echo.
+
+:end_of_file
+:: unset environment variables
+
+set MINGW_PATH=

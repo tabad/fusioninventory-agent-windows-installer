@@ -68,21 +68,13 @@ What do you need
       You can get NSIS 2.46 from http://nsis.sourceforge.net/Download
 
    - Whether you use a Unix OS
-      * NSIS 2.46
       * Curl
+      * NSIS 2.46
 
       Check your distribution for more information about these packages
 
    - In all of cases
-      * Strawberry Perl Portable Edition v5.16.1.1 (Aug 2012), or above, for
-        x86 and x64 architectures
-
-      You can get Strawberry Perl Portable Edition from
-
-         http://strawberryperl.com/releases.html
-
-      (Note: Strawberry Perl Portable Edition 5.16.1.1 (Aug 2012) for x86 and
-             x64 architectures is already included.)
+      * An Internet connection
 
 
 Current state
@@ -98,11 +90,6 @@ Current state
             .- FusionInventory Agent Task NetInventory v2.2.0
             .- FusionInventory Agent Task NetDiscovery v2.2.0
 
-      .- Strawberry Perl Portable Edition v5.16.1.1 (Aug 2012) for x84
-      .- Strawberry Perl Portable Edition v5.16.1.1 (Aug 2012) for x64
-
-      (NOTE: Both Perl distributions with all the dependencies of Perl modules
-             for the previous FusionInventory Agent and Tasks resolved)
 
    This is the current directory tree of the project.
 
@@ -121,41 +108,7 @@ Current state
 |   |   `-- INI
 |   `-- Plugins
 |-- Perl
-|   |-- Scripts
-|   `-- Strawberry
-|       `-- 5.16.1.1
-|           |-- x64
-|           |   |-- c
-|           |   |-- cpan
-|           |   |   `-- sources
-|           |   |       |-- FusionInventory-Agent-2.2.5
-|           |   |       |-- FusionInventory-Agent-Task-Deploy-2.0.2
-|           |   |       |-- FusionInventory-Agent-Task-ESX-2.2.0
-|           |   |       `-- FusionInventory-Agent-Task-Network-1.0.1
-|           |   |-- data
-|           |   |-- licenses
-|           |   |-- perl
-|           |   |   |-- bin
-|           |   |   |-- lib
-|           |   |   |-- site
-|           |   |   `-- vendor
-|           |   `-- win32
-|           `-- x86
-|               |-- c
-|               |-- cpan
-|               |   `-- sources
-|               |       |-- FusionInventory-Agent-2.2.5
-|               |       |-- FusionInventory-Agent-Task-Deploy-2.0.2
-|               |       |-- FusionInventory-Agent-Task-ESX-2.2.0
-|               |       `-- FusionInventory-Agent-Task-Network-1.0.1
-|               |-- data
-|               |-- licenses
-|               |-- perl
-|               |   |-- bin
-|               |   |-- lib
-|               |   |-- site
-|               |   `-- vendor
-|               `-- win32
+|   `-- Scripts
 `-- Tools
     |-- 7zip
     |   |-- x64
@@ -173,6 +126,12 @@ Current state
         `-- x86
 
 
+   Inside of './NSIS/Perl/Scripts' directory there is a set of scripts for
+download Strawberry Perl Portable Edition v5.16.1.1 (Aug 2012) for x64 and
+x86 architectures, update and install all the Perl modules dependencies for
+the previous FusionInventory Agent packages, and download them.
+
+
 How to generate the installer
 -----------------------------
 
@@ -182,23 +141,36 @@ How to generate the installer
 
 and uncompress and unpack it.
 
-You can also clone the repository whether do you prefer it using Git.
+   You can also clone the repository whether do you prefer it using Git.
 
-   git clone --branch master --depth 1 https://github.com/tabad/fusioninventory-agent-windows-installer.git
+   $ git clone --branch master --depth 1 https://github.com/tabad/fusioninventory-agent-windows-installer.git
 
-Now execute, from your Microsoft Windows command interpreter
+   You should change '--branch master' for the name of branch you wish download.
 
-   C:\>cd fusioninventory-agent-windows-installer
-   C:\fusioninventory-agent-windows-installer>cd NSIS
-   C:\fusioninventory-agent-windows-installer\NSIS>FusionInventory-Agent.bat
+   The following steps depends of your operative system.
 
-of from your Unix shell
 
-   $cd fusioninventory-agent-windows-installer
-   $cd NSIS
-   $./FusionInventory-Agent.sh
+   Microsoft Windows
+   -----------------
 
-You should be able to see the new installers in that directory.
+   From your Microsoft Windows command interpreter executes
+
+   > cd fusioninventory-agent-windows-installer
+   > cd Perl\Scripts
+   > .\install-gnu-utilities-collection.bat
+   > .\install-strawberryperl.bat
+   > .\install-perl-modules-and-dependencies.bat
+   > .\install-fusioninventory-agent-and-tasks.bat
+   > cd NSIS
+   > .\FusionInventory-Agent.bat
+
+   You should be able to see the new installers in that directory.
+
+
+   Unix OS
+   -------
+
+   It is not possible at the moment.
 
 
 Upgrade the agent and its tasks
@@ -220,7 +192,7 @@ Contacts
 --------
 Project websites:
 * main site: http://www.fusioninventory.org
-* forge: http://forge.fusioninventory.org
+* forge: http://forge.fusioninventory.org/projects/fusioninventory-agent-windows-installer
 
 Project mailing lists:
 * http://lists.alioth.debian.org/mailman/listinfo/fusioninventory-user
@@ -229,7 +201,7 @@ Project mailing lists:
 Project IRC channel:
 * #FusionInventory on FreeNode IRC Network
 
-Please report any issues on project forge bugtracker (It is not ready yet).
+Please report any issues on project forge bugtracker (see forge URL above).
 
 
 Author

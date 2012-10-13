@@ -28,7 +28,7 @@
 :: ------------------------------------------------------------------------
 ::
 :: @package   FusionInventory Agent Installer for Microsoft Windows
-:: @file      .\Perl\Scripts\upgrade-fusioninventory-agent-and-tasks-modules.bat    
+:: @file      .\Perl\Scripts\load-gnu-utilities-environment.bat
 :: @author    Tomas Abad
 :: @copyright Copyright (c) 2010-2012 FusionInventory Team
 :: @license   GNU GPL version 2 or (at your option) any later version
@@ -41,30 +41,47 @@
 
 
 @echo off
-:: load configuration file
-call .\configuration-file.bat
 
-:: erase FusionInventory-Agent-* files and directories from %drivep%\cpan\sources
-for /d /r %drivep%\cpan\sources %%d in (FusionInventory-Agent-*) do @if exist "%%d" rd /s/q "%%d"
-del /q /f %drivep%\cpan\sources\FusionInventory-Agent-*.tar.gz 2> NUL
-del /q /f %drivep%\cpan\sources\FusionInventory-Agent-*.tar 2> NUL
+set MINGW_PATH=%SYSTEMDRIVE%\MinGW
+set MSYS_PATH=%MINGW_PATH%\msys\1.0
+set MSYSTEM=MSYS
 
-:: download modules 
-cd /d %drivep%\cpan\sources
-%drivep%\..\..\..\..\Tools\curl\x86\curl --remote-name --location --max-redirs 2 %CPAN_MIRROR%%CPAN_MIRROR_PATH_PREFIX%%FUSINV_AGENT%
-%drivep%\..\..\..\..\Tools\curl\x86\curl --remote-name --location --max-redirs 2 %CPAN_MIRROR%%CPAN_MIRROR_PATH_PREFIX%%FUSINV_TASK_DEPLOY%
-%drivep%\..\..\..\..\Tools\curl\x86\curl --remote-name --location --max-redirs 2 %CPAN_MIRROR%%CPAN_MIRROR_PATH_PREFIX%%FUSINV_TASK_ESX%
-%drivep%\..\..\..\..\Tools\curl\x86\curl --remote-name --location --max-redirs 2 %CPAN_MIRROR%%CPAN_MIRROR_PATH_PREFIX%%FUSINV_TASK_NETWORK%
-cd /d %drivep%
+set HOME=%USERPROFILE%
+set USER=%USERNAME%
+set HISTFILE=%HOME%
 
-:: extract files %drivep%\cpan\sources\FusionInventory-Agent-*.tar.gz
-%drivep%\..\..\..\..\Tools\7zip\x86\7za.exe x -bd -y -o%drivep%\cpan\sources %drivep%\cpan\sources\FusionInventory-Agent-*.tar.gz > NUL
+copy /y ..\..\Tools\7zip\x86\7za.exe %TEMP% > NUL
+copy /y ..\..\Tools\Curl\x86\curl.exe %TEMP% > NUL
 
-:: extract files %drivep%\cpan\sources\FusionInventory-Agent-*.tar
-%drivep%\..\..\..\..\Tools\7zip\x86\7za.exe x -bd -y -o%drivep%\cpan\sources %drivep%\cpan\sources\FusionInventory-Agent-*.tar > NUL
+setlocal enabledelayedexpansion
+set LOCAL_PATH=%PATH%
+set LOCAL_PATH=!LOCAL_PATH:%TEMP%;=!
+if not "x%LOCAL_PATH%" == "x%PATH%" (
+   set LOCAL_PATH=
+) else (
+   set LOCAL_PATH=%TEMP%;
+)
+endlocal & set PATH=%LOCAL_PATH%%PATH%
+set LOCAL_PATH=
 
-:: erase files %drivep%\cpan\sources\FusionInventory-Agent-*.tar.gz
-del /q /f %drivep%\cpan\sources\FusionInventory-Agent-*.tar.gz 2> NUL
+setlocal enabledelayedexpansion
+set LOCAL_PATH=%PATH%
+set LOCAL_PATH=!LOCAL_PATH:%MSYS_PATH%\bin;=!
+if not "x%LOCAL_PATH%" == "x%PATH%" (
+   set LOCAL_PATH=
+) else (
+   set LOCAL_PATH=%MSYS_PATH%\bin;
+)
+endlocal & set PATH=%LOCAL_PATH%%PATH%
+set LOCAL_PATH=
 
-:: erase files %drivep%\cpan\sources\FusionInventory-Agent-*.tar
-del /q /f %drivep%\cpan\sources\FusionInventory-Agent-*.tar 2> NUL
+setlocal enabledelayedexpansion
+set LOCAL_PATH=%PATH%
+set LOCAL_PATH=!LOCAL_PATH:%MINGW_PATH%\bin;=!
+if not "x%LOCAL_PATH%" == "x%PATH%" (
+   set LOCAL_PATH=
+) else (
+   set LOCAL_PATH=%MINGW_PATH%\bin;
+)
+endlocal & set PATH=%LOCAL_PATH%%PATH%
+set LOCAL_PATH=

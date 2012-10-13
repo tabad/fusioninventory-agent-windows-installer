@@ -1,9 +1,9 @@
 #!/bin/bash
 # ------------------------------------------------------------------------
-# FusionInventory Agent Installer for Microsoft Windows
+# FusionInventory
 # Copyright (C) 2010-2012 by the FusionInventory Development Team.
 #
-# http://www.fusioninventory.org/ http://forge.fusioninventory.org/
+# http://www.fusioninventory.org/   http://forge.fusioninventory.org/
 # ------------------------------------------------------------------------
 #
 # LICENSE
@@ -29,7 +29,7 @@
 # ------------------------------------------------------------------------
 #
 # @package   FusionInventory Agent Installer for Microsoft Windows
-# @file      .\NSIS\FusionInventory-Agent.sh
+# @file      .\Perl\Scripts\delete-perl-modules-and-dependencies-temporary-files.sh
 # @author    Tomas Abad
 # @copyright Copyright (c) 2010-2012 FusionInventory Team
 # @license   GNU GPL version 2 or (at your option) any later version
@@ -41,35 +41,35 @@
 # ------------------------------------------------------------------------
 
 
-declare -r installer_file='./fusioninventory-agent_windows-${arch}_*.exe'
-declare -r nsis_log_level='3'
-declare -r nsis_script='./FusionInventory-Agent.nsi'
-declare -r nsis_log_file='./FusionInventory-Agent_MakeNSIS-Output-${arch}.txt'
+# Load perl environment
+source ./load-perl-environment
 
-declare arch=''
-declare -a -r archs=(x64 x86)
-
-declare option_nsis_define=''
-declare -r option_nsis_log_file="-O${nsis_log_file}"
-declare -r option_nsis_log_level="-V${nsis_log_level}"
-
+declare -i iter=0
 declare -r basename="${0##*\\}"
 
-declare -r makensis=$(type -P makensis)
 declare -r rm=$(type -P rm)
 
 # Check the OS
 if [ "${MSYSTEM}" = "MSYS" ]; then
    # Windows OS with MinGW/MSYS
 
-   option_nsis_define='-DFIAI_PLATFORM_ARCHITECTURE=${arch}'
+   # Set terminal
+   TERM=dumb
+
+   # Avoid collisions with other perl stuff on your system
+   unset PERL_JSON_BACKEND
+   unset PERL_YAML_BACKEND
+   unset PERL5LIB
+   unset PERL5OPT
+   unset PERL_MM_OPT
+   unset PERL_MB_OPT
 else
    if [ -n "${WINDIR}" ]; then
       # It's a Windows OS
 
       echo
-      echo "You can not launch '${basename}' directly. Please, launch"
-      echo "'${basename%.sh}.bat' instead."
+      echo "You can not launch '${basename}' directly."
+      echo "Please, launch '${basename%.sh}.bat' instead."
       echo
 
       exit 1
@@ -77,44 +77,36 @@ else
 
    # It's a UNIX OS.
 
-   # Is NSIS installed?
-   if [ ! -x "${makensis}" ]; then
-      # NSIS is not installed
+   echo
+   echo "You should launch '${basename}' only from a Microsoft Windows OS."
+   echo
 
-      echo
-      echo 'It seems that NSIS is not installed into this system.'
-      echo 'Please, install it and try again.'
-      echo
-
-      exit 2
-   fi
-
-   option_nsis_define='-DFIAI_PLATFORM_ARCHITECTURE=${arch} -DOS_BUILDER_NO_WINDOWS'
+   exit 2
 fi
 
-# All seems be correct...
+# Check whether Strawberry Perl ${strawberry_version} is already installed
+if [ ! -d "${strawberry_path}" ]; then
+   echo
+   echo "Sorry but it seems that Strawberry Perl ${strawberry_release} (${strawberry_version}-32/64bits)"
+   echo "is not installed into the '${strawberry_path}' directory."
+   echo "Please, install it with 'install-strawberryperl.bat' and try again."
+   echo
+   exit 3
+fi
 
-# Delete current installers
-for arch in ${archs[@]}; do
-   eval ${rm} -f "${nsis_log_file}" "${installer_file}"
-done
+# Installation loop
+while (( ${iter} < ${#archs[@]} )); do
+   # Set arch and arch_label
+   arch=${archs[${iter}]}
+   arch_label=${arch_labels[${iter}]}
 
-# Build installers
-for arch in ${archs[@]}; do
-   # Build ${arch} installer
+   # Delete temporary cpanm files
+   echo -n "Deleting Strawberry Perl ${strawberry_release} (${strawberry_version}-${arch_label}s) temporary files."
+   eval ${rm} -rf "$(pwd)/${strawberry_arch_path}/data/.cpanm"
+   echo ".Done!"
 
-   echo -n "Compilling ${arch} installer..."
-   eval ${makensis} ${option_nsis_log_level} \
-                    ${option_nsis_log_file}  \
-                    ${option_nsis_define}    \
-                    ${nsis_script}
-
-   if (( $? == 0 )); then
-      echo '.Done!'
-   else
-      echo '.Failure!'
-      eval echo " Please, read \'${nsis_log_file}\' for more information."
-   fi
+   # New architecture
+   iter=$(( ${iter} + 1 ))
 done
 
 echo

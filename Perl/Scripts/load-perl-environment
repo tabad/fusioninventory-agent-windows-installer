@@ -1,0 +1,63 @@
+# ------------------------------------------------------------------------
+# FusionInventory
+# Copyright (C) 2010-2012 by the FusionInventory Development Team.
+#
+# http://www.fusioninventory.org/   http://forge.fusioninventory.org/
+# ------------------------------------------------------------------------
+#
+# LICENSE
+#
+# This file is part of FusionInventory project.
+#
+# FusionInventory Agent Installer for Microsoft Windows is free software;
+# you can redistribute it and/or modify it under the terms of the GNU
+# General Public License as published by the Free Software Foundation;
+# either version 2 of the License, or (at your option) any later version.
+#
+#
+# FusionInventory Agent Installer for Microsoft Windows is distributed in
+# the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
+# the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+# PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software Foundation,
+# Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA,
+# or see <http://www.gnu.org/licenses/>.
+#
+# ------------------------------------------------------------------------
+#
+# @package   FusionInventory Agent Installer for Microsoft Windows
+# @file      .\Perl\Scripts\load-perl-environment
+# @author    Tomas Abad
+# @copyright Copyright (c) 2010-2012 FusionInventory Team
+# @license   GNU GPL version 2 or (at your option) any later version
+#            http://www.gnu.org/licenses/old-licenses/gpl-2.0-standalone.html
+# @link      http://www.fusioninventory.org/
+# @link      http://forge.fusioninventory.org/projects/fusioninventory-agent
+# @since     2012
+#
+# ------------------------------------------------------------------------
+
+
+declare arch=''
+declare arch_label=''
+declare -a -r archs=(x64 x86)
+declare -a -r arch_labels=(64bit 32bit)
+
+declare -r strawberry_version='5.16.1.1'
+declare -r strawberry_release='Aug 2012'
+declare -r strawberry_path="../Strawberry/${strawberry_version}"
+
+declare -r strawberry_arch_path='${strawberry_path}/${arch}'
+declare -r strawberry_arch_url='http://strawberryperl.com/download/${strawberry_version}/strawberry-perl-${strawberry_version}-${arch_label}-portable.zip'
+
+declare -r cpan_mirror='http://search.cpan.org'
+declare -r cpan_mirror_path_prefix='/CPAN/authors/id'
+
+declare -r fusinv_agent='/F/FU/FUSINV/FusionInventory-Agent-2.2.5.tar.gz'
+declare -r fusinv_task_deploy='/F/FU/FUSINV/FusionInventory-Agent-Task-Deploy-2.0.2.tar.gz'
+declare -r fusinv_task_esx='/F/FU/FUSINV/FusionInventory-Agent-Task-ESX-2.2.0.tar.gz'
+declare -r fusinv_task_network='/G/GO/GONERI/FusionInventory-Agent-Task-Network-1.0.1.tar.gz'
+
+declare -r other_needed_modules='Win32::Daemon Net::NBName'

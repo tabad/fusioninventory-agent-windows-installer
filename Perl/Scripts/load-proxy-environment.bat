@@ -28,7 +28,7 @@
 :: ------------------------------------------------------------------------
 ::
 :: @package   FusionInventory Agent Installer for Microsoft Windows
-:: @file      .\Perl\Scripts\show-missing-modules-dependence.bat    
+:: @file      .\Perl\Scripts\load-proxy-environment.bat
 :: @author    Tomas Abad
 :: @copyright Copyright (c) 2010-2012 FusionInventory Team
 :: @license   GNU GPL version 2 or (at your option) any later version
@@ -41,8 +41,14 @@
 
 
 @echo off
-:: load configuration file
-call .\configuration-file.bat
 
-:: show missing modules dependence 
-perl %drivep%\perl\bin\cpanm --auto-cleanup 1 --quiet --scandeps %FUSINV_AGENT% %FUSINV_TASKS% %OTHER_NEEDED_MODULES%
+::    Remove comments and defines the lines below to use the proxy server
+:: set HTTP_PROXY=http://[username:password@]your.http.server.proxy:port/
+:: set HTTPS_PROXY=https://[username:password@]your.https.server.proxy:port/
+:: set FTP_PROXY=ftp://[username:password@]your.ftp.server.proxy:port/
+:: set NO_PROXY=localhost,...
+::
+:: *** Attention ***
+::    Whether you connect trough a proxy system, and since mingw-get uses the
+::    Internet Explorer (IE) Proxy settings, you should define, in addition
+::    to *_PROXY variables, the IE proxy.

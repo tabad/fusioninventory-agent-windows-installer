@@ -1,9 +1,9 @@
 #!/bin/bash
 # ------------------------------------------------------------------------
-# FusionInventory Agent Installer for Microsoft Windows
+# FusionInventory
 # Copyright (C) 2010-2012 by the FusionInventory Development Team.
 #
-# http://www.fusioninventory.org/ http://forge.fusioninventory.org/
+# http://www.fusioninventory.org/   http://forge.fusioninventory.org/
 # ------------------------------------------------------------------------
 #
 # LICENSE
@@ -29,7 +29,7 @@
 # ------------------------------------------------------------------------
 #
 # @package   FusionInventory Agent Installer for Microsoft Windows
-# @file      .\NSIS\FusionInventory-Agent.sh
+# @file      .\Perl\Scripts\uninstall-fusioninventory-agent-and-tasks.sh
 # @author    Tomas Abad
 # @copyright Copyright (c) 2010-2012 FusionInventory Team
 # @license   GNU GPL version 2 or (at your option) any later version
@@ -41,28 +41,20 @@
 # ------------------------------------------------------------------------
 
 
-declare -r installer_file='./fusioninventory-agent_windows-${arch}_*.exe'
-declare -r nsis_log_level='3'
-declare -r nsis_script='./FusionInventory-Agent.nsi'
-declare -r nsis_log_file='./FusionInventory-Agent_MakeNSIS-Output-${arch}.txt'
+# Load perl environment
+source ./load-perl-environment
 
-declare arch=''
-declare -a -r archs=(x64 x86)
-
-declare option_nsis_define=''
-declare -r option_nsis_log_file="-O${nsis_log_file}"
-declare -r option_nsis_log_level="-V${nsis_log_level}"
-
+declare -i iter=0
 declare -r basename="${0##*\\}"
 
-declare -r makensis=$(type -P makensis)
 declare -r rm=$(type -P rm)
 
 # Check the OS
 if [ "${MSYSTEM}" = "MSYS" ]; then
    # Windows OS with MinGW/MSYS
 
-   option_nsis_define='-DFIAI_PLATFORM_ARCHITECTURE=${arch}'
+   # No operation
+   echo > /dev/null
 else
    if [ -n "${WINDIR}" ]; then
       # It's a Windows OS
@@ -77,44 +69,37 @@ else
 
    # It's a UNIX OS.
 
-   # Is NSIS installed?
-   if [ ! -x "${makensis}" ]; then
-      # NSIS is not installed
+   echo
+   echo "You should launch '${basename}' only from a Microsoft Windows OS."
+   echo
 
-      echo
-      echo 'It seems that NSIS is not installed into this system.'
-      echo 'Please, install it and try again.'
-      echo
-
-      exit 2
-   fi
-
-   option_nsis_define='-DFIAI_PLATFORM_ARCHITECTURE=${arch} -DOS_BUILDER_NO_WINDOWS'
+   exit 2
 fi
 
-# All seems be correct...
+# Check whether Strawberry Perl ${strawberry_version} is already installed
+if [ ! -d "${strawberry_path}" ]; then
+   echo
+   echo "Sorry but it seems that Strawberry Perl ${strawberry_release} (${strawberry_version}-32/64bits)"
+   echo "is not installed into the '${strawberry_path}' directory."
+   echo "Please, install it with 'install-strawberryperl.bat' and try again."
+   echo
 
-# Delete current installers
-for arch in ${archs[@]}; do
-   eval ${rm} -f "${nsis_log_file}" "${installer_file}"
-done
+   exit 3
+fi
 
-# Build installers
-for arch in ${archs[@]}; do
-   # Build ${arch} installer
+# Uninstallation loop
+while (( ${iter} < ${#archs[@]} )); do
+   # Set arch and arch_label
+   arch=${archs[${iter}]}
+   arch_label=${arch_labels[${iter}]}
 
-   echo -n "Compilling ${arch} installer..."
-   eval ${makensis} ${option_nsis_log_level} \
-                    ${option_nsis_log_file}  \
-                    ${option_nsis_define}    \
-                    ${nsis_script}
+   # Uninstall modules
+   echo -n "Installing from Strawberry Perl ${strawberry_release} (${strawberry_version}-${arch_label}s)."
+   eval ${rm} -rf "${strawberry_arch_path}/cpan/sources/FusionInventory-Agent-*"
+   echo ".Done!"
 
-   if (( $? == 0 )); then
-      echo '.Done!'
-   else
-      echo '.Failure!'
-      eval echo " Please, read \'${nsis_log_file}\' for more information."
-   fi
+   # New architecture
+   iter=$(( ${iter} + 1 ))
 done
 
 echo

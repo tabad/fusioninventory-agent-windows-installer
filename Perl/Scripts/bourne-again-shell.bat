@@ -28,7 +28,7 @@
 :: ------------------------------------------------------------------------
 ::
 :: @package   FusionInventory Agent Installer for Microsoft Windows
-:: @file      .\Perl\Scripts\upgrade-perl-modules-and-dependencies.bat    
+:: @file      .\Perl\Scripts\bourne-again-shell.bat
 :: @author    Tomas Abad
 :: @copyright Copyright (c) 2010-2012 FusionInventory Team
 :: @license   GNU GPL version 2 or (at your option) any later version
@@ -41,17 +41,39 @@
 
 
 @echo off
-:: load configuration file
-call .\configuration-file.bat
 
-:: erase temporary cpanm files
-rmdir /q /s %drivep%\data\.cpanm 2> NUL
+set MINGW_PATH=%SYSTEMDRIVE%\MinGW
 
-:: upgrade the environment
-perl %drivep%\perl\bin\cpanm --auto-cleanup 1 --self-upgrade --installdeps --skip-installed --notest %FUSINV_AGENT% %FUSINV_TASKS% 
+if not exist "%MINGW_PATH%" goto not_installed
+:: MinGW/MSYS is already installed
 
-:: install other required modules
-perl %drivep%\perl\bin\cpanm --auto-cleanup 1 --install --skip-installed --notest %OTHER_NEEDED_MODULES% 
+:: Load proxy environment
+call .\load-proxy-environment.bat
 
-:: show information
-echo Take a look at the file %drivep%\data\.cpanm\build.log for more information.
+:: Load gnu utilities environment
+call .\load-gnu-utilities-environment.bat
+
+:: Launch the bash shell script
+"%MSYS_PATH%\bin\bash.exe"
+
+:: Unload gnu utilities environment
+call .\unload-gnu-utilities-environment.bat
+
+:: Unload proxy environment
+call .\unload-proxy-environment.bat
+
+goto end_of_file
+
+:not_installed
+:: MinGW/MSYS is not installed
+
+echo.
+echo It seems that MinGW/MSYS is not installed into "%MINGW_PATH%".
+echo Please, launch 'install-gnu-utilities-collection.bat' to install
+echo MinGW/MSYS ^(www.mingw.org^) and try again.
+echo.
+
+:end_of_file
+:: Unset environment variables
+
+set MINGW_PATH=
