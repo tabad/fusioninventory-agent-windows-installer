@@ -28,7 +28,7 @@
 :: ------------------------------------------------------------------------
 ::
 :: @package   FusionInventory Agent Installer for Microsoft Windows
-:: @file      .\Perl\Scripts\install-strawberryperl.bat
+:: @file      .\Perl\Scripts\uninstall-strawberry-perl.bat
 :: @author    Tomas Abad
 :: @copyright Copyright (c) 2010-2012 FusionInventory Team
 :: @license   GNU GPL version 2 or (at your option) any later version
@@ -47,9 +47,6 @@ set MINGW_PATH=%SYSTEMDRIVE%\MinGW
 if not exist "%MINGW_PATH%" goto not_installed
 :: MinGW/MSYS is already installed
 
-:: Load proxy environment
-call .\load-proxy-environment.bat
-
 :: Load gnu utilities environment
 call .\load-gnu-utilities-environment.bat
 
@@ -58,9 +55,6 @@ call .\load-gnu-utilities-environment.bat
 
 :: Unload gnu utilities environment
 call .\unload-gnu-utilities-environment.bat
-
-:: Unload proxy environment
-call .\unload-proxy-environment.bat
 
 goto end_of_file
 

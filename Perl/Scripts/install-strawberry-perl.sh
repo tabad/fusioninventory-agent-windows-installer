@@ -29,7 +29,7 @@
 # ------------------------------------------------------------------------
 #
 # @package   FusionInventory Agent Installer for Microsoft Windows
-# @file      .\Perl\Scripts\uninstall-strawberryperl.sh
+# @file      .\Perl\Scripts\install-strawberry-perl.sh
 # @author    Tomas Abad
 # @copyright Copyright (c) 2010-2012 FusionInventory Team
 # @license   GNU GPL version 2 or (at your option) any later version
@@ -45,9 +45,11 @@
 source ./load-perl-environment
 
 declare -i iter=0
-declare user_answer=''
 declare -r basename="${0##*\\}"
 
+declare -r curl=$(type -P curl)
+declare -r install=$(type -P install)
+declare -r p7za=$(type -P 7za)
 declare -r rm=$(type -P rm)
 
 # Check the OS
@@ -77,50 +79,47 @@ else
    exit 2
 fi
 
-# Check whether Strawberry Perl is already installed
-if [ ! -d "${strawberry_path}" ]; then
+# Check whether Strawberry Perl ${strawberry_version} is already installed
+if [ -d "${strawberry_path}" ]; then
    echo
    echo "Sorry but it seems that Strawberry Perl ${strawberry_release} (${strawberry_version}-32/64bits)"
-   echo "is not installed into the '${strawberry_path}' directory."
+   echo "is already installed into the '${strawberry_path}' directory."
+   echo "Remove it with 'uninstall-strawberry-perl.bat' and try again."
    echo
    exit 0
 fi
 
-# Get confirmation
-echo "You are going to delete completely the '${strawberry_path}' directory."
-read -p "Are you completely sure [y/N]? " -n 1 -t 10 user_answer
-echo
-
-if [ "${user_answer}" = "" ]  ||
-   [ "${user_answer}" = "n" ] ||
-   [ "${user_answer}" = "N" ]; then
-   echo "Operation aborted by the user or timeout reached."
-   exit 3
-elif [ "${user_answer}" != "y" ] && 
-     [ "${user_answer}" != "Y" ]; then
-     echo "Please, you should answer with a simple yes [yY] or no [nN]."
-   echo "Operation aborted by the system."
-   exit 4 
-fi
-
-# Uninstallation loop
+# Installation loop
 while (( ${iter} < ${#archs[@]} )); do
-   # Set 'arch' and 'arch_label'
+   # Set arch and arch_label
    arch=${archs[${iter}]}
    arch_label=${arch_labels[${iter}]}
 
-   # Uninstall (delete) ${strawberry_arch_path}
-   echo -n "Uninstalling Strawberry Perl ${strawberry_release} (${strawberry_version}-${arch_label}s)."
-   eval ${rm} -rf "${strawberry_arch_path}"
-   echo ".Done!"
+   # Download ${strawberry_arch_url}
+   echo -n "Installing Strawberry Perl ${strawberry_release} (${strawberry_version}-${arch_label}s)."
+   eval ${curl} --silent --output "/tmp/${strawberry_arch_url##*/}" "${strawberry_arch_url}"
+
+   # Check download operation
+   eval test -f "/tmp/${strawberry_arch_url##*/}"
+   if (( $? == 0 )); then
+      echo -n "."
+      eval ${install} --mode 0755 --directory "${strawberry_arch_path}"
+      echo -n "."
+      eval ${p7za} x -y -bd -o"${strawberry_arch_path}/" "/tmp/${strawberry_arch_url##*/}" > /dev/null
+      echo -n "."
+      eval ${rm} -f "/tmp/${strawberry_arch_url##*/}"
+      echo ".Done!"
+   else
+      echo "Failure!"
+      echo
+      eval echo "There has been an error downloading \'${strawberry_arch_url}\'."
+      echo
+      echo "Whether you are behind a proxy system, please, edit file"
+      echo "'load-proxy-environment.bat', follow its instructions and try again."
+   fi
 
    # New architecture
    iter=$(( ${iter} + 1 ))
 done
-
-# Uninstall (delete) ${strawberry_path}
-echo -n "Deleting Strawberry Perl ${strawberry_release} (${strawberry_version}) base directory."
-${rm} -rf "${strawberry_path}"
-echo ".Done!"
 
 echo

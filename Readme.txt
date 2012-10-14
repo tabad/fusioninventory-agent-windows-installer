@@ -158,7 +158,7 @@ and uncompress and unpack it.
    > cd fusioninventory-agent-windows-installer
    > cd Perl\Scripts
    > .\install-gnu-utilities-collection.bat
-   > .\install-strawberryperl.bat
+   > .\install-strawberry-perl.bat
    > .\install-perl-modules-and-dependencies.bat
    > .\install-fusioninventory-agent-and-tasks.bat
    > cd NSIS
