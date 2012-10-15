@@ -29,7 +29,7 @@
 # ------------------------------------------------------------------------
 #
 # @package   FusionInventory Agent Installer for Microsoft Windows
-# @file      .\Perl\Scripts\download-strawberry-perl-package-for-fusioninventory-agent.sh
+# @file      .\Perl\Scripts\install-strawberry-perl-package-for-fusioninventory-agent.sh
 # @author    Tomas Abad
 # @copyright Copyright (c) 2010-2012 FusionInventory Team
 # @license   GNU GPL version 2 or (at your option) any later version
@@ -93,13 +93,12 @@ if [ -d "${strawberry_path}" ]; then
 fi
 
 # Download ${strawberry_arch_url}
-echo -n "Downloading Strawberry Perl ${strawberry_release} (${strawberry_version}-32/64bits)."
+echo -n "Installing Strawberry Perl ${strawberry_release} (${strawberry_version}-32/64bits)."
 ${curl} --silent --output "/tmp/${strawberry_pepfia_file}" "${strawberry_pepfia_url}/${strawberry_pepfia_file}"
 
 # Check download operation
 if [ -f "/tmp/${strawberry_pepfia_file}" ]; then
-   echo ".Done!"
-   echo -n "Installing Strawberry Perl ${strawberry_release} (${strawberry_version}-32/64bits)."
+   echo -n "."
    ${tar} -C ${strawberry_pepfia_path} -xf "/tmp/${strawberry_pepfia_file}"
    echo -n "."
    ${rm} -f "/tmp/${strawberry_pepfia_file}"

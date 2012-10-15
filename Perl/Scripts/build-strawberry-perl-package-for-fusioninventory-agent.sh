@@ -108,6 +108,7 @@ while (( ${iter} < ${#archs[@]} )); do
    ${tar} -r -f "${strawberry_pepfia_path}/${strawberry_pepfia_file%*.xz}" \
           -C "${strawberry_pepfia_path}"                                   \
           "${base_path}/c/bin/"                                            \
+          "${base_path}/cpan/sources/"                                     \
           "${base_path}/perl/bin/"                                         \
           "${base_path}/perl/lib/"                                         \
           "${base_path}/perl/site/lib/"                                    \
