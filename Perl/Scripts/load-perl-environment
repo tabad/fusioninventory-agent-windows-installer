@@ -54,7 +54,7 @@ declare -r strawberry_arch_url='http://strawberryperl.com/download/${strawberry_
 
 declare -r strawberry_pffia_build_id=$(printf "%05d" 1)
 declare -r strawberry_pffia_path="${strawberry_path%/${strawberry_version}}"
-declare -r strawberry_pffia_file="strawberry-perl-${strawberry_version}-all-portable-package-for-fusioninventory-agent-build-${strawberry_pffia_build_id}.tar.gz"
+declare -r strawberry_pffia_file="strawberry-perl-${strawberry_version}-all-portable-package-for-fusioninventory-agent-build-${strawberry_pffia_build_id}.tar.7z"
 declare -r strawberry_pffia_url='http://forge.fusioninventory.org/projects/fusioninventory-agent-windows-installer/files'
 
 declare -r cpan_mirror='http://search.cpan.org'

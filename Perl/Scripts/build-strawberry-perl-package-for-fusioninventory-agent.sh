@@ -49,7 +49,7 @@ declare -r basename="${0##*\\}"
 
 declare base_path=""
 
-declare -r gzip=$(type -P gzip)
+declare -r p7za=$(type -P 7za)
 declare -r rm=$(type -P rm)
 declare -r tar=$(type -P tar)
 
@@ -105,7 +105,7 @@ while (( ${iter} < ${#archs[@]} )); do
 
    # Packing
    echo -n "Packing Strawberry Perl ${strawberry_release} (${strawberry_version}-${arch_label}s)."
-   ${tar} -r -f "${strawberry_pffia_path}/${strawberry_pffia_file%*.gz}" \
+   ${tar} -r -f "${strawberry_pffia_path}/${strawberry_pffia_file%*.7z}" \
           -C "${strawberry_pffia_path}"                                  \
           "${base_path}/c/bin/"                                          \
           "${base_path}/perl/bin/"                                       \
@@ -119,7 +119,10 @@ while (( ${iter} < ${#archs[@]} )); do
 done
 
 echo -n "Compressing package Strawberry Perl ${strawberry_release} (${strawberry_version}-32/64bits)."
-${gzip} -9 "${strawberry_pffia_path}/${strawberry_pffia_file%*.gz}"
+${p7za} a -bd -mx=9 -- "${strawberry_pffia_path}/${strawberry_pffia_file}" \
+                       "${strawberry_pffia_path}/${strawberry_pffia_file%*.7z}" > /dev/null 2>&1
+echo -n "."
+${rm} -f "${strawberry_pffia_path}/${strawberry_pffia_file%*.7z}"
 echo ".Done!"
 
 echo "Package '${strawberry_pffia_path}/${strawberry_pffia_file}' built."
