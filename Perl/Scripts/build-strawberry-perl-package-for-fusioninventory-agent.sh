@@ -92,7 +92,7 @@ if [ ! -d "${strawberry_path}" ]; then
 fi
 
 # Delete current package
-${rm} -f "${strawberry_pffia_path}/${strawberry_pffia_file}"
+${rm} -f "${strawberry_pepfia_path}/${strawberry_pepfia_file}"
 
 # Builder loop
 while (( ${iter} < ${#archs[@]} )); do
@@ -101,16 +101,16 @@ while (( ${iter} < ${#archs[@]} )); do
    arch_label=${arch_labels[${iter}]}
 
    eval base_path="${strawberry_arch_path}"
-   base_path="${base_path#${strawberry_pffia_path}/*}"
+   base_path="${base_path#${strawberry_pepfia_path}/*}"
 
    # Packing
    echo -n "Packing Strawberry Perl ${strawberry_release} (${strawberry_version}-${arch_label}s)."
-   ${tar} -r -f "${strawberry_pffia_path}/${strawberry_pffia_file%*.7z}" \
-          -C "${strawberry_pffia_path}"                                  \
-          "${base_path}/c/bin/"                                          \
-          "${base_path}/perl/bin/"                                       \
-          "${base_path}/perl/lib/"                                       \
-          "${base_path}/perl/site/lib/"                                  \
+   ${tar} -r -f "${strawberry_pepfia_path}/${strawberry_pepfia_file%*.7z}" \
+          -C "${strawberry_pepfia_path}"                                   \
+          "${base_path}/c/bin/"                                            \
+          "${base_path}/perl/bin/"                                         \
+          "${base_path}/perl/lib/"                                         \
+          "${base_path}/perl/site/lib/"                                    \
           "${base_path}/perl/vendor/lib/" > /dev/null 2>&1
    echo ".Done!"
 
@@ -119,12 +119,12 @@ while (( ${iter} < ${#archs[@]} )); do
 done
 
 echo -n "Compressing package Strawberry Perl ${strawberry_release} (${strawberry_version}-32/64bits)."
-${p7za} a -bd -mx=9 -- "${strawberry_pffia_path}/${strawberry_pffia_file}" \
-                       "${strawberry_pffia_path}/${strawberry_pffia_file%*.7z}" > /dev/null 2>&1
+${p7za} a -bd -mx=9 -- "${strawberry_pepfia_path}/${strawberry_pepfia_file}" \
+                       "${strawberry_pepfia_path}/${strawberry_pepfia_file%*.7z}" > /dev/null 2>&1
 echo -n "."
-${rm} -f "${strawberry_pffia_path}/${strawberry_pffia_file%*.7z}"
+${rm} -f "${strawberry_pepfia_path}/${strawberry_pepfia_file%*.7z}"
 echo ".Done!"
 
-echo "Package '${strawberry_pffia_path}/${strawberry_pffia_file}' built."
+echo "Package '${strawberry_pepfia_path}/${strawberry_pepfia_file}' built."
 
 echo
