@@ -105,7 +105,7 @@ while (( ${iter} < ${#archs[@]} )); do
 
    # Packing
    echo -n "Packing Strawberry Perl ${strawberry_release} (${strawberry_version}-${arch_label}s)."
-   ${tar} -r -f "${strawberry_pepfia_path}/${strawberry_pepfia_file%*.7z}" \
+   ${tar} -r -f "${strawberry_pepfia_path}/${strawberry_pepfia_file%*.xz}" \
           -C "${strawberry_pepfia_path}"                                   \
           "${base_path}/c/bin/"                                            \
           "${base_path}/perl/bin/"                                         \
@@ -120,9 +120,9 @@ done
 
 echo -n "Compressing package Strawberry Perl ${strawberry_release} (${strawberry_version}-32/64bits)."
 ${p7za} a -bd -mx=9 -- "${strawberry_pepfia_path}/${strawberry_pepfia_file}" \
-                       "${strawberry_pepfia_path}/${strawberry_pepfia_file%*.7z}" > /dev/null 2>&1
+                       "${strawberry_pepfia_path}/${strawberry_pepfia_file%*.xz}" > /dev/null 2>&1
 echo -n "."
-${rm} -f "${strawberry_pepfia_path}/${strawberry_pepfia_file%*.7z}"
+${rm} -f "${strawberry_pepfia_path}/${strawberry_pepfia_file%*.xz}"
 echo ".Done!"
 
 echo "Package '${strawberry_pepfia_path}/${strawberry_pepfia_file}' built."
