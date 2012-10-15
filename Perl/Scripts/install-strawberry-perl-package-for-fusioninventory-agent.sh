@@ -93,8 +93,9 @@ if [ -d "${strawberry_path}" ]; then
 fi
 
 # Download ${strawberry_arch_url}
-echo -n "Installing Strawberry Perl ${strawberry_release} (${strawberry_version}-32/64bits)."
-${curl} --silent --output "/tmp/${strawberry_pepfia_file}" "${strawberry_pepfia_url}/${strawberry_pepfia_file}"
+echo "Installing Strawberry Perl ${strawberry_release} (${strawberry_version}-32/64bits)"
+echo -n " Portable Edition Package for FusionInventory-Agent (BuildId ${strawberry_pepfia_build_id})."
+${curl} --silent --output "/tmp/${strawberry_pepfia_file}" "${strawberry_pepfia_url}/${strawberry_pepfia_file}" > /dev/null 2>&1
 
 # Check download operation
 if [ -f "/tmp/${strawberry_pepfia_file}" ]; then
