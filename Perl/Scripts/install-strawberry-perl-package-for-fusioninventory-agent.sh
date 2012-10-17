@@ -79,7 +79,7 @@ else
    proxy_file='load-proxy-environment'
    script_suffix='sh'
 
-   # Load perl environment
+   # Load proxy environment
    source ./load-proxy-environment
 fi
 

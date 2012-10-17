@@ -75,12 +75,6 @@ else
    # It's a UNIX OS.
 
    basename="${0##*/}"
-
-   echo
-   echo "You should launch '${basename}' only from a Microsoft Windows OS."
-   echo
-
-   exit 2
 fi
 
 # Check whether Strawberry Perl is already installed
@@ -101,12 +95,12 @@ if [ "${user_answer}" = "" ]  ||
    [ "${user_answer}" = "n" ] ||
    [ "${user_answer}" = "N" ]; then
    echo "Operation aborted by the user or timeout reached."
-   exit 3
-elif [ "${user_answer}" != "y" ] && 
+   exit 2
+elif [ "${user_answer}" != "y" ] &&
      [ "${user_answer}" != "Y" ]; then
      echo "Please, you should answer with a simple yes [yY] or no [nN]."
    echo "Operation aborted by the system."
-   exit 4 
+   exit 3
 fi
 
 # Uninstallation loop

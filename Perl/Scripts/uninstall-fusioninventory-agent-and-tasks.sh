@@ -74,12 +74,6 @@ else
    # It's a UNIX OS.
 
    basename="${0##*/}"
-
-   echo
-   echo "You should launch '${basename}' only from a Microsoft Windows OS."
-   echo
-
-   exit 2
 fi
 
 # Check whether Strawberry Perl ${strawberry_version} is already installed
@@ -90,7 +84,7 @@ if [ ! -d "${strawberry_path}" ]; then
    echo "Please, install it with 'install-strawberry-perl.bat' and try again."
    echo
 
-   exit 3
+   exit 2
 fi
 
 # Uninstallation loop

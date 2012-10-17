@@ -46,6 +46,8 @@ source ./load-perl-environment
 
 declare -i iter=0
 declare basename=''
+declare proxy_file=''
+declare script_suffix=''
 
 declare -r curl=$(type -P curl)
 declare -r rm=$(type -P rm)
@@ -56,6 +58,8 @@ if [ "${MSYSTEM}" = "MSYS" ]; then
    # Windows OS with MinGW/MSYS
 
    basename="${0##*\\}"
+   proxy_file='load-proxy-environment.bat'
+   script_suffix='bat'
 else
    if [ -n "${WINDIR}" ]; then
       # It's a Windows OS
@@ -73,12 +77,11 @@ else
    # It's a UNIX OS.
 
    basename="${0##*/}"
+   proxy_file='load-proxy-environment'
+   script_suffix='sh'
 
-   echo
-   echo "You should launch '${basename}' only from a Microsoft Windows OS."
-   echo
-
-   exit 2
+   # Load proxy environment
+   source ./load-proxy-environment
 fi
 
 # Check whether Strawberry Perl ${strawberry_version} is already installed
@@ -86,17 +89,17 @@ if [ ! -d "${strawberry_path}" ]; then
    echo
    echo "Sorry but it seems that Strawberry Perl ${strawberry_release} (${strawberry_version}-32/64bits)"
    echo "is not installed into the '${strawberry_path}' directory."
-   echo "Please, install it with 'install-strawberry-perl.bat' and try again."
+   echo "Please, install it with 'install-strawberry-perl.${script_suffix}' and try again."
    echo
 
-   exit 3
+   exit 2
 fi
 
 # Download FusionInventory-Agent and Tasks
 echo -n "Downloading FusionInventory-Agent and Tasks."
 
 # Download ${fusinv_agent}
-${curl} --silent --location --max-redirs 6 --output "/tmp/${fusinv_agent##*/}" "${cpan_mirror}${cpan_mirror_path_prefix}${fusinv_agent}"
+${curl} --silent --location --max-redirs 6 --output "/tmp/${fusinv_agent##*/}" "${cpan_mirror}${cpan_mirror_path_prefix}${fusinv_agent}" > /dev/null 2>&1
 
 # Check download operation
 if [ -f "/tmp/${fusinv_agent##*/}" ]; then
@@ -107,10 +110,10 @@ else
    echo "There has been an error downloading '${fusinv_agent##*/}'."
    echo
    echo "Whether you are behind a proxy system, please, edit file"
-   echo "'load-proxy-environment.bat', follow its instructions and try again."
+   echo "'${proxy_file}', follow its instructions and try again."
    echo
 
-   exit 4
+   exit 3
 fi
 
 # Download ${fusinv_task_deploy}
@@ -125,13 +128,13 @@ else
    echo "There has been an error downloading '${fusinv_task_deploy##*/}'."
    echo
    echo "Whether you are behind a proxy system, please, edit file"
-   echo "'load-proxy-environment.bat', follow its instructions and try again."
+   echo "'${proxy_file}', follow its instructions and try again."
    echo
 
    # Delete previous downloads
    ${rm} -f "/tmp/${fusinv_agent##*/}"
 
-   exit 4
+   exit 3
 fi
 
 # Download ${fusinv_task_esx}
@@ -146,14 +149,14 @@ else
    echo "There has been an error downloading '${fusinv_task_esx##*/}'."
    echo
    echo "Whether you are behind a proxy system, please, edit file"
-   echo "'load-proxy-environment.bat', follow its instructions and try again."
+   echo "'${proxy_file}', follow its instructions and try again."
    echo
 
    # Delete previous downloads
    ${rm} -f "/tmp/${fusinv_agent##*/}"
    ${rm} -f "/tmp/${fusinv_task_deploy##*/}"
 
-   exit 4
+   exit 3
 fi
 
 # Download ${fusinv_task_network}
@@ -168,7 +171,7 @@ else
    echo "There has been an error downloading '${fusinv_task_network##*/}'."
    echo
    echo "Whether you are behind a proxy system, please, edit file"
-   echo "'load-proxy-environment.bat', follow its instructions and try again."
+   echo "'${proxy_file}', follow its instructions and try again."
    echo
 
    # Delete previous downloads
@@ -176,7 +179,7 @@ else
    ${rm} -f "/tmp/${fusinv_task_deploy##*/}"
    ${rm} -f "/tmp/${fusinv_task_esx##*/}"
 
-   exit 4
+   exit 3
 fi
 
 # Installation loop
