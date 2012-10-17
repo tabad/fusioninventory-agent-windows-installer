@@ -45,7 +45,7 @@
 source ./load-perl-environment
 
 declare -i iter=0
-declare -r basename="${0##*\\}"
+declare basename=''
 
 declare -r rm=$(type -P rm)
 
@@ -53,19 +53,12 @@ declare -r rm=$(type -P rm)
 if [ "${MSYSTEM}" = "MSYS" ]; then
    # Windows OS with MinGW/MSYS
 
-   # Set terminal
-   TERM=dumb
-
-   # Avoid collisions with other perl stuff on your system
-   unset PERL_JSON_BACKEND
-   unset PERL_YAML_BACKEND
-   unset PERL5LIB
-   unset PERL5OPT
-   unset PERL_MM_OPT
-   unset PERL_MB_OPT
+   basename="${0##*\\}"
 else
    if [ -n "${WINDIR}" ]; then
       # It's a Windows OS
+
+      basename="${0##*\\}"
 
       echo
       echo "You can not launch '${basename}' directly."
@@ -76,6 +69,8 @@ else
    fi
 
    # It's a UNIX OS.
+
+   basename="${0##*/}"
 
    echo
    echo "You should launch '${basename}' only from a Microsoft Windows OS."

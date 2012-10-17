@@ -56,6 +56,7 @@ declare -r tar=$(type -P tar)
 if [ "${MSYSTEM}" = "MSYS" ]; then
    # Windows OS with MinGW/MSYS
 
+   basename="${0##*\\}"
    proxy_file='load-proxy-environment.bat'
    script_suffix='bat'
 else
@@ -74,6 +75,7 @@ else
 
    # It's a UNIX OS.
 
+   basename="${0##*/}"
    proxy_file='load-proxy-environment'
    script_suffix='sh'
 

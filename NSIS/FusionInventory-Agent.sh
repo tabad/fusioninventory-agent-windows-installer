@@ -49,11 +49,11 @@ declare -r nsis_log_file='./FusionInventory-Agent_MakeNSIS-Output-${arch}.txt'
 declare arch=''
 declare -a -r archs=(x64 x86)
 
+declare basename=''
+
 declare option_nsis_define=''
 declare -r option_nsis_log_file="-O${nsis_log_file}"
 declare -r option_nsis_log_level="-V${nsis_log_level}"
-
-declare -r basename="${0##*\\}"
 
 declare -r makensis=$(type -P makensis)
 declare -r rm=$(type -P rm)
@@ -62,10 +62,13 @@ declare -r rm=$(type -P rm)
 if [ "${MSYSTEM}" = "MSYS" ]; then
    # Windows OS with MinGW/MSYS
 
+   basename="${0##*\\}"
    option_nsis_define='-DFIAI_PLATFORM_ARCHITECTURE=${arch}'
 else
    if [ -n "${WINDIR}" ]; then
       # It's a Windows OS
+
+      basename="${0##*\\}"
 
       echo
       echo "You can not launch '${basename}' directly. Please, launch"
@@ -89,6 +92,7 @@ else
       exit 2
    fi
 
+   basename="${0##*/}"
    option_nsis_define='-DFIAI_PLATFORM_ARCHITECTURE=${arch} -DOS_BUILDER_NO_WINDOWS'
 fi
 

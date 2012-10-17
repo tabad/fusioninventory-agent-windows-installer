@@ -45,7 +45,7 @@
 source ./load-perl-environment
 
 declare -i iter=0
-declare -r basename="${0##*\\}"
+declare basename=''
 
 declare base_path=""
 
@@ -57,11 +57,12 @@ declare -r tar=$(type -P tar)
 if [ "${MSYSTEM}" = "MSYS" ]; then
    # Windows OS with MinGW/MSYS
 
-   # No operation
-   echo > /dev/null
+   basename="${0##*\\}"
 else
    if [ -n "${WINDIR}" ]; then
       # It's a Windows OS
+
+      basename="${0##*\\}"
 
       echo
       echo "You can not launch '${basename}' directly. Please, launch"
@@ -72,6 +73,8 @@ else
    fi
 
    # It's a UNIX OS.
+
+   basename="${0##*/}"
 
    echo
    echo "You should launch '${basename}' only from a Microsoft Windows OS."

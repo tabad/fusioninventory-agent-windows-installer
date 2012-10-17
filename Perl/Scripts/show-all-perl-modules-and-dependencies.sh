@@ -49,13 +49,15 @@ declare cpanm=''
 declare perl_path=''
 
 declare -i iter=0
-declare -r basename="${0##*\\}"
+declare basename=''
 
 declare -r rm=$(type -P rm)
 
 # Check the OS
 if [ "${MSYSTEM}" = "MSYS" ]; then
    # Windows OS with MinGW/MSYS
+
+   basename="${0##*\\}"
 
    # Set terminal
    TERM=dumb
@@ -71,6 +73,8 @@ else
    if [ -n "${WINDIR}" ]; then
       # It's a Windows OS
 
+      basename="${0##*\\}"
+
       echo
       echo "You can not launch '${basename}' directly."
       echo "Please, launch '${basename%.sh}.bat' instead."
@@ -80,6 +84,8 @@ else
    fi
 
    # It's a UNIX OS.
+
+   basename="${0##*/}"
 
    echo
    echo "You should launch '${basename}' only from a Microsoft Windows OS."

@@ -45,7 +45,7 @@
 source ./load-perl-environment
 
 declare -i iter=0
-declare -r basename="${0##*\\}"
+declare basename=''
 
 declare -r rm=$(type -P rm)
 
@@ -53,11 +53,15 @@ declare -r rm=$(type -P rm)
 if [ "${MSYSTEM}" = "MSYS" ]; then
    # Windows OS with MinGW/MSYS
 
+   basename="${0##*\\}"
+
    # No operation
    echo > /dev/null
 else
    if [ -n "${WINDIR}" ]; then
       # It's a Windows OS
+
+      basename="${0##*\\}"
 
       echo
       echo "You can not launch '${basename}' directly. Please, launch"
@@ -68,6 +72,8 @@ else
    fi
 
    # It's a UNIX OS.
+
+   basename="${0##*/}"
 
    echo
    echo "You should launch '${basename}' only from a Microsoft Windows OS."
