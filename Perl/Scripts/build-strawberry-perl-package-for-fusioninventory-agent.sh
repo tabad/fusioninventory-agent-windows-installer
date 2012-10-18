@@ -83,7 +83,7 @@ else
    exit 2
 fi
 
-# Check whether Strawberry Perl ${strawberry_version} is already installed
+# Check whether Strawberry Perl ${strawberry_path} is already installed
 if [ ! -d "${strawberry_path}" ]; then
    echo
    echo "Sorry but it seems that Strawberry Perl ${strawberry_release} (${strawberry_version}-32/64bits)"
@@ -122,6 +122,7 @@ while (( ${iter} < ${#archs[@]} )); do
    iter=$(( ${iter} + 1 ))
 done
 
+# Compressing
 echo -n "Compressing package Strawberry Perl ${strawberry_release} (${strawberry_version}-32/64bits)."
 ${p7za} a -bd -mx=9 -- "${strawberry_pepfia_path}/${strawberry_pepfia_file}" \
                        "${strawberry_pepfia_path}/${strawberry_pepfia_file%*.xz}" > /dev/null 2>&1

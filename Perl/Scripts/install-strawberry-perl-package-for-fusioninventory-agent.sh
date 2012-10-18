@@ -97,7 +97,7 @@ elif [ ! -d "${strawberry_path%/${strawberry_version}}" ]; then
    ${install} --mode 0775 --directory "${strawberry_path%/${strawberry_version}}"
 fi
 
-# Download ${strawberry_arch_url}
+# Download ${strawberry_pepfia_url}/${strawberry_pepfia_file}
 echo "Installing Strawberry Perl ${strawberry_release} (${strawberry_version}-32/64bits)"
 echo -n " Portable Edition Package for FusionInventory-Agent (BuildId ${strawberry_pepfia_build_id})."
 ${curl} --silent --output "/tmp/${strawberry_pepfia_file}" "${strawberry_pepfia_url}/${strawberry_pepfia_file}" > /dev/null 2>&1
