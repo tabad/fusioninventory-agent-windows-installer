@@ -48,6 +48,7 @@ declare -i iter=0
 declare user_answer=''
 declare basename=''
 
+declare -r ls=$(type -P ls)
 declare -r rm=$(type -P rm)
 
 # Check the OS
@@ -121,6 +122,14 @@ done
 # Uninstall (delete) ${strawberry_path}
 echo -n "Deleting Strawberry Perl ${strawberry_release} (${strawberry_version}) base directory."
 ${rm} -rf "${strawberry_path}"
-echo ".Done!"
+echo -n "."
+
+# Delete ${strawberry_path%/${strawberry_version}} whether it is empty
+if [ "$(${ls} -A ${strawberry_path%/${strawberry_version}} 2> /dev/null)" = "" ]; then
+   ${rm} -rf "${strawberry_path%/${strawberry_version}}"
+   echo ".Done!"
+else
+   echo "Done!"
+fi
 
 echo
