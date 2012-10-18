@@ -129,11 +129,12 @@ Current state
    Inside of './NSIS/Perl/Scripts' directory there is a set of scripts for
 download Strawberry Perl Portable Edition v5.16.1.1 (Aug 2012) for x64 and
 x86 architectures, update and install all the Perl modules dependencies for
-the previous FusionInventory Agent packages, and download them.
+the previous FusionInventory Agent packages, and download them. Please, read
+the file './Perl/Scripts/readme.txt' for more information about these scripts.
 
 
-How to generate the installer
------------------------------
+How to generate the installers
+------------------------------
 
    Download fusioninventory-agent-windows-installer from GitHub using this URL
 
@@ -158,10 +159,13 @@ and uncompress and unpack it.
    > cd fusioninventory-agent-windows-installer
    > cd Perl\Scripts
    > .\install-gnu-utilities-collection.bat
-   > .\install-strawberry-perl.bat
-   > .\install-perl-modules-and-dependencies.bat
+   > .\install-strawberry-perl-package-for-fusioninventory-agent.bat
    > .\install-fusioninventory-agent-and-tasks.bat
-   > cd NSIS
+
+      Read '.\just-after-install-fusioninventory-agent-and-tasks.txt'
+   and follow its instructions.
+
+   > cd ..\..\NSIS
    > .\FusionInventory-Agent.bat
 
    You should be able to see the new installers in that directory.
@@ -170,16 +174,51 @@ and uncompress and unpack it.
    Unix OS
    -------
 
-   It is not possible at the moment.
+   $ cd fusioninventory-agent-windows-installer
+   $ cd Perl\Scripts
+   $ chmod 0744 *.sh
+   $ ./install-strawberry-perl-package-for-fusioninventory-agent.sh
+   $ ./install-fusioninventory-agent-and-tasks.sh
+
+      Read './just-after-install-fusioninventory-agent-and-tasks.txt'
+   and follow its instructions.
+
+   $ cd ../../NSIS
+   $ ./FusionInventory-Agent.sh
+
+   You should be able to see the new installers in that directory.
 
 
-Upgrade the agent and its tasks
--------------------------------
-   ToDo
+Build the Strawberry Perl Package for FusionInventory-Agent
+-----------------------------------------------------------
+   This task can be done only from Microsoft Windows OS.
+
+
+   Microsoft Windows
+   -----------------
+
+   From your Microsoft Windows command interpreter executes
+
+   > cd fusioninventory-agent-windows-installer
+   > cd Perl\Scripts
+   > .\install-gnu-utilities-collection.bat
+   > .\install-strawberry-perl.bat
+   > .\install-perl-modules-and-dependencies.bat
+   > .\delete-perl-modules-and-dependencies-temporary-files.bat
+   > .\build-strawberry-perl-package-for-fusioninventory-agent.bat
+   > .\uninstall-strawberry-perl.bat
+
+   The script 'build-strawberry-perl-package-for-fusioninventory-agent.bat'
+will show to you where is the built package.
 
 
 Upgrade the Strawberry Perl distribution
 ----------------------------------------
+   ToDo
+
+
+Upgrade the agent and its tasks
+-------------------------------
    ToDo
 
 

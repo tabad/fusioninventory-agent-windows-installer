@@ -1,0 +1,255 @@
+# ------------------------------------------------------------------------
+# FusionInventory
+# Copyright (C) 2010-2012 by the FusionInventory Development Team.
+#
+# http://www.fusioninventory.org/   http://forge.fusioninventory.org/
+# ------------------------------------------------------------------------
+#
+# LICENSE
+#
+# This file is part of FusionInventory project.
+#
+# FusionInventory Agent Installer for Microsoft Windows is free software;
+# you can redistribute it and/or modify it under the terms of the GNU
+# General Public License as published by the Free Software Foundation;
+# either version 2 of the License, or (at your option) any later version.
+#
+#
+# FusionInventory Agent Installer for Microsoft Windows is distributed in
+# the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
+# the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+# PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software Foundation,
+# Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA,
+# or see <http://www.gnu.org/licenses/>.
+#
+# ------------------------------------------------------------------------
+#
+# @package   FusionInventory Agent Installer for Microsoft Windows
+# @file      .\Perl\Scripts\just-after-install-fusioninventory-agent-and-tasks.txt
+# @author    Tomas Abad
+# @copyright Copyright (c) 2010-2012 FusionInventory Team
+# @license   GNU GPL version 2 or (at your option) any later version
+#            http://www.gnu.org/licenses/old-licenses/gpl-2.0-standalone.html
+# @link      http://www.fusioninventory.org/
+# @link      http://forge.fusioninventory.org/projects/fusioninventory-agent
+# @since     2012
+#
+# ------------------------------------------------------------------------
+
+
+  It's important to note that just after to install FusionInventory-Agent and its
+tasks with the script 'install-fusioninventory-agent-and-tasks.bat' or
+'install-fusioninventory-agent-and-tasks.sh', depending on your operative
+system, it's needed to apply some patches so the FusionInventory-Agent and its
+tasks installed work correctly.
+
+   Once the script 'install-fusioninventory-agent-and-tasks.bat' or
+'install-fusioninventory-agent-and-tasks.sh' has finished, you can find the
+FusionInventory-Agent and its tasks under the folowind directory:
+
+       ../Strawberry/<version>/<architecture>/cpan/sources/
+          |-- FusionInventory-Agent-x.y.z
+          |-- FusionInventory-Agent-Task-Deploy-x.y.z
+          |-- FusionInventory-Agent-Task-ESX-x.y.z
+          `-- FusionInventory-Agent-Task-Network-x.y.z
+
+   The following are the changes you must apply. The file name is relative to
+the '../Strawberry/<version>/<architecture>/cpan/sources/' directory.
+
+
+                             --------------------
+
+
+.\FusionInventory-Agent-x.y.z\fusioninventory-agent
+***************************************************
+---------------------------------------------------
+
+*** fusioninventory-agent.org	2012-08-08 16:49:15.000000000 +0200
+--- fusioninventory-agent	2012-08-21 00:48:56.000000000 +0200
+***************
+*** 2,8 ****
+
+  use strict;
+  use warnings;
+! use lib './lib';
+
+  use English qw(-no_match_vars);
+  use Getopt::Long;
+--- 2,8 ----
+
+  use strict;
+  use warnings;
+! use lib '../agent';
+
+  use English qw(-no_match_vars);
+  use Getopt::Long;
+***************
+*** 81,90 ****
+  }
+
+  my %setup = (
+!     confdir => './etc',
+!     datadir => './share',
+!     libdir  => './lib',
+!     vardir  => './var',
+  );
+
+  if ($options->{setup}) {
+--- 81,90 ----
+  }
+
+  my %setup = (
+!     confdir => '../../etc',
+!     datadir => '../../share',
+!     libdir  => '../agent',
+!     vardir  => '../../var',
+  );
+
+  if ($options->{setup}) {
+***************
+*** 594,600 ****
+
+  The I<file> backend reads configuration directives from a configuration file,
+  whose default location is determined at installation time as
+! PREFIX/etc/agent.cfg. An alternative location can also be given with
+  B<--conf-file> option.
+
+  The I<registry> backend reads configuration directives from the Windows
+--- 594,600 ----
+
+  The I<file> backend reads configuration directives from a configuration file,
+  whose default location is determined at installation time as
+! PREFIX/../../etc/agent.cfg. An alternative location can also be given with
+  B<--conf-file> option.
+
+  The I<registry> backend reads configuration directives from the Windows
+
+
+
+.\FusionInventory-Agent-x.y.z\fusioninventory-win32-service
+***********************************************************
+-----------------------------------------------------------
+
+*** fusioninventory-win32-service.org	2012-08-16 11:58:40.000000000 +0200
+--- fusioninventory-win32-service	2012-08-21 02:35:08.000000000 +0200
+***************
+*** 2,8 ****
+
+  use strict;
+  use warnings;
+! use lib './lib';
+  use threads;
+  use threads::shared;
+  use constant SERVICE_SLEEP_TIME => 2000; # 20 milliseconds
+--- 2,8 ----
+
+  use strict;
+  use warnings;
+! use lib '../agent';
+  use threads;
+  use threads::shared;
+  use constant SERVICE_SLEEP_TIME => 2000; # 20 milliseconds
+***************
+*** 101,110 ****
+      return if $thread;
+      $thread = threads->create(sub {
+          my $agent = FusionInventory::Agent->new(
+!             confdir => $directory . '/../../etc/fusioninventory',
+              datadir => $directory . '/../../share',
+              vardir  => $directory . '/../../var',
+!             libdir  => $directory . '/../../lib',
+          );
+          $agent->init(options => { service => 1 });
+          $agent->run();
+--- 101,110 ----
+      return if $thread;
+      $thread = threads->create(sub {
+          my $agent = FusionInventory::Agent->new(
+!             confdir => $directory . '/../../etc',
+              datadir => $directory . '/../../share',
+              vardir  => $directory . '/../../var',
+!             libdir  => $directory . '/../agent',
+          );
+          $agent->init(options => { service => 1 });
+          $agent->run();
+
+
+
+.\FusionInventory-Agent-Task-ESX-x.y.z\fusioninventory-esx
+**********************************************************
+----------------------------------------------------------
+
+*** fusioninventory-esx.org	2012-08-17 14:08:35.000000000 +0200
+--- fusioninventory-esx	2012-08-21 00:53:43.000000000 +0200
+***************
+*** 2,8 ****
+
+  use strict;
+  use warnings;
+! use lib './lib';
+
+  use Getopt::Long;
+  use Pod::Usage;
+--- 2,8 ----
+
+  use strict;
+  use warnings;
+! use lib '../agent';
+
+  use Getopt::Long;
+  use Pod::Usage;
+
+
+
+.\FusionInventory-Agent-Task-Network-x.y.z\fusioninventory-netdiscovery
+***********************************************************************
+-----------------------------------------------------------------------
+
+*** fusioninventory-netdiscovery.org	2012-08-16 20:01:31.000000000 +0200
+--- fusioninventory-netdiscovery	2012-08-21 01:38:48.000000000 +0200
+***************
+*** 2,8 ****
+
+  use strict;
+  use warnings;
+! use lib './lib';
+
+  use English qw(-no_match_vars);
+  use Getopt::Long;
+--- 2,8 ----
+
+  use strict;
+  use warnings;
+! use lib '../agent';
+
+  use English qw(-no_match_vars);
+  use Getopt::Long;
+
+
+
+.\FusionInventory-Agent-Task-Network-x.y.z\fusioninventory-netinventory
+***********************************************************************
+-----------------------------------------------------------------------
+
+*** fusioninventory-netinventory.org	2012-08-16 20:01:55.000000000 +0200
+--- fusioninventory-netinventory	2012-08-21 01:39:11.000000000 +0200
+***************
+*** 2,8 ****
+
+  use strict;
+  use warnings;
+! use lib './lib';
+
+  use English qw(-no_match_vars);
+  use Getopt::Long;
+--- 2,8 ----
+
+  use strict;
+  use warnings;
+! use lib '../agent';
+
+  use English qw(-no_match_vars);
+  use Getopt::Long;
