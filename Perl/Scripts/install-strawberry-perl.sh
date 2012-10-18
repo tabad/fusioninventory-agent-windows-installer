@@ -90,6 +90,8 @@ if [ -d "${strawberry_path}" ]; then
    echo "Remove it with 'uninstall-strawberry-perl.bat' and try again."
    echo
    exit 0
+elif [ ! -d "${strawberry_path%/${strawberry_version}}" ]; then
+   ${install} --mode 0775 --directory "${strawberry_path%/${strawberry_version}}"
 fi
 
 # Installation loop

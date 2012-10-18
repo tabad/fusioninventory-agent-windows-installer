@@ -49,6 +49,7 @@ declare proxy_file=''
 declare script_suffix=''
 
 declare -r curl=$(type -P curl)
+declare -r install=$(type -P install)
 declare -r rm=$(type -P rm)
 declare -r tar=$(type -P tar)
 
@@ -83,7 +84,7 @@ else
    source ./load-proxy-environment
 fi
 
-# Check whether Strawberry Perl ${strawberry_version} is already installed
+# Check whether Strawberry Perl ${strawberry_path} is already installed
 if [ -d "${strawberry_path}" ]; then
    echo
    echo "Sorry but it seems that Strawberry Perl ${strawberry_release} (${strawberry_version}-32/64bits)"
@@ -92,6 +93,8 @@ if [ -d "${strawberry_path}" ]; then
    echo
 
    exit 2
+elif [ ! -d "${strawberry_path%/${strawberry_version}}" ]; then
+   ${install} --mode 0775 --directory "${strawberry_path%/${strawberry_version}}"
 fi
 
 # Download ${strawberry_arch_url}
@@ -102,7 +105,7 @@ ${curl} --silent --output "/tmp/${strawberry_pepfia_file}" "${strawberry_pepfia_
 # Check download operation
 if [ -f "/tmp/${strawberry_pepfia_file}" ]; then
    echo -n "."
-   ${tar} -C ${strawberry_pepfia_path} -xf "/tmp/${strawberry_pepfia_file}"
+   ${tar} -C "${strawberry_pepfia_path}" -xf "/tmp/${strawberry_pepfia_file}"
    echo -n "."
    ${rm} -f "/tmp/${strawberry_pepfia_file}"
    echo ".Done!"
