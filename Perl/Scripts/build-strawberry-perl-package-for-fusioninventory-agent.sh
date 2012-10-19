@@ -44,11 +44,11 @@
 # Load perl environment
 source ./load-perl-environment
 
+declare digest=''
 declare -i iter=0
 declare basename=''
 declare base_path=''
 declare fusinv_mod=''
-declare digest=''
 declare -a -r digests=(md5 sha1 sha256)
 
 declare -r cat=$(type -P cat)
