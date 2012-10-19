@@ -193,16 +193,16 @@ while (( ${iter} < ${#archs[@]} )); do
 
    # Install modules
    echo -n "Installing into Strawberry Perl ${strawberry_release} (${strawberry_version}-${arch_label}s)."
-   eval ${tar} -C "${strawberry_arch_path}/cpan/sources/" -xzf "/tmp/${fusinv_agent##*/}"
+   eval ${tar} -C "${strawberry_arch_path}/cpan/sources/" -xf "/tmp/${fusinv_agent##*/}"
    if (( $? == 0 )); then
       echo -n "."
-      eval ${tar} -C "${strawberry_arch_path}/cpan/sources/" -xzf "/tmp/${fusinv_task_deploy##*/}"
+      eval ${tar} -C "${strawberry_arch_path}/cpan/sources/" -xf "/tmp/${fusinv_task_deploy##*/}"
       if (( $? == 0 )); then
          echo -n "."
-         eval ${tar} -C "${strawberry_arch_path}/cpan/sources/" -xzf "/tmp/${fusinv_task_esx##*/}"
+         eval ${tar} -C "${strawberry_arch_path}/cpan/sources/" -xf "/tmp/${fusinv_task_esx##*/}"
          if (( $? == 0 )); then
             echo -n "."
-            eval ${tar} -C "${strawberry_arch_path}/cpan/sources/" -xzf "/tmp/${fusinv_task_network##*/}"
+            eval ${tar} -C "${strawberry_arch_path}/cpan/sources/" -xf "/tmp/${fusinv_task_network##*/}"
             if (( $? == 0 )); then
                echo ".Done!"
             else
