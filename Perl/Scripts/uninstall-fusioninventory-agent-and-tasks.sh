@@ -64,8 +64,8 @@ else
       basename="${0##*\\}"
 
       echo
-      echo "You can not launch '${basename}' directly. Please, launch"
-      echo "'${basename%.sh}.bat' instead."
+      echo -n "You can not launch '${basename}' directly. "
+      echo "Please, launch '${basename%.sh}.bat' instead."
       echo
 
       exit 1
