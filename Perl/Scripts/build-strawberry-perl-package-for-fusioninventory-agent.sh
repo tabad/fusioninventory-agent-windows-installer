@@ -46,9 +46,13 @@ source ./load-perl-environment
 
 declare -i iter=0
 declare basename=''
+declare base_path=''
+declare fusinv_mod=''
+declare digest=''
+declare -a -r digests=(md5 sha1 sha256)
 
-declare base_path=""
-
+declare -r cat=$(type -P cat)
+declare -r openssl=$(type -P openssl)
 declare -r p7za=$(type -P 7za)
 declare -r rm=$(type -P rm)
 declare -r tar=$(type -P tar)
@@ -94,8 +98,14 @@ if [ ! -d "${strawberry_path}" ]; then
    exit 3
 fi
 
-# Delete current package
-${rm} -f "${strawberry_pepfia_path}/${strawberry_pepfia_file}"
+# Delete current package files
+${rm} -f "${strawberry_pepfia_path}/${strawberry_pepfia_file}" \
+         "${strawberry_pepfia_path}/${strawberry_pepfia_file}.txt"
+
+for digest in "${digests[@]}"; do
+   ${rm} -f "${strawberry_pepfia_path}/${strawberry_pepfia_file}.${digest}" \
+            "${strawberry_pepfia_path}/${strawberry_pepfia_file}.txt.${digest}"
+done
 
 # Builder loop
 while (( ${iter} < ${#archs[@]} )); do
@@ -130,6 +140,38 @@ echo -n "."
 ${rm} -f "${strawberry_pepfia_path}/${strawberry_pepfia_file%*.xz}"
 echo ".Done!"
 
+# Build the description file
+echo -n "Describing package Strawberry Perl ${strawberry_release} (${strawberry_version}-32/64bits)."
+${cat} > "${strawberry_pepfia_path}/${strawberry_pepfia_file}.txt" <<EndOfFile
+   The file '${strawberry_pepfia_file}' includes
+Strawberry Perl ${strawberry_release} Portable Edition (${strawberry_version}-32/64bits) with all the
+required and recommended Perl modules for:
+
+EndOfFile
+
+fusinv_mod=${fusinv_agent##*/}
+echo "      .- ${fusinv_mod%.*.*}" >> "${strawberry_pepfia_path}/${strawberry_pepfia_file}.txt"
+fusinv_mod=${fusinv_task_deploy##*/}
+echo "      .- ${fusinv_mod%.*.*}" >> "${strawberry_pepfia_path}/${strawberry_pepfia_file}.txt"
+fusinv_mod=${fusinv_task_esx##*/}
+echo "      .- ${fusinv_mod%.*.*}" >> "${strawberry_pepfia_path}/${strawberry_pepfia_file}.txt"
+fusinv_mod=${fusinv_task_network##*/}
+echo "      .- ${fusinv_mod%.*.*}" >> "${strawberry_pepfia_path}/${strawberry_pepfia_file}.txt"
+echo ".Done!"
+
+# Digest calculation loop
+echo -n "Calculating digest message files."
+for digest in "${digests[@]}"; do
+   (cd "${strawberry_pepfia_path}"; \
+    ${openssl} dgst -${digest} -c -out "${strawberry_pepfia_file}.${digest}" "${strawberry_pepfia_file}")
+   echo -n "."
+   (cd "${strawberry_pepfia_path}"; \
+    ${openssl} dgst -${digest} -c -out "${strawberry_pepfia_file}.txt.${digest}" "${strawberry_pepfia_file}.txt")
+   echo -n "."
+done
+echo ".Done!"
+
+# Done
 echo "Package '${strawberry_pepfia_path}/${strawberry_pepfia_file}' built."
 
 echo

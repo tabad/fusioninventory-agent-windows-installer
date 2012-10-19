@@ -60,6 +60,9 @@ call .\load-proxy-environment.bat
 :: upgrade msys-mktemp-bin
 "%MINGW_PATH%\bin\mingw-get" upgrade msys-mktemp-bin
 
+:: upgrade msys-openssl-bin
+"%MINGW_PATH%\bin\mingw-get" upgrade msys-openssl-bin
+
 :: upgrade msys-rsync-bin
 "%MINGW_PATH%\bin\mingw-get" upgrade msys-rsync-bin
 

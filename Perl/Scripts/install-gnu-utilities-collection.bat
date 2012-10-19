@@ -80,6 +80,9 @@ copy "%MINGW_PATH%\var\lib\mingw-get\data\defaults.xml" "%MINGW_PATH%\var\lib\mi
 :: install msys-mktemp-bin
 "%MINGW_PATH%\bin\mingw-get" install msys-mktemp-bin
 
+:: install msys-openssl-bin
+"%MINGW_PATH%\bin\mingw-get" install msys-openssl-bin
+
 :: install msys-rsync-bin
 "%MINGW_PATH%\bin\mingw-get" install msys-rsync-bin
 
