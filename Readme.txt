@@ -175,8 +175,8 @@ and uncompress and unpack it.
    -------
 
    $ cd fusioninventory-agent-windows-installer
-   $ cd Perl\Scripts
-   $ chmod 0744 *.sh
+   $ chmod 0744 NSIS/*.sh Perl/Scripts/*.sh
+   $ cd Perl/Scripts
    $ ./install-strawberry-perl-package-for-fusioninventory-agent.sh
    $ ./install-fusioninventory-agent-and-tasks.sh
 
