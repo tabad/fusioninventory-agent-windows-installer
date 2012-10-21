@@ -80,6 +80,8 @@ FusionInventory-Agent and Tasks Management
 ------------------------------------------
 install-fusioninventory-agent-and-tasks.bat
 install-fusioninventory-agent-and-tasks.sh
+patch-fusioninventory-agent-and-tasks.bat
+patch-fusioninventory-agent-and-tasks.sh
 uninstall-fusioninventory-agent-and-tasks.bat
 uninstall-fusioninventory-agent-and-tasks.sh
 
@@ -105,7 +107,6 @@ bourne-again-shell.bat
 
 Help
 ----
-just-after-install-fusioninventory-agent-and-tasks.txt
 readme.txt
 
 

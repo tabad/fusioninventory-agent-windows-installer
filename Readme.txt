@@ -161,10 +161,7 @@ and uncompress and unpack it.
    > .\install-gnu-utilities-collection.bat
    > .\install-strawberry-perl-package-for-fusioninventory-agent.bat
    > .\install-fusioninventory-agent-and-tasks.bat
-
-      Read '.\just-after-install-fusioninventory-agent-and-tasks.txt'
-   and follow its instructions.
-
+   > .\patch-fusioninventory-agent-and-tasks.bat
    > cd ..\..\NSIS
    > .\FusionInventory-Agent.bat
 
@@ -179,10 +176,7 @@ and uncompress and unpack it.
    $ cd Perl/Scripts
    $ ./install-strawberry-perl-package-for-fusioninventory-agent.sh
    $ ./install-fusioninventory-agent-and-tasks.sh
-
-      Read './just-after-install-fusioninventory-agent-and-tasks.txt'
-   and follow its instructions.
-
+   $ ./patch-fusioninventory-agent-and-tasks.sh
    $ cd ../../NSIS
    $ ./FusionInventory-Agent.sh
 
