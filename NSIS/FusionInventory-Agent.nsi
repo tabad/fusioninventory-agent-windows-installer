@@ -74,8 +74,8 @@ SetCompressor /FINAL /SOLID lzma
 !endif
 
 !define STRAWBERRY_RELEASE "5.16.1.1"
-!define FIA_RELEASE "2.2.5"
-!define FIA_TASK_DEPLOY_RELEASE "2.0.2"
+!define FIA_RELEASE "2.2.6"
+!define FIA_TASK_DEPLOY_RELEASE "2.0.3"
 !define FIA_TASK_ESX_RELEASE "2.2.0"
 !define FIA_TASK_NETWORK_RELEASE "1.0.1"
 
@@ -88,8 +88,8 @@ SetCompressor /FINAL /SOLID lzma
 !define PRODUCT_INTERNAL_NAME "FusionInventory-Agent"
 !define PRODUCT_VERSION_MAJOR "2"
 !define PRODUCT_VERSION_MINOR "2"
-!define PRODUCT_VERSION_RELEASE "5"
-!define PRODUCT_VERSION_BUILD "2"
+!define PRODUCT_VERSION_RELEASE "6"
+!define PRODUCT_VERSION_BUILD "1"
 !define PRODUCT_VERSION "${PRODUCT_VERSION_MAJOR}.${PRODUCT_VERSION_MINOR}.${PRODUCT_VERSION_RELEASE}-${PRODUCT_VERSION_BUILD}"
 !define PRODUCT_PUBLISHER "FusionInventory Team"
 !define PRODUCT_WEB_FOR_SUPPORT "http://forge.fusioninventory.org/projects/fusioninventory-agent"
