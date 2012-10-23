@@ -51,6 +51,7 @@ declare fusinv_mod=''
 declare script_suffix=''
 
 declare -r diff=$(type -P diff)
+declare -r find=$(type -P find)
 declare -r rsync=$(type -P rsync)
 declare -r sed=$(type -P sed)
 
@@ -215,6 +216,10 @@ while (( ${iter} < ${#archs[@]} )); do
     ${diff} -u "fusioninventory-netinventory.org" \
                "fusioninventory-netinventory"  > "fusioninventory-netinventory.patch")
    echo ".Done!"
+
+   # Show files patched
+   echo "List of patch files..."
+   (eval cd "${strawberry_arch_path}/cpan/sources"; ${find} . -type f -name '*.patch')
 
    # New architecture
    iter=$(( ${iter} + 1 ))
