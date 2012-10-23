@@ -81,8 +81,8 @@ Current state
 -------------
    Nowadays, the contents of the project is:
 
-      .- FusionInventory Agent v2.2.5
-         .- FusionInventory Agent Task Deploy v2.0.2
+      .- FusionInventory Agent v2.2.6
+         .- FusionInventory Agent Task Deploy v2.0.3
          .- FusionInventory Agent Task ESX v2.2.0
          .- FusionInventory Agent Task Inventory v1.0
          .- FusionInventory Agent Task WakeOnLan v1.0
@@ -229,8 +229,6 @@ and observe whether there is some new stable version available.
                http://search.cpan.org/dist/FusionInventory-Agent-Task-ESX/
                http://search.cpan.org/dist/FusionInventory-Agent-Task-Network/
 
-            but they can change.
-
    Suppose you can see there are new stable versions for two of them, to know,
 FusionInventory-Agent-2.2.6 and FusionInventory-Task-Deploy-2.0.3 (it is true
 in the time I am writing this). You have the builder ready to build the
@@ -288,7 +286,7 @@ following:
             'strawberry_pepfia_url' variable is correct.
 
    Finally, you should change the following constants of the file './NSIS/
-/FusionInventory.nsi' to adapt them to new values:
+/FusionInventory.nsi' to adapt them to their new values:
 
       FIA_RELEASE
       FIA_TASK_DEPLOY_RELEASE
