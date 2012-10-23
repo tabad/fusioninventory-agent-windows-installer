@@ -97,7 +97,7 @@ while (( ${iter} < ${#archs[@]} )); do
 
    # Delete temporary cpanm files
    echo -n "Deleting Strawberry Perl ${strawberry_release} (${strawberry_version}-${arch_label}s) temporary files."
-   eval ${rm} -rf "$(pwd)/${strawberry_arch_path}/data/.cpanm"
+   eval ${rm} -rf "$(pwd)/${strawberry_arch_path}/data/.cpanm" > /dev/null 2>&1
    echo ".Done!"
 
    # New architecture

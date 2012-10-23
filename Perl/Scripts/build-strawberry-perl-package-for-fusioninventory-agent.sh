@@ -100,11 +100,11 @@ fi
 
 # Delete current package files
 ${rm} -f "${strawberry_pepfia_path}/${strawberry_pepfia_file}" \
-         "${strawberry_pepfia_path}/${strawberry_pepfia_file}.txt"
+         "${strawberry_pepfia_path}/${strawberry_pepfia_file}.txt" > /dev/null 2>&1
 
 for digest in "${digests[@]}"; do
    ${rm} -f "${strawberry_pepfia_path}/${strawberry_pepfia_file}.${digest}" \
-            "${strawberry_pepfia_path}/${strawberry_pepfia_file}.txt.${digest}"
+            "${strawberry_pepfia_path}/${strawberry_pepfia_file}.txt.${digest}" > /dev/null 2>&1
 done
 
 # Builder loop
@@ -137,7 +137,7 @@ echo -n "Compressing package Strawberry Perl ${strawberry_release} (${strawberry
 ${p7za} a -bd -mx=9 -- "${strawberry_pepfia_path}/${strawberry_pepfia_file}" \
                        "${strawberry_pepfia_path}/${strawberry_pepfia_file%*.xz}" > /dev/null 2>&1
 echo -n "."
-${rm} -f "${strawberry_pepfia_path}/${strawberry_pepfia_file%*.xz}"
+${rm} -f "${strawberry_pepfia_path}/${strawberry_pepfia_file%*.xz}" > /dev/null 2>&1
 echo ".Done!"
 
 # Build the description file

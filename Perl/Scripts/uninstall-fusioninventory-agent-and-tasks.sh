@@ -95,7 +95,7 @@ while (( ${iter} < ${#archs[@]} )); do
 
    # Uninstall modules
    echo -n "Installing from Strawberry Perl ${strawberry_release} (${strawberry_version}-${arch_label}s)."
-   eval ${rm} -rf "${strawberry_arch_path}/cpan/sources/FusionInventory-Agent-*"
+   eval ${rm} -rf "${strawberry_arch_path}/cpan/sources/FusionInventory-Agent-*" > /dev/null 2>&1
    echo ".Done!"
 
    # New architecture

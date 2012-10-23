@@ -105,10 +105,21 @@ ${curl} --silent --output "/tmp/${strawberry_pepfia_file}" "${strawberry_pepfia_
 # Check download operation
 if [ -f "/tmp/${strawberry_pepfia_file}" ]; then
    echo -n "."
-   ${tar} -C "${strawberry_pepfia_path}" -xf "/tmp/${strawberry_pepfia_file}"
-   echo -n "."
-   ${rm} -f "/tmp/${strawberry_pepfia_file}"
-   echo ".Done!"
+   ${tar} -C "${strawberry_pepfia_path}" -xf "/tmp/${strawberry_pepfia_file}" > /dev/null 2>&1
+   if (( $? == 0 )); then
+      echo -n "."
+      ${rm} -f "/tmp/${strawberry_pepfia_file}" > /dev/null 2>&1
+      echo ".Done!"
+   else
+      echo "Failure!"
+      echo
+      echo "There has been an error unpacking '${strawberry_pepfia_file}'."
+      echo
+      echo -n "Perhaps the URL '${strawberry_pepfia_url}/${strawberry_pepfia_file}' is incorrect. "
+      echo -n "Please, check the variables 'strawberry_pepfia_url' and 'strawberry_pepfia_file' "
+      echo -n "in the 'load-perl-environment' file, and try again."
+      ${rm} -f "/tmp/${strawberry_pepfia_file}" > /dev/null 2>&1
+   fi
 else
    echo "Failure!"
    echo

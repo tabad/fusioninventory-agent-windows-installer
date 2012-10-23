@@ -112,7 +112,7 @@ while (( ${iter} < ${#archs[@]} )); do
 
    # Uninstall (delete) ${strawberry_arch_path}
    echo -n "Uninstalling Strawberry Perl ${strawberry_release} (${strawberry_version}-${arch_label}s)."
-   eval ${rm} -rf "${strawberry_arch_path}"
+   eval ${rm} -rf "${strawberry_arch_path}" > /dev/null 2>&1
    echo ".Done!"
 
    # New architecture
@@ -121,12 +121,12 @@ done
 
 # Uninstall (delete) ${strawberry_path}
 echo -n "Deleting Strawberry Perl ${strawberry_release} (${strawberry_version}) base directory."
-${rm} -rf "${strawberry_path}"
+${rm} -rf "${strawberry_path}" > /dev/null 2>&1
 echo -n "."
 
 # Delete ${strawberry_path%/${strawberry_version}} whether it is empty
 if [ "$(${ls} -A ${strawberry_path%/${strawberry_version}} 2> /dev/null)" = "" ]; then
-   ${rm} -rf "${strawberry_path%/${strawberry_version}}"
+   ${rm} -rf "${strawberry_path%/${strawberry_version}}" > /dev/null 2>&1
    echo ".Done!"
 else
    echo "Done!"

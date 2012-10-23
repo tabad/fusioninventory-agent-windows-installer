@@ -121,7 +121,7 @@ while (( ${iter} < ${#archs[@]} )); do
    cpanm=$(type -P cpanm)
 
    # Remove temporary cpanm files
-   eval ${rm} -rf "$(pwd)/${strawberry_arch_path}/data/.cpanm"
+   eval ${rm} -rf "$(pwd)/${strawberry_arch_path}/data/.cpanm" > /dev/null 2>&1
 
    # Show all modules dependencies
    echo "All Strawberry Perl ${strawberry_release} (${strawberry_version}-${arch_label}s) modules dependencies..."

@@ -100,7 +100,7 @@ fi
 
 # Delete current installers
 for arch in ${archs[@]}; do
-   eval ${rm} -f "${nsis_log_file}" "${installer_file}"
+   eval ${rm} -f "${nsis_log_file}" "${installer_file}" > /dev/null 2>&1
 done
 
 # Build installers

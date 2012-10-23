@@ -102,7 +102,7 @@ while (( ${iter} < ${#archs[@]} )); do
 
    # Download ${strawberry_arch_url}
    echo -n "Installing Strawberry Perl ${strawberry_release} (${strawberry_version}-${arch_label}s)."
-   eval ${curl} --silent --output "/tmp/${strawberry_arch_url##*/}" "${strawberry_arch_url}"
+   eval ${curl} --silent --output "/tmp/${strawberry_arch_url##*/}" "${strawberry_arch_url}" > /dev/null 2>&1
 
    # Check download operation
    eval test -f "/tmp/${strawberry_arch_url##*/}"
@@ -110,10 +110,21 @@ while (( ${iter} < ${#archs[@]} )); do
       echo -n "."
       eval ${install} --mode 0755 --directory "${strawberry_arch_path}"
       echo -n "."
-      eval ${p7za} x -y -bd -o"${strawberry_arch_path}/" "/tmp/${strawberry_arch_url##*/}" > /dev/null
-      echo -n "."
-      eval ${rm} -f "/tmp/${strawberry_arch_url##*/}"
-      echo ".Done!"
+      eval ${p7za} x -y -bd -o"${strawberry_arch_path}/" "/tmp/${strawberry_arch_url##*/}" > /dev/null 2>&1
+      if (( $? == 0 )); then
+         echo -n "."
+         eval ${rm} -f "/tmp/${strawberry_arch_url##*/}" > /dev/null 2>&1
+         echo ".Done!"
+      else
+         echo "Failure!"
+         echo
+         eval echo "There has been an error decompressing \'${strawberry_arch_url##*/}\'."
+         echo
+         eval echo -n "Perhaps the URL \'${strawberry_arch_url}\' is incorrect.\ "
+         echo -n "Please, check the variable 'strawberry_arch_url' in the 'load-perl-environment' "
+         echo "file, and try again."
+         eval ${rm} -f "/tmp/${strawberry_arch_url##*/}" > /dev/null 2>&1
+      fi
    else
       echo "Failure!"
       echo

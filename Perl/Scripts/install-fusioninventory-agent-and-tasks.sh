@@ -99,7 +99,8 @@ fi
 echo -n "Downloading FusionInventory-Agent and Tasks."
 
 # Download ${fusinv_agent}
-${curl} --silent --location --max-redirs 6 --output "/tmp/${fusinv_agent##*/}" "${cpan_mirror}${cpan_mirror_path_prefix}${fusinv_agent}" > /dev/null 2>&1
+${curl} --silent --location --max-redirs 6 --output "/tmp/${fusinv_agent##*/}" \
+   "${cpan_mirror}${cpan_mirror_path_prefix}${fusinv_agent}" > /dev/null 2>&1
 
 # Check download operation
 if [ -f "/tmp/${fusinv_agent##*/}" ]; then
@@ -117,7 +118,8 @@ else
 fi
 
 # Download ${fusinv_task_deploy}
-${curl} --silent --location --max-redirs 6 --output "/tmp/${fusinv_task_deploy##*/}" "${cpan_mirror}${cpan_mirror_path_prefix}${fusinv_task_deploy}"
+${curl} --silent --location --max-redirs 6 --output "/tmp/${fusinv_task_deploy##*/}" \
+   "${cpan_mirror}${cpan_mirror_path_prefix}${fusinv_task_deploy}" > /dev/null 2>&1
 
 # Check download operation
 if [ -f "/tmp/${fusinv_task_deploy##*/}" ]; then
@@ -132,13 +134,14 @@ else
    echo
 
    # Delete previous downloads
-   ${rm} -f "/tmp/${fusinv_agent##*/}"
+   ${rm} -f "/tmp/${fusinv_agent##*/}" > /dev/null 2>&1
 
    exit 3
 fi
 
 # Download ${fusinv_task_esx}
-${curl} --silent --location --max-redirs 6 --output "/tmp/${fusinv_task_esx##*/}" "${cpan_mirror}${cpan_mirror_path_prefix}${fusinv_task_esx}"
+${curl} --silent --location --max-redirs 6 --output "/tmp/${fusinv_task_esx##*/}" \
+   "${cpan_mirror}${cpan_mirror_path_prefix}${fusinv_task_esx}" > /dev/null 2>&1
 
 # Check download operation
 if [ -f "/tmp/${fusinv_task_esx##*/}" ]; then
@@ -153,14 +156,15 @@ else
    echo
 
    # Delete previous downloads
-   ${rm} -f "/tmp/${fusinv_agent##*/}"
-   ${rm} -f "/tmp/${fusinv_task_deploy##*/}"
+   ${rm} -f "/tmp/${fusinv_agent##*/}" > /dev/null 2>&1
+   ${rm} -f "/tmp/${fusinv_task_deploy##*/}" > /dev/null 2>&1
 
    exit 3
 fi
 
 # Download ${fusinv_task_network}
-${curl} --silent --location --max-redirs 6 --output "/tmp/${fusinv_task_network##*/}" "${cpan_mirror}${cpan_mirror_path_prefix}${fusinv_task_network}"
+${curl} --silent --location --max-redirs 6 --output "/tmp/${fusinv_task_network##*/}" \
+   "${cpan_mirror}${cpan_mirror_path_prefix}${fusinv_task_network}" > /dev/null 2>&1
 
 # Check download operation
 if [ -f "/tmp/${fusinv_task_network##*/}" ]; then
@@ -175,9 +179,9 @@ else
    echo
 
    # Delete previous downloads
-   ${rm} -f "/tmp/${fusinv_agent##*/}"
-   ${rm} -f "/tmp/${fusinv_task_deploy##*/}"
-   ${rm} -f "/tmp/${fusinv_task_esx##*/}"
+   ${rm} -f "/tmp/${fusinv_agent##*/}" > /dev/null 2>&1
+   ${rm} -f "/tmp/${fusinv_task_deploy##*/}" > /dev/null 2>&1
+   ${rm} -f "/tmp/${fusinv_task_esx##*/}" > /dev/null 2>&1
 
    exit 3
 fi
@@ -189,33 +193,57 @@ while (( ${iter} < ${#archs[@]} )); do
    arch_label=${arch_labels[${iter}]}
 
    # Delete current modules
-   eval ${rm} -rf "${strawberry_arch_path}/cpan/sources/FusionInventory-Agent-*"
+   eval ${rm} -rf "${strawberry_arch_path}/cpan/sources/FusionInventory-Agent-*" > /dev/null 2>&1
 
    # Install modules
    echo -n "Installing into Strawberry Perl ${strawberry_release} (${strawberry_version}-${arch_label}s)."
-   eval ${tar} -C "${strawberry_arch_path}/cpan/sources/" -xf "/tmp/${fusinv_agent##*/}"
+   eval ${tar} -C "${strawberry_arch_path}/cpan/sources/" -xf "/tmp/${fusinv_agent##*/}" > /dev/null 2>&1
    if (( $? == 0 )); then
       echo -n "."
-      eval ${tar} -C "${strawberry_arch_path}/cpan/sources/" -xf "/tmp/${fusinv_task_deploy##*/}"
+      eval ${tar} -C "${strawberry_arch_path}/cpan/sources/" -xf "/tmp/${fusinv_task_deploy##*/}" > /dev/null 2>&1
       if (( $? == 0 )); then
          echo -n "."
-         eval ${tar} -C "${strawberry_arch_path}/cpan/sources/" -xf "/tmp/${fusinv_task_esx##*/}"
+         eval ${tar} -C "${strawberry_arch_path}/cpan/sources/" -xf "/tmp/${fusinv_task_esx##*/}" > /dev/null 2>&1
          if (( $? == 0 )); then
             echo -n "."
-            eval ${tar} -C "${strawberry_arch_path}/cpan/sources/" -xf "/tmp/${fusinv_task_network##*/}"
+            eval ${tar} -C "${strawberry_arch_path}/cpan/sources/" -xf "/tmp/${fusinv_task_network##*/}" > /dev/null 2>&1
             if (( $? == 0 )); then
                echo ".Done!"
             else
                echo "Failure!"
+               echo
+               echo "There has been an error unpacking '${fusinv_task_network##*/}'."
+               echo
+               echo -n "Perhaps the URL '${cpan_mirror}${cpan_mirror_path_prefix}${fusinv_task_network}' is incorrect. "
+               echo -n "Please, check the variables 'cpan_mirror', 'cpan_mirror_path_prefix' and 'fusinv_task_network' "
+               echo "in the 'load-perl-environment' file, and try again."
             fi
          else
             echo "Failure!"
+            echo
+            echo "There has been an error unpacking '${fusinv_task_esx##*/}'."
+            echo
+            echo -n "Perhaps the URL '${cpan_mirror}${cpan_mirror_path_prefix}${fusinv_task_esx}' is incorrect. "
+            echo -n "Please, check the variables 'cpan_mirror', 'cpan_mirror_path_prefix' and 'fusinv_task_esx' "
+            echo "in the 'load-perl-environment' file, and try again."
          fi
       else
          echo "Failure!"
+         echo
+         echo "There has been an error unpacking '${fusinv_task_deploy##*/}'."
+         echo
+         echo -n "Perhaps the URL '${cpan_mirror}${cpan_mirror_path_prefix}${fusinv_task_deploy}' is incorrect. "
+         echo -n "Please, check the variables 'cpan_mirror', 'cpan_mirror_path_prefix' and 'fusinv_task_deploy' "
+         echo "in the 'load-perl-environment' file, and try again."
       fi
    else
       echo "Failure!"
+      echo
+      echo "There has been an error unpacking '${fusinv_agent##*/}'."
+      echo
+      echo -n "Perhaps the URL '${cpan_mirror}${cpan_mirror_path_prefix}${fusinv_agent}' is incorrect. "
+      echo -n "Please, check the variables 'cpan_mirror', 'cpan_mirror_path_prefix' and 'fusinv_agent' "
+      echo "in the 'load-perl-environment' file, and try again."
    fi
 
    # New architecture
@@ -223,9 +251,9 @@ while (( ${iter} < ${#archs[@]} )); do
 done
 
 # Delete previous downloads
-${rm} -f "/tmp/${fusinv_agent##*/}"
-${rm} -f "/tmp/${fusinv_task_deploy##*/}"
-${rm} -f "/tmp/${fusinv_task_esx##*/}"
-${rm} -f "/tmp/${fusinv_task_network##*/}"
+${rm} -f "/tmp/${fusinv_agent##*/}" > /dev/null 2>&1
+${rm} -f "/tmp/${fusinv_task_deploy##*/}" > /dev/null 2>&1
+${rm} -f "/tmp/${fusinv_task_esx##*/}" > /dev/null 2>&1
+${rm} -f "/tmp/${fusinv_task_network##*/}" > /dev/null 2>&1
 
 echo
