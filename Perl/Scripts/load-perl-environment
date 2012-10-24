@@ -52,10 +52,10 @@ declare -r strawberry_path="../Strawberry/${strawberry_version}"
 declare -r strawberry_arch_path='${strawberry_path}/${arch}'
 declare -r strawberry_arch_url='http://strawberryperl.com/download/${strawberry_version}/strawberry-perl-${strawberry_version}-${arch_label}-portable.zip'
 
-declare -r strawberry_pepfia_build_id=$(printf "%05d" 3)
+declare -r strawberry_pepfia_build_id=$(printf "%05d" 4)
 declare -r strawberry_pepfia_path="${strawberry_path%/${strawberry_version}}"
 declare -r strawberry_pepfia_file="strawberry-perl-${strawberry_version}-all-pepfia-build-${strawberry_pepfia_build_id}.tar.xz"
-declare -r strawberry_pepfia_url='http://forge.fusioninventory.org/attachments/download/773'
+declare -r strawberry_pepfia_url='http://forge.fusioninventory.org/attachments/download/782'
 
 declare -r cpan_mirror='http://search.cpan.org'
 declare -r cpan_mirror_path_prefix='/CPAN/authors/id'

@@ -279,7 +279,7 @@ leave the default directory as the default repository, you only have to do the
 following:
 
    -... strawberry_pepfia_url='http://forge.fusioninventory.org/attachments/download/760'
-   +... strawberry_pepfia_url='file:///c/.../fusioninventory-agent-windows-installer/Perl/Strawberry'
+   +... strawberry_pepfia_url='file://c/.../fusioninventory-agent-windows-installer/Perl/Strawberry'
 
             Remember, 'file:///' is dependent of the OS and must be written as
             a absolute path. Make sure, in any case, that the value of the

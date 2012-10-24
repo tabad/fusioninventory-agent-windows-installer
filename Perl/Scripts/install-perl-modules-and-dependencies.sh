@@ -126,12 +126,12 @@ while (( ${iter} < ${#archs[@]} )); do
    # Install modules
    echo "Installing Strawberry Perl ${strawberry_release} (${strawberry_version}-${arch_label}s) modules..."
 
-   ${perl} ${cpanm} --self-upgrade --installdeps --auto-cleanup 1 --skip-installed \
-                    --notest --quiet                                               \
-                    ${cpan_mirror}${cpan_mirror_path_prefix}${fusinv_agent}        \
-                    ${cpan_mirror}${cpan_mirror_path_prefix}${fusinv_task_deploy}  \
-                    ${cpan_mirror}${cpan_mirror_path_prefix}${fusinv_task_esx}     \
-                    ${cpan_mirror}${cpan_mirror_path_prefix}${fusinv_task_network} \
+   ${perl} ${cpanm} --installdeps --auto-cleanup 1 --skip-installed --notest --quiet \
+                    ${cpan_mirror}${cpan_mirror_path_prefix}${fusinv_agent}          \
+                    ${cpan_mirror}${cpan_mirror_path_prefix}${fusinv_task_deploy}    \
+                    ${cpan_mirror}${cpan_mirror_path_prefix}${fusinv_task_esx}       \
+                    ${cpan_mirror}${cpan_mirror_path_prefix}${fusinv_task_network}
+   ${perl} ${cpanm} --install --auto-cleanup 1 --skip-installed --notest --quiet \
                     ${other_needed_modules}
 
    # Remove perl_path from PATH
