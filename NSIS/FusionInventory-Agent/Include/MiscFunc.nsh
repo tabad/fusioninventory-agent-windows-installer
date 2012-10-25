@@ -293,7 +293,6 @@ Function InstallFusionInventoryAgent
    File "${FIA_DIR}\fusioninventory-agent"
    File "${FIA_DIR}\fusioninventory-injector"
    File "${FIA_DIR}\fusioninventory-win32-service"
-   File "${FIA_DIR}\memconf"
 
    ; Install $R0\share
    SetOutPath "$R0\share\"
