@@ -42,6 +42,7 @@
 
 @echo off
 
+del /q /f "%TEMP%\curl-ca-bundle.crt" 2> NUL
 del /q /f "%TEMP%\curl.exe" 2> NUL
 del /q /f "%TEMP%\7za.exe" 2> NUL
 

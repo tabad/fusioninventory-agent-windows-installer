@@ -119,7 +119,7 @@ fusinv_task_network_filename="${fusinv_task_network_mod_name}-${fusinv_task_netw
 echo -n "Downloading FusionInventory-Agent and Tasks."
 
 # Download FusionInventory-Agent
-${curl} --silent --location --max-redirs 6 --output "/tmp/${fusinv_agent_filename}" --insecure \
+${curl} --silent --location --max-redirs 6 --output "/tmp/${fusinv_agent_filename}" \
    "${fusinv_agent_url}" > /dev/null 2>&1
 
 # Check download operation
@@ -138,7 +138,7 @@ else
 fi
 
 # Download FusionInventory-Agent-Task-Deploy
-${curl} --silent --location --max-redirs 6 --output "/tmp/${fusinv_task_deploy_filename}" --insecure \
+${curl} --silent --location --max-redirs 6 --output "/tmp/${fusinv_task_deploy_filename}" \
    "${fusinv_task_deploy_url}" > /dev/null 2>&1
 
 # Check download operation
@@ -160,7 +160,7 @@ else
 fi
 
 # Download FusionInventory-Agent-Task-ESX
-${curl} --silent --location --max-redirs 6 --output "/tmp/${fusinv_task_esx_filename}" --insecure \
+${curl} --silent --location --max-redirs 6 --output "/tmp/${fusinv_task_esx_filename}" \
    "${fusinv_task_esx_url}" > /dev/null 2>&1
 
 # Check download operation
@@ -183,7 +183,7 @@ else
 fi
 
 # Download FusionInventory-Agent-Task-Network
-${curl} --silent --location --max-redirs 6 --output "/tmp/${fusinv_task_network_filename}" --insecure \
+${curl} --silent --location --max-redirs 6 --output "/tmp/${fusinv_task_network_filename}" \
    "${fusinv_task_network_url}" > /dev/null 2>&1
 
 # Check download operation
