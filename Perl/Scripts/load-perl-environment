@@ -52,17 +52,27 @@ declare -r strawberry_path="../Strawberry/${strawberry_version}"
 declare -r strawberry_arch_path='${strawberry_path}/${arch}'
 declare -r strawberry_arch_url='http://strawberryperl.com/download/${strawberry_version}/strawberry-perl-${strawberry_version}-${arch_label}-portable.zip'
 
-declare -r strawberry_pepfia_build_id=$(printf "%05d" 4)
+declare -r strawberry_pepfia_build_id=$(printf "%05d" 5)
 declare -r strawberry_pepfia_path="${strawberry_path%/${strawberry_version}}"
 declare -r strawberry_pepfia_file="strawberry-perl-${strawberry_version}-all-pepfia-build-${strawberry_pepfia_build_id}.tar.xz"
 declare -r strawberry_pepfia_url='http://forge.fusioninventory.org/attachments/download/782'
 
-declare -r cpan_mirror='http://search.cpan.org'
-declare -r cpan_mirror_path_prefix='/CPAN/authors/id'
+declare -r fusinv_agent_commit='2.2.6'
+declare -r fusinv_agent_mod_name='FusionInventory-Agent'
+declare -r fusinv_agent_repository='https://github.com/fusinv/fusioninventory-agent.git'
+declare -r fusinv_agent_mod_dependences='Compress::Zlib File::Which HTTP::Daemon IO::Socket::SSL LWP LWP::Protocol::https Net::IP Text::Template UNIVERSAL::require Win32::Daemon Win32::Job Win32::OLE Win32::TieRegistry XML::TreePP'
 
-declare -r fusinv_agent='/F/FU/FUSINV/FusionInventory-Agent-2.2.6.tar.gz'
-declare -r fusinv_task_deploy='/F/FU/FUSINV/FusionInventory-Agent-Task-Deploy-2.0.3.tar.gz'
-declare -r fusinv_task_esx='/F/FU/FUSINV/FusionInventory-Agent-Task-ESX-2.2.0.tar.gz'
-declare -r fusinv_task_network='/G/GO/GONERI/FusionInventory-Agent-Task-Network-1.0.1.tar.gz'
+declare -r fusinv_task_deploy_commit='2.0.3'
+declare -r fusinv_task_deploy_mod_name='FusionInventory-Agent-Task-Deploy'
+declare -r fusinv_task_deploy_repository='https://github.com/fusinv/fusioninventory-agent-task-deploy.git'
+declare -r fusinv_task_deploy_mod_dependences='Archive::Extract Digest::SHA File::Copy::Recursive JSON URI::Escape POE::Component::Client::Ping UNIVERSAL::require'
 
-declare -r other_needed_modules='Win32::Daemon Net::NBName'
+declare -r fusinv_task_esx_commit='2.2.0'
+declare -r fusinv_task_esx_mod_name='FusionInventory-Agent-Task-ESX'
+declare -r fusinv_task_esx_repository='https://github.com/fusinv/fusioninventory-agent-task-esx.git'
+declare -r fusinv_task_esx_mod_dependences='Getopt::Long JSON Pod::Usage'
+
+declare -r fusinv_task_network_commit='1.0.1'
+declare -r fusinv_task_network_mod_name='FusionInventory-Agent-Task-Network'
+declare -r fusinv_task_network_repository='https://github.com/fusinv/fusioninventory-agent-task-network.git'
+declare -r fusinv_task_network_mod_dependences='Net::NBName Net::IP Net::SNMP threads XML::TreePP'
