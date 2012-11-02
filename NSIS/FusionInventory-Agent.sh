@@ -47,15 +47,18 @@ declare -r nsis_script='./FusionInventory-Agent.nsi'
 declare -r nsis_log_file='./FusionInventory-Agent_MakeNSIS-Output-${arch}.txt'
 
 declare arch=''
-declare -a -r archs=(x64 x86)
-
+declare digest=''
 declare basename=''
+declare installer=''
+declare -a -r archs=(x64 x86)
+declare -a -r digests=(md5 sha1 sha256)
 
 declare option_nsis_define=''
 declare -r option_nsis_log_file="-O${nsis_log_file}"
 declare -r option_nsis_log_level="-V${nsis_log_level}"
 
 declare -r makensis=$(type -P makensis)
+declare -r openssl=$(type -P openssl)
 declare -r rm=$(type -P rm)
 
 # Check the OS
@@ -100,7 +103,7 @@ fi
 
 # Delete current installers
 for arch in ${archs[@]}; do
-   eval ${rm} -f "${nsis_log_file}" "${installer_file}" > /dev/null 2>&1
+   eval ${rm} -f "${nsis_log_file}" "${installer_file}" "${installer_file}.*" > /dev/null 2>&1
 done
 
 # Build installers
@@ -115,6 +118,16 @@ for arch in ${archs[@]}; do
 
    if (( $? == 0 )); then
       echo '.Done!'
+
+      # Digest calculation loop
+      echo -n "Calculating digest message for ${arch} installer."
+      for installer in "$(eval ls ${installer_file##*/})"; do
+         for digest in "${digests[@]}"; do
+            ${openssl} dgst -${digest} -c -out "${installer}.${digest}" "${installer}"
+            echo -n "."
+         done
+      done
+      echo ".Done!"
    else
       echo '.Failure!'
       eval echo " Please, read \'${nsis_log_file}\' for more information."
