@@ -100,7 +100,8 @@ fi
 # Download ${strawberry_pepfia_url}/${strawberry_pepfia_file}
 echo "Installing Strawberry Perl ${strawberry_release} (${strawberry_version}-32/64bits)"
 echo -n " Portable Edition Package for FusionInventory-Agent (BuildId ${strawberry_pepfia_build_id})."
-${curl} --silent --output "/tmp/${strawberry_pepfia_file}" "${strawberry_pepfia_url}/${strawberry_pepfia_file}" > /dev/null 2>&1
+${curl} --silent --location --max-redirs 6 --output "/tmp/${strawberry_pepfia_file}" \
+   "${strawberry_pepfia_url}/${strawberry_pepfia_file}" > /dev/null 2>&1
 
 # Check download operation
 if [ -f "/tmp/${strawberry_pepfia_file}" ]; then
