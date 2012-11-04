@@ -56,7 +56,7 @@ declare -r strawberry_pepfia_branch='2.2.x'
 declare -r strawberry_pepfia_build_id='2'
 declare -r strawberry_pepfia_path="${strawberry_path%/${strawberry_version}}"
 declare -r strawberry_pepfia_file="strawberry-perl-${strawberry_version}-all-pepfia-${strawberry_pepfia_branch}-${strawberry_pepfia_build_id}.tar.xz"
-declare -r strawberry_pepfia_url='http://forge.fusioninventory.org/attachments/download/804'
+declare -r strawberry_pepfia_url='http://forge.fusioninventory.org/attachments/download/836'
 
 declare -i -r maximum_commit_length=10
 
