@@ -527,7 +527,12 @@ variable of the file './Perl/Scripts/load-perl-environment'.
    -!define PRODUCT_VERSION_MINOR "2"
    -!define PRODUCT_VERSION_RELEASE "6"
    +!define PRODUCT_VERSION_MINOR "3"
-   +!define PRODUCT_VERSION_RELEASE "x"
+   +!define PRODUCT_VERSION_RELEASE "33835"
+
+            Note that all PRODUCT_VERSION_* constants must have a numeric
+            value. The value '33835' is a agreement to design a development
+            releases. It is the name you get whether you try to write the
+            word 'devel' in a telephone keyboard.
 
    With the new Strawberry Perl Package for FusionInventory-Agent ready, and
 these last changes, you can continue as it were a normal build process.
@@ -574,7 +579,7 @@ file './NSIS/FusionInventory.nsi' to adapt them to their new values:
    -!define PRODUCT_VERSION_MINOR "2"
    -!define PRODUCT_VERSION_RELEASE "6"
    +!define PRODUCT_VERSION_MINOR "3"
-   +!define PRODUCT_VERSION_RELEASE "f3f9382a18"
+   +!define PRODUCT_VERSION_RELEASE "33835"
 
    With the new Strawberry Perl Package for FusionInventory-Agent ready, and
 these last changes, you can continue as it were a normal build process.
