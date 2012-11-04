@@ -102,7 +102,8 @@ while (( ${iter} < ${#archs[@]} )); do
 
    # Download ${strawberry_arch_url}
    echo -n "Installing Strawberry Perl ${strawberry_release} (${strawberry_version}-${arch_label}s)."
-   eval ${curl} --silent --output "/tmp/${strawberry_arch_url##*/}" "${strawberry_arch_url}" > /dev/null 2>&1
+   eval ${curl} --silent --location --max-redirs 6 --output "/tmp/${strawberry_arch_url##*/}" \
+      "${strawberry_arch_url}" > /dev/null 2>&1
 
    # Check download operation
    eval test -f "/tmp/${strawberry_arch_url##*/}"

@@ -50,8 +50,12 @@ declare perl_path=''
 
 declare -i iter=0
 declare basename=''
+declare fusinv_mod_dependences=''
 
 declare -r rm=$(type -P rm)
+declare -r sort=$(type -P sort)
+declare -r tr=$(type -P tr)
+declare -r uniq=$(type -P uniq)
 
 # Check the OS
 if [ "${MSYSTEM}" = "MSYS" ]; then
@@ -104,6 +108,18 @@ if [ ! -d "${strawberry_path}" ]; then
    exit 3
 fi
 
+# Select perl modules to install
+fusinv_mod_dependences="${fusinv_agent_mod_dependences}       \
+                        ${fusinv_task_deploy_mod_dependences} \
+                        ${fusinv_task_esx_mod_dependences}    \
+                        ${fusinv_task_network_mod_dependences}"
+fusinv_mod_dependences="$(echo ${fusinv_mod_dependences} | \
+                          ${tr} '[:space:]' '\n'         | \
+                          ${sort} -i                     | \
+                          ${uniq}                        | \
+                          ${tr} '\n' ' ')"
+fusinv_mod_dependences="${fusinv_mod_dependences% *}"
+
 # Installation loop
 while (( ${iter} < ${#archs[@]} )); do
    # Set arch and arch_label
@@ -125,14 +141,7 @@ while (( ${iter} < ${#archs[@]} )); do
 
    # Install modules
    echo "Installing Strawberry Perl ${strawberry_release} (${strawberry_version}-${arch_label}s) modules..."
-
-   ${perl} ${cpanm} --installdeps --auto-cleanup 1 --skip-installed --notest --quiet \
-                    ${cpan_mirror}${cpan_mirror_path_prefix}${fusinv_agent}          \
-                    ${cpan_mirror}${cpan_mirror_path_prefix}${fusinv_task_deploy}    \
-                    ${cpan_mirror}${cpan_mirror_path_prefix}${fusinv_task_esx}       \
-                    ${cpan_mirror}${cpan_mirror_path_prefix}${fusinv_task_network}
-   ${perl} ${cpanm} --install --auto-cleanup 1 --skip-installed --notest --quiet \
-                    ${other_needed_modules}
+   ${perl} ${cpanm} --install --auto-cleanup 1 --skip-installed --notest --quiet ${fusinv_mod_dependences}
 
    # Remove perl_path from PATH
    PATH="${PATH/${perl_path}/}"

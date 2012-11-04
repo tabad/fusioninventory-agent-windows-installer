@@ -68,10 +68,6 @@ install-strawberry-perl.bat
 install-strawberry-perl.sh
 install-strawberry-perl-package-for-fusioninventory-agent.bat
 install-strawberry-perl-package-for-fusioninventory-agent.sh
-show-all-perl-modules-and-dependencies.bat
-show-all-perl-modules-and-dependencies.sh
-show-missing-perl-modules-and-dependencies.bat
-show-missing-perl-modules-and-dependencies.sh
 uninstall-strawberry-perl.bat
 uninstall-strawberry-perl.sh
 

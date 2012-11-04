@@ -47,7 +47,6 @@ source ./load-perl-environment
 declare -i iter=0
 declare basename=''
 declare base_path=''
-declare fusinv_mod=''
 declare script_suffix=''
 
 declare -r diff=$(type -P diff)
@@ -107,9 +106,7 @@ while (( ${iter} < ${#archs[@]} )); do
    arch_label=${arch_labels[${iter}]}
 
    # Get base_path
-   fusinv_mod="${fusinv_agent##*/}"
-   fusinv_mod="${fusinv_mod%.*.*}"
-   eval base_path="${strawberry_arch_path}/cpan/sources/${fusinv_mod}"
+   eval base_path="${strawberry_arch_path}/cpan/sources/${fusinv_agent_mod_name}-${fusinv_agent_commit}"
 
    # Check whether 'install-fusioninventory-agent-and-tasks.${script_suffix}' was launched
    if [ ! -d "${base_path}" ]; then
@@ -162,15 +159,11 @@ while (( ${iter} < ${#archs[@]} )); do
    echo -n "."
 
    # Patches for FusionInventory-Agent Task Deploy
-   #fusinv_mod="${fusinv_task_deploy##*/}"
-   #fusinv_mod="${fusinv_mod%.*.*}"
-   #eval base_path="${strawberry_arch_path}/cpan/sources/${fusinv_mod}"
+   #eval base_path="${strawberry_arch_path}/cpan/sources/${fusinv_task_deploy_mod_name}-${fusinv_task_deploy_commit}"
    #   There are not files to patch
 
    # Patches for FusionInventory-Agent Task ESX
-   fusinv_mod="${fusinv_task_esx##*/}"
-   fusinv_mod="${fusinv_mod%.*.*}"
-   eval base_path="${strawberry_arch_path}/cpan/sources/${fusinv_mod}"
+   eval base_path="${strawberry_arch_path}/cpan/sources/${fusinv_task_esx_mod_name}-${fusinv_task_esx_commit}"
    #   File ./fusioninventory-esx
    if [ ! -f "${base_path}/fusioninventory-esx.org" ]; then
       ${rsync} -a "${base_path}/fusioninventory-esx" \
@@ -186,9 +179,7 @@ while (( ${iter} < ${#archs[@]} )); do
    echo -n "."
 
    # Patches for FusionInventory-Agent Task Network
-   fusinv_mod="${fusinv_task_network##*/}"
-   fusinv_mod="${fusinv_mod%.*.*}"
-   eval base_path="${strawberry_arch_path}/cpan/sources/${fusinv_mod}"
+   eval base_path="${strawberry_arch_path}/cpan/sources/${fusinv_task_network_mod_name}-${fusinv_task_network_commit}"
    #   File ./fusioninventory-netdiscovery
    if [ ! -f "${base_path}/fusioninventory-netdiscovery.org" ]; then
       ${rsync} -a "${base_path}/fusioninventory-netdiscovery" \
