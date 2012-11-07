@@ -387,8 +387,8 @@ variable of the file './Perl/Scripts/load-perl-environment'. For example, to
 leave the default directory as the default repository, you only have to do the
 following:
 
-   -declare -r strawberry_pepfia_url='http://forge.fusioninventory.org/attachmen
-    ts/download/782'
+   -declare -r strawberry_pepfia_url='https://github.com/downloads/tabad/fusioni
+    nventory-agent-windows-installer'
    +declare -r strawberry_pepfia_url='file://c/.../fusioninventory-agent-windows
     -installer/Perl/Strawberry'
 
