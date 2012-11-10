@@ -131,7 +131,7 @@ Current state
 
 
    Inside of './NSIS/Perl/Scripts' directory there is a set of scripts for
-download Strawberry Perl Portable Edition v5.16.1.1 (Aug 2012) for x64 and
+download Strawberry Perl Portable Edition v5.16.2.1 (Nov 2012) for x64 and
 x86 architectures, update and install all the Perl modules dependencies for
 the previous FusionInventory Agent packages, and download them. Please, read
 the file './Perl/Scripts/readme.txt' for more information about these scripts.
@@ -248,7 +248,28 @@ will show to you where is the built package.
 
 How to upgrade the Strawberry Perl distribution
 -----------------------------------------------
-   ToDo
+   Let's look at an exemple.
+
+   Suppose has been released the new Strawberry Perl Nov 2012 Portable Edition
+(5.16.2.1-32/64bits). Nowadays, the installers  are run on Strawberry Perl Aug
+2012 Portable Edition (5.16.1.1-32/64bits) and you want to upgrade it. These
+are the steps you should carry out.
+
+    Update variables 'strawberry_version' and 'strawberry_release' of file
+'./Perl/Scripts/load-perl-environment' to reflect the new values.
+
+      -declare -r strawberry_version='5.16.1.1'
+      -declare -r strawberry_release='Aug 2012'
+      +declare -r strawberry_version='5.16.2.1'
+      +declare -r strawberry_release='Nov 2012'
+
+   Update constant 'STRAWBERRY_RELEASE' of file './NSIS/
+/FusionInventory.nsi' to adapt it to its new value:
+
+      -!define STRAWBERRY_RELEASE "5.16.1.1"
+      +!define STRAWBERRY_RELEASE "5.16.2.1"
+
+   And finally, rebuild the installers.
 
 
 How to upgrade the agent and its tasks
