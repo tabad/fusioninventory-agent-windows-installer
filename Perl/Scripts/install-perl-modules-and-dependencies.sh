@@ -73,6 +73,12 @@ if [ "${MSYSTEM}" = "MSYS" ]; then
    unset PERL5OPT
    unset PERL_MM_OPT
    unset PERL_MB_OPT
+
+   # Avoid that Strawberry Perl Nov 2012 Portable Edition (5.16.2.1-32/64bits)
+   # save cpanm temporary files in $HOME/.cpanm directory instead of in
+   # $INSTALLDIR/data/.cpanm directory like Strawberry Perl Aug 2012 Portable
+   # Edition (5.16.1.1-32/64bits) did.
+   unset HOME
 else
    if [ -n "${WINDIR}" ]; then
       # It's a Windows OS
