@@ -90,7 +90,7 @@ SetCompressor /FINAL /SOLID lzma
 !define PRODUCT_VERSION_MINOR "2"
 !define PRODUCT_VERSION_RELEASE "7"
 !define PRODUCT_VERSION_BUILD "1"
-!define PRODUCT_VERSION "${PRODUCT_VERSION_MAJOR}.${PRODUCT_VERSION_MINOR}.${PRODUCT_VERSION_RELEASE}-${PRODUCT_VERSION_BUILD}"
+!define PRODUCT_VERSION "${PRODUCT_VERSION_MAJOR}.${PRODUCT_VERSION_MINOR}.${PRODUCT_VERSION_RELEASE}-${PRODUCT_VERSION_BUILD}_experimental"
 !define PRODUCT_PUBLISHER "FusionInventory Team"
 !define PRODUCT_WEB_FOR_SUPPORT "http://forge.fusioninventory.org/projects/fusioninventory-agent"
 !define PRODUCT_WEB_SITE "http://www.fusioninventory.org"
