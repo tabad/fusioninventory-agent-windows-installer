@@ -53,14 +53,14 @@ declare -r strawberry_arch_path='${strawberry_path}/${arch}'
 declare -r strawberry_arch_url='http://strawberryperl.com/download/${strawberry_version}/strawberry-perl-${strawberry_version}-${arch_label}-portable.zip'
 
 declare -r strawberry_pepfia_branch='2.2.x'
-declare -r strawberry_pepfia_build_id='2'
+declare -r strawberry_pepfia_build_id='1'
 declare -r strawberry_pepfia_path="${strawberry_path%/${strawberry_version}}"
 declare -r strawberry_pepfia_file="strawberry-perl-${strawberry_version}-all-pepfia-${strawberry_pepfia_branch}-${strawberry_pepfia_build_id}.tar.xz"
 declare -r strawberry_pepfia_url='https://github.com/downloads/tabad/fusioninventory-agent-windows-installer'
 
 declare -i -r maximum_commit_length=10
 
-declare +r fusinv_agent_commit='2.2.6'
+declare +r fusinv_agent_commit='2.2.7'
 declare -r fusinv_agent_mod_name='FusionInventory-Agent'
 declare -r fusinv_agent_repository='https://github.com/fusinv/fusioninventory-agent.git'
 declare -r fusinv_agent_mod_dependences='Compress::Zlib File::Which HTTP::Daemon IO::Socket::SSL LWP LWP::Protocol::https Net::IP Text::Template UNIVERSAL::require Win32::Daemon Win32::Job Win32::OLE Win32::TieRegistry XML::TreePP'
