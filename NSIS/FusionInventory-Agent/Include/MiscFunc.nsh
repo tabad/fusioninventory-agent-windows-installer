@@ -274,7 +274,7 @@ Function InstallFusionInventoryAgent
 
    ; Install $R0\etc
    SetOutPath "$R0\etc\"
-   File /r "${FIA_DIR}\etc\"
+   File /oname=agent.cfg.sample "${FIA_DIR}\etc\agent.cfg"
 
    ; Install $R0\perl\agent\FusionInventory
    SetOutPath "$R0\perl\agent\"
