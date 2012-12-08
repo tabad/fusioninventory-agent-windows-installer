@@ -251,9 +251,9 @@ How to upgrade the Strawberry Perl distribution
    Let's look at an exemple.
 
    Suppose has been released the new Strawberry Perl Nov 2012 Portable Edition
-(5.16.2.1-32/64bits). Nowadays, the installers  are run on Strawberry Perl Aug
-2012 Portable Edition (5.16.1.1-32/64bits) and you want to upgrade it. These
-are the steps you should carry out.
+(5.16.2.1-32/64bits). Nowadays (Nov 09, 2012), the installers are run on
+Strawberry Perl Aug 2012 Portable Edition (5.16.1.1-32/64bits) and you want to
+upgrade it. These are the steps you should carry out.
 
     Update variables 'strawberry_version' and 'strawberry_release' of file
 './Perl/Scripts/load-perl-environment' to reflect the new values.
@@ -307,7 +307,7 @@ see section 'How to generate the installers' above.
    By taking a look at https://github.com/fusinv/fusioninventory-agent/tags and
 https://github.com/fusinv/fusioninventory-agent-task-deploy/tags you see those
 new releases are v2.2.6 and v2.0.3 respectively (it is true in the time I am
-writing this). These are the changes you should to carry out.
+writing this; Oct 23, 2012). These are the changes you should to carry out.
 
    Edit the './Perl/Scripts/load-perl-environment' file and change the value of
 variables 'fusinv_agent_commit' and 'fusinv_task_deploy_commit' to '2.2.6' and
