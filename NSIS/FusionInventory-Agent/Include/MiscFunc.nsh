@@ -278,7 +278,7 @@ Function InstallFusionInventoryAgent
 
    ; Install $R0\perl\agent\FusionInventory
    SetOutPath "$R0\perl\agent\"
-   File /r "${FIA_DIR}\lib\FusionInventory"
+   File /r /x "WakeOnLan.pm" "${FIA_DIR}\lib\FusionInventory"
 
    ; Install $R0\perl\bin\7z.{dll,exe}
    ;         $R0\perl\bin\dmidecode.exe
@@ -398,6 +398,39 @@ Function InstallFusionInventoryAgentTaskNetwork
    SetOutPath "$R0\perl\bin\"
    File "${FIA_TASK_NETWORK_DIR}\fusioninventory-netdiscovery"
    File "${FIA_TASK_NETWORK_DIR}\fusioninventory-netinventory"
+
+   ; Set mode at which commands print their status
+   SetDetailsPrint lastused
+
+   ; Pop $R0 off of the stack
+   Pop $R1
+   Pop $R0
+FunctionEnd
+
+
+; InstallFusionInventoryAgentTaskWakeOnLan
+!define InstallFusionInventoryAgentTaskWakeOnLan "Call InstallFusionInventoryAgentTaskWakeOnLan"
+
+Function InstallFusionInventoryAgentTaskWakeOnLan
+   ; Push $R0 onto the stack
+   Push $R0
+   Push $R1
+
+   ; Set mode at which commands print their status
+   SetDetailsPrint textonly
+
+   ; Create directories
+   ${ReadINIOption} $R0 "${IOS_FINAL}" "${IO_INSTALLDIR}"
+   CreateDirectory "$R0"
+   CreateDirectory "$R0\perl"
+   CreateDirectory "$R0\perl\agent"
+   CreateDirectory "$R0\perl\agent\FusionInventory"
+   CreateDirectory "$R0\perl\agent\FusionInventory\Agent"
+   CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Task"
+
+   ; Install $R0\perl\agent\FusionInventory
+   SetOutPath "$R0\perl\agent\FusionInventory\Agent\Task"
+   File "${FIA_DIR}\lib\FusionInventory\Agent\Task\WakeOnLan.pm"
 
    ; Set mode at which commands print their status
    SetDetailsPrint lastused

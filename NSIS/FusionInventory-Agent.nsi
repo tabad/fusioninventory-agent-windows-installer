@@ -89,7 +89,7 @@ SetCompressor /FINAL /SOLID lzma
 !define PRODUCT_VERSION_MAJOR "2"
 !define PRODUCT_VERSION_MINOR "2"
 !define PRODUCT_VERSION_RELEASE "7"
-!define PRODUCT_VERSION_BUILD "3"
+!define PRODUCT_VERSION_BUILD "4"
 !define PRODUCT_VERSION "${PRODUCT_VERSION_MAJOR}.${PRODUCT_VERSION_MINOR}.${PRODUCT_VERSION_RELEASE}-${PRODUCT_VERSION_BUILD}_experimental"
 !define PRODUCT_PUBLISHER "FusionInventory Team"
 !define PRODUCT_WEB_FOR_SUPPORT "http://forge.fusioninventory.org/projects/fusioninventory-agent"
@@ -495,20 +495,9 @@ Section "-Init" SecInit
 SectionEnd
 
 SectionGroup /e "$(SectionGroup_FusionInventoryAgentTasks)" SecGrpFusionInventoryAgentTasks
-   Section "Inventory & WakeOnLan" SecInventory&WakeOnLan
+   Section /o "Deploy" SecDeploy
       AddSize 1024
-      SectionIn 1 2 3 RO
-      Nop
-      SectionGetText ${SecInventory&WakeOnLan} $0
-      DetailPrint "$(Msg_InstallingSection)"
-
-      ; Install FusionInventory Agent
-      ${InstallFusionInventoryAgent}
-   SectionEnd
-
-   Section "Deploy" SecDeploy
-      AddSize 1024
-      SectionIn 1 2
+      SectionIn 2
       Nop
       SectionGetText ${SecDeploy} $0
       DetailPrint "$(Msg_InstallingSection)"
@@ -528,9 +517,20 @@ SectionGroup /e "$(SectionGroup_FusionInventoryAgentTasks)" SecGrpFusionInventor
       ${InstallFusionInventoryAgentTaskESX}
    SectionEnd
 
-   Section "Network" SecNetwork
+   Section "Inventory" SecInventory
       AddSize 1024
-      SectionIn 1 2
+      SectionIn 1 2 3 RO
+      Nop
+      SectionGetText ${SecInventory} $0
+      DetailPrint "$(Msg_InstallingSection)"
+
+      ; Install FusionInventory Agent
+      ${InstallFusionInventoryAgent}
+   SectionEnd
+
+   Section /o "Network" SecNetwork
+      AddSize 1024
+      SectionIn 2
       Nop
       SectionGetText ${SecNetwork} $0
       DetailPrint "$(Msg_InstallingSection)"
@@ -538,6 +538,18 @@ SectionGroup /e "$(SectionGroup_FusionInventoryAgentTasks)" SecGrpFusionInventor
       ; Install FusionInventory Agent Task Network
       ${InstallFusionInventoryAgentTaskNetwork}
    SectionEnd
+
+   Section /o "WakeOnLan" SecWakeOnLan
+      AddSize 1024
+      SectionIn 2
+      Nop
+      SectionGetText ${SecWakeOnLan} $0
+      DetailPrint "$(Msg_InstallingSection)"
+
+      ; Install FusionInventory Agent Task WakeOnLan
+      ${InstallFusionInventoryAgentTaskWakeOnLan}
+   SectionEnd
+
 SectionGroupEnd
 
 Section "-End" SecEnd
@@ -561,10 +573,11 @@ Section "-End" SecEnd
 SectionEnd
 
 !insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
-   !insertmacro MUI_DESCRIPTION_TEXT ${SecInventory&WakeOnLan} "$(SecInventory&WakeOnLan_Description)"
    !insertmacro MUI_DESCRIPTION_TEXT ${SecDeploy} "$(SecDeploy_Description)"
    !insertmacro MUI_DESCRIPTION_TEXT ${SecESX} "$(SecESX_Description)"
+   !insertmacro MUI_DESCRIPTION_TEXT ${SecInventory} "$(SecInventory_Description)"
    !insertmacro MUI_DESCRIPTION_TEXT ${SecNetwork} "$(SecNetwork_Description)"
+   !insertmacro MUI_DESCRIPTION_TEXT ${SecWakeOnLan} "$(SecWakeOnLan_Description)"
 !insertmacro MUI_FUNCTION_DESCRIPTION_END
 
 

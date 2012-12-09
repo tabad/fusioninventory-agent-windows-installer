@@ -270,42 +270,45 @@ LangString hCtl_HelpPage_Help_Option_installtasks_Paragraph_2 ${LANG_ENGLISH} \
 \par \
 \tab ESX: Task ESX\par \
 \tab Deploy: Task Deploy\par \
-\tab NetDiscovery: Task NetDiscovery\par \
-\tab NetInventory: Task NetInventory\par \
+\tab Network: Task Network\par \
+\tab WakeOnLan: Task WakeOnLan\par \
 \par \
-There are two macro defined to simplify the mission, are the following:\par \
+There are three macro defined to simplify the mission, are the following:\par \
 \par \
-\tab default: Deploy,NetDiscovery,NetInventory\par \
-\tab full: Deploy,ESX,NetDiscovery,NetInventory"
+\tab minimal: Inventory\par \
+\tab default: Inventory\par \
+\tab full: Deploy,ESX,Inventory,Network,WakeOnLan"
 LangString hCtl_HelpPage_Help_Option_installtasks_Paragraph_2 ${LANG_FRENCH} \
 "f\i task\i0  can be any of the following values:\par \
 \par \
 \tab ESX: Task ESX\par \
 \tab Deploy: Task Deploy\par \
-\tab NetDiscovery: Task NetDiscovery\par \
-\tab NetInventory: Task NetInventory\par \
+\tab Network: Task Network\par \
+\tab WakeOnLan: Task WakeOnLan\par \
 \par \
-There are two macro defined to simplify the mission, are the following:\par \
+There are three macro defined to simplify the mission, are the following:\par \
 \par \
-\tab default: Deploy,NetDiscovery,NetInventory\par \
-\tab full: Deploy,ESX,NetDiscovery,NetInventory"
+\tab minimal: Inventory\par \
+\tab default: Inventory\par \
+\tab full: Deploy,ESX,Inventory,Network,WakeOnLan"
 LangString hCtl_HelpPage_Help_Option_installtasks_Paragraph_2 ${LANG_SPANISH} \
 "\i task\i0  puede ser cualquiera de los siguientes valores:\par \
 \par \
 \tab ESX: Tarea ESX\par \
 \tab Deploy: Tarea Deploy\par \
-\tab NetDiscovery: Tarea NetDiscovery\par \
-\tab NetInventory: Tarea NetInventory\par \
+\tab Network: Tarea Network\par \
+\tab WakeOnLan: Tarea WakeOnLan\par \
 \par \
-Existen dos macros definidas para simplificar el cometido, son las siguientes:\par \
+Existen tres macros definidas para simplificar el cometido, son las siguientes:\par \
 \par \
-\tab default: Deploy,NetDiscovery,NetInventory\par \
-\tab full: Deploy,ESX,NetDiscovery,NetInventory"
+\tab minimal: Inventory\par \
+\tab default: Inventory\par \
+\tab full: Deploy,ESX,Inventory,Network,WakeOnLan"
 
 ; hCtl_HelpPage_Help_Option_installtasks_Paragraph_3
-LangString hCtl_HelpPage_Help_Option_installtasks_Paragraph_3 ${LANG_ENGLISH} "It should be noted that the Inventory and WakeOnLan tasks is always installed and, therefore, cannot be selected."
-LangString hCtl_HelpPage_Help_Option_installtasks_Paragraph_3 ${LANG_FRENCH} "fIt should be noted that the Inventory and WakeOnLan tasks is always installed and, therefore, cannot be selected."
-LangString hCtl_HelpPage_Help_Option_installtasks_Paragraph_3 ${LANG_SPANISH} "Es necesario notar que las tareas Inventory y WakeOnLan siempre se instalan y, por tanto, no se pueden seleccionar."
+LangString hCtl_HelpPage_Help_Option_installtasks_Paragraph_3 ${LANG_ENGLISH} "It should be noted that the Inventory task is always installed and, therefore, cannot be selected. Nowadays 'minimal' and 'default' are the same configuration."
+LangString hCtl_HelpPage_Help_Option_installtasks_Paragraph_3 ${LANG_FRENCH} "fIt should be noted that the Inventory task is always installed and, therefore, cannot be selected. Nowadays 'minimal' and 'default' are the same configuration."
+LangString hCtl_HelpPage_Help_Option_installtasks_Paragraph_3 ${LANG_SPANISH} "Es necesario notar que la tarea Inventory siempre se instala y, por tanto, no se puede seleccionar. A día de hoy 'minimal' y 'default' son la misma configuración."
 
 ; hCtl_HelpPage_Help_Option_installdir_Paragraph_2
 LangString hCtl_HelpPage_Help_Option_installdir_Paragraph_2 ${LANG_ENGLISH} "You must indicate an absolute pathname."

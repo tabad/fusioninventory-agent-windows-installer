@@ -344,22 +344,11 @@ LangString Msg_IncompatibleTargetPlatformArchitecture ${LANG_SPANISH} "No es pos
 en un sistema operativo Microsoft Windows sobre una plataforma de arquitectura ${LABEL_PLATFORM_ARCHITECTURE_32}."
 
 ;   LangString: Msg_InstallingSection
-; For use with: Sections SecInventory&WakeOnLan, SecDeploy, SecESX,
-;               and SecNetwork
+; For use with: Sections SecDeploy, SecESX, SecInventory, SecNetwork and SecWakeOnLan. 
 ;
 LangString Msg_InstallingSection ${LANG_ENGLISH} "Installing Section $0..."
 LangString Msg_InstallingSection ${LANG_FRENCH} "fInstalling Section $0..."
 LangString Msg_InstallingSection ${LANG_SPANISH} "Instalando Sección $0..."
-
-;   LangString: SecInventory&WakeOnLan_Description
-; For use with: XPUI_DESCRIPTION_TEXT ${SecInventory&WakeOnLan}
-;
-LangString SecInventory&WakeOnLan_Description ${LANG_ENGLISH} "Tasks Inventory ${FIA_TASK_INVENTORY_RELEASE} \
-and WakeOnLan ${FIA_TASK_WAKEONLAN_RELEASE}."
-LangString SecInventory&WakeOnLan_Description ${LANG_FRENCH} "fTasks Inventory ${FIA_TASK_INVENTORY_RELEASE} \
-and WakeOnLan ${FIA_TASK_WAKEONLAN_RELEASE}."
-LangString SecInventory&WakeOnLan_Description ${LANG_SPANISH} "Tareas Inventory ${FIA_TASK_INVENTORY_RELEASE} \
-y WakeOnLan ${FIA_TASK_WAKEONLAN_RELEASE}."
 
 ;   LangString: SecDeploy_Description
 ; For use with: XPUI_DESCRIPTION_TEXT ${SecDeploy}
@@ -375,6 +364,13 @@ LangString SecESX_Description ${LANG_ENGLISH} "Task ESX ${FIA_TASK_ESX_RELEASE}.
 LangString SecESX_Description ${LANG_FRENCH} "fTask ESX ${FIA_TASK_ESX_RELEASE}."
 LangString SecESX_Description ${LANG_SPANISH} "Tarea ESX ${FIA_TASK_ESX_RELEASE}."
 
+;   LangString: SecInventory_Description
+; For use with: XPUI_DESCRIPTION_TEXT ${SecInventory}
+;
+LangString SecInventory_Description ${LANG_ENGLISH} "Task Inventory ${FIA_TASK_INVENTORY_RELEASE}."
+LangString SecInventory_Description ${LANG_FRENCH} "fTask Inventory ${FIA_TASK_INVENTORY_RELEASE}."
+LangString SecInventory_Description ${LANG_SPANISH} "Tarea Inventory ${FIA_TASK_INVENTORY_RELEASE}."
+
 ;   LangString: SecNetwork_Description
 ; For use with: XPUI_DESCRIPTION_TEXT ${SecNetwork}
 ;
@@ -385,5 +381,11 @@ Includes tasks NetDiscovery ${FIA_TASK_NETDISCOVERY_RELEASE} and NetInventory ${
 LangString SecNetwork_Description ${LANG_SPANISH} "Distribución Network ${FIA_TASK_NETWORK_RELEASE}. \
 Incluye tareas NetDiscovery ${FIA_TASK_NETDISCOVERY_RELEASE} y NetInventory ${FIA_TASK_NETINVENTORY_RELEASE}."
 
+;   LangString: SecWakeOnLan_Description
+; For use with: XPUI_DESCRIPTION_TEXT ${SecWakeOnLan}
+;
+LangString SecWakeOnLan_Description ${LANG_ENGLISH} "Task WakeOnLan ${FIA_TASK_WAKEONLAN_RELEASE}."
+LangString SecWakeOnLan_Description ${LANG_FRENCH} "fTask WakeOnLan ${FIA_TASK_WAKEONLAN_RELEASE}."
+LangString SecWakeOnLan_Description ${LANG_SPANISH} "Tarea WakeOnLan ${FIA_TASK_WAKEONLAN_RELEASE}."
 
 !endif
