@@ -80,7 +80,7 @@ declare -r fusinv_task_esx_repository='https://github.com/fusinv/fusioninventory
 declare -r fusinv_task_esx_mod_dependences='Getopt::Long JSON Pod::Usage'
 declare -r fusinv_task_esx_mod_uses='English Getopt::Long Pod::Usage'
 
-declare +r fusinv_task_network_commit='1.0.1'
+declare +r fusinv_task_network_commit='1.0.2'
 declare -r fusinv_task_network_mod_name='FusionInventory-Agent-Task-Network'
 declare -r fusinv_task_network_repository='https://github.com/fusinv/fusioninventory-agent-task-network.git'
 declare -r fusinv_task_network_mod_dependences='Net::NBName Net::IP Net::SNMP threads XML::TreePP'
