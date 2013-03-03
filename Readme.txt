@@ -14,7 +14,7 @@ some others open source projects, like the Nullsoft Scriptable Install System
 
   It is born to cover a basic goal; be able to install new FusionInventory Agent
 versions based on the previous configuration in the system, whether it exists.
-In summary, it is  born to be able to update the existing agent, and not only to
+In summary, it is born to be able to update the existing agent, and not only to
 install a new version from scratch.
 
   It has more purposes, of course. The following are some of them.
@@ -139,14 +139,14 @@ the file './Perl/Scripts/readme.txt' for more information about these scripts.
 
 How to generate the installers
 ------------------------------
-
    Download fusioninventory-agent-windows-installer from GitHub using this URL
 pattern.
 
    https://github.com/tabad/fusioninventory-agent-windows-installer/tarball/<object>
 
 where <object> may be a tag (or release) name, a branch name or a commit name.
-To know the available tags, branches and commits available, please, visit
+
+   To know the available tags, branches and commits available, please, visit
 these URL's in that order.
 
    https://github.com/tabad/fusioninventory-agent-windows-installer/tags
@@ -154,7 +154,7 @@ these URL's in that order.
    https://github.com/tabad/fusioninventory-agent-windows-installer/commits
 
             Note that, in the last case, you should select after the wished
-            branch name or end up the URL with the name of that branch, like
+            branch name, or end up the URL with the name of that branch, like
             this '...-windows-installer/commits/<branch_name>'.
 
    This is an example using cURL to download the last commit of 'master'
@@ -182,7 +182,7 @@ example, continuing the previous one, using tar.
    $ git clone --branch <branch_name> \
      https://github.com/tabad/fusioninventory-agent-windows-installer.git
 
-            Note that you should change <branch_name> for the name of branch\
+            Note that you should change <branch_name> for the name of branch
             you wish download.
 
             I'm sure you don't need much more explications about Git whether
@@ -193,7 +193,6 @@ example, continuing the previous one, using tar.
 
    Microsoft Windows
    -----------------
-
    From your Microsoft Windows command interpreter executes
 
    > cd fusioninventory-agent-windows-installer
@@ -210,7 +209,6 @@ example, continuing the previous one, using tar.
 
    Unix OS
    -------
-
    $ cd fusioninventory-agent-windows-installer
    $ chmod 0744 NSIS/*.sh Perl/Scripts/*.sh
    $ cd Perl/Scripts
@@ -223,14 +221,14 @@ example, continuing the previous one, using tar.
    You should be able to see the new installers in that directory.
 
 
-How to build the Strawberry Perl Package for FusionInventory-Agent
-------------------------------------------------------------------
+How to build the Strawberry Perl Portable Edition Package for
+FusionInventory Agent
+-------------------------------------------------------------
    This task can be done only from Microsoft Windows OS.
 
 
    Microsoft Windows
    -----------------
-
    From your Microsoft Windows command interpreter executes
 
    > cd fusioninventory-agent-windows-installer
@@ -245,10 +243,14 @@ How to build the Strawberry Perl Package for FusionInventory-Agent
    The script 'build-strawberry-perl-package-for-fusioninventory-agent.bat'
 will show to you where is the built package.
 
+   Please, read 'How to know whether is needed to build a new Strawberry Perl
+Portable Edition Package for FusionInventory Agent' below for more
+information.
+
 
 How to upgrade the Strawberry Perl distribution
 -----------------------------------------------
-   Let's look at an exemple.
+   Let's look at an example.
 
    Suppose has been released the new Strawberry Perl Nov 2012 Portable Edition
 (5.16.2.1-32/64bits). Nowadays (Nov 09, 2012), the installers are run on
@@ -270,6 +272,9 @@ upgrade it. These are the steps you should carry out.
       +!define STRAWBERRY_RELEASE "5.16.2.1"
 
    And finally, rebuild the installers.
+
+      Remember, probably you also will need to build a new Strawberry Perl
+      Portable Edition Package for FusionInventory Agent.
 
 
 How to upgrade the agent and its tasks
@@ -328,9 +333,10 @@ maintain its values, unless there are changes in GitHub.
 
    An important thing to take into account is that, probably, these new releases
 require new, or simply different, Perl modules. Whether it is so, you should
-build a new Strawberry Perl Package for FusionInventory-Agent. But before to do
-that, you should carry out two actions; a) to increase the package build identi-
-fier and b) to update the list of required and recommended Perl modules.
+build a new Strawberry Perl Portable Edition Package for FusionInventory Agent.
+But before to do that, you should carry out two actions; a) to increase the
+package build identifier and b) to update the list of required and recommended
+Perl modules.
 
    To do the first one is easy, you only need to edit the '.\Perl\Script\load-
 -perl-environment' and to increment it in a unit.
@@ -350,13 +356,16 @@ dences', 'fusinv_task_deploy_mod_dependences', 'fusinv_task_esx_mod_dependences'
 or 'fusinv_task_network_mod_dependences' of './Perl/Scripts/load-perl-environ-
 ment' file to reflect these changes.
 
+      Remember that, probably, you also need to update these variables whether
+      you have upgraded the Strawberry Perl distribution.
+
    Let's look at an example for FusionInventory-Agent.
 
    In https://github.com/fusinv/fusioninventory-agent/tags you can see all
 stable releases of FusionInventory-Agent. In that, below '2.2.6.zip - 2.2.6 re-
 lease' appears the sequence '6f67b7d73c'; the short form for its SHA1 commit.
 Do click on it, and after, do click on 'Browse code' (up and right). In the list
-of files that appears, do click on file 'Makefile.Pl' and write down the list
+of files that appears, do click on file 'Makefile.PL' and write down the list
 of required and recommended Perl modules (those lines started by 'requires ...'
 and 'recommends ...', but not those lines started by 'text_requires ...')
 commons to all operative systems and those specific for Microsoft Windows (those
@@ -382,9 +391,11 @@ required and recommended Perl modules are the same that for v2.0.2, so there
 is not needed any additional change.
 
    As the list of modules for FusionInventory-Agent has changed, it is necessary
-to generate a new package Strawberry Perl Package.
+to generate a new Strawberry Perl Portable Edition Package.
 
-            Note that this is an strange case and that is not totally necessary.
+            Note that this is a strange case and that is not totally necessary
+            because the Digest:MD5 Perl module is integrated into Strawberry
+            Perl Portable Edition since its version v5.12.1.
 
    You should start with a clean Strawberry Perl distribution too, so the
 recommended steps are:
@@ -402,14 +413,14 @@ recommended steps are:
    > .\uninstall-strawberry-perl.bat
 
    Now you can load the new package and its associated files into your public
-repository of Strawberry Perl Packages for FusionInventory-Agent. This
-can be a local repository; you only have to change the 'strawberry_pepfia_url'
-variable of the file './Perl/Scripts/load-perl-environment'. For example, to
-leave the default directory as the default repository, you only have to do the
-following:
+repository of Strawberry Perl Portable Edition Packages for FusionInventory
+Agent. This can be a local repository; you only have to change the
+'strawberry_pepfia_url' variable of the file './Perl/Scripts/load-perl-environment'.
+For example, to leave the default directory as the default repository, you only
+have to do the following:
 
-   -declare -r strawberry_pepfia_url='https://github.com/downloads/tabad/fusioni
-    nventory-agent-windows-installer'
+   -declare -r strawberry_pepfia_url='https://sourceforge.net/projects/fiawi/fil
+    es/strawberry-perl-packages
    +declare -r strawberry_pepfia_url='file://c/.../fusioninventory-agent-windows
     -installer/Perl/Strawberry'
 
@@ -447,14 +458,14 @@ following:
    -!define PRODUCT_VERSION_RELEASE "5"
    +!define PRODUCT_VERSION_RELEASE "6"
 
-   With the new Strawberry Perl Package for FusionInventory-Agent ready, and
-these last changes, you can continue as it were a normal build process.
-See 'How to generate the installers' above.
+   With the new Strawberry Perl Portable Edition Package for FusionInventory
+Agent ready, and these last changes, you can continue as it were a normal
+build process. See 'How to generate the installers' above.
 
 
-How to know whether is needed to build a new Strawberry Perl Package for
-FusionInventory-Agent
-------------------------------------------------------------------------
+How to know whether is needed to build a new Strawberry Perl Portable Edition
+Package for FusionInventory Agent
+-----------------------------------------------------------------------------
    Basically you should check whether there is new requirements or recommen-
 dations comparing the files 'Makefile.PL' of each FusionInventory-Agent
 package you want to update. Then, whether there are changes, you must update
@@ -463,14 +474,18 @@ mod_dependences', 'fusinv_task_esx_mod_dependences' or 'fusinv_task_network_-
 mod_dependences' of './Perl/Scripts/load-perl-environment' file to reflect
 these changes.
 
+   Probably you also will need to build a new Strawberry Perl Portable Edition
+Package for FusionInventory Agent whether you have upgraded the Strawberry
+Perl distribution.
+
    See 'How to upgrade the agent and its tasks' above for more information.
 
 
 How to build the installers for a development version of FusionInventory-Agent
 ------------------------------------------------------------------------------
    The process is very similar to that described in 'How to upgrade the agent
-and its tasks'. Then you chose a new stable release, in this case you choose
-a branch name or a commit name.
+and its tasks'. Then you chose a new stable release and, in this case, you
+choose a branch name or a commit name.
 
    Let's look at an example about how to build the installers for the,
 nowadays, development branch '2.3.x' supposing you have the builder ready to
@@ -500,7 +515,7 @@ changes.
        Win32::Daemon Win32::Job Win32::OLE Win32::TieRegistry XML::TreePP'
 
    As the list of modules for FusionInventory-Agent has changed, it is necessary
-to generate a new package Strawberry Perl Package.
+to generate a new Strawberry Perl Portable Edition Package.
 
    You should start with a clean Strawberry Perl distribution too, so the
 recommended steps are:
@@ -518,9 +533,9 @@ recommended steps are:
    > .\uninstall-strawberry-perl.bat
 
    Now you can load the new package and its associated files into your public
-repository of Strawberry Perl Packages for FusionInventory-Agent. This
-can be a local repository; you only have to change the 'strawberry_pepfia_url'
-variable of the file './Perl/Scripts/load-perl-environment'.
+repository of Strawberry Perl Portable Edition Packages for FusionInventory
+Agent. This can be a local repository; you only have to change the
+'strawberry_pepfia_url' variable of the file './Perl/Scripts/load-perl-environment'.
 
    Finally, you should change the following constants of the file './NSIS/
 /FusionInventory.nsi' to adapt them to their new values:
@@ -555,9 +570,9 @@ variable of the file './Perl/Scripts/load-perl-environment'.
             releases. It is the name you get whether you try to write the
             word 'devel' in a telephone keyboard.
 
-   With the new Strawberry Perl Package for FusionInventory-Agent ready, and
-these last changes, you can continue as it were a normal build process.
-See 'How to generate the installers' above.
+   With the new Strawberry Perl Portable Edition Package for FusionInventory
+Agent ready, and these last changes, you can continue as it were a normal
+build process. See 'How to generate the installers' above.
 
    Nowadays branch '2.3.x' and commit 'f3f9382a18659d1ddd602ae04e816a1a4221c369'
 reflect the same state. The following example build the same installers but
@@ -586,13 +601,13 @@ changes.
        Win32::Daemon Win32::Job Win32::OLE Win32::TieRegistry XML::TreePP'
 
             Note that the installer always works with short commit names. See
-            variable 'maximum commit length' to know what this length is (by
+            variable 'maximum_commit_length' to know what this length is (by
             default it is 10). All commit names will be truncated to this
             length.
 
-   Like before, it is necessary to generate a new package Strawberry Perl
-Package. And like before, you should change the following constants of the
-file './NSIS/FusionInventory.nsi' to adapt them to their new values:
+   Like before, it is necessary to generate a new Strawberry Perl Portable
+Edition Package. And like before, you should change the following constants
+of the file './NSIS/FusionInventory.nsi' to adapt them to their new values:
 
    -!define FIA_RELEASE "2.2.6"
    +!define FIA_RELEASE "f3f9382a18"
@@ -602,9 +617,9 @@ file './NSIS/FusionInventory.nsi' to adapt them to their new values:
    +!define PRODUCT_VERSION_MINOR "3"
    +!define PRODUCT_VERSION_RELEASE "33835"
 
-   With the new Strawberry Perl Package for FusionInventory-Agent ready, and
-these last changes, you can continue as it were a normal build process.
-See 'How to generate the installers' above.
+   With the new Strawberry Perl Portable Edition Package for FusionInventory
+Agent ready, and these last changes, you can continue as it were a normal
+build process. See 'How to generate the installers' above.
 
 
 Contacts
@@ -621,6 +636,18 @@ Project IRC channel:
 * #FusionInventory on FreeNode IRC Network
 
 Please report any issues on project forge bugtracker (see forge URL above).
+
+
+Repositories
+------------
+Public Git repositories:
+* https://github.com/tabad/fusioninventory-agent-windows-installer
+
+Public Strawberry Perl Portable Package repositories:
+* https://github.com/tabad/fusioninventory-agent-windows-installer
+
+Public experimental intallers repositories:
+* https://sourceforge.net/projects/fiawi/files/
 
 
 Author
