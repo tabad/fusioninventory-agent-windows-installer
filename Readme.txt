@@ -644,7 +644,7 @@ Public Git repositories:
 * https://github.com/tabad/fusioninventory-agent-windows-installer
 
 Public Strawberry Perl Portable Package repositories:
-* https://github.com/tabad/fusioninventory-agent-windows-installer
+* http://sourceforge.net/projects/fiawi/files/strawberry-perl-packages/
 
 Public experimental intallers repositories:
 * https://sourceforge.net/projects/fiawi/files/
