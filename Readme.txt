@@ -86,8 +86,8 @@ Current state
    Nowadays, the contents of the project is:
 
       .- FusionInventory Agent v2.2.7
-         .- FusionInventory Agent Task Deploy v2.0.3
-         .- FusionInventory Agent Task ESX v2.2.0
+         .- FusionInventory Agent Task Deploy v2.0.4
+         .- FusionInventory Agent Task ESX v2.2.1
          .- FusionInventory Agent Task Inventory v1.0
          .- FusionInventory Agent Task WakeOnLan v1.0
          .- FusionInventory Agent Distribution Network v1.0.2
@@ -131,7 +131,7 @@ Current state
 
 
    Inside of './NSIS/Perl/Scripts' directory there is a set of scripts for
-download Strawberry Perl Portable Edition v5.16.2.1 (Nov 2012) for x64 and
+download Strawberry Perl Portable Edition v5.16.2.2 (Feb 2013) for x64 and
 x86 architectures, update and install all the Perl modules dependencies for
 the previous FusionInventory Agent packages, and download them. Please, read
 the file './Perl/Scripts/readme.txt' for more information about these scripts.
@@ -347,6 +347,9 @@ Perl modules.
             Note that the variable 'strawberry_pepfia_branch' is not necessary
             to change it in this case since the branch 2.2.x match with the
             branch of FusionInventory-Agent release 2.2.6.
+
+            Remember that you should reset 'strawberry_pepfia_build_id' to '1'
+            whether you upgrade the Strawberry Perl distribution.
 
    The second one is, most of the times, more tedious. You should check whether
 there is new requirements or recommendations comparing the files 'Makefile.PL'
