@@ -203,6 +203,10 @@ while (( ${iter} < ${#archs[@]} )); do
 
    # Check whether there is an error
    if (( $? != 0 )); then
+      # Note: PAR-Packer-1.014 (21 Dec 2012) installs without problems
+      #       into Strawberry Perl Portable Edition v5.16.2.2 (32/64bits) (Feb 2013).
+      #       Perhaps this code could be removed in the future.
+
       # Workaround: http://www.asciiville.com/musings/par-packer-for-strawberry-perl-516
       cpanm_workpath="$(eval ${grep} \'Work directory is \' \"${strawberry_arch_path}/data/.cpanm/build.log\")"
       cpanm_workpath=${cpanm_workpath##*/}
@@ -238,8 +242,8 @@ while (( ${iter} < ${#archs[@]} )); do
    echo "Building the Perl ARchive (PAR) package for Strawberry Perl ${strawberry_release} (${strawberry_version}-${arch_label}s)..."
 
    (eval cd "${strawberry_arch_path}"
-    eval ${perl} ${pp} -p -B -o ${tmpdir}/${strawberry_pepfia_par_file} \
-                       "${tmpdir}/${strawberry_pepfia_par_template_file}"
+    eval ${perl} ${pp} -p -B -c -o ${tmpdir}/${strawberry_pepfia_par_file} \
+       "${tmpdir}/${strawberry_pepfia_par_template_file}" > /dev/null 2>&1
    )
 
    # Remove perl_path from PATH
