@@ -152,12 +152,6 @@ tmpdir="$(${mktemp} -d --tmpdir=/tmp spepfia.XXXXXXXX)"
 # Build Perl script file
 fusinv_mod_uses="${fusinv_agent_mod_dependences}        \
                  ${fusinv_agent_mod_uses}               \
-                 ${fusinv_task_deploy_mod_dependences}  \
-                 ${fusinv_task_deploy_mod_uses}         \
-                 ${fusinv_task_esx_mod_dependences}     \
-                 ${fusinv_task_esx_mod_uses}            \
-                 ${fusinv_task_network_mod_dependences} \
-                 ${fusinv_task_network_mod_uses}        \
                  ${fusinv_mod_uses_not_detected_by_par}"
 fusinv_mod_uses="$(echo ${fusinv_mod_uses} | \
                    ${tr} '[:space:]' '\n'  | \

@@ -74,22 +74,21 @@ SetCompressor /FINAL /SOLID lzma
 !endif
 
 !define STRAWBERRY_RELEASE "5.16.2.2"
-!define FIA_RELEASE "2.2.7"
+!define FIA_RELEASE "master"
 !define FIA_TASK_DEPLOY_RELEASE "2.0.4"
 !define FIA_TASK_ESX_RELEASE "2.2.1"
-!define FIA_TASK_NETWORK_RELEASE "1.0.2"
-
 !define FIA_TASK_INVENTORY_RELEASE "1.0"
+!define FIA_TASK_NETWORK_RELEASE "1.0.2"
 !define FIA_TASK_NETDISCOVERY_RELEASE "2.2.0"
 !define FIA_TASK_NETINVENTORY_RELEASE "2.2.0"
-!define FIA_TASK_WAKEONLAN_RELEASE "1.0"
+!define FIA_TASK_WAKEONLAN_RELEASE "2.0"
 
 !define PRODUCT_NAME "FusionInventory Agent"
 !define PRODUCT_INTERNAL_NAME "FusionInventory-Agent"
 !define PRODUCT_VERSION_MAJOR "2"
-!define PRODUCT_VERSION_MINOR "2"
-!define PRODUCT_VERSION_RELEASE "7"
-!define PRODUCT_VERSION_BUILD "6"
+!define PRODUCT_VERSION_MINOR "3"
+!define PRODUCT_VERSION_RELEASE "0"
+!define PRODUCT_VERSION_BUILD "33835"
 !define PRODUCT_VERSION "${PRODUCT_VERSION_MAJOR}.${PRODUCT_VERSION_MINOR}.${PRODUCT_VERSION_RELEASE}-${PRODUCT_VERSION_BUILD}_experimental"
 !define PRODUCT_PUBLISHER "FusionInventory Team"
 !define PRODUCT_WEB_FOR_SUPPORT "http://forge.fusioninventory.org/projects/fusioninventory-agent"
@@ -144,9 +143,6 @@ SetCompressor /FINAL /SOLID lzma
 !define STRAWBERRY_DIR "..\Perl\Strawberry\${STRAWBERRY_RELEASE}\${FIAI_PLATFORM_ARCHITECTURE}"
 
 !define FIA_DIR "${STRAWBERRY_DIR}\cpan\sources\FusionInventory-Agent-${FIA_RELEASE}"
-!define FIA_TASK_DEPLOY_DIR "${STRAWBERRY_DIR}\cpan\sources\FusionInventory-Agent-Task-Deploy-${FIA_TASK_DEPLOY_RELEASE}"
-!define FIA_TASK_ESX_DIR "${STRAWBERRY_DIR}\cpan\sources\FusionInventory-Agent-Task-ESX-${FIA_TASK_ESX_RELEASE}"
-!define FIA_TASK_NETWORK_DIR "${STRAWBERRY_DIR}\cpan\sources\FusionInventory-Agent-Task-Network-${FIA_TASK_NETWORK_RELEASE}"
 
 !define FIAI_HELP_FILE "fusioninventory-agent_windows-${FIAI_PLATFORM_ARCHITECTURE}_${PRODUCT_VERSION}.rtf"
 

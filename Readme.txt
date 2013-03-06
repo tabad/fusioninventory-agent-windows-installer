@@ -85,15 +85,17 @@ Current state
 -------------
    Nowadays, the contents of the project is:
 
-      .- FusionInventory Agent v2.2.7
+      .- FusionInventory Agent v2.3.x
          .- FusionInventory Agent Task Deploy v2.0.4
          .- FusionInventory Agent Task ESX v2.2.1
          .- FusionInventory Agent Task Inventory v1.0
-         .- FusionInventory Agent Task WakeOnLan v1.0
+         .- FusionInventory Agent Task WakeOnLan v2.0
          .- FusionInventory Agent Distribution Network v1.0.2
             .- FusionInventory Agent Task NetInventory v2.2.0
             .- FusionInventory Agent Task NetDiscovery v2.2.0
 
+            Note than, nowadays, FusionInventory Agent 2.3.x is still in
+            development (main branch).
 
    This is the current directory tree of the project.
 
@@ -134,7 +136,7 @@ Current state
 download Strawberry Perl Portable Edition v5.16.2.2 (Feb 2013) for x64 and
 x86 architectures, update and install all the Perl modules dependencies for
 the previous FusionInventory Agent packages, and download them. Please, read
-the file './Perl/Scripts/readme.txt' for more information about these scripts.
+the file './Perl/Scripts/Readme.txt' for more information about these scripts.
 
 
 How to generate the installers
@@ -199,8 +201,8 @@ example, continuing the previous one, using tar.
    > cd Perl\Scripts
    > .\install-gnu-utilities-collection.bat
    > .\install-strawberry-perl-package-for-fusioninventory-agent.bat
-   > .\install-fusioninventory-agent-and-tasks.bat
-   > .\patch-fusioninventory-agent-and-tasks.bat
+   > .\install-fusioninventory-agent.bat
+   > .\patch-fusioninventory-agent.bat
    > cd ..\..\NSIS
    > .\FusionInventory-Agent.bat
 
@@ -213,8 +215,8 @@ example, continuing the previous one, using tar.
    $ chmod 0744 NSIS/*.sh Perl/Scripts/*.sh
    $ cd Perl/Scripts
    $ ./install-strawberry-perl-package-for-fusioninventory-agent.sh
-   $ ./install-fusioninventory-agent-and-tasks.sh
-   $ ./patch-fusioninventory-agent-and-tasks.sh
+   $ ./install-fusioninventory-agent.sh
+   $ ./patch-fusioninventory-agent.sh
    $ cd ../../NSIS
    $ ./FusionInventory-Agent.sh
 
@@ -277,61 +279,44 @@ upgrade it. These are the steps you should carry out.
       Portable Edition Package for FusionInventory Agent.
 
 
-How to upgrade the agent and its tasks
---------------------------------------
+How to upgrade the agent
+------------------------
    Let's look at an example.
 
-   Suppose you know there are new stable releases for FusionInventory-Agent
-and FusionInventory-Agent-Task-Deploy. You have the builder ready to build the
-installers with FusionInventory-Agent v2.2.5, FusionInventory-Agent-Task-Deploy
-v2.0.2, FusionInventory-Agent-Task-ESX v2.2.0 and FusionInventory-Agent-Task-
--Network v1.0.1 so you want to change it to get the installers with the last
-releases.
+   Suppose you know there are new stable release for FusionInventory-Agent.
+You have the builder ready to build the installers with FusionInventory-Agent
+v2.3.0 (it is also an assumption) so you want to change it to get the
+installers with the last releases.
 
-   In GitHub you can find all releases of FusionInventory-Agent and its tasks.
-In https://github.com/fusinv are registered most of the projects of
-FusionInventory but here we are only interested in four of them. They are,
-with their URLs, the following
+   In GitHub you can find all releases of FusionInventory-Agent. In
+https://github.com/fusinv are registered most of the projects of
+FusionInventory but here we are only interested in one of them. It is,
+with its URL, the following
 
       FusionInventory-Agent
          https://github.com/fusinv/fusioninventory-agent
 
-      FusionInventory-Agent-Task-Deploy
-         https://github.com/fusinv/fusioninventory-agent-task-deploy
-
-      FusionInventory-Agent-Task-ESX
-         https://github.com/fusinv/fusioninventory-agent-task-esx
-
-      and FusionInventory-Agent-Task-Network
-         https://github.com/fusinv/fusioninventory-agent-task-network
-
    You can see the tag (or release) names, the branch names or the commit names
-of these project the same way you see them of this one. For more information,
+of this project the same way you see them of this one. For more information,
 see section 'How to generate the installers' above.
 
-   By taking a look at https://github.com/fusinv/fusioninventory-agent/tags and
-https://github.com/fusinv/fusioninventory-agent-task-deploy/tags you see those
-new releases are v2.2.6 and v2.0.3 respectively (it is true in the time I am
-writing this; Oct 23, 2012). These are the changes you should to carry out.
+   By taking a look at https://github.com/fusinv/fusioninventory-agent/tags you
+see that new release is v2.3.1 (it is also an assumption). These are the
+changes you should to carry out.
 
    Edit the './Perl/Scripts/load-perl-environment' file and change the value of
-variables 'fusinv_agent_commit' and 'fusinv_task_deploy_commit' to '2.2.6' and
-'2.0.3' respectively. The other variables (fusinv_agent_mod_name, fusinv_agent-
-_repository, fusinv_task_deploy_name and fusinv_task_deploy_repository) should
-maintain its values, unless there are changes in GitHub.
+variable 'fusinv_agent_commit' to '2.3.1'. The other variables
+(fusinv_agent_mod_name and fusinv_agent_repository) should maintain its values,
+unless there are changes in GitHub.
 
-      -declare +r fusinv_agent_commit='2.2.5'
-      +declare +r fusinv_agent_commit='2.2.6'
-         ...
-      -declare +r fusinv_task_deploy_commit='2.0.2'
-      +declare +r fusinv_task_deploy_commit='2.0.3'
+      -declare +r fusinv_agent_commit='2.3.0'
+      +declare +r fusinv_agent_commit='2.3.1'
 
-            Note that, in these cases, '2.2.6' and '2.0.3' are 'tags' in Git
-            terminology; that is, in our case, stable releases. A tag makes
-            reference, in last term, to a commit, therefore the name of the
-            variable.
+            Note that, in these cases, '2.3.1' is a 'tag' in Git terminology;
+            that is, in our case, stable releases. A tag makes reference, in
+            last term, to a commit, therefore the name of the variable.
 
-   An important thing to take into account is that, probably, these new releases
+   An important thing to take into account is that, probably, this new release
 require new, or simply different, Perl modules. Whether it is so, you should
 build a new Strawberry Perl Portable Edition Package for FusionInventory Agent.
 But before to do that, you should carry out two actions; a) to increase the
@@ -345,19 +330,17 @@ Perl modules.
       +declare -r strawberry_pepfia_build_id='2'
 
             Note that the variable 'strawberry_pepfia_branch' is not necessary
-            to change it in this case since the branch 2.2.x match with the
-            branch of FusionInventory-Agent release 2.2.6.
+            to change it in this case since the branch 2.3.x match with the
+            branch of FusionInventory-Agent release 2.3.1.
 
             Remember that you should reset 'strawberry_pepfia_build_id' to '1'
             whether you upgrade the Strawberry Perl distribution.
 
    The second one is, most of the times, more tedious. You should check whether
-there is new requirements or recommendations comparing the files 'Makefile.PL'
-of each FusionInventory-Agent package you want to update. Then, whether there
+there is new requirements or recommendations comparing the file 'Makefile.PL'
+of the FusionInventory-Agent package you want to update. Then, whether there
 are changes, you must update the respective variable 'fusinv_agent_mod_depen-
-dences', 'fusinv_task_deploy_mod_dependences', 'fusinv_task_esx_mod_dependences'
-or 'fusinv_task_network_mod_dependences' of './Perl/Scripts/load-perl-environ-
-ment' file to reflect these changes.
+dences' of './Perl/Scripts/load-perl-environment' file to reflect these changes.
 
       Remember that, probably, you also need to update these variables whether
       you have upgraded the Strawberry Perl distribution.
@@ -365,40 +348,38 @@ ment' file to reflect these changes.
    Let's look at an example for FusionInventory-Agent.
 
    In https://github.com/fusinv/fusioninventory-agent/tags you can see all
-stable releases of FusionInventory-Agent. In that, below '2.2.6.zip - 2.2.6 re-
-lease' appears the sequence '6f67b7d73c'; the short form for its SHA1 commit.
-Do click on it, and after, do click on 'Browse code' (up and right). In the list
-of files that appears, do click on file 'Makefile.PL' and write down the list
-of required and recommended Perl modules (those lines started by 'requires ...'
-and 'recommends ...', but not those lines started by 'text_requires ...')
-commons to all operative systems and those specific for Microsoft Windows (those
-lines under the condition '($OSNAME eq 'MSWin32')'). This list of Perl modules
-should be the new value of the variable 'fusinv_agent_mod_dependences'. Like
-this list is different of that for 2.2.5 release (repeat the previous process
-for '2.2.5.zip - 2.2.5 release') you need change the value of the variable
+stable releases of FusionInventory-Agent. In that, below '2.3.1.zip - 2.3.1 re-
+lease' appears the sequence '6f67b7d6f6' (it is an assumption); the short form
+for its SHA1 commit.  Do click on it, and after, do click on 'Browse code'
+(up and right). In the list of files that appears, do click on file
+'Makefile.PL' and write down the list of required and recommended Perl modules
+(those lines started by 'requires ...' and 'recommends ...', but not those
+lines started by 'text_requires ...') commons to all operative systems and
+those specific for Microsoft Windows (those lines under the condition
+'($OSNAME eq 'MSWin32')'). This list of Perl modules should be the new value
+of the variable 'fusinv_agent_mod_dependences'. Like this list is different of
+that for 2.3.0 release (repeat the previous process for '2.3.0.zip - 2.3.0
+release') you need change the value of the variable
 'fusinv_agent_mod_dependences'.
 
-      -declare -r fusion_agent_mod_dependences='Compress::Zlib Digest::MD5
-       File::Which HTTP::Daemon IO::Socket::SSL LWP LWP::Protocol::https
-       Net::IP Text::Template UNIVERSAL::require Win32::Daemon Win32::Job
-       Win32::OLE Win32::TieRegistry XML::TreePP'
-      +declare -r fusinv_agent_mod_dependences='Compress::Zlib File::Which
-       HTTP::Daemon IO::Socket::SSL LWP LWP::Protocol::https Net::IP
-       Text::Template UNIVERSAL::require Win32::Daemon Win32::Job Win32::OLE
+      -declare -r fusion_agent_mod_dependences='Archive::Extract Crypt::DES
+       Compress::Zlib Digest::MD5 Digest::SHA File::Copy::Recursive
+       File::Which HTTP::Daemon IO::Socket::SSL JSON LWP LWP::Protocol::https
+       Net::IP Net::NBName Net::SNMP Parse::EDID POE::Component::Client::Ping
+       Socket::GetAddrInfo Text::Template UNIVERSAL::require URI::Escape
+       Win32::Daemon Win32::Job Win32::OLE Win32::TieRegistry XML::TreePP'
+      +declare -r fusion_agent_mod_dependences='Archive::Extract Crypt::DES
+       Compress::Zlib Digest::MD5 Digest::SHA File::Copy::Recursive
+       File::Which HTTP::Daemon IO::Socket::SSL JSON LWP LWP::Protocol::https
+       Net::IP Net::NBName Net::SNMP Net::Write::Layer2 Parse::EDID
+       POE::Component::Client::Ping Socket::GetAddrInfo Text::Template
+       UNIVERSAL::require URI::Escape Win32::Daemon Win32::Job Win32::OLE
        Win32::TieRegistry XML::TreePP'
 
             Note that they are only two lines.
 
-   In the case of FusionInventory-Agent-Task-Deploy v2.0.3 the list of the
-required and recommended Perl modules are the same that for v2.0.2, so there
-is not needed any additional change.
-
    As the list of modules for FusionInventory-Agent has changed, it is necessary
 to generate a new Strawberry Perl Portable Edition Package.
-
-            Note that this is a strange case and that is not totally necessary
-            because the Digest:MD5 Perl module is integrated into Strawberry
-            Perl Portable Edition since its version v5.12.1.
 
    You should start with a clean Strawberry Perl distribution too, so the
 recommended steps are:
@@ -439,9 +420,8 @@ have to do the following:
       FIA_RELEASE
       FIA_TASK_DEPLOY_RELEASE
       FIA_TASK_ESX_RELEASE
-      FIA_TASK_NETWORK_RELEASE
-
       FIA_TASK_INVENTORY_RELEASE
+      FIA_TASK_NETWORK_RELEASE
       FIA_TASK_NETDISCOVERY_RELEASE
       FIA_TASK_NETINVENTORY_RELEASE
       FIA_TASK_WAKEONLAN_RELEASE
@@ -453,13 +433,16 @@ have to do the following:
 
    They are at the beginning of the file. Following the example,
 
-   -!define FIA_RELEASE "2.2.5"
-   -!define FIA_TASK_DEPLOY_RELEASE "2.0.2"
-   +!define FIA_RELEASE "2.2.6"
-   +!define FIA_TASK_DEPLOY_RELEASE "2.0.3"
+   -!define FIA_RELEASE "2.3.0"
+   +!define FIA_RELEASE "2.3.1"
 
-   -!define PRODUCT_VERSION_RELEASE "5"
-   +!define PRODUCT_VERSION_RELEASE "6"
+   -!define PRODUCT_VERSION_RELEASE "0"
+   +!define PRODUCT_VERSION_RELEASE "1"
+
+            Note that you can find out these release numbers searching the
+            'VERSION' variable inside './Perl/Strawerry/<arch>/cpan/sources/
+            /FusionInventory-Agent-<fusinv_agent_commit>/lib/FusionInventory/
+            /Agent/Task/*.pm' files.
 
    With the new Strawberry Perl Portable Edition Package for FusionInventory
 Agent ready, and these last changes, you can continue as it were a normal
@@ -470,12 +453,10 @@ How to know whether is needed to build a new Strawberry Perl Portable Edition
 Package for FusionInventory Agent
 -----------------------------------------------------------------------------
    Basically you should check whether there is new requirements or recommen-
-dations comparing the files 'Makefile.PL' of each FusionInventory-Agent
-package you want to update. Then, whether there are changes, you must update
-the respective variable 'fusinv_agent_mod_dependences', 'fusinv_task_deploy_-
-mod_dependences', 'fusinv_task_esx_mod_dependences' or 'fusinv_task_network_-
-mod_dependences' of './Perl/Scripts/load-perl-environment' file to reflect
-these changes.
+dations comparing the file 'Makefile.PL' of the FusionInventory-Agent package
+you want to update. Then, whether there are changes, you must update the
+variable 'fusinv_agent_mod_dependences' of './Perl/Scripts/load-perl-environment'
+file to reflect these changes.
 
    Probably you also will need to build a new Strawberry Perl Portable Edition
 Package for FusionInventory Agent whether you have upgraded the Strawberry
@@ -490,32 +471,37 @@ How to build the installers for a development version of FusionInventory-Agent
 and its tasks'. Then you chose a new stable release and, in this case, you
 choose a branch name or a commit name.
 
-   Let's look at an example about how to build the installers for the,
-nowadays, development branch '2.3.x' supposing you have the builder ready to
-build the installers with FusionInventory-Agent v2.2.6, FusionInventory-Agent-
--Task-Deploy v2.0.3, FusionInventory-Agent-Task-ESX v2.2.0 and FusionInventory-
--Agent-Task-Network v1.0.1.
+   Let's look at an example about how to build the installers for the
+development branch 'master' related with the 2.4.x series (it is an assumption)
+supposing you have the builder ready to build the installer for
+FusionInventory-Agent v2.3.1.
 
    Edit the './Perl/Scripts/load-perl-environment' file and carry out these
 changes.
 
-      -declare -r strawberry_pepfia_branch='2.2.x'
-      +declare -r strawberry_pepfia_branch='2.3.x'
+      -declare -r strawberry_pepfia_branch='2.3.x'
+      +declare -r strawberry_pepfia_branch='2.4.x'
       -declare -r strawberry_pepfia_build_id='2'
       +declare -r strawberry_pepfia_build_id='1'
          ...
-      -declare +r fusinv_agent_commit='2.2.6'
-      +declare +r fusinv_agent_commit='2.3.x'
+      -declare +r fusinv_agent_commit='2.3.1'
+      +declare +r fusinv_agent_commit='master'
          ...
 
-      -declare -r fusinv_agent_mod_dependences='Compress::Zlib File::Which
-       HTTP::Daemon IO::Socket::SSL LWP LWP::Protocol::https Net::IP
-       Text::Template UNIVERSAL::require Win32::Daemon Win32::Job Win32::OLE
+      -declare -r fusion_agent_mod_dependences='Archive::Extract Crypt::DES
+       Compress::Zlib Digest::MD5 Digest::SHA File::Copy::Recursive
+       File::Which HTTP::Daemon IO::Socket::SSL JSON LWP LWP::Protocol::https
+       Net::IP Net::NBName Net::SNMP Net::Write::Layer2 Parse::EDID
+       POE::Component::Client::Ping Socket::GetAddrInfo Text::Template
+       UNIVERSAL::require URI::Escape Win32::Daemon Win32::Job Win32::OLE
        Win32::TieRegistry XML::TreePP'
-      +declare -r fusinv_agent_mod_dependences='Compress::Zlib File::Which
-       HTTP::Daemon IO::Socket::SSL LWP LWP::Protocol::https Net::IP
-       Parse::EDID Socket::GetAddrInfo Text::Template UNIVERSAL::require
-       Win32::Daemon Win32::Job Win32::OLE Win32::TieRegistry XML::TreePP'
+      +declare -r fusion_agent_mod_dependences='Archive::Extract Crypt::DES
+       Compress::Zlib Digest::MD5 Digest::SHA File::Copy::Recursive
+       File::Which HTTP::Daemon IO::Socket::SSL JSON LWP LWP::Protocol::https
+       Net::IP Net::NBName Net::SNMP Net::Write::Layer2 PAR::Parcker Parse::EDID
+       POE::Component::Client::Ping Socket::GetAddrInfo Text::Template
+       UNIVERSAL::require URI::Escape Win32::Daemon Win32::Job Win32::OLE
+       Win32::TieRegistry XML::TreePP'
 
    As the list of modules for FusionInventory-Agent has changed, it is necessary
 to generate a new Strawberry Perl Portable Edition Package.
@@ -546,9 +532,8 @@ Agent. This can be a local repository; you only have to change the
       FIA_RELEASE
       FIA_TASK_DEPLOY_RELEASE
       FIA_TASK_ESX_RELEASE
-      FIA_TASK_NETWORK_RELEASE
-
       FIA_TASK_INVENTORY_RELEASE
+      FIA_TASK_NETWORK_RELEASE
       FIA_TASK_NETDISCOVERY_RELEASE
       FIA_TASK_NETINVENTORY_RELEASE
       FIA_TASK_WAKEONLAN_RELEASE
@@ -560,12 +545,12 @@ Agent. This can be a local repository; you only have to change the
 
    They are at the beginning of the file. Following the example,
 
-   -!define FIA_RELEASE "2.2.6"
-   +!define FIA_RELEASE "2.3.x"
+   -!define FIA_RELEASE "2.3.1"
+   +!define FIA_RELEASE "master"
 
-   -!define PRODUCT_VERSION_MINOR "2"
-   -!define PRODUCT_VERSION_RELEASE "6"
-   +!define PRODUCT_VERSION_MINOR "3"
+   -!define PRODUCT_VERSION_MINOR "3"
+   -!define PRODUCT_VERSION_RELEASE "1"
+   +!define PRODUCT_VERSION_MINOR "4"
    +!define PRODUCT_VERSION_RELEASE "33835"
 
             Note that all PRODUCT_VERSION_* constants must have a numeric
@@ -577,31 +562,37 @@ Agent. This can be a local repository; you only have to change the
 Agent ready, and these last changes, you can continue as it were a normal
 build process. See 'How to generate the installers' above.
 
-   Nowadays branch '2.3.x' and commit 'f3f9382a18659d1ddd602ae04e816a1a4221c369'
-reflect the same state. The following example build the same installers but
-choosing the commit 'f3f9382a18659d1ddd602ae04e816a1a4221c369' instead of branch
-'2.3.x'.
+   The branch 'master' and commit 'f3f9382a18659d1fff602ae04e816a1a4221c369'
+(it is also an assumption) reflect the same state. The following example build
+the same installer but choosing the commit 'f3f9382a18659d1fff602ae04e816a1-
+a4221c369' instead of branch 'master'.
 
    Edit the './Perl/Scripts/load-perl-environment' file and carry out these
 changes.
 
-      -declare -r strawberry_pepfia_branch='2.2.x'
-      +declare -r strawberry_pepfia_branch='2.3.x'
+      -declare -r strawberry_pepfia_branch='2.3.x'
+      +declare -r strawberry_pepfia_branch='2.4.x'
       -declare -r strawberry_pepfia_build_id='2'
       +declare -r strawberry_pepfia_build_id='1'
          ...
-      -declare +r fusinv_agent_commit='2.2.6'
-      +declare +r fusinv_agent_commit='f3f9382a18659d1ddd602ae04e816a1a4221c369'
+      -declare +r fusinv_agent_commit='2.3.1'
+      +declare +r fusinv_agent_commit='f3f9382a18659d1fff602ae04e816a1a4221c369'
          ...
 
-      -declare -r fusinv_agent_mod_dependences='Compress::Zlib File::Which
-       HTTP::Daemon IO::Socket::SSL LWP LWP::Protocol::https Net::IP
-       Text::Template UNIVERSAL::require Win32::Daemon Win32::Job Win32::OLE
+      -declare -r fusion_agent_mod_dependences='Archive::Extract Crypt::DES
+       Compress::Zlib Digest::MD5 Digest::SHA File::Copy::Recursive
+       File::Which HTTP::Daemon IO::Socket::SSL JSON LWP LWP::Protocol::https
+       Net::IP Net::NBName Net::SNMP Net::Write::Layer2 Parse::EDID
+       POE::Component::Client::Ping Socket::GetAddrInfo Text::Template
+       UNIVERSAL::require URI::Escape Win32::Daemon Win32::Job Win32::OLE
        Win32::TieRegistry XML::TreePP'
-      +declare -r fusinv_agent_mod_dependences='Compress::Zlib File::Which
-       HTTP::Daemon IO::Socket::SSL LWP LWP::Protocol::https Net::IP
-       Parse::EDID Socket::GetAddrInfo Text::Template UNIVERSAL::require
-       Win32::Daemon Win32::Job Win32::OLE Win32::TieRegistry XML::TreePP'
+      +declare -r fusion_agent_mod_dependences='Archive::Extract Crypt::DES
+       Compress::Zlib Digest::MD5 Digest::SHA File::Copy::Recursive
+       File::Which HTTP::Daemon IO::Socket::SSL JSON LWP LWP::Protocol::https
+       Net::IP Net::NBName Net::SNMP Net::Write::Layer2 PAR::Parcker Parse::EDID
+       POE::Component::Client::Ping Socket::GetAddrInfo Text::Template
+       UNIVERSAL::require URI::Escape Win32::Daemon Win32::Job Win32::OLE
+       Win32::TieRegistry XML::TreePP'
 
             Note that the installer always works with short commit names. See
             variable 'maximum_commit_length' to know what this length is (by
@@ -612,12 +603,12 @@ changes.
 Edition Package. And like before, you should change the following constants
 of the file './NSIS/FusionInventory.nsi' to adapt them to their new values:
 
-   -!define FIA_RELEASE "2.2.6"
+   -!define FIA_RELEASE "2.3.1"
    +!define FIA_RELEASE "f3f9382a18"
 
-   -!define PRODUCT_VERSION_MINOR "2"
-   -!define PRODUCT_VERSION_RELEASE "6"
-   +!define PRODUCT_VERSION_MINOR "3"
+   -!define PRODUCT_VERSION_MINOR "3"
+   -!define PRODUCT_VERSION_RELEASE "1"
+   +!define PRODUCT_VERSION_MINOR "4"
    +!define PRODUCT_VERSION_RELEASE "33835"
 
    With the new Strawberry Perl Portable Edition Package for FusionInventory

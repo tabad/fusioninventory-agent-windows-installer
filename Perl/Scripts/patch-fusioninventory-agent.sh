@@ -29,7 +29,7 @@
 # ------------------------------------------------------------------------
 #
 # @package   FusionInventory Agent Installer for Microsoft Windows
-# @file      .\Perl\Scripts\patch-fusioninventory-agent-and-tasks.sh
+# @file      .\Perl\Scripts\patch-fusioninventory-agent.sh
 # @author    Tomas Abad
 # @copyright Copyright (c) 2010-2012 FusionInventory Team
 # @license   GNU GPL version 2 or (at your option) any later version
@@ -108,25 +108,23 @@ while (( ${iter} < ${#archs[@]} )); do
    # Get base_path
    eval base_path="${strawberry_arch_path}/cpan/sources/${fusinv_agent_mod_name}-${fusinv_agent_commit}"
 
-   # Check whether 'install-fusioninventory-agent-and-tasks.${script_suffix}' was launched
+   # Check whether 'install-fusioninventory-agent.${script_suffix}' was launched
    if [ ! -d "${base_path}" ]; then
       echo
-      echo "Sorry but it seems that you didn't install FusionInventory-Agent and its tasks"
-      echo "before. Please, install them with 'install-fusioninventory-agent-and-tasks.${script_suffix}'"
-      echo "and try again."
+      echo "Sorry but it seems that you didn't install FusionInventory-Agent before."
+      echo "Please, install it with 'install-fusioninventory-agent.${script_suffix}' and try again."
       echo
 
       break
    fi
 
    # Display task
-   echo -n "Patching FusionInventory-Agent and Tasks for Strawberry Perl ${strawberry_release} (${strawberry_version}-${arch_label}s)."
+   echo -n "Patching FusionInventory-Agent for Strawberry Perl ${strawberry_release} (${strawberry_version}-${arch_label}s)."
 
-   # Patches for FusionInventory-Agent
-   #   File ./fusioninventory-agent
-   if [ ! -f "${base_path}/fusioninventory-agent.org" ]; then
-      ${rsync} -a "${base_path}/fusioninventory-agent" \
-                  "${base_path}/fusioninventory-agent.org"
+   # Patches for file ${base_path}/bin/fusioninventory-agent
+   if [ ! -f "${base_path}/bin/fusioninventory-agent.org" ]; then
+      ${rsync} -a "${base_path}/bin/fusioninventory-agent" \
+                  "${base_path}/bin/fusioninventory-agent.org"
       echo -n "."
    fi
    ${sed} -i -e "s,\(use lib '\)./lib\(';\),\1../agent\2,"          \
@@ -135,82 +133,107 @@ while (( ${iter} < ${#archs[@]} )); do
              -e "s,\(libdir  => '\)./lib\('\,\),\1../agent\2,"      \
              -e "s,\(vardir  => '\)./var\('\,\),\1../../var\2,"     \
              -e "s,\(PREFIX/\)etc\(/agent.cfg.\),\1../../etc\2,"    \
-             "${base_path}/fusioninventory-agent"
+             "${base_path}/bin/fusioninventory-agent"
    echo -n "."
-   (cd "${base_path}";                      \
+   (cd "${base_path}/bin";                  \
     ${diff} -u "fusioninventory-agent.org"  \
                "fusioninventory-agent"  > "fusioninventory-agent.patch")
    echo -n "."
 
-   #   File ./fusioninventory-win32-service
-   if [ ! -f "${base_path}/fusioninventory-win32-service.org" ]; then
-      ${rsync} -a "${base_path}/fusioninventory-win32-service" \
-                  "${base_path}/fusioninventory-win32-service.org"
+   # Patches for file ${base_path}/bin/fusioninventory-esx
+   if [ ! -f "${base_path}/bin/fusioninventory-esx.org" ]; then
+      ${rsync} -a "${base_path}/bin/fusioninventory-esx" \
+                  "${base_path}/bin/fusioninventory-esx.org"
+      echo -n "."
+   fi
+   ${sed} -i -e "s,\(use lib '\)./lib\(';\),\1../agent\2," \
+             "${base_path}/bin/fusioninventory-esx"
+   echo -n "."
+   (cd "${base_path}/bin";               \
+    ${diff} -u "fusioninventory-esx.org" \
+               "fusioninventory-esx"  > "fusioninventory-esx.patch")
+   echo -n "."
+
+   # Patches for file ${base_path}/bin/fusioninventory-inventory
+   if [ ! -f "${base_path}/bin/fusioninventory-inventory.org" ]; then
+      ${rsync} -a "${base_path}/bin/fusioninventory-inventory" \
+                  "${base_path}/bin/fusioninventory-inventory.org"
+      echo -n "."
+   fi
+   ${sed} -i -e "s,\(use lib '\)./lib\(';\),\1../agent\2,"          \
+             -e "s,\(confdir => '\)./etc\('\,\),\1../../etc\2,"     \
+             -e "s,\(datadir => '\)./share\('\,\),\1../../share\2," \
+             -e "s,\(libdir  => '\)./lib\('\,\),\1../agent\2,"      \
+             -e "s,\(vardir  => '\)./var\('\,\),\1../../var\2,"     \
+             -e "s,\(PREFIX/\)etc\(/agent.cfg.\),\1../../etc\2,"    \
+             "${base_path}/bin/fusioninventory-inventory"
+   echo -n "."
+   (cd "${base_path}/bin";                      \
+    ${diff} -u "fusioninventory-inventory.org"  \
+               "fusioninventory-inventory"  > "fusioninventory-inventory.patch")
+   echo -n "."
+
+   # Patches for file ${base_path}/bin/fusioninventory-netdiscovery
+   if [ ! -f "${base_path}/bin/fusioninventory-netdiscovery.org" ]; then
+      ${rsync} -a "${base_path}/bin/fusioninventory-netdiscovery" \
+                  "${base_path}/bin/fusioninventory-netdiscovery.org"
+      echo -n "."
+   fi
+   ${sed} -i -e "s,\(use lib '\)./lib\(';\),\1../agent\2," \
+             "${base_path}/bin/fusioninventory-netdiscovery"
+   echo -n "."
+   (cd "${base_path}/bin";                        \
+    ${diff} -u "fusioninventory-netdiscovery.org" \
+               "fusioninventory-netdiscovery"  > "fusioninventory-netdiscovery.patch")
+   echo -n "."
+
+   # Patches for file ${base_path}/bin/fusioninventory-netinventory
+   if [ ! -f "${base_path}/bin/fusioninventory-netinventory.org" ]; then
+      ${rsync} -a "${base_path}/bin/fusioninventory-netinventory" \
+                  "${base_path}/bin/fusioninventory-netinventory.org"
+      echo -n "."
+   fi
+   ${sed} -i -e "s,\(use lib '\)./lib\(';\),\1../agent\2," \
+             "${base_path}/bin/fusioninventory-netinventory"
+   echo -n "."
+   (cd "${base_path}/bin";                        \
+    ${diff} -u "fusioninventory-netinventory.org" \
+               "fusioninventory-netinventory"  > "fusioninventory-netinventory.patch")
+   echo -n "."
+
+   # Patches for file ${base_path}/bin/fusioninventory-wakeonlan
+   if [ ! -f "${base_path}/bin/fusioninventory-wakeonlan.org" ]; then
+      ${rsync} -a "${base_path}/bin/fusioninventory-wakeonlan" \
+                  "${base_path}/bin/fusioninventory-wakeonlan.org"
+      echo -n "."
+   fi
+   ${sed} -i -e "s,\(use lib '\)./lib\(';\),\1../agent\2," \
+             "${base_path}/bin/fusioninventory-wakeonlan"
+   echo -n "."
+   (cd "${base_path}/bin";                     \
+    ${diff} -u "fusioninventory-wakeonlan.org" \
+               "fusioninventory-wakeonlan"  > "fusioninventory-wakeonlan.patch")
+   echo -n "."
+
+   # Patches for file ${base_path}/bin/fusioninventory-win32-service
+   if [ ! -f "${base_path}/bin/fusioninventory-win32-service.org" ]; then
+      ${rsync} -a "${base_path}/bin/fusioninventory-win32-service" \
+                  "${base_path}/bin/fusioninventory-win32-service.org"
       echo -n "."
    fi
    ${sed} -i -e "s,\(use lib '\)./lib\(';\),\1../agent\2,"                                          \
              -e "s,\(confdir => \$directory . '\)/../../etc/fusioninventory\('\,\),\1/../../etc\2," \
              -e "s,\(libdir  => \$directory . '\)/../../lib\('\,\),\1/../agent\2,"                  \
-             "${base_path}/fusioninventory-win32-service"
+             "${base_path}/bin/fusioninventory-win32-service"
    echo -n "."
-   (cd "${base_path}";                      \
+   (cd "${base_path}/bin";                          \
     ${diff} -u "fusioninventory-win32-service.org"  \
                "fusioninventory-win32-service"  > "fusioninventory-win32-service.patch")
-   echo -n "."
-
-   # Patches for FusionInventory-Agent Task Deploy
-   #eval base_path="${strawberry_arch_path}/cpan/sources/${fusinv_task_deploy_mod_name}-${fusinv_task_deploy_commit}"
-   #   There are not files to patch
-
-   # Patches for FusionInventory-Agent Task ESX
-   eval base_path="${strawberry_arch_path}/cpan/sources/${fusinv_task_esx_mod_name}-${fusinv_task_esx_commit}"
-   #   File ./fusioninventory-esx
-   if [ ! -f "${base_path}/fusioninventory-esx.org" ]; then
-      ${rsync} -a "${base_path}/fusioninventory-esx" \
-                  "${base_path}/fusioninventory-esx.org"
-      echo -n "."
-   fi
-   ${sed} -i -e "s,\(use lib '\)./lib\(';\),\1../agent\2," \
-             "${base_path}/fusioninventory-esx"
-   echo -n "."
-   (cd "${base_path}";                   \
-    ${diff} -u "fusioninventory-esx.org" \
-               "fusioninventory-esx"  > "fusioninventory-esx.patch")
-   echo -n "."
-
-   # Patches for FusionInventory-Agent Task Network
-   eval base_path="${strawberry_arch_path}/cpan/sources/${fusinv_task_network_mod_name}-${fusinv_task_network_commit}"
-   #   File ./fusioninventory-netdiscovery
-   if [ ! -f "${base_path}/fusioninventory-netdiscovery.org" ]; then
-      ${rsync} -a "${base_path}/fusioninventory-netdiscovery" \
-                  "${base_path}/fusioninventory-netdiscovery.org"
-      echo -n "."
-   fi
-   ${sed} -i -e "s,\(use lib '\)./lib\(';\),\1../agent\2," \
-             "${base_path}/fusioninventory-netdiscovery"
-   echo -n "."
-   (cd "${base_path}";                   \
-    ${diff} -u "fusioninventory-netdiscovery.org" \
-               "fusioninventory-netdiscovery"  > "fusioninventory-netdiscovery.patch")
-   echo -n "."
-
-   #   File ./fusioninventory-netinventory
-   if [ ! -f "${base_path}/fusioninventory-netinventory.org" ]; then
-      ${rsync} -a "${base_path}/fusioninventory-netinventory" \
-                  "${base_path}/fusioninventory-netinventory.org"
-      echo -n "."
-   fi
-   ${sed} -i -e "s,\(use lib '\)./lib\(';\),\1../agent\2," \
-             "${base_path}/fusioninventory-netinventory"
-   echo -n "."
-   (cd "${base_path}";                   \
-    ${diff} -u "fusioninventory-netinventory.org" \
-               "fusioninventory-netinventory"  > "fusioninventory-netinventory.patch")
    echo ".Done!"
 
    # Show files patched
    echo "List of patch files..."
-   (eval cd "${strawberry_arch_path}/cpan/sources"; ${find} . -type f -name '*.patch')
+   (cd "${base_path}"; ${find} . -type f -name '*.patch')
 
    # New architecture
    iter=$(( ${iter} + 1 ))

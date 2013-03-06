@@ -29,7 +29,7 @@
 # ------------------------------------------------------------------------
 #
 # @package   FusionInventory Agent Installer for Microsoft Windows
-# @file      .\Perl\Scripts\install-perl-modules-and-dependencies.sh
+# @file      .\Perl\Scripts\uninstall-fusioninventory-agent.sh
 # @author    Tomas Abad
 # @copyright Copyright (c) 2010-2012 FusionInventory Team
 # @license   GNU GPL version 2 or (at your option) any later version
@@ -44,18 +44,10 @@
 # Load perl environment
 source ./load-perl-environment
 
-declare perl=''
-declare cpanm=''
-declare perl_path=''
-
 declare -i iter=0
 declare basename=''
-declare fusinv_mod_dependences=''
 
 declare -r rm=$(type -P rm)
-declare -r sort=$(type -P sort)
-declare -r tr=$(type -P tr)
-declare -r uniq=$(type -P uniq)
 
 # Check the OS
 if [ "${MSYSTEM}" = "MSYS" ]; then
@@ -63,22 +55,8 @@ if [ "${MSYSTEM}" = "MSYS" ]; then
 
    basename="${0##*\\}"
 
-   # Set terminal
-   TERM=dumb
-
-   # Avoid collisions with other perl stuff on your system
-   unset PERL_JSON_BACKEND
-   unset PERL_YAML_BACKEND
-   unset PERL5LIB
-   unset PERL5OPT
-   unset PERL_MM_OPT
-   unset PERL_MB_OPT
-
-   # Avoid that Strawberry Perl Nov 2012 Portable Edition (5.16.2.1-32/64bits)
-   # save cpanm temporary files in $HOME/.cpanm directory instead of in
-   # $INSTALLDIR/data/.cpanm directory like Strawberry Perl Aug 2012 Portable
-   # Edition (5.16.1.1-32/64bits) did.
-   unset HOME
+   # No operation
+   echo > /dev/null
 else
    if [ -n "${WINDIR}" ]; then
       # It's a Windows OS
@@ -96,12 +74,6 @@ else
    # It's a UNIX OS.
 
    basename="${0##*/}"
-
-   echo
-   echo "You should launch '${basename}' only from a Microsoft Windows OS."
-   echo
-
-   exit 2
 fi
 
 # Check whether Strawberry Perl ${strawberry_path} is already installed
@@ -111,42 +83,20 @@ if [ ! -d "${strawberry_path}" ]; then
    echo "is not installed into the '${strawberry_path}' directory."
    echo "Please, install it with 'install-strawberry-perl.bat' and try again."
    echo
-   exit 3
+
+   exit 2
 fi
 
-# Select perl modules to install
-fusinv_mod_dependences="$(echo ${fusinv_agent_mod_dependences} | \
-                        ${tr} '[:space:]' '\n'                 | \
-                        ${sort} -i                             | \
-                        ${uniq}                                | \
-                        ${tr} '\n' ' ')"
-fusinv_mod_dependences="${fusinv_mod_dependences% *}"
-
-# Installation loop
+# Uninstallation loop
 while (( ${iter} < ${#archs[@]} )); do
    # Set arch and arch_label
    arch=${archs[${iter}]}
    arch_label=${arch_labels[${iter}]}
 
-   # Add perl_path to PATH
-   eval perl_path="$(pwd)/${strawberry_arch_path}/perl/site/bin:"
-   eval perl_path="${perl_path}$(pwd)/${strawberry_arch_path}/perl/bin:"
-   eval perl_path="${perl_path}$(pwd)/${strawberry_arch_path}/c/bin:"
-   PATH="${perl_path}${PATH}"
-
-   # Set perl and cpanm
-   perl=$(type -P perl)
-   cpanm=$(type -P cpanm)
-
-   # Remove temporary cpanm files
-   eval ${rm} -rf "$(pwd)/${strawberry_arch_path}/data/.cpanm" > /dev/null 2>&1
-
-   # Install modules
-   echo "Installing Strawberry Perl ${strawberry_release} (${strawberry_version}-${arch_label}s) modules..."
-   ${perl} ${cpanm} --install --auto-cleanup 1 --skip-installed --notest --quiet ${fusinv_mod_dependences}
-
-   # Remove perl_path from PATH
-   PATH="${PATH/${perl_path}/}"
+   # Uninstall FusionInventory-Agent
+   echo -n "Uninstalling from Strawberry Perl ${strawberry_release} (${strawberry_version}-${arch_label}s)."
+   eval ${rm} -rf "${strawberry_arch_path}/cpan/sources/${fusinv_agent_mod_name}-${fusinv_agent_commit}" > /dev/null 2>&1
+   echo ".Done!"
 
    # New architecture
    iter=$(( ${iter} + 1 ))

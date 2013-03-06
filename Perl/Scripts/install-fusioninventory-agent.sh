@@ -29,7 +29,7 @@
 # ------------------------------------------------------------------------
 #
 # @package   FusionInventory Agent Installer for Microsoft Windows
-# @file      .\Perl\Scripts\uninstall-fusioninventory-agent-and-tasks.sh
+# @file      .\Perl\Scripts\install-fusioninventory-agent.sh
 # @author    Tomas Abad
 # @copyright Copyright (c) 2010-2012 FusionInventory Team
 # @license   GNU GPL version 2 or (at your option) any later version
@@ -46,17 +46,24 @@ source ./load-perl-environment
 
 declare -i iter=0
 declare basename=''
+declare proxy_file=''
+declare script_suffix=''
 
+declare fusinv_agent_url=''
+declare fusinv_agent_filename=''
+
+declare -r curl=$(type -P curl)
+declare -r install=$(type -P install)
 declare -r rm=$(type -P rm)
+declare -r tar=$(type -P tar)
 
 # Check the OS
 if [ "${MSYSTEM}" = "MSYS" ]; then
    # Windows OS with MinGW/MSYS
 
    basename="${0##*\\}"
-
-   # No operation
-   echo > /dev/null
+   proxy_file='load-proxy-environment.bat'
+   script_suffix='bat'
 else
    if [ -n "${WINDIR}" ]; then
       # It's a Windows OS
@@ -74,6 +81,11 @@ else
    # It's a UNIX OS.
 
    basename="${0##*/}"
+   proxy_file='load-proxy-environment'
+   script_suffix='sh'
+
+   # Load proxy environment
+   source ./load-proxy-environment
 fi
 
 # Check whether Strawberry Perl ${strawberry_path} is already installed
@@ -81,25 +93,69 @@ if [ ! -d "${strawberry_path}" ]; then
    echo
    echo "Sorry but it seems that Strawberry Perl ${strawberry_release} (${strawberry_version}-32/64bits)"
    echo "is not installed into the '${strawberry_path}' directory."
-   echo "Please, install it with 'install-strawberry-perl.bat' and try again."
+   echo "Please, install it with 'install-strawberry-perl.${script_suffix}' and try again."
    echo
 
    exit 2
 fi
 
-# Uninstallation loop
+# Set file names and URLs
+fusinv_agent_url="${fusinv_agent_repository%.git}/tarball/${fusinv_agent_commit}"
+fusinv_agent_filename="${fusinv_agent_mod_name}-${fusinv_agent_commit}.tar.gz"
+
+# Download FusionInventory-Agent
+echo -n "Downloading FusionInventory-Agent."
+
+# Download FusionInventory-Agent
+${curl} --silent --location --max-redirs 6 --output "/tmp/${fusinv_agent_filename}" \
+   "${fusinv_agent_url}" > /dev/null 2>&1
+
+# Check download operation
+if [ -f "/tmp/${fusinv_agent_filename}" ]; then
+   echo ".Done!"
+else
+   echo "Failure!"
+   echo
+   echo "There has been an error downloading '${fusinv_agent_url}'."
+   echo
+   echo "Whether you are behind a proxy system, please, edit file"
+   echo "'${proxy_file}', follow its instructions and try again."
+   echo
+
+   exit 3
+fi
+
+# Installation loop
 while (( ${iter} < ${#archs[@]} )); do
    # Set arch and arch_label
    arch=${archs[${iter}]}
    arch_label=${arch_labels[${iter}]}
 
-   # Uninstall modules
-   echo -n "Uninstalling from Strawberry Perl ${strawberry_release} (${strawberry_version}-${arch_label}s)."
-   eval ${rm} -rf "${strawberry_arch_path}/cpan/sources/FusionInventory-Agent-*" > /dev/null 2>&1
-   echo ".Done!"
+   # Delete FusionInventory-Agent
+   eval ${rm} -rf "${strawberry_arch_path}/cpan/sources/${fusinv_agent_mod_name}-${fusinv_agent_commit}" > /dev/null 2>&1
+
+   # Install FusionInventory-Agent
+   echo -n "Installing into Strawberry Perl ${strawberry_release} (${strawberry_version}-${arch_label}s)."
+   eval ${install} --mode 0775 --directory "${strawberry_arch_path}/cpan/sources/${fusinv_agent_filename%.tar.gz}"
+   eval ${tar} -C "${strawberry_arch_path}/cpan/sources/${fusinv_agent_filename%.tar.gz}" \
+      --strip-components 1 -xf "/tmp/${fusinv_agent_filename}" > /dev/null 2>&1
+   if (( $? == 0 )); then
+      echo ".Done!"
+   else
+      echo "Failure!"
+      echo
+      echo "There has been an error unpacking '${fusinv_agent_filename}'."
+      echo
+      echo -n "Perhaps the URL '${fusinv_agent_url}' is incorrect. "
+      echo -n "Please, check the variables 'fusinv_agent_repository' and 'fusinv_agent_commit' "
+      echo "in the 'load-perl-environment' file, and try again."
+   fi
 
    # New architecture
    iter=$(( ${iter} + 1 ))
 done
+
+# Delete previous downloads
+${rm} -f "/tmp/${fusinv_agent_filename}" > /dev/null 2>&1
 
 echo

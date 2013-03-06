@@ -250,6 +250,18 @@ Function InstallFusionInventoryAgent
    CreateDirectory "$R0\etc"
    CreateDirectory "$R0\perl"
    CreateDirectory "$R0\perl\agent"
+   CreateDirectory "$R0\perl\agent\FusionInventory"
+   CreateDirectory "$R0\perl\agent\FusionInventory\Agent"
+   CreateDirectory "$R0\perl\agent\FusionInventory\Agent\HTTP"
+   CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Logger"
+   CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Manufacturer"
+   CreateDirectory "$R0\perl\agent\FusionInventory\Agent\SNMP"
+   CreateDirectory "$R0\perl\agent\FusionInventory\Agent\SOAP"
+   CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Target"
+   CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Task"
+   CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Task\Inventory"
+   CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Tools"
+   CreateDirectory "$R0\perl\agent\FusionInventory\Agent\XML"
    CreateDirectory "$R0\perl\bin"
    CreateDirectory "$R0\share"
    CreateDirectory "$R0\var"
@@ -259,6 +271,22 @@ Function InstallFusionInventoryAgent
    ${FileWriteLine} $R1 "@echo off"
    ${FileWriteLine} $R1 "cd perl/bin"
    ${FileWriteLine} $R1 "perl fusioninventory-agent %*"
+   ${FileWriteLine} $R1 "cd ../.."
+   FileClose $R1
+
+   ; Create $R0\fusioninventory-injector.bat
+   FileOpen $R1 "$R0\fusioninventory-injector.bat" w
+   ${FileWriteLine} $R1 "@echo off"
+   ${FileWriteLine} $R1 "cd perl/bin"
+   ${FileWriteLine} $R1 "perl fusioninventory-injector %*"
+   ${FileWriteLine} $R1 "cd ../.."
+   FileClose $R1
+
+   ; Create $R0\fusioninventory-inventory.bat
+   FileOpen $R1 "$R0\fusioninventory-inventory.bat" w
+   ${FileWriteLine} $R1 "@echo off"
+   ${FileWriteLine} $R1 "cd perl/bin"
+   ${FileWriteLine} $R1 "perl fusioninventory-inventory %*"
    ${FileWriteLine} $R1 "cd ../.."
    FileClose $R1
 
@@ -276,27 +304,76 @@ Function InstallFusionInventoryAgent
    SetOutPath "$R0\etc\"
    File /oname=agent.cfg.sample "${FIA_DIR}\etc\agent.cfg"
 
-   ; Install $R0\perl\agent\FusionInventory
-   SetOutPath "$R0\perl\agent\"
-   File /r /x "WakeOnLan.pm" "${FIA_DIR}\lib\FusionInventory"
+   ; Install $R0\perl\agent\FusionInventory\Agent.pm
+   SetOutPath "$R0\perl\agent\FusionInventory"
+   File "${FIA_DIR}\lib\FusionInventory\Agent.pm"
 
-   ; Install $R0\perl\bin\7z.{dll,exe}
+   ; Install $R0\perl\agent\FusionInventory\Agent\*.pm
+   SetOutPath "$R0\perl\agent\FusionInventory\Agent"
+   File "${FIA_DIR}\lib\FusionInventory\Agent\*.pm"
+
+   ; Install $R0\perl\agent\FusionInventory\Agent\HTTP\*.*
+   SetOutPath "$R0\perl\agent\FusionInventory\Agent\HTTP"
+   File /r "${FIA_DIR}\lib\FusionInventory\Agent\HTTP\*.*"
+
+   ; Install $R0\perl\agent\FusionInventory\Agent\Logger\*.*
+   SetOutPath "$R0\perl\agent\FusionInventory\Agent\Logger"
+   File /r "${FIA_DIR}\lib\FusionInventory\Agent\Logger\*.*"
+
+   ; Install $R0\perl\agent\FusionInventory\Agent\Manufacturer\*.*
+   SetOutPath "$R0\perl\agent\FusionInventory\Agent\Manufacturer"
+   File /r "${FIA_DIR}\lib\FusionInventory\Agent\Manufacturer\*.*"
+
+   ; Install $R0\perl\agent\FusionInventory\Agent\SNMP\*.*
+   SetOutPath "$R0\perl\agent\FusionInventory\Agent\SNMP"
+   File /r "${FIA_DIR}\lib\FusionInventory\Agent\SNMP\*.*"
+
+   ; Install $R0\perl\agent\FusionInventory\Agent\SOAP\*.*
+   SetOutPath "$R0\perl\agent\FusionInventory\Agent\SOAP"
+   File /r "${FIA_DIR}\lib\FusionInventory\Agent\SOAP\*.*"
+
+   ; Install $R0\perl\agent\FusionInventory\Agent\Task\Inventory.pm
+   SetOutPath "$R0\perl\agent\FusionInventory\Agent\Task"
+   File "${FIA_DIR}\lib\FusionInventory\Agent\Task\Inventory.pm"
+
+   ; Install $R0\perl\agent\FusionInventory\Agent\Task\Inventory\*.*
+   SetOutPath "$R0\perl\agent\FusionInventory\Agent\Task\Inventory"
+   File /r "${FIA_DIR}\lib\FusionInventory\Agent\Task\Inventory\*.*"
+
+   ; Install $R0\perl\agent\FusionInventory\Agent\Target\*.*
+   SetOutPath "$R0\perl\agent\FusionInventory\Agent\Target"
+   File /r "${FIA_DIR}\lib\FusionInventory\Agent\Target\*.*"
+
+   ; Install $R0\perl\agent\FusionInventory\Agent\Tools\*.*
+   SetOutPath "$R0\perl\agent\FusionInventory\Agent\Tools"
+   File /r "${FIA_DIR}\lib\FusionInventory\Agent\Tools\*.*"
+
+   ; Install $R0\perl\agent\FusionInventory\Agent\XML\*.*
+   SetOutPath "$R0\perl\agent\FusionInventory\Agent\XML"
+   File /r "${FIA_DIR}\lib\FusionInventory\Agent\XML\*.*"
+
+   ; Install $R0\perl\bin\7z.dll
+   ;         $R0\perl\bin\7z.exe
    ;         $R0\perl\bin\dmidecode.exe
    ;         $R0\perl\bin\hdparm.exe
-   ;         $R0\perl\bin\fusioninventory-{agent,injector,win32-service}
+   ;         $R0\perl\bin\fusioninventory-agent
+   ;         $R0\perl\bin\fusioninventory-injector
+   ;         $R0\perl\bin\fusioninventory-inventory
+   ;         $R0\perl\bin\fusioninventory-win32-service
    ;         $R0\perl\bin\memconf
    SetOutPath "$R0\perl\bin\"
    File "${7ZIP_DIR}\7z.dll"
    File "${7ZIP_DIR}\7z.exe"
    File "${DMIDECODE_DIR}\dmidecode.exe"
    File "${HDPARM_DIR}\hdparm.exe"
-   File "${FIA_DIR}\fusioninventory-agent"
-   File "${FIA_DIR}\fusioninventory-injector"
-   File "${FIA_DIR}\fusioninventory-win32-service"
+   File "${FIA_DIR}\bin\fusioninventory-agent"
+   File "${FIA_DIR}\bin\fusioninventory-injector"
+   File "${FIA_DIR}\bin\fusioninventory-inventory"
+   File "${FIA_DIR}\bin\fusioninventory-win32-service"
 
    ; Install $R0\share
    SetOutPath "$R0\share\"
-   File /r "${FIA_DIR}\share\"
+   File /r "${FIA_DIR}\share\*.*"
 
    ; Set mode at which commands print their status
    SetDetailsPrint lastused
@@ -323,10 +400,18 @@ Function InstallFusionInventoryAgentTaskDeploy
    CreateDirectory "$R0"
    CreateDirectory "$R0\perl"
    CreateDirectory "$R0\perl\agent"
+   CreateDirectory "$R0\perl\agent\FusionInventory"
+   CreateDirectory "$R0\perl\agent\FusionInventory\Agent"
+   CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Task"
+   CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Task\Deploy"
 
-   ; Install $R0\perl\agent\FusionInventory
-   SetOutPath "$R0\perl\agent\"
-   File /r "${FIA_TASK_DEPLOY_DIR}\lib\FusionInventory"
+   ; Install $R0\perl\agent\FusionInventory\Agent\Task\Deploy.pm
+   SetOutPath "$R0\perl\agent\FusionInventory\Agent\Task"
+   File "${FIA_DIR}\lib\FusionInventory\Agent\Task\Deploy.pm"
+
+   ; Install $R0\perl\agent\FusionInventory\Agent\Task\Deploy\*.*
+   SetOutPath "$R0\perl\agent\FusionInventory\Agent\Task\Deploy"
+   File /r "${FIA_DIR}\lib\FusionInventory\Agent\Task\Deploy\*.*"
 
    ; Set mode at which commands print their status
    SetDetailsPrint lastused
@@ -353,15 +438,26 @@ Function InstallFusionInventoryAgentTaskESX
    CreateDirectory "$R0"
    CreateDirectory "$R0\perl"
    CreateDirectory "$R0\perl\agent"
+   CreateDirectory "$R0\perl\agent\FusionInventory"
+   CreateDirectory "$R0\perl\agent\FusionInventory\Agent"
+   CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Task"
    CreateDirectory "$R0\perl\bin"
 
-   ; Install $R0\perl\agent\FusionInventory
-   SetOutPath "$R0\perl\agent\"
-   File /r "${FIA_TASK_ESX_DIR}\lib\FusionInventory"
+   ; Create $R0\fusioninventory-esx.bat
+   FileOpen $R1 "$R0\fusioninventory-esx.bat" w
+   ${FileWriteLine} $R1 "@echo off"
+   ${FileWriteLine} $R1 "cd perl/bin"
+   ${FileWriteLine} $R1 "perl fusioninventory-esx %*"
+   ${FileWriteLine} $R1 "cd ../.."
+   FileClose $R1
+
+   ; Install $R0\perl\agent\FusionInventory\Agent\Task\ESX.pm
+   SetOutPath "$R0\perl\agent\FusionInventory\Agent\Task"
+   File "${FIA_DIR}\lib\FusionInventory\Agent\Task\ESX.pm"
 
    ; Install $R0\perl\bin\fusioninventory-esx
    SetOutPath "$R0\perl\bin\"
-   File "${FIA_TASK_ESX_DIR}\fusioninventory-esx"
+   File "${FIA_DIR}\bin\fusioninventory-esx"
 
    ; Set mode at which commands print their status
    SetDetailsPrint lastused
@@ -388,16 +484,43 @@ Function InstallFusionInventoryAgentTaskNetwork
    CreateDirectory "$R0"
    CreateDirectory "$R0\perl"
    CreateDirectory "$R0\perl\agent"
+   CreateDirectory "$R0\perl\agent\FusionInventory"
+   CreateDirectory "$R0\perl\agent\FusionInventory\Agent"
+   CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Task"
+   CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Task\NetDiscovery"
    CreateDirectory "$R0\perl\bin"
 
-   ; Install $R0\perl\agent\FusionInventory
-   SetOutPath "$R0\perl\agent\"
-   File /r "${FIA_TASK_NETWORK_DIR}\lib\FusionInventory"
+   ; Create $R0\fusioninventory-netdiscovery.bat
+   FileOpen $R1 "$R0\fusioninventory-netdiscovery.bat" w
+   ${FileWriteLine} $R1 "@echo off"
+   ${FileWriteLine} $R1 "cd perl/bin"
+   ${FileWriteLine} $R1 "perl fusioninventory-netdiscovery %*"
+   ${FileWriteLine} $R1 "cd ../.."
+   FileClose $R1
 
-   ; Install $R0\perl\bin\fusioninventory-{netdiscovery,netinventory}
+   ; Create $R0\fusioninventory-netinventory.bat
+   FileOpen $R1 "$R0\fusioninventory-netinventory.bat" w
+   ${FileWriteLine} $R1 "@echo off"
+   ${FileWriteLine} $R1 "cd perl/bin"
+   ${FileWriteLine} $R1 "perl fusioninventory-netinventory %*"
+   ${FileWriteLine} $R1 "cd ../.."
+   FileClose $R1
+
+   ; Install $R0\perl\agent\FusionInventory\Agent\Task\NetDiscovery.pm
+   ;         $R0\perl\agent\FusionInventory\Agent\Task\NetInventory.pm
+   SetOutPath "$R0\perl\agent\FusionInventory\Agent\Task"
+   File "${FIA_DIR}\lib\FusionInventory\Agent\Task\NetDiscovery.pm"
+   File "${FIA_DIR}\lib\FusionInventory\Agent\Task\NetInventory.pm"
+
+   ; Install $R0\perl\agent\FusionInventory\Agent\Task\NetDiscovery\*.*
+   SetOutPath "$R0\perl\agent\FusionInventory\Agent\Task\NetDiscovery"
+   File /r "${FIA_DIR}\lib\FusionInventory\Agent\Task\NetDiscovery\*.*"
+
+   ; Install $R0\perl\bin\fusioninventory-netdiscovery
+   ;         $R0\perl\bin\fusioninventory-netinventory
    SetOutPath "$R0\perl\bin\"
-   File "${FIA_TASK_NETWORK_DIR}\fusioninventory-netdiscovery"
-   File "${FIA_TASK_NETWORK_DIR}\fusioninventory-netinventory"
+   File "${FIA_DIR}\bin\fusioninventory-netdiscovery"
+   File "${FIA_DIR}\bin\fusioninventory-netinventory"
 
    ; Set mode at which commands print their status
    SetDetailsPrint lastused
@@ -428,9 +551,21 @@ Function InstallFusionInventoryAgentTaskWakeOnLan
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent"
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Task"
 
-   ; Install $R0\perl\agent\FusionInventory
+   ; Create $R0\fusioninventory-wakeonlan.bat
+   FileOpen $R1 "$R0\fusioninventory-wakeonlan.bat" w
+   ${FileWriteLine} $R1 "@echo off"
+   ${FileWriteLine} $R1 "cd perl/bin"
+   ${FileWriteLine} $R1 "perl fusioninventory-wakeonlan %*"
+   ${FileWriteLine} $R1 "cd ../.."
+   FileClose $R1
+
+   ; Install $R0\perl\agent\FusionInventory\Agent\Task\WakeOnLan.pm
    SetOutPath "$R0\perl\agent\FusionInventory\Agent\Task"
    File "${FIA_DIR}\lib\FusionInventory\Agent\Task\WakeOnLan.pm"
+
+   ; Install $R0\perl\bin\fusioninventory-wakeonlan
+   SetOutPath "$R0\perl\bin\"
+   File "${FIA_DIR}\bin\fusioninventory-wakeonlan"
 
    ; Set mode at which commands print their status
    SetDetailsPrint lastused
@@ -462,41 +597,21 @@ Function InstallStrawberryPerl
 
    ; Install $R0\perl\bin
    SetOutPath "$R0\perl\bin\"
-   !if ${FIAI_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
-      ;File "${STRAWBERRY_DIR}\c\bin\libeay32_.dll"
-      ;File "${STRAWBERRY_DIR}\c\bin\libiconv-2_.dll"
-      ;File "${STRAWBERRY_DIR}\c\bin\libxml2-2_.dll"
-      ;File "${STRAWBERRY_DIR}\c\bin\libz_.dll"
-      File "${STRAWBERRY_DIR}\c\bin\*.dll"
-   !else
-      ;File "${STRAWBERRY_DIR}\c\bin\libeay32__.dll"
-      ;File "${STRAWBERRY_DIR}\c\bin\libiconv-2__.dll"
-      ;File "${STRAWBERRY_DIR}\c\bin\libxml2-2__.dll"
-      ;File "${STRAWBERRY_DIR}\c\bin\libz__.dll"
-      File "${STRAWBERRY_DIR}\c\bin\*.dll"
-   !endif
-   ;File "${STRAWBERRY_DIR}\perl\bin\perl.exe"
-   ;File "${STRAWBERRY_DIR}\perl\bin\perl5.16.0.exe"
-   ;File "${STRAWBERRY_DIR}\perl\bin\perl516.dll"
-   ;File "${STRAWBERRY_DIR}\perl\bin\libgcc_s_sjlj-1.dll"
-   ;File "${STRAWBERRY_DIR}\perl\bin\libstdc++-6.dll"
+   File "${STRAWBERRY_DIR}\c\bin\*.dll"
    File "${STRAWBERRY_DIR}\perl\bin\*.dll"
    File "${STRAWBERRY_DIR}\perl\bin\*.exe"
 
    ; Install $R0\perl\lib
    SetOutPath "$R0\perl\lib\"
-   ;File /r /x "*.pod" /x "*.h" /x "*.a" "${STRAWBERRY_DIR}\perl\lib\"
-   File /r "${STRAWBERRY_DIR}\perl\lib\"
+   File /r "${STRAWBERRY_DIR}\perl\lib\*.*"
 
    ; Install $R0\perl\site
    SetOutPath "$R0\perl\site\"
-   ;File /r /x "*.pod" "${STRAWBERRY_DIR}\perl\site\"
-   File /r "${STRAWBERRY_DIR}\perl\site\"
+   File /r "${STRAWBERRY_DIR}\perl\site\*.*"
 
    ; Install $R0\perl\vendor
    SetOutPath "$R0\perl\vendor\"
-   ;File /r /x "*.pod" /x "*.h" /x "*.a" "${STRAWBERRY_DIR}\perl\vendor\"
-   File /r "${STRAWBERRY_DIR}\perl\vendor\"
+   File /r "${STRAWBERRY_DIR}\perl\vendor\*.*"
 
    ; Set mode at which commands print their status
    SetDetailsPrint lastused

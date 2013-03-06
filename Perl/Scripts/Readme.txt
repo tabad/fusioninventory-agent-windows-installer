@@ -72,14 +72,14 @@ uninstall-strawberry-perl.bat
 uninstall-strawberry-perl.sh
 
 
-FusionInventory-Agent and Tasks Management
+FusionInventory-Agent Management
 ------------------------------------------
-install-fusioninventory-agent-and-tasks.bat
-install-fusioninventory-agent-and-tasks.sh
-patch-fusioninventory-agent-and-tasks.bat
-patch-fusioninventory-agent-and-tasks.sh
-uninstall-fusioninventory-agent-and-tasks.bat
-uninstall-fusioninventory-agent-and-tasks.sh
+install-fusioninventory-agent.bat
+install-fusioninventory-agent.sh
+patch-fusioninventory-agent.bat
+patch-fusioninventory-agent.sh
+uninstall-fusioninventory-agent.bat
+uninstall-fusioninventory-agent.sh
 
 
 Environment Management

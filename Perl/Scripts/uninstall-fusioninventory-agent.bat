@@ -28,7 +28,7 @@
 :: ------------------------------------------------------------------------
 ::
 :: @package   FusionInventory Agent Installer for Microsoft Windows
-:: @file      .\Perl\Scripts\install-fusioninventory-agent-and-tasks.bat
+:: @file      .\Perl\Scripts\uninstall-fusioninventory-agent.bat
 :: @author    Tomas Abad
 :: @copyright Copyright (c) 2010-2012 FusionInventory Team
 :: @license   GNU GPL version 2 or (at your option) any later version
