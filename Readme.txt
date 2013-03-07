@@ -551,12 +551,14 @@ Agent. This can be a local repository; you only have to change the
    -!define PRODUCT_VERSION_MINOR "3"
    -!define PRODUCT_VERSION_RELEASE "1"
    +!define PRODUCT_VERSION_MINOR "4"
-   +!define PRODUCT_VERSION_RELEASE "33835"
+   +!define PRODUCT_VERSION_RELEASE "2013030702"
 
             Note that all PRODUCT_VERSION_* constants must have a numeric
-            value. The value '33835' is a agreement to design a development
-            releases. It is the name you get whether you try to write the
-            word 'devel' in a telephone keyboard.
+            value. Here I have followed the pattern 'YYYYMMDD##', where
+            'YYYYMMDD' is the date of creation of the installer and '##'
+            is the sequence number of the Installer generated on that date
+            (this value can take the values [01-99]). You can choose any
+            other number or pattern you like.
 
    With the new Strawberry Perl Portable Edition Package for FusionInventory
 Agent ready, and these last changes, you can continue as it were a normal
@@ -609,7 +611,7 @@ of the file './NSIS/FusionInventory.nsi' to adapt them to their new values:
    -!define PRODUCT_VERSION_MINOR "3"
    -!define PRODUCT_VERSION_RELEASE "1"
    +!define PRODUCT_VERSION_MINOR "4"
-   +!define PRODUCT_VERSION_RELEASE "33835"
+   +!define PRODUCT_VERSION_RELEASE "2013030702"
 
    With the new Strawberry Perl Portable Edition Package for FusionInventory
 Agent ready, and these last changes, you can continue as it were a normal
