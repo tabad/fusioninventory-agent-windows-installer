@@ -225,11 +225,10 @@ Function InitINIOptionSectionDefault
    ${WriteINIOption} "$R0" "${IO_BACKEND-COLLECT-TIMEOUT}" "30"
    !if ${FIAI_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
       ${WriteINIOption} "$R0" "${IO_CA-CERT-DIR}" "$PROGRAMFILES32\${PRODUCT_INTERNAL_NAME}\certs"
-      ${WriteINIOption} "$R0" "${IO_CA-CERT-FILE}" "$PROGRAMFILES32\${PRODUCT_INTERNAL_NAME}\certs\cert.pem"
    !else
       ${WriteINIOption} "$R0" "${IO_CA-CERT-DIR}" "$PROGRAMFILES64\${PRODUCT_INTERNAL_NAME}\certs"
-      ${WriteINIOption} "$R0" "${IO_CA-CERT-FILE}" "$PROGRAMFILES64\${PRODUCT_INTERNAL_NAME}\certs\cert.pem"
    !endif
+   ${WriteINIOption} "$R0" "${IO_CA-CERT-FILE}" ""
    ${WriteINIOption} "$R0" "${IO_CA-CERT-URI}" ""
    ${WriteINIOption} "$R0" "${IO_DEBUG}" "0"
    ${WriteINIOption} "$R0" "${IO_DELAYTIME}" "3600"
@@ -264,7 +263,7 @@ Function InitINIOptionSectionDefault
    ${WriteINIOption} "$R0" "${IO_PROXY}" ""
    ${WriteINIOption} "$R0" "${IO_RUNNOW}" "0"
    ${WriteINIOption} "$R0" "${IO_SCAN-HOMEDIRS}" "0"
-   ${WriteINIOption} "$R0" "${IO_SERVER}" "https://servername/glpi/plugins/fusioninventory/"
+   ${WriteINIOption} "$R0" "${IO_SERVER}" ""
    ${WriteINIOption} "$R0" "${IO_SERVICE-START-TYPE}" "${SERVICE_STARTTYPE_AUTO}"
    ${WriteINIOption} "$R0" "${IO_SERVICE-STATUS}" "${SERVICE_STATUS_RUNNING}"
    ${WriteINIOption} "$R0" "${IO_SILENTMODE}" "0"
