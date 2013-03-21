@@ -301,6 +301,7 @@ Function CopyINIOptionSection
    Exch $R1
    Exch
    Exch $R0
+   Exch
 
    ; Push $R2, $R3 & $R4 onto the stack
    Push $R2
@@ -395,6 +396,7 @@ Function UpdateINIOptionSection
    Exch $R1
    Exch
    Exch $R0
+   Exch
 
    ; Push $R2, $R3 & $R4 onto the stack
    Push $R2
