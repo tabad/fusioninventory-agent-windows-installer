@@ -1,7 +1,7 @@
 /*
    ------------------------------------------------------------------------
    FusionInventory Agent Installer for Microsoft Windows
-   Copyright (C) 2010-2012 by the FusionInventory Development Team.
+   Copyright (C) 2010-2013 by the FusionInventory Development Team.
 
    http://www.fusioninventory.org/ http://forge.fusioninventory.org/
    ------------------------------------------------------------------------
@@ -31,7 +31,7 @@
    @package   FusionInventory Agent Installer for Microsoft Windows
    @file      .\FusionInventory Agent\Include\MiscFunc.nsh
    @author    Tomas Abad <tabadgp@gmail.com>
-   @copyright Copyright (c) 2010-2012 FusionInventory Team
+   @copyright Copyright (c) 2010-2013 FusionInventory Team
    @license   GNU GPL version 2 or (at your option) any later version
               http://www.gnu.org/licenses/old-licenses/gpl-2.0-standalone.html
    @link      http://www.fusioninventory.org/
