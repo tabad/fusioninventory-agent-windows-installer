@@ -485,6 +485,14 @@ Section "-Init" SecInit
    ${ReadINIOption} $R0 "${IOS_FINAL}" "${IO_INSTALLDIR}"
    CreateDirectory "$R0"
    WriteUninstaller "$R0\${PRODUCT_UNINSTALLER}"
+SectionEnd
+
+Section "-StrawberryPerl" SecStrawberryPerl
+   AddSize 1024
+
+   ; Debug
+   StrCpy $0 "StrawberryPerl"
+   DetailPrint "$(Msg_InstallingSection)"
 
    ; Install Strawberry Perl
    ${InstallStrawberryPerl}
@@ -545,7 +553,6 @@ SectionGroup /e "$(SectionGroup_FusionInventoryAgentTasks)" SecGrpFusionInventor
       ; Install FusionInventory Agent Task WakeOnLan
       ${InstallFusionInventoryAgentTaskWakeOnLan}
    SectionEnd
-
 SectionGroupEnd
 
 Section "-End" SecEnd
