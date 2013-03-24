@@ -133,7 +133,7 @@ Current state
 
 
    Inside of './NSIS/Perl/Scripts' directory there is a set of scripts for
-download Strawberry Perl Portable Edition v5.16.2.2 (Feb 2013) for x64 and
+download Strawberry Perl Portable Edition v5.16.3.1 (Mar 2013) for x64 and
 x86 architectures, update and install all the Perl modules dependencies for
 the previous FusionInventory Agent packages, and download them. Please, read
 the file './Perl/Scripts/Readme.txt' for more information about these scripts.
