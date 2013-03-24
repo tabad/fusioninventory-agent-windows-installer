@@ -591,7 +591,7 @@ SectionEnd
 ;--------------------------------
 ; Uninstaller Sections
 
-Section "-un.InitSection"
+Section "-un.Init"
    ReadRegStr $R0 "${PRODUCT_UNINST_ROOT_KEY}" "$PRODUCT_UNINST_SUBKEY" "InstallLocation"
 
    ; Set mode at which commands print their status
