@@ -89,10 +89,9 @@ Current state
          .- FusionInventory Agent Task Deploy v2.0.4
          .- FusionInventory Agent Task ESX v2.2.1
          .- FusionInventory Agent Task Inventory v1.0
+         .- FusionInventory Agent Task NetInventory v2.2.0
+         .- FusionInventory Agent Task NetDiscovery v2.2.0
          .- FusionInventory Agent Task WakeOnLan v2.0
-         .- FusionInventory Agent Distribution Network v1.0.2
-            .- FusionInventory Agent Task NetInventory v2.2.0
-            .- FusionInventory Agent Task NetDiscovery v2.2.0
 
             Note than, nowadays, FusionInventory Agent 2.3.x is still in
             development (main branch).

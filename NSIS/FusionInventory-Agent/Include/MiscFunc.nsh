@@ -64,6 +64,9 @@
       ; Set incompatible target platform architecture
       StrCpy $IncompatibleTargetPlatformArchitecture 0
 
+      ; Set tasks network core code installed
+      StrCpy $FusionInventoryAgentTaskNetCoreInstalled 0
+
       ; Get Windows platform architecture
       ${GetWindowsPlatformArchitecture} $R0
 
@@ -467,16 +470,75 @@ Function InstallFusionInventoryAgentTaskESX
 FunctionEnd
 
 
-; InstallFusionInventoryAgentTaskNetwork
-!define InstallFusionInventoryAgentTaskNetwork "Call InstallFusionInventoryAgentTaskNetwork"
+; InstallFusionInventoryAgentTaskNetCore
+;    Note: This is not a real FusionInventory-Agent task.
+;          It is the FusionInventory-Agent shared code by
+;          the NetDiscovery and NetInventory tasks.
+!define InstallFusionInventoryAgentTaskNetCore "Call InstallFusionInventoryAgentTaskNetCore"
 
-Function InstallFusionInventoryAgentTaskNetwork
+Function InstallFusionInventoryAgentTaskNetCore
+   ; Push $R0 onto the stack
+   Push $R0
+   Push $R1
+
+   ; Check whether it is already installed
+   ${If} $FusionInventoryAgentTaskNetCoreInstalled = 0
+      ; Task network core code not installed
+
+      ; Set tasks network core code installed
+      StrCpy $FusionInventoryAgentTaskNetCoreInstalled 1
+
+      ; Create directories
+      ${ReadINIOption} $R0 "${IOS_FINAL}" "${IO_INSTALLDIR}"
+      CreateDirectory "$R0"
+      CreateDirectory "$R0\perl"
+      CreateDirectory "$R0\perl\agent"
+      CreateDirectory "$R0\perl\agent\FusionInventory"
+      CreateDirectory "$R0\perl\agent\FusionInventory\Agent"
+      CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Manufacturer"
+      CreateDirectory "$R0\perl\agent\FusionInventory\Agent\SNMP"
+      CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Tools"
+
+      ; Install $R0\perl\agent\FusionInventory\Agent\Manufacturer.pm
+      ;         $R0\perl\agent\FusionInventory\Agent\SNMP.pm
+      ;         $R0\perl\agent\FusionInventory\Agent\Threads.pm
+      SetOutPath "$R0\perl\agent\FusionInventory\Agent"
+      File "${FIA_DIR}\lib\FusionInventory\Agent\Manufacturer.pm"
+      File "${FIA_DIR}\lib\FusionInventory\Agent\SNMP.pm"
+      File "${FIA_DIR}\lib\FusionInventory\Agent\Threads.pm"
+
+      ; Install $R0\perl\agent\FusionInventory\Agent\Manufacturer\*.*
+      SetOutPath "$R0\perl\agent\FusionInventory\Agent\Manufacturer"
+      File /r "${FIA_DIR}\lib\FusionInventory\Agent\Manufacturer\*.*"
+
+      ; Install $R0\perl\agent\FusionInventory\Agent\SNMP\*.*
+      SetOutPath "$R0\perl\agent\FusionInventory\Agent\SNMP"
+      File /r "${FIA_DIR}\lib\FusionInventory\Agent\SNMP\*.*"
+
+      ; Install $R0\perl\agent\FusionInventory\Agent\Tools\SNMP.pm
+      SetOutPath "$R0\perl\agent\FusionInventory\Agent\Tools"
+      File "${FIA_DIR}\lib\FusionInventory\Agent\Tools\SNMP.pm"
+   ${EndIf}
+
+   ; Pop $R0 off of the stack
+   Pop $R1
+   Pop $R0
+FunctionEnd
+
+
+; InstallFusionInventoryAgentTaskNetDiscovery
+!define InstallFusionInventoryAgentTaskNetDiscovery "Call InstallFusionInventoryAgentTaskNetDiscovery"
+
+Function InstallFusionInventoryAgentTaskNetDiscovery
    ; Push $R0 onto the stack
    Push $R0
    Push $R1
 
    ; Set mode at which commands print their status
    SetDetailsPrint textonly
+
+   ; Install InstallFusionInventoryAgentTaskNetCore
+   ${InstallFusionInventoryAgentTaskNetCore}
 
    ; Create directories
    ${ReadINIOption} $R0 "${IOS_FINAL}" "${IO_INSTALLDIR}"
@@ -485,11 +547,8 @@ Function InstallFusionInventoryAgentTaskNetwork
    CreateDirectory "$R0\perl\agent"
    CreateDirectory "$R0\perl\agent\FusionInventory"
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent"
-   CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Manufacturer"
-   CreateDirectory "$R0\perl\agent\FusionInventory\Agent\SNMP"
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Task"
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Task\NetDiscovery"
-   CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Tools"
    CreateDirectory "$R0\perl\bin"
 
    ; Create $R0\fusioninventory-netdiscovery.bat
@@ -500,6 +559,51 @@ Function InstallFusionInventoryAgentTaskNetwork
    ${FileWriteLine} $R1 "cd ../.."
    FileClose $R1
 
+   ; Install $R0\perl\agent\FusionInventory\Agent\Task\NetDiscovery.pm
+   SetOutPath "$R0\perl\agent\FusionInventory\Agent\Task"
+   File "${FIA_DIR}\lib\FusionInventory\Agent\Task\NetDiscovery.pm"
+
+   ; Install $R0\perl\agent\FusionInventory\Agent\Task\NetDiscovery\*.*
+   SetOutPath "$R0\perl\agent\FusionInventory\Agent\Task\NetDiscovery"
+   File /r "${FIA_DIR}\lib\FusionInventory\Agent\Task\NetDiscovery\*.*"
+
+   ; Install $R0\perl\bin\fusioninventory-netdiscovery
+   SetOutPath "$R0\perl\bin\"
+   File "${FIA_DIR}\bin\fusioninventory-netdiscovery"
+
+   ; Set mode at which commands print their status
+   SetDetailsPrint lastused
+
+   ; Pop $R0 off of the stack
+   Pop $R1
+   Pop $R0
+FunctionEnd
+
+
+; InstallFusionInventoryAgentTaskNetInventory
+!define InstallFusionInventoryAgentTaskNetInventory "Call InstallFusionInventoryAgentTaskNetInventory"
+
+Function InstallFusionInventoryAgentTaskNetInventory
+   ; Push $R0 onto the stack
+   Push $R0
+   Push $R1
+
+   ; Set mode at which commands print their status
+   SetDetailsPrint textonly
+
+   ; Install InstallFusionInventoryAgentTaskNetCore
+   ${InstallFusionInventoryAgentTaskNetCore}
+
+   ; Create directories
+   ${ReadINIOption} $R0 "${IOS_FINAL}" "${IO_INSTALLDIR}"
+   CreateDirectory "$R0"
+   CreateDirectory "$R0\perl"
+   CreateDirectory "$R0\perl\agent"
+   CreateDirectory "$R0\perl\agent\FusionInventory"
+   CreateDirectory "$R0\perl\agent\FusionInventory\Agent"
+   CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Task"
+   CreateDirectory "$R0\perl\bin"
+
    ; Create $R0\fusioninventory-netinventory.bat
    FileOpen $R1 "$R0\fusioninventory-netinventory.bat" w
    ${FileWriteLine} $R1 "@echo off"
@@ -508,40 +612,12 @@ Function InstallFusionInventoryAgentTaskNetwork
    ${FileWriteLine} $R1 "cd ../.."
    FileClose $R1
 
-   ; Install $R0\perl\agent\FusionInventory\Agent\Manufacturer.pm
-   ;         $R0\perl\agent\FusionInventory\Agent\SNMP.pm
-   ;         $R0\perl\agent\FusionInventory\Agent\Threads.pm
-   SetOutPath "$R0\perl\agent\FusionInventory\Agent"
-   File "${FIA_DIR}\lib\FusionInventory\Agent\Manufacturer.pm"
-   File "${FIA_DIR}\lib\FusionInventory\Agent\SNMP.pm"
-   File "${FIA_DIR}\lib\FusionInventory\Agent\Threads.pm"
-
-   ; Install $R0\perl\agent\FusionInventory\Agent\Manufacturer\*.*
-   SetOutPath "$R0\perl\agent\FusionInventory\Agent\Manufacturer"
-   File /r "${FIA_DIR}\lib\FusionInventory\Agent\Manufacturer\*.*"
-
-   ; Install $R0\perl\agent\FusionInventory\Agent\SNMP\*.*
-   SetOutPath "$R0\perl\agent\FusionInventory\Agent\SNMP"
-   File /r "${FIA_DIR}\lib\FusionInventory\Agent\SNMP\*.*"
-
-   ; Install $R0\perl\agent\FusionInventory\Agent\Task\NetDiscovery.pm
-   ;         $R0\perl\agent\FusionInventory\Agent\Task\NetInventory.pm
+   ; Install $R0\perl\agent\FusionInventory\Agent\Task\NetInventory.pm
    SetOutPath "$R0\perl\agent\FusionInventory\Agent\Task"
-   File "${FIA_DIR}\lib\FusionInventory\Agent\Task\NetDiscovery.pm"
    File "${FIA_DIR}\lib\FusionInventory\Agent\Task\NetInventory.pm"
 
-   ; Install $R0\perl\agent\FusionInventory\Agent\Task\NetDiscovery\*.*
-   SetOutPath "$R0\perl\agent\FusionInventory\Agent\Task\NetDiscovery"
-   File /r "${FIA_DIR}\lib\FusionInventory\Agent\Task\NetDiscovery\*.*"
-
-   ; Install $R0\perl\agent\FusionInventory\Agent\Tools\SNMP.pm
-   SetOutPath "$R0\perl\agent\FusionInventory\Agent\Tools"
-   File "${FIA_DIR}\lib\FusionInventory\Agent\Tools\SNMP.pm"
-
-   ; Install $R0\perl\bin\fusioninventory-netdiscovery
-   ;         $R0\perl\bin\fusioninventory-netinventory
+   ; Install $R0\perl\bin\fusioninventory-netinventory
    SetOutPath "$R0\perl\bin\"
-   File "${FIA_DIR}\bin\fusioninventory-netdiscovery"
    File "${FIA_DIR}\bin\fusioninventory-netinventory"
 
    ; Set mode at which commands print their status

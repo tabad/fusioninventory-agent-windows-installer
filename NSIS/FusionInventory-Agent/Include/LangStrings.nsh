@@ -371,15 +371,19 @@ LangString SecInventory_Description ${LANG_ENGLISH} "Task Inventory ${FIA_TASK_I
 LangString SecInventory_Description ${LANG_FRENCH} "fTask Inventory ${FIA_TASK_INVENTORY_RELEASE}."
 LangString SecInventory_Description ${LANG_SPANISH} "Tarea Inventory ${FIA_TASK_INVENTORY_RELEASE}."
 
-;   LangString: SecNetwork_Description
-; For use with: XPUI_DESCRIPTION_TEXT ${SecNetwork}
+;   LangString: SecNeDiscovery_Description
+; For use with: XPUI_DESCRIPTION_TEXT ${SecNetDiscovery}
 ;
-LangString SecNetwork_Description ${LANG_ENGLISH} "Distribution Network ${FIA_TASK_NETWORK_RELEASE}. \
-Includes tasks NetDiscovery ${FIA_TASK_NETDISCOVERY_RELEASE} and NetInventory ${FIA_TASK_NETINVENTORY_RELEASE}."
-LangString SecNetwork_Description ${LANG_FRENCH} "fDistribution Network ${FIA_TASK_NETWORK_RELEASE}. \
-Includes tasks NetDiscovery ${FIA_TASK_NETDISCOVERY_RELEASE} and NetInventory ${FIA_TASK_NETINVENTORY_RELEASE}."
-LangString SecNetwork_Description ${LANG_SPANISH} "Distribución Network ${FIA_TASK_NETWORK_RELEASE}. \
-Incluye tareas NetDiscovery ${FIA_TASK_NETDISCOVERY_RELEASE} y NetInventory ${FIA_TASK_NETINVENTORY_RELEASE}."
+LangString SecNetDiscovery_Description ${LANG_ENGLISH} "Task NetDiscovery ${FIA_TASK_NETDISCOVERY_RELEASE}."
+LangString SecNetDiscovery_Description ${LANG_FRENCH} "fTask NetDiscovery ${FIA_TASK_NETDISCOVERY_RELEASE}."
+LangString SecNetDiscovery_Description ${LANG_SPANISH} "Tarea NetDiscovery ${FIA_TASK_NETDISCOVERY_RELEASE}."
+
+;   LangString: SecNetInventory
+; For use with: XPUI_DESCRIPTION_TEXT ${SecNetInventory}
+;
+LangString SecNetInventory_Description ${LANG_ENGLISH} "Task NetInventory ${FIA_TASK_NETINVENTORY_RELEASE}."
+LangString SecNetInventory_Description ${LANG_FRENCH} "fTask NetInventory ${FIA_TASK_NETINVENTORY_RELEASE}."
+LangString SecNetInventory_Description ${LANG_SPANISH} "Tarea NetInventory ${FIA_TASK_NETINVENTORY_RELEASE}."
 
 ;   LangString: SecWakeOnLan_Description
 ; For use with: XPUI_DESCRIPTION_TEXT ${SecWakeOnLan}

@@ -78,7 +78,6 @@ SetCompressor /FINAL /SOLID lzma
 !define FIA_TASK_DEPLOY_RELEASE "2.0.4"
 !define FIA_TASK_ESX_RELEASE "2.2.1"
 !define FIA_TASK_INVENTORY_RELEASE "1.0"
-!define FIA_TASK_NETWORK_RELEASE "1.0.2"
 !define FIA_TASK_NETDISCOVERY_RELEASE "2.2.0"
 !define FIA_TASK_NETINVENTORY_RELEASE "2.2.0"
 !define FIA_TASK_WAKEONLAN_RELEASE "2.0"
@@ -183,6 +182,9 @@ Var CommandLineSyntaxError
 
 ; Incompatible target platform architecture
 Var IncompatibleTargetPlatformArchitecture
+
+; Tasks network core code installed
+Var FusionInventoryAgentTaskNetCoreInstalled
 
 
 ;--------------------------------
@@ -532,15 +534,26 @@ SectionGroup /e "$(SectionGroup_FusionInventoryAgentTasks)" SecGrpFusionInventor
       ${InstallFusionInventoryAgent}
    SectionEnd
 
-   Section /o "Network" SecNetwork
+   Section /o "NetDiscovery" SecNetDiscovery
       AddSize 1024
       SectionIn 2
       Nop
-      SectionGetText ${SecNetwork} $0
+      SectionGetText ${SecNetDiscovery} $0
       DetailPrint "$(Msg_InstallingSection)"
 
-      ; Install FusionInventory Agent Task Network
-      ${InstallFusionInventoryAgentTaskNetwork}
+      ; Install FusionInventory Agent Task NetDiscovery
+      ${InstallFusionInventoryAgentTaskNetDiscovery}
+   SectionEnd
+
+   Section /o "NetInventory" SecNetInventory
+      AddSize 1024
+      SectionIn 2
+      Nop
+      SectionGetText ${SecNetInventory} $0
+      DetailPrint "$(Msg_InstallingSection)"
+
+      ; Install FusionInventory Agent Task NetInventory
+      ${InstallFusionInventoryAgentTaskNetInventory}
    SectionEnd
 
    Section /o "WakeOnLan" SecWakeOnLan
@@ -579,7 +592,8 @@ SectionEnd
    !insertmacro MUI_DESCRIPTION_TEXT ${SecDeploy} "$(SecDeploy_Description)"
    !insertmacro MUI_DESCRIPTION_TEXT ${SecESX} "$(SecESX_Description)"
    !insertmacro MUI_DESCRIPTION_TEXT ${SecInventory} "$(SecInventory_Description)"
-   !insertmacro MUI_DESCRIPTION_TEXT ${SecNetwork} "$(SecNetwork_Description)"
+   !insertmacro MUI_DESCRIPTION_TEXT ${SecNetDiscovery} "$(SecNetDiscovery_Description)"
+   !insertmacro MUI_DESCRIPTION_TEXT ${SecNetInventory} "$(SecNetInventory_Description)"
    !insertmacro MUI_DESCRIPTION_TEXT ${SecWakeOnLan} "$(SecWakeOnLan_Description)"
 !insertmacro MUI_FUNCTION_DESCRIPTION_END
 
