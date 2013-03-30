@@ -200,6 +200,7 @@ Var FusionInventoryAgentTaskNetCoreInstalled
 !include "${FIAI_DIR}\Include\PadLock.nsh"
 !include "${FIAI_DIR}\Include\RegFunc.nsh"
 !include "${FIAI_DIR}\Include\Registry.nsh"
+!include "${FIAI_DIR}\Include\SectionFunc.nsh"
 !include "${FIAI_DIR}\Include\WinServicesFunc.nsh"
 
 
@@ -698,6 +699,15 @@ Function .onInit
    File "${SED_DIR}\regex2.dll"
    File "${SED_DIR}\sed.exe"
 
+   ; Set current install type
+   SetCurInstType 0
+
+   ; Set sections number
+   ${SetSectionsNumber} ${SecEnd}
+
+   ; Save current selected flags of sections
+   ${SaveCurrentSelectedFlagsOfSections}
+
    ; Initialize default options
    ${InitINIOptionSectionDefault}
 
@@ -759,6 +769,7 @@ Function .onInit
    ; Pop $R0 off of the stack
    Pop $R0
 FunctionEnd
+
 
 Function .onInstSuccess
    ; Debug
@@ -1047,5 +1058,99 @@ Function .onInitVisualMode
    ${CopyINIOptionSection} "${IOS_DEFAULTGUI}" "${IOS_GUI}"
 
    ; Pop $R0 off of the stack
+   Pop $R0
+FunctionEnd
+
+
+Function .onSelChange
+   ; $R0 Saved selected flags of sections
+   ; $R1 Current selected flags of sections
+   ; $R2 Number of sections
+   ; $R3 Sections changed ($R0 xor $R1)
+   ; $R4 Sections iterator
+   ; $R5 Auxiliary
+
+
+   ; Push $R0, $R1, $R2, $R3, $R4 & $R5 onto the stack
+   Push $R0
+   Push $R1
+   Push $R2
+   Push $R3
+   Push $R4
+   Push $R5
+
+   ; Get the current install type
+   GetCurInstType $R5
+   ${If} $R5 <> ${NSIS_MAX_INST_TYPES}
+      ; A pre-defined install type has been selected.
+      ; It is assumed that the pre-defined install types
+      ; are correctly defined. Nothing to do.
+      Nop
+   ${Else}
+      ; A custom set of sections has been selected.
+      ; Only one section has changed. Which one?
+
+      ; Get saved selected flags of sections
+      ${GetSavedSelectedFlagsOfSections} $R0
+
+      ; Get current selected flags of sections
+      ${GetCurrentSelectedFlagsOfSections} $R1
+
+      ; Get number of sections
+      ${GetSectionsNumber} $R2
+
+      ; Operation XOR between $R0 & $R1
+      IntOp $R3 $R0 ^ $R1
+
+      ; Search for the section changed
+      ${For} $R4 0 $R2
+         IntOp $R5 $R3 & 0x1
+         ${If} $R5 = 1
+            ; Section $R4 has changed
+            ${ExitFor}
+         ${Else}
+            IntOp $R1 $R1 >> 1
+            IntOp $R3 $R3 >> 1
+         ${EndIf}
+      ${Next}
+
+      ; According to the section changed
+      ${Select} $R4
+         ${Case} ${SecNetDiscovery}
+            ; Sections ${SecNetDiscovery} & ${SecNetInventory} are inter-dependent
+            IntOp $R5 $R1 & 0x1
+            ${If} $R5 = 1
+               ; The section has been selected
+               ${SelectSection} ${SecNetInventory}
+            ${Else}
+               ; The section has been unselected
+               ${UnselectSection} ${SecNetInventory}
+            ${EndIf}
+
+         ${Case} ${SecNetInventory}
+            ; Sections ${SecNetDiscovery} & ${SecNetInventory} are inter-dependent
+            IntOp $R5 $R1 & 0x1
+            ${If} $R5 = 1
+               ; The section has been selected
+               ${SelectSection} ${SecNetDiscovery}
+            ${Else}
+               ; The section has been unselected
+               ${UnselectSection} ${SecNetDiscovery}
+            ${EndIf}
+
+         ${CaseElse}
+            Nop
+      ${EndSelect}
+   ${EndIf}
+
+   ; Save the current selected flags of sections
+   ${SaveCurrentSelectedFlagsOfSections}
+
+   ; Pop $R5, $R4, $R3, $R2, $R1 & $R0 off of the stack
+   Pop $R5
+   Pop $R4
+   Pop $R3
+   Pop $R2
+   Pop $R1
    Pop $R0
 FunctionEnd
