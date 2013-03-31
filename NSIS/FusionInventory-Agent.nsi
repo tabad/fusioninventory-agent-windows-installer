@@ -417,8 +417,6 @@ InstType "$(InstType_Minimal)"
 ; Installer Sections
 
 Section "-Init" SecInit
-   AddSize 1024
-
    ; Debug
    StrCpy $0 "Init"
    DetailPrint "$(Msg_InstallingSection)"
@@ -491,8 +489,6 @@ Section "-Init" SecInit
 SectionEnd
 
 Section "-StrawberryPerl" SecStrawberryPerl
-   AddSize 1024
-
    ; Debug
    StrCpy $0 "StrawberryPerl"
    DetailPrint "$(Msg_InstallingSection)"
@@ -502,8 +498,6 @@ Section "-StrawberryPerl" SecStrawberryPerl
 SectionEnd
 
 Section "-FusionInventoryAgent" SecFusionInventoryAgent
-   AddSize 1024
-
    ; Debug
    StrCpy $0 "FusionInventoryAgent"
    DetailPrint "$(Msg_InstallingSection)"
@@ -514,9 +508,9 @@ SectionEnd
 
 SectionGroup /e "$(SectionGroup_FusionInventoryAgentTasks)" SecGrpFusionInventoryAgentTasks
    Section /o "Deploy" SecDeploy
-      AddSize 1024
       SectionIn 2
-      Nop
+
+      ; Debug
       SectionGetText ${SecDeploy} $0
       DetailPrint "$(Msg_InstallingSection)"
 
@@ -525,9 +519,9 @@ SectionGroup /e "$(SectionGroup_FusionInventoryAgentTasks)" SecGrpFusionInventor
    SectionEnd
 
    Section /o "ESX" SecESX
-      AddSize 1024
       SectionIn 2
-      Nop
+
+      ; Debug
       SectionGetText ${SecESX} $0
       DetailPrint "$(Msg_InstallingSection)"
 
@@ -536,9 +530,9 @@ SectionGroup /e "$(SectionGroup_FusionInventoryAgentTasks)" SecGrpFusionInventor
    SectionEnd
 
    Section "Inventory" SecInventory
-      AddSize 1024
       SectionIn 1 2 3 RO
-      Nop
+
+      ; Debug
       SectionGetText ${SecInventory} $0
       DetailPrint "$(Msg_InstallingSection)"
 
@@ -547,9 +541,9 @@ SectionGroup /e "$(SectionGroup_FusionInventoryAgentTasks)" SecGrpFusionInventor
    SectionEnd
 
    Section /o "NetDiscovery" SecNetDiscovery
-      AddSize 1024
       SectionIn 2
-      Nop
+
+      ; Debug
       SectionGetText ${SecNetDiscovery} $0
       DetailPrint "$(Msg_InstallingSection)"
 
@@ -558,9 +552,9 @@ SectionGroup /e "$(SectionGroup_FusionInventoryAgentTasks)" SecGrpFusionInventor
    SectionEnd
 
    Section /o "NetInventory" SecNetInventory
-      AddSize 1024
       SectionIn 2
-      Nop
+
+      ; Debug
       SectionGetText ${SecNetInventory} $0
       DetailPrint "$(Msg_InstallingSection)"
 
@@ -569,9 +563,9 @@ SectionGroup /e "$(SectionGroup_FusionInventoryAgentTasks)" SecGrpFusionInventor
    SectionEnd
 
    Section /o "WakeOnLan" SecWakeOnLan
-      AddSize 1024
       SectionIn 2
-      Nop
+
+      ; Debug
       SectionGetText ${SecWakeOnLan} $0
       DetailPrint "$(Msg_InstallingSection)"
 
@@ -581,8 +575,6 @@ SectionGroup /e "$(SectionGroup_FusionInventoryAgentTasks)" SecGrpFusionInventor
 SectionGroupEnd
 
 Section "-End" SecEnd
-   AddSize 1024
-
    ; Debug
    StrCpy $0 "End"
    DetailPrint "$(Msg_InstallingSection)"

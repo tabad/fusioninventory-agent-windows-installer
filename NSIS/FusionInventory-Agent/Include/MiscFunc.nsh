@@ -236,9 +236,9 @@ FunctionEnd
 
 
 ; InstallFusionInventoryAgent
-!define InstallFusionInventoryAgent "Call InstallFusionInventoryAgent"
+!define InstallFusionInventoryAgent "!insertmacro InstallFusionInventoryAgent"
 
-Function InstallFusionInventoryAgent
+!macro InstallFusionInventoryAgent
    ; Push $R0 onto the stack
    Push $R0
    Push $R1
@@ -348,13 +348,13 @@ Function InstallFusionInventoryAgent
    ; Pop $R0 off of the stack
    Pop $R1
    Pop $R0
-FunctionEnd
+!macroend
 
 
 ; InstallFusionInventoryAgentTaskDeploy
-!define InstallFusionInventoryAgentTaskDeploy "Call InstallFusionInventoryAgentTaskDeploy"
+!define InstallFusionInventoryAgentTaskDeploy "!insertmacro InstallFusionInventoryAgentTaskDeploy"
 
-Function InstallFusionInventoryAgentTaskDeploy
+!macro InstallFusionInventoryAgentTaskDeploy
    ; Push $R0 onto the stack
    Push $R0
    Push $R1
@@ -386,13 +386,13 @@ Function InstallFusionInventoryAgentTaskDeploy
    ; Pop $R0 off of the stack
    Pop $R1
    Pop $R0
-FunctionEnd
+!macroend
 
 
 ; InstallFusionInventoryAgentTaskESX
-!define InstallFusionInventoryAgentTaskESX "Call InstallFusionInventoryAgentTaskESX"
+!define InstallFusionInventoryAgentTaskESX "!insertmacro InstallFusionInventoryAgentTaskESX"
 
-Function InstallFusionInventoryAgentTaskESX
+!macro InstallFusionInventoryAgentTaskESX
    ; Push $R0 onto the stack
    Push $R0
    Push $R1
@@ -437,13 +437,13 @@ Function InstallFusionInventoryAgentTaskESX
    ; Pop $R0 off of the stack
    Pop $R1
    Pop $R0
-FunctionEnd
+!macroend
 
 
 ; InstallFusionInventoryAgentTaskInventory
-!define InstallFusionInventoryAgentTaskInventory "Call InstallFusionInventoryAgentTaskInventory"
+!define InstallFusionInventoryAgentTaskInventory "!insertmacro InstallFusionInventoryAgentTaskInventory"
 
-Function InstallFusionInventoryAgentTaskInventory
+!macro InstallFusionInventoryAgentTaskInventory
    ; Push $R0 onto the stack
    Push $R0
    Push $R1
@@ -498,16 +498,16 @@ Function InstallFusionInventoryAgentTaskInventory
    ; Pop $R0 off of the stack
    Pop $R1
    Pop $R0
-FunctionEnd
+!macroend
 
 
 ; InstallFusionInventoryAgentTaskNetCore
 ;    Note: This is not a real FusionInventory-Agent task.
 ;          It is the FusionInventory-Agent shared code by
 ;          the NetDiscovery and NetInventory tasks.
-!define InstallFusionInventoryAgentTaskNetCore "Call InstallFusionInventoryAgentTaskNetCore"
+!define InstallFusionInventoryAgentTaskNetCore "!insertmacro InstallFusionInventoryAgentTaskNetCore"
 
-Function InstallFusionInventoryAgentTaskNetCore
+!macro InstallFusionInventoryAgentTaskNetCore
    ; Push $R0 onto the stack
    Push $R0
    Push $R1
@@ -554,13 +554,13 @@ Function InstallFusionInventoryAgentTaskNetCore
    ; Pop $R0 off of the stack
    Pop $R1
    Pop $R0
-FunctionEnd
+!macroend
 
 
 ; InstallFusionInventoryAgentTaskNetDiscovery
-!define InstallFusionInventoryAgentTaskNetDiscovery "Call InstallFusionInventoryAgentTaskNetDiscovery"
+!define InstallFusionInventoryAgentTaskNetDiscovery "!insertmacro InstallFusionInventoryAgentTaskNetDiscovery"
 
-Function InstallFusionInventoryAgentTaskNetDiscovery
+!macro InstallFusionInventoryAgentTaskNetDiscovery
    ; Push $R0 onto the stack
    Push $R0
    Push $R1
@@ -608,13 +608,13 @@ Function InstallFusionInventoryAgentTaskNetDiscovery
    ; Pop $R0 off of the stack
    Pop $R1
    Pop $R0
-FunctionEnd
+!macroend
 
 
 ; InstallFusionInventoryAgentTaskNetInventory
-!define InstallFusionInventoryAgentTaskNetInventory "Call InstallFusionInventoryAgentTaskNetInventory"
+!define InstallFusionInventoryAgentTaskNetInventory "!insertmacro InstallFusionInventoryAgentTaskNetInventory"
 
-Function InstallFusionInventoryAgentTaskNetInventory
+!macro InstallFusionInventoryAgentTaskNetInventory
    ; Push $R0 onto the stack
    Push $R0
    Push $R1
@@ -657,13 +657,13 @@ Function InstallFusionInventoryAgentTaskNetInventory
    ; Pop $R0 off of the stack
    Pop $R1
    Pop $R0
-FunctionEnd
+!macroend
 
 
 ; InstallFusionInventoryAgentTaskWakeOnLan
-!define InstallFusionInventoryAgentTaskWakeOnLan "Call InstallFusionInventoryAgentTaskWakeOnLan"
+!define InstallFusionInventoryAgentTaskWakeOnLan "!insertmacro InstallFusionInventoryAgentTaskWakeOnLan"
 
-Function InstallFusionInventoryAgentTaskWakeOnLan
+!macro InstallFusionInventoryAgentTaskWakeOnLan
    ; Push $R0 onto the stack
    Push $R0
    Push $R1
@@ -702,13 +702,13 @@ Function InstallFusionInventoryAgentTaskWakeOnLan
    ; Pop $R0 off of the stack
    Pop $R1
    Pop $R0
-FunctionEnd
+!macroend
 
 
 ; InstallStrawberryPerl
-!define InstallStrawberryPerl "Call InstallStrawberryPerl"
+!define InstallStrawberryPerl "!insertmacro InstallStrawberryPerl"
 
-Function InstallStrawberryPerl
+!macro InstallStrawberryPerl
    ; Push $R0 onto the stack
    Push $R0
 
@@ -747,7 +747,7 @@ Function InstallStrawberryPerl
 
    ; Pop $R0 off of the stack
    Pop $R0
-FunctionEnd
+!macroend
 
 
 ; UninstallCurrentAgent
