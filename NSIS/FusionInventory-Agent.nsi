@@ -626,20 +626,20 @@ Section "-un.Init"
    ; Remove Windows service
    ${RemoveFusionInventoryService}
 
-   ; Delete file $R0\fusioninventory-agent.bat
-   delete "$R0\fusioninventory-agent.bat"
+   ; Delete file $R0\fusioninventory-*.bat
+   Delete "$R0\fusioninventory-*.bat"
 
    ; Delete file $R0\license.txt
-   delete "$R0\license.txt"
+   Delete "$R0\license.txt"
 
    ; Delete file $R0\readme.txt
-   delete "$R0\readme.txt"
+   Delete "$R0\readme.txt"
 
    ; Delete file $R0\thanks.txt
-   delete "$R0\thanks.txt"
+   Delete "$R0\thanks.txt"
 
    ; Delete file $R0\${PRODUCT_UNINSTALLER}
-   delete "$R0\${PRODUCT_UNINSTALLER}"
+   Delete "$R0\${PRODUCT_UNINSTALLER}"
 
    ; Delete directory $R0\certs (whether is empty)
    RMDir "$R0\certs"
