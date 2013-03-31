@@ -258,8 +258,6 @@ Function InstallFusionInventoryAgent
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent\HTTP"
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Logger"
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Target"
-   CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Task"
-   CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Task\Inventory"
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Tools"
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent\XML"
    CreateDirectory "$R0\perl\bin"
@@ -271,22 +269,6 @@ Function InstallFusionInventoryAgent
    ${FileWriteLine} $R1 "@echo off"
    ${FileWriteLine} $R1 "cd perl/bin"
    ${FileWriteLine} $R1 "perl fusioninventory-agent %*"
-   ${FileWriteLine} $R1 "cd ../.."
-   FileClose $R1
-
-   ; Create $R0\fusioninventory-injector.bat
-   FileOpen $R1 "$R0\fusioninventory-injector.bat" w
-   ${FileWriteLine} $R1 "@echo off"
-   ${FileWriteLine} $R1 "cd perl/bin"
-   ${FileWriteLine} $R1 "perl fusioninventory-injector %*"
-   ${FileWriteLine} $R1 "cd ../.."
-   FileClose $R1
-
-   ; Create $R0\fusioninventory-inventory.bat
-   FileOpen $R1 "$R0\fusioninventory-inventory.bat" w
-   ${FileWriteLine} $R1 "@echo off"
-   ${FileWriteLine} $R1 "cd perl/bin"
-   ${FileWriteLine} $R1 "perl fusioninventory-inventory %*"
    ${FileWriteLine} $R1 "cd ../.."
    FileClose $R1
 
@@ -326,14 +308,6 @@ Function InstallFusionInventoryAgent
    SetOutPath "$R0\perl\agent\FusionInventory\Agent\Logger"
    File /r "${FIA_DIR}\lib\FusionInventory\Agent\Logger\*.*"
 
-   ; Install $R0\perl\agent\FusionInventory\Agent\Task\Inventory.pm
-   SetOutPath "$R0\perl\agent\FusionInventory\Agent\Task"
-   File "${FIA_DIR}\lib\FusionInventory\Agent\Task\Inventory.pm"
-
-   ; Install $R0\perl\agent\FusionInventory\Agent\Task\Inventory\*.*
-   SetOutPath "$R0\perl\agent\FusionInventory\Agent\Task\Inventory"
-   File /r "${FIA_DIR}\lib\FusionInventory\Agent\Task\Inventory\*.*"
-
    ; Install $R0\perl\agent\FusionInventory\Agent\Target\*.*
    SetOutPath "$R0\perl\agent\FusionInventory\Agent\Target"
    File /r "${FIA_DIR}\lib\FusionInventory\Agent\Target\*.*"
@@ -354,8 +328,6 @@ Function InstallFusionInventoryAgent
    ;         $R0\perl\bin\dmidecode.exe
    ;         $R0\perl\bin\hdparm.exe
    ;         $R0\perl\bin\fusioninventory-agent
-   ;         $R0\perl\bin\fusioninventory-injector
-   ;         $R0\perl\bin\fusioninventory-inventory
    ;         $R0\perl\bin\fusioninventory-win32-service
    ;         $R0\perl\bin\memconf
    SetOutPath "$R0\perl\bin\"
@@ -364,8 +336,6 @@ Function InstallFusionInventoryAgent
    File "${DMIDECODE_DIR}\dmidecode.exe"
    File "${HDPARM_DIR}\hdparm.exe"
    File "${FIA_DIR}\bin\fusioninventory-agent"
-   File "${FIA_DIR}\bin\fusioninventory-injector"
-   File "${FIA_DIR}\bin\fusioninventory-inventory"
    File "${FIA_DIR}\bin\fusioninventory-win32-service"
 
    ; Install $R0\share
@@ -460,6 +430,67 @@ Function InstallFusionInventoryAgentTaskESX
    ; Install $R0\perl\bin\fusioninventory-esx
    SetOutPath "$R0\perl\bin\"
    File "${FIA_DIR}\bin\fusioninventory-esx"
+
+   ; Set mode at which commands print their status
+   SetDetailsPrint lastused
+
+   ; Pop $R0 off of the stack
+   Pop $R1
+   Pop $R0
+FunctionEnd
+
+
+; InstallFusionInventoryAgentTaskInventory
+!define InstallFusionInventoryAgentTaskInventory "Call InstallFusionInventoryAgentTaskInventory"
+
+Function InstallFusionInventoryAgentTaskInventory
+   ; Push $R0 onto the stack
+   Push $R0
+   Push $R1
+
+   ; Set mode at which commands print their status
+   SetDetailsPrint textonly
+
+   ; Create directories
+   ${ReadINIOption} $R0 "${IOS_FINAL}" "${IO_INSTALLDIR}"
+   CreateDirectory "$R0"
+   CreateDirectory "$R0\perl"
+   CreateDirectory "$R0\perl\agent"
+   CreateDirectory "$R0\perl\agent\FusionInventory"
+   CreateDirectory "$R0\perl\agent\FusionInventory\Agent"
+   CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Task"
+   CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Task\Inventory"
+   CreateDirectory "$R0\perl\bin"
+
+   ; Create $R0\fusioninventory-injector.bat
+   FileOpen $R1 "$R0\fusioninventory-injector.bat" w
+   ${FileWriteLine} $R1 "@echo off"
+   ${FileWriteLine} $R1 "cd perl/bin"
+   ${FileWriteLine} $R1 "perl fusioninventory-injector %*"
+   ${FileWriteLine} $R1 "cd ../.."
+   FileClose $R1
+
+   ; Create $R0\fusioninventory-inventory.bat
+   FileOpen $R1 "$R0\fusioninventory-inventory.bat" w
+   ${FileWriteLine} $R1 "@echo off"
+   ${FileWriteLine} $R1 "cd perl/bin"
+   ${FileWriteLine} $R1 "perl fusioninventory-inventory %*"
+   ${FileWriteLine} $R1 "cd ../.."
+   FileClose $R1
+
+   ; Install $R0\perl\agent\FusionInventory\Agent\Task\Inventory.pm
+   SetOutPath "$R0\perl\agent\FusionInventory\Agent\Task"
+   File "${FIA_DIR}\lib\FusionInventory\Agent\Task\Inventory.pm"
+
+   ; Install $R0\perl\agent\FusionInventory\Agent\Task\Inventory\*.*
+   SetOutPath "$R0\perl\agent\FusionInventory\Agent\Task\Inventory"
+   File /r "${FIA_DIR}\lib\FusionInventory\Agent\Task\Inventory\*.*"
+
+   ; Install $R0\perl\bin\fusioninventory-injector
+   ;         $R0\perl\bin\fusioninventory-inventory
+   SetOutPath "$R0\perl\bin\"
+   File "${FIA_DIR}\bin\fusioninventory-injector"
+   File "${FIA_DIR}\bin\fusioninventory-inventory"
 
    ; Set mode at which commands print their status
    SetDetailsPrint lastused

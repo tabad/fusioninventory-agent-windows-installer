@@ -501,6 +501,17 @@ Section "-StrawberryPerl" SecStrawberryPerl
    ${InstallStrawberryPerl}
 SectionEnd
 
+Section "-FusionInventoryAgent" SecFusionInventoryAgent
+   AddSize 1024
+
+   ; Debug
+   StrCpy $0 "FusionInventoryAgent"
+   DetailPrint "$(Msg_InstallingSection)"
+
+   ; Install FusionInventory Agent
+   ${InstallFusionInventoryAgent}
+SectionEnd
+
 SectionGroup /e "$(SectionGroup_FusionInventoryAgentTasks)" SecGrpFusionInventoryAgentTasks
    Section /o "Deploy" SecDeploy
       AddSize 1024
@@ -531,8 +542,8 @@ SectionGroup /e "$(SectionGroup_FusionInventoryAgentTasks)" SecGrpFusionInventor
       SectionGetText ${SecInventory} $0
       DetailPrint "$(Msg_InstallingSection)"
 
-      ; Install FusionInventory Agent
-      ${InstallFusionInventoryAgent}
+      ; Install FusionInventory Agent Task Inventory
+      ${InstallFusionInventoryAgentTaskInventory}
    SectionEnd
 
    Section /o "NetDiscovery" SecNetDiscovery
