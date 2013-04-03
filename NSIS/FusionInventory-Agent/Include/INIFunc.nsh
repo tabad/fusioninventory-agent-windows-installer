@@ -47,6 +47,7 @@
 
 
 !include LogicLib.nsh
+!include "${FIAI_DIR}\Include\CommaUStrFunc.nsh"
 !include "${FIAI_DIR}\Include\Registry.nsh"
 
 
@@ -142,12 +143,12 @@
 !define FREQUENCY_HOURLY "hourly"
 !define FREQUENCY_MINUTE "minute"
 
-!define INSTALLTASK_ESX "ESX"
-!define INSTALLTASK_DEFAULT "default"
+!define INSTALLTASK_DEFAULT "Default"
 !define INSTALLTASK_DEPLOY "Deploy"
-!define INSTALLTASK_FULL "full"
+!define INSTALLTASK_ESX "ESX"
+!define INSTALLTASK_FULL "Full"
 !define INSTALLTASK_INVENTORY "Inventory"
-!define INSTALLTASK_MINIMAL "minimal"
+!define INSTALLTASK_MINIMAL "Minimal"
 !define INSTALLTASK_NETDISCOVERY "NetDiscovery"
 !define INSTALLTASK_NETINVENTORY "NetInventory"
 !define INSTALLTASK_WAKEONLAN "WakeOnLan"
@@ -158,14 +159,14 @@
 !define LOGGER_FILE "File"
 !define LOGGER_STDERR "Stderr"
 
-!define TASK_ESX "esx"
-!define TASK_DEPLOY "deploy"
-!define TASK_INVENTORY "inventory"
-!define TASK_NETDISCOVERY "netdiscovery"
-!define TASK_NETINVENTORY "netinventory"
-!define TASK_OCSDEPLOY "ocsdeploy"
-!define TASK_SNMPQUERY "snmpquery"
-!define TASK_WAKEONLAN "wakeonlan"
+!define TASK_DEPLOY "${INSTALLTASK_DEPLOY}"
+!define TASK_ESX "${INSTALLTASK_ESX}"
+!define TASK_INVENTORY "${INSTALLTASK_INVENTORY}"
+!define TASK_NETDISCOVERY "${INSTALLTASK_NETDISCOVERY}"
+!define TASK_NETINVENTORY "${INSTALLTASK_NETINVENTORY}"
+!define TASK_OCSDEPLOY "OCSDeploy"
+!define TASK_SNMPQUERY "SNMPQuery"
+!define TASK_WAKEONLAN "${INSTALLTASK_WAKEONLAN}"
 
 !define SERVICE_STARTTYPE_BOOT 0
 !define SERVICE_STARTTYPE_SYSTEM 1
@@ -180,6 +181,42 @@
 !define SERVICE_STATUS_CONTINUE_PENDING 5
 !define SERVICE_STATUS_PAUSE_PENDING 6
 !define SERVICE_STATUS_PAUSED 7
+
+
+; GetInstallTasksMinimalCommaUStr
+!define GetInstallTasksMinimalCommaUStr "!insertmacro GetInstallTasksMinimalCommaUStr"
+
+!macro GetInstallTasksMinimalCommaUStr ResultVar
+   StrCpy ${ResultVar} ""
+   ${AddStrCommaUStr} ${ResultVar} "${TASK_INVENTORY}" ${ResultVar}
+!macroend
+
+
+; GetInstallTasksDefaultCommaUStr
+!define GetInstallTasksDefaultCommaUStr "!insertmacro GetInstallTasksDefaultCommaUStr"
+
+!macro GetInstallTasksDefaultCommaUStr ResultVar
+   StrCpy ${ResultVar} ""
+   ${AddStrCommaUStr} ${ResultVar} "${TASK_INVENTORY}" ${ResultVar}
+!macroend
+
+
+; GetInstallTasksFullCommaUStr
+!define GetInstallTasksFullCommaUStr "!insertmacro GetInstallTasksFullCommaUStr"
+
+!macro GetInstallTasksFullCommaUStr ResultVar
+   StrCpy ${ResultVar} ""
+   ${AddStrCommaUStr} ${ResultVar} "${TASK_DEPLOY}" ${ResultVar}
+   ${AddStrCommaUStr} ${ResultVar} "${TASK_ESX}" ${ResultVar}
+   ${AddStrCommaUStr} ${ResultVar} "${TASK_INVENTORY}" ${ResultVar}
+   ${AddStrCommaUStr} ${ResultVar} "${TASK_NETDISCOVERY}" ${ResultVar}
+   ${AddStrCommaUStr} ${ResultVar} "${TASK_NETINVENTORY}" ${ResultVar}
+   ${AddStrCommaUStr} ${ResultVar} "${TASK_WAKEONLAN}" ${ResultVar}
+!macroend
+
+
+; GetValidAgentTasksCommaUStr
+!define GetValidAgentTasksCommaUStr "!insertmacro GetInstallTasksFullCommaUStr"
 
 
 ; ReadINIOption

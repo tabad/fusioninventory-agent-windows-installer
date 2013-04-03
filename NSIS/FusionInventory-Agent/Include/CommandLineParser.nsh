@@ -49,6 +49,7 @@
 !include FileFunc.nsh
 !include LogicLib.nsh
 !include WordFunc.nsh
+!include "${FIAI_DIR}\Include\CommaUStrFunc.nsh"
 !include "${FIAI_DIR}\Include\FileFunc.nsh"
 !include "${FIAI_DIR}\Include\INIFunc.nsh"
 !include "${FIAI_DIR}\Include\StrFunc.nsh"
@@ -132,6 +133,60 @@
          ${EndIf}
       ${Loop}
    ${EndIf}
+!macroend
+
+
+!define CheckSetOfAgentTasks "!insertmacro CheckSetOfAgentTasks"
+
+!macro CheckSetOfAgentTasks
+             ; Check possible task set
+             ; $0 Valid agent tasks CommaUStr
+             ; $1 Agent tasks CommaUStr to install
+             ; $2 An agent tasks to install
+             ; $3 Auxiliary
+             ; Push $0, $1, $2 & $3 onto the stack
+             Push $0
+             Push $1
+             Push $2
+             Push $3
+             ; Get valid agent tasks
+             ${GetValidAgentTasksCommaUStr} $0
+             ; Build the agent tasks CommaUStr to install
+             StrCpy $1 ""
+             ${AddCommaStrCommaUStr} "$1" "$R3" $1
+             ; Check loop
+             ${Do}
+                ; Get the first agent task to install
+                ${FirstStrCommaUStr} "$1" $2
+                ; Check the $2 agent task to install
+                ${If} "$2" == ""
+                   ; There aren't more agent tasks to install
+                   ${ExitDo}
+                ${Else}
+                   ; Check whether is a valid agent tasks
+                   ${IsStrInCommaUStr} "$0" "$2" $3
+                   ${If} $3 == 0
+                      ; Syntax error. $2 is not a valid agent task to install
+                      SetErrors
+                      StrCpy $R7 1
+                      ${ExitDo}
+                   ${Else}
+                      ; $2 is a valid agent task to install
+                      ; Check the next agent task
+                      ${DelStrCommaUStr} "$1" "$2" $1
+                   ${EndIf}
+                ${EndIf}
+             ${Loop}
+             ; Final check
+             ${If} $R7 = 0
+                ; $R3 is a valid value and $1 is empty
+                ${AddCommaStrCommaUStr} "$R3" "$1" $R3
+             ${EndIf}
+             ; Pop $3, $2, $1 & $0 off of the stack
+             Pop $3
+             Pop $2
+             Pop $1
+             Pop $0
 !macroend
 
 
@@ -420,13 +475,29 @@ Function GetCommandLineOptions
    ; Search for '/installtasks' option.
    ${CommandLineOptionsSearchBlock} "/installtasks=" "${IO_INSTALLTASKS}"
        ; Check $R3 domain
-       ; ToDo
-       ${If} $R3 != $R3
-          ; Syntax error.
-          SetErrors
-          StrCpy $R7 1
-          ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
-          ${Break}
+       ${Select} "$R3"
+          ${Case} ""
+             ; Syntax error.
+             SetErrors
+             StrCpy $R7 1
+          ${Case} "${INSTALLTASK_DEFAULT}"
+	     ; Install default tasks.
+             Nop
+          ${Case} "${INSTALLTASK_MINIMAL}"
+	     ; Install the minimal tasks.
+             Nop
+          ${Case} "${INSTALLTASK_FULL}"
+	     ; Install all tasks.
+             Nop
+          ${CaseElse}
+             ; Check set of agent tasks.
+             ${CheckSetOfAgentTasks}
+       ${EndSelect}
+
+       ${If} $R7 = 1
+         ; Syntax error
+         ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
+         ${Break}
        ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 
@@ -585,11 +656,17 @@ Function GetCommandLineOptions
    ; Search for '/no-task' option.
    ${CommandLineOptionsSearchBlock} "/no-task=" "${IO_NO-TASK}"
        ; Check $R3 domain
-       ; ToDo
-       ${If} $R3 != $R3
-          ; Syntax error.
-          SetErrors
-          StrCpy $R7 1
+       ${Select} "$R3"
+          ${Case} ""
+             ; Valid value
+             Nop
+          ${CaseElse}
+             ; Check set of agent tasks
+             ${CheckSetOfAgentTasks}
+       ${EndSelect}
+
+       ${If} $R7 = 1
+          ; Syntax error
           ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
           ${Break}
        ${EndIf}
