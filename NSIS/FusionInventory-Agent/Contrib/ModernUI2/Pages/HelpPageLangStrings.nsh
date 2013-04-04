@@ -625,9 +625,9 @@ LangString hCtl_HelpPage_Help_Author ${LANG_FRENCH} "fAUTHOR"
 LangString hCtl_HelpPage_Help_Author ${LANG_SPANISH} "AUTOR"
 
 ; hCtl_HelpPage_Help_Author_Paragraph_1
-LangString hCtl_HelpPage_Help_Author_Paragraph_1 ${LANG_ENGLISH} "ToDo"
-LangString hCtl_HelpPage_Help_Author_Paragraph_1 ${LANG_FRENCH} "fToDo"
-LangString hCtl_HelpPage_Help_Author_Paragraph_1 ${LANG_SPANISH} "Por hacer"
+LangString hCtl_HelpPage_Help_Author_Paragraph_1 ${LANG_ENGLISH} "Tomás Abad <tabadgp@gmail.com>"
+LangString hCtl_HelpPage_Help_Author_Paragraph_1 ${LANG_FRENCH} "Tomás Abad <tabadgp@gmail.com>"
+LangString hCtl_HelpPage_Help_Author_Paragraph_1 ${LANG_SPANISH} "Tomás Abad <tabadgp@gmail.com>"
 
 ; hCtl_HelpPage_Help_Bugs
 LangString hCtl_HelpPage_Help_Bugs ${LANG_ENGLISH} "REPORTING BUGS"
@@ -635,9 +635,18 @@ LangString hCtl_HelpPage_Help_Bugs ${LANG_FRENCH} "fREPORTING BUGS"
 LangString hCtl_HelpPage_Help_Bugs ${LANG_SPANISH} "INFORME DE ERRORES"
 
 ; hCtl_HelpPage_Help_Bugs_Paragraph_1
-LangString hCtl_HelpPage_Help_Bugs_Paragraph_1 ${LANG_ENGLISH} "ToDo"
-LangString hCtl_HelpPage_Help_Bugs_Paragraph_1 ${LANG_FRENCH} "fToDo"
-LangString hCtl_HelpPage_Help_Bugs_Paragraph_1 ${LANG_SPANISH} "Por hacer"
+LangString hCtl_HelpPage_Help_Bugs_Paragraph_1 ${LANG_ENGLISH} \
+"User Mailing List: http://lists.alioth.debian.org/mailman/listinfo/fusioninventory-user\par \
+Devel Mailing List: http://lists.alioth.debian.org/mailman/listinfo/fusioninventory-devel\par \
+Project Manager: http://forge.fusioninventory.org/projects/fusioninventory-agent-windows-installer"
+LangString hCtl_HelpPage_Help_Bugs_Paragraph_1 ${LANG_FRENCH} \
+"fUser Mailing List: http://lists.alioth.debian.org/mailman/listinfo/fusioninventory-user\par \
+Devel Mailing List: http://lists.alioth.debian.org/mailman/listinfo/fusioninventory-devel\par \
+Project Manager: http://forge.fusioninventory.org/projects/fusioninventory-agent-windows-installer"
+LangString hCtl_HelpPage_Help_Bugs_Paragraph_1 ${LANG_SPANISH} \
+"Lista de Correo de Usuarios: http://lists.alioth.debian.org/mailman/listinfo/fusioninventory-user\par \
+Lista de Correo de Desarrollo: http://lists.alioth.debian.org/mailman/listinfo/fusioninventory-devel\par \
+Gestor del Proyecto: http://forge.fusioninventory.org/projects/fusioninventory-agent-windows-installer"
 
 ; hCtl_HelpPage_Help_Copyright
 LangString hCtl_HelpPage_Help_Copyright ${LANG_ENGLISH} "COPYRIGHT"
@@ -645,9 +654,9 @@ LangString hCtl_HelpPage_Help_Copyright ${LANG_FRENCH} "fCOPYRIGHT"
 LangString hCtl_HelpPage_Help_Copyright ${LANG_SPANISH} "COPYRIGHT"
 
 ; hCtl_HelpPage_Help_Copyright_Paragraph_1
-LangString hCtl_HelpPage_Help_Copyright_Paragraph_1 ${LANG_ENGLISH} "ToDo"
-LangString hCtl_HelpPage_Help_Copyright_Paragraph_1 ${LANG_FRENCH} "fToDo"
-LangString hCtl_HelpPage_Help_Copyright_Paragraph_1 ${LANG_SPANISH} "Por hacer"
+LangString hCtl_HelpPage_Help_Copyright_Paragraph_1 ${LANG_ENGLISH} "Copyright 2012-2013 FusionInventory Team. GNU GPL version 2 or (at your option) any later version <http://www.gnu.org/licenses/old-licenses/gpl-2.0-standalone.html>. This is free software: you are free to change and redistribute it. There is NO WARRANTY, to the extent permitted by law."
+LangString hCtl_HelpPage_Help_Copyright_Paragraph_1 ${LANG_FRENCH} "fCopyright 2012-2013 FusionInventory Team. GNU GPL version 2 or (at your option) any later version <http://www.gnu.org/licenses/old-licenses/gpl-2.0-standalone.html>. This is free software: you are free to change and redistribute it. There is NO WARRANTY, to the extent permitted by law."
+LangString hCtl_HelpPage_Help_Copyright_Paragraph_1 ${LANG_SPANISH} "Copyright 2012-2013 FusionInventory Team. GNU GPL versión 2 o (en su opinión) cualquier versión posterior <http://www.gnu.org/licenses/old-licenses/gpl-2.0-standalone.html>. Esto es \i software\i0 libre, es libre de cambiarlo y distribuirlo. Este programa se ofrece SIN GARANTÍA ALGUNA."
 
 ; hCtl_HelpPage_Help_SeeAlso
 LangString hCtl_HelpPage_Help_SeeAlso ${LANG_ENGLISH} "SEE ALSO"
@@ -655,8 +664,8 @@ LangString hCtl_HelpPage_Help_SeeAlso ${LANG_FRENCH} "fSEE ALSO"
 LangString hCtl_HelpPage_Help_SeeAlso ${LANG_SPANISH} "VER ADEMÁS"
 
 ; hCtl_HelpPage_Help_SeeAlso_Paragraph_1
-LangString hCtl_HelpPage_Help_SeeAlso_Paragraph_1 ${LANG_ENGLISH} "ToDo"
-LangString hCtl_HelpPage_Help_SeeAlso_Paragraph_1 ${LANG_FRENCH} "fToDo"
-LangString hCtl_HelpPage_Help_SeeAlso_Paragraph_1 ${LANG_SPANISH} "Por hacer"
+LangString hCtl_HelpPage_Help_SeeAlso_Paragraph_1 ${LANG_ENGLISH} "FusionInventory Web Site: http://www.fusioninventory.org/"
+LangString hCtl_HelpPage_Help_SeeAlso_Paragraph_1 ${LANG_FRENCH} "fFusionInventory Web Site: http://www.fusioninventory.org/"
+LangString hCtl_HelpPage_Help_SeeAlso_Paragraph_1 ${LANG_SPANISH} "Sitio Web de FusionInventory: http://www.fusioninventory.org/"
 
 !endif
