@@ -780,6 +780,9 @@ Function .onInstSuccess
    CreateDirectory "$R0\debug\"
    CopyFiles "${INI_OPTIONS_FILE}" "$R0\debug\"
    CopyFiles "$PLUGINSDIR\CommandLineParser.log" "$R0\debug\"
+
+   ; Unload registry plugin
+   ${registry::Unload}
 FunctionEnd
 
 
@@ -789,6 +792,9 @@ Function .onInstFailed
    CreateDirectory "$R0\debug\"
    CopyFiles "${INI_OPTIONS_FILE}" "$R0\debug\"
    CopyFiles "$PLUGINSDIR\CommandLineParser.log" "$R0\debug\"
+
+   ; Unload registry plugin
+   ${registry::Unload}
 FunctionEnd
 
 
@@ -817,6 +823,18 @@ Function un.onInit
 
    ; Initialize global variables
    ${un.InitGlobalVariables}
+FunctionEnd
+
+
+Function un.onUninstFailed
+   ; Unload registry plugin
+   ${registry::Unload}
+FunctionEnd
+
+
+Function un.onUninstSuccess
+   ; Unload registry plugin
+   ${registry::Unload}
 FunctionEnd
 
 
