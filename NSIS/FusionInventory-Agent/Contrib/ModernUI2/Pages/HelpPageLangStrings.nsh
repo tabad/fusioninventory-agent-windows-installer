@@ -277,9 +277,9 @@ LangString hCtl_HelpPage_Help_Option_installtasks_Paragraph_2 ${LANG_ENGLISH} \
 \par \
 There are three macro defined to simplify the mission, are the following:\par \
 \par \
-\tab minimal: Inventory\par \
-\tab default: Inventory\par \
-\tab full: Deploy,ESX,Inventory,NetDiscovery,NetInventory,WakeOnLan"
+\tab Minimal: Inventory\par \
+\tab Default: Inventory\par \
+\tab Full: Deploy,ESX,Inventory,NetDiscovery,NetInventory,WakeOnLan"
 LangString hCtl_HelpPage_Help_Option_installtasks_Paragraph_2 ${LANG_FRENCH} \
 "f\i task\i0  can be any of the following values:\par \
 \par \
@@ -292,9 +292,9 @@ LangString hCtl_HelpPage_Help_Option_installtasks_Paragraph_2 ${LANG_FRENCH} \
 \par \
 There are three macro defined to simplify the mission, are the following:\par \
 \par \
-\tab minimal: Inventory\par \
-\tab default: Inventory\par \
-\tab full: Deploy,ESX,Inventory,NetDiscovery,NetInventory,WakeOnLan"
+\tab Minimal: Inventory\par \
+\tab Default: Inventory\par \
+\tab Full: Deploy,ESX,Inventory,NetDiscovery,NetInventory,WakeOnLan"
 LangString hCtl_HelpPage_Help_Option_installtasks_Paragraph_2 ${LANG_SPANISH} \
 "\i task\i0  puede ser cualquiera de los siguientes valores:\par \
 \par \
@@ -307,14 +307,14 @@ LangString hCtl_HelpPage_Help_Option_installtasks_Paragraph_2 ${LANG_SPANISH} \
 \par \
 Existen tres macros definidas para simplificar el cometido, son las siguientes:\par \
 \par \
-\tab minimal: Inventory\par \
-\tab default: Inventory\par \
-\tab full: Deploy,ESX,Inventory,NetDiscovery,NetInventory,WakeOnLan"
+\tab Minimal: Inventory\par \
+\tab Default: Inventory\par \
+\tab Full: Deploy,ESX,Inventory,NetDiscovery,NetInventory,WakeOnLan"
 
 ; hCtl_HelpPage_Help_Option_installtasks_Paragraph_3
-LangString hCtl_HelpPage_Help_Option_installtasks_Paragraph_3 ${LANG_ENGLISH} "It should be noted that the Inventory task will be always installed and that the NetDiscovery and NetInventory tasks are inter-dependent. Nowadays 'minimal' and 'default' are the same configuration."
-LangString hCtl_HelpPage_Help_Option_installtasks_Paragraph_3 ${LANG_FRENCH} "fIt should be noted that the Inventory task will be always installed and that the NetDiscovery and NetInventory tasks are inter-dependent. Nowadays 'minimal' and 'default' are the same configuration."
-LangString hCtl_HelpPage_Help_Option_installtasks_Paragraph_3 ${LANG_SPANISH} "Es necesario notar que la tarea Inventory será siempre instalada y que las tareas NetDiscovery y NetInventory son interdependientes. A día de hoy 'minimal' y 'default' son la misma configuración."
+LangString hCtl_HelpPage_Help_Option_installtasks_Paragraph_3 ${LANG_ENGLISH} "It should be noted that the Inventory task will be always installed and that the NetDiscovery and NetInventory tasks are inter-dependent. Nowadays 'Minimal' and 'Default' are the same configuration."
+LangString hCtl_HelpPage_Help_Option_installtasks_Paragraph_3 ${LANG_FRENCH} "fIt should be noted that the Inventory task will be always installed and that the NetDiscovery and NetInventory tasks are inter-dependent. Nowadays 'Minimal' and 'Default' are the same configuration."
+LangString hCtl_HelpPage_Help_Option_installtasks_Paragraph_3 ${LANG_SPANISH} "Es necesario notar que la tarea Inventory será siempre instalada y que las tareas NetDiscovery y NetInventory son interdependientes. A día de hoy 'Minimal' y 'Default' son la misma configuración."
 
 ; hCtl_HelpPage_Help_Option_installdir_Paragraph_2
 LangString hCtl_HelpPage_Help_Option_installdir_Paragraph_2 ${LANG_ENGLISH} "You must indicate an absolute pathname."
