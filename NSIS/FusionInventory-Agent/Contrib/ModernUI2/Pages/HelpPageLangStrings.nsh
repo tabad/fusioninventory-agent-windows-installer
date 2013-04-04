@@ -205,9 +205,9 @@ LangString hCtl_HelpPage_Help_Option_execmode_Paragraph_2 ${LANG_FRENCH} "fToDo.
 LangString hCtl_HelpPage_Help_Option_execmode_Paragraph_2 ${LANG_SPANISH} "Por hacer."
 
 ; hCtl_HelpPage_Help_Option_help_Paragraph_1
-LangString hCtl_HelpPage_Help_Option_help_Paragraph_1 ${LANG_ENGLISH} "This help. Whether \i /help\i0  is present, show help and abort the installation."
-LangString hCtl_HelpPage_Help_Option_help_Paragraph_1 ${LANG_FRENCH} "fThis help. Whether \i /help\i0  is present, show help and abort the installation."
-LangString hCtl_HelpPage_Help_Option_help_Paragraph_1 ${LANG_SPANISH} "Esta ayuda. Si \i /help\i0  está presente, muestra la ayuda y aborta la instalación."
+LangString hCtl_HelpPage_Help_Option_help_Paragraph_1 ${LANG_ENGLISH} "This help. Whether \i /help\i0  is present, show help and abort the installation. You could prefer make use of \i /dumphelp\i0  instead \i /help\i0  to get information. \i /dumphelp\i0  creates a RTF file with this help, and abort the installation."
+LangString hCtl_HelpPage_Help_Option_help_Paragraph_1 ${LANG_FRENCH} "fThis help. Whether \i /help\i0  is present, show help and abort the installation. You could prefer make use of \i /dumphelp\i0  instead \i /help\i0  to get information. \i /dumphelp\i0  creates a RTF file with this help, and abort the installation."
+LangString hCtl_HelpPage_Help_Option_help_Paragraph_1 ${LANG_SPANISH} "Esta ayuda. Si \i /help\i0  está presente, muestra la ayuda y aborta la instalación. Podría preferir hacer uso de \i /dumphelp\i0  en su lugar \i /help\i0  para obtener información. \i /dumphelp\i0  crea un archivo RTF con esta ayuda y aborta la instalación."
 
 ; hCtl_HelpPage_Help_Option_html_Paragraph_1
 LangString hCtl_HelpPage_Help_Option_html_Paragraph_1 ${LANG_ENGLISH} "Save the inventory as HTML instead of XML. (By default: $R9)"
