@@ -442,10 +442,6 @@ Section "-Init" SecInit
    ${GetCurrentUninstallString} $R0
    DetailPrint "Current Uninstall String: '$R0'"
 
-   ; Get current quiet uninstall string (Debug)
-   ${GetCurrentQuietUninstallString} $R0
-   DetailPrint "Current Quiet Uninstall String: '$R0'"
-
    ; Windows information (Debug)
    ${GetWindowsName} $R0
    DetailPrint "WindowsName: $R0"

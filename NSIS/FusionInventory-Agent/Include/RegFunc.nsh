@@ -110,10 +110,6 @@ Function AddUninstallInformation
    ${ReadINIOption} $R1 "$R0" "${IO_INSTALLDIR}"
    ${registry::Write} "${PRODUCT_UNINST_ROOT_KEY}\$PRODUCT_UNINST_SUBKEY" "UninstallString" "$R1\${PRODUCT_UNINSTALLER}" "REG_SZ" $R2
 
-   ; Register key 'QuietUninstallString'
-   ${ReadINIOption} $R1 "$R0" "${IO_INSTALLDIR}"
-   ${registry::Write} "${PRODUCT_UNINST_ROOT_KEY}\$PRODUCT_UNINST_SUBKEY" "QuietUninstallString" '"$R1\${PRODUCT_UNINSTALLER}" /S' "REG_SZ" $R2
-
    ; Register key 'URLUpdateInfo'
    ${registry::Write} "${PRODUCT_UNINST_ROOT_KEY}\$PRODUCT_UNINST_SUBKEY" "URLUpdateInfo" "${PRODUCT_WEB_FOR_UPDATES}" "REG_SZ" $R2
 
@@ -271,57 +267,6 @@ Function GetCurrentInstallSubkey
    ${EndIf}
 
    ; Pop $R1 off of the stack
-   Pop $R1
-
-   ; Exchanges the top element of the stack with $R0
-   Exch $R0
-FunctionEnd
-
-
-; GetCurrentQuietUninstallString
-!define GetCurrentQuietUninstallString "!insertmacro GetCurrentQuietUninstallString"
-
-!macro GetCurrentQuietUninstallString ResultVar
-   Call GetCurrentQuietUninstallString
-   Pop "${ResultVar}"
-!macroend
-
-Function GetCurrentQuietUninstallString
-   ; Push $R0, $R1, $R2 & $R3 onto the stack
-   Push $R0
-   Push $R1
-   Push $R2
-   Push $R3
-
-   ; Initialize $R0
-   StrCpy $R0 ""
-
-   ; Get current uninstall subkey
-   Call GetCurrentUninstallSubkey
-   Pop $R1
-
-   ${If} "$R1" != ""
-      ; Get current quiet uninstall string
-      ${registry::Read} "${PRODUCT_UNINST_ROOT_KEY}\$R1" "QuietUninstallString" $R2 $R3
-
-      ${If} "$R2" != ""
-      ${AndIf} "$R3" == "REG_SZ"
-         StrCpy $R0 "$R2"
-      ${Else}
-         ; Get current uninstall string
-         Call GetCurrentUninstallString
-         Pop $R1
-
-         ${If} "$R1" != ""
-            ; Build current quiet uninstall string
-            StrCpy $R0 '"$R1" /S'
-         ${EndIf}
-      ${EndIf}
-   ${EndIf}
-
-   ; Pop $R3, $R2 & $R1 off of the stack
-   Pop $R3
-   Pop $R2
    Pop $R1
 
    ; Exchanges the top element of the stack with $R0

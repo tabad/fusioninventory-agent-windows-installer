@@ -767,19 +767,31 @@ Function UninstallCurrentAgent
    ; Initialize $R0
    StrCpy $R0 0
 
-   ; Get quiet uninstall string
-   ${GetCurrentQuietUninstallString} $R1
+   ; Get uninstall string
+   ${GetCurrentUninstallString} $R1
 
    ; Whether the uninstaller exists...
    ${If} "$R1" != ""
       ; Get parent directory
       ${GetParent} "$R1" $R2
 
+      ; Copy the uninstaller to $TEMP
+      CopyFiles "$R1" "$TEMP"
+
+      ; Rebuild the uninstaller string
+      ${WordReplace} "$R1" "$R2" "$TEMP" "+1" $R1
+
       ; Erase quotation marks (") from $R2
       ${WordReplace} "$R2" "$\"" "" "+" $R2
 
+      ; Set the output path to $TEMP
+      SetOutPath "$TEMP"
+
       ; Exec the uninstaller...
-      ExecWait '$R1 _?=$R2' $R0
+      ExecWait '"$R1" /S _?=$R2' $R0
+
+      ; Wait a couple of seconds
+      Sleep 2000
    ${EndIf}
 
    ; Pop $R2 & $R1 off of the stack
