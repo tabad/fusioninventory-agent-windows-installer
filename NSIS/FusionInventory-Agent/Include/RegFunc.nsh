@@ -230,7 +230,7 @@ Function GetCurrentInstallSubkey
    ; Get Windows platform architecture
    ${GetWindowsPlatformArchitecture} $R0
 
-   ${If} $R1 = 32
+   ${If} $R0 = 32
       ; Platform 32bits
 
       ; Check if the subkey SOFTWARE\${PRODUCT_INTERNAL_NAME} exist
@@ -331,20 +331,20 @@ Function GetCurrentUninstallSubkey
    ; Get Windows platform architecture
    ${GetWindowsPlatformArchitecture} $R0
 
-   ${If} $R1 = 32
+   ${If} $R0 = 32
       ; Platform 32bits
 
       ; Check if the subkey SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME} exist
       ;    This subkey is now deprecated
       StrCpy $R1 "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
-      ${registry::KeyExists} "${PRODUCT_INST_ROOT_KEY}\$R1" $R0
+      ${registry::KeyExists} "${PRODUCT_UNINST_ROOT_KEY}\$R1" $R0
       ${If} $R0 = 0
          ; Subkey found
          StrCpy $R0 "$R1"
       ${Else}
          ; Check if the subkey SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_INTERNAL_NAME} exist
          StrCpy $R1 "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_INTERNAL_NAME}"
-         ${registry::KeyExists} "${PRODUCT_INST_ROOT_KEY}\$R1" $R0
+         ${registry::KeyExists} "${PRODUCT_UNINST_ROOT_KEY}\$R1" $R0
          ${If} $R0 = 0
             ; Subkey found
             StrCpy $R0 "$R1"
@@ -359,21 +359,21 @@ Function GetCurrentUninstallSubkey
       ; Check if the subkey SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME} exist
       ;    This subkey is now deprecated
       StrCpy $R1 "SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
-      ${registry::KeyExists} "${PRODUCT_INST_ROOT_KEY}\$R1" $R0
+      ${registry::KeyExists} "${PRODUCT_UNINST_ROOT_KEY}\$R1" $R0
       ${If} $R0 = 0
          ; Subkey found
          StrCpy $R0 "$R1"
       ${Else}
          ; Check if the subkey SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_INTERNAL_NAME} exist
          StrCpy $R1 "SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_INTERNAL_NAME}"
-         ${registry::KeyExists} "${PRODUCT_INST_ROOT_KEY}\$R1" $R0
+         ${registry::KeyExists} "${PRODUCT_UNINST_ROOT_KEY}\$R1" $R0
          ${If} $R0 = 0
             ; Subkey found
             StrCpy $R0 "$R1"
          ${Else}
             ; Check if the subkey SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_INTERNAL_NAME} exist
             StrCpy $R1 "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_INTERNAL_NAME}"
-            ${registry::KeyExists} "${PRODUCT_INST_ROOT_KEY}\$R1" $R0
+            ${registry::KeyExists} "${PRODUCT_UNINST_ROOT_KEY}\$R1" $R0
             ${If} $R0 = 0
                ; Subkey found
                StrCpy $R0 "$R1"
