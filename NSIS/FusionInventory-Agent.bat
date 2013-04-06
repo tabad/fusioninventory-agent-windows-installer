@@ -60,15 +60,15 @@ goto nsis_not_installed
 
 :native_architecture
 :: NSIS is already installed into %ProgramFiles%\NSIS
-set NSIS_PATH=%SYSTEMDRIVE%\progra~1\NSIS
+for %%p in ("%ProgramFiles%\NSIS") do set NSIS_PATH=%%~sp
 
 goto load_aditional_environment
 
 :x64_architecture
 :: NSIS is already installed into %ProgramFiles(x86)%\NSIS
-set NSIS_PATH=%SYSTEMDRIVE%\progra~2\NSIS
+for %%p in ("%ProgramFiles(x86)%\NSIS") do set NSIS_PATH=%%~sp
 
-:load_aditinal_environment
+:load_aditional_environment
 :: Load aditional environment
 setlocal enabledelayedexpansion
 set LOCAL_PATH=%PATH%
@@ -82,7 +82,7 @@ endlocal & set PATH=%PATH%%LOCAL_PATH%
 set LOCAL_PATH=
 
 :: Launch the bash shell script
-%MSYS_PATH%\bin\bash.exe %~dpn0.sh %*
+%MSYS_PATH%\bin\bash.exe "%~dpn0.sh" %*
 
 :: Unload aditional environment
 setlocal enabledelayedexpansion

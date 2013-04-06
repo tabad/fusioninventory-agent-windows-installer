@@ -51,7 +51,7 @@ if not exist "%MINGW_PATH%" goto not_installed
 call .\load-gnu-utilities-environment.bat
 
 :: Launch the bash shell script
-"%MSYS_PATH%\bin\bash.exe" %~dpn0.sh %*
+"%MSYS_PATH%\bin\bash.exe" "%~dpn0.sh" %*
 
 :: Unload gnu utilities environment
 call .\unload-gnu-utilities-environment.bat
