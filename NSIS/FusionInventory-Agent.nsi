@@ -617,6 +617,10 @@ Section "-un.Init"
    ; Delete file $R0\fusioninventory-*.bat
    Delete "$R0\fusioninventory-*.bat"
 
+   ; Delete logfile
+   ReadRegStr $R1 "${PRODUCT_INST_ROOT_KEY}" "$PRODUCT_INST_SUBKEY" "${IO_LOGFILE}"
+   Delete "$R1"
+
    ; Delete file $R0\license.txt
    Delete "$R0\license.txt"
 
