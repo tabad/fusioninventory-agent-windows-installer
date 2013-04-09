@@ -267,9 +267,10 @@ FunctionEnd
    ; Create $R0\fusioninventory-agent.bat
    FileOpen $R1 "$R0\fusioninventory-agent.bat" w
    ${FileWriteLine} $R1 "@echo off"
-   ${FileWriteLine} $R1 "cd perl/bin"
-   ${FileWriteLine} $R1 "perl fusioninventory-agent %*"
-   ${FileWriteLine} $R1 "cd ../.."
+   ${FileWriteLine} $R1 "for %%p in ($\".$\") do pushd $\"%%~fsp$\""
+   ${FileWriteLine} $R1 "cd $\"%~dp0\perl\bin$\""
+   ${FileWriteLine} $R1 "perl.exe fusioninventory-agent %*"
+   ${FileWriteLine} $R1 "popd"
    FileClose $R1
 
    ; Install $R0\{license,readme,thanks}.txt
@@ -414,9 +415,10 @@ FunctionEnd
    ; Create $R0\fusioninventory-esx.bat
    FileOpen $R1 "$R0\fusioninventory-esx.bat" w
    ${FileWriteLine} $R1 "@echo off"
-   ${FileWriteLine} $R1 "cd perl/bin"
-   ${FileWriteLine} $R1 "perl fusioninventory-esx %*"
-   ${FileWriteLine} $R1 "cd ../.."
+   ${FileWriteLine} $R1 "for %%p in ($\".$\") do pushd $\"%%~fsp$\""
+   ${FileWriteLine} $R1 "cd $\"%~dp0\perl\bin$\""
+   ${FileWriteLine} $R1 "perl.exe fusioninventory-esx %*"
+   ${FileWriteLine} $R1 "popd"
    FileClose $R1
 
    ; Install $R0\perl\agent\FusionInventory\Agent\SOAP\*.*
@@ -465,17 +467,19 @@ FunctionEnd
    ; Create $R0\fusioninventory-injector.bat
    FileOpen $R1 "$R0\fusioninventory-injector.bat" w
    ${FileWriteLine} $R1 "@echo off"
-   ${FileWriteLine} $R1 "cd perl/bin"
-   ${FileWriteLine} $R1 "perl fusioninventory-injector %*"
-   ${FileWriteLine} $R1 "cd ../.."
+   ${FileWriteLine} $R1 "for %%p in ($\".$\") do pushd $\"%%~fsp$\""
+   ${FileWriteLine} $R1 "cd $\"%~dp0\perl\bin$\""
+   ${FileWriteLine} $R1 "perl.exe fusioninventory-injector %*"
+   ${FileWriteLine} $R1 "popd"
    FileClose $R1
 
    ; Create $R0\fusioninventory-inventory.bat
    FileOpen $R1 "$R0\fusioninventory-inventory.bat" w
    ${FileWriteLine} $R1 "@echo off"
-   ${FileWriteLine} $R1 "cd perl/bin"
-   ${FileWriteLine} $R1 "perl fusioninventory-inventory %*"
-   ${FileWriteLine} $R1 "cd ../.."
+   ${FileWriteLine} $R1 "for %%p in ($\".$\") do pushd $\"%%~fsp$\""
+   ${FileWriteLine} $R1 "cd $\"%~dp0\perl\bin$\""
+   ${FileWriteLine} $R1 "perl.exe fusioninventory-inventory %*"
+   ${FileWriteLine} $R1 "popd"
    FileClose $R1
 
    ; Install $R0\perl\agent\FusionInventory\Agent\Task\Inventory.pm
@@ -585,9 +589,10 @@ FunctionEnd
    ; Create $R0\fusioninventory-netdiscovery.bat
    FileOpen $R1 "$R0\fusioninventory-netdiscovery.bat" w
    ${FileWriteLine} $R1 "@echo off"
-   ${FileWriteLine} $R1 "cd perl/bin"
-   ${FileWriteLine} $R1 "perl fusioninventory-netdiscovery %*"
-   ${FileWriteLine} $R1 "cd ../.."
+   ${FileWriteLine} $R1 "for %%p in ($\".$\") do pushd $\"%%~fsp$\""
+   ${FileWriteLine} $R1 "cd $\"%~dp0\perl\bin$\""
+   ${FileWriteLine} $R1 "perl.exe fusioninventory-netdiscovery %*"
+   ${FileWriteLine} $R1 "popd"
    FileClose $R1
 
    ; Install $R0\perl\agent\FusionInventory\Agent\Task\NetDiscovery.pm
@@ -638,9 +643,10 @@ FunctionEnd
    ; Create $R0\fusioninventory-netinventory.bat
    FileOpen $R1 "$R0\fusioninventory-netinventory.bat" w
    ${FileWriteLine} $R1 "@echo off"
-   ${FileWriteLine} $R1 "cd perl/bin"
-   ${FileWriteLine} $R1 "perl fusioninventory-netinventory %*"
-   ${FileWriteLine} $R1 "cd ../.."
+   ${FileWriteLine} $R1 "for %%p in ($\".$\") do pushd $\"%%~fsp$\""
+   ${FileWriteLine} $R1 "cd $\"%~dp0\perl\bin$\""
+   ${FileWriteLine} $R1 "perl.exe fusioninventory-netinventory %*"
+   ${FileWriteLine} $R1 "popd"
    FileClose $R1
 
    ; Install $R0\perl\agent\FusionInventory\Agent\Task\NetInventory.pm
@@ -683,9 +689,10 @@ FunctionEnd
    ; Create $R0\fusioninventory-wakeonlan.bat
    FileOpen $R1 "$R0\fusioninventory-wakeonlan.bat" w
    ${FileWriteLine} $R1 "@echo off"
-   ${FileWriteLine} $R1 "cd perl/bin"
-   ${FileWriteLine} $R1 "perl fusioninventory-wakeonlan %*"
-   ${FileWriteLine} $R1 "cd ../.."
+   ${FileWriteLine} $R1 "for %%p in ($\".$\") do pushd $\"%%~fsp$\""
+   ${FileWriteLine} $R1 "cd $\"%~dp0\perl\bin$\""
+   ${FileWriteLine} $R1 "perl.exe fusioninventory-wakeonlan %*"
+   ${FileWriteLine} $R1 "popd"
    FileClose $R1
 
    ; Install $R0\perl\agent\FusionInventory\Agent\Task\WakeOnLan.pm
