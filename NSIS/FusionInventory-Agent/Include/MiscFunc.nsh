@@ -226,6 +226,37 @@ Function InitINIOptionSectionCurrentConfig
       ${WriteINIOption} "$R0" "${IO_EXECMODE}" "${EXECMODE_MANUAL}"
    ${EndIf}
 
+   ; Get current installed tasks
+   ${GetCurrentInstallLocation} $R1
+   ${If} "$R1" != ""
+      StrCpy $R2 ""
+      ${If} ${FileExists} "$R1\perl\agent\FusionInventory\Agent\Task\Deploy.pm"
+      ${OrIf} ${FileExists} "$R1\perl\lib\FusionInventory\Agent\Task\OCSDeploy.pm"
+          ${AddStrCommaUStr} "$R2" "${TASK_DEPLOY}" $R2
+      ${EndIf}
+      ${If} ${FileExists} "$R1\perl\agent\FusionInventory\Agent\Task\ESX.pm"
+      ${OrIf} ${FileExists} "$R1\perl\lib\FusionInventory\Agent\Task\ESX.pm"
+          ${AddStrCommaUStr} "$R2" "${TASK_ESX}" $R2
+      ${EndIf}
+      ${If} ${FileExists} "$R1\perl\agent\FusionInventory\Agent\Task\Inventory.pm"
+      ${OrIf} ${FileExists} "$R1\perl\lib\FusionInventory\Agent\Task\Inventory.pm"
+          ${AddStrCommaUStr} "$R2" "${TASK_INVENTORY}" $R2
+      ${EndIf}
+      ${If} ${FileExists} "$R1\perl\agent\FusionInventory\Agent\Task\NetDiscovery.pm"
+      ${OrIf} ${FileExists} "$R1\perl\lib\FusionInventory\Agent\Task\NetDiscovery.pm"
+          ${AddStrCommaUStr} "$R2" "${TASK_NETDISCOVERY}" $R2
+      ${EndIf}
+      ${If} ${FileExists} "$R1\perl\agent\FusionInventory\Agent\Task\NetInventory.pm"
+      ${OrIf} ${FileExists} "$R1\perl\lib\FusionInventory\Agent\Task\SNMPQuery.pm"
+          ${AddStrCommaUStr} "$R2" "${TASK_NETINVENTORY}" $R2
+      ${EndIf}
+      ${If} ${FileExists} "$R1\perl\agent\FusionInventory\Agent\Task\WakeOnLan.pm"
+      ${OrIf} ${FileExists} "$R1\perl\lib\FusionInventory\Agent\Task\WakeOnLan.pm"
+          ${AddStrCommaUStr} "$R2" "${TASK_WAKEONLAN}" $R2
+      ${EndIf}
+      ${WriteINIOption} "$R0" "${IO_INSTALLTASKS}" "$R2"
+   ${EndIf}
+
    ; Pop $R4, $R3, $R2, $R1 and $R0 off of the stack
    Pop $R4
    Pop $R3
