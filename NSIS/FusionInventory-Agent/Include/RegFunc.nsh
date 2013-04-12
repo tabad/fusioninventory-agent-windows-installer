@@ -46,6 +46,7 @@
 !define __FIAI_REGFUNC_INCLUDE__
 
 
+!include FileFunc.nsh
 !include "${FIAI_DIR}\Include\INIFunc.nsh"
 !include "${FIAI_DIR}\Include\Registry.nsh"
 !include "${FIAI_DIR}\Include\WindowsInfo.nsh"
@@ -202,6 +203,16 @@ Function GetCurrentInstallLocation
       ${If} "$R2" != ""
       ${AndIf} "$R3" == "REG_SZ"
          StrCpy $R0 "$R2"
+      ${Else}
+         ; It might be an old Installer installation
+
+         ; Get current uninstall string
+         ${registry::Read} "${PRODUCT_UNINST_ROOT_KEY}\$R1" "UninstallString" $R2 $R3
+
+         ${If} "$R2" != ""
+         ${AndIf} "$R3" == "REG_SZ"
+            ${GetParent} "$R2" $R0
+         ${EndIf}
       ${EndIf}
    ${EndIf}
 
