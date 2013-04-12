@@ -194,6 +194,7 @@ Var FusionInventoryAgentTaskNetCoreInstalled
 !include MUI2.nsh
 !include WordFunc.nsh
 !include "${FIAI_DIR}\Include\CommandLineParser.nsh"
+!include "${FIAI_DIR}\Include\CommaUStrFunc.nsh"
 !include "${FIAI_DIR}\Include\INIFunc.nsh"
 !include "${FIAI_DIR}\Include\LangStrings.nsh"
 !include "${FIAI_DIR}\Include\MiscFunc.nsh"
@@ -708,9 +709,6 @@ Function .onInit
    ; Set sections number
    ${SetSectionsNumber} ${SecEnd}
 
-   ; Save current selected flags of sections
-   ${SaveCurrentSelectedFlagsOfSections}
-
    ; Initialize default options
    ${InitINIOptionSectionDefault}
 
@@ -842,8 +840,9 @@ FunctionEnd
 ; Functions
 
 Function .onInitSilentMode
-   ; Push $R0 onto the stack
+   ; Push $R0 & $R1 onto the stack
    Push $R0
+   Push $R1
 
    ; Has the user accepted the licence?
    ${ReadINIOption} $R0 "${IOS_COMMANDLINE}" "${IO_ACCEPTLICENSE}"
@@ -870,6 +869,40 @@ Function .onInitSilentMode
          ${WriteINIOption} "${IOS_FINAL}" "${IO_SERVICE-START-TYPE}" "${SERVICE_STARTTYPE_AUTO}"
          ${WriteINIOption} "${IOS_FINAL}" "${IO_SERVICE-STATUS}" "${SERVICE_STATUS_RUNNING}"
       ${EndIf}
+
+      ${ReadINIOption} $R0 "${IOS_FINAL}" "${IO_INSTALLTASKS}"
+      ${Select} "$R0"
+         ${Case} "${INSTALLTASK_MINIMAL}"
+	    ; Install the minimal tasks.
+	    ${GetInstallTasksMinimalCommaUStr} $R0
+         ${Case} "${INSTALLTASK_DEFAULT}"
+	    ; Install default tasks.
+	    ${GetInstallTasksDefaultCommaUStr} $R0
+         ${Case} "${INSTALLTASK_FULL}"
+	    ; Install all tasks.
+	    ${GetInstallTasksFullCommaUStr} $R0
+      ${EndSelect}
+      ${GetInstallTasksMinimalCommaUStr} $R1
+      ${AddCommaStrCommaUStr} "$R0" "$R1" $R0
+      ${IsStrInCommaUStr} "$R0" "${TASK_NETDISCOVERY}" $R1
+      ${If} $R1 == 1
+         ; Agent tasks ${TASK_NETINVENTORY} & ${TASK_NETDISCOVERY} are inter-dependent
+         ${AddStrCommaUStr} "$R0" "${TASK_NETINVENTORY}" $R0
+      ${EndIf}
+      ${IsStrInCommaUStr} "$R0" "${TASK_NETINVENTORY}" $R1
+      ${If} $R1 == 1
+         ; Agent tasks ${TASK_NETINVENTORY} & ${TASK_NETDISCOVERY} are inter-dependent
+         ${AddStrCommaUStr} "$R0" "${TASK_NETDISCOVERY}" $R0
+      ${EndIf}
+      ${NormalizeInstallTasksOption} "$R0" $R0
+      ${WriteINIOption} "${IOS_FINAL}" "${IO_INSTALLTASKS}" "$R0"
+
+      Push "${IOS_FINAL}"
+      Call SyncNSISSectionsWithInstallTasksOption
+
+      ${ReadINIOption} $R0 "${IOS_FINAL}" "${IO_NO-TASK}"
+      ${NormalizeNoTaskOption} "$R0" $R0
+      ${WriteINIOption} "${IOS_FINAL}" "${IO_NO-TASK}" "$R0"
    ${Else}
       ; The agent is already installed
 
@@ -889,6 +922,40 @@ Function .onInitSilentMode
             ${WriteINIOption} "${IOS_FINAL}" "${IO_SERVICE-START-TYPE}" "${SERVICE_STARTTYPE_AUTO}"
             ${WriteINIOption} "${IOS_FINAL}" "${IO_SERVICE-STATUS}" "${SERVICE_STATUS_RUNNING}"
          ${EndIf}
+
+         ${ReadINIOption} $R0 "${IOS_FINAL}" "${IO_INSTALLTASKS}"
+         ${Select} "$R0"
+            ${Case} "${INSTALLTASK_MINIMAL}"
+	       ; Install the minimal tasks.
+	       ${GetInstallTasksMinimalCommaUStr} $R0
+            ${Case} "${INSTALLTASK_DEFAULT}"
+	       ; Install default tasks.
+	       ${GetInstallTasksDefaultCommaUStr} $R0
+            ${Case} "${INSTALLTASK_FULL}"
+	       ; Install all tasks.
+	       ${GetInstallTasksFullCommaUStr} $R0
+         ${EndSelect}
+         ${GetInstallTasksMinimalCommaUStr} $R1
+         ${AddCommaStrCommaUStr} "$R0" "$R1" $R0
+         ${IsStrInCommaUStr} "$R0" "${TASK_NETDISCOVERY}" $R1
+         ${If} $R1 == 1
+            ; Agent tasks ${TASK_NETINVENTORY} & ${TASK_NETDISCOVERY} are inter-dependent
+            ${AddStrCommaUStr} "$R0" "${TASK_NETINVENTORY}" $R0
+         ${EndIf}
+         ${IsStrInCommaUStr} "$R0" "${TASK_NETINVENTORY}" $R1
+         ${If} $R1 == 1
+            ; Agent tasks ${TASK_NETINVENTORY} & ${TASK_NETDISCOVERY} are inter-dependent
+            ${AddStrCommaUStr} "$R0" "${TASK_NETDISCOVERY}" $R0
+         ${EndIf}
+         ${NormalizeInstallTasksOption} "$R0" $R0
+         ${WriteINIOption} "${IOS_FINAL}" "${IO_INSTALLTASKS}" "$R0"
+
+         Push "${IOS_FINAL}"
+         Call SyncNSISSectionsWithInstallTasksOption
+
+         ${ReadINIOption} $R0 "${IOS_FINAL}" "${IO_NO-TASK}"
+         ${NormalizeNoTaskOption} "$R0" $R0
+         ${WriteINIOption} "${IOS_FINAL}" "${IO_NO-TASK}" "$R0"
       ${Else}
          ; Install the agent from current configuration
 
@@ -897,6 +964,40 @@ Function .onInitSilentMode
          ${CopyINIOptionSection} "${IOS_DEFAULT}" "${IOS_FINAL}"
          ${UpdateINIOptionSection} "${IOS_FINAL}" "${IOS_CURRENTCONFIG}"
          ${UpdateINIOptionSection} "${IOS_FINAL}" "${IOS_COMMANDLINE}"
+
+         ${ReadINIOption} $R0 "${IOS_FINAL}" "${IO_INSTALLTASKS}"
+         ${Select} "$R0"
+            ${Case} "${INSTALLTASK_MINIMAL}"
+	       ; Install the minimal tasks.
+	       ${GetInstallTasksMinimalCommaUStr} $R0
+            ${Case} "${INSTALLTASK_DEFAULT}"
+	       ; Install default tasks.
+	       ${GetInstallTasksDefaultCommaUStr} $R0
+            ${Case} "${INSTALLTASK_FULL}"
+	       ; Install all tasks.
+	       ${GetInstallTasksFullCommaUStr} $R0
+         ${EndSelect}
+         ${GetInstallTasksMinimalCommaUStr} $R1
+         ${AddCommaStrCommaUStr} "$R0" "$R1" $R0
+         ${IsStrInCommaUStr} "$R0" "${TASK_NETDISCOVERY}" $R1
+         ${If} $R1 == 1
+            ; Agent tasks ${TASK_NETINVENTORY} & ${TASK_NETDISCOVERY} are inter-dependent
+            ${AddStrCommaUStr} "$R0" "${TASK_NETINVENTORY}" $R0
+         ${EndIf}
+         ${IsStrInCommaUStr} "$R0" "${TASK_NETINVENTORY}" $R1
+         ${If} $R1 == 1
+            ; Agent tasks ${TASK_NETINVENTORY} & ${TASK_NETDISCOVERY} are inter-dependent
+            ${AddStrCommaUStr} "$R0" "${TASK_NETDISCOVERY}" $R0
+         ${EndIf}
+         ${NormalizeInstallTasksOption} "$R0" $R0
+         ${WriteINIOption} "${IOS_FINAL}" "${IO_INSTALLTASKS}" "$R0"
+
+         Push "${IOS_FINAL}"
+         Call SyncNSISSectionsWithInstallTasksOption
+
+         ${ReadINIOption} $R0 "${IOS_FINAL}" "${IO_NO-TASK}"
+         ${NormalizeNoTaskOption} "$R0" $R0
+         ${WriteINIOption} "${IOS_FINAL}" "${IO_NO-TASK}" "$R0"
 
          ; Some options could have been overwritten. Fixing them...
 
@@ -958,14 +1059,16 @@ Function .onInitSilentMode
       ${EndIf}
    ${EndIf}
 
-   ; Pop $R0 off of the stack
+   ; Pop $R1 & $R0 off of the stack
+   Pop $R1
    Pop $R0
 FunctionEnd
 
 
 Function .onInitVisualMode
-   ; Push $R0 onto the stack
+   ; Push $R0 & $R1 onto the stack
    Push $R0
+   Push $R1
 
    ; Is FusionInventory Agent installed?
    ${IsFusionInventoryAgentInstalled} $R0
@@ -984,10 +1087,44 @@ Function .onInitVisualMode
          ${WriteINIOption} "${IOS_DEFAULTGUI}" "${IO_SERVICE-START-TYPE}" "${SERVICE_STARTTYPE_AUTO}"
          ${WriteINIOption} "${IOS_DEFAULTGUI}" "${IO_SERVICE-STATUS}" "${SERVICE_STATUS_RUNNING}"
       ${EndIf}
+
+      ${ReadINIOption} $R0 "${IOS_DEFAULTGUI}" "${IO_INSTALLTASKS}"
+      ${Select} "$R0"
+         ${Case} "${INSTALLTASK_MINIMAL}"
+	    ; Install the minimal tasks.
+	    ${GetInstallTasksMinimalCommaUStr} $R0
+         ${Case} "${INSTALLTASK_DEFAULT}"
+	    ; Install default tasks.
+	    ${GetInstallTasksDefaultCommaUStr} $R0
+         ${Case} "${INSTALLTASK_FULL}"
+	    ; Install all tasks.
+	    ${GetInstallTasksFullCommaUStr} $R0
+      ${EndSelect}
+      ${GetInstallTasksMinimalCommaUStr} $R1
+      ${AddCommaStrCommaUStr} "$R0" "$R1" $R0
+      ${IsStrInCommaUStr} "$R0" "${TASK_NETDISCOVERY}" $R1
+      ${If} $R1 == 1
+         ; Agent tasks ${TASK_NETINVENTORY} & ${TASK_NETDISCOVERY} are inter-dependent
+         ${AddStrCommaUStr} "$R0" "${TASK_NETINVENTORY}" $R0
+      ${EndIf}
+      ${IsStrInCommaUStr} "$R0" "${TASK_NETINVENTORY}" $R1
+      ${If} $R1 == 1
+         ; Agent tasks ${TASK_NETINVENTORY} & ${TASK_NETDISCOVERY} are inter-dependent
+         ${AddStrCommaUStr} "$R0" "${TASK_NETDISCOVERY}" $R0
+      ${EndIf}
+      ${NormalizeInstallTasksOption} "$R0" $R0
+      ${WriteINIOption} "${IOS_DEFAULTGUI}" "${IO_INSTALLTASKS}" "$R0"
+
+      Push "${IOS_DEFAULTGUI}"
+      Call SyncNSISSectionsWithInstallTasksOption
+
+      ${ReadINIOption} $R0 "${IOS_DEFAULTGUI}" "${IO_NO-TASK}"
+      ${NormalizeNoTaskOption} "$R0" $R0
+      ${WriteINIOption} "${IOS_DEFAULTGUI}" "${IO_NO-TASK}" "$R0"
    ${Else}
       ; The agent is already installed
 
-      ; Note: Whether you change this block of code, please, remember also to do the necessary changesi
+      ; Note: Whether you change this block of code, please, remember also to do the necessary changes
       ;       into function InstallModePage Leave in ${FIAI_DIR}\Contrib\ModernUI2\Pages\InstallModePage.nsh
 
       ; What kind of installation is requested?
@@ -1006,6 +1143,40 @@ Function .onInitVisualMode
             ${WriteINIOption} "${IOS_DEFAULTGUI}" "${IO_SERVICE-START-TYPE}" "${SERVICE_STARTTYPE_AUTO}"
             ${WriteINIOption} "${IOS_DEFAULTGUI}" "${IO_SERVICE-STATUS}" "${SERVICE_STATUS_RUNNING}"
          ${EndIf}
+
+         ${ReadINIOption} $R0 "${IOS_DEFAULTGUI}" "${IO_INSTALLTASKS}"
+         ${Select} "$R0"
+            ${Case} "${INSTALLTASK_MINIMAL}"
+	       ; Install the minimal tasks.
+	       ${GetInstallTasksMinimalCommaUStr} $R0
+            ${Case} "${INSTALLTASK_DEFAULT}"
+	       ; Install default tasks.
+	       ${GetInstallTasksDefaultCommaUStr} $R0
+            ${Case} "${INSTALLTASK_FULL}"
+	       ; Install all tasks.
+	       ${GetInstallTasksFullCommaUStr} $R0
+         ${EndSelect}
+         ${GetInstallTasksMinimalCommaUStr} $R1
+         ${AddCommaStrCommaUStr} "$R0" "$R1" $R0
+         ${IsStrInCommaUStr} "$R0" "${TASK_NETDISCOVERY}" $R1
+         ${If} $R1 == 1
+            ; Agent tasks ${TASK_NETINVENTORY} & ${TASK_NETDISCOVERY} are inter-dependent
+            ${AddStrCommaUStr} "$R0" "${TASK_NETINVENTORY}" $R0
+         ${EndIf}
+         ${IsStrInCommaUStr} "$R0" "${TASK_NETINVENTORY}" $R1
+         ${If} $R1 == 1
+            ; Agent tasks ${TASK_NETINVENTORY} & ${TASK_NETDISCOVERY} are inter-dependent
+            ${AddStrCommaUStr} "$R0" "${TASK_NETDISCOVERY}" $R0
+         ${EndIf}
+         ${NormalizeInstallTasksOption} "$R0" $R0
+         ${WriteINIOption} "${IOS_DEFAULTGUI}" "${IO_INSTALLTASKS}" "$R0"
+
+         Push "${IOS_DEFAULTGUI}"
+         Call SyncNSISSectionsWithInstallTasksOption
+
+         ${ReadINIOption} $R0 "${IOS_DEFAULTGUI}" "${IO_NO-TASK}"
+         ${NormalizeNoTaskOption} "$R0" $R0
+         ${WriteINIOption} "${IOS_DEFAULTGUI}" "${IO_NO-TASK}" "$R0"
       ${Else}
          ; Install the agent from current configuration
 
@@ -1014,6 +1185,40 @@ Function .onInitVisualMode
          ${CopyINIOptionSection} "${IOS_DEFAULT}" "${IOS_DEFAULTGUI}"
          ${UpdateINIOptionSection} "${IOS_DEFAULTGUI}" "${IOS_CURRENTCONFIG}"
          ${UpdateINIOptionSection} "${IOS_DEFAULTGUI}" "${IOS_COMMANDLINE}"
+
+         ${ReadINIOption} $R0 "${IOS_DEFAULTGUI}" "${IO_INSTALLTASKS}"
+         ${Select} "$R0"
+            ${Case} "${INSTALLTASK_MINIMAL}"
+	       ; Install the minimal tasks.
+	       ${GetInstallTasksMinimalCommaUStr} $R0
+            ${Case} "${INSTALLTASK_DEFAULT}"
+	       ; Install default tasks.
+	       ${GetInstallTasksDefaultCommaUStr} $R0
+            ${Case} "${INSTALLTASK_FULL}"
+	       ; Install all tasks.
+	       ${GetInstallTasksFullCommaUStr} $R0
+         ${EndSelect}
+         ${GetInstallTasksMinimalCommaUStr} $R1
+         ${AddCommaStrCommaUStr} "$R0" "$R1" $R0
+         ${IsStrInCommaUStr} "$R0" "${TASK_NETDISCOVERY}" $R1
+         ${If} $R1 == 1
+            ; Agent tasks ${TASK_NETINVENTORY} & ${TASK_NETDISCOVERY} are inter-dependent
+            ${AddStrCommaUStr} "$R0" "${TASK_NETINVENTORY}" $R0
+         ${EndIf}
+         ${IsStrInCommaUStr} "$R0" "${TASK_NETINVENTORY}" $R1
+         ${If} $R1 == 1
+            ; Agent tasks ${TASK_NETINVENTORY} & ${TASK_NETDISCOVERY} are inter-dependent
+            ${AddStrCommaUStr} "$R0" "${TASK_NETDISCOVERY}" $R0
+         ${EndIf}
+         ${NormalizeInstallTasksOption} "$R0" $R0
+         ${WriteINIOption} "${IOS_DEFAULTGUI}" "${IO_INSTALLTASKS}" "$R0"
+
+         Push "${IOS_DEFAULTGUI}"
+         Call SyncNSISSectionsWithInstallTasksOption
+
+         ${ReadINIOption} $R0 "${IOS_DEFAULTGUI}" "${IO_NO-TASK}"
+         ${NormalizeNoTaskOption} "$R0" $R0
+         ${WriteINIOption} "${IOS_DEFAULTGUI}" "${IO_NO-TASK}" "$R0"
 
          ; Some options could have been overwritten. Fixing them...
 
@@ -1078,7 +1283,8 @@ Function .onInitVisualMode
    ; Build the ${IOS_GUI} section in the Options.ini file
    ${CopyINIOptionSection} "${IOS_DEFAULTGUI}" "${IOS_GUI}"
 
-   ; Pop $R0 off of the stack
+   ; Pop $R1 & $R0 off of the stack
+   Pop $R1
    Pop $R0
 FunctionEnd
 
@@ -1090,15 +1296,16 @@ Function .onSelChange
    ; $R3 Sections changed ($R0 xor $R1)
    ; $R4 Sections iterator
    ; $R5 Auxiliary
+   ; $R6 Agent tasks to install
 
-
-   ; Push $R0, $R1, $R2, $R3, $R4 & $R5 onto the stack
+   ; Push $R0, $R1, $R2, $R3, $R4, $R5 & $R6 onto the stack
    Push $R0
    Push $R1
    Push $R2
    Push $R3
    Push $R4
    Push $R5
+   Push $R6
 
    ; Get the current install type
    GetCurInstType $R5
@@ -1167,10 +1374,111 @@ Function .onSelChange
    ; Save the current selected flags of sections
    ${SaveCurrentSelectedFlagsOfSections}
 
-   ; Pop $R5, $R4, $R3, $R2, $R1 & $R0 off of the stack
+   ; Initialize $R6
+   StrCpy $R6 ""
+
+   ; Synchronization loop for agent tasks to install...
+   ${For} $R4 0 $R2
+      ${If} ${SectionIsSelected} $R4
+         ; The section $R4 is selected
+         ; According to $R4...
+         ${Select} $R4
+            ${Case} ${SecDeploy}
+               ; Section ${SecDeploy} selected
+               ${AddStrCommaUStr} "$R6" "${TASK_DEPLOY}" $R6
+            ${Case} ${SecESX}
+               ; Section ${SecESX} selected
+               ${AddStrCommaUStr} "$R6" "${TASK_ESX}" $R6
+            ${Case} ${SecInventory}
+               ; Section ${SecInventory} selected
+               ${AddStrCommaUStr} "$R6" "${TASK_INVENTORY}" $R6
+            ${Case} ${SecNetDiscovery}
+               ; Section ${SetNetDiscovery} selected
+               ${AddStrCommaUStr} "$R6" "${TASK_NETDISCOVERY}" $R6
+            ${Case} ${SecNetInventory}
+               ; Section ${SecNetInventory} selected
+               ${AddStrCommaUStr} "$R6" "${TASK_NETINVENTORY}" $R6
+            ${Case} ${SecWakeOnLan}
+               ; Section ${SecWakeOnLan} selected
+               ${AddStrCommaUStr} "$R6" "${TASK_WAKEONLAN}" $R6
+         ${EndSelect}
+      ${EndIf}
+   ${Next}
+
+   ; Normalize string of agent tasks to install
+   ${NormalizeInstallTasksOption} "$R6" $R6
+
+   ; Update ${IO_INSTALLTASKS} option
+   ${WriteINIOption} "${IOS_GUI}" "${IO_INSTALLTASKS}" "$R6"
+
+   ; Pop $R6, $R5, $R4, $R3, $R2, $R1 & $R0 off of the stack
+   Pop $R6
    Pop $R5
    Pop $R4
    Pop $R3
+   Pop $R2
+   Pop $R1
+   Pop $R0
+FunctionEnd
+
+
+; SyncNSISSectionsWithInstallTasksOption
+Function SyncNSISSectionsWithInstallTasksOption
+   ; $R0 INISection
+   ; $R1 Agent tasks to install
+   ; $R2 Auxiliary
+
+   ; Get parameter
+   Exch $R0
+
+   ; Push $R1 & $R2 onto the stack
+   Push $R1
+   Push $R2
+
+   ; Unselect all sections
+   ${UnselectAllSections}
+
+   ; Get agent tasks to install
+   ${ReadINIOption} $R1 "$R0" "${IO_INSTALLTASKS}"
+
+   ; Synchronization loop
+   ${Do}
+      ; Get the first agent task
+      ${FirstStrCommaUStr} "$R1" $R2
+
+      ; According to $R2...
+      ${Select} "$R2"
+         ${Case} ""
+            ; There are no more agent tasks
+            ${ExitDo}
+         ${Case} "${TASK_DEPLOY}"
+            ; Select ${SecDeploy} section
+            ${SelectSection} ${SecDeploy}
+         ${Case} "${TASK_ESX}"
+            ; Select ${SecESX} section
+            ${SelectSection} ${SecESX}
+         ${Case} "${TASK_INVENTORY}"
+            ; Select ${SecInventory} section
+            ${SelectSection} ${SecInventory}
+         ${Case} "${TASK_NETDISCOVERY}"
+            ; Select ${SecNetDiscovery} section
+            ${SelectSection} ${SecNetDiscovery}
+         ${Case} "${TASK_NETINVENTORY}"
+            ; Select ${SecNetInventory} section
+            ${SelectSection} ${SecNetInventory}
+         ${Case} "${TASK_WAKEONLAN}"
+            ; Select ${SecWakeOnLan} section
+            ${SelectSection} ${SecWakeOnLan}
+      ${EndSelect}
+
+      ; Get the next agent task to install
+      ${DelStrCommaUStr} "$R1" "$R2" $R1
+   ${Loop}
+
+   ; Save the current selected flags of sections
+   ${SaveCurrentSelectedFlagsOfSections}
+
+   ; Pop $R2, $R1 & $R0 off of the stack
    Pop $R2
    Pop $R1
    Pop $R0

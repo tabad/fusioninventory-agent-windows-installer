@@ -152,8 +152,9 @@ FunctionEnd
 
 
 Function InstallModePage_Leave
-   ; Push $R0 onto the stack
+   ; Push $R0 & $R1 onto the stack
    Push $R0
+   Push $R1
 
    ${NSD_GetState} $hCtl_InstallModePage_RadioButton1 $R0
 
@@ -173,6 +174,40 @@ Function InstallModePage_Leave
             ${WriteINIOption} "${IOS_GUI}" "${IO_SERVICE-START-TYPE}" "${SERVICE_STARTTYPE_AUTO}"
             ${WriteINIOption} "${IOS_GUI}" "${IO_SERVICE-STATUS}" "${SERVICE_STATUS_RUNNING}"
          ${EndIf}
+
+         ${ReadINIOption} $R0 "${IOS_GUI}" "${IO_INSTALLTASKS}"
+         ${Select} "$R0"
+            ${Case} "${INSTALLTASK_MINIMAL}"
+	       ; Install the minimal tasks.
+	       ${GetInstallTasksMinimalCommaUStr} $R0
+            ${Case} "${INSTALLTASK_DEFAULT}"
+	       ; Install default tasks.
+	       ${GetInstallTasksDefaultCommaUStr} $R0
+            ${Case} "${INSTALLTASK_FULL}"
+	       ; Install all tasks.
+	       ${GetInstallTasksFullCommaUStr} $R0
+         ${EndSelect}
+         ${GetInstallTasksMinimalCommaUStr} $R1
+         ${AddCommaStrCommaUStr} "$R0" "$R1" $R0
+         ${IsStrInCommaUStr} "$R0" "${TASK_NETDISCOVERY}" $R1
+         ${If} $R1 == 1
+            ; Agent tasks ${TASK_NETINVENTORY} & ${TASK_NETDISCOVERY} are inter-dependent
+            ${AddStrCommaUStr} "$R0" "${TASK_NETINVENTORY}" $R0
+         ${EndIf}
+         ${IsStrInCommaUStr} "$R0" "${TASK_NETINVENTORY}" $R1
+         ${If} $R1 == 1
+            ; Agent tasks ${TASK_NETINVENTORY} & ${TASK_NETDISCOVERY} are inter-dependent
+            ${AddStrCommaUStr} "$R0" "${TASK_NETDISCOVERY}" $R0
+         ${EndIf}
+         ${NormalizeInstallTasksOption} "$R0" $R0
+         ${WriteINIOption} "${IOS_GUI}" "${IO_INSTALLTASKS}" "$R0"
+
+         Push "${IOS_GUI}"
+         Call SyncNSISSectionsWithInstallTasksOption
+
+         ${ReadINIOption} $R0 "${IOS_GUI}" "${IO_NO-TASK}"
+         ${NormalizeNoTaskOption} "$R0" $R0
+         ${WriteINIOption} "${IOS_GUI}" "${IO_NO-TASK}" "$R0"
       ${EndIf}
    ${Else}
       ; ${INSTALLTYPE_FROMCURRENTCONFIG}
@@ -185,6 +220,40 @@ Function InstallModePage_Leave
          ${UpdateINIOptionSection} "${IOS_GUI}" "${IOS_CURRENTCONFIG}"
          ${UpdateINIOptionSection} "${IOS_GUI}" "${IOS_COMMANDLINE}"
          ${WriteINIOption} "${IOS_GUI}" "${IO_INSTALLTYPE}" "${INSTALLTYPE_FROMCURRENTCONFIG}"
+
+         ${ReadINIOption} $R0 "${IOS_GUI}" "${IO_INSTALLTASKS}"
+         ${Select} "$R0"
+            ${Case} "${INSTALLTASK_MINIMAL}"
+	       ; Install the minimal tasks.
+	       ${GetInstallTasksMinimalCommaUStr} $R0
+            ${Case} "${INSTALLTASK_DEFAULT}"
+	       ; Install default tasks.
+	       ${GetInstallTasksDefaultCommaUStr} $R0
+            ${Case} "${INSTALLTASK_FULL}"
+	       ; Install all tasks.
+	       ${GetInstallTasksFullCommaUStr} $R0
+         ${EndSelect}
+         ${GetInstallTasksMinimalCommaUStr} $R1
+         ${AddCommaStrCommaUStr} "$R0" "$R1" $R0
+         ${IsStrInCommaUStr} "$R0" "${TASK_NETDISCOVERY}" $R1
+         ${If} $R1 == 1
+            ; Agent tasks ${TASK_NETINVENTORY} & ${TASK_NETDISCOVERY} are inter-dependent
+            ${AddStrCommaUStr} "$R0" "${TASK_NETINVENTORY}" $R0
+         ${EndIf}
+         ${IsStrInCommaUStr} "$R0" "${TASK_NETINVENTORY}" $R1
+         ${If} $R1 == 1
+            ; Agent tasks ${TASK_NETINVENTORY} & ${TASK_NETDISCOVERY} are inter-dependent
+            ${AddStrCommaUStr} "$R0" "${TASK_NETDISCOVERY}" $R0
+         ${EndIf}
+         ${NormalizeInstallTasksOption} "$R0" $R0
+         ${WriteINIOption} "${IOS_GUI}" "${IO_INSTALLTASKS}" "$R0"
+
+         Push "${IOS_GUI}"
+         Call SyncNSISSectionsWithInstallTasksOption
+
+         ${ReadINIOption} $R0 "${IOS_GUI}" "${IO_NO-TASK}"
+         ${NormalizeNoTaskOption} "$R0" $R0
+         ${WriteINIOption} "${IOS_GUI}" "${IO_NO-TASK}" "$R0"
 
          ; Some options could have been overwritten. Fixing them...
 
@@ -246,7 +315,8 @@ Function InstallModePage_Leave
       ${EndIf}
    ${EndIf}
 
-   ; Pop $R0 off of the stack
+   ; Pop $R1 & $R0 off of the stack
+   Pop $R1
    Pop $R0
 FunctionEnd
 

@@ -51,6 +51,7 @@
 !include "${FIAI_DIR}\Include\INIFunc.nsh"
 !include "${FIAI_DIR}\Include\FileFunc.nsh"
 !include "${FIAI_DIR}\Include\RegFunc.nsh"
+;!include "${FIAI_DIR}\Include\SectionFunc.nsh"
 !include "${FIAI_DIR}\Include\WindowsInfo.nsh"
 !include "${FIAI_DIR}\Include\WinServicesFunc.nsh"
 
@@ -786,6 +787,92 @@ FunctionEnd
    ; Pop $R0 off of the stack
    Pop $R0
 !macroend
+
+
+; NormalizeInstallTasksOption
+!define NormalizeInstallTasksOption "!insertmacro NormalizeInstallTasksOption"
+
+!macro NormalizeInstallTasksOption CommaUStr ResultVar
+   Push ${CommaUStr}
+   Call NormalizeInstallTasksOption
+   Pop ${ResultVar}
+!macroend
+
+Function NormalizeInstallTasksOption
+   ; $R0 Agent tasks CommaUStr
+   ; $R1 Auxiliary agent tasks CommaUStr
+   ; $R2 Valid agent tasks CommaUStr
+   ; $R3 Auxiliary
+   ; $R4 Auxiliary
+
+   ; Note: $R0 is used also output variable
+
+   ; Get parameter
+   Exch $R0
+
+   ; Push $R1, $R2, $R3 & $R4 onto the stack
+   Push $R1
+   Push $R2
+   Push $R3
+   Push $R4
+
+   ; Initialize $R0
+   ${AddCommaStrCommaUStr} "" "$R0" $R0
+
+   ; Initialize $R1
+   StrCpy $R1 ""
+
+   ; Get agent tasks in $R0
+   ${GetStrsCommaUStr} "$R0" $R3
+
+   ; Check the number of agent tasks
+   ${If} $R3 == 0
+      ; There aren't agent tasks
+      Nop
+   ${Else}
+      ; Normalize...
+
+      ; Get valid agent tasks
+      ${GetValidAgentTasksCommaUStr} $R2
+
+      ; Normalize loop...
+      ${Do}
+         ; Get the first valid agent task
+         ${FirstStrCommaUStr} "$R2" $R3
+         ; Check the $R3 valid agent task
+         ${If} "$R3" == ""
+            ; There aren't more valid agent tasks
+            ${ExitDo}
+         ${Else}
+            ; Check whether $R3 is in $R0
+            ${IsStrInCommaUStr} "$R0" "$R3" $R4
+            ${If} $R4 == 1
+               ; Add $R3 to $R1
+               ${AddStrCommaUStr} "$R1" "$R3" $R1
+            ${EndIf}
+         ${EndIf}
+
+         ; Check the next valid agent task
+         ${DelStrCommaUStr} "$R2" "$R3" $R2
+      ${Loop}
+   ${EndIf}
+
+   ; Copy return value in $R0
+   StrCpy $R0 "$R1"
+
+   ; Pop $R4, $R3, $R2 & $R1 off of the stack
+   Pop $R4
+   Pop $R3
+   Pop $R2
+   Pop $R1
+
+   ; Exchanges the top element of the stack with $R0
+   Exch $R0
+FunctionEnd
+
+
+; NormalizeNoTaskOption
+!define NormalizeNoTaskOption "!insertmacro NormalizeInstallTasksOption"
 
 
 ; UninstallCurrentAgent
