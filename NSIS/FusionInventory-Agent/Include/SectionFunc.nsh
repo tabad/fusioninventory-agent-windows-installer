@@ -54,27 +54,6 @@ Var SavedSelectedFlagStateOfSections
 Var SectionsNumber
 
 
-; SelectSection
-!define SelectSection "!insertmacro _SelectSection"
-
-!macro _SelectSection SectionId
-   ; $R0 Section flags
-
-   ; Push $R0 onto the stack
-   Push $R0
-
-   ; Only whether the section is not readonly
-   ${IfNot} ${SectionIsReadOnly} ${SectionId}
-      SectionGetFlags ${SectionId} $R0
-      IntOp $R0 $R0 | ${SF_SELECTED}
-      SectionSetFlags ${SectionId} $R0
-   ${EndIf}
-
-   ; Pop $R0  off of the stack
-   Pop $R0
-!macroend
-
-
 ; GetCurrentSelectedFlagsOfSections
 !define GetCurrentSelectedFlagsOfSections "!insertmacro GetCurrentSelectedFlagsOfSections"
 
@@ -86,10 +65,12 @@ Var SectionsNumber
 Function GetCurrentSelectedFlagsOfSections
    ; $R0 Result
    ; $R1 Iterator
+   ; $R2 Section text
 
-   ; Push $R0 onto the stack
+   ; Push $R0, $R1 & $R2 onto the stack
    Push $R0
    Push $R1
+   Push $R2
 
    ; Initialize $R0
    StrCpy $R0 0
@@ -97,13 +78,26 @@ Function GetCurrentSelectedFlagsOfSections
    ; Check sections...
    ${ForEach} $R1 $SectionsNumber 0 - 1
       IntOp $R0 $R0 << 1
-      ${If} ${SectionIsSelected} $R1
-      ${AndIfNot} ${SectionIsSectionGroup} $R1
-         IntOp $R0 $R0 | 0x1
+      ; Only whether the section is selected and
+      ; is not hidden, is not a section group and
+      ; is not a section group end.
+      SectionGetText $R1 $R2
+      ${If} "$R2" == ""
+      ${OrIf} "$R2" == "-"
+         ; Hidden section
+         Nop
+      ${Else}
+         ${If} ${SectionIsSelected} $R1
+         ${AndIfNot} ${SectionIsSectionGroup} $R1
+         ${AndIfNot} ${SectionIsSectionGroupEnd} $R1
+            ; Mark as selected
+            IntOp $R0 $R0 | 0x1
+         ${EndIf}
       ${EndIf}
    ${Next}
 
-   ; Pop $R1 off of the stack
+   ; Pop $R2 & $R1 off of the stack
+   Pop $R2
    Pop $R1
 
    ; Exchanges the top element of the stack with $R0
@@ -136,43 +130,131 @@ FunctionEnd
 !macroend
 
 
+; SelectSection
+!define SelectSection "!insertmacro _SelectSection"
+
+!macro _SelectSection SectionId
+   Push ${SectionId}
+   Call _SelectSection
+!macroend
+
+Function _SelectSection
+   ; $R0 SectionId
+   ; $R1 Auxiliary
+
+   ; Get parameter
+   Exch $R0
+
+   ; Push $R1 onto the stack
+   Push $R1
+
+   ; Only whether the section is not hidden,
+   ; not readonly, not a section group and
+   ; not a section group end.
+   SectionGetText $R0 $R1
+   ${If} "$R1" == ""
+   ${OrIf} "$R1" == "-"
+      ; Hidden section
+      Nop
+   ${Else}
+      ${IfNot} ${SectionIsReadOnly} $R0
+      ${AndIfNot} ${SectionIsSectionGroup} $R0
+      ${AndIfNot} ${SectionIsSectionGroupEnd} $R0
+         ; Select section
+         SectionGetFlags $R0 $R1
+         IntOp $R1 $R1 | ${SF_SELECTED}
+         SectionSetFlags $R0 $R1
+      ${EndIf}
+   ${EndIf}
+
+   ; Pop $R1 & $R0 off of the stack
+   Pop $R1
+   Pop $R0
+FunctionEnd
+
+
 ; SetSectionsNumber
 !define SetSectionsNumber "!insertmacro SetSectionsNumber"
 
-!macro SetSectionsNumber TotalSections
-   ; $R0 Auxiliary (TotalSections is readonly)
+!macro SetSectionsNumber Sections
+   Push ${Sections}
+   Call SetSectionsNumber
+!macroend
+
+Function SetSectionsNumber
+   ; $R0 Sections
+
+   ; Get parameter
+   Exch $R0
+
+   ; The index starts at zero
+   IntOp $SectionsNumber $R0 - 1
+
+   ; Pop $R0 off of the stack
+   Pop $R0
+FunctionEnd
+
+
+; UnselectAllSections
+!define UnselectAllSections "Call UnselectAllSections"
+
+Function UnselectAllSections
+   ; $R0 SectionId iterator
 
    ; Push $R0 onto the stack
    Push $R0
 
-   ; The index starts at zero
-   IntOp $R0 ${TotalSections} - 1
-   StrCpy $SectionsNumber $R0
+   ${For} $R0 0 $SectionsNumber
+      Push $R0
+      Call _UnselectSection
+   ${Next}
 
-   ; Pop $R0  off of the stack
+   ; Pop $R0 off of the stack
    Pop $R0
-!macroend
+FunctionEnd
 
 
 ; UnselectSection
 !define UnselectSection "!insertmacro _UnselectSection"
 
 !macro _UnselectSection SectionId
-   ; $R0 Section flags
+   Push ${SectionId}
+   Call _UnselectSection
+!macroend
 
-   ; Push $R0 onto the stack
-   Push $R0
+Function _UnselectSection
+   ; $R0 SectionId
+   ; $R1 Auxiliary
 
-   ; Only whether the section is not readonly
-   ${IfNot} ${SectionIsReadOnly} ${SectionId}
-      SectionGetFlags ${SectionId} $R0
-      IntOp $R0 $R0 & ${SECTION_OFF}
-      SectionSetFlags ${SectionId} $R0
+   ; Get parameter
+   Exch $R0
+
+   ; Push $R1 onto the stack
+   Push $R1
+
+   ; Only whether the section is not hidden,
+   ; not readonly, not a section group and
+   ; not a section group end.
+   SectionGetText $R0 $R1
+   ${If} "$R1" == ""
+   ${OrIf} "$R1" == "-"
+      ; Hidden section
+      Nop
+   ${Else}
+      ${IfNot} ${SectionIsReadOnly} $R0
+      ${AndIfNot} ${SectionIsSectionGroup} $R0
+      ${AndIfNot} ${SectionIsSectionGroupEnd} $R0
+         ; Unselect section
+         SectionGetFlags $R0 $R1
+         IntOp $R1 $R1 & ${SECTION_OFF}
+         SectionSetFlags $R0 $R1
+      ${EndIf}
    ${EndIf}
 
-   ; Pop $R0  off of the stack
+   ; Pop $R1 & $R0 off of the stack
+   Pop $R1
    Pop $R0
-!macroend
+FunctionEnd
 
 
 !endif
