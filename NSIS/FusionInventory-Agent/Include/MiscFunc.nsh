@@ -211,9 +211,8 @@ Function InitINIOptionSectionCurrentConfig
    ; Active/Deactive NSIS sections
 
    ; Get current execution mode
-   ${IsFusionInventoryServiceInstalled} $R1
-   ${If} $R1 = 0
-      ; FusionInventory Windows service installed
+   ${If} ${FusionInventoryAgentServiceIsInstalled}
+      ; FusionInventory Agent Windows service installed
       ${WriteINIOption} "$R0" "${IO_EXECMODE}" "${EXECMODE_SERVICE}"
       ${GetFusionInventoryServiceStartType} $R1
       ${WriteINIOption} "$R0" "${IO_SERVICE-START-TYPE}" "$R1"

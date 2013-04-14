@@ -55,18 +55,15 @@
 !define SERVICE_CHANGE_STATE_TIMEOUT 90
 
 
-; IsFusionInoventoryServiceInstalled
-!define IsFusionInventoryServiceInstalled "!insertmacro IsFusionInventoryServiceInstalled"
-
-!macro IsFusionInventoryServiceInstalled ResultVar
+; FusionInventoryAgentServiceIsInstalled
+!macro _FusionInventoryAgentServiceIsInstalledTester _a _b _t _f
+   !insertmacro _LOGICLIB_TEMP
    SimpleSC::ExistsService "${PRODUCT_INTERNAL_NAME}"
-   Pop ${ResultVar}
-   ${If} ${ResultVar} = 0
-      Nop
-   ${Else}
-      StrCpy ${ResultVar} 1
-   ${EndIf}
+   Pop $_LOGICLIB_TEMP
+   !insertmacro _= $_LOGICLIB_TEMP 0 `${_t}` `${_f}`
 !macroend
+
+!define FusionInventoryAgentServiceIsInstalled `"" FusionInventoryAgentServiceIsInstalledTester ""`
 
 
 ; GetFusionInventoryServiceStartType
