@@ -853,57 +853,7 @@ Function .onInitSilentMode
    ${EndIf}
 
    ; Is FusionInventory Agent installed?
-   ${IsFusionInventoryAgentInstalled} $R0
-
-   ${If} $R0 = 0
-      ; The agent is not installed yet
-
-      ; Build the ${IOS_FINAL} section in the Options.ini file
-      ${CopyINIOptionSection} "${IOS_DEFAULT}" "${IOS_FINAL}"
-      ${UpdateINIOptionSection} "${IOS_FINAL}" "${IOS_COMMANDLINE}"
-      ${WriteINIOption} "${IOS_FINAL}" "${IO_INSTALLTYPE}" "${INSTALLTYPE_FROMSCRATCH}"
-
-      ${ReadINIOption} $R0 "${IOS_FINAL}" "${IO_EXECMODE}"
-      ${If} "$R0" == "${EXECMODE_CURRENTCONF}"
-         ${WriteINIOption} "${IOS_FINAL}" "${IO_EXECMODE}" "${EXECMODE_SERVICE}"
-         ${WriteINIOption} "${IOS_FINAL}" "${IO_SERVICE-START-TYPE}" "${SERVICE_STARTTYPE_AUTO}"
-         ${WriteINIOption} "${IOS_FINAL}" "${IO_SERVICE-STATUS}" "${SERVICE_STATUS_RUNNING}"
-      ${EndIf}
-
-      ${ReadINIOption} $R0 "${IOS_FINAL}" "${IO_INSTALLTASKS}"
-      ${Select} "$R0"
-         ${Case} "${INSTALLTASK_MINIMAL}"
-	    ; Install the minimal tasks.
-	    ${GetInstallTasksMinimalCommaUStr} $R0
-         ${Case} "${INSTALLTASK_DEFAULT}"
-	    ; Install default tasks.
-	    ${GetInstallTasksDefaultCommaUStr} $R0
-         ${Case} "${INSTALLTASK_FULL}"
-	    ; Install all tasks.
-	    ${GetInstallTasksFullCommaUStr} $R0
-      ${EndSelect}
-      ${GetInstallTasksMinimalCommaUStr} $R1
-      ${AddCommaStrCommaUStr} "$R0" "$R1" $R0
-      ${IsStrInCommaUStr} "$R0" "${TASK_NETDISCOVERY}" $R1
-      ${If} $R1 == 1
-         ; Agent tasks ${TASK_NETINVENTORY} & ${TASK_NETDISCOVERY} are inter-dependent
-         ${AddStrCommaUStr} "$R0" "${TASK_NETINVENTORY}" $R0
-      ${EndIf}
-      ${IsStrInCommaUStr} "$R0" "${TASK_NETINVENTORY}" $R1
-      ${If} $R1 == 1
-         ; Agent tasks ${TASK_NETINVENTORY} & ${TASK_NETDISCOVERY} are inter-dependent
-         ${AddStrCommaUStr} "$R0" "${TASK_NETDISCOVERY}" $R0
-      ${EndIf}
-      ${NormalizeInstallTasksOption} "$R0" $R0
-      ${WriteINIOption} "${IOS_FINAL}" "${IO_INSTALLTASKS}" "$R0"
-
-      Push "${IOS_FINAL}"
-      Call SyncNSISSectionsWithInstallTasksOption
-
-      ${ReadINIOption} $R0 "${IOS_FINAL}" "${IO_NO-TASK}"
-      ${NormalizeNoTaskOption} "$R0" $R0
-      ${WriteINIOption} "${IOS_FINAL}" "${IO_NO-TASK}" "$R0"
-   ${Else}
+   ${If} ${FusionInventoryAgentIsInstalled}
       ; The agent is already installed
 
       ; What kind of installation is requested?
@@ -1057,38 +1007,22 @@ Function .onInitSilentMode
             ${WriteINIOption} "${IOS_FINAL}" "${IO_LOGFILE}" "$R0"
          ${EndIf}
       ${EndIf}
-   ${EndIf}
-
-   ; Pop $R1 & $R0 off of the stack
-   Pop $R1
-   Pop $R0
-FunctionEnd
-
-
-Function .onInitVisualMode
-   ; Push $R0 & $R1 onto the stack
-   Push $R0
-   Push $R1
-
-   ; Is FusionInventory Agent installed?
-   ${IsFusionInventoryAgentInstalled} $R0
-
-   ${If} $R0 = 0
+   ${Else}
       ; The agent is not installed yet
 
-      ; Build the ${IOS_DEFAULTGUI} section in the Options.ini file
-      ${CopyINIOptionSection} "${IOS_DEFAULT}" "${IOS_DEFAULTGUI}"
-      ${UpdateINIOptionSection} "${IOS_DEFAULTGUI}" "${IOS_COMMANDLINE}"
-      ${WriteINIOption} "${IOS_DEFAULTGUI}" "${IO_INSTALLTYPE}" "${INSTALLTYPE_FROMSCRATCH}"
+      ; Build the ${IOS_FINAL} section in the Options.ini file
+      ${CopyINIOptionSection} "${IOS_DEFAULT}" "${IOS_FINAL}"
+      ${UpdateINIOptionSection} "${IOS_FINAL}" "${IOS_COMMANDLINE}"
+      ${WriteINIOption} "${IOS_FINAL}" "${IO_INSTALLTYPE}" "${INSTALLTYPE_FROMSCRATCH}"
 
-      ${ReadINIOption} $R0 "${IOS_DEFAULTGUI}" "${IO_EXECMODE}"
+      ${ReadINIOption} $R0 "${IOS_FINAL}" "${IO_EXECMODE}"
       ${If} "$R0" == "${EXECMODE_CURRENTCONF}"
-         ${WriteINIOption} "${IOS_DEFAULTGUI}" "${IO_EXECMODE}" "${EXECMODE_SERVICE}"
-         ${WriteINIOption} "${IOS_DEFAULTGUI}" "${IO_SERVICE-START-TYPE}" "${SERVICE_STARTTYPE_AUTO}"
-         ${WriteINIOption} "${IOS_DEFAULTGUI}" "${IO_SERVICE-STATUS}" "${SERVICE_STATUS_RUNNING}"
+         ${WriteINIOption} "${IOS_FINAL}" "${IO_EXECMODE}" "${EXECMODE_SERVICE}"
+         ${WriteINIOption} "${IOS_FINAL}" "${IO_SERVICE-START-TYPE}" "${SERVICE_STARTTYPE_AUTO}"
+         ${WriteINIOption} "${IOS_FINAL}" "${IO_SERVICE-STATUS}" "${SERVICE_STATUS_RUNNING}"
       ${EndIf}
 
-      ${ReadINIOption} $R0 "${IOS_DEFAULTGUI}" "${IO_INSTALLTASKS}"
+      ${ReadINIOption} $R0 "${IOS_FINAL}" "${IO_INSTALLTASKS}"
       ${Select} "$R0"
          ${Case} "${INSTALLTASK_MINIMAL}"
 	    ; Install the minimal tasks.
@@ -1113,15 +1047,29 @@ Function .onInitVisualMode
          ${AddStrCommaUStr} "$R0" "${TASK_NETDISCOVERY}" $R0
       ${EndIf}
       ${NormalizeInstallTasksOption} "$R0" $R0
-      ${WriteINIOption} "${IOS_DEFAULTGUI}" "${IO_INSTALLTASKS}" "$R0"
+      ${WriteINIOption} "${IOS_FINAL}" "${IO_INSTALLTASKS}" "$R0"
 
-      Push "${IOS_DEFAULTGUI}"
+      Push "${IOS_FINAL}"
       Call SyncNSISSectionsWithInstallTasksOption
 
-      ${ReadINIOption} $R0 "${IOS_DEFAULTGUI}" "${IO_NO-TASK}"
+      ${ReadINIOption} $R0 "${IOS_FINAL}" "${IO_NO-TASK}"
       ${NormalizeNoTaskOption} "$R0" $R0
-      ${WriteINIOption} "${IOS_DEFAULTGUI}" "${IO_NO-TASK}" "$R0"
-   ${Else}
+      ${WriteINIOption} "${IOS_FINAL}" "${IO_NO-TASK}" "$R0"
+   ${EndIf}
+
+   ; Pop $R1 & $R0 off of the stack
+   Pop $R1
+   Pop $R0
+FunctionEnd
+
+
+Function .onInitVisualMode
+   ; Push $R0 & $R1 onto the stack
+   Push $R0
+   Push $R1
+
+   ; Is FusionInventory Agent installed?
+   ${If} ${FusionInventoryAgentIsInstalled}
       ; The agent is already installed
 
       ; Note: Whether you change this block of code, please, remember also to do the necessary changes
@@ -1278,6 +1226,54 @@ Function .onInitVisualMode
             ${WriteINIOption} "${IOS_DEFAULTGUI}" "${IO_LOGFILE}" "$R0"
          ${EndIf}
       ${EndIf}
+   ${Else}
+      ; The agent is not installed yet
+
+      ; Build the ${IOS_DEFAULTGUI} section in the Options.ini file
+      ${CopyINIOptionSection} "${IOS_DEFAULT}" "${IOS_DEFAULTGUI}"
+      ${UpdateINIOptionSection} "${IOS_DEFAULTGUI}" "${IOS_COMMANDLINE}"
+      ${WriteINIOption} "${IOS_DEFAULTGUI}" "${IO_INSTALLTYPE}" "${INSTALLTYPE_FROMSCRATCH}"
+
+      ${ReadINIOption} $R0 "${IOS_DEFAULTGUI}" "${IO_EXECMODE}"
+      ${If} "$R0" == "${EXECMODE_CURRENTCONF}"
+         ${WriteINIOption} "${IOS_DEFAULTGUI}" "${IO_EXECMODE}" "${EXECMODE_SERVICE}"
+         ${WriteINIOption} "${IOS_DEFAULTGUI}" "${IO_SERVICE-START-TYPE}" "${SERVICE_STARTTYPE_AUTO}"
+         ${WriteINIOption} "${IOS_DEFAULTGUI}" "${IO_SERVICE-STATUS}" "${SERVICE_STATUS_RUNNING}"
+      ${EndIf}
+
+      ${ReadINIOption} $R0 "${IOS_DEFAULTGUI}" "${IO_INSTALLTASKS}"
+      ${Select} "$R0"
+         ${Case} "${INSTALLTASK_MINIMAL}"
+	    ; Install the minimal tasks.
+	    ${GetInstallTasksMinimalCommaUStr} $R0
+         ${Case} "${INSTALLTASK_DEFAULT}"
+	    ; Install default tasks.
+	    ${GetInstallTasksDefaultCommaUStr} $R0
+         ${Case} "${INSTALLTASK_FULL}"
+	    ; Install all tasks.
+	    ${GetInstallTasksFullCommaUStr} $R0
+      ${EndSelect}
+      ${GetInstallTasksMinimalCommaUStr} $R1
+      ${AddCommaStrCommaUStr} "$R0" "$R1" $R0
+      ${IsStrInCommaUStr} "$R0" "${TASK_NETDISCOVERY}" $R1
+      ${If} $R1 == 1
+         ; Agent tasks ${TASK_NETINVENTORY} & ${TASK_NETDISCOVERY} are inter-dependent
+         ${AddStrCommaUStr} "$R0" "${TASK_NETINVENTORY}" $R0
+      ${EndIf}
+      ${IsStrInCommaUStr} "$R0" "${TASK_NETINVENTORY}" $R1
+      ${If} $R1 == 1
+         ; Agent tasks ${TASK_NETINVENTORY} & ${TASK_NETDISCOVERY} are inter-dependent
+         ${AddStrCommaUStr} "$R0" "${TASK_NETDISCOVERY}" $R0
+      ${EndIf}
+      ${NormalizeInstallTasksOption} "$R0" $R0
+      ${WriteINIOption} "${IOS_DEFAULTGUI}" "${IO_INSTALLTASKS}" "$R0"
+
+      Push "${IOS_DEFAULTGUI}"
+      Call SyncNSISSectionsWithInstallTasksOption
+
+      ${ReadINIOption} $R0 "${IOS_DEFAULTGUI}" "${IO_NO-TASK}"
+      ${NormalizeNoTaskOption} "$R0" $R0
+      ${WriteINIOption} "${IOS_DEFAULTGUI}" "${IO_NO-TASK}" "$R0"
    ${EndIf}
 
    ; Build the ${IOS_GUI} section in the Options.ini file

@@ -404,18 +404,15 @@ Function GetCurrentUninstallSubkey
 FunctionEnd
 
 
-; IsFusionInventoryAgentInstalled
-!define IsFusionInventoryAgentInstalled "!insertmacro IsFusionInventoryAgentInstalled"
-
-!macro IsFusionInventoryAgentInstalled ResultVar
+; FusionInventoryAgentIsInstalled
+!macro _FusionInventoryAgentIsInstalledTester _a _b _t _f
+   !insertmacro _LOGICLIB_TEMP
    Call GetCurrentInstallSubkey
-   Pop ${ResultVar}
-   ${If} "${ResultVar}" == ""
-      StrCpy "${ResultVar}" 0
-   ${Else}
-      StrCpy "${ResultVar}" 1
-   ${EndIf}
+   Pop $_LOGICLIB_TEMP
+   !insertmacro _!= $_LOGICLIB_TEMP "" `${_t}` `${_f}`
 !macroend
+
+!define FusionInventoryAgentIsInstalled `"" FusionInventoryAgentIsInstalledTester ""`
 
 
 ; WriteConfigurationOptions

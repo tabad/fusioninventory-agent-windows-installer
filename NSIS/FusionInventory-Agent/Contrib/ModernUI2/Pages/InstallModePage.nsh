@@ -130,24 +130,15 @@ FunctionEnd
 
 
 Function InstallModePage_Show
-   ; Push $R0 onto the stack
-   Push $R0
-
    ; Is FusionInventory Agent installed?
-   ${IsFusionInventoryAgentInstalled} $R0
-
-   ${If} $R0 = 0
-      ; The agent is not installed yet
-      Pop $R0
-      Abort
-   ${Else}
+   ${If} ${FusionInventoryAgentIsInstalled}
       ; The agent is already installed
       Call InstallModePage_Create
       nsDialogs::Show $hCtl_InstallModePage
+   ${Else}
+      ; The agent is not installed yet
+      Abort
    ${EndIf}
-
-   ; Pop $R0 off of the stack
-   Pop $R0
 FunctionEnd
 
 
