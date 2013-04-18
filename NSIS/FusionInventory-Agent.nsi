@@ -887,13 +887,11 @@ Function .onInitSilentMode
          ${EndSelect}
          ${GetInstallTasksMinimalCommaUStr} $R1
          ${AddCommaStrCommaUStr} "$R0" "$R1" $R0
-         ${IsStrInCommaUStr} "$R0" "${TASK_NETDISCOVERY}" $R1
-         ${If} $R1 == 1
+         ${If} "${TASK_NETDISCOVERY}" IsInCommaUStr "$R0"
             ; Agent tasks ${TASK_NETINVENTORY} & ${TASK_NETDISCOVERY} are inter-dependent
             ${AddStrCommaUStr} "$R0" "${TASK_NETINVENTORY}" $R0
          ${EndIf}
-         ${IsStrInCommaUStr} "$R0" "${TASK_NETINVENTORY}" $R1
-         ${If} $R1 == 1
+         ${If} "${TASK_NETINVENTORY}" IsInCommaUStr "$R0"
             ; Agent tasks ${TASK_NETINVENTORY} & ${TASK_NETDISCOVERY} are inter-dependent
             ${AddStrCommaUStr} "$R0" "${TASK_NETDISCOVERY}" $R0
          ${EndIf}
@@ -929,13 +927,11 @@ Function .onInitSilentMode
          ${EndSelect}
          ${GetInstallTasksMinimalCommaUStr} $R1
          ${AddCommaStrCommaUStr} "$R0" "$R1" $R0
-         ${IsStrInCommaUStr} "$R0" "${TASK_NETDISCOVERY}" $R1
-         ${If} $R1 == 1
+         ${If} "${TASK_NETDISCOVERY}" IsInCommaUStr "$R0"
             ; Agent tasks ${TASK_NETINVENTORY} & ${TASK_NETDISCOVERY} are inter-dependent
             ${AddStrCommaUStr} "$R0" "${TASK_NETINVENTORY}" $R0
          ${EndIf}
-         ${IsStrInCommaUStr} "$R0" "${TASK_NETINVENTORY}" $R1
-         ${If} $R1 == 1
+         ${If} "${TASK_NETINVENTORY}" IsInCommaUStr "$R0"
             ; Agent tasks ${TASK_NETINVENTORY} & ${TASK_NETDISCOVERY} are inter-dependent
             ${AddStrCommaUStr} "$R0" "${TASK_NETDISCOVERY}" $R0
          ${EndIf}
@@ -1036,13 +1032,11 @@ Function .onInitSilentMode
       ${EndSelect}
       ${GetInstallTasksMinimalCommaUStr} $R1
       ${AddCommaStrCommaUStr} "$R0" "$R1" $R0
-      ${IsStrInCommaUStr} "$R0" "${TASK_NETDISCOVERY}" $R1
-      ${If} $R1 == 1
+      ${If} "${TASK_NETDISCOVERY}" IsInCommaUStr "$R0"
          ; Agent tasks ${TASK_NETINVENTORY} & ${TASK_NETDISCOVERY} are inter-dependent
          ${AddStrCommaUStr} "$R0" "${TASK_NETINVENTORY}" $R0
       ${EndIf}
-      ${IsStrInCommaUStr} "$R0" "${TASK_NETINVENTORY}" $R1
-      ${If} $R1 == 1
+      ${If} "${TASK_NETINVENTORY}" IsInCommaUStr "$R0"
          ; Agent tasks ${TASK_NETINVENTORY} & ${TASK_NETDISCOVERY} are inter-dependent
          ${AddStrCommaUStr} "$R0" "${TASK_NETDISCOVERY}" $R0
       ${EndIf}
@@ -1106,13 +1100,11 @@ Function .onInitVisualMode
          ${EndSelect}
          ${GetInstallTasksMinimalCommaUStr} $R1
          ${AddCommaStrCommaUStr} "$R0" "$R1" $R0
-         ${IsStrInCommaUStr} "$R0" "${TASK_NETDISCOVERY}" $R1
-         ${If} $R1 == 1
+         ${If} "${TASK_NETDISCOVERY}" IsInCommaUStr "$R0"
             ; Agent tasks ${TASK_NETINVENTORY} & ${TASK_NETDISCOVERY} are inter-dependent
             ${AddStrCommaUStr} "$R0" "${TASK_NETINVENTORY}" $R0
          ${EndIf}
-         ${IsStrInCommaUStr} "$R0" "${TASK_NETINVENTORY}" $R1
-         ${If} $R1 == 1
+         ${If} "${TASK_NETINVENTORY}" IsInCommaUStr "$R0"
             ; Agent tasks ${TASK_NETINVENTORY} & ${TASK_NETDISCOVERY} are inter-dependent
             ${AddStrCommaUStr} "$R0" "${TASK_NETDISCOVERY}" $R0
          ${EndIf}
@@ -1148,13 +1140,11 @@ Function .onInitVisualMode
          ${EndSelect}
          ${GetInstallTasksMinimalCommaUStr} $R1
          ${AddCommaStrCommaUStr} "$R0" "$R1" $R0
-         ${IsStrInCommaUStr} "$R0" "${TASK_NETDISCOVERY}" $R1
-         ${If} $R1 == 1
+         ${If} "${TASK_NETDISCOVERY}" IsInCommaUStr "$R0"
             ; Agent tasks ${TASK_NETINVENTORY} & ${TASK_NETDISCOVERY} are inter-dependent
             ${AddStrCommaUStr} "$R0" "${TASK_NETINVENTORY}" $R0
          ${EndIf}
-         ${IsStrInCommaUStr} "$R0" "${TASK_NETINVENTORY}" $R1
-         ${If} $R1 == 1
+         ${If} "${TASK_NETINVENTORY}" IsInCommaUStr "$R0"
             ; Agent tasks ${TASK_NETINVENTORY} & ${TASK_NETDISCOVERY} are inter-dependent
             ${AddStrCommaUStr} "$R0" "${TASK_NETDISCOVERY}" $R0
          ${EndIf}
@@ -1255,13 +1245,11 @@ Function .onInitVisualMode
       ${EndSelect}
       ${GetInstallTasksMinimalCommaUStr} $R1
       ${AddCommaStrCommaUStr} "$R0" "$R1" $R0
-      ${IsStrInCommaUStr} "$R0" "${TASK_NETDISCOVERY}" $R1
-      ${If} $R1 == 1
+      ${If} "${TASK_NETDISCOVERY}" IsInCommaUStr "$R0"
          ; Agent tasks ${TASK_NETINVENTORY} & ${TASK_NETDISCOVERY} are inter-dependent
          ${AddStrCommaUStr} "$R0" "${TASK_NETINVENTORY}" $R0
       ${EndIf}
-      ${IsStrInCommaUStr} "$R0" "${TASK_NETINVENTORY}" $R1
-      ${If} $R1 == 1
+      ${If} "${TASK_NETINVENTORY}" IsInCommaUStr "$R0"
          ; Agent tasks ${TASK_NETINVENTORY} & ${TASK_NETDISCOVERY} are inter-dependent
          ${AddStrCommaUStr} "$R0" "${TASK_NETDISCOVERY}" $R0
       ${EndIf}

@@ -61,9 +61,20 @@
 ;           * DelStrCommaUStr
 ;           * FirstStrCommaUStr
 ;           * GetStrsCommaUStr
-;           * IsStrInCommaUStr
+;           * IsInCommaUStrTester
 ;
 ;        can be used with CommaStr and CommaUStr strings.
+
+
+; IsInCommaUStr
+!macro _IsInCommaUStr _a _b _t _f
+   !insertmacro _LOGICLIB_TEMP
+   Push `${_b}`
+   Push `${_a}`
+   Call IsInCommaUStrTester
+   Pop $_LOGICLIB_TEMP
+   !insertmacro _= $_LOGICLIB_TEMP 0 `${_t}` `${_f}`
+!macroend
 
 
 ; AddCommaStrCommaUStr
@@ -202,17 +213,8 @@ Function DelStrCommaUStr
    Push $R2
    Push $R3
 
-   ; Get whether $R1 is in $R0
-   Push "$R0"
-   Push "$R1"
-   Call IsStrInCommaUStr
-   Pop $R2
-
    ; Check whether $R1 is in $R0
-   ${If} $R2 = 0
-      ; Nothing to delete
-      StrCpy $R3 "$R0"
-   ${Else}
+   ${If} "$R1" IsInCommaUStr "$R0"
       ; Delete $R1 of $R0
       ${WordAdd} "$R0" "," "E-$R1" $R2
 
@@ -223,6 +225,9 @@ Function DelStrCommaUStr
       ${Else}
          StrCpy $R3 "$R2"
       ${EndIf}
+   ${Else}
+      ; Nothing to delete
+      StrCpy $R3 "$R0"
    ${EndIf}
 
    ; Copy return value in $R0
@@ -340,17 +345,8 @@ Function GetStrsCommaUStr
 FunctionEnd
 
 
-; IsStrInCommaUStr
-!define IsStrInCommaUStr "!insertmacro IsStrInCommaUStr"
-
-!macro IsStrInCommaUStr CommaUStr String ResultVar
-   Push "${CommaUStr}"
-   Push "${String}"
-   Call IsStrInCommaUStr
-   Pop "${ResultVar}"
-!macroend
-
-Function IsStrInCommaUStr
+; IsInCommaUStrTester
+Function IsInCommaUStrTester
    ; $R0 CommaUStr
    ; $R1 String
    ; $R2 Auxiliary
@@ -377,7 +373,7 @@ Function IsStrInCommaUStr
    ${If} $R2 = 0
    ${OrIf} "$R1" == ""
       ; $R0 or $R1 are empty
-      StrCpy $R3 0
+      StrCpy $R3 1
    ${Else}
       ; Find $R1 in $R0
       ${WordFind} "$R0" "," "E/$R1" $R2
@@ -386,17 +382,17 @@ Function IsStrInCommaUStr
          ${If} $R2 == 1
             ; Error and delimiter not found (there is only one string in $R0)
             ${If} "$R0" != "$R1"
-               StrCpy $R3 0
-            ${Else}
                StrCpy $R3 1
+            ${Else}
+               StrCpy $R3 0
             ${EndIf}
          ${ElseIf} $R2 == 2
             ; Error and $R1 not found in $R0
-            StrCpy $R3 0
+            StrCpy $R3 1
          ${EndIf}
       ${Else}
          ; Found $R1 in $R0 in position $R2
-         StrCpy $R3 1
+         StrCpy $R3 0
       ${EndIf}
    ${EndIf}
 

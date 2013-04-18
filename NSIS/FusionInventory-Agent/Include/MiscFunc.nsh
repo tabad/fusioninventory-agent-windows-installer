@@ -809,11 +809,10 @@ Function NormalizeInstallTasksOption
    ; Get parameter
    Exch $R0
 
-   ; Push $R1, $R2, $R3 & $R4 onto the stack
+   ; Push $R1, $R2 & $R3 onto the stack
    Push $R1
    Push $R2
    Push $R3
-   Push $R4
 
    ; Initialize $R0
    ${AddCommaStrCommaUStr} "" "$R0" $R0
@@ -844,8 +843,7 @@ Function NormalizeInstallTasksOption
             ${ExitDo}
          ${Else}
             ; Check whether $R3 is in $R0
-            ${IsStrInCommaUStr} "$R0" "$R3" $R4
-            ${If} $R4 == 1
+            ${If} "$R3" IsInCommaUStr "$R0"
                ; Add $R3 to $R1
                ${AddStrCommaUStr} "$R1" "$R3" $R1
             ${EndIf}
@@ -859,8 +857,7 @@ Function NormalizeInstallTasksOption
    ; Copy return value in $R0
    StrCpy $R0 "$R1"
 
-   ; Pop $R4, $R3, $R2 & $R1 off of the stack
-   Pop $R4
+   ; Pop $R3, $R2 & $R1 off of the stack
    Pop $R3
    Pop $R2
    Pop $R1

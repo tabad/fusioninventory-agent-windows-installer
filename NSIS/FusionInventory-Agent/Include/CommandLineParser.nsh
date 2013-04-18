@@ -143,12 +143,10 @@
              ; $0 Valid agent tasks CommaUStr
              ; $1 Agent tasks CommaUStr to install
              ; $2 An agent tasks to install
-             ; $3 Auxiliary
-             ; Push $0, $1, $2 & $3 onto the stack
+             ; Push $0, $1 & $2 onto the stack
              Push $0
              Push $1
              Push $2
-             Push $3
              ; Get valid agent tasks
              ${GetValidAgentTasksCommaUStr} $0
              ; Build the agent tasks CommaUStr to install
@@ -164,16 +162,15 @@
                    ${ExitDo}
                 ${Else}
                    ; Check whether is a valid agent tasks
-                   ${IsStrInCommaUStr} "$0" "$2" $3
-                   ${If} $3 == 0
+                   ${If} "$2" IsInCommaUStr "$0"
+                      ; $2 is a valid agent task to install
+                      ; Check the next agent task
+                      ${DelStrCommaUStr} "$1" "$2" $1
+                   ${Else}
                       ; Syntax error. $2 is not a valid agent task to install
                       SetErrors
                       StrCpy $R7 1
                       ${ExitDo}
-                   ${Else}
-                      ; $2 is a valid agent task to install
-                      ; Check the next agent task
-                      ${DelStrCommaUStr} "$1" "$2" $1
                    ${EndIf}
                 ${EndIf}
              ${Loop}
@@ -182,8 +179,7 @@
                 ; $R3 is a valid value and $1 is empty
                 ${AddCommaStrCommaUStr} "$R3" "$1" $R3
              ${EndIf}
-             ; Pop $3, $2, $1 & $0 off of the stack
-             Pop $3
+             ; Pop $2, $1 & $0 off of the stack
              Pop $2
              Pop $1
              Pop $0
