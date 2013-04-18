@@ -62,8 +62,8 @@
       ; Push $R0 onto the stack
       Push $R0
 
-      ; Set incompatible target platform architecture
-      StrCpy $IncompatibleTargetPlatformArchitecture 0
+      ; Set compatible target platform architecture
+      StrCpy $CompatibleTargetPlatformArchitecture 0
 
       ; Set tasks network core code installed
       StrCpy $FusionInventoryAgentTaskNetCoreInstalled 0
@@ -79,7 +79,7 @@
 
          ${If} ${FIAI_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_64}
             ; Platform 32bits / Installer 64bits !!!
-            StrCpy $IncompatibleTargetPlatformArchitecture 1
+            StrCpy $CompatibleTargetPlatformArchitecture 1
          ${EndIf}
 
          ; Set scope of the registry commands

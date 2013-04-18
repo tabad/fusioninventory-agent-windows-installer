@@ -180,8 +180,8 @@ Var PRODUCT_UNINST_SUBKEY
 ; Command Line Syntax Error
 Var CommandLineSyntaxError
 
-; Incompatible target platform architecture
-Var IncompatibleTargetPlatformArchitecture
+; Compatible target platform architecture
+Var CompatibleTargetPlatformArchitecture
 
 ; Tasks network core code installed
 Var FusionInventoryAgentTaskNetCoreInstalled
@@ -715,8 +715,8 @@ Function .onInit
    ; Initialize global variables
    ${InitGlobalVariables}
 
-   ; Check for incompatible target platform architecture
-   ${If} $IncompatibleTargetPlatformArchitecture != 0
+   ; Check for compatible target platform architecture
+   ${IfNot} $CompatibleTargetPlatformArchitecture = 0
       ; Platform 32bits / Installer 64bits !!!
       MessageBox MB_OK|MB_ICONSTOP "$(Msg_IncompatibleTargetPlatformArchitecture)" /SD IDOK
       Abort
