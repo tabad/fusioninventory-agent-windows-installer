@@ -66,7 +66,7 @@
       StrCpy $CompatibleTargetPlatformArchitecture 0
 
       ; Set tasks network core code installed
-      StrCpy $FusionInventoryAgentTaskNetCoreInstalled 0
+      StrCpy $FusionInventoryAgentTaskNetCoreInstalled 1
 
       ; Get Windows platform architecture
       ${GetWindowsPlatformArchitecture} $R0
@@ -548,11 +548,11 @@ FunctionEnd
    Push $R1
 
    ; Check whether it is already installed
-   ${If} $FusionInventoryAgentTaskNetCoreInstalled = 0
+   ${IfNot} $FusionInventoryAgentTaskNetCoreInstalled = 0
       ; Task network core code not installed
 
       ; Set tasks network core code installed
-      StrCpy $FusionInventoryAgentTaskNetCoreInstalled 1
+      StrCpy $FusionInventoryAgentTaskNetCoreInstalled 0
 
       ; Create directories
       ${ReadINIOption} $R0 "${IOS_FINAL}" "${IO_INSTALLDIR}"
