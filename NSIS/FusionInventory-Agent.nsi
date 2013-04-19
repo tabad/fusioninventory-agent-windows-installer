@@ -731,11 +731,11 @@ Function .onInit
       ClearErrors
 
       ; Set command line syntax error
-      StrCpy $CommandLineSyntaxError 1
+      StrCpy $CommandLineSyntaxError 0
    ${EndIf}
 
    ; Check for dump help file
-   ${If} $CommandLineSyntaxError = 0
+   ${IfNot} $CommandLineSyntaxError = 0
    ${AndIfNot} ${Silent}
       ${ReadINIOption} $R0 "${IOS_COMMANDLINE}" "${IO_DUMPHELP}"
       ${If} $R0 = 1
@@ -751,19 +751,19 @@ Function .onInit
       ; Silent installation mode
 
       ; Check for command line syntax error
-      ${If} $CommandLineSyntaxError = 1
-         Abort
-      ${Else}
+      ${IfNot} $CommandLineSyntaxError = 0
          Call .onInitSilentMode
+      ${Else}
+         Abort
       ${EndIf}
    ${Else}
       ; Visual installation mode
 
       ; Check for command line syntax error
-      ${If} $CommandLineSyntaxError = 1
-         Nop
-      ${Else}
+      ${IfNot} $CommandLineSyntaxError = 0
          Call .onInitVisualMode
+      ${Else}
+         Nop
       ${EndIf}
    ${EndIf}
 

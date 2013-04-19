@@ -101,7 +101,7 @@
       ${EndIf}
 
       ; Set command line syntax error
-      StrCpy $CommandLineSyntaxError 0
+      StrCpy $CommandLineSyntaxError 1
 
       ; Pop $R0 off of the stack
       Pop $R0

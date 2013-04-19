@@ -75,7 +75,7 @@ Function HelpPage_Create
      Abort
    ${EndIf}
 
-   ${If} $CommandLineSyntaxError = 0
+   ${IfNot} $CommandLineSyntaxError = 0
       !insertmacro MUI_HEADER_TEXT "$(hCtl_HelpPage_Text_Help)" "$(hCtl_HelpPage_SubText)"
    ${Else}
       !insertmacro MUI_HEADER_TEXT "$(hCtl_HelpPage_Text_SyntaxError)" "$(hCtl_HelpPage_SubText)"
@@ -114,7 +114,7 @@ Function HelpPage_Show
    Push $R0
 
    ${ReadINIOption} $R0 "${IOS_COMMANDLINE}" "${IO_HELP}"
-   ${If} $CommandLineSyntaxError = 0
+   ${IfNot} $CommandLineSyntaxError = 0
    ${AndIf} $R0 = 0
       ; Pop $R0 off of the stack
       Pop $R0
