@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file was created by NSISDialogDesigner 1.1.2.0
+http://coolsoft.altervista.org/nsisdialogdesigner
+Do not edit manually!
+-->
+<Dialog Name="TargetsPage" Title="Dialog title..." Subtitle="Dialog subtitle..." Style="none" ExStyle="none">
+  <GroupBox Name="GroupBox1" Location="0, 16" Size="448, 84" Text="Local Target Folder" TabIndex="0" Style="none" ExStyle="none">
+    <TextBox Name="TextBox1" Location="16, 28" Size="296, 20" TabIndex="0" Style="none" ExStyle="none" />
+    <Button Name="Button1" Location="328, 24" Size="104, 24" Text="Browser..." TabIndex="1" Style="none" ExStyle="none" />
+    <Label Name="Label1" Location="16, 56" Size="296, 20" Text="Local path or UNC path name" TabIndex="2" Style="WS_VISIBLE" ExStyle="none" />
+  </GroupBox>
+  <GroupBox Name="GroupBox2" Location="0, 116" Size="448, 96" Text="Remote Targets URI's" TabIndex="1" Style="none" ExStyle="none">
+    <TextBox Name="TextBox2" Location="16, 28" Size="412, 20" TabIndex="0" Style="none" ExStyle="none" />
+    <Label Name="Label2" Location="16, 56" Size="412, 32" Text="You can indicate multiple remote targets by separating them with commas." TabIndex="1" Style="WS_VISIBLE" ExStyle="none" />
+  </GroupBox>
+</Dialog>
