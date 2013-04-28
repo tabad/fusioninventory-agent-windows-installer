@@ -29,7 +29,7 @@
    ------------------------------------------------------------------------
 
    @package   FusionInventory Agent Installer for Microsoft Windows
-   @file      .\FusionInventory Agent\Contrib\Modern UI 2\Pages\InstallModePageLangStrings.nsh
+   @file      .\FusionInventory Agent\Contrib\ModernUI2\Pages\InstallModePageLangStrings.nsh
    @author    Tomas Abad <tabadgp@gmail.com>
    @copyright Copyright (c) 2010-2013 FusionInventory Team
    @license   GNU GPL version 2 or (at your option) any later version
