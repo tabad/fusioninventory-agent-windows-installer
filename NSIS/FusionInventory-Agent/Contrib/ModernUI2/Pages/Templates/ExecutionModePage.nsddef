@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file was created by NSISDialogDesigner 1.1.2.0
+http://coolsoft.altervista.org/nsisdialogdesigner
+Do not edit manually!
+-->
+<Dialog Name="ExecutionModePage" Title="Dialog title..." Subtitle="Dialog subtitle..." Style="none" ExStyle="none">
+  <GroupBox Name="GroupBox1" Location="76, 53" Size="298, 115" Text="Execution Mode" TabIndex="4" Style="none" ExStyle="none">
+    <RadioButton Name="RadioButton1" Location="16, 24" Size="198, 20" Text="As a Windows Service" TabIndex="1" Style="none" ExStyle="none" />
+    <RadioButton Name="RadioButton2" Location="16, 52" Size="198, 20" Text="As a Windows Task" TabIndex="2" Style="none" ExStyle="none" />
+    <RadioButton Name="RadioButton3" Location="16, 80" Size="198, 20" Text="Manually" TabIndex="3" Style="none" ExStyle="none" />
+  </GroupBox>
+</Dialog>
