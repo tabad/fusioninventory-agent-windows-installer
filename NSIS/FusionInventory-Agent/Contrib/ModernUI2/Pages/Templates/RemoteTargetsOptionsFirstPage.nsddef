@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file was created by NSISDialogDesigner 1.1.2.0
+http://coolsoft.altervista.org/nsisdialogdesigner
+Do not edit manually!
+-->
+<Dialog Name="RemoteTargetsOptionsFirstPage" Title="Dialog title..." Subtitle="Dialog subtitle..." Style="none" ExStyle="none">
+  <GroupBox Name="GroupBox1" Location="0, 20" Size="448, 152" Text="SSL Options" TabIndex="0" Style="none" ExStyle="none">
+    <Label Name="Label1" Location="20, 24" Size="292, 15" Text="Certificates Directory" TabIndex="0" Style="none" ExStyle="none" />
+    <TextBox Name="TextBox1" Location="16, 40" Size="296, 20" TabIndex="1" Style="none" ExStyle="none" />
+    <Button Name="Button1" Location="328, 36" Size="104, 24" Text="Browser..." TabIndex="2" Style="none" ExStyle="none" />
+    <Label Name="Label2" Location="20, 64" Size="292, 15" Text="Certificate File" TabIndex="3" Style="none" ExStyle="none" />
+    <TextBox Name="TextBox2" Location="16, 80" Size="296, 20" TabIndex="4" Style="none" ExStyle="none" />
+    <Button Name="Button2" Location="328, 76" Size="104, 24" Text="Browser..." TabIndex="5" Style="none" ExStyle="none" />
+    <Label Name="Label3" Location="20, 104" Size="292, 15" Text="Certificate URI" TabIndex="6" Style="none" ExStyle="none" />
+    <TextBox Name="TextBox3" Location="16, 120" Size="412, 20" TabIndex="7" Style="none" ExStyle="none" />
+  </GroupBox>
+  <CheckBox Name="CheckBox1" Location="20, 188" Size="404, 20" Text="Disable SSL Check (use only for debugging)" TabIndex="1" Style="WS_VISIBLE" ExStyle="none" />
+</Dialog>
