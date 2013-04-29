@@ -291,7 +291,7 @@ Var FusionInventoryAgentTaskNetCoreInstalled
 ; Custom Pages Functions
 
 !include "${FIAI_DIR}\Contrib\ModernUI2\Pages\HelpPage.nsh"
-!include "${FIAI_DIR}\Contrib\ModernUI2\Pages\InstallModePage.nsh"
+!include "${FIAI_DIR}\Contrib\ModernUI2\Pages\InstallationModePage.nsh"
 
 
 ;--------------------------------
@@ -300,7 +300,7 @@ Var FusionInventoryAgentTaskNetCoreInstalled
 Page custom HelpPage_Show HelpPage_Leave ""
 !insertmacro MUI_PAGE_WELCOME
 !insertmacro MUI_PAGE_LICENSE "${FIAI_DIR}\LicenseEnglish.rtf"
-Page custom InstallModePage_Show InstallModePage_Leave ""
+Page custom InstallationModePage_Show InstallationModePage_Leave ""
 !insertmacro MUI_PAGE_COMPONENTS
 !insertmacro MUI_PAGE_DIRECTORY
 ;Page custom GlobalOptions "" " "
