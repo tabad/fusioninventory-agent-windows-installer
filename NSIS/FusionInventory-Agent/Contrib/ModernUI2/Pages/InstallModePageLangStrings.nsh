@@ -52,7 +52,7 @@
 ; hCtl_InstallModePage_Text
 LangString hCtl_InstallModePage_Text ${LANG_ENGLISH} "Choose an Installation Mode"
 LangString hCtl_InstallModePage_Text ${LANG_FRENCH} "fChoose an Installation Mode"
-LangString hCtl_InstallModePage_Text ${LANG_SPANISH} "Elija un Modo de Instalación"
+LangString hCtl_InstallModePage_Text ${LANG_SPANISH} "Elija un modo de instalación"
 
 ; hCtl_InstallModePage_SubText
 LangString hCtl_InstallModePage_SubText ${LANG_ENGLISH} "Choose how you want to install ${PRODUCT_NAME}."
