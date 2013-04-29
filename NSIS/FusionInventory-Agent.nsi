@@ -293,6 +293,7 @@ Var FusionInventoryAgentTaskNetCoreInstalled
 ;!include "${FIAI_DIR}\Contrib\ModernUI2\Pages\ExecutionModePage.nsh"
 !include "${FIAI_DIR}\Contrib\ModernUI2\Pages\HelpPage.nsh"
 !include "${FIAI_DIR}\Contrib\ModernUI2\Pages\InstallationModePage.nsh"
+;!include "${FIAI_DIR}\Contrib\ModernUI2\Pages\HTTPServerOptionsPage.nsh"
 ;!include "${FIAI_DIR}\Contrib\ModernUI2\Pages\RemoteTargetsOptionsFirstPage.nsh"
 ;!include "${FIAI_DIR}\Contrib\ModernUI2\Pages\RemoteTargetsOptionsSecondPage.nsh"
 ;!include "${FIAI_DIR}\Contrib\ModernUI2\Pages\TargetsPage.nsh"
@@ -311,6 +312,7 @@ Page custom InstallationModePage_Show InstallationModePage_Leave ""
 ;Page custom RemoteTargetsOptionsFirstPage_Show RemoteTargetsOptionsFirstPage_Leave ""
 ;Page custom RemoteTargetsOptionsSecondPage_Show RemoteTargetsOptionsSecondPage_Leave ""
 ;Page custom ExecutionModePage_Show ExecutionModePage_Leave ""
+;Page custom HTTPServerOptionsPage_Show HTTPServerOptionsPage_Leave ""
 !insertmacro MUI_PAGE_INSTFILES
 !insertmacro MUI_PAGE_FINISH
 

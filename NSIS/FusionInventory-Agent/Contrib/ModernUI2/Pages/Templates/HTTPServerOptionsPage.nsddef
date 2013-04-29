@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file was created by NSISDialogDesigner 1.1.2.0
+http://coolsoft.altervista.org/nsisdialogdesigner
+Do not edit manually!
+-->
+<Dialog Name="HTTPServerOptionsPage" Title="Dialog title..." Subtitle="Dialog subtitle..." Style="none" ExStyle="none">
+  <GroupBox Name="GroupBox1" Location="4, 32" Size="440, 116" Text="Embedded HTTP Server Options" TabIndex="0" Style="none" ExStyle="none">
+    <Label Name="Label1" Location="20, 24" Size="124, 15" Text="IP" TabIndex="0" Style="none" ExStyle="none" />
+    <TextBox Name="TextBox1" Location="16, 40" Size="128, 20" TabIndex="1" Style="none" ExStyle="none" />
+    <Label Name="Label2" Location="156, 24" Size="60, 15" Text="Port" TabIndex="2" Style="none" ExStyle="none" />
+    <Number Name="Number1" Location="152, 40" Size="64, 20" TabIndex="3" Style="none" ExStyle="none" />
+    <Label Name="Label3" Location="20, 64" Size="404, 15" Text="Trusted IPs" TabIndex="4" Style="none" ExStyle="none" />
+    <TextBox Name="TextBox2" Location="16, 80" Size="408, 20" TabIndex="5" Style="none" ExStyle="none" />
+  </GroupBox>
+  <CheckBox Name="CheckBox1" Location="24, 160" Size="400, 20" Text="Add Exception on the Firewall" TabIndex="1" Style="none" ExStyle="none" />
+  <CheckBox Name="CheckBox2" Location="24, 184" Size="400, 20" Text="Enable Embedded HTTP Server" TabIndex="2" Style="none" ExStyle="none" />
+</Dialog>
