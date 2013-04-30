@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file was created by NSISDialogDesigner 1.1.2.0
+http://coolsoft.altervista.org/nsisdialogdesigner
+Do not edit manually!
+-->
+<Dialog Name="MiscelaneousOptionsPage" Title="Dialog title..." Subtitle="Dialog subtitle..." Style="none" ExStyle="none">
+  <GroupBox Name="GroupBox1" Location="43, 34" Size="369, 158" Text="Miscelaneous options" TabIndex="0" Style="none" ExStyle="none">
+    <CheckBox Name="CheckBox1" Location="16, 30" Size="332, 20" Text="Launch an inventory immediately after of installation" TabIndex="0" Style="none" ExStyle="none" />
+    <CheckBox Name="CheckBox2" Location="16, 56" Size="332, 20" Text="Save inventory as HTML (only for local target)" TabIndex="1" Style="none" ExStyle="none" />
+    <CheckBox Name="CheckBox3" Location="16, 82" Size="332, 20" Text="Scan home directory for virtual machines" TabIndex="2" Style="none" ExStyle="none" />
+    <Label Name="Label1" Location="20, 106" Size="328, 15" Text="Tag" TabIndex="3" Style="none" ExStyle="none" />
+    <TextBox Name="TextBox1" Location="16, 122" Size="332, 20" TabIndex="4" Style="none" ExStyle="none" />
+  </GroupBox>
+</Dialog>
