@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file was created by NSISDialogDesigner 1.1.2.0
+http://coolsoft.altervista.org/nsisdialogdesigner
+Do not edit manually!
+-->
+<Dialog Name="WindowsTaskOptionsPage" Title="Dialog title..." Subtitle="Dialog subtitle..." Style="none" ExStyle="none">
+  <GroupBox Name="GroupBox1" Location="76, 53" Size="298, 115" Text="Windows Task Options" TabIndex="0" Style="none" ExStyle="none">
+    <Label Name="Label1" Location="20, 40" Size="124, 15" Text="Frequency" TabIndex="0" Style="none" ExStyle="none" />
+    <DropList Name="DropList1" Location="16, 56" Size="128, 21" TabIndex="1" SelectedItem="Hours" Style="none" ExStyle="WS_EX_RIGHT">
+      <Items>
+        <value>Minutes</value>
+        <value>Hours</value>
+        <value>Days</value>
+      </Items>
+    </DropList>
+    <Label Name="Label2" Location="164, 40" Size="116, 15" Text="Hour Interval" TabIndex="2" Style="none" ExStyle="none" />
+    <DropList Name="DropList2" Location="160, 56" TabIndex="3" SelectedItem="4" Style="none" ExStyle="WS_EX_RIGHT">
+      <Items>
+        <value>1</value>
+        <value>2</value>
+        <value>3</value>
+        <value>4</value>
+        <value>5</value>
+        <value>6</value>
+        <value>7</value>
+        <value>8</value>
+        <value>9</value>
+        <value>10</value>
+        <value>11</value>
+        <value>12</value>
+        <value>13</value>
+        <value>14</value>
+        <value>15</value>
+        <value>16</value>
+        <value>17</value>
+        <value>18</value>
+        <value>19</value>
+        <value>20</value>
+        <value>21</value>
+        <value>22</value>
+        <value>23</value>
+      </Items>
+    </DropList>
+  </GroupBox>
+</Dialog>
