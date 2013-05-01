@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file was created by NSISDialogDesigner 1.1.2.0
+http://coolsoft.altervista.org/nsisdialogdesigner
+Do not edit manually!
+-->
+<Dialog Name="AdvancedOptionsPage" Title="Dialog title..." Subtitle="Dialog subtitle..." Style="none" ExStyle="none">
+  <Label Name="Label1" Location="0, 0" Size="448, 32" Text="Please, do not change the following options whether you are not totally sure what you are doing and why." TabIndex="0" Style="none" ExStyle="none" />
+  <GroupBox Name="GroupBox1" Location="0, 37" Size="220, 191" Text="Time Options (in seconds)" TabIndex="1" Style="none" ExStyle="none">
+    <Label Name="Label2" Location="16, 24" Size="188, 15" Text="Time Out" TabIndex="0" Style="none" ExStyle="none" />
+    <Number Name="Number1" Location="72, 40" Size="80, 20" TabIndex="1" Style="WS_VISIBLE" ExStyle="none" />
+    <Label Name="Label3" Location="16, 64" Size="188, 15" Text="Wait Time" TabIndex="2" Style="none" ExStyle="none" />
+    <Number Name="Number2" Location="72, 80" Size="80, 20" TabIndex="3" Style="WS_VISIBLE" ExStyle="none" />
+    <Label Name="Label4" Location="16, 104" Size="188, 15" Text="Delay Time" TabIndex="4" Style="none" ExStyle="none" />
+    <Number Name="Number3" Location="72, 120" Size="80, 20" TabIndex="5" Style="WS_VISIBLE" ExStyle="none" />
+    <Label Name="Label5" Location="16, 144" Size="188, 15" Text="Backend Collect Time Out" TabIndex="6" Style="none" ExStyle="none" />
+    <Number Name="Number4" Location="72, 160" Size="80, 20" TabIndex="7" Style="WS_VISIBLE" ExStyle="none" />
+  </GroupBox>
+  <GroupBox Name="GroupBox2" Location="236, 36" Size="216, 192" Text="Other Options" TabIndex="2" Style="none" ExStyle="none">
+    <CheckBox Name="CheckBox1" Location="16, 32" Size="184, 20" Text="No P2P" TabIndex="0" Style="none" ExStyle="none" />
+    <Label Name="Label6" Location="20, 64" Size="180, 15" Text="Don't Execute These Tasks" TabIndex="1" Style="none" ExStyle="none" />
+    <TextBox Name="TextBox1" Location="16, 80" Size="184, 20" TabIndex="2" Style="none" ExStyle="none" />
+    <Label Name="Label7" Location="16, 101" Size="184, 15" Text="(list separated by commas)" Font="Microsoft Sans Serif, 8.25pt" TabIndex="3" Style="none" ExStyle="none" />
+    <Label Name="Label8" Location="20, 124" Size="180, 15" Text="Don't Inventory These Categories" TabIndex="4" Style="none" ExStyle="none" />
+    <TextBox Name="TextBox2" Location="16, 140" Size="184, 20" TabIndex="5" Style="none" ExStyle="none" />
+    <Label Name="Label9" Location="16, 161" Size="184, 15" Text="(list separated by commas)" TabIndex="6" Style="none" ExStyle="none" />
+  </GroupBox>
+</Dialog>

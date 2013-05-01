@@ -290,6 +290,7 @@ Var FusionInventoryAgentTaskNetCoreInstalled
 ;--------------------------------
 ; Custom Pages Functions
 
+;!include "${FIAI_DIR}\Contrib\ModernUI2\Pages\AdvancedOptionsPage.nsh"
 ;!include "${FIAI_DIR}\Contrib\ModernUI2\Pages\ExecutionModePage.nsh"
 !include "${FIAI_DIR}\Contrib\ModernUI2\Pages\HelpPage.nsh"
 !include "${FIAI_DIR}\Contrib\ModernUI2\Pages\InstallationModePage.nsh"
@@ -317,6 +318,7 @@ Page custom InstallationModePage_Show InstallationModePage_Leave ""
 ;Page custom HTTPServerOptionsPage_Show HTTPServerOptionsPage_Leave ""
 ;Page custom WindowsTaskOptionsPage_Show WindowsTaskOptionsPage_Leave ""
 ;Page custom MiscelaneousOptionsPage_Show MiscelaneousOptionsPage_Leave ""
+;Page custom AdvancedOptionsPage_Show AdvancedOptionsPage_Leave ""
 !insertmacro MUI_PAGE_INSTFILES
 !insertmacro MUI_PAGE_FINISH
 
