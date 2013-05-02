@@ -259,7 +259,7 @@ Function InitINIOptionSectionDefault
    ; Write default options values
    ${WriteINIOption} "$R0" "${IO_ACCEPTLICENSE}" "0"
    ${WriteINIOption} "$R0" "${IO_ADD-FIREWALL-EXCEPTION}" "0"
-   ${WriteINIOption} "$R0" "${IO_BACKEND-COLLECT-TIMEOUT}" "30"
+   ${WriteINIOption} "$R0" "${IO_BACKEND-COLLECT-TIMEOUT}" "180"
    !if ${FIAI_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
       ${WriteINIOption} "$R0" "${IO_CA-CERT-DIR}" "$PROGRAMFILES32\${PRODUCT_INTERNAL_NAME}\certs"
    !else
