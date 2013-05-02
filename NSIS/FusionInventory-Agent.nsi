@@ -270,9 +270,9 @@ Var FusionInventoryAgentTaskNetCoreInstalled
 ; Extra space for the title area
 !define MUI_FINISHPAGE_TITLE_3LINES
 ; Application which the user can select to run using a checkbox
-!define MUI_FINISHPAGE_RUN "c:\windows\system32\notepad.exe"
+;!define MUI_FINISHPAGE_RUN ""
 ; Do not check the 'Run program' checkbox by default
-!define MUI_FINISHPAGE_RUN_NOTCHECKED
+;!define MUI_FINISHPAGE_RUN_NOTCHECKED
 ; File or website which the user can select to view using a checkbox
 !define MUI_FINISHPAGE_SHOWREADME "$INSTDIR\readme.txt"
 ; Do not check the 'Show Readme' checkbox by default
