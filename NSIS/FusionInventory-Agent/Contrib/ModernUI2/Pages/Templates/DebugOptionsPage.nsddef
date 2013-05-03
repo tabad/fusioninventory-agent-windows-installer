@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file was created by NSISDialogDesigner 1.1.2.0
+http://coolsoft.altervista.org/nsisdialogdesigner
+Do not edit manually!
+-->
+<Dialog Name="DebugOptionsPage" Title="Dialog title..." Subtitle="Dialog subtitle..." Style="none" ExStyle="none">
+  <GroupBox Name="GroupBox1" Location="0, 28" Size="448, 168" Text="Debug Options" TabIndex="0" Style="none" ExStyle="none">
+    <Label Name="Label1" Location="20, 24" Size="144, 15" Text="Debug Level" TabIndex="0" Style="none" ExStyle="none" />
+    <DropList Name="DropList1" Location="16, 40" TabIndex="1" SelectedItem="0" Style="none" ExStyle="none">
+      <Items>
+        <value>0</value>
+        <value>1</value>
+        <value>2</value>
+      </Items>
+    </DropList>
+    <Label Name="Label2" Location="192, 24" Size="144, 15" Text="Logger" TabIndex="2" Style="none" ExStyle="none" />
+    <DropList Name="DropList2" Location="188, 40" TabIndex="3" SelectedItem="File" Style="none" ExStyle="none">
+      <Items>
+        <value>File</value>
+        <value>Stderr</value>
+      </Items>
+    </DropList>
+    <Label Name="Label3" Location="20, 72" Size="292, 15" Text="Log File" TabIndex="4" Style="none" ExStyle="none" />
+    <TextBox Name="TextBox1" Location="16, 88" Size="296, 20" TabIndex="5" Style="none" ExStyle="none" />
+    <Button Name="Button1" Location="328, 84" Size="104, 24" Text="Browser..." TabIndex="6" Style="none" ExStyle="none" />
+    <Label Name="Label4" Location="20, 116" Size="292, 15" Text="Log File Max. Size (in GiB)" TabIndex="7" Style="none" ExStyle="none" />
+    <Number Name="Number1" Location="16, 132" Size="76, 20" TabIndex="8" Style="none" ExStyle="none" />
+  </GroupBox>
+</Dialog>
