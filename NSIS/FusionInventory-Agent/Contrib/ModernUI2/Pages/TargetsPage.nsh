@@ -50,6 +50,7 @@
 
 
 !include LogicLib.nsh
+!include "${FIAI_DIR}\Include\INIFunc.nsh"
 !include "${FIAI_DIR}\Contrib\ModernUI2\Pages\TargetsPageLangStrings.nsh"
 
 
@@ -68,6 +69,11 @@ Var hCtl_TargetsPage_Label2
 
 ;--------------------------------
 ; Targets Page Functions
+
+Function TargetsPage_Back
+   Call Targetspage_Leave
+FunctionEnd
+
 
 Function TargetsPage_Button1_OnClick
    ; Push $R0 onto the stack
@@ -130,11 +136,50 @@ Function TargetsPage_Create
    ${NSD_CreateLabel} 11u 97u 271u 18u "$(hCtl_TargetsPage_Label2_Text)"
    Pop $hCtl_TargetsPage_Label2
    ${NSD_AddStyle} $hCtl_TargetsPage_Label2 ${SS_CENTER}
+
+   ; OnBack Function
+   ${NSD_OnBack} TargetsPage_Back
+
+   ; Push $R0 & R1 onto the stack
+   Push $R0
+   Push $R1
+
+   ; Set default section
+   StrCpy $R0 "${IOS_GUI}"
+
+   ; Set TextBox1 Text
+   ${ReadINIOption} $R1 "$R0" "${IO_LOCAL}"
+   ${NSD_SetText} $hCtl_TargetsPage_TextBox1 "$R1"
+
+   ; Set TextBox2 Text
+   ${ReadINIOption} $R1 "$R0" "${IO_SERVER}"
+   ${NSD_SetText} $hCtl_TargetsPage_TextBox2 "$R1"
+
+   ; Pop $R1 & $R0 off of the stack
+   Pop $R1
+   Pop $R0
 FunctionEnd
 
 
 Function TargetsPage_Leave
-   Nop
+   ; Push $R0 & R1 onto the stack
+   Push $R0
+   Push $R1
+
+   ; Set default section
+   StrCpy $R0 "${IOS_GUI}"
+
+   ; Save TextBox1 Text
+   ${NSD_GetText} $hCtl_TargetsPage_TextBox1 $R1
+   ${WriteINIOption} "$R0" "${IO_LOCAL}" "$R1"
+
+   ; Save TextBox2 Text
+   ${NSD_GetText} $hCtl_TargetsPage_TextBox2 $R1
+   ${WriteINIOption} "$R0" "${IO_SERVER}" "$R1"
+
+   ; Pop $R1 & $R0 off of the stack
+   Pop $R1
+   Pop $R0
 FunctionEnd
 
 
