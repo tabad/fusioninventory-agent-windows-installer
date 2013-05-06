@@ -303,11 +303,6 @@ Page custom HelpPage_Show HelpPage_Leave ""
 Page custom InstallationModePage_Show InstallationModePage_Leave ""
 !insertmacro MUI_PAGE_COMPONENTS
 !insertmacro MUI_PAGE_DIRECTORY
-;Page custom GlobalOptions "" " "
-;Page custom SpecificOptions "" " "
-;Page custom NetworkOptions "" " "
-;Page custom ExecModeOptions "" " "
-;Page custom ScheduleTaskOptions "" " "
 !insertmacro MUI_PAGE_INSTFILES
 !insertmacro MUI_PAGE_FINISH
 
