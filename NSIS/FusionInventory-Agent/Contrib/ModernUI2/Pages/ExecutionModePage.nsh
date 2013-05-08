@@ -50,6 +50,7 @@
 
 
 !include LogicLib.nsh
+!include "${FIAI_DIR}\Include\INIFunc.nsh"
 !include "${FIAI_DIR}\Contrib\ModernUI2\Pages\ExecutionModePageLangStrings.nsh"
 
 
@@ -65,6 +66,11 @@ Var hCtl_ExecutionModePage_RadioButton3
 
 ;--------------------------------
 ; Execution Mode Page Functions
+
+Function ExecutionModePage_Back
+   Call ExecutionModePage_Leave
+FunctionEnd
+
 
 Function ExecutionModePage_Create
    ; === ExecutionModePage (type: Dialog) ===
@@ -91,11 +97,73 @@ Function ExecutionModePage_Create
    ; === RadioButton3 (type: RadioButton) ===
    ${NSD_CreateRadioButton} 60u 75u 130u 11u "$(hCtl_ExecutionModePage_RadioButton3_Text)"
    Pop $hCtl_ExecutionModePage_RadioButton3
+
+   ; OnBack Function
+   ${NSD_OnBack} ExecutionModePage_Back
+
+   ; Push $R0 & R1 onto the stack
+   Push $R0
+   Push $R1
+
+   ; Set default section
+   StrCpy $R0 "${IOS_GUI}"
+
+   ; Get execution mode
+   ${ReadINIOption} $R0 "${IOS_GUI}" "${IO_EXECMODE}"
+
+   ; Select RadioButon depending on execution mode
+   ${If} "$R0" == "${EXECMODE_SERVICE}"
+      ; Set RadioButton1 Check
+      ${NSD_Check} $hCtl_ExecutionModePage_RadioButton1
+   ${ElseIf} "$R0" == "${EXECMODE_TASK}"
+      ; Set RadioButton2 Check
+      ${NSD_Check} $hCtl_ExecutionModePage_RadioButton2
+   ${ElseIf} "$R0" == "${EXECMODE_MANUAL}"
+      ; Set RadioButton3 Check
+      ${NSD_Check} $hCtl_ExecutionModePage_RadioButton3
+   ${Else}
+      ; It should not be possible
+      Nop
+   ${EndIf}
+
+   ; Pop $R1 & $R0 off of the stack
+   Pop $R1
+   Pop $R0
 FunctionEnd
 
 
 Function ExecutionModePage_Leave
-   Nop
+   ; Push $R0, $R1, $R2 & R3 onto the stack
+   Push $R0
+   Push $R1
+   Push $R2
+   Push $R3
+
+   ; Set default section
+   StrCpy $R0 "${IOS_GUI}"
+
+   ; Get RatioButtons state
+   ${NSD_GetState} $hCtl_ExecutionModePage_RadioButton1 $R1
+   ${NSD_GetState} $hCtl_ExecutionModePage_RadioButton2 $R2
+   ${NSD_GetState} $hCtl_ExecutionModePage_RadioButton3 $R3
+
+   ; Save the selected RadioButton
+   ${If} $R1 = ${BST_CHECKED}
+      ${WriteINIOption} "$R0" "${IO_EXECMODE}" "${EXECMODE_SERVICE}"
+   ${ElseIf} $R2 = ${BST_CHECKED}
+      ${WriteINIOption} "$R0" "${IO_EXECMODE}" "${EXECMODE_TASK}"
+   ${ElseIf} $R3 = ${BST_CHECKED}
+      ${WriteINIOption} "$R0" "${IO_EXECMODE}" "${EXECMODE_MANUAL}"
+   ${Else}
+      ; It should not be possible
+      Nop
+   ${EndIf}
+
+   ; Pop $R3, $R2, $R1 & $R0 off of the stack
+   Pop $R3
+   Pop $R2
+   Pop $R1
+   Pop $R0
 FunctionEnd
 
 
