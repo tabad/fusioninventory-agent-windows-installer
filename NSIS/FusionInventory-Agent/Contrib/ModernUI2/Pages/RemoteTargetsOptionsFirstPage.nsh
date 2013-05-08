@@ -50,6 +50,7 @@
 
 
 !include LogicLib.nsh
+!include "${FIAI_DIR}\Include\INIFunc.nsh"
 !include "${FIAI_DIR}\Contrib\ModernUI2\Pages\RemoteTargetsOptionsFirstPageLangStrings.nsh"
 
 
@@ -71,6 +72,11 @@ Var hCtl_RemoteTargetsOptionsFirstPage_CheckBox1
 
 ;--------------------------------
 ; Remote Options First Page Functions
+
+Function RemoteTargetsOptionsFirstPage_Back
+   Call RemoteTargetsOptionsFirstPage_Leave
+FunctionEnd
+
 
 Function RemoteTargetsOptionsFirstPage_Button1_OnClick
    ; Push $R0 onto the stack
@@ -167,15 +173,88 @@ Function RemoteTargetsOptionsFirstPage_Create
    ${NSD_CreateCheckbox} 13u 106u 265u 11u "$(hCtl_RemoteTargetsOptionsFirstPage_CheckBox1_Text)"
    Pop $hCtl_RemoteTargetsOptionsFirstPage_CheckBox1
    ${NSD_AddStyle} $hCtl_RemoteTargetsOptionsFirstPage_CheckBox1 ${BS_RIGHT}|${BS_RIGHTBUTTON}
+
+   ; OnBack Function
+   ${NSD_OnBack} RemoteTargetsOptionsFirstPage_Back
+
+   ; Push $R0 & $R1 onto the stack
+   Push $R0
+   Push $R1
+
+   ; Set default section
+   StrCpy $R0 "${IOS_GUI}"
+
+   ; Set TextBox1 Text
+   ${ReadINIOption} $R1 "$R0" "${IO_CA-CERT-DIR}"
+   ${NSD_SetText} $hCtl_RemoteTargetsOptionsFirstPage_TextBox1 "$R1"
+
+   ; Set TextBox2 Text
+   ${ReadINIOption} $R1 "$R0" "${IO_CA-CERT-FILE}"
+   ${NSD_SetText} $hCtl_RemoteTargetsOptionsFirstPage_TextBox2 "$R1"
+
+   ; Set TextBox3 Text
+   ${ReadINIOption} $R1 "$R0" "${IO_CA-CERT-URI}"
+   ${NSD_SetText} $hCtl_RemoteTargetsOptionsFirstPage_TextBox3 "$R1"
+
+   ; Set CheckBox1 Check
+   ${ReadINIOption} $R1 "$R0" "${IO_NO-SSL-CHECK}"
+   ${If} "$R1" != "0"
+      ${NSD_Check} $hCtl_RemoteTargetsOptionsFirstPage_CheckBox1
+   ${Else}
+      ${NSD_Uncheck} $hCtl_RemoteTargetsOptionsFirstPage_CheckBox1
+   ${EndIf}
+
+   ; Pop $R1 & $R0 off of the stack
+   Pop $R1
+   Pop $R0
 FunctionEnd
 
 
 Function RemoteTargetsOptionsFirstPage_Leave
-   Nop
+   ; Push $R0 & $R1 onto the stack
+   Push $R0
+   Push $R1
+
+   ; Set default section
+   StrCpy $R0 "${IOS_GUI}"
+
+   ; Save TextBox1 Text
+   ${NSD_GetText} $hCtl_RemoteTargetsOptionsFirstPage_TextBox1 $R1
+   ${WriteINIOption} "$R0" "${IO_CA-CERT-DIR}" "$R1"
+
+   ; Save TextBox2 Text
+   ${NSD_GetText} $hCtl_RemoteTargetsOptionsFirstPage_TextBox2 $R1
+   ${WriteINIOption} "$R0" "${IO_CA-CERT-FILE}" "$R1"
+
+   ; Save TextBox3 Text
+   ${NSD_GetText} $hCtl_RemoteTargetsOptionsFirstPage_TextBox3 $R1
+   ${WriteINIOption} "$R0" "${IO_CA-CERT-URI}" "$R1"
+
+   ; Save CheckBox1 Check
+   ${NSD_GetState} $hCtl_RemoteTargetsOptionsFirstPage_CheckBox1 $R1
+   ${If} $R1 = ${BST_CHECKED}
+      ${WriteINIOption} "$R0" "${IO_NO-SSL-CHECK}" "1"
+   ${Else}
+      ${WriteINIOption} "$R0" "${IO_NO-SSL-CHECK}" "0"
+   ${EndIf}
+
+   ; Pop $R1 & $R0 off of the stack
+   Pop $R1
+   Pop $R0
 FunctionEnd
 
 
 Function RemoteTargetsOptionsFirstPage_Show
-   Call RemoteTargetsOptionsFirstPage_Create
-   nsDialogs::Show $hCtl_RemoteTargetsOptionsFirstPage
+   ; Push $R0 onto the stack
+   Push $R0
+
+   ; Don't show the screen unless SERVER was entered
+   ${ReadINIOption} $R0 "${IOS_GUI}" "${IO_SERVER}"
+   ${If} "$R0" != ""
+     Call RemoteTargetsOptionsFirstPage_Create
+     nsDialogs::Show $hCtl_RemoteTargetsOptionsFirstPage
+   ${EndIf}
+
+   ; Pop $R0 off of the stack
+   Pop $R0
 FunctionEnd
