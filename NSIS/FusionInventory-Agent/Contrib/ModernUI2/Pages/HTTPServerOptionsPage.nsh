@@ -50,6 +50,7 @@
 
 
 !include LogicLib.nsh
+!include "${FIAI_DIR}\Include\INIFunc.nsh"
 !include "${FIAI_DIR}\Contrib\ModernUI2\Pages\HTTPServerOptionsPageLangStrings.nsh"
 
 
@@ -70,6 +71,11 @@ Var hCtl_HTTPServerOptionsPage_CheckBox2
 
 ;--------------------------------
 ; HTTP Server Options Page Functions
+
+Function HTTPServerOptionsPage_Back
+   Call HTTPServerOptionsPage_Leave
+FunctionEnd
+
 
 Function HTTPServerOptionsPage_Create
    ; === HTTPServerOptionsPage (type: Dialog) ===
@@ -118,15 +124,104 @@ Function HTTPServerOptionsPage_Create
    ${NSD_CreateCheckbox} 16u 104u 263u 11u "$(hCtl_HTTPServerOptionsPage_CheckBox2_Text)"
    Pop $hCtl_HTTPServerOptionsPage_CheckBox2
    ${NSD_AddStyle} $hCtl_HTTPServerOptionsPage_CheckBox2 ${BS_RIGHT}|${BS_RIGHTBUTTON}
+
+   ; OnBack Function
+   ${NSD_OnBack} HTTPServerOptionsPage_Back
+
+   ; Push $R0 & $R1 onto the stack
+   Push $R0
+   Push $R1
+
+   ; Set default section
+   StrCpy $R0 "${IOS_GUI}"
+
+   ; Set TextBox1 Text
+   ${ReadINIOption} $R1 "$R0" "${IO_HTTPD-IP}"
+   ${NSD_SetText} $hCtl_HTTPServerOptionsPage_TextBox1 "$R1"
+
+   ; Set TextBox2 Text
+   ${ReadINIOption} $R1 "$R0" "${IO_HTTPD-PORT}"
+   ${NSD_SetText} $hCtl_HTTPServerOptionsPage_Number1 "$R1"
+
+   ; Set TextBox3 Text
+   ${ReadINIOption} $R1 "$R0" "${IO_HTTPD-TRUST}"
+   ${NSD_SetText} $hCtl_HTTPServerOptionsPage_TextBox2 "$R1"
+
+   ; Set CheckBox1 Check
+   ${ReadINIOption} $R1 "$R0" "${IO_ADD-FIREWALL-EXCEPTION}"
+   ${If} "$R1" != "0"
+      ${NSD_Check} $hCtl_HTTPServerOptionsPage_CheckBox1
+   ${Else}
+      ${NSD_Uncheck} $hCtl_HTTPServerOptionsPage_CheckBox1
+   ${EndIf}
+
+   ; Set CheckBox2 Check
+   ${ReadINIOption} $R1 "$R0" "${IO_NO-HTTPD}"
+   ${If} "$R1" != "0"
+      ${NSD_UnCheck} $hCtl_HTTPServerOptionsPage_CheckBox2
+   ${Else}
+      ${NSD_Check} $hCtl_HTTPServerOptionsPage_CheckBox2
+   ${EndIf}
+
+   ; Pop $R1 & $R0 off of the stack
+   Pop $R1
+   Pop $R0
 FunctionEnd
 
 
 Function HTTPServerOptionsPage_Leave
-   Nop
+   ; Push $R0 & $R1 onto the stack
+   Push $R0
+   Push $R1
+
+   ; Set default section
+   StrCpy $R0 "${IOS_GUI}"
+
+   ; Save TextBox1 Text
+   ${NSD_GetText} $hCtl_HTTPServerOptionsPage_TextBox1 $R1
+   ${WriteINIOption} "$R0" "${IO_HTTPD-IP}" "$R1"
+
+   ; Save TextBox2 Text
+   ${NSD_GetText} $hCtl_HTTPServerOptionsPage_Number1 $R1
+   ${WriteINIOption} "$R0" "${IO_HTTPD-PORT}" "$R1"
+
+   ; Save TextBox3 Text
+   ${NSD_GetText} $hCtl_HTTPServerOptionsPage_TextBox2 $R1
+   ${WriteINIOption} "$R0" "${IO_HTTPD-TRUST}" "$R1"
+
+   ; Save CheckBox1 Check
+   ${NSD_GetState} $hCtl_HTTPServerOptionsPage_CheckBox1 $R1
+   ${If} $R1 = ${BST_CHECKED}
+      ${WriteINIOption} "$R0" "${IO_ADD-FIREWALL-EXCEPTION}" "1"
+   ${Else}
+      ${WriteINIOption} "$R0" "${IO_ADD-FIREWALL-EXCEPTION}" "0"
+   ${EndIf}
+
+   ; Save CheckBox2 Check
+   ${NSD_GetState} $hCtl_HTTPServerOptionsPage_CheckBox2 $R1
+   ${If} $R1 = ${BST_CHECKED}
+      ${WriteINIOption} "$R0" "${IO_NO-HTTPD}" "0"
+   ${Else}
+      ${WriteINIOption} "$R0" "${IO_NO-HTTPD}" "1"
+   ${EndIf}
+
+   ; Pop $R1 & $R0 off of the stack
+   Pop $R1
+   Pop $R0
 FunctionEnd
 
 
 Function HTTPServerOptionsPage_Show
-   Call HTTPServerOptionsPage_Create
-   nsDialogs::Show $hCtl_HTTPServerOptionsPage
+   ; Push $R0 onto the stack
+   Push $R0
+
+   ; Don't show the screen unless "Execution Mode" is "Windows Service"
+   ${ReadINIOption} $R0 "${IOS_GUI}" "${IO_EXECMODE}"
+   ${If} "$R0" == "${EXECMODE_SERVICE}"
+      Call HTTPServerOptionsPage_Create
+      nsDialogs::Show $hCtl_HTTPServerOptionsPage
+   ${EndIf}
+
+   ; Pop $R0 off of the stack
+   Pop $R0
 FunctionEnd
