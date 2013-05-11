@@ -400,21 +400,6 @@ Function GetCommandLineOptions
        ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 
-   ; Search for '/httpd' option.
-   ${CommandLineOptionsSearchBlock} "/httpd" "${IO_NO-HTTPD}"
-       ; Check $R3 domain
-       ${If} "$R3" != ""
-          ; Syntax error.
-          SetErrors
-          StrCpy $R7 1
-          ${FileWriteLine} $R9 "Syntax error. '$R2' is a switch, it has no values."
-          ${Break}
-       ${Else}
-          ; Override $R3
-          StrCpy $R3 0
-       ${EndIf}
-   ${EndCommandLineOptionsSearchBlock}
-
    ; Search for '/httpd-ip' option.
    ${CommandLineOptionsSearchBlock} "/httpd-ip=" "${IO_HTTPD-IP}"
        ; Check $R3 domain
@@ -452,6 +437,21 @@ Function GetCommandLineOptions
           StrCpy $R7 1
           ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
           ${Break}
+       ${EndIf}
+   ${EndCommandLineOptionsSearchBlock}
+
+   ; Search for '/httpd' option.
+   ${CommandLineOptionsSearchBlock} "/httpd" "${IO_NO-HTTPD}"
+       ; Check $R3 domain
+       ${If} "$R3" != ""
+          ; Syntax error.
+          SetErrors
+          StrCpy $R7 1
+          ${FileWriteLine} $R9 "Syntax error. '$R2' is a switch, it has no values."
+          ${Break}
+       ${Else}
+          ; Override $R3
+          StrCpy $R3 0
        ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 
