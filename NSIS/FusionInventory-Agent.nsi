@@ -307,6 +307,7 @@ Var FusionInventoryAgentTaskNetCoreInstalled
 ; Installer Pages
 
 Page custom HelpPage_Show HelpPage_Leave ""
+!define MUI_PAGE_CUSTOMFUNCTION_PRE "WelcomePage_Pre"
 !insertmacro MUI_PAGE_WELCOME
 !insertmacro MUI_PAGE_LICENSE "${FIAI_DIR}\LicenseEnglish.rtf"
 Page custom InstallationModePage_Show InstallationModePage_Leave ""
@@ -679,7 +680,6 @@ Section "-un.Init"
 SectionEnd
 
 
-;
 ;--------------------------------
 ; Callback Installer Functions
 
@@ -810,6 +810,22 @@ FunctionEnd
 
 
 ;--------------------------------
+; Page Callback Installer Functions
+
+Function WelcomePage_Pre
+   ; Push $R0 onto the stack
+   Push $R0
+
+   ; Hide 'Back' button
+   GetDlgItem $R0 $HWNDParent 3
+   ShowWindow $R0 ${SW_HIDE}
+
+   ; Pop $R0 off of the stack
+   Pop $R0
+FunctionEnd
+
+
+;--------------------------------
 ; Callback Uninstaller Functions
 
 Function un.onInit
@@ -847,6 +863,10 @@ Function un.onUninstSuccess
    ; Unload registry plugin
    ${registry::Unload}
 FunctionEnd
+
+
+;--------------------------------
+; Page Callback Uninstaller Functions
 
 
 ;--------------------------------
