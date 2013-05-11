@@ -780,8 +780,8 @@ Function GetCommandLineOptions
        ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 
-   ; Search for '/task-dayly-modifier' option.
-   ${CommandLineOptionsSearchBlock} "/task-dayly-modifier=" "${IO_TASK-DAYLY-MODIFIER}"
+   ; Search for '/task-daily-modifier' option.
+   ${CommandLineOptionsSearchBlock} "/task-daily-modifier=" "${IO_TASK-DAILY-MODIFIER}"
        ; Check $R3 domain
        ${If} $R3 < 1
        ${OrIf} $R3 > 30
@@ -811,7 +811,7 @@ Function GetCommandLineOptions
        ; Check $R3 domain
        ${If} $R3 != "${FREQUENCY_MINUTE}"
        ${AndIf} $R3 != "${FREQUENCY_HOURLY}"
-       ${AndIf} $R3 != "${FREQUENCY_DAYLY}"
+       ${AndIf} $R3 != "${FREQUENCY_DAILY}"
           ; Syntax error.
           SetErrors
           StrCpy $R7 1

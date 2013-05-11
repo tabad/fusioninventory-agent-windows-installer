@@ -101,7 +101,7 @@
 !define IO_SERVICE-STATUS "service-status"
 !define IO_SILENTMODE "silentmode"
 !define IO_TAG "tag"
-!define IO_TASK-DAYLY-MODIFIER "task-dayly-modifier"
+!define IO_TASK-DAILY-MODIFIER "task-daily-modifier"
 !define IO_TASK-FREQUENCY "task-frequency"
 !define IO_TASK-HOURLY-MODIFIER "task-hourly-modifier"
 !define IO_TASK-MINUTE-MODIFIER "task-minute-modifier"
@@ -139,7 +139,7 @@
 !define EXECMODE_MANUAL "manual"
 !define EXECMODE_CURRENTCONF "currentconf"
 
-!define FREQUENCY_DAYLY "dayly"
+!define FREQUENCY_DAILY "daily"
 !define FREQUENCY_HOURLY "hourly"
 !define FREQUENCY_MINUTE "minute"
 
@@ -305,7 +305,7 @@ Function InitINIOptionSectionDefault
    ${WriteINIOption} "$R0" "${IO_SERVICE-STATUS}" "${SERVICE_STATUS_RUNNING}"
    ${WriteINIOption} "$R0" "${IO_SILENTMODE}" "0"
    ${WriteINIOption} "$R0" "${IO_TAG}" ""
-   ${WriteINIOption} "$R0" "${IO_TASK-DAYLY-MODIFIER}" "1"
+   ${WriteINIOption} "$R0" "${IO_TASK-DAILY-MODIFIER}" "1"
    ${WriteINIOption} "$R0" "${IO_TASK-FREQUENCY}" "${FREQUENCY_HOURLY}"
    ${WriteINIOption} "$R0" "${IO_TASK-HOURLY-MODIFIER}" "1"
    ${WriteINIOption} "$R0" "${IO_TASK-MINUTE-MODIFIER}" "15"

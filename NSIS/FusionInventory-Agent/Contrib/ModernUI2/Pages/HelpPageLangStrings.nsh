@@ -549,15 +549,15 @@ LangString hCtl_HelpPage_Help_Option_tag_Paragraph_2 ${LANG_ENGLISH} "ToDo."
 LangString hCtl_HelpPage_Help_Option_tag_Paragraph_2 ${LANG_FRENCH} "fToDo."
 LangString hCtl_HelpPage_Help_Option_tag_Paragraph_2 ${LANG_SPANISH} "Por hacer."
 
-; hCtl_HelpPage_Help_Option_task-dayly-modifier_Paragraph_1
-LangString hCtl_HelpPage_Help_Option_task-dayly-modifier_Paragraph_1 ${LANG_ENGLISH} "Dayly task schedule modifier. (By default: $R9 day)"
-LangString hCtl_HelpPage_Help_Option_task-dayly-modifier_Paragraph_1 ${LANG_FRENCH} "fDayly task schedule modifier. (By default: $R9 day)"
-LangString hCtl_HelpPage_Help_Option_task-dayly-modifier_Paragraph_1 ${LANG_SPANISH} "Modificador de planificador de tareas diario. (Por defecto: $R9 día)"
+; hCtl_HelpPage_Help_Option_task-daily-modifier_Paragraph_1
+LangString hCtl_HelpPage_Help_Option_task-daily-modifier_Paragraph_1 ${LANG_ENGLISH} "Daily task schedule modifier. (By default: $R9 day)"
+LangString hCtl_HelpPage_Help_Option_task-daily-modifier_Paragraph_1 ${LANG_FRENCH} "fDaily task schedule modifier. (By default: $R9 day)"
+LangString hCtl_HelpPage_Help_Option_task-daily-modifier_Paragraph_1 ${LANG_SPANISH} "Modificador de planificador de tareas diario. (Por defecto: $R9 día)"
 
-; hCtl_HelpPage_Help_Option_task-dayly-modifier_Paragraph_2
-LangString hCtl_HelpPage_Help_Option_task-dayly-modifier_Paragraph_2 ${LANG_ENGLISH} "ToDo."
-LangString hCtl_HelpPage_Help_Option_task-dayly-modifier_Paragraph_2 ${LANG_FRENCH} "fToDo."
-LangString hCtl_HelpPage_Help_Option_task-dayly-modifier_Paragraph_2 ${LANG_SPANISH} "Por hacer."
+; hCtl_HelpPage_Help_Option_task-daily-modifier_Paragraph_2
+LangString hCtl_HelpPage_Help_Option_task-daily-modifier_Paragraph_2 ${LANG_ENGLISH} "ToDo."
+LangString hCtl_HelpPage_Help_Option_task-daily-modifier_Paragraph_2 ${LANG_FRENCH} "fToDo."
+LangString hCtl_HelpPage_Help_Option_task-daily-modifier_Paragraph_2 ${LANG_SPANISH} "Por hacer."
 
 ; hCtl_HelpPage_Help_Option_task-frequency_Paragraph_1
 LangString hCtl_HelpPage_Help_Option_task-frequency_Paragraph_1 ${LANG_ENGLISH} "Frequency for task schedule. (By default: $R9)"

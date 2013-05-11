@@ -632,14 +632,14 @@ Function BuildHelpFile
    ${FileWriteLine} $R0 `\par`
    ${FileWriteLine} $R0 ``
 
-   ; /task-dayly-modifier
-   ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_TASK-DAYLY-MODIFIER}"
+   ; /task-daily-modifier
+   ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_TASK-DAILY-MODIFIER}"
    ${EscapeSpecialRTFCharacters} $R9 $R9
 
-   ${FileWriteLine} $R0 `\pard\li400 /task-dayly-modifier=<\i modifier\i0 >\par`
-   ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_task-dayly-modifier_Paragraph_1)\par`
+   ${FileWriteLine} $R0 `\pard\li400 /task-daily-modifier=<\i modifier\i0 >\par`
+   ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_task-daily-modifier_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_task-dayly-modifier_Paragraph_2)\par`
+   ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_task-daily-modifier_Paragraph_2)\par`
    ${FileWriteLine} $R0 `\par`
    ${FileWriteLine} $R0 ``
 
@@ -647,7 +647,7 @@ Function BuildHelpFile
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_TASK-FREQUENCY}"
    ${EscapeSpecialRTFCharacters} $R9 $R9
 
-   ${FileWriteLine} $R0 `\pard\li400 /task-frequency=\{minute|hourly|dayly\}\par`
+   ${FileWriteLine} $R0 `\pard\li400 /task-frequency=\{minute|hourly|daily\}\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_task-frequency_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_task-frequency_Paragraph_2)\par`
