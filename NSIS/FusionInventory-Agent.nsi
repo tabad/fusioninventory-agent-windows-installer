@@ -309,6 +309,7 @@ Var FusionInventoryAgentTaskNetCoreInstalled
 Page custom HelpPage_Show HelpPage_Leave ""
 !define MUI_PAGE_CUSTOMFUNCTION_PRE "WelcomePage_Pre"
 !insertmacro MUI_PAGE_WELCOME
+!define MUI_PAGE_CUSTOMFUNCTION_PRE "LicensePage_Pre"
 !insertmacro MUI_PAGE_LICENSE "${FIAI_DIR}\LicenseEnglish.rtf"
 Page custom InstallationModePage_Show InstallationModePage_Leave ""
 !insertmacro MUI_PAGE_COMPONENTS
@@ -811,6 +812,23 @@ FunctionEnd
 
 ;--------------------------------
 ; Page Callback Installer Functions
+
+Function LicensePage_Pre
+   ; Pushes $R0 onto the stack
+   Push $R0
+
+   ${ReadINIOption} $R0 "${IOS_GUI}" "${IO_ACCEPTLICENSE}"
+   ${If} "$R0" == "1"
+      ; The license has been accepted previously by the client.
+      ; Skip this page
+      Pop $R0
+      Abort
+   ${EndIf}
+
+   ; Pop $R0 off of the stack
+   Pop $R0
+FunctionEnd
+
 
 Function WelcomePage_Pre
    ; Push $R0 onto the stack
