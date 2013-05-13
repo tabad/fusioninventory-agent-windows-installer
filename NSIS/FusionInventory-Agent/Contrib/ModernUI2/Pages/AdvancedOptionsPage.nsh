@@ -50,6 +50,7 @@
 
 
 !include LogicLib.nsh
+!include "${FIAI_DIR}\Include\INIFunc.nsh"
 !include "${FIAI_DIR}\Contrib\ModernUI2\Pages\AdvancedOptionsPageLangStrings.nsh"
 
 
@@ -80,6 +81,11 @@ Var hCtl_AdvancedOptionsPage_Label9
 
 ;--------------------------------
 ; Advanced Options Page Functions
+
+Function AdvancedOptionsPage_Back
+   Call AdvancedOptionsPage_Leave
+FunctionEnd
+
 
 Function AdvancedOptionsPage_Create
    ; === AdvancedOptionsPage (type: Dialog) ===
@@ -175,11 +181,98 @@ Function AdvancedOptionsPage_Create
    ${NSD_CreateLabel} 165u 111u 121u 8u "$(hCtl_AdvancedOptionsPage_Label9_Text)"
    Pop $hCtl_AdvancedOptionsPage_Label9
    ${NSD_AddStyle} $hCtl_AdvancedOptionsPage_Label9 ${SS_CENTER}
+
+   ; OnBack Function
+   ${NSD_OnBack} AdvancedOptionsPage_Back
+
+   ; Push $R0 & $R1 onto the stack
+   Push $R0
+   Push $R1
+
+   ; Set default section
+   StrCpy $R0 "${IOS_GUI}"
+
+   ; Set Number1 Text
+   ${ReadINIOption} $R1 "$R0" "${IO_TIMEOUT}"
+   ${NSD_SetText} $hCtl_AdvancedOptionsPage_Number1 "$R1"
+
+   ; Set Number2 Text
+   ${ReadINIOption} $R1 "$R0" "${IO_WAIT}"
+   ${NSD_SetText} $hCtl_AdvancedOptionsPage_Number2 "$R1"
+
+   ; Set Number3 Text
+   ${ReadINIOption} $R1 "$R0" "${IO_DELAYTIME}"
+   ${NSD_SetText} $hCtl_AdvancedOptionsPage_Number3 "$R1"
+
+   ; Set Number4 Text
+   ${ReadINIOption} $R1 "$R0" "${IO_BACKEND-COLLECT-TIMEOUT}"
+   ${NSD_SetText} $hCtl_AdvancedOptionsPage_Number4 "$R1"
+
+   ; Set CheckBox1 Check
+   ${ReadINIOption} $R1 "$R0" "${IO_NO-P2P}"
+   ${If} "$R1" == "0"
+      ${NSD_Uncheck} $hCtl_AdvancedOptionsPage_CheckBox1
+   ${Else}
+      ${NSD_Check} $hCtl_AdvancedOptionsPage_CheckBox1
+   ${EndIf}
+
+   ; Set TextBox1 Text
+   ${ReadINIOption} $R1 "$R0" "${IO_NO-TASK}"
+   ${NSD_SetText} $hCtl_AdvancedOptionsPage_TextBox1 "$R1"
+
+   ; Set TextBox2 Text
+   ${ReadINIOption} $R1 "$R0" "${IO_NO-CATEGORY}"
+   ${NSD_SetText} $hCtl_AdvancedOptionsPage_TextBox2 "$R1"
+
+   ; Pop $R1 & $R0 off of the stack
+   Pop $R1
+   Pop $R0
 FunctionEnd
 
 
 Function AdvancedOptionsPage_Leave
-   Nop
+   ; Push $R0 & $R1 onto the stack
+   Push $R0
+   Push $R1
+
+   ; Set default section
+   StrCpy $R0 "${IOS_GUI}"
+
+   ; Save Number1 Text
+   ${NSD_GetText} $hCtl_AdvancedOptionsPage_Number1 $R1
+   ${WriteINIOption} "$R0" "${IO_TIMEOUT}" "$R1"
+
+   ; Save Number2 Text
+   ${NSD_GetText} $hCtl_AdvancedOptionsPage_Number2 $R1
+   ${WriteINIOption} "$R0" "${IO_WAIT}" "$R1"
+
+   ; Save Number3 Text
+   ${NSD_GetText} $hCtl_AdvancedOptionsPage_Number3 $R1
+   ${WriteINIOption} "$R0" "${IO_DELAYTIME}" "$R1"
+
+   ; Save Number4 Text
+   ${NSD_GetText} $hCtl_AdvancedOptionsPage_Number4 $R1
+   ${WriteINIOption} "$R0" "${IO_BACKEND-COLLECT-TIMEOUT}" "$R1"
+
+   ; Save CheckBox1 Check
+   ${NSD_GetState} $hCtl_AdvancedOptionsPage_CheckBox1 $R1
+   ${If} $R1 = ${BST_CHECKED}
+      ${WriteINIOption} "$R0" "${IO_NO-P2P}" "1"
+   ${Else}
+      ${WriteINIOption} "$R0" "${IO_NO-P2P}" "0"
+   ${EndIf}
+
+   ; Save TextBox1 Text
+   ${NSD_GetText} $hCtl_AdvancedOptionsPage_TextBox1 $R1
+   ${WriteINIOption} "$R0" "${IO_NO-TASK}" "$R1"
+
+   ; Save TextBox2 Text
+   ${NSD_GetText} $hCtl_AdvancedOptionsPage_TextBox2 $R1
+   ${WriteINIOption} "$R0" "${IO_NO-CATEGORY}" "$R1"
+
+   ; Pop $R1 & $R0 off of the stack
+   Pop $R1
+   Pop $R0
 FunctionEnd
 
 
