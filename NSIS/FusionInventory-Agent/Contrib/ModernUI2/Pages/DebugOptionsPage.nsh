@@ -50,6 +50,7 @@
 
 
 !include LogicLib.nsh
+!include "${FIAI_DIR}\Include\INIFunc.nsh"
 !include "${FIAI_DIR}\Contrib\ModernUI2\Pages\DebugOptionsPageLangStrings.nsh"
 
 
@@ -71,6 +72,11 @@ Var hCtl_DebugOptionsPage_Number1
 
 ;--------------------------------
 ; Debug Options Page Functions
+
+Function DebugOptionsPage_Back
+   Call DebugOptionsPage_Leave
+FunctionEnd
+
 
 Function DebugOptionsPage_Button1_OnClick
    ; Push $R0 onto the stack
@@ -153,11 +159,65 @@ Function DebugOptionsPage_Create
    ${NSD_CreateNumber} 11u 90u 50u 11u ""
    Pop $hCtl_DebugOptionsPage_Number1
    ${NSD_SetTextLimit} $hCtl_DebugOptionsPage_Number1 "4"
+
+   ; OnBack Function
+   ${NSD_OnBack} DebugOptionsPage_Back
+
+   ; Push $R0 & $R1 onto the stack
+   Push $R0
+   Push $R1
+
+   ; Set default section
+   StrCpy $R0 "${IOS_GUI}"
+
+   ; Select DropList1 option
+   ${ReadINIOption} $R1 "$R0" "${IO_DEBUG}"
+   ${NSD_CB_SelectString} $hCtl_DebugOptionsPage_DropList1 "$R1"
+
+   ; Select DropList2 option
+   ${ReadINIOption} $R1 "$R0" "${IO_LOGGER}"
+   ${NSD_CB_SelectString} $hCtl_DebugOptionsPage_DropList2 "$R1"
+
+   ; Set TextBox1 Text
+   ${ReadINIOption} $R1 "$R0" "${IO_LOGFILE}"
+   ${NSD_SetText} $hCtl_DebugOptionsPage_TextBox1 "$R1"
+
+   ; Set Number1 Text
+   ${ReadINIOption} $R1 "$R0" "${IO_LOGFILE-MAXSIZE}"
+   ${NSD_SetText} $hCtl_DebugOptionsPage_Number1 "$R1"
+
+   Pop $R1
+   Pop $R0
 FunctionEnd
 
 
 Function DebugOptionsPage_Leave
-   Nop
+   ; Push $R0 & $R1 onto the stack
+   Push $R0
+   Push $R1
+
+   ; Set default section
+   StrCpy $R0 "${IOS_GUI}"
+
+   ; Save DropList1 Text
+   ${NSD_GetText} $hCtl_DebugOptionsPage_DropList1 $R1
+   ${WriteINIOption} "$R0" "${IO_DEBUG}" "$R1"
+
+   ; Save DropList2 Text
+   ${NSD_GetText} $hCtl_DebugOptionsPage_DropList2 $R1
+   ${WriteINIOption} "$R0" "${IO_LOGGER}" "$R1"
+
+   ; Save TextBox1 Text
+   ${NSD_GetText} $hCtl_DebugOptionsPage_TextBox1 $R1
+   ${WriteINIOption} "$R0" "${IO_LOGFILE}" "$R1"
+
+   ; Save Number1 Text
+   ${NSD_GetText} $hCtl_DebugOptionsPage_Number1 $R1
+   ${WriteINIOption} "$R0" "${IO_LOGFILE-MAXSIZE}" "$R1"
+
+   ; Pop $R1 & $R0 off of the stack
+   Pop $R1
+   Pop $R0
 FunctionEnd
 
 
