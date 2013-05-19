@@ -405,14 +405,14 @@ FunctionEnd
 
 
 ; FusionInventoryAgentIsInstalled
-!macro _FusionInventoryAgentIsInstalledTester _a _b _t _f
+!macro _FusionInventoryAgentIsInstalled _a _b _t _f
    !insertmacro _LOGICLIB_TEMP
    Call GetCurrentInstallSubkey
    Pop $_LOGICLIB_TEMP
    !insertmacro _!= $_LOGICLIB_TEMP "" `${_t}` `${_f}`
 !macroend
 
-!define FusionInventoryAgentIsInstalled `"" FusionInventoryAgentIsInstalledTester ""`
+!define FusionInventoryAgentIsInstalled `"" FusionInventoryAgentIsInstalled ""`
 
 
 ; WriteConfigurationOptions
