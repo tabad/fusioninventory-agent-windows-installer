@@ -66,6 +66,17 @@
 ;        can be used with CommaStr and CommaUStr strings.
 
 
+; IsASubCommaUStr
+!macro _IsASubCommaUStr _a _b _t _f
+   !insertmacro _LOGICLIB_TEMP
+   Push `${_b}`
+   Push `${_a}`
+   Call IsASubCommaUStrTester
+   Pop $_LOGICLIB_TEMP
+   !insertmacro _= $_LOGICLIB_TEMP 0 `${_t}` `${_f}`
+!macroend
+
+
 ; IsInCommaUStr
 !macro _IsInCommaUStr _a _b _t _f
    !insertmacro _LOGICLIB_TEMP
@@ -172,7 +183,7 @@ Function AddStrCommaUStr
 
    ; Add $R1 to $R0
    ${WordAdd} "$R0" "," "+$R1" $R2
- 
+
    ; Copy return value in $R0
    StrCpy $R0 "$R2"
 
@@ -338,6 +349,68 @@ Function GetStrsCommaUStr
    StrCpy $R0 "$R1"
 
    ; Pop $R1 off of the stack
+   Pop $R1
+
+   ; Exchanges the top element of the stack with $R0
+   Exch $R0
+FunctionEnd
+
+
+Function IsASubCommaUStrTester
+   ; $R0 CommaUStr (superset)
+   ; $R1 CommaUStr (subset)
+   ; $R2 Auxiliary
+   ; $R3 Auxiliary
+
+   ; Note: $R0 is used also output variable
+
+   ; Get parameters
+   Exch $R1
+   Exch
+   Exch $R0
+   Exch
+
+   ; Push $R2 & $R3 onto the stack
+   Push $R2
+   Push $R3
+
+   ; Init $R3
+   StrCpy $R3 0
+
+   ; Check loop
+   ${Do}
+      ; Get the first string of $R1
+      ${FirstStrCommaUStr} "$R1" $R2
+
+      ${If} "$R2" == ""
+         ; There aren't more string in $R1
+         ${ExitDo}
+      ${Else}
+         ; Check whether $R2 is in $R0
+         ${If} "$R2" IsInCommaUStr "$R0"
+            ; $R2 is in $R0
+            ; Check the next string in $R1
+            ${DelStrCommaUStr} "$R1" "$R2" $R1
+         ${Else}
+            ; $R2 is not in $R0
+            StrCpy $R3 1
+            ${ExitDo}
+         ${EndIf}
+      ${EndIf}
+   ${Loop}
+
+   ; Copy return value in $R0
+   ${If} $R3 = 0
+      ; $R1 is a sub string of $R0
+      StrCpy $R0 0
+   ${Else}
+      ; $R1 is not a sub string of $R0
+      StrCpy $R0 1
+   ${EndIf}
+
+   ; Pop $R3, $R2 & $R1 off of the stack
+   Pop $R3
+   Pop $R2
    Pop $R1
 
    ; Exchanges the top element of the stack with $R0
