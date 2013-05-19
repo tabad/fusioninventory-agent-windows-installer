@@ -177,9 +177,6 @@ XPStyle on
 Var PRODUCT_INST_SUBKEY
 Var PRODUCT_UNINST_SUBKEY
 
-; Command Line Syntax Error
-Var CommandLineSyntaxError
-
 ; Compatible target platform architecture
 Var CompatibleTargetPlatformArchitecture
 
@@ -739,17 +736,8 @@ Function .onInit
    ; GetCommandLineOptions
    ${GetCommandLineOptions}
 
-   ; Check whether there is a syntax error
-   ${If} ${Errors}
-      ; Clears the error flag
-      ClearErrors
-
-      ; Set command line syntax error
-      StrCpy $CommandLineSyntaxError 0
-   ${EndIf}
-
    ; Check for dump help file
-   ${IfNot} $CommandLineSyntaxError = 0
+   ${IfNot} ${CommandLineSyntaxError}
    ${AndIfNot} ${Silent}
       ${ReadINIOption} $R0 "${IOS_COMMANDLINE}" "${IO_DUMPHELP}"
       ${If} $R0 = 1
@@ -765,7 +753,7 @@ Function .onInit
       ; Silent installation mode
 
       ; Check for command line syntax error
-      ${IfNot} $CommandLineSyntaxError = 0
+      ${IfNot} ${CommandLineSyntaxError}
          Call .onInitSilentMode
       ${Else}
          Abort
@@ -774,7 +762,7 @@ Function .onInit
       ; Visual installation mode
 
       ; Check for command line syntax error
-      ${IfNot} $CommandLineSyntaxError = 0
+      ${IfNot} ${CommandLineSyntaxError}
          Call .onInitVisualMode
       ${Else}
          Nop

@@ -100,9 +100,6 @@
          SetRegView 64
       ${EndIf}
 
-      ; Set command line syntax error
-      StrCpy $CommandLineSyntaxError 1
-
       ; Pop $R0 off of the stack
       Pop $R0
    FunctionEnd

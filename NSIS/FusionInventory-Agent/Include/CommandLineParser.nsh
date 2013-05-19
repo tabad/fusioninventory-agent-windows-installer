@@ -59,11 +59,25 @@
 !define COMMANDLINE_PARSER_LOGFILE "$PLUGINSDIR\CommandLineParser.log"
 
 
+; Global variables
+Var CommandLineNotProcessed
+Var CommandLineSyntaxError
+
+
+; CommandLineSyntaxError
+!macro _CommandLineSyntaxError _a _b _t _f
+   Call GetCommandLineOptions
+   !insertmacro _= $CommandLineSyntaxError 0 `${_t}` `${_f}`
+!macroend
+
+!define CommandLineSyntaxError `"" CommandLineSyntaxError ""`
+
+
 ; GetCommandLineOptions
 !define CommandLineOptionsSearchBlock "!insertmacro CommandLineOptionsSearchBlock"
 
 !macro CommandLineOptionsSearchBlock ParamToSearch ParamIntoINIFile
-   ${If} $R7 = 0
+   ${If} $CommandLineSyntaxError = 1
    ${AndIf} $R0 != ""
       ${Do}
          ${FileWriteLine} $R9 "--------------------"
@@ -118,8 +132,7 @@
             ${Else}
                ; It's the second occurrence of $R2 into the command line
                ; Syntax error. Only one occurrence is allowed.
-               SetErrors
-               StrCpy $R7 1
+               StrCpy $CommandLineSyntaxError 0
                ${FileWriteLine} $R9 "Syntax error. Only one occurrence of '$R2' is allowed into the command line."
                ${Break}
             ${EndIf}
@@ -146,23 +159,27 @@ Function GetCommandLineOptions
    ; $R4 Option to search in Options.ini
    ; $R5 Option value in Options.ini
    ;
-   ; $R7 Syntax error flag
    ; $R8 Options.ini section
    ; $R9 Command line parser logfile handle
 
-   ; Push $R0, $R1, $R2, $R3, $R4, $R5, $R7, $R8 & $R9 onto the stack
+   ; Check whether the command line options has been previously processed
+   ${If} $CommandLineNotProcessed = 1
+      ; The command line has been previously processed
+      Return
+   ${EndIf}
+
+   ; Push $R0, $R1, $R2, $R3, $R4, $R5, $R8 & $R9 onto the stack
    Push $R0
    Push $R1
    Push $R2
    Push $R3
    Push $R4
    Push $R5
-   Push $R7
    Push $R8
    Push $R9
 
    ; Initialize syntax error flag
-   StrCpy $R7 0
+   StrCpy $CommandLineSyntaxError 1
 
    ; Set Options.ini file section
    StrCpy $R8 "${IOS_COMMANDLINE}"
@@ -185,8 +202,7 @@ Function GetCommandLineOptions
        ; Check $R3 domain
        ${If} "$R3" != ""
           ; Syntax error.
-          SetErrors
-          StrCpy $R7 1
+          StrCpy $CommandLineSyntaxError 0
           ${FileWriteLine} $R9 "Syntax error. '$R2' is a switch, it has no values."
           ${Break}
        ${Else}
@@ -200,8 +216,7 @@ Function GetCommandLineOptions
        ; Check $R3 domain
        ${If} "$R3" != ""
           ; Syntax error.
-          SetErrors
-          StrCpy $R7 1
+          StrCpy $CommandLineSyntaxError 0
           ${FileWriteLine} $R9 "Syntax error. '$R2' is a switch, it has no values."
           ${Break}
        ${Else}
@@ -217,8 +232,7 @@ Function GetCommandLineOptions
        ${If} $R3 < 0
        ${OrIf} $R3 > 600
           ; Syntax error.
-          SetErrors
-          StrCpy $R7 1
+          StrCpy $CommandLineSyntaxError 0
           ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
           ${Break}
        ${EndIf}
@@ -230,8 +244,7 @@ Function GetCommandLineOptions
        ; ToDo
        ${If} $R3 != $R3
           ; Syntax error.
-          SetErrors
-          StrCpy $R7 1
+          StrCpy $CommandLineSyntaxError 0
           ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
           ${Break}
        ${EndIf}
@@ -243,8 +256,7 @@ Function GetCommandLineOptions
        ; ToDo
        ${If} $R3 != $R3
           ; Syntax error.
-          SetErrors
-          StrCpy $R7 1
+          StrCpy $CommandLineSyntaxError 0
           ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
           ${Break}
        ${EndIf}
@@ -256,8 +268,7 @@ Function GetCommandLineOptions
        ; ToDo
        ${If} $R3 != $R3
           ; Syntax error.
-          SetErrors
-          StrCpy $R7 1
+          StrCpy $CommandLineSyntaxError 0
           ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
           ${Break}
        ${EndIf}
@@ -269,8 +280,7 @@ Function GetCommandLineOptions
        ${If} $R3 < 0
        ${OrIf} $R3 > 2
           ; Syntax error.
-          SetErrors
-          StrCpy $R7 1
+          StrCpy $CommandLineSyntaxError 0
           ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
           ${Break}
        ${EndIf}
@@ -283,8 +293,7 @@ Function GetCommandLineOptions
        ${If} $R3 < 0
        ${OrIf} $R3 > 86400
           ; Syntax error.
-          SetErrors
-          StrCpy $R7 1
+          StrCpy $CommandLineSyntaxError 0
           ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
           ${Break}
        ${EndIf}
@@ -295,8 +304,7 @@ Function GetCommandLineOptions
        ; Check $R3 domain
        ${If} "$R3" != ""
           ; Syntax error.
-          SetErrors
-          StrCpy $R7 1
+          StrCpy $CommandLineSyntaxError 0
           ${FileWriteLine} $R9 "Syntax error. '$R2' is a switch, it has no values."
           ${Break}
        ${Else}
@@ -313,8 +321,7 @@ Function GetCommandLineOptions
        ${AndIf} "$R3" != "${EXECMODE_MANUAL}"
        ${AndIf} "$R3" != "${EXECMODE_CURRENTCONF}"
           ; Syntax error.
-          SetErrors
-          StrCpy $R7 1
+          StrCpy $CommandLineSyntaxError 0
           ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
           ${Break}
        ${EndIf}
@@ -325,8 +332,7 @@ Function GetCommandLineOptions
        ; Check $R3 domain
        ${If} "$R3" != ""
           ; Syntax error.
-          SetErrors
-          StrCpy $R7 1
+          StrCpy $CommandLineSyntaxError 0
           ${FileWriteLine} $R9 "Syntax error. '$R2' is a switch, it has no values."
           ${Break}
        ${Else}
@@ -340,8 +346,7 @@ Function GetCommandLineOptions
        ; Check $R3 domain
        ${If} "$R3" != ""
           ; Syntax error.
-          SetErrors
-          StrCpy $R7 1
+          StrCpy $CommandLineSyntaxError 0
           ${FileWriteLine} $R9 "Syntax error. '$R2' is a switch, it has no values."
           ${Break}
        ${Else}
@@ -356,8 +361,7 @@ Function GetCommandLineOptions
        ; ToDo
        ${If} $R3 != $R3
           ; Syntax error.
-          SetErrors
-          StrCpy $R7 1
+          StrCpy $CommandLineSyntaxError 0
           ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
           ${Break}
        ${EndIf}
@@ -370,8 +374,7 @@ Function GetCommandLineOptions
        ${If} $R3 < 0
        ${OrIf} $R3 > 65535
           ; Syntax error.
-          SetErrors
-          StrCpy $R7 1
+          StrCpy $CommandLineSyntaxError 0
           ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
           ${Break}
        ${EndIf}
@@ -383,8 +386,7 @@ Function GetCommandLineOptions
        ; ToDo
        ${If} $R3 != $R3
           ; Syntax error.
-          SetErrors
-          StrCpy $R7 1
+          StrCpy $CommandLineSyntaxError 0
           ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
           ${Break}
        ${EndIf}
@@ -395,8 +397,7 @@ Function GetCommandLineOptions
        ; Check $R3 domain
        ${If} "$R3" != ""
           ; Syntax error.
-          SetErrors
-          StrCpy $R7 1
+          StrCpy $CommandLineSyntaxError 0
           ${FileWriteLine} $R9 "Syntax error. '$R2' is a switch, it has no values."
           ${Break}
        ${Else}
@@ -411,8 +412,7 @@ Function GetCommandLineOptions
        ; ToDo
        ${If} $R3 != $R3
           ; Syntax error.
-          SetErrors
-          StrCpy $R7 1
+          StrCpy $CommandLineSyntaxError 0
           ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
           ${Break}
        ${EndIf}
@@ -424,8 +424,7 @@ Function GetCommandLineOptions
        ${Select} "$R3"
           ${Case} ""
              ; Syntax error.
-             SetErrors
-             StrCpy $R7 1
+             StrCpy $CommandLineSyntaxError 0
           ${Case} "${INSTALLTASK_DEFAULT}"
 	     ; Install default tasks.
              Nop
@@ -443,13 +442,12 @@ Function GetCommandLineOptions
              ${GetValidAgentTasksCommaUStr} $0
              ${IfNot} "$R3" IsASubCommaUStr "$0"
                 ; Syntax error.
-                SetErrors
-                StrCpy $R7 1
+                StrCpy $CommandLineSyntaxError 0
              ${EndIf}
              ; Pop $0 off of the stack.
        ${EndSelect}
 
-       ${If} $R7 = 1
+       ${If} $CommandLineSyntaxError = 0
          ; Syntax error
          ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
          ${Break}
@@ -462,8 +460,7 @@ Function GetCommandLineOptions
        ${If} $R3 != "${INSTALLTYPE_FROMSCRATCH}"
        ${AndIf} $R3 != "${INSTALLTYPE_FROMCURRENTCONFIG}"
           ; Syntax error.
-          SetErrors
-          StrCpy $R7 1
+          StrCpy $CommandLineSyntaxError 0
           ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
           ${Break}
        ${EndIf}
@@ -475,8 +472,7 @@ Function GetCommandLineOptions
        ; ToDo
        ${If} $R3 != $R3
           ; Syntax error.
-          SetErrors
-          StrCpy $R7 1
+          StrCpy $CommandLineSyntaxError 0
           ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
           ${Break}
        ${EndIf}
@@ -488,8 +484,7 @@ Function GetCommandLineOptions
        ; ToDo
        ${If} $R3 != $R3
           ; Syntax error.
-          SetErrors
-          StrCpy $R7 1
+          StrCpy $CommandLineSyntaxError 0
           ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
           ${Break}
        ${EndIf}
@@ -500,8 +495,7 @@ Function GetCommandLineOptions
        ; Check $R3 domain
        ${If} $R3 < 0
           ; Syntax error.
-          SetErrors
-          StrCpy $R7 1
+          StrCpy $CommandLineSyntaxError 0
           ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
           ${Break}
        ${EndIf}
@@ -513,8 +507,7 @@ Function GetCommandLineOptions
        ; ToDo
        ${If} $R3 != $R3
           ; Syntax error.
-          SetErrors
-          StrCpy $R7 1
+          StrCpy $CommandLineSyntaxError 0
           ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
           ${Break}
        ${EndIf}
@@ -526,8 +519,7 @@ Function GetCommandLineOptions
        ; ToDo
        ${If} $R3 != $R3
           ; Syntax error.
-          SetErrors
-          StrCpy $R7 1
+          StrCpy $CommandLineSyntaxError 0
           ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
           ${Break}
        ${EndIf}
@@ -538,8 +530,7 @@ Function GetCommandLineOptions
        ; Check $R3 domain
        ${If} "$R3" != ""
           ; Syntax error.
-          SetErrors
-          StrCpy $R7 1
+          StrCpy $CommandLineSyntaxError 0
           ${FileWriteLine} $R9 "Syntax error. '$R2' is a switch, it has no values."
           ${Break}
        ${Else}
@@ -553,8 +544,7 @@ Function GetCommandLineOptions
        ; Check $R3 domain
        ${If} "$R3" != ""
           ; Syntax error.
-          SetErrors
-          StrCpy $R7 1
+          StrCpy $CommandLineSyntaxError 0
           ${FileWriteLine} $R9 "Syntax error. '$R2' is a switch, it has no values."
           ${Break}
        ${Else}
@@ -568,8 +558,7 @@ Function GetCommandLineOptions
        ; Check $R3 domain
        ${If} "$R3" != ""
           ; Syntax error.
-          SetErrors
-          StrCpy $R7 1
+          StrCpy $CommandLineSyntaxError 0
           ${FileWriteLine} $R9 "Syntax error. '$R2' is a switch, it has no values."
           ${Break}
        ${Else}
@@ -583,8 +572,7 @@ Function GetCommandLineOptions
        ; Check $R3 domain
        ${If} "$R3" != ""
           ; Syntax error.
-          SetErrors
-          StrCpy $R7 1
+          StrCpy $CommandLineSyntaxError 0
           ${FileWriteLine} $R9 "Syntax error. '$R2' is a switch, it has no values."
           ${Break}
        ${Else}
@@ -598,8 +586,7 @@ Function GetCommandLineOptions
        ; Check $R3 domain
        ${If} "$R3" != ""
           ; Syntax error.
-          SetErrors
-          StrCpy $R7 1
+          StrCpy $CommandLineSyntaxError 0
           ${FileWriteLine} $R9 "Syntax error. '$R2' is a switch, it has no values."
           ${Break}
        ${Else}
@@ -623,13 +610,12 @@ Function GetCommandLineOptions
              ${GetValidAgentTasksCommaUStr} $0
              ${IfNot} "$R3" IsASubCommaUStr "$0"
                 ; Syntax error.
-                SetErrors
-                StrCpy $R7 1
+                StrCpy $CommandLineSyntaxError 0
              ${EndIf}
              ; Pop $0 off of the stack.
        ${EndSelect}
 
-       ${If} $R7 = 1
+       ${If} $CommandLineSyntaxError = 0
           ; Syntax error
           ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
           ${Break}
@@ -641,8 +627,7 @@ Function GetCommandLineOptions
        ; Check $R3 domain
        ${If} "$R3" != ""
           ; Syntax error.
-          SetErrors
-          StrCpy $R7 1
+          StrCpy $CommandLineSyntaxError 0
           ${FileWriteLine} $R9 "Syntax error. '$R2' is a switch, it has no values."
           ${Break}
        ${Else}
@@ -657,8 +642,7 @@ Function GetCommandLineOptions
        ; ToDo
        ${If} $R3 != $R3
           ; Syntax error.
-          SetErrors
-          StrCpy $R7 1
+          StrCpy $CommandLineSyntaxError 0
           ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
           ${Break}
        ${EndIf}
@@ -670,8 +654,7 @@ Function GetCommandLineOptions
        ; ToDo
        ${If} $R3 != $R3
           ; Syntax error.
-          SetErrors
-          StrCpy $R7 1
+          StrCpy $CommandLineSyntaxError 0
           ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
           ${Break}
        ${EndIf}
@@ -682,8 +665,7 @@ Function GetCommandLineOptions
        ; Check $R3 domain
        ${If} "$R3" != ""
           ; Syntax error.
-          SetErrors
-          StrCpy $R7 1
+          StrCpy $CommandLineSyntaxError 0
           ${FileWriteLine} $R9 "Syntax error. '$R2' is a switch, it has no values."
           ${Break}
        ${Else}
@@ -697,8 +679,7 @@ Function GetCommandLineOptions
        ; Check $R3 domain
        ${If} "$R3" != ""
           ; Syntax error.
-          SetErrors
-          StrCpy $R7 1
+          StrCpy $CommandLineSyntaxError 0
           ${FileWriteLine} $R9 "Syntax error. '$R2' is a switch, it has no values."
           ${Break}
        ${Else}
@@ -713,8 +694,7 @@ Function GetCommandLineOptions
        ; ToDo
        ${If} $R3 != $R3
           ; Syntax error.
-          SetErrors
-          StrCpy $R7 1
+          StrCpy $CommandLineSyntaxError 0
           ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
           ${Break}
        ${EndIf}
@@ -725,8 +705,7 @@ Function GetCommandLineOptions
        ; Check $R3 domain
        ${If} "$R3" != ""
           ; Syntax error.
-          SetErrors
-          StrCpy $R7 1
+          StrCpy $CommandLineSyntaxError 0
           ${FileWriteLine} $R9 "Syntax error. '$R2' is a switch, it has no values."
           ${Break}
        ${Else}
@@ -741,8 +720,7 @@ Function GetCommandLineOptions
        ; ToDo
        ${If} $R3 != $R3
           ; Syntax error.
-          SetErrors
-          StrCpy $R7 1
+          StrCpy $CommandLineSyntaxError 0
           ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
           ${Break}
        ${EndIf}
@@ -754,8 +732,7 @@ Function GetCommandLineOptions
        ${If} $R3 < 1
        ${OrIf} $R3 > 30
           ; Syntax error.
-          SetErrors
-          StrCpy $R7 1
+          StrCpy $CommandLineSyntaxError 0
           ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
           ${Break}
        ${EndIf}
@@ -767,8 +744,7 @@ Function GetCommandLineOptions
        ${If} $R3 < 1
        ${OrIf} $R3 > 23
           ; Syntax error.
-          SetErrors
-          StrCpy $R7 1
+          StrCpy $CommandLineSyntaxError 0
           ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
           ${Break}
        ${EndIf}
@@ -781,8 +757,7 @@ Function GetCommandLineOptions
        ${AndIf} $R3 != "${FREQUENCY_HOURLY}"
        ${AndIf} $R3 != "${FREQUENCY_DAILY}"
           ; Syntax error.
-          SetErrors
-          StrCpy $R7 1
+          StrCpy $CommandLineSyntaxError 0
           ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
           ${Break}
        ${EndIf}
@@ -795,8 +770,7 @@ Function GetCommandLineOptions
        ${AndIf} $R3 <> 20
        ${AndIf} $R3 <> 30
           ; Syntax error.
-          SetErrors
-          StrCpy $R7 1
+          StrCpy $CommandLineSyntaxError 0
           ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
           ${Break}
        ${EndIf}
@@ -809,8 +783,7 @@ Function GetCommandLineOptions
        ${If} $R3 < 0
        ${OrIf} $R3 > 600
           ; Syntax error.
-          SetErrors
-          StrCpy $R7 1
+          StrCpy $CommandLineSyntaxError 0
           ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
           ${Break}
        ${EndIf}
@@ -822,8 +795,7 @@ Function GetCommandLineOptions
       ; ToDo
       ${If} $R3 != $R3
          ; Syntax error.
-         SetErrors
-         StrCpy $R7 1
+         StrCpy $CommandLineSyntaxError 0
          ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
          ${Break}
       ${EndIf}
@@ -836,8 +808,7 @@ Function GetCommandLineOptions
        ${If} $R3 < 0
        ${OrIf} $R3 > 86400
           ; Syntax error.
-          SetErrors
-          StrCpy $R7 1
+          StrCpy $CommandLineSyntaxError 0
           ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
           ${Break}
        ${EndIf}
@@ -848,8 +819,7 @@ Function GetCommandLineOptions
                ; Check $R3 domain
                ${If} "$R3" != ""
                   ; Syntax error.
-                  SetErrors
-                  StrCpy $R7 1
+                  StrCpy $CommandLineSyntaxError 0
                   ${FileWriteLine} $R9 "Syntax error. '$R2' is a switch, it has no values."
                   ${Break}
                ${Else}
@@ -880,7 +850,7 @@ Function GetCommandLineOptions
    ${EndIf}
 
    ; Search for '/NCRC' option.
-   ${If} $R7 = 0
+   ${If} $CommandLineSyntaxError = 1
    ${AndIf} $R0 != ""
       ${Do}
          ${FileWriteLine} $R9 "--------------------"
@@ -914,8 +884,7 @@ Function GetCommandLineOptions
             ; Check $R3 domain
             ${If} "$R3" != ""
                ; Syntax error.
-               SetErrors
-               StrCpy $R7 1
+               StrCpy $CommandLineSyntaxError 0
                ${FileWriteLine} $R9 "Syntax error. '$R2' is a switch, it has no values."
                ${Break}
             ${EndIf}
@@ -937,10 +906,9 @@ Function GetCommandLineOptions
    ${TrimLeft} $R1 "$R0"
    ${TrimRight} $R0 "$R1"
 
-   ${If} $R7 == 0
+   ${If} $CommandLineSyntaxError = 1
       ${If} "$R0" != ""
          ; Syntax error. Invalid options.
-         SetErrors
          ${FileWriteLine} $R9 "Syntax error. Invalid options '$R0'."
       ${Else}
          ${FileWriteLine} $R9 "Syntax OK. All options have been recognized."
@@ -953,10 +921,12 @@ Function GetCommandLineOptions
    ; Close the command line parser logfile
    FileClose $R9
 
-   ; Pop $R9, $R8, $R7, $R5, $R4, $R3, $R2, $R1 & $R0 off of the stack
+   ; Set the flag of processed
+   StrCpy $CommandLineNotProcessed 1
+
+   ; Pop $R9, $R8, $R5, $R4, $R3, $R2, $R1 & $R0 off of the stack
    Pop $R9
    Pop $R8
-   Pop $R7
    Pop $R5
    Pop $R4
    Pop $R3
