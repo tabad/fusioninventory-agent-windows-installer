@@ -136,56 +136,6 @@
 !macroend
 
 
-!define CheckSetOfAgentTasks "!insertmacro CheckSetOfAgentTasks"
-
-!macro CheckSetOfAgentTasks
-             ; Check possible task set
-             ; $0 Valid agent tasks CommaUStr
-             ; $1 Agent tasks CommaUStr to install
-             ; $2 An agent tasks to install
-             ; Push $0, $1 & $2 onto the stack
-             Push $0
-             Push $1
-             Push $2
-             ; Get valid agent tasks
-             ${GetValidAgentTasksCommaUStr} $0
-             ; Build the agent tasks CommaUStr to install
-             StrCpy $1 ""
-             ${AddCommaStrCommaUStr} "$1" "$R3" $1
-             ; Check loop
-             ${Do}
-                ; Get the first agent task to install
-                ${FirstStrCommaUStr} "$1" $2
-                ; Check the $2 agent task to install
-                ${If} "$2" == ""
-                   ; There aren't more agent tasks to install
-                   ${ExitDo}
-                ${Else}
-                   ; Check whether is a valid agent tasks
-                   ${If} "$2" IsInCommaUStr "$0"
-                      ; $2 is a valid agent task to install
-                      ; Check the next agent task
-                      ${DelStrCommaUStr} "$1" "$2" $1
-                   ${Else}
-                      ; Syntax error. $2 is not a valid agent task to install
-                      SetErrors
-                      StrCpy $R7 1
-                      ${ExitDo}
-                   ${EndIf}
-                ${EndIf}
-             ${Loop}
-             ; Final check
-             ${If} $R7 = 0
-                ; $R3 is a valid value and $1 is empty
-                ${AddCommaStrCommaUStr} "$R3" "$1" $R3
-             ${EndIf}
-             ; Pop $2, $1 & $0 off of the stack
-             Pop $2
-             Pop $1
-             Pop $0
-!macroend
-
-
 !define GetCommandLineOptions "Call GetCommandLineOptions"
 
 Function GetCommandLineOptions
@@ -487,7 +437,16 @@ Function GetCommandLineOptions
              Nop
           ${CaseElse}
              ; Check set of agent tasks.
-             ${CheckSetOfAgentTasks}
+             ; Push $0 onto the stack.
+             Push $0
+             ; Get valid agent tasks.
+             ${GetValidAgentTasksCommaUStr} $0
+             ${IfNot} "$R3" IsASubCommaUStr "$0"
+                ; Syntax error.
+                SetErrors
+                StrCpy $R7 1
+             ${EndIf}
+             ; Pop $0 off of the stack.
        ${EndSelect}
 
        ${If} $R7 = 1
@@ -657,8 +616,17 @@ Function GetCommandLineOptions
              ; Valid value
              Nop
           ${CaseElse}
-             ; Check set of agent tasks
-             ${CheckSetOfAgentTasks}
+             ; Check set of agent tasks.
+             ; Push $0 onto the stack.
+             Push $0
+             ; Get valid agent tasks.
+             ${GetValidAgentTasksCommaUStr} $0
+             ${IfNot} "$R3" IsASubCommaUStr "$0"
+                ; Syntax error.
+                SetErrors
+                StrCpy $R7 1
+             ${EndIf}
+             ; Pop $0 off of the stack.
        ${EndSelect}
 
        ${If} $R7 = 1
