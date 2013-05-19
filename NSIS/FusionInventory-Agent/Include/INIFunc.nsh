@@ -140,9 +140,9 @@
 !define EXECMODE_MANUAL "manual"
 !define EXECMODE_CURRENTCONF "currentconf"
 
-!define FREQUENCY_DAILY "daily"
-!define FREQUENCY_HOURLY "hourly"
-!define FREQUENCY_MINUTE "minute"
+!define FREQUENCY_MINUTE "Minute"
+!define FREQUENCY_HOURLY "Hourly"
+!define FREQUENCY_DAILY "Daily"
 
 !define INSTALLTASK_DEFAULT "Default"
 !define INSTALLTASK_DEPLOY "Deploy"
@@ -218,6 +218,28 @@
 
 ; GetValidAgentTasksCommaUStr
 !define GetValidAgentTasksCommaUStr "!insertmacro GetInstallTasksFullCommaUStr"
+
+
+; GetValidWindowsTaskMinuteModifierCommaUStr
+!define GetValidWindowsTaskMinuteModifierCommaUStr "!insertmacro GetValidWindowsTaskMinuteModifierCommaUStr"
+
+!macro GetValidWindowsTaskMinuteModifierCommaUStr ResultVar
+   StrCpy ${ResultVar} ""
+   ${AddStrCommaUStr} ${ResultVar} "15" ${ResultVar}
+   ${AddStrCommaUStr} ${ResultVar} "20" ${ResultVar}
+   ${AddStrCommaUStr} ${ResultVar} "30" ${ResultVar}
+!macroend
+
+
+; GetValidWindowsTaskFrequencyCommaUStr
+!define GetValidWindowsTaskFrequencyCommaUStr "!insertmacro GetValidWindowsTaskFrequencyCommaUStr"
+
+!macro GetValidWindowsTaskFrequencyCommaUStr ResultVar
+   StrCpy ${ResultVar} ""
+   ${AddStrCommaUStr} ${ResultVar} "${FREQUENCY_MINUTE}" ${ResultVar}
+   ${AddStrCommaUStr} ${ResultVar} "${FREQUENCY_HOURLY}" ${ResultVar}
+   ${AddStrCommaUStr} ${ResultVar} "${FREQUENCY_DAILY}" ${ResultVar}
+!macroend
 
 
 ; ReadINIOption

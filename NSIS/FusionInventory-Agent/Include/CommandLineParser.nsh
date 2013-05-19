@@ -753,26 +753,42 @@ Function GetCommandLineOptions
    ; Search for '/task-frequency' option.
    ${CommandLineOptionsSearchBlock} "/task-frequency=" "${IO_TASK-FREQUENCY}"
        ; Check $R3 domain
-       ${If} $R3 != "${FREQUENCY_MINUTE}"
-       ${AndIf} $R3 != "${FREQUENCY_HOURLY}"
-       ${AndIf} $R3 != "${FREQUENCY_DAILY}"
+       ; Push $0 onto the stack.
+       Push $0
+       ; Get valid Windows Task frequencies.
+       ${GetValidWindowsTaskFrequencyCommaUStr} $0
+       ${IfNot} "$R3" IsInCommaUStr "$0"
           ; Syntax error.
           StrCpy $CommandLineSyntaxError 0
-          ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
-          ${Break}
+       ${EndIf}
+       ; Pop $0 off of the stack.
+       Pop $0
+
+       ${If} $CommandLineSyntaxError = 0
+         ; Syntax error.
+         ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
+         ${Break}
        ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 
    ; Search for '/task-minute-modifier' option.
    ${CommandLineOptionsSearchBlock} "/task-minute-modifier=" "${IO_TASK-MINUTE-MODIFIER}"
        ; Check $R3 domain
-       ${If} $R3 <> 15
-       ${AndIf} $R3 <> 20
-       ${AndIf} $R3 <> 30
+       ; Push $0 onto the stack.
+       Push $0
+       ; Get valid Windows Task minute modifier.
+       ${GetValidWindowsTaskMinuteModifierCommaUStr} $0
+       ${IfNot} "$R3" IsInCommaUStr "$0"
           ; Syntax error.
           StrCpy $CommandLineSyntaxError 0
-          ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
-          ${Break}
+       ${EndIf}
+       ; Pop $0 off of the stack.
+       Pop $0
+
+       ${If} $CommandLineSyntaxError = 0
+         ; Syntax error.
+         ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
+         ${Break}
        ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 
