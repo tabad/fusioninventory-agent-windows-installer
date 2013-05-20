@@ -785,74 +785,71 @@ FunctionEnd
 !macroend
 
 
-; NormalizeInstallTasksOption
-!define NormalizeInstallTasksOption "!insertmacro NormalizeInstallTasksOption"
+; NormalizeOption
+!define NormalizeOption "!insertmacro NormalizeOption"
 
-!macro NormalizeInstallTasksOption CommaUStr ResultVar
-   Push ${CommaUStr}
-   Call NormalizeInstallTasksOption
+!macro NormalizeOption ValidValues ValuesToNormalize ResultVar
+   Push ${ValidValues}
+   Push ${ValuesToNormalize}
+   Call NormalizeOption
    Pop ${ResultVar}
 !macroend
 
-Function NormalizeInstallTasksOption
-   ; $R0 Agent tasks CommaUStr
-   ; $R1 Auxiliary agent tasks CommaUStr
-   ; $R2 Valid agent tasks CommaUStr
+Function NormalizeOption
+   ; $R0 Valid values CommaUStr/Str
+   ; $R1 Values to normalize CommaUStr/Str
+   ; $R2 Normalized values CommaUStr/Str
    ; $R3 Auxiliary
-   ; $R4 Auxiliary
 
    ; Note: $R0 is used also output variable
 
    ; Get parameter
+   Exch $R1
+   Exch
    Exch $R0
+   Exch
 
-   ; Push $R1, $R2 & $R3 onto the stack
-   Push $R1
+   ; Push $R2 & $R3 onto the stack
    Push $R2
    Push $R3
 
-   ; Initialize $R0
-   ${AddCommaStrCommaUStr} "" "$R0" $R0
-
    ; Initialize $R1
-   StrCpy $R1 ""
+   ${AddCommaStrCommaUStr} "" "$R1" $R1
 
-   ; Get agent tasks in $R0
-   ${GetStrsCommaUStr} "$R0" $R3
+   ; Initialize $R2
+   StrCpy $R2 ""
 
-   ; Check the number of agent tasks
-   ${If} $R3 == 0
-      ; There aren't agent tasks
+   ; Get values in $R1
+   ${GetStrsCommaUStr} "$R1" $R3
+
+   ; Check the number of values
+   ${If} $R3 = 0
+      ; There aren't values
       Nop
    ${Else}
-      ; Normalize...
-
-      ; Get valid agent tasks
-      ${GetValidAgentTasksCommaUStr} $R2
-
       ; Normalize loop...
       ${Do}
-         ; Get the first valid agent task
-         ${FirstStrCommaUStr} "$R2" $R3
-         ; Check the $R3 valid agent task
+         ; Get the first valid value
+         ${FirstStrCommaUStr} "$R0" $R3
+         ; Check the $R3 valid value
          ${If} "$R3" == ""
-            ; There aren't more valid agent tasks
+            ; There aren't more valid values
             ${ExitDo}
          ${Else}
-            ; Check whether $R3 is in $R0
-            ${If} "$R3" IsInCommaUStr "$R0"
-               ; Add $R3 to $R1
-               ${AddStrCommaUStr} "$R1" "$R3" $R1
+            ; Check whether $R3 is in $R1
+            ${If} "$R3" IsInCommaUStr "$R1"
+               ; Add $R3 to $R2
+               ${AddStrCommaUStr} "$R2" "$R3" $R2
             ${EndIf}
          ${EndIf}
 
          ; Check the next valid agent task
-         ${DelStrCommaUStr} "$R2" "$R3" $R2
+         ${DelStrCommaUStr} "$R0" "$R3" $R0
       ${Loop}
    ${EndIf}
 
    ; Copy return value in $R0
-   StrCpy $R0 "$R1"
+   StrCpy $R0 "$R2"
 
    ; Pop $R3, $R2 & $R1 off of the stack
    Pop $R3
@@ -864,8 +861,46 @@ Function NormalizeInstallTasksOption
 FunctionEnd
 
 
-; NormalizeNoTaskOption
-!define NormalizeNoTaskOption "!insertmacro NormalizeInstallTasksOption"
+; NormalizeOptions
+!define NormalizeOptions "!insertmacro NormalizeOptions"
+
+!macro NormalizeOptions INISection
+   Push ${INISection}
+   Call NormalizeOptions
+!macroend
+
+Function NormalizeOptions
+   ; $R0 INI Section
+   ; $R1 Valid values CommaUStr/Str
+   ; $R2 Values to normalize CommaUStr/Str
+   ; $R3 Normalized values CommaUStr/Str
+
+   ; Get parameter
+   Exch $R0
+
+   ; Push $R1, $R2 & $R3 onto the stack
+   Push $R1
+   Push $R2
+   Push $R3
+
+   ; Normalize 'installtasks' option
+   ${GetValidAgentTasksCommaUStr} $R1
+   ${ReadINIOption} $R2 "$R0" "${IO_INSTALLTASKS}"
+   ${NormalizeOption} "$R1" "$R2" $R3
+   ${WriteINIOption} "$R0" "${IO_INSTALLTASKS}" "$R3"
+
+   ; Normalize 'no-task' option
+   ${GetValidAgentTasksCommaUStr} $R1
+   ${ReadINIOption} $R2 "$R0" "${IO_NO-TASK}"
+   ${NormalizeOption} "$R1" "$R2" $R3
+   ${WriteINIOption} "$R0" "${IO_NO-TASK}" "$R3"
+
+   ; Pop $R3, $R2, $R1 & $R0 off of the stack
+   Pop $R3
+   Pop $R2
+   Pop $R1
+   Pop $R0
+FunctionEnd
 
 
 ; UninstallCurrentAgent

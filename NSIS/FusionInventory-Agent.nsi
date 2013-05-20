@@ -935,15 +935,14 @@ Function .onInitSilentMode
             ; Agent tasks ${TASK_NETINVENTORY} & ${TASK_NETDISCOVERY} are inter-dependent
             ${AddStrCommaUStr} "$R0" "${TASK_NETDISCOVERY}" $R0
          ${EndIf}
-         ${NormalizeInstallTasksOption} "$R0" $R0
          ${WriteINIOption} "${IOS_FINAL}" "${IO_INSTALLTASKS}" "$R0"
 
+         ; Normalize options
+         ${NormalizeOptions} "${IOS_FINAL}"
+
+         ; Synchronize NSIS sections with 'installtasks' option
          Push "${IOS_FINAL}"
          Call SyncNSISSectionsWithInstallTasksOption
-
-         ${ReadINIOption} $R0 "${IOS_FINAL}" "${IO_NO-TASK}"
-         ${NormalizeNoTaskOption} "$R0" $R0
-         ${WriteINIOption} "${IOS_FINAL}" "${IO_NO-TASK}" "$R0"
       ${Else}
          ; Install the agent from current configuration
 
@@ -975,15 +974,14 @@ Function .onInitSilentMode
             ; Agent tasks ${TASK_NETINVENTORY} & ${TASK_NETDISCOVERY} are inter-dependent
             ${AddStrCommaUStr} "$R0" "${TASK_NETDISCOVERY}" $R0
          ${EndIf}
-         ${NormalizeInstallTasksOption} "$R0" $R0
          ${WriteINIOption} "${IOS_FINAL}" "${IO_INSTALLTASKS}" "$R0"
 
+         ; Normalize options
+         ${NormalizeOptions} "${IOS_FINAL}"
+
+         ; Synchronize NSIS sections with 'installtasks' option
          Push "${IOS_FINAL}"
          Call SyncNSISSectionsWithInstallTasksOption
-
-         ${ReadINIOption} $R0 "${IOS_FINAL}" "${IO_NO-TASK}"
-         ${NormalizeNoTaskOption} "$R0" $R0
-         ${WriteINIOption} "${IOS_FINAL}" "${IO_NO-TASK}" "$R0"
 
          ; Some options could have been overwritten. Fixing them...
 
@@ -1080,15 +1078,14 @@ Function .onInitSilentMode
          ; Agent tasks ${TASK_NETINVENTORY} & ${TASK_NETDISCOVERY} are inter-dependent
          ${AddStrCommaUStr} "$R0" "${TASK_NETDISCOVERY}" $R0
       ${EndIf}
-      ${NormalizeInstallTasksOption} "$R0" $R0
       ${WriteINIOption} "${IOS_FINAL}" "${IO_INSTALLTASKS}" "$R0"
 
+      ; Normalize options
+      ${NormalizeOptions} "${IOS_FINAL}"
+
+      ; Synchronize NSIS sections with 'installtasks' option
       Push "${IOS_FINAL}"
       Call SyncNSISSectionsWithInstallTasksOption
-
-      ${ReadINIOption} $R0 "${IOS_FINAL}" "${IO_NO-TASK}"
-      ${NormalizeNoTaskOption} "$R0" $R0
-      ${WriteINIOption} "${IOS_FINAL}" "${IO_NO-TASK}" "$R0"
    ${EndIf}
 
    ; Pop $R1 & $R0 off of the stack
@@ -1148,15 +1145,14 @@ Function .onInitVisualMode
             ; Agent tasks ${TASK_NETINVENTORY} & ${TASK_NETDISCOVERY} are inter-dependent
             ${AddStrCommaUStr} "$R0" "${TASK_NETDISCOVERY}" $R0
          ${EndIf}
-         ${NormalizeInstallTasksOption} "$R0" $R0
          ${WriteINIOption} "${IOS_DEFAULTGUI}" "${IO_INSTALLTASKS}" "$R0"
 
+         ; Normalize options
+         ${NormalizeOptions} "${IOS_DEFAULTGUI}"
+
+         ; Synchronize NSIS sections with 'installtasks' option
          Push "${IOS_DEFAULTGUI}"
          Call SyncNSISSectionsWithInstallTasksOption
-
-         ${ReadINIOption} $R0 "${IOS_DEFAULTGUI}" "${IO_NO-TASK}"
-         ${NormalizeNoTaskOption} "$R0" $R0
-         ${WriteINIOption} "${IOS_DEFAULTGUI}" "${IO_NO-TASK}" "$R0"
       ${Else}
          ; Install the agent from current configuration
 
@@ -1188,15 +1184,14 @@ Function .onInitVisualMode
             ; Agent tasks ${TASK_NETINVENTORY} & ${TASK_NETDISCOVERY} are inter-dependent
             ${AddStrCommaUStr} "$R0" "${TASK_NETDISCOVERY}" $R0
          ${EndIf}
-         ${NormalizeInstallTasksOption} "$R0" $R0
          ${WriteINIOption} "${IOS_DEFAULTGUI}" "${IO_INSTALLTASKS}" "$R0"
 
+         ; Normalize options
+         ${NormalizeOptions} "${IOS_DEFAULTGUI}"
+
+         ; Synchronize NSIS sections with 'installtasks' option
          Push "${IOS_DEFAULTGUI}"
          Call SyncNSISSectionsWithInstallTasksOption
-
-         ${ReadINIOption} $R0 "${IOS_DEFAULTGUI}" "${IO_NO-TASK}"
-         ${NormalizeNoTaskOption} "$R0" $R0
-         ${WriteINIOption} "${IOS_DEFAULTGUI}" "${IO_NO-TASK}" "$R0"
 
          ; Some options could have been overwritten. Fixing them...
 
@@ -1293,15 +1288,14 @@ Function .onInitVisualMode
          ; Agent tasks ${TASK_NETINVENTORY} & ${TASK_NETDISCOVERY} are inter-dependent
          ${AddStrCommaUStr} "$R0" "${TASK_NETDISCOVERY}" $R0
       ${EndIf}
-      ${NormalizeInstallTasksOption} "$R0" $R0
       ${WriteINIOption} "${IOS_DEFAULTGUI}" "${IO_INSTALLTASKS}" "$R0"
 
+      ; Normalize options
+      ${NormalizeOptions} "${IOS_DEFAULTGUI}"
+
+      ; Synchronize NSIS sections with 'installtasks' option
       Push "${IOS_DEFAULTGUI}"
       Call SyncNSISSectionsWithInstallTasksOption
-
-      ${ReadINIOption} $R0 "${IOS_DEFAULTGUI}" "${IO_NO-TASK}"
-      ${NormalizeNoTaskOption} "$R0" $R0
-      ${WriteINIOption} "${IOS_DEFAULTGUI}" "${IO_NO-TASK}" "$R0"
    ${EndIf}
 
    ; Build the ${IOS_GUI} section in the Options.ini file
@@ -1429,11 +1423,11 @@ Function .onSelChange
       ${EndIf}
    ${Next}
 
-   ; Normalize string of agent tasks to install
-   ${NormalizeInstallTasksOption} "$R6" $R6
-
    ; Update ${IO_INSTALLTASKS} option
    ${WriteINIOption} "${IOS_GUI}" "${IO_INSTALLTASKS}" "$R6"
+
+   ; Normalize options
+   ${NormalizeOptions} "${IOS_GUI}"
 
    ; Pop $R6, $R5, $R4, $R3, $R2, $R1 & $R0 off of the stack
    Pop $R6

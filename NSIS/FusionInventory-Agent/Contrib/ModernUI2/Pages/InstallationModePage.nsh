@@ -188,15 +188,14 @@ Function InstallationModePage_Leave
             ; Agent tasks ${TASK_NETINVENTORY} & ${TASK_NETDISCOVERY} are inter-dependent
             ${AddStrCommaUStr} "$R0" "${TASK_NETDISCOVERY}" $R0
          ${EndIf}
-         ${NormalizeInstallTasksOption} "$R0" $R0
          ${WriteINIOption} "${IOS_GUI}" "${IO_INSTALLTASKS}" "$R0"
 
+         ; Normalize options
+         ${NormalizeOptions} "${IOS_GUI}"
+
+         ; Synchronize NSIS sections with 'installtasks' option
          Push "${IOS_GUI}"
          Call SyncNSISSectionsWithInstallTasksOption
-
-         ${ReadINIOption} $R0 "${IOS_GUI}" "${IO_NO-TASK}"
-         ${NormalizeNoTaskOption} "$R0" $R0
-         ${WriteINIOption} "${IOS_GUI}" "${IO_NO-TASK}" "$R0"
       ${EndIf}
    ${Else}
       ; ${INSTALLTYPE_FROMCURRENTCONFIG}
@@ -232,15 +231,14 @@ Function InstallationModePage_Leave
             ; Agent tasks ${TASK_NETINVENTORY} & ${TASK_NETDISCOVERY} are inter-dependent
             ${AddStrCommaUStr} "$R0" "${TASK_NETDISCOVERY}" $R0
          ${EndIf}
-         ${NormalizeInstallTasksOption} "$R0" $R0
          ${WriteINIOption} "${IOS_GUI}" "${IO_INSTALLTASKS}" "$R0"
 
+         ; Normalize options
+         ${NormalizeOptions} "${IOS_GUI}"
+
+         ; Synchronize NSIS sections with 'installtasks' option
          Push "${IOS_GUI}"
          Call SyncNSISSectionsWithInstallTasksOption
-
-         ${ReadINIOption} $R0 "${IOS_GUI}" "${IO_NO-TASK}"
-         ${NormalizeNoTaskOption} "$R0" $R0
-         ${WriteINIOption} "${IOS_GUI}" "${IO_NO-TASK}" "$R0"
 
          ; Some options could have been overwritten. Fixing them...
 
