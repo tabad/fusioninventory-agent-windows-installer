@@ -895,6 +895,12 @@ Function NormalizeOptions
    ${NormalizeOption} "$R1" "$R2" $R3
    ${WriteINIOption} "$R0" "${IO_NO-TASK}" "$R3"
 
+   ; Normalize 'task-frequency' option
+   ${GetValidWindowsTaskFrequencyCommaUStr} $R1
+   ${ReadINIOption} $R2 "$R0" "${IO_TASK-FREQUENCY}"
+   ${NormalizeOption} "$R1" "$R2" $R3
+   ${WriteINIOption} "$R0" "${IO_TASK-FREQUENCY}" "$R3"
+
    ; Pop $R3, $R2, $R1 & $R0 off of the stack
    Pop $R3
    Pop $R2
