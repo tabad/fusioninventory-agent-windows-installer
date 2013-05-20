@@ -101,10 +101,15 @@ Function HelpPage_Create
 
    ${NSD_OnClick} $hCtl_HelpPage_Button1 HelpPage_Button1_Click
 
-   ; Hide 'Next' button.
+   ; Push $R0 onto the stack
    Push $R0
+
+   ; Hide and disable the button 'Next'.
    GetDlgItem $R0 $HWNDPARENT 1
    ShowWindow $R0 ${SW_HIDE}
+   EnableWindow $R0 0
+
+   ; Pop $R0 off of the stack
    Pop $R0
 FunctionEnd
 
