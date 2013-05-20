@@ -822,9 +822,10 @@ Function WelcomePage_Pre
    ; Push $R0 onto the stack
    Push $R0
 
-   ; Hide 'Back' button
+   ; Hide and disable the button 'Back'
    GetDlgItem $R0 $HWNDParent 3
    ShowWindow $R0 ${SW_HIDE}
+   EnableWindow $R0 0
 
    ; Pop $R0 off of the stack
    Pop $R0
