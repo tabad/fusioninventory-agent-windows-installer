@@ -555,9 +555,9 @@ LangString hCtl_HelpPage_Help_Option_task-daily-modifier_Paragraph_1 ${LANG_FREN
 LangString hCtl_HelpPage_Help_Option_task-daily-modifier_Paragraph_1 ${LANG_SPANISH} "Modificador de planificador de tareas diario. (Por defecto: $R9 día)"
 
 ; hCtl_HelpPage_Help_Option_task-daily-modifier_Paragraph_2
-LangString hCtl_HelpPage_Help_Option_task-daily-modifier_Paragraph_2 ${LANG_ENGLISH} "ToDo."
-LangString hCtl_HelpPage_Help_Option_task-daily-modifier_Paragraph_2 ${LANG_FRENCH} "fToDo."
-LangString hCtl_HelpPage_Help_Option_task-daily-modifier_Paragraph_2 ${LANG_SPANISH} "Por hacer."
+LangString hCtl_HelpPage_Help_Option_task-daily-modifier_Paragraph_2 ${LANG_ENGLISH} "\i modifier\i0  can takes values between 1 and 30, both included."
+LangString hCtl_HelpPage_Help_Option_task-daily-modifier_Paragraph_2 ${LANG_FRENCH} "f\i modifier\i0  can takes values between 1 and 30, both included."
+LangString hCtl_HelpPage_Help_Option_task-daily-modifier_Paragraph_2 ${LANG_SPANISH} "\i modifier\i0  puede tomar valores entre 1 y 30, ambos incluidos."
 
 ; hCtl_HelpPage_Help_Option_task-frequency_Paragraph_1
 LangString hCtl_HelpPage_Help_Option_task-frequency_Paragraph_1 ${LANG_ENGLISH} "Frequency for task schedule. (By default: $R9)"
@@ -575,9 +575,9 @@ LangString hCtl_HelpPage_Help_Option_task-hourly-modifier_Paragraph_1 ${LANG_FRE
 LangString hCtl_HelpPage_Help_Option_task-hourly-modifier_Paragraph_1 ${LANG_SPANISH} "Modificador de planificador de tareas horario. (Por defecto: $R9 hora)"
 
 ; hCtl_HelpPage_Help_Option_task-hourly-modifier_Paragraph_2
-LangString hCtl_HelpPage_Help_Option_task-hourly-modifier_Paragraph_2 ${LANG_ENGLISH} "ToDo."
-LangString hCtl_HelpPage_Help_Option_task-hourly-modifier_Paragraph_2 ${LANG_FRENCH} "fToDo."
-LangString hCtl_HelpPage_Help_Option_task-hourly-modifier_Paragraph_2 ${LANG_SPANISH} "Por hacer."
+LangString hCtl_HelpPage_Help_Option_task-hourly-modifier_Paragraph_2 ${LANG_ENGLISH} "\i modifier\i0  can takes values between 1 and 23, both included."
+LangString hCtl_HelpPage_Help_Option_task-hourly-modifier_Paragraph_2 ${LANG_FRENCH} "f\i modifier\i0  can takes values between 1 and 23, both included."
+LangString hCtl_HelpPage_Help_Option_task-hourly-modifier_Paragraph_2 ${LANG_SPANISH} "\i modifier\i0  puede tomar valores entre 1 y 23, ambos incluidos."
 
 ; hCtl_HelpPage_Help_Option_task-minute-modifier_Paragraph_1
 LangString hCtl_HelpPage_Help_Option_task-minute-modifier_Paragraph_1 ${LANG_ENGLISH} "Minute task schedule modifier. (By default: $R9 minutes)"
@@ -585,9 +585,9 @@ LangString hCtl_HelpPage_Help_Option_task-minute-modifier_Paragraph_1 ${LANG_FRE
 LangString hCtl_HelpPage_Help_Option_task-minute-modifier_Paragraph_1 ${LANG_SPANISH} "Modificador de planificador de tareas por minutos. (Por defecto: $R9 minutos)"
 
 ; hCtl_HelpPage_Help_Option_task-minute-modifier_Paragraph_2
-LangString hCtl_HelpPage_Help_Option_task-minute-modifier_Paragraph_2 ${LANG_ENGLISH} "\i modifier\i0  can be: 15, 20 or 30. ToDo."
-LangString hCtl_HelpPage_Help_Option_task-minute-modifier_Paragraph_2 ${LANG_FRENCH} "f\i modifier\i0  can be: 15, 20 or 30. ToDo."
-LangString hCtl_HelpPage_Help_Option_task-minute-modifier_Paragraph_2 ${LANG_SPANISH} "\i modifier\i0 puede ser: 15, 20 ó 30. Por hacer."
+LangString hCtl_HelpPage_Help_Option_task-minute-modifier_Paragraph_2 ${LANG_ENGLISH} "\i modifier\i0  can take the following values: 15, 20 or 30."
+LangString hCtl_HelpPage_Help_Option_task-minute-modifier_Paragraph_2 ${LANG_FRENCH} "f\i modifier\i0  can take the following values: 15, 20 or 30."
+LangString hCtl_HelpPage_Help_Option_task-minute-modifier_Paragraph_2 ${LANG_SPANISH} "\i modifier\i0  puede tomar los siguientes valores: 15, 20 ó 30."
 
 ; hCtl_HelpPage_Help_Option_timeout_Paragraph_1
 LangString hCtl_HelpPage_Help_Option_timeout_Paragraph_1 ${LANG_ENGLISH} "Set the limit time to connect with the server. (By default: $R9 seconds)"

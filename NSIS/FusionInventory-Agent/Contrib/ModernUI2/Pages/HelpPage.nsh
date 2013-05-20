@@ -652,7 +652,7 @@ Function BuildHelpFile
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_TASK-FREQUENCY}"
    ${EscapeSpecialRTFCharacters} $R9 $R9
 
-   ${FileWriteLine} $R0 `\pard\li400 /task-frequency=\{minute|hourly|daily\}\par`
+   ${FileWriteLine} $R0 `\pard\li400 /task-frequency=\{Minute|Hourly|Daily\}\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_task-frequency_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_task-frequency_Paragraph_2)\par`
