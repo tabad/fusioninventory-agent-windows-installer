@@ -287,17 +287,17 @@ Var FusionInventoryAgentTaskNetCoreInstalled
 ;--------------------------------
 ; Custom Pages Functions
 
-;!include "${FIAI_DIR}\Contrib\ModernUI2\Pages\AdvancedOptionsPage.nsh"
-;!include "${FIAI_DIR}\Contrib\ModernUI2\Pages\DebugOptionsPage.nsh"
-;!include "${FIAI_DIR}\Contrib\ModernUI2\Pages\ExecutionModePage.nsh"
+!include "${FIAI_DIR}\Contrib\ModernUI2\Pages\AdvancedOptionsPage.nsh"
+!include "${FIAI_DIR}\Contrib\ModernUI2\Pages\DebugOptionsPage.nsh"
+!include "${FIAI_DIR}\Contrib\ModernUI2\Pages\ExecutionModePage.nsh"
 !include "${FIAI_DIR}\Contrib\ModernUI2\Pages\HelpPage.nsh"
 !include "${FIAI_DIR}\Contrib\ModernUI2\Pages\InstallationModePage.nsh"
-;!include "${FIAI_DIR}\Contrib\ModernUI2\Pages\HTTPServerOptionsPage.nsh"
-;!include "${FIAI_DIR}\Contrib\ModernUI2\Pages\MiscelaneousOptionsPage.nsh"
-;!include "${FIAI_DIR}\Contrib\ModernUI2\Pages\RemoteTargetsOptionsFirstPage.nsh"
-;!include "${FIAI_DIR}\Contrib\ModernUI2\Pages\RemoteTargetsOptionsSecondPage.nsh"
-;!include "${FIAI_DIR}\Contrib\ModernUI2\Pages\TargetsPage.nsh"
-;!include "${FIAI_DIR}\Contrib\ModernUI2\Pages\WindowsTaskOptionsPage.nsh"
+!include "${FIAI_DIR}\Contrib\ModernUI2\Pages\HTTPServerOptionsPage.nsh"
+!include "${FIAI_DIR}\Contrib\ModernUI2\Pages\MiscelaneousOptionsPage.nsh"
+!include "${FIAI_DIR}\Contrib\ModernUI2\Pages\RemoteTargetsOptionsFirstPage.nsh"
+!include "${FIAI_DIR}\Contrib\ModernUI2\Pages\RemoteTargetsOptionsSecondPage.nsh"
+!include "${FIAI_DIR}\Contrib\ModernUI2\Pages\TargetsPage.nsh"
+!include "${FIAI_DIR}\Contrib\ModernUI2\Pages\WindowsTaskOptionsPage.nsh"
 
 
 ;--------------------------------
@@ -311,15 +311,15 @@ Page custom HelpPage_Show HelpPage_Leave ""
 Page custom InstallationModePage_Show InstallationModePage_Leave ""
 !insertmacro MUI_PAGE_COMPONENTS
 !insertmacro MUI_PAGE_DIRECTORY
-;Page custom TargetsPage_Show TargetsPage_Leave ""
-;Page custom RemoteTargetsOptionsFirstPage_Show RemoteTargetsOptionsFirstPage_Leave ""
-;Page custom RemoteTargetsOptionsSecondPage_Show RemoteTargetsOptionsSecondPage_Leave ""
-;Page custom ExecutionModePage_Show ExecutionModePage_Leave ""
-;Page custom HTTPServerOptionsPage_Show HTTPServerOptionsPage_Leave ""
-;Page custom WindowsTaskOptionsPage_Show WindowsTaskOptionsPage_Leave ""
-;Page custom MiscelaneousOptionsPage_Show MiscelaneousOptionsPage_Leave ""
-;Page custom AdvancedOptionsPage_Show AdvancedOptionsPage_Leave ""
-;Page custom DebugOptionsPage_Show DebugOptionsPage_Leave ""
+Page custom TargetsPage_Show TargetsPage_Leave ""
+Page custom RemoteTargetsOptionsFirstPage_Show RemoteTargetsOptionsFirstPage_Leave ""
+Page custom RemoteTargetsOptionsSecondPage_Show RemoteTargetsOptionsSecondPage_Leave ""
+Page custom ExecutionModePage_Show ExecutionModePage_Leave ""
+Page custom HTTPServerOptionsPage_Show HTTPServerOptionsPage_Leave ""
+Page custom WindowsTaskOptionsPage_Show WindowsTaskOptionsPage_Leave ""
+Page custom MiscelaneousOptionsPage_Show MiscelaneousOptionsPage_Leave ""
+Page custom AdvancedOptionsPage_Show AdvancedOptionsPage_Leave ""
+Page custom DebugOptionsPage_Show DebugOptionsPage_Leave ""
 !insertmacro MUI_PAGE_INSTFILES
 !insertmacro MUI_PAGE_FINISH
 
