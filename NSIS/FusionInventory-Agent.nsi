@@ -916,14 +916,14 @@ Function .onInitSilentMode
          ${ReadINIOption} $R0 "${IOS_FINAL}" "${IO_INSTALLTASKS}"
          ${Select} "$R0"
             ${Case} "${INSTALLTASK_MINIMAL}"
-	       ; Install the minimal tasks.
-	       ${GetInstallTasksMinimalCommaUStr} $R0
+               ; Install the minimal tasks.
+               ${GetInstallTasksMinimalCommaUStr} $R0
             ${Case} "${INSTALLTASK_DEFAULT}"
-	       ; Install default tasks.
-	       ${GetInstallTasksDefaultCommaUStr} $R0
+               ; Install default tasks.
+               ${GetInstallTasksDefaultCommaUStr} $R0
             ${Case} "${INSTALLTASK_FULL}"
-	       ; Install all tasks.
-	       ${GetInstallTasksFullCommaUStr} $R0
+               ; Install all tasks.
+               ${GetInstallTasksFullCommaUStr} $R0
          ${EndSelect}
          ${GetInstallTasksMinimalCommaUStr} $R1
          ${AddCommaStrCommaUStr} "$R0" "$R1" $R0
@@ -956,14 +956,14 @@ Function .onInitSilentMode
          ${ReadINIOption} $R0 "${IOS_FINAL}" "${IO_INSTALLTASKS}"
          ${Select} "$R0"
             ${Case} "${INSTALLTASK_MINIMAL}"
-	       ; Install the minimal tasks.
-	       ${GetInstallTasksMinimalCommaUStr} $R0
+               ; Install the minimal tasks.
+               ${GetInstallTasksMinimalCommaUStr} $R0
             ${Case} "${INSTALLTASK_DEFAULT}"
-	       ; Install default tasks.
-	       ${GetInstallTasksDefaultCommaUStr} $R0
+               ; Install default tasks.
+               ${GetInstallTasksDefaultCommaUStr} $R0
             ${Case} "${INSTALLTASK_FULL}"
-	       ; Install all tasks.
-	       ${GetInstallTasksFullCommaUStr} $R0
+               ; Install all tasks.
+               ${GetInstallTasksFullCommaUStr} $R0
          ${EndSelect}
          ${GetInstallTasksMinimalCommaUStr} $R1
          ${AddCommaStrCommaUStr} "$R0" "$R1" $R0
@@ -1061,14 +1061,14 @@ Function .onInitSilentMode
       ${ReadINIOption} $R0 "${IOS_FINAL}" "${IO_INSTALLTASKS}"
       ${Select} "$R0"
          ${Case} "${INSTALLTASK_MINIMAL}"
-	    ; Install the minimal tasks.
-	    ${GetInstallTasksMinimalCommaUStr} $R0
+            ; Install the minimal tasks.
+            ${GetInstallTasksMinimalCommaUStr} $R0
          ${Case} "${INSTALLTASK_DEFAULT}"
-	    ; Install default tasks.
-	    ${GetInstallTasksDefaultCommaUStr} $R0
+            ; Install default tasks.
+            ${GetInstallTasksDefaultCommaUStr} $R0
          ${Case} "${INSTALLTASK_FULL}"
-	    ; Install all tasks.
-	    ${GetInstallTasksFullCommaUStr} $R0
+            ; Install all tasks.
+            ${GetInstallTasksFullCommaUStr} $R0
       ${EndSelect}
       ${GetInstallTasksMinimalCommaUStr} $R1
       ${AddCommaStrCommaUStr} "$R0" "$R1" $R0
@@ -1129,14 +1129,14 @@ Function .onInitVisualMode
          ${ReadINIOption} $R0 "${IOS_DEFAULTGUI}" "${IO_INSTALLTASKS}"
          ${Select} "$R0"
             ${Case} "${INSTALLTASK_MINIMAL}"
-	       ; Install the minimal tasks.
-	       ${GetInstallTasksMinimalCommaUStr} $R0
+               ; Install the minimal tasks.
+               ${GetInstallTasksMinimalCommaUStr} $R0
             ${Case} "${INSTALLTASK_DEFAULT}"
-	       ; Install default tasks.
-	       ${GetInstallTasksDefaultCommaUStr} $R0
+               ; Install default tasks.
+               ${GetInstallTasksDefaultCommaUStr} $R0
             ${Case} "${INSTALLTASK_FULL}"
-	       ; Install all tasks.
-	       ${GetInstallTasksFullCommaUStr} $R0
+               ; Install all tasks.
+               ${GetInstallTasksFullCommaUStr} $R0
          ${EndSelect}
          ${GetInstallTasksMinimalCommaUStr} $R1
          ${AddCommaStrCommaUStr} "$R0" "$R1" $R0
@@ -1169,14 +1169,14 @@ Function .onInitVisualMode
          ${ReadINIOption} $R0 "${IOS_DEFAULTGUI}" "${IO_INSTALLTASKS}"
          ${Select} "$R0"
             ${Case} "${INSTALLTASK_MINIMAL}"
-	       ; Install the minimal tasks.
-	       ${GetInstallTasksMinimalCommaUStr} $R0
+               ; Install the minimal tasks.
+               ${GetInstallTasksMinimalCommaUStr} $R0
             ${Case} "${INSTALLTASK_DEFAULT}"
-	       ; Install default tasks.
-	       ${GetInstallTasksDefaultCommaUStr} $R0
+               ; Install default tasks.
+               ${GetInstallTasksDefaultCommaUStr} $R0
             ${Case} "${INSTALLTASK_FULL}"
-	       ; Install all tasks.
-	       ${GetInstallTasksFullCommaUStr} $R0
+               ; Install all tasks.
+               ${GetInstallTasksFullCommaUStr} $R0
          ${EndSelect}
          ${GetInstallTasksMinimalCommaUStr} $R1
          ${AddCommaStrCommaUStr} "$R0" "$R1" $R0
@@ -1274,14 +1274,14 @@ Function .onInitVisualMode
       ${ReadINIOption} $R0 "${IOS_DEFAULTGUI}" "${IO_INSTALLTASKS}"
       ${Select} "$R0"
          ${Case} "${INSTALLTASK_MINIMAL}"
-	    ; Install the minimal tasks.
-	    ${GetInstallTasksMinimalCommaUStr} $R0
+            ; Install the minimal tasks.
+            ${GetInstallTasksMinimalCommaUStr} $R0
          ${Case} "${INSTALLTASK_DEFAULT}"
-	    ; Install default tasks.
-	    ${GetInstallTasksDefaultCommaUStr} $R0
+            ; Install default tasks.
+            ${GetInstallTasksDefaultCommaUStr} $R0
          ${Case} "${INSTALLTASK_FULL}"
-	    ; Install all tasks.
-	    ${GetInstallTasksFullCommaUStr} $R0
+            ; Install all tasks.
+            ${GetInstallTasksFullCommaUStr} $R0
       ${EndSelect}
       ${GetInstallTasksMinimalCommaUStr} $R1
       ${AddCommaStrCommaUStr} "$R0" "$R1" $R0

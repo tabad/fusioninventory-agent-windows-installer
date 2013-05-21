@@ -169,14 +169,14 @@ Function InstallationModePage_Leave
          ${ReadINIOption} $R0 "${IOS_GUI}" "${IO_INSTALLTASKS}"
          ${Select} "$R0"
             ${Case} "${INSTALLTASK_MINIMAL}"
-	       ; Install the minimal tasks.
-	       ${GetInstallTasksMinimalCommaUStr} $R0
+               ; Install the minimal tasks.
+               ${GetInstallTasksMinimalCommaUStr} $R0
             ${Case} "${INSTALLTASK_DEFAULT}"
-	       ; Install default tasks.
-	       ${GetInstallTasksDefaultCommaUStr} $R0
+               ; Install default tasks.
+               ${GetInstallTasksDefaultCommaUStr} $R0
             ${Case} "${INSTALLTASK_FULL}"
-	       ; Install all tasks.
-	       ${GetInstallTasksFullCommaUStr} $R0
+               ; Install all tasks.
+               ${GetInstallTasksFullCommaUStr} $R0
          ${EndSelect}
          ${GetInstallTasksMinimalCommaUStr} $R1
          ${AddCommaStrCommaUStr} "$R0" "$R1" $R0
@@ -213,14 +213,14 @@ Function InstallationModePage_Leave
          ${ReadINIOption} $R0 "${IOS_GUI}" "${IO_INSTALLTASKS}"
          ${Select} "$R0"
             ${Case} "${INSTALLTASK_MINIMAL}"
-	       ; Install the minimal tasks.
-	       ${GetInstallTasksMinimalCommaUStr} $R0
+               ; Install the minimal tasks.
+               ${GetInstallTasksMinimalCommaUStr} $R0
             ${Case} "${INSTALLTASK_DEFAULT}"
-	       ; Install default tasks.
-	       ${GetInstallTasksDefaultCommaUStr} $R0
+               ; Install default tasks.
+               ${GetInstallTasksDefaultCommaUStr} $R0
             ${Case} "${INSTALLTASK_FULL}"
-	       ; Install all tasks.
-	       ${GetInstallTasksFullCommaUStr} $R0
+               ; Install all tasks.
+               ${GetInstallTasksFullCommaUStr} $R0
          ${EndSelect}
          ${GetInstallTasksMinimalCommaUStr} $R1
          ${AddCommaStrCommaUStr} "$R0" "$R1" $R0

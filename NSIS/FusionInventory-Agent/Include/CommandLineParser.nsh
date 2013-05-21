@@ -426,13 +426,13 @@ Function GetCommandLineOptions
              ; Syntax error.
              StrCpy $CommandLineSyntaxError 0
           ${Case} "${INSTALLTASK_DEFAULT}"
-	     ; Install default tasks.
+             ; Install default tasks.
              Nop
           ${Case} "${INSTALLTASK_MINIMAL}"
-	     ; Install the minimal tasks.
+             ; Install the minimal tasks.
              Nop
           ${Case} "${INSTALLTASK_FULL}"
-	     ; Install all tasks.
+             ; Install all tasks.
              Nop
           ${CaseElse}
              ; Check set of agent tasks.
