@@ -70,9 +70,24 @@ LangString hCtl_WindowsTaskOptionsPage_Label1_Text ${LANG_FRENCH} "fFrequency"
 LangString hCtl_WindowsTaskOptionsPage_Label1_Text ${LANG_SPANISH} "Frecuencia"
 
 ; hCtl_WindowsTaskOptionsPage_Label2_Text
-LangString hCtl_WindowsTaskOptionsPage_Label2_Text ${LANG_ENGLISH} "... Interval"
-LangString hCtl_WindowsTaskOptionsPage_Label2_Text ${LANG_FRENCH} "f... Interval"
-LangString hCtl_WindowsTaskOptionsPage_Label2_Text ${LANG_SPANISH} "Invervalo de ..."
+LangString hCtl_WindowsTaskOptionsPage_Label2_Text ${LANG_ENGLISH} "$R2 Interval"
+LangString hCtl_WindowsTaskOptionsPage_Label2_Text ${LANG_FRENCH} "f$R2 Interval"
+LangString hCtl_WindowsTaskOptionsPage_Label2_Text ${LANG_SPANISH} "Invervalo de $R2"
+
+; hCtl_WindowsTaskOptionsPage_Minute
+LangString hCtl_WindowsTaskOptionsPage_Minute ${LANG_ENGLISH} "Minute"
+LangString hCtl_WindowsTaskOptionsPage_Minute ${LANG_FRENCH} "fMinute"
+LangString hCtl_WindowsTaskOptionsPage_Minute ${LANG_SPANISH} "Minutos"
+
+; hCtl_WindowsTaskOptionsPage_Hour
+LangString hCtl_WindowsTaskOptionsPage_Hour ${LANG_ENGLISH} "Hour"
+LangString hCtl_WindowsTaskOptionsPage_Hour ${LANG_FRENCH} "fHour"
+LangString hCtl_WindowsTaskOptionsPage_Hour ${LANG_SPANISH} "Horas"
+
+; hCtl_WindowsTaskOptionsPage_Day
+LangString hCtl_WindowsTaskOptionsPage_Day ${LANG_ENGLISH} "Day"
+LangString hCtl_WindowsTaskOptionsPage_Day ${LANG_FRENCH} "fDay"
+LangString hCtl_WindowsTaskOptionsPage_Day ${LANG_SPANISH} "Días"
 
 
 !endif

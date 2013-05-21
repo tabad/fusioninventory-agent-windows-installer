@@ -50,6 +50,7 @@
 
 
 !include LogicLib.nsh
+!include "${FIAI_DIR}\Include\INIFunc.nsh"
 !include "${FIAI_DIR}\Contrib\ModernUI2\Pages\WindowsTaskOptionsPageLangStrings.nsh"
 
 
@@ -66,6 +67,217 @@ Var hCtl_WindowsTaskOptionsPage_DropList2
 
 ;--------------------------------
 ; Windows Task Options Page Functions
+
+Function WindowsTaskOptionsPage_Back
+   Call WindowsTaskOptionsPage_Leave
+FunctionEnd
+
+
+Function WindowsTaskOptionsPage_DropList1_Load
+   ; $R0 INI Section
+   ; $R1 Auxiliary
+   ; $R2 Auxiliary
+
+   ; Push $R0, $R1 & $R2 onto the stack
+   Push $R0
+   Push $R1
+   Push $R2
+
+   ; Set default section
+   StrCpy $R0 "${IOS_GUI}"
+
+   ; Load DropList1
+   ${GetValidWindowsTaskFrequencyCommaUStr} $R1
+   ${Do}
+      ; Get the first frequency
+      ${FirstStrCommaUStr} "$R1" $R2
+      ; Check the frequency $R2
+      ${If} "$R2" == ""
+         ; There aren't more frequencies
+         ${ExitDo}
+      ${Else}
+         ; Add $R2 to DropList1
+         ${NSD_CB_AddString} $hCtl_WindowsTaskOptionsPage_DropList1 "$R2"
+         ; Get the next frequency
+         ${DelStrCommaUStr} "$R1" "$R2" $R1
+      ${EndIf}
+   ${Loop}
+
+   ; Select the frequency in DropList1
+   ${ReadINIOption} $R1 "$R0" "${IO_TASK-FREQUENCY}"
+   ${NSD_CB_SelectString} $hCtl_WindowsTaskOptionsPage_DropList1 "$R1"
+
+   ; Set Label2 Text depending on the value of $R1
+   ${Select} "$R1"
+      ${Case} "${FREQUENCY_MINUTE}"
+         StrCpy $R2 "$(hCtl_WindowsTaskOptionsPage_Minute)"
+      ${Case} "${FREQUENCY_HOURLY}"
+         StrCpy $R2 "$(hCtl_WindowsTaskOptionsPage_Hour)"
+      ${Case} "${FREQUENCY_DAILY}"
+         StrCpy $R2 "$(hCtl_WindowsTaskOptionsPage_Day)"
+   ${EndSelect}
+   ${NSD_SetText} $hCtl_WindowsTaskOptionsPage_Label2 "$(hCtl_WindowsTaskOptionsPage_Label2_Text)"
+
+   ; Pop $R2, $R1 & $R0 off of the stack
+   Pop $R2
+   Pop $R1
+   Pop $R0
+FunctionEnd
+
+
+Function WindowsTaskOptionsPage_DropList1_OnChange
+   ; $R0 INI Section
+   ; $R1 Auxiliary
+   ; $R2 Auxiliary
+
+   ; Get parameter
+   Exch $R0
+
+   ; Push $R1 & $R2 onto the stack
+   Push $R1
+   Push $R2
+
+   ; Set default section
+   StrCpy $R0 "${IOS_GUI}"
+
+   ; Save DropList1 Text
+   ${NSD_GetText} $hCtl_WindowsTaskOptionsPage_DropList1 $R1
+   ${WriteINIOption} "$R0" "${IO_TASK-FREQUENCY}" "$R1"
+
+   ; Set Label2 Text depending on the value of $R1
+   ${Select} "$R1"
+      ${Case} "${FREQUENCY_MINUTE}"
+         StrCpy $R2 "$(hCtl_WindowsTaskOptionsPage_Minute)"
+      ${Case} "${FREQUENCY_HOURLY}"
+         StrCpy $R2 "$(hCtl_WindowsTaskOptionsPage_Hour)"
+      ${Case} "${FREQUENCY_DAILY}"
+         StrCpy $R2 "$(hCtl_WindowsTaskOptionsPage_Day)"
+   ${EndSelect}
+   ${NSD_SetText} $hCtl_WindowsTaskOptionsPage_Label2 "$(hCtl_WindowsTaskOptionsPage_Label2_Text)"
+
+   ; Load DropList2
+   Call WindowsTaskOptionsPage_DropList2_Load
+
+   ; Pop $R2, $R1 & $R0 off of the stack
+   Pop $R2
+   Pop $R1
+   Pop $R0
+FunctionEnd
+
+
+Function WindowsTaskOptionsPage_DropList2_Load
+   ; $R0 INI Section
+   ; $R1 Task frequency
+   ; $R2 Auxiliary
+   ; $R3 Auxiliary
+
+   ; Push $R0, $R1, $R2 & $R3 onto the stack
+   Push $R0
+   Push $R1
+   Push $R2
+   Push $R3
+
+   ; Set default section
+   StrCpy $R0 "${IOS_GUI}"
+
+   ; Get DropList1 Test
+   ${NSD_GetText} $hCtl_WindowsTaskOptionsPage_DropList1 $R1
+
+   ; Reset content of DropList2
+   SendMessage $hCtl_WindowsTaskOptionsPage_DropList2 ${CB_RESETCONTENT} 0 0
+
+   ; Depending on the value of $R1
+   ${Select} "$R1"
+      ${Case} "${FREQUENCY_MINUTE}"
+         ; Load valid values for minutes
+         ${GetValidWindowsTaskMinuteModifierCommaUStr} $R2
+         ${Do}
+            ; Get the first frequency
+            ${FirstStrCommaUStr} "$R2" $R3
+            ; Check the minute $R3
+            ${If} "$R3" == ""
+               ; There aren't more minutes
+               ${ExitDo}
+            ${Else}
+               ; Add $R3 to DropList2
+               ${NSD_CB_AddString} $hCtl_WindowsTaskOptionsPage_DropList2 "$R3"
+               ; Get the next minute
+               ${DelStrCommaUStr} "$R2" "$R3" $R2
+            ${EndIf}
+         ${Loop}
+
+         ; Select the minute in DropList2
+         ${ReadINIOption} $R2 "$R0" "${IO_TASK-MINUTE-MODIFIER}"
+         ${NSD_CB_SelectString} $hCtl_WindowsTaskOptionsPage_DropList2 "$R2"
+
+      ${Case} "${FREQUENCY_HOURLY}"
+         ; Load valid values for hours
+         ${For} $R2 1 23
+            ; Add $R3 to DropList2
+            ${NSD_CB_AddString} $hCtl_WindowsTaskOptionsPage_DropList2 "$R2"
+         ${Next}
+
+         ; Select the hour in DropList2
+         ${ReadINIOption} $R2 "$R0" "${IO_TASK-HOURLY-MODIFIER}"
+         ${NSD_CB_SelectString} $hCtl_WindowsTaskOptionsPage_DropList2 "$R2"
+
+      ${Case} "${FREQUENCY_DAILY}"
+         ; Load valid values for days
+         ${For} $R2 1 30
+            ; Add $R3 to DropList2
+            ${NSD_CB_AddString} $hCtl_WindowsTaskOptionsPage_DropList2 "$R2"
+         ${Next}
+
+         ; Select the day in DropList2
+         ${ReadINIOption} $R2 "$R0" "${IO_TASK-DAILY-MODIFIER}"
+         ${NSD_CB_SelectString} $hCtl_WindowsTaskOptionsPage_DropList2 "$R2"
+   ${EndSelect}
+
+   ; Pop $R3, $R2, $R1 & $R0 off of the stack
+   Pop $R3
+   Pop $R2
+   Pop $R1
+   Pop $R0
+FunctionEnd
+
+
+Function WindowsTaskOptionsPage_DropList2_OnChange
+   ; $R0 INI Section
+   ; $R1 Auxiliary
+   ; $R2 Auxiliary
+
+   ; Get parameter
+   Exch $R0
+
+   ; Push $R1 & $R2 onto the stack
+   Push $R1
+   Push $R2
+
+   ; Set default section
+   StrCpy $R0 "${IOS_GUI}"
+
+   ; Get DropList1 Test
+   ${NSD_GetText} $hCtl_WindowsTaskOptionsPage_DropList1 $R1
+
+   ; Get DropList2 Test
+   ${NSD_GetText} $hCtl_WindowsTaskOptionsPage_DropList2 $R2
+
+   ; Save DropList2 Text depending on the value of $R1
+   ${Select} "$R1"
+      ${Case} "${FREQUENCY_MINUTE}"
+         ${WriteINIOption} "$R0" "${IO_TASK-MINUTE-MODIFIER}" "$R2"
+      ${Case} "${FREQUENCY_HOURLY}"
+         ${WriteINIOption} "$R0" "${IO_TASK-HOURLY-MODIFIER}" "$R2"
+      ${Case} "${FREQUENCY_DAILY}"
+         ${WriteINIOption} "$R0" "${IO_TASK-DAILY-MODIFIER}" "$R2"
+   ${EndSelect}
+
+   ; Pop $R2, $R1 & $R0 off of the stack
+   Pop $R2
+   Pop $R1
+   Pop $R0
+FunctionEnd
+
 
 Function WindowsTaskOptionsPage_Create
    ; === WindowsTaskOptions (type: Dialog) ===
@@ -85,46 +297,29 @@ Function WindowsTaskOptionsPage_Create
    Pop $hCtl_WindowsTaskOptionsPage_Label1
 
    ; === DropList1 (type: DropList) ===
-   ${NSD_CreateDropList} 60u 61u 84u 12u "Hourly"
+   ${NSD_CreateDropList} 60u 61u 84u 12u ""
    Pop $hCtl_WindowsTaskOptionsPage_DropList1
    ${NSD_AddExStyle} $hCtl_WindowsTaskOptionsPage_DropList1 ${WS_EX_RIGHT}
-   ${NSD_CB_AddString} $hCtl_WindowsTaskOptionsPage_DropList1 "Minutes"
-   ${NSD_CB_AddString} $hCtl_WindowsTaskOptionsPage_DropList1 "Hours"
-   ${NSD_CB_AddString} $hCtl_WindowsTaskOptionsPage_DropList1 "Days"
-   ${NSD_CB_SelectString} $hCtl_WindowsTaskOptionsPage_DropList1 "Hours"
+   ${NSD_OnChange} $hCtl_WindowsTaskOptionsPage_DropList1 WindowsTaskOptionsPage_DropList1_OnChange
 
    ; === Label2 (type: Label) ===
-   ${NSD_CreateLabel} 158u 52u 76u 8u "$(hCtl_WindowsTaskOptionsPage_Label2_Text)"
+   ${NSD_CreateLabel} 158u 52u 76u 8u ""
    Pop $hCtl_WindowsTaskOptionsPage_Label2
 
    ; === DropList2 (type: DropList) ===
-   ${NSD_CreateDropList} 155u 61u 79u 12u "4"
+   ${NSD_CreateDropList} 155u 61u 79u 12u ""
    Pop $hCtl_WindowsTaskOptionsPage_DropList2
    ${NSD_AddExStyle} $hCtl_WindowsTaskOptionsPage_DropList2 ${WS_EX_RIGHT}
-   ${NSD_CB_AddString} $hCtl_WindowsTaskOptionsPage_DropList2 "1"
-   ${NSD_CB_AddString} $hCtl_WindowsTaskOptionsPage_DropList2 "2"
-   ${NSD_CB_AddString} $hCtl_WindowsTaskOptionsPage_DropList2 "3"
-   ${NSD_CB_AddString} $hCtl_WindowsTaskOptionsPage_DropList2 "4"
-   ${NSD_CB_AddString} $hCtl_WindowsTaskOptionsPage_DropList2 "5"
-   ${NSD_CB_AddString} $hCtl_WindowsTaskOptionsPage_DropList2 "6"
-   ${NSD_CB_AddString} $hCtl_WindowsTaskOptionsPage_DropList2 "7"
-   ${NSD_CB_AddString} $hCtl_WindowsTaskOptionsPage_DropList2 "8"
-   ${NSD_CB_AddString} $hCtl_WindowsTaskOptionsPage_DropList2 "9"
-   ${NSD_CB_AddString} $hCtl_WindowsTaskOptionsPage_DropList2 "10"
-   ${NSD_CB_AddString} $hCtl_WindowsTaskOptionsPage_DropList2 "11"
-   ${NSD_CB_AddString} $hCtl_WindowsTaskOptionsPage_DropList2 "12"
-   ${NSD_CB_AddString} $hCtl_WindowsTaskOptionsPage_DropList2 "13"
-   ${NSD_CB_AddString} $hCtl_WindowsTaskOptionsPage_DropList2 "14"
-   ${NSD_CB_AddString} $hCtl_WindowsTaskOptionsPage_DropList2 "15"
-   ${NSD_CB_AddString} $hCtl_WindowsTaskOptionsPage_DropList2 "16"
-   ${NSD_CB_AddString} $hCtl_WindowsTaskOptionsPage_DropList2 "17"
-   ${NSD_CB_AddString} $hCtl_WindowsTaskOptionsPage_DropList2 "18"
-   ${NSD_CB_AddString} $hCtl_WindowsTaskOptionsPage_DropList2 "19"
-   ${NSD_CB_AddString} $hCtl_WindowsTaskOptionsPage_DropList2 "20"
-   ${NSD_CB_AddString} $hCtl_WindowsTaskOptionsPage_DropList2 "21"
-   ${NSD_CB_AddString} $hCtl_WindowsTaskOptionsPage_DropList2 "22"
-   ${NSD_CB_AddString} $hCtl_WindowsTaskOptionsPage_DropList2 "23"
-   ${NSD_CB_SelectString} $hCtl_WindowsTaskOptionsPage_DropList2 "4"
+   ${NSD_OnChange} $hCtl_WindowsTaskOptionsPage_DropList2 WindowsTaskOptionsPage_DropList2_OnChange
+
+   ; OnBack function
+   ${NSD_OnBack} WindowsTaskOptionsPage_Back
+
+   ; Load DropList1
+   Call WindowsTaskOptionsPage_DropList1_Load
+
+   ; Load DropList2
+   Call WindowsTaskOptionsPage_DropList2_Load
 FunctionEnd
 
 
@@ -134,6 +329,16 @@ FunctionEnd
 
 
 Function WindowsTaskOptionsPage_Show
-   Call WindowsTaskOptionsPage_Create
-   nsDialogs::Show $hCtl_WindowsTaskOptionsPage
+   ; Push $R0 onto the stack
+   Push $R0
+
+   ; Don't show the screen unless "Execution Mode" is "Windows Task"
+   ${ReadINIOption} $R0 "${IOS_GUI}" "${IO_EXECMODE}"
+   ${If} "$R0" == "${EXECMODE_TASK}"
+      Call WindowsTaskOptionsPage_Create
+      nsDialogs::Show $hCtl_WindowsTaskOptionsPage
+   ${EndIf}
+
+   ; Pop $R0 off of the stack
+   Pop $R0
 FunctionEnd
