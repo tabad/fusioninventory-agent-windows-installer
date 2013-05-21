@@ -133,6 +133,7 @@
 !define CATEGORY_PRINTER "printer"
 !define CATEGORY_PROCESS "process"
 !define CATEGORY_SOFTWARE "software"
+!define CATEGORY_USER "user"
 
 !define EXECMODE_SERVICE "service"
 !define EXECMODE_TASK "task"
