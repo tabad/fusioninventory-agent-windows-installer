@@ -73,6 +73,22 @@ SetCompressor /FINAL /SOLID lzma
    !define FIAI_PLATFORM_ARCHITECTURE ${DEFAULT_FIAI_PLATFORM_ARCHITECTURE}
 !endif
 
+!define LABEL_RELEASE_TYPE_STABLE "stable"
+!define LABEL_RELEASE_TYPE_DEVELOPMENT "development"
+!define DEFAULT_FIAI_RELEASE_TYPE "${LABEL_RELEASE_TYPE_DEVELOPMENT}"
+
+; Use MakeNSIS '/D' option for choose the release type
+!ifdef FIAI_RELEASE_TYPE
+   !if "${FIAI_RELEASE_TYPE}" != "${LABEL_RELEASE_TYPE_STABLE}"
+      !if "${FIAI_RELEASE_TYPE}" != "${LABEL_RELEASE_TYPE_DEVELOPMENT}"
+         !undef FIAI_RELEASE_TYPE
+         !define FIAI_RELEASE_TYPE "${DEFAULT_FIAI_RELEASE_TYPE}"
+      !endif
+   !endif
+!else
+   !define FIAI_RELEASE_TYPE "${DEFAULT_FIAI_RELEASE_TYPE}"
+!endif
+
 !define STRAWBERRY_RELEASE "5.16.3.1"
 !define FIA_RELEASE "master"
 !define FIA_TASK_DEPLOY_RELEASE "2.0.4"
@@ -88,7 +104,12 @@ SetCompressor /FINAL /SOLID lzma
 !define PRODUCT_VERSION_MINOR "3"
 !define PRODUCT_VERSION_RELEASE "0"
 !define PRODUCT_VERSION_BUILD "2013050201"
-!define PRODUCT_VERSION "${PRODUCT_VERSION_MAJOR}.${PRODUCT_VERSION_MINOR}.${PRODUCT_VERSION_RELEASE}-${PRODUCT_VERSION_BUILD}_experimental"
+!if "${FIAI_RELEASE_TYPE}" == "${LABEL_RELEASE_TYPE_STABLE}"
+   !define PRODUCT_VERSION_SUFFIX ""
+!else
+   !define PRODUCT_VERSION_SUFFIX "_dev"
+!endif
+!define PRODUCT_VERSION "${PRODUCT_VERSION_MAJOR}.${PRODUCT_VERSION_MINOR}.${PRODUCT_VERSION_RELEASE}-${PRODUCT_VERSION_BUILD}${PRODUCT_VERSION_SUFFIX}"
 !define PRODUCT_PUBLISHER "FusionInventory Team"
 !define PRODUCT_WEB_FOR_SUPPORT "http://forge.fusioninventory.org/projects/fusioninventory-agent"
 !define PRODUCT_WEB_SITE "http://www.fusioninventory.org"
@@ -144,6 +165,18 @@ SetCompressor /FINAL /SOLID lzma
 !define FIA_DIR "${STRAWBERRY_DIR}\cpan\sources\FusionInventory-Agent-${FIA_RELEASE}"
 
 !define FIAI_HELP_FILE "fusioninventory-agent_windows-${FIAI_PLATFORM_ARCHITECTURE}_${PRODUCT_VERSION}.rtf"
+
+!if "${FIAI_RELEASE_TYPE}" == "${LABEL_RELEASE_TYPE_STABLE}"
+   !define MUI_HEADERIMAGE_BITMAP_FILE  "${FIAI_DIR}\Contrib\Skins\Default\HeaderRightMUI2.bmp"
+   !define MUI_HEADERIMAGE_UNBITMAP_FILE "${FIAI_DIR}\Contrib\Skins\Default\HeaderRightMUI2.bmp"
+   !define MUI_WELCOMEFINISHPAGE_BITMAP_FILE "${FIAI_DIR}\Contrib\Skins\Default\WelcomeMUI2.bmp"
+   !define MUI_UNWELCOMEFINISHPAGE_BITMAP_FILE "${FIAI_DIR}\Contrib\Skins\Default\WelcomeMUI2.bmp"
+!else
+   !define MUI_HEADERIMAGE_BITMAP_FILE  "${FIAI_DIR}\Contrib\Skins\Default\HeaderRightMUI2DevelopmentVersion.bmp"
+   !define MUI_HEADERIMAGE_UNBITMAP_FILE "${FIAI_DIR}\Contrib\Skins\Default\HeaderRightMUI2DevelopmentVersion.bmp"
+   !define MUI_WELCOMEFINISHPAGE_BITMAP_FILE "${FIAI_DIR}\Contrib\Skins\Default\WelcomeMUI2DevelopmentVersion.bmp"
+   !define MUI_UNWELCOMEFINISHPAGE_BITMAP_FILE "${FIAI_DIR}\Contrib\Skins\Default\WelcomeMUI2DevelopmentVersion.bmp"
+!endif
 
 
 ;--------------------------------
@@ -213,19 +246,19 @@ Var FusionInventoryAgentTaskNetCoreInstalled
 ; Display an image on the header of the page
 !define MUI_HEADERIMAGE
 ; Bitmap image to display on the header of installers pages
-!define MUI_HEADERIMAGE_BITMAP  "${FIAI_DIR}\Contrib\Skins\Default\HeaderRightMUI2.bmp"
+!define MUI_HEADERIMAGE_BITMAP  "${MUI_HEADERIMAGE_BITMAP_FILE}"
 ; Bitmap image to display on the header of uninstaller pages
-!define MUI_HEADERIMAGE_UNBITMAP "${FIAI_DIR}\Contrib\Skins\Default\HeaderRightMUI2.bmp"
+!define MUI_HEADERIMAGE_UNBITMAP "${MUI_HEADERIMAGE_UNBITMAP_FILE}"
 ; Display the header image on the right side instead of the left side
 !define MUI_HEADERIMAGE_RIGHT
 
 ; Installer welcome/finish page
 ; Bitmap for the Welcome page and the Finish page
-!define MUI_WELCOMEFINISHPAGE_BITMAP "${FIAI_DIR}\Contrib\Skins\Default\WelcomeMUI2.bmp"
+!define MUI_WELCOMEFINISHPAGE_BITMAP "${MUI_WELCOMEFINISHPAGE_BITMAP_FILE}"
 
 ; Uninstaller welcome/finish page
 ; Bitmap for the Welcome page and the Finish page
-!define MUI_UNWELCOMEFINISHPAGE_BITMAP "${FIAI_DIR}\Contrib\Skins\Default\WelcomeMUI2.bmp"
+!define MUI_UNWELCOMEFINISHPAGE_BITMAP "${MUI_UNWELCOMEFINISHPAGE_BITMAP_FILE}"
 
 ; Components page
 ; A small description area on the bottom of the page
@@ -649,8 +682,10 @@ Section "-un.Init"
    ; Delete directory $R0\certs (whether is empty)
    RMDir "$R0\certs"
 
-   ; Delete directory $R0\debug
-   RMDir /r "$R0\debug"
+   !if "${FIAI_RELEASE_TYPE}" == "${LABEL_RELEASE_TYPE_DEVELOPMENT}"
+      ; Delete directory $R0\debug
+      RMDir /r "$R0\debug"
+   !endif
 
    ; Delete directory $R0\etc
    RMDir /r "$R0\etc"
@@ -775,11 +810,12 @@ FunctionEnd
 
 
 Function .onInstSuccess
-   ; Debug
-   ${ReadINIOption} $R0 "${IOS_FINAL}" "${IO_INSTALLDIR}"
-   CreateDirectory "$R0\debug\"
-   CopyFiles "${INI_OPTIONS_FILE}" "$R0\debug\"
-   CopyFiles "$PLUGINSDIR\CommandLineParser.log" "$R0\debug\"
+   !if "${FIAI_RELEASE_TYPE}" == "${LABEL_RELEASE_TYPE_DEVELOPMENT}"
+      ${ReadINIOption} $R0 "${IOS_FINAL}" "${IO_INSTALLDIR}"
+      CreateDirectory "$R0\debug\"
+      CopyFiles "${INI_OPTIONS_FILE}" "$R0\debug\"
+      CopyFiles "$PLUGINSDIR\CommandLineParser.log" "$R0\debug\"
+   !endif
 
    ; Unload registry plugin
    ${registry::Unload}
@@ -787,11 +823,12 @@ FunctionEnd
 
 
 Function .onInstFailed
-   ; Debug
-   ${ReadINIOption} $R0 "${IOS_FINAL}" "${IO_INSTALLDIR}"
-   CreateDirectory "$R0\debug\"
-   CopyFiles "${INI_OPTIONS_FILE}" "$R0\debug\"
-   CopyFiles "$PLUGINSDIR\CommandLineParser.log" "$R0\debug\"
+   !if "${FIAI_RELEASE_TYPE}" == "${LABEL_RELEASE_TYPE_DEVELOPMENT}"
+      ${ReadINIOption} $R0 "${IOS_FINAL}" "${IO_INSTALLDIR}"
+      CreateDirectory "$R0\debug\"
+      CopyFiles "${INI_OPTIONS_FILE}" "$R0\debug\"
+      CopyFiles "$PLUGINSDIR\CommandLineParser.log" "$R0\debug\"
+   !endif
 
    ; Unload registry plugin
    ${registry::Unload}
