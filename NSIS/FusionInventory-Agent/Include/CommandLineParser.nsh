@@ -909,6 +909,7 @@ Function GetCommandLineOptions
    ${If} $CommandLineSyntaxError = 1
       ${If} "$R0" != ""
          ; Syntax error. Invalid options.
+         StrCpy $CommandLineSyntaxError 0
          ${FileWriteLine} $R9 "Syntax error. Invalid options '$R0'."
       ${Else}
          ${FileWriteLine} $R9 "Syntax OK. All options have been recognized."
