@@ -158,7 +158,7 @@ elif (( ${repos_reached} < ${#ids_repository_urls[@]} )); then
    echo
 fi
 
-# Patcher loop
+# Update loop
 while (( ${arch_iter} < ${#archs[@]} )); do
    # Set arch and arch_label
    arch=${archs[${arch_iter}]}
@@ -181,7 +181,7 @@ while (( ${arch_iter} < ${#archs[@]} )); do
    repo_iter=0
 
    # Display task
-   echo "Updating IDs repositories in FusionInventory-Agent for Strawberry Perl ${strawberry_release} (${strawberry_version}-${arch_label}s)..."
+   echo -e "Updating IDs repositories in FusionInventory-Agent\n for Strawberry Perl ${strawberry_release} (${strawberry_version}-${arch_label}s)..."
 
    # Download loop
    while (( ${repo_iter} < ${#ids_repository_urls[@]} )); do
@@ -195,13 +195,12 @@ while (( ${arch_iter} < ${#archs[@]} )); do
          ids_repository_old_version="$(${grep} '^#[	| ]Version: ' ${base_path}/share/${ids_repository_file})"
          ids_repository_old_version="${ids_repository_old_version#*: }"
          echo -n "."
-         #${install} --mode 0644 "/tmp/${ids_repository_file}" "${base_path}/share/${ids_repository_file}" > /dev/null 2>&1
-         ${install} --mode 0644 "/tmp/${ids_repository_file}" "${base_path}/share/${ids_repository_file}"
+         ${install} --mode 0644 "/tmp/${ids_repository_file}" "${base_path}/share/${ids_repository_file}" > /dev/null 2>&1
          echo -n "."
          ids_repository_new_version="$(${grep} '^#[	| ]Version: ' ${base_path}/share/${ids_repository_file})"
          ids_repository_new_version="${ids_repository_new_version#*: }"
          echo ".Done!"
-         echo "      File '${ids_repository_file}' updated from version '${ids_repository_old_version}' to version '${ids_repository_new_version}'."
+         echo "   File '${ids_repository_file}' updated from version '${ids_repository_old_version}' to version '${ids_repository_new_version}'."
       fi
 
       # New repository
