@@ -202,6 +202,7 @@ example, continuing the previous one, using tar.
    > .\install-strawberry-perl-package-for-fusioninventory-agent.bat
    > .\install-fusioninventory-agent.bat
    > .\patch-fusioninventory-agent.bat
+   > .\update-ids-repositories.bat
    > cd ..\..\NSIS
    > .\FusionInventory-Agent.bat
 
@@ -216,6 +217,7 @@ example, continuing the previous one, using tar.
    $ ./install-strawberry-perl-package-for-fusioninventory-agent.sh
    $ ./install-fusioninventory-agent.sh
    $ ./patch-fusioninventory-agent.sh
+   > ./update-ids-repositories.sh
    $ cd ../../NSIS
    $ ./FusionInventory-Agent.sh
 

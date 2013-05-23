@@ -78,6 +78,8 @@ install-fusioninventory-agent.bat
 install-fusioninventory-agent.sh
 patch-fusioninventory-agent.bat
 patch-fusioninventory-agent.sh
+update-ids-repositories.bat
+update-ids-repositories.sh
 uninstall-fusioninventory-agent.bat
 uninstall-fusioninventory-agent.sh
 
