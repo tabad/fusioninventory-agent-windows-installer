@@ -80,9 +80,9 @@ LangString hCtl_TargetsPage_GroupBox2_Text ${LANG_FRENCH} "fRemote Targets"
 LangString hCtl_TargetsPage_GroupBox2_Text ${LANG_SPANISH} "Destinos Remotos"
 
 ; hCtl_TargetsPage_Label2_Text
-LangString hCtl_TargetsPage_Label2_Text ${LANG_ENGLISH} "You can indicate multiple URIs by separating them with commas$\r$\n'http://<server>/ocsinventory, http://<server>/glpi/plugins/fusioninventory, ...'"
-LangString hCtl_TargetsPage_Label2_Text ${LANG_FRENCH} "fYou can indicate multiple URIs by separating them with commas$\r$\n'http://<server>/ocsinventory, http://<server>/glpi/plugins/fusioninventory, ...'"
-LangString hCtl_TargetsPage_Label2_Text ${LANG_SPANISH} "Puede indicar múltiples URIs separándolos por comas$\r$\n'http://<server>/ocsinventory, http://<server>/glpi/plugins/fusioninventory, ...'"
+LangString hCtl_TargetsPage_Label2_Text ${LANG_ENGLISH} "You can indicate multiple URIs by separating them with commas$\r$\n'http://<server>/glpi/plugins/fusioninventory, http://<server>/ocsinventory, ...'"
+LangString hCtl_TargetsPage_Label2_Text ${LANG_FRENCH} "fYou can indicate multiple URIs by separating them with commas$\r$\n'http://<server>/glpi/plugins/fusioninventory, ...'"
+LangString hCtl_TargetsPage_Label2_Text ${LANG_SPANISH} "Puede indicar múltiples URIs separándolos por comas$\r$\n'http://<server>/glpi/plugins/fusioninventory, http://<server>/ocsinventory, ...'"
 
 ; hCtl_TargetsPage_SelectFolderDialog_Title
 LangString hCtl_TargetsPage_SelectFolderDialog_Title ${LANG_ENGLISH} "Select the folder where the result will send:"
