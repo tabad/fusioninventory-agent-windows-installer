@@ -829,6 +829,12 @@ Function .onInstSuccess
       CopyFiles "$PLUGINSDIR\CommandLineParser.log" "$R0\debug\"
    !endif
 
+   ; Check runnow option
+   ${ReadINIOption} $R0 "${IOS_FINAL}" "${IO_RUNNOW}"
+   ${If} $R0 = 1
+      ${RunAgentNow}
+   ${EndIf}
+
    ; Unload registry plugin
    ${registry::Unload}
 FunctionEnd
