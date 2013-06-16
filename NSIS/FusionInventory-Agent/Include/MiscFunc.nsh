@@ -54,6 +54,7 @@
 ;!include "${FIAI_DIR}\Include\SectionFunc.nsh"
 !include "${FIAI_DIR}\Include\WindowsInfo.nsh"
 !include "${FIAI_DIR}\Include\WinServicesFunc.nsh"
+!include "${FIAI_DIR}\Include\WinTasksFunc.nsh"
 
 
 ; InitGlobalVariables
@@ -215,6 +216,11 @@ Function InitINIOptionSectionCurrentConfig
       ${WriteINIOption} "$R0" "${IO_SERVICE-START-TYPE}" "$R1"
       ${GetFusionInventoryServiceStatus} $R1
       ${WriteINIOption} "$R0" "${IO_SERVICE-STATUS}" "$R1"
+   ${EndIf}
+
+   ${If} ${FusionInventoryAgentTaskIsInstalled}
+      ; FusionInventory Agent Windows task installed
+      ${WriteINIOption} "$R0" "${IO_EXECMODE}" "${EXECMODE_TASK}"
    ${EndIf}
 
    ${ReadINIOption} $R1 "$R0" "${IO_EXECMODE}"
