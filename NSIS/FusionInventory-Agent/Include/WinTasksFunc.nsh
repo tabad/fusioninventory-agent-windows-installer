@@ -63,7 +63,7 @@
    ; Look for task
    !insertmacro _LOGICLIB_TEMP
    ExpandEnvStrings $R0 %COMSPEC%
-   StrCpy $R1 '${PRODUCT_NAME}'
+   StrCpy $R1 '${PRODUCT_INTERNAL_NAME}'
    nsExec::ExecToStack '"$R0" /c schtasks /query /fo csv | find /c "$R1"'
 
    ; Get ExecToStack's return values
@@ -92,7 +92,7 @@
    Push $R1
 
    ${If} ${FusionInventoryAgentTaskIsInstalled}
-      nsExec::ExecTostack 'schtasks /delete /tn "${PRODUCT_NAME}" /f'
+      nsExec::ExecTostack 'schtasks /delete /tn "${PRODUCT_INTERNAL_NAME}" /f'
       Pop $R0
       Pop $R1
    ${EndIf}
@@ -141,7 +141,7 @@ Function AddFusionInventoryTask
    ${EndSelect}
 
    ; Create scheduled task
-   nsExec::ExecTostack 'schtasks /tn "${PRODUCT_NAME}" /create /ru system \
+   nsExec::ExecTostack 'schtasks /tn "${PRODUCT_INTERNAL_NAME}" /create /ru system \
        /tr "\"$R1\fusioninventory-agent.bat\"" /sc $R2 /mo $R3'
    Pop $R4
    Pop $R5
