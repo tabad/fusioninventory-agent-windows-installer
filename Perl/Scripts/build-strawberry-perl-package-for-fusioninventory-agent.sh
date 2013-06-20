@@ -333,12 +333,9 @@ ${cat} > "${strawberry_pepfia_path}/${strawberry_pepfia_file}.txt" <<EndOfFile
 Strawberry Perl ${strawberry_release} Portable Edition (${strawberry_version}-32/64bits) with all the
 required and recommended Perl modules for:
 
+      .- ${fusinv_agent_mod_name}-${fusinv_agent_commit}
 EndOfFile
 
-echo "      .- ${fusinv_agent_mod_name}-${fusinv_agent_commit}" >> "${strawberry_pepfia_path}/${strawberry_pepfia_file}.txt"
-echo "      .- ${fusinv_task_deploy_mod_name}-${fusinv_task_deploy_commit}" >> "${strawberry_pepfia_path}/${strawberry_pepfia_file}.txt"
-echo "      .- ${fusinv_task_esx_mod_name}-${fusinv_task_esx_commit}" >> "${strawberry_pepfia_path}/${strawberry_pepfia_file}.txt"
-echo "      .- ${fusinv_task_network_mod_name}-${fusinv_task_network_commit}" >> "${strawberry_pepfia_path}/${strawberry_pepfia_file}.txt"
 echo ".Done!"
 
 # Digest calculation loop
