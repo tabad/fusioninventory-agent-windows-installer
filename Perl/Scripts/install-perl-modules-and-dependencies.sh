@@ -47,6 +47,7 @@ source ./load-perl-environment
 declare perl=''
 declare cpanm=''
 declare perl_path=''
+declare cpanoutdated=''
 
 declare -i iter=0
 declare basename=''
@@ -141,9 +142,28 @@ while (( ${iter} < ${#archs[@]} )); do
    # Remove temporary cpanm files
    eval ${rm} -rf "$(pwd)/${strawberry_arch_path}/data/.cpanm" > /dev/null 2>&1
 
+   # The process starts
+   echo "Working with Strawberry Perl ${strawberry_release} (${strawberry_version}-${arch_label}s)..."
+
+   # Update cpanm
+   echo "Updating 'cpanm'..."
+   ${perl} ${cpanm} --install --auto-cleanup 1 --skip-installed --notest --quiet App::cpanminus
+
+   # Install cpan-outdated
+   echo "Installing 'cpan-outdated'..."
+   ${perl} ${cpanm} --install --auto-cleanup 1 --skip-installed --notest --quiet App::cpanoutdated
+
+   # Set cpanoutdated
+   cpanoutdated=$(type -P cpan-outdated)
+
+   # Update outdated CPAN modules
+   echo "Updating modules..."
+   ${cpanoutdated} -p | ${perl} ${cpanm} --install --auto-cleanup 1 --skip-installed --notest --quiet
+
    # Install modules
-   echo "Installing Strawberry Perl ${strawberry_release} (${strawberry_version}-${arch_label}s) modules..."
+   echo "Installing modules..."
    ${perl} ${cpanm} --install --auto-cleanup 1 --skip-installed --notest --quiet ${fusinv_mod_dependences}
+   echo
 
    # Remove perl_path from PATH
    PATH="${PATH/${perl_path}/}"
