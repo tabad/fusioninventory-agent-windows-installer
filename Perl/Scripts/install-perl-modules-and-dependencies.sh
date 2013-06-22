@@ -158,7 +158,7 @@ while (( ${iter} < ${#archs[@]} )); do
 
    # Update outdated CPAN modules
    echo "Updating modules..."
-   ${cpanoutdated} -p | ${perl} ${cpanm} --install --auto-cleanup 1 --skip-installed --notest --quiet
+   ${perl} ${cpanoutdated} -p | ${perl} ${cpanm} --install --auto-cleanup 1 --skip-installed --notest --quiet
 
    # Install modules
    echo "Installing modules..."
