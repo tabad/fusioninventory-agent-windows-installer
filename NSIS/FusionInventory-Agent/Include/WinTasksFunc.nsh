@@ -92,6 +92,10 @@
    Push $R1
 
    ${If} ${FusionInventoryAgentTaskIsInstalled}
+      nsExec::ExecTostack 'schtasks /end /tn "${PRODUCT_INTERNAL_NAME}"'
+      Pop $R0
+      Pop $R1
+
       nsExec::ExecTostack 'schtasks /delete /tn "${PRODUCT_INTERNAL_NAME}" /f'
       Pop $R0
       Pop $R1
