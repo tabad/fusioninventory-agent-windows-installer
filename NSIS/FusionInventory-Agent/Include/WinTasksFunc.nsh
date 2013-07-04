@@ -45,8 +45,51 @@
 !ifndef __FIAI_WINTASKSFUNC_INCLUDE__
 !define __FIAI_WINTASKSFUNC_INCLUDE__
 
+
 !include LogicLib.nsh
 !include "${FIAI_DIR}\Include\INIFunc.nsh"
+!include "${FIAI_DIR}\Include\WindowsInfo.nsh"
+
+
+; IsTargetOsValidForWindowsTask
+!define IsTargetOsValidForWindowsTask `"" IsTargetOsValidForWindowsTask ""`
+
+!macro _IsTargetOsValidForWindowsTask _a _b _t _f
+   !insertmacro _LOGICLIB_TEMP
+   Call IsTargetOsValidForWindowsTask
+   Pop $_LOGICLIB_TEMP
+   !insertmacro _= $_LOGICLIB_TEMP 0 `${_t}` `${_f}`
+!macroend
+
+Function IsTargetOsValidForWindowsTask
+   ; $R0 Auxiliary
+
+   ; Note: $R0 is used also output variable
+
+   ; Push $R0 onto the stack
+   Push $R0
+
+   ; Initialize $R0
+   StrCpy $R0 1
+
+   ; Check Windows version
+   ${If} ${IsServerOS}
+      ; It's a Windows server
+      ${If} ${AtLeastWin2003}
+         ; At least is a Windows Server 2003
+         StrCpy $R0 0
+      ${EndIf}
+   ${Else}
+      ; It's a Windows client
+      ${If} ${AtLeastWinXP}
+         ; At least is a Windows XP
+         StrCpy $R0 0
+      ${EndIf}
+   ${EndIf}
+
+   ; Exchanges the top element of the stack with $R0
+   Exch $R0
+FunctionEnd
 
 
 ; FusionInventoryAgentTaskIsInstalled
