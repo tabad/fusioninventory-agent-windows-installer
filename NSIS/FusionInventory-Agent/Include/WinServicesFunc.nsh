@@ -48,6 +48,7 @@
 
 !include LogicLib.nsh
 !include "${FIAI_DIR}\Include\INIFunc.nsh"
+!include "${FIAI_DIR}\Include\WindowsInfo.nsh"
 !include "${FIAI_DIR}\Include\WinServicesFuncLangStrings.nsh"
 
 
@@ -133,8 +134,11 @@ Function InstallFusionInventoryService
    Pop $R3
 
    ; Set service description
-   SimpleSC::SetServiceDescription "${PRODUCT_INTERNAL_NAME}" "$(InstallFusionInventoryService_Description)"
-   Pop $R3
+   ;    only whether the system is higher than Windows NT
+   ${If} ${AtLeastWin2000}
+      SimpleSC::SetServiceDescription "${PRODUCT_INTERNAL_NAME}" "$(InstallFusionInventoryService_Description)"
+      Pop $R3
+   ${EndIf}
 
    ; Set service status
    ${ReadINIOption} $R2 "$R0" "${IO_SERVICE-STATUS}"
