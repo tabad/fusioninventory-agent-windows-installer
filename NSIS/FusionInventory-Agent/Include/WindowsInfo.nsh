@@ -46,6 +46,9 @@
 !define __FIAI_WINDOWSINFO_INCLUDE__
 
 
+!include "WinVer.nsh"
+
+
 ; GetWindowsName
 !define GetWindowsName "!insertmacro GetWindowsName"
 
@@ -217,6 +220,24 @@
    GetVersion::WindowsVersion
    Pop "${ResultVar}"
 !macroend
+
+
+; GetWindowsVersionMajor
+;    Gets the Windows major version (e.g. of 5.1.2600 -> 5).
+;    See 'WinVer.nsh' for more information
+!define GetWindowsVersionMajor `${WinVerGetMajor}`
+
+
+; GetWindowsVersionMinor
+;    Gets the Windows minor version (e.g. of 5.1.2600 -> 1).
+;    See 'WinVer.nsh' for more information
+!define GetWindowsVersionMinor `${WinVerGetMinor}`
+
+
+; GetWindowsVersionBuildNumber
+;    Gets the Windows minor version (e.g. of 5.1.2600 -> 2600).
+;    See 'WinVer.nsh' for more information
+!define GetWindowsVersionBuildNumber `${WinVerGetBuild}`
 
 
 !endif
