@@ -53,6 +53,7 @@
 !include "${FIAI_DIR}\Include\FileFunc.nsh"
 !include "${FIAI_DIR}\Include\INIFunc.nsh"
 !include "${FIAI_DIR}\Include\StrFunc.nsh"
+!include "${FIAI_DIR}\Include\WinTasksFunc.nsh"
 
 
 ; Define command line parser logfile
@@ -323,6 +324,12 @@ Function GetCommandLineOptions
           ; Syntax error.
           StrCpy $CommandLineSyntaxError 0
           ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
+          ${Break}
+       ${ElseIf} "$R3" == "${EXECMODE_TASK}"
+       ${AndIfNot} ${IsTargetOsValidForWindowsTask}
+          ; Syntax error.
+          StrCpy $CommandLineSyntaxError 0
+          ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed on this Windows version."
           ${Break}
        ${EndIf}
    ${EndCommandLineOptionsSearchBlock}

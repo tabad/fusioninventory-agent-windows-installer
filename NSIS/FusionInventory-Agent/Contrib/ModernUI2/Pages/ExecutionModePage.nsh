@@ -51,6 +51,7 @@
 
 !include LogicLib.nsh
 !include "${FIAI_DIR}\Include\INIFunc.nsh"
+!include "${FIAI_DIR}\Include\WinTasksFunc.nsh"
 !include "${FIAI_DIR}\Contrib\ModernUI2\Pages\ExecutionModePageLangStrings.nsh"
 
 
@@ -100,6 +101,11 @@ Function ExecutionModePage_Create
 
    ; OnBack Function
    ${NSD_OnBack} ExecutionModePage_Back
+
+   ; Disable RadioButton2 depending on Windows version
+   ${IfNot} ${IsTargetOsValidForWindowsTask}
+      EnableWindow $hCtl_ExecutionModePage_RadioButton2 0
+   ${EndIf}
 
    ; Push $R0 & R1 onto the stack
    Push $R0
