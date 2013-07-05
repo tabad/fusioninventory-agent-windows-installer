@@ -206,9 +206,9 @@ Function InitINIOptionSectionCurrentConfig
    ; ToDo
    ; Get execmode
    ; Get firewall configuration
-   ; Active/Deactive NSIS sections
 
    ; Get current execution mode
+   ;   Windows service has preference over Windows task
    ${If} ${FusionInventoryAgentServiceIsInstalled}
       ; FusionInventory Agent Windows service installed
       ${WriteINIOption} "$R0" "${IO_EXECMODE}" "${EXECMODE_SERVICE}"
@@ -216,9 +216,7 @@ Function InitINIOptionSectionCurrentConfig
       ${WriteINIOption} "$R0" "${IO_SERVICE-START-TYPE}" "$R1"
       ${GetFusionInventoryWindowsServiceStatus} $R1
       ${WriteINIOption} "$R0" "${IO_SERVICE-STATUS}" "$R1"
-   ${EndIf}
-
-   ${If} ${FusionInventoryAgentTaskIsInstalled}
+   ${ElseIf} ${FusionInventoryAgentTaskIsInstalled}
       ; FusionInventory Agent Windows task installed
       ${WriteINIOption} "$R0" "${IO_EXECMODE}" "${EXECMODE_TASK}"
    ${EndIf}
