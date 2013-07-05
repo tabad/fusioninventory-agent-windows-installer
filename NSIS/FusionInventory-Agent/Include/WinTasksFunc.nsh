@@ -124,10 +124,10 @@ FunctionEnd
 !define FusionInventoryAgentTaskIsInstalled `"" FusionInventoryAgentTaskIsInstalled ""`
 
 
-; RemoveFusionInventoryTask
-!define RemoveFusionInventoryTask "!insertmacro RemoveFusionInventoryTask"
+; RemoveFusionInventoryWindowsTask
+!define RemoveFusionInventoryWindowsTask "!insertmacro RemoveFusionInventoryWindowsTask"
 
-!macro RemoveFusionInventoryTask
+!macro RemoveFusionInventoryWindowsTask
    ; $R0, $R1 ExecToStack's return values
 
    ; Push $R0 & $R1 onto the stack
@@ -150,10 +150,10 @@ FunctionEnd
 !macroend
 
 
-; AddFusionInventoryTask
-!define AddFusionInventoryTask "Call AddFusionInventoryTask"
+; AddFusionInventoryWindowsTask
+!define AddFusionInventoryWindowsTask "Call AddFusionInventoryWindowsTask"
 
-Function AddFusionInventoryTask
+Function AddFusionInventoryWindowsTask
    ; $R0 Section from which to read
    ; $R1 Install directory
    ; $R2 Time unit for the scheduler (minute, hourly, daily)

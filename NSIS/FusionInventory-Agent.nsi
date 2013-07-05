@@ -526,7 +526,7 @@ Section "-Init" SecInit
    ${RemoveFusionInventoryService}
 
    ; Remove Windows task (be sure)
-   ${RemoveFusionInventoryTask}
+   ${RemoveFusionInventoryWindowsTask}
 
    ; Create directories
    ${ReadINIOption} $R0 "${IOS_FINAL}" "${IO_INSTALLDIR}"
@@ -637,9 +637,9 @@ Section "-End" SecEnd
       ${InstallFusionInventoryService}
    ${EndIf}
 
-   ; InstallFusionInventoryTask
+   ; Install Windows task
    ${If} "$R0" == "${EXECMODE_TASK}"
-      ${AddFusionInventoryTask}
+      ${AddFusionInventoryWindowsTask}
    ${EndIf}
 SectionEnd
 
@@ -670,7 +670,7 @@ Section "-un.Init"
    ${RemoveFusionInventoryService}
 
    ; Remove Windows task
-   ${RemoveFusionInventoryTask}
+   ${RemoveFusionInventoryWindowsTask}
 
    ; Delete file $R0\fusioninventory-*.bat
    Delete "$R0\fusioninventory-*.bat"
