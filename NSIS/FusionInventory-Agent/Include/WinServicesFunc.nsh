@@ -67,10 +67,10 @@
 !define FusionInventoryAgentServiceIsInstalled `"" FusionInventoryAgentServiceIsInstalled ""`
 
 
-; GetFusionInventoryServiceStartType
-!define GetFusionInventoryServiceStartType "!insertmacro GetFusionInventoryServiceStartType"
+; GetFusionInventoryWindowsServiceStartType
+!define GetFusionInventoryWindowsServiceStartType "!insertmacro GetFusionInventoryWindowsServiceStartType"
 
-!macro GetFusionInventoryServiceStartType ResultVar
+!macro GetFusionInventoryWindowsServiceStartType ResultVar
    Push $R0
    SimpleSC::GetServiceStartType "${PRODUCT_INTERNAL_NAME}"
    Pop $R0
@@ -84,10 +84,10 @@
 !macroend
 
 
-; GetFusionInventoryServiceStatus
-!define GetFusionInventoryServiceStatus "!insertmacro GetFusionInventoryServiceStatus"
+; GetFusionInventoryWindowsServiceStatus
+!define GetFusionInventoryWindowsServiceStatus "!insertmacro GetFusionInventoryWindowsServiceStatus"
 
-!macro GetFusionInventoryServiceStatus ResultVar
+!macro GetFusionInventoryWindowsServiceStatus ResultVar
    Push $R0
    SimpleSC::GetServiceStatus "${PRODUCT_INTERNAL_NAME}"
    Pop $R0
@@ -101,10 +101,10 @@
 !macroend
 
 
-; InstallFusionInventoryService
-!define InstallFusionInventoryService "Call InstallFusionInventoryService"
+; InstallFusionInventoryWindowsService
+!define InstallFusionInventoryWindowsService "Call InstallFusionInventoryWindowsService"
 
-Function InstallFusionInventoryService
+Function InstallFusionInventoryWindowsService
    ; $R0 Section from which to read
    ; $R1 Install directory
    ; $R2 Service status / start type
@@ -136,7 +136,7 @@ Function InstallFusionInventoryService
    ; Set service description
    ;    only whether the system is higher than Windows NT
    ${If} ${AtLeastWin2000}
-      SimpleSC::SetServiceDescription "${PRODUCT_INTERNAL_NAME}" "$(InstallFusionInventoryService_Description)"
+      SimpleSC::SetServiceDescription "${PRODUCT_INTERNAL_NAME}" "$(InstallFusionInventoryWindowsService_Description)"
       Pop $R3
    ${EndIf}
 
@@ -182,10 +182,10 @@ Function InstallFusionInventoryService
 FunctionEnd
 
 
-; RemoveFusionInventoryService
-!define RemoveFusionInventoryService "!insertmacro RemoveFusionInventoryService"
+; RemoveFusionInventoryWindowsService
+!define RemoveFusionInventoryWindowsService "!insertmacro RemoveFusionInventoryWindowsService"
 
-!macro RemoveFusionInventoryService
+!macro RemoveFusionInventoryWindowsService
    ; Push $R0 onto the stack
    Push $R0
 

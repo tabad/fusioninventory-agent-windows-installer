@@ -523,7 +523,7 @@ Section "-Init" SecInit
    DetailPrint "Agent Uninstalled with Code: '$R0'"
 
    ; Remove Windows service (be sure)
-   ${RemoveFusionInventoryService}
+   ${RemoveFusionInventoryWindowsService}
 
    ; Remove Windows task (be sure)
    ${RemoveFusionInventoryWindowsTask}
@@ -631,10 +631,10 @@ Section "-End" SecEnd
    ; WriteConfigurationOptions
    ${WriteConfigurationOptions}
 
-   ; InstallFusionInventoryService
+   ; Install Windows service
    ${ReadINIOption} $R0 "${IOS_FINAL}" "${IO_EXECMODE}"
    ${If} "$R0" == "${EXECMODE_SERVICE}"
-      ${InstallFusionInventoryService}
+      ${InstallFusionInventoryWindowsService}
    ${EndIf}
 
    ; Install Windows task
@@ -667,7 +667,7 @@ Section "-un.Init"
    SetDetailsPrint textonly
 
    ; Remove Windows service
-   ${RemoveFusionInventoryService}
+   ${RemoveFusionInventoryWindowsService}
 
    ; Remove Windows task
    ${RemoveFusionInventoryWindowsTask}

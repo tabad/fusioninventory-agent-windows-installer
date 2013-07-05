@@ -212,9 +212,9 @@ Function InitINIOptionSectionCurrentConfig
    ${If} ${FusionInventoryAgentServiceIsInstalled}
       ; FusionInventory Agent Windows service installed
       ${WriteINIOption} "$R0" "${IO_EXECMODE}" "${EXECMODE_SERVICE}"
-      ${GetFusionInventoryServiceStartType} $R1
+      ${GetFusionInventoryWindowsServiceStartType} $R1
       ${WriteINIOption} "$R0" "${IO_SERVICE-START-TYPE}" "$R1"
-      ${GetFusionInventoryServiceStatus} $R1
+      ${GetFusionInventoryWindowsServiceStatus} $R1
       ${WriteINIOption} "$R0" "${IO_SERVICE-STATUS}" "$R1"
    ${EndIf}
 

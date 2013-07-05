@@ -49,14 +49,14 @@
 ;--------------------------------
 ; LangString Variables
 
-;   LangString: InstallFusionInventoryService_Description
-; For use with: Description of service in function InstallFusionInventoryService
+;   LangString: InstallFusionInventoryWindowsService_Description
+; For use with: Description of service in function InstallFusionInventoryWindowsService
 ;
-LangString InstallFusionInventoryService_Description ${LANG_ENGLISH} \
+LangString InstallFusionInventoryWindowsService_Description ${LANG_ENGLISH} \
 "${PRODUCT_NAME} Service."
-LangString InstallFusionInventoryService_Description ${LANG_FRENCH} \
+LangString InstallFusionInventoryWindowsService_Description ${LANG_FRENCH} \
 "f${PRODUCT_NAME} Service."
-LangString InstallFusionInventoryService_Description ${LANG_SPANISH} \
+LangString InstallFusionInventoryWindowsService_Description ${LANG_SPANISH} \
 "Servicio ${PRODUCT_NAME}."
 
 
