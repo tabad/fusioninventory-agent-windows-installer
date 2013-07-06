@@ -155,6 +155,15 @@ Function TargetsPage_Create
    ${ReadINIOption} $R1 "$R0" "${IO_SERVER}"
    ${NSD_SetText} $hCtl_TargetsPage_TextBox2 "$R1"
 
+   ; Set focus on TextBox2 whether TextBox1 and TextBox2 are empty
+   ${NSD_GetText} $hCtl_TargetsPage_TextBox1 $R1
+   ${If} "$R1" == ""
+      ${NSD_GetText} $hCtl_TargetsPage_TextBox2 $R1
+      ${If} "$R1" == ""
+         SendMessage $hCtl_TargetsPage_TextBox2 ${WM_SETFOCUS} $HWNDPARENT 0
+      ${EndIf}
+   ${EndIf}
+
    ; Pop $R1 & $R0 off of the stack
    Pop $R1
    Pop $R0
