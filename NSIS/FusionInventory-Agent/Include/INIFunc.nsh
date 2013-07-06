@@ -135,10 +135,10 @@
 !define CATEGORY_SOFTWARE "software"
 !define CATEGORY_USER "user"
 
-!define EXECMODE_SERVICE "service"
-!define EXECMODE_TASK "task"
-!define EXECMODE_MANUAL "manual"
-!define EXECMODE_CURRENT "current"
+!define EXECMODE_SERVICE "Service"
+!define EXECMODE_TASK "Task"
+!define EXECMODE_MANUAL "Manual"
+!define EXECMODE_CURRENT "Current"
 
 !define FREQUENCY_MINUTE "Minute"
 !define FREQUENCY_HOURLY "Hourly"
