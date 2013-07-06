@@ -138,7 +138,7 @@
 !define EXECMODE_SERVICE "service"
 !define EXECMODE_TASK "task"
 !define EXECMODE_MANUAL "manual"
-!define EXECMODE_CURRENTCONF "currentconf"
+!define EXECMODE_CURRENT "current"
 
 !define FREQUENCY_MINUTE "Minute"
 !define FREQUENCY_HOURLY "Hourly"
@@ -293,7 +293,7 @@ Function InitINIOptionSectionDefault
    ${WriteINIOption} "$R0" "${IO_DEBUG}" "0"
    ${WriteINIOption} "$R0" "${IO_DELAYTIME}" "3600"
    ${WriteINIOption} "$R0" "${IO_DUMPHELP}" "0"
-   ${WriteINIOption} "$R0" "${IO_EXECMODE}" "${EXECMODE_CURRENTCONF}"
+   ${WriteINIOption} "$R0" "${IO_EXECMODE}" "${EXECMODE_CURRENT}"
    ${WriteINIOption} "$R0" "${IO_HELP}" "0"
    ${WriteINIOption} "$R0" "${IO_HTML}" "0"
    ${WriteINIOption} "$R0" "${IO_HTTPD-IP}" "0.0.0.0"

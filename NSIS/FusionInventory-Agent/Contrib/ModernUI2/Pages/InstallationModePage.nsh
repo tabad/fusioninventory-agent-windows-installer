@@ -160,7 +160,7 @@ Function InstallationModePage_Leave
          ${WriteINIOption} "${IOS_GUI}" "${IO_INSTALLTYPE}" "${INSTALLTYPE_FROMSCRATCH}"
 
          ${ReadINIOption} $R0 "${IOS_GUI}" "${IO_EXECMODE}"
-         ${If} "$R0" == "${EXECMODE_CURRENTCONF}"
+         ${If} "$R0" == "${EXECMODE_CURRENT}"
             ${WriteINIOption} "${IOS_GUI}" "${IO_EXECMODE}" "${EXECMODE_SERVICE}"
             ${WriteINIOption} "${IOS_GUI}" "${IO_SERVICE-START-TYPE}" "${SERVICE_STARTTYPE_AUTO}"
             ${WriteINIOption} "${IOS_GUI}" "${IO_SERVICE-STATUS}" "${SERVICE_STATUS_RUNNING}"
@@ -272,7 +272,7 @@ Function InstallationModePage_Leave
 
          ; Fixing the ${IO_EXECMODE} option
          ${ReadINIOption} $R0 "${IOS_GUI}" "${IO_EXECMODE}"
-         ${If} "$R0" == "${EXECMODE_CURRENTCONF}"
+         ${If} "$R0" == "${EXECMODE_CURRENT}"
             ${ReadINIOption} $R0 "${IOS_CURRENTCONFIG}" "${IO_EXECMODE}"
             ${WriteINIOption} "${IOS_GUI}" "${IO_EXECMODE}" "$R0"
          ${EndIf}

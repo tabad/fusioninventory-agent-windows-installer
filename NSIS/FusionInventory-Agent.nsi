@@ -962,7 +962,7 @@ Function .onInitSilentMode
          ${UpdateINIOptionSection} "${IOS_FINAL}" "${IOS_COMMANDLINE}"
 
          ${ReadINIOption} $R0 "${IOS_FINAL}" "${IO_EXECMODE}"
-         ${If} "$R0" == "${EXECMODE_CURRENTCONF}"
+         ${If} "$R0" == "${EXECMODE_CURRENT}"
             ${WriteINIOption} "${IOS_FINAL}" "${IO_EXECMODE}" "${EXECMODE_SERVICE}"
             ${WriteINIOption} "${IOS_FINAL}" "${IO_SERVICE-START-TYPE}" "${SERVICE_STARTTYPE_AUTO}"
             ${WriteINIOption} "${IOS_FINAL}" "${IO_SERVICE-STATUS}" "${SERVICE_STATUS_RUNNING}"
@@ -1070,7 +1070,7 @@ Function .onInitSilentMode
 
          ; Fixing the ${IO_EXECMODE} option
          ${ReadINIOption} $R0 "${IOS_FINAL}" "${IO_EXECMODE}"
-         ${If} "$R0" == "${EXECMODE_CURRENTCONF}"
+         ${If} "$R0" == "${EXECMODE_CURRENT}"
             ${ReadINIOption} $R0 "${IOS_CURRENTCONFIG}" "${IO_EXECMODE}"
             ${WriteINIOption} "${IOS_FINAL}" "${IO_EXECMODE}" "$R0"
          ${EndIf}
@@ -1105,7 +1105,7 @@ Function .onInitSilentMode
       ${WriteINIOption} "${IOS_FINAL}" "${IO_INSTALLTYPE}" "${INSTALLTYPE_FROMSCRATCH}"
 
       ${ReadINIOption} $R0 "${IOS_FINAL}" "${IO_EXECMODE}"
-      ${If} "$R0" == "${EXECMODE_CURRENTCONF}"
+      ${If} "$R0" == "${EXECMODE_CURRENT}"
          ${WriteINIOption} "${IOS_FINAL}" "${IO_EXECMODE}" "${EXECMODE_SERVICE}"
          ${WriteINIOption} "${IOS_FINAL}" "${IO_SERVICE-START-TYPE}" "${SERVICE_STARTTYPE_AUTO}"
          ${WriteINIOption} "${IOS_FINAL}" "${IO_SERVICE-STATUS}" "${SERVICE_STATUS_RUNNING}"
@@ -1172,7 +1172,7 @@ Function .onInitVisualMode
          ${UpdateINIOptionSection} "${IOS_DEFAULTGUI}" "${IOS_COMMANDLINE}"
 
          ${ReadINIOption} $R0 "${IOS_DEFAULTGUI}" "${IO_EXECMODE}"
-         ${If} "$R0" == "${EXECMODE_CURRENTCONF}"
+         ${If} "$R0" == "${EXECMODE_CURRENT}"
             ${WriteINIOption} "${IOS_DEFAULTGUI}" "${IO_EXECMODE}" "${EXECMODE_SERVICE}"
             ${WriteINIOption} "${IOS_DEFAULTGUI}" "${IO_SERVICE-START-TYPE}" "${SERVICE_STARTTYPE_AUTO}"
             ${WriteINIOption} "${IOS_DEFAULTGUI}" "${IO_SERVICE-STATUS}" "${SERVICE_STATUS_RUNNING}"
@@ -1280,7 +1280,7 @@ Function .onInitVisualMode
 
          ; Fixing the ${IO_EXECMODE} option
          ${ReadINIOption} $R0 "${IOS_DEFAULTGUI}" "${IO_EXECMODE}"
-         ${If} "$R0" == "${EXECMODE_CURRENTCONF}"
+         ${If} "$R0" == "${EXECMODE_CURRENT}"
             ${ReadINIOption} $R0 "${IOS_CURRENTCONFIG}" "${IO_EXECMODE}"
             ${WriteINIOption} "${IOS_DEFAULTGUI}" "${IO_EXECMODE}" "$R0"
          ${EndIf}
@@ -1315,7 +1315,7 @@ Function .onInitVisualMode
       ${WriteINIOption} "${IOS_DEFAULTGUI}" "${IO_INSTALLTYPE}" "${INSTALLTYPE_FROMSCRATCH}"
 
       ${ReadINIOption} $R0 "${IOS_DEFAULTGUI}" "${IO_EXECMODE}"
-      ${If} "$R0" == "${EXECMODE_CURRENTCONF}"
+      ${If} "$R0" == "${EXECMODE_CURRENT}"
          ${WriteINIOption} "${IOS_DEFAULTGUI}" "${IO_EXECMODE}" "${EXECMODE_SERVICE}"
          ${WriteINIOption} "${IOS_DEFAULTGUI}" "${IO_SERVICE-START-TYPE}" "${SERVICE_STARTTYPE_AUTO}"
          ${WriteINIOption} "${IOS_DEFAULTGUI}" "${IO_SERVICE-STATUS}" "${SERVICE_STATUS_RUNNING}"

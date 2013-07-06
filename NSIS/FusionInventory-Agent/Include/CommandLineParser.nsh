@@ -320,7 +320,7 @@ Function GetCommandLineOptions
        ${If} "$R3" != "${EXECMODE_SERVICE}"
        ${AndIf} "$R3" != "${EXECMODE_TASK}"
        ${AndIf} "$R3" != "${EXECMODE_MANUAL}"
-       ${AndIf} "$R3" != "${EXECMODE_CURRENTCONF}"
+       ${AndIf} "$R3" != "${EXECMODE_CURRENT}"
           ; Syntax error.
           StrCpy $CommandLineSyntaxError 0
           ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
