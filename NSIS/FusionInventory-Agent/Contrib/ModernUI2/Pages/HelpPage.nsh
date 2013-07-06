@@ -104,10 +104,14 @@ Function HelpPage_Create
    ; Push $R0 onto the stack
    Push $R0
 
-   ; Hide and disable the button 'Next'.
+   ; Hide and disable the button 'Next'
    GetDlgItem $R0 $HWNDPARENT 1
    ShowWindow $R0 ${SW_HIDE}
    EnableWindow $R0 0
+
+   ; Change the text of button 'Cancel'
+   GetDlgItem $R0 $HWNDPARENT 2
+   ${NSD_SetText} $R0 "$(hCtl_HelpPage_CancelButton_Text)"
 
    ; Pop $R0 off of the stack
    Pop $R0
@@ -205,6 +209,8 @@ Function BuildHelpFile
    ${FileWriteLine} $R0 `\pard\li400 /add-firewall-exception\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_add-firewall-exception_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
+   ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_add-firewall-exception_Paragraph_2)\par`
+   ${FileWriteLine} $R0 `\par`
    ${FileWriteLine} $R0 ``
 
    ; /backend-collect-timeout
@@ -260,7 +266,7 @@ Function BuildHelpFile
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_DEBUG}"
    ${EscapeSpecialRTFCharacters} $R9 $R9
 
-   ${FileWriteLine} $R0 `\pard\li400 /debug\par`
+   ${FileWriteLine} $R0 `\pard\li400 /debug=<\i level\i0 >\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_debug_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_debug_Paragraph_2)\par`
@@ -284,10 +290,12 @@ Function BuildHelpFile
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_EXECMODE}"
    ${EscapeSpecialRTFCharacters} $R9 $R9
 
-   ${FileWriteLine} $R0 `\pard\li400 /execmode=\{service|task|manual|currentconf\}\par`
+   ${FileWriteLine} $R0 `\pard\li400 /execmode=<\i mode\i0 >\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_execmode_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_execmode_Paragraph_2)\par`
+   ${FileWriteLine} $R0 `\par`
+   ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_execmode_Paragraph_3)\par`
    ${FileWriteLine} $R0 `\par`
    ${FileWriteLine} $R0 ``
 
@@ -326,8 +334,6 @@ Function BuildHelpFile
    ${FileWriteLine} $R0 `\pard\li400 /httpd-ip=<\i ip\i0 >\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_httpd-ip_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_httpd-ip_Paragraph_2)\par`
-   ${FileWriteLine} $R0 `\par`
    ${FileWriteLine} $R0 ``
 
    ; /httpd-port
@@ -337,18 +343,18 @@ Function BuildHelpFile
    ${FileWriteLine} $R0 `\pard\li400 /httpd-port=<\i port\i0 >\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_httpd-port_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_httpd-port_Paragraph_2)\par`
-   ${FileWriteLine} $R0 `\par`
    ${FileWriteLine} $R0 ``
 
    ; /httpd-trust
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_HTTPD-TRUST}"
    ${EscapeSpecialRTFCharacters} $R9 $R9
 
-   ${FileWriteLine} $R0 `\pard\li400 /httpd-trust=<\i cidr\i0 >\par`
+   ${FileWriteLine} $R0 `\pard\li400 /httpd-trust=\{<\i ip\i0 >|<\i range\i0 >|<\i hostname\i0 >\}[,\{<\i ip\i0 >|<\i range\i0 >|<\i hostname\i0 >\}[...]]\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_httpd-trust_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_httpd-trust_Paragraph_2)\par`
+   ${FileWriteLine} $R0 `\par`
+   ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_httpd-trust_Paragraph_3)\par`
    ${FileWriteLine} $R0 `\par`
    ${FileWriteLine} $R0 ``
 
@@ -367,7 +373,7 @@ Function BuildHelpFile
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_INSTALLTASKS}"
    ${EscapeSpecialRTFCharacters} $R9 $R9
 
-   ${FileWriteLine} $R0 `\pard\li400 /installtasks=\{[<\i task\i0 >][,<\i task\i0 >][...]|<\i macro\i0 >\}\par`
+   ${FileWriteLine} $R0 `\pard\li400 /installtasks=\{<\i task\i0 >[,<\i task\i0 >[...]]|<\i macro\i0 >\}\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_installtasks_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_installtasks_Paragraph_2)\par`
@@ -424,15 +430,13 @@ Function BuildHelpFile
    ${FileWriteLine} $R0 `\pard\li400 /logfile-maxsize=<\i size\i0 >\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_logfile-maxsize_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_logfile-maxsize_Paragraph_2)\par`
-   ${FileWriteLine} $R0 `\par`
    ${FileWriteLine} $R0 ``
 
    ; /logger
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_LOGGER}"
    ${EscapeSpecialRTFCharacters} $R9 $R9
 
-   ${FileWriteLine} $R0 `\pard\li400 /logger=\{[<\i backend\i0 >][,<\i backend\i0 >]\}\par`
+   ${FileWriteLine} $R0 `\pard\li400 /logger=<\i backend\i0 >[,<\i backend\i0 >]\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_logger_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_logger_Paragraph_2)\par`
@@ -446,7 +450,7 @@ Function BuildHelpFile
       StrCpy $R9 "$\"$\""
    ${EndIf}
 
-   ${FileWriteLine} $R0 `\pard\li400 /no-category=\{[<\i category\i0 >][,<\i category\i0 >][...]\}\par`
+   ${FileWriteLine} $R0 `\pard\li400 /no-category=<\i category\i0 >[,<\i category\i0 >[...]]\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_no-category_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_no-category_Paragraph_2)\par`
@@ -516,7 +520,7 @@ Function BuildHelpFile
       StrCpy $R9 "$\"$\""
    ${EndIf}
 
-   ${FileWriteLine} $R0 `\pard\li400 /no-task=\{[<\i task\i0 >][,<\i task\i0 >][...]\}\par`
+   ${FileWriteLine} $R0 `\pard\li400 /no-task=<\i task\i0 >[,<\i task\i0 >[...]]\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_no-task_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_no-task_Paragraph_2)\par`
@@ -608,7 +612,7 @@ Function BuildHelpFile
       StrCpy $R9 "$\"$\""
    ${EndIf}
 
-   ${FileWriteLine} $R0 `\pard\li400 /server=[<\i URI\i0 >][,<\i URI\i0 >[...]] \par`
+   ${FileWriteLine} $R0 `\pard\li400 /server=<\i URI\i0 >[,<\i URI\i0 >[...]]\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_server_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_server_Paragraph_2)\par`
@@ -646,13 +650,15 @@ Function BuildHelpFile
    ${FileWriteLine} $R0 `\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_task-daily-modifier_Paragraph_2)\par`
    ${FileWriteLine} $R0 `\par`
+   ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_task-daily-modifier_Paragraph_3)\par`
+   ${FileWriteLine} $R0 `\par`
    ${FileWriteLine} $R0 ``
 
    ; /task-frequency
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_TASK-FREQUENCY}"
    ${EscapeSpecialRTFCharacters} $R9 $R9
 
-   ${FileWriteLine} $R0 `\pard\li400 /task-frequency=\{Minute|Hourly|Daily\}\par`
+   ${FileWriteLine} $R0 `\pard\li400 /task-frequency=<\i frequency\i0 >\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_task-frequency_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_task-frequency_Paragraph_2)\par`
@@ -668,6 +674,8 @@ Function BuildHelpFile
    ${FileWriteLine} $R0 `\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_task-hourly-modifier_Paragraph_2)\par`
    ${FileWriteLine} $R0 `\par`
+   ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_task-hourly-modifier_Paragraph_3)\par`
+   ${FileWriteLine} $R0 `\par`
    ${FileWriteLine} $R0 ``
 
    ; /task-minute-modifier
@@ -678,6 +686,8 @@ Function BuildHelpFile
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_task-minute-modifier_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_task-minute-modifier_Paragraph_2)\par`
+   ${FileWriteLine} $R0 `\par`
+   ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_task-minute-modifier_Paragraph_3)\par`
    ${FileWriteLine} $R0 `\par`
    ${FileWriteLine} $R0 ``
 
