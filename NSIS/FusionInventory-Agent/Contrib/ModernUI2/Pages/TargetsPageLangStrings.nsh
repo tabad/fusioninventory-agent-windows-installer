@@ -84,10 +84,25 @@ LangString hCtl_TargetsPage_Label2_Text ${LANG_ENGLISH} "You can indicate multip
 LangString hCtl_TargetsPage_Label2_Text ${LANG_FRENCH} "fYou can indicate multiple URIs by separating them with commas$\r$\n'http://<server>/glpi/plugins/fusioninventory, ...'"
 LangString hCtl_TargetsPage_Label2_Text ${LANG_SPANISH} "Puede indicar múltiples URIs separándolos por comas$\r$\n'http://<server>/glpi/plugins/fusioninventory, http://<server>/ocsinventory, ...'"
 
+; hCtl_TargetsPage_CheckBox1_Text
+LangString hCtl_TargetsPage_CheckBox1_Text ${LANG_ENGLISH} "Quick installation (do not show the rest of windows of options)"
+LangString hCtl_TargetsPage_CheckBox1_Text ${LANG_FRENCH} "fQuick installation (do not show the rest of windows of options)"
+LangString hCtl_TargetsPage_CheckBox1_Text ${LANG_SPANISH} "Instalación rápida (no mostrar el resto de ventanas de opciones)"
+
 ; hCtl_TargetsPage_SelectFolderDialog_Title
 LangString hCtl_TargetsPage_SelectFolderDialog_Title ${LANG_ENGLISH} "Select the folder where the result will send:"
-LangString hCtl_TargetsPage_SelectFolderDialog_Title ${LANG_FRENCH} "fSelect the folder where the result will send"
+LangString hCtl_TargetsPage_SelectFolderDialog_Title ${LANG_FRENCH} "fSelect the folder where the result will send:"
 LangString hCtl_TargetsPage_SelectFolderDialog_Title ${LANG_SPANISH} "Seleccione el directorio al que se enviará el resultado:"
+
+; hCtl_TargetsPage_NextButton_Text_Next
+LangString hCtl_TargetsPage_NextButton_Text_Next ${LANG_ENGLISH} "&Next >"
+LangString hCtl_TargetsPage_NextButton_Text_Next ${LANG_FRENCH} "&Suivant >"
+LangString hCtl_TargetsPage_NextButton_Text_Next ${LANG_SPANISH} "&Siguiente >"
+
+; hCtl_TargetsPage_NextButton_Text_Install
+LangString hCtl_TargetsPage_NextButton_Text_Install ${LANG_ENGLISH} "&Install"
+LangString hCtl_TargetsPage_NextButton_Text_Install ${LANG_FRENCH} "&Installer"
+LangString hCtl_TargetsPage_NextButton_Text_Install ${LANG_SPANISH} "&Instalar"
 
 
 !endif

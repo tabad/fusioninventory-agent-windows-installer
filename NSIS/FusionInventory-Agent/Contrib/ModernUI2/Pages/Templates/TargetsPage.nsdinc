@@ -12,6 +12,7 @@ Var hCtl_TargetsPage_Label1
 Var hCtl_TargetsPage_GroupBox2
 Var hCtl_TargetsPage_TextBox2
 Var hCtl_TargetsPage_Label2
+Var hCtl_TargetsPage_CheckBox1
 
 
 ; dialog create function
@@ -26,34 +27,38 @@ Function fnc_TargetsPage_Create
   !insertmacro MUI_HEADER_TEXT "Dialog title..." "Dialog subtitle..."
   
   ; === GroupBox1 (type: GroupBox) ===
-  ${NSD_CreateGroupBox} 0u 9u 294u 47u "Local Target Folder"
+  ${NSD_CreateGroupBox} 0u 0u 294u 47u "Local Target Folder"
   Pop $hCtl_TargetsPage_GroupBox1
   
   ; === TextBox1 (type: Text) ===
-  ${NSD_CreateText} 11u 25u 194u 11u ""
+  ${NSD_CreateText} 11u 16u 194u 11u ""
   Pop $hCtl_TargetsPage_TextBox1
   
   ; === Button1 (type: Button) ===
-  ${NSD_CreateButton} 215u 23u 68u 14u "Browser..."
+  ${NSD_CreateButton} 215u 14u 68u 14u "Browser..."
   Pop $hCtl_TargetsPage_Button1
   
   ; === Label1 (type: Label) ===
-  ${NSD_CreateLabel} 11u 41u 194u 11u "Local path or UNC path name"
+  ${NSD_CreateLabel} 11u 32u 194u 11u "Local path or UNC path name"
   Pop $hCtl_TargetsPage_Label1
   ${NSD_AddStyle} $hCtl_TargetsPage_Label1 ${WS_VISIBLE}
   
   ; === GroupBox2 (type: GroupBox) ===
-  ${NSD_CreateGroupBox} 0u 65u 294u 54u "Remote Targets URI's"
+  ${NSD_CreateGroupBox} 0u 54u 294u 54u "Remote Targets URI's"
   Pop $hCtl_TargetsPage_GroupBox2
   
   ; === TextBox2 (type: Text) ===
-  ${NSD_CreateText} 11u 81u 271u 11u ""
+  ${NSD_CreateText} 11u 70u 271u 11u ""
   Pop $hCtl_TargetsPage_TextBox2
   
   ; === Label2 (type: Label) ===
-  ${NSD_CreateLabel} 11u 97u 271u 18u "You can indicate multiple remote targets by separating them with commas."
+  ${NSD_CreateLabel} 11u 86u 271u 18u "You can indicate multiple remote targets by separating them with commas."
   Pop $hCtl_TargetsPage_Label2
   ${NSD_AddStyle} $hCtl_TargetsPage_Label2 ${WS_VISIBLE}
+  
+  ; === CheckBox1 (type: Checkbox) ===
+  ${NSD_CreateCheckbox} 11u 117u 271u 11u "Quick installation. Do not show more screens of options."
+  Pop $hCtl_TargetsPage_CheckBox1
   
 FunctionEnd
 

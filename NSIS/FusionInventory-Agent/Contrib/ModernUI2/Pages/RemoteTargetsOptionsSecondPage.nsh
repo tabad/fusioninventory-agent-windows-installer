@@ -169,11 +169,15 @@ Function RemoteTargetsOptionsSecondPage_Show
    ; Push $R0 onto the stack
    Push $R0
 
-   ; Don't show the screen unless SERVER was entered
-   ${ReadINIOption} $R0 "${IOS_GUI}" "${IO_SERVER}"
-   ${If} "$R0" != ""
-      Call RemoteTargetsOptionsSecondPage_Create
-      nsDialogs::Show $hCtl_RemoteTargetsOptionsSecondPage
+   ; Don't show the screen unless quick installation is disabled
+   ${ReadINIOption} $R0 "${IOS_GUI}" "${IO_QUICK-INSTALL}"
+   ${If} "$R0" == "0"
+      ; Don't show the screen unless SERVER was entered
+      ${ReadINIOption} $R0 "${IOS_GUI}" "${IO_SERVER}"
+      ${If} "$R0" != ""
+         Call RemoteTargetsOptionsSecondPage_Create
+         nsDialogs::Show $hCtl_RemoteTargetsOptionsSecondPage
+      ${EndIf}
    ${EndIf}
 
    ; Pop $R0 off of the stack

@@ -332,11 +332,15 @@ Function WindowsTaskOptionsPage_Show
    ; Push $R0 onto the stack
    Push $R0
 
-   ; Don't show the screen unless "Execution Mode" is "Windows Task"
-   ${ReadINIOption} $R0 "${IOS_GUI}" "${IO_EXECMODE}"
-   ${If} "$R0" == "${EXECMODE_TASK}"
-      Call WindowsTaskOptionsPage_Create
-      nsDialogs::Show $hCtl_WindowsTaskOptionsPage
+   ; Don't show the screen unless quick installation is disabled
+   ${ReadINIOption} $R0 "${IOS_GUI}" "${IO_QUICK-INSTALL}"
+   ${If} "$R0" == "0"
+      ; Don't show the screen unless "Execution Mode" is "Windows Task"
+      ${ReadINIOption} $R0 "${IOS_GUI}" "${IO_EXECMODE}"
+      ${If} "$R0" == "${EXECMODE_TASK}"
+         Call WindowsTaskOptionsPage_Create
+         nsDialogs::Show $hCtl_WindowsTaskOptionsPage
+      ${EndIf}
    ${EndIf}
 
    ; Pop $R0 off of the stack

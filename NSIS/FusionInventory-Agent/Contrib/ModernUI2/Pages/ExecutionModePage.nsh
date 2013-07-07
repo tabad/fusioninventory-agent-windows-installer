@@ -174,6 +174,16 @@ FunctionEnd
 
 
 Function ExecutionModePage_Show
-   Call ExecutionModePage_Create
-   nsDialogs::Show $hCtl_ExecutionModePage
+   ; Pushes $R0 onto the stack
+   Push $R0
+
+   ; Don't show the screen unless quick installation is disabled
+   ${ReadINIOption} $R0 "${IOS_GUI}" "${IO_QUICK-INSTALL}"
+   ${If} "$R0" == "0"
+      Call ExecutionModePage_Create
+      nsDialogs::Show $hCtl_ExecutionModePage
+   ${EndIf}
+
+   ; Pop $R0 off of the stack
+   Pop $R0
 FunctionEnd

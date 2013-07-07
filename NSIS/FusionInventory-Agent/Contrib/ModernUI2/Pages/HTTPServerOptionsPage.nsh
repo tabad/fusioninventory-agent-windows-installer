@@ -215,11 +215,15 @@ Function HTTPServerOptionsPage_Show
    ; Push $R0 onto the stack
    Push $R0
 
-   ; Don't show the screen unless "Execution Mode" is "Windows Service"
-   ${ReadINIOption} $R0 "${IOS_GUI}" "${IO_EXECMODE}"
-   ${If} "$R0" == "${EXECMODE_SERVICE}"
-      Call HTTPServerOptionsPage_Create
-      nsDialogs::Show $hCtl_HTTPServerOptionsPage
+   ; Don't show the screen unless quick installation is disabled
+   ${ReadINIOption} $R0 "${IOS_GUI}" "${IO_QUICK-INSTALL}"
+   ${If} "$R0" == "0"
+      ; Don't show the screen unless "Execution Mode" is "Windows Service"
+      ${ReadINIOption} $R0 "${IOS_GUI}" "${IO_EXECMODE}"
+      ${If} "$R0" == "${EXECMODE_SERVICE}"
+         Call HTTPServerOptionsPage_Create
+         nsDialogs::Show $hCtl_HTTPServerOptionsPage
+      ${EndIf}
    ${EndIf}
 
    ; Pop $R0 off of the stack

@@ -65,6 +65,7 @@ Var hCtl_TargetsPage_Label1
 Var hCtl_TargetsPage_GroupBox2
 Var hCtl_TargetsPage_TextBox2
 Var hCtl_TargetsPage_Label2
+Var hCtl_TargetsPage_CheckBox1
 
 
 ;--------------------------------
@@ -97,6 +98,33 @@ Function TargetsPage_Button1_OnClick
 FunctionEnd
 
 
+Function TargetsPage_CheckBox1_OnClick
+   ; $R0 Handle
+   ; $R1 Auxiliary
+
+   ; Get parameter
+   Exch $R0
+
+   ; Push $R1 onto the stack
+   Push $R1
+
+   ; Get handle of button 'Next'
+   GetDlgItem $R0 $HWNDPARENT 1
+
+   ; Change the text of button 'Next'
+   ${NSD_GetState} $hCtl_TargetsPage_CheckBox1 $R1
+   ${If} $R1 = ${BST_CHECKED}
+      ${NSD_SetText} $R0 "$(hCtl_TargetsPage_NextButton_Text_Install)"
+   ${Else}
+      ${NSD_SetText} $R0 "$(hCtl_TargetsPage_NextButton_Text_Next)"
+   ${EndIf}
+
+   ; Pop $R1 & $R0 off of the stack
+   Pop $R1
+   Pop $R0
+FunctionEnd
+
+
 Function TargetsPage_Create
    ; === TargetsPage (type: Dialog) ===
    nsDialogs::Create 1018
@@ -107,35 +135,41 @@ Function TargetsPage_Create
    !insertmacro MUI_HEADER_TEXT "$(hCtl_TargetsPage_Text)" "$(hCtl_TargetsPage_SubText)"
 
    ; === GroupBox1 (type: GroupBox) ===
-   ${NSD_CreateGroupBox} 0u 9u 294u 47u "$(hCtl_TargetsPage_GroupBox1_Text)"
+   ${NSD_CreateGroupBox} 0u 0u 294u 47u "$(hCtl_TargetsPage_GroupBox1_Text)"
    Pop $hCtl_TargetsPage_GroupBox1
 
    ; === TextBox1 (type: Text) ===
-   ${NSD_CreateText} 11u 25u 194u 11u ""
+   ${NSD_CreateText} 11u 16u 194u 11u ""
    Pop $hCtl_TargetsPage_TextBox1
 
    ; === Button1 (type: Button) ===
-   ${NSD_CreateButton} 215u 23u 68u 14u "$(hCtl_TargetsPage_Button1_Text)"
+   ${NSD_CreateButton} 215u 14u 68u 14u "$(hCtl_TargetsPage_Button1_Text)"
    Pop $hCtl_TargetsPage_Button1
    ${NSD_OnClick} $hCtl_TargetsPage_Button1 TargetsPage_Button1_OnClick
 
    ; === Label1 (type: Label) ===
-   ${NSD_CreateLabel} 11u 41u 194u 11u "$(hCtl_TargetsPage_Label1_Text)"
+   ${NSD_CreateLabel} 11u 32u 194u 11u "$(hCtl_TargetsPage_Label1_Text)"
    Pop $hCtl_TargetsPage_Label1
    ${NSD_AddStyle} $hCtl_TargetsPage_Label1 ${SS_CENTER}
 
    ; === GroupBox2 (type: GroupBox) ===
-   ${NSD_CreateGroupBox} 0u 65u 294u 54u "$(hCtl_TargetsPage_GroupBox2_Text)"
+   ${NSD_CreateGroupBox} 0u 54u 294u 54u "$(hCtl_TargetsPage_GroupBox2_Text)"
    Pop $hCtl_TargetsPage_GroupBox2
 
    ; === TextBox2 (type: Text) ===
-   ${NSD_CreateText} 11u 81u 271u 11u ""
+   ${NSD_CreateText} 11u 70u 271u 11u ""
    Pop $hCtl_TargetsPage_TextBox2
 
    ; === Label2 (type: Label) ===
-   ${NSD_CreateLabel} 11u 97u 271u 18u "$(hCtl_TargetsPage_Label2_Text)"
+   ${NSD_CreateLabel} 11u 86u 271u 18u "$(hCtl_TargetsPage_Label2_Text)"
    Pop $hCtl_TargetsPage_Label2
    ${NSD_AddStyle} $hCtl_TargetsPage_Label2 ${SS_CENTER}
+
+   ; === CheckBox1 (type: Checkbox) ===
+   ${NSD_CreateCheckbox} 11u 117u 271u 11u "$(hCtl_TargetsPage_CheckBox1_Text)"
+   Pop $hCtl_TargetsPage_CheckBox1
+   ${NSD_AddStyle} $hCtl_TargetsPage_CheckBox1 ${BS_RIGHT}|${BS_RIGHTBUTTON}
+   ${NSD_OnClick} $hCtl_TargetsPage_CheckBox1 TargetsPage_CheckBox1_OnClick
 
    ; OnBack Function
    ${NSD_OnBack} TargetsPage_Back
@@ -154,6 +188,19 @@ Function TargetsPage_Create
    ; Set TextBox2 Text
    ${ReadINIOption} $R1 "$R0" "${IO_SERVER}"
    ${NSD_SetText} $hCtl_TargetsPage_TextBox2 "$R1"
+
+   ; Set CheckBox1 Check
+   ;    and the text of button 'Next'
+   ${ReadINIOption} $R1 "$R0" "${IO_QUICK-INSTALL}"
+   ${If} "$R1" != "0"
+      GetDlgItem $R1 $HWNDPARENT 1
+      ${NSD_Check} $hCtl_TargetsPage_CheckBox1
+      ${NSD_SetText} $R1 "$(hCtl_TargetsPage_NextButton_Text_Install)"
+   ${Else}
+      GetDlgItem $R1 $HWNDPARENT 1
+      ${NSD_Uncheck} $hCtl_TargetsPage_CheckBox1
+      ${NSD_SetText} $R1 "$(hCtl_TargetsPage_NextButton_Text_Next)"
+   ${EndIf}
 
    ; Set focus on TextBox2 whether TextBox1 and TextBox2 are empty
    ${NSD_GetText} $hCtl_TargetsPage_TextBox1 $R1
@@ -185,6 +232,14 @@ Function TargetsPage_Leave
    ; Save TextBox2 Text
    ${NSD_GetText} $hCtl_TargetsPage_TextBox2 $R1
    ${WriteINIOption} "$R0" "${IO_SERVER}" "$R1"
+
+   ; Save CheckBox1 Check
+   ${NSD_GetState} $hCtl_TargetsPage_CheckBox1 $R1
+   ${If} $R1 = ${BST_CHECKED}
+      ${WriteINIOption} "$R0" "${IO_QUICK-INSTALL}" "1"
+   ${Else}
+      ${WriteINIOption} "$R0" "${IO_QUICK-INSTALL}" "0"
+   ${EndIf}
 
    ; Pop $R1 & $R0 off of the stack
    Pop $R1
