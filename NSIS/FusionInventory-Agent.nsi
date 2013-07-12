@@ -473,51 +473,6 @@ Section "-Init" SecInit
       ${CopyINIOptionSection} "${IOS_GUI}" "${IOS_FINAL}"
    ${EndIf}
 
-   ; Get current install subkey (Debug)
-   ${GetCurrentInstallSubKey} $R0
-   DetailPrint "Current Install Subkey: '$R0'"
-
-   ; Get current install location (Debug)
-   ${GetCurrentInstallLocation} $R0
-   DetailPrint "Current Install Location: '$R0'"
-
-   ; Get current uninstall subkey (Debug)
-   ${GetCurrentUninstallSubKey} $R0
-   DetailPrint "Current Uninstall Subkey: '$R0'"
-
-   ; Get current uninstall string (Debug)
-   ${GetCurrentUninstallString} $R0
-   DetailPrint "Current Uninstall String: '$R0'"
-
-   ; Windows information (Debug)
-   ${GetWindowsName} $R0
-   DetailPrint "WindowsName: $R0"
-   ${GetWindowsType} $R0
-   DetailPrint "WindowsType: $R0"
-   ${GetWindowsVersion} $R0
-   DetailPrint "WindowsVersion: $R0"
-   ${GetWindowsServerName} $R0
-   DetailPrint "WindowsServerName: $R0"
-   ${GetWindowsServicePack} $R0
-   DetailPrint "WindowsServicePack: $R0"
-   ${GetWindowsServicePackBuild} $R0
-   DetailPrint "WindowsServicePackBuild: $R0"
-   ${GetWindowsServicePackMinor} $R0
-   DetailPrint "WindowsServicePackMinor: $R0"
-   ${GetWindowsServicePackMajor} $R0
-   DetailPrint "WindowsServicePackMajor: $R0"
-   ${GetWindowsPlatformId} $R0
-   DetailPrint "WindowsPlatformId: $R0"
-   ${GetWindowsPlatformArchitecture} $R0
-   DetailPrint "WindowsPlatformArchitecture: $R0"
-
-   ; Installer platform (Debug)
-   DetailPrint "Installer platform architecture: ${FIAI_PLATFORM_ARCHITECTURE}"
-
-   ; Registry subkey (Debug)
-   DetailPrint "Registry Install SubKey: $PRODUCT_INST_SUBKEY"
-   DetailPrint "Registry Uninstall SubKey: $PRODUCT_UNINST_SUBKEY"
-
    ; Uninstall current agent
    ${UninstallCurrentAgent} $R0
    DetailPrint "Agent Uninstalled with Code: '$R0'"
@@ -714,14 +669,11 @@ Section "-un.Init"
    ; Delete directory $R0 (whether is empty)
    RMDir "$R0"
 
-   ; un.EraseConfigurationOptions (Debug)
+   ; un.EraseConfigurationOptions
    ${un.EraseConfigurationOptions}
 
-   ; un.EraseUninstallInformation (Debug)
+   ; un.EraseUninstallInformation
    ${un.EraseUninstallInformation}
-   ;
-   ; Sleep 15' (Debug)
-   ;Sleep 10000
 SectionEnd
 
 
