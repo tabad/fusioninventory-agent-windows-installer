@@ -452,6 +452,7 @@ Function GetCommandLineOptions
                StrCpy $CommandLineSyntaxError 0
             ${EndIf}
             ; Pop $0 off of the stack.
+            Pop $0
       ${EndSelect}
 
       ${If} $CommandLineSyntaxError = 0
@@ -620,6 +621,7 @@ Function GetCommandLineOptions
                StrCpy $CommandLineSyntaxError 0
             ${EndIf}
             ; Pop $0 off of the stack.
+            Pop $0
       ${EndSelect}
 
       ${If} $CommandLineSyntaxError = 0
