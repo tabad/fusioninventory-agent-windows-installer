@@ -90,7 +90,7 @@ SetCompressor /FINAL /SOLID lzma
 !endif
 
 !define STRAWBERRY_RELEASE "5.16.3.1"
-!define FIA_RELEASE "master"
+!define FIA_RELEASE "2.2.9901"
 !define FIA_TASK_DEPLOY_RELEASE "2.0.4"
 !define FIA_TASK_ESX_RELEASE "2.2.1"
 !define FIA_TASK_INVENTORY_RELEASE "1.0"
