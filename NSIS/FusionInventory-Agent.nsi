@@ -74,15 +74,18 @@ SetCompressor /FINAL /SOLID lzma
 !endif
 
 !define LABEL_RELEASE_TYPE_STABLE "stable"
+!define LABEL_RELEASE_TYPE_CANDIDATE "candidate"
 !define LABEL_RELEASE_TYPE_DEVELOPMENT "development"
 !define DEFAULT_FIAI_RELEASE_TYPE "${LABEL_RELEASE_TYPE_DEVELOPMENT}"
 
 ; Use MakeNSIS '/D' option for choose the release type
 !ifdef FIAI_RELEASE_TYPE
    !if "${FIAI_RELEASE_TYPE}" != "${LABEL_RELEASE_TYPE_STABLE}"
-      !if "${FIAI_RELEASE_TYPE}" != "${LABEL_RELEASE_TYPE_DEVELOPMENT}"
-         !undef FIAI_RELEASE_TYPE
-         !define FIAI_RELEASE_TYPE "${DEFAULT_FIAI_RELEASE_TYPE}"
+      !if "${FIAI_RELEASE_TYPE}" != "${LABEL_RELEASE_TYPE_CANDIDATE}"
+         !if "${FIAI_RELEASE_TYPE}" != "${LABEL_RELEASE_TYPE_DEVELOPMENT}"
+            !undef FIAI_RELEASE_TYPE
+            !define FIAI_RELEASE_TYPE "${DEFAULT_FIAI_RELEASE_TYPE}"
+         !endif
       !endif
    !endif
 !else
@@ -172,10 +175,17 @@ SetCompressor /FINAL /SOLID lzma
    !define MUI_WELCOMEFINISHPAGE_BITMAP_FILE "${FIAI_DIR}\Contrib\Skins\Default\WelcomeMUI2.bmp"
    !define MUI_UNWELCOMEFINISHPAGE_BITMAP_FILE "${FIAI_DIR}\Contrib\Skins\Default\WelcomeMUI2.bmp"
 !else
-   !define MUI_HEADERIMAGE_BITMAP_FILE  "${FIAI_DIR}\Contrib\Skins\Default\HeaderRightMUI2DevelopmentVersion.bmp"
-   !define MUI_HEADERIMAGE_UNBITMAP_FILE "${FIAI_DIR}\Contrib\Skins\Default\HeaderRightMUI2DevelopmentVersion.bmp"
-   !define MUI_WELCOMEFINISHPAGE_BITMAP_FILE "${FIAI_DIR}\Contrib\Skins\Default\WelcomeMUI2DevelopmentVersion.bmp"
-   !define MUI_UNWELCOMEFINISHPAGE_BITMAP_FILE "${FIAI_DIR}\Contrib\Skins\Default\WelcomeMUI2DevelopmentVersion.bmp"
+   !if "${FIAI_RELEASE_TYPE}" == "${LABEL_RELEASE_TYPE_CANDIDATE}"
+      !define MUI_HEADERIMAGE_BITMAP_FILE  "${FIAI_DIR}\Contrib\Skins\Default\HeaderRightMUI2CandidateVersion.bmp"
+      !define MUI_HEADERIMAGE_UNBITMAP_FILE "${FIAI_DIR}\Contrib\Skins\Default\HeaderRightMUI2CandidateVersion.bmp"
+      !define MUI_WELCOMEFINISHPAGE_BITMAP_FILE "${FIAI_DIR}\Contrib\Skins\Default\WelcomeMUI2CandidateVersion.bmp"
+      !define MUI_UNWELCOMEFINISHPAGE_BITMAP_FILE "${FIAI_DIR}\Contrib\Skins\Default\WelcomeMUI2CandidateVersion.bmp"
+   !else
+      !define MUI_HEADERIMAGE_BITMAP_FILE  "${FIAI_DIR}\Contrib\Skins\Default\HeaderRightMUI2DevelopmentVersion.bmp"
+      !define MUI_HEADERIMAGE_UNBITMAP_FILE "${FIAI_DIR}\Contrib\Skins\Default\HeaderRightMUI2DevelopmentVersion.bmp"
+      !define MUI_WELCOMEFINISHPAGE_BITMAP_FILE "${FIAI_DIR}\Contrib\Skins\Default\WelcomeMUI2DevelopmentVersion.bmp"
+      !define MUI_UNWELCOMEFINISHPAGE_BITMAP_FILE "${FIAI_DIR}\Contrib\Skins\Default\WelcomeMUI2DevelopmentVersion.bmp"
+   !endif
 !endif
 
 
