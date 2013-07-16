@@ -105,7 +105,7 @@ Var CommandLineSyntaxError
                   ${EndIf}
                ${EndIf}
             ${EndIf}
-            ${Trim} $R0 "$R1"
+            ${Trim} "$R1" $R0
 
             ${FileWriteLine} $R9 "New parameters (without '$R2[|$\'|$\"|$\`]$R3[$\`|$\"|$\'|]'): '$R0'"
 
@@ -902,7 +902,7 @@ Function GetCommandLineOptions
                   ${EndIf}
                ${EndIf}
             ${EndIf}
-            ${Trim} $R0 "$R1"
+            ${Trim} "$R1" $R0
 
             ${FileWriteLine} $R9 "New parameters (without '$R2[|$\'|$\"|$\`]$R3[$\`|$\"|$\'|]'): '$R0'"
 
@@ -928,8 +928,7 @@ Function GetCommandLineOptions
    ${FileWriteLine} $R9 "End of command line parser"
 
    ; Trim
-   ${TrimLeft} $R1 "$R0"
-   ${TrimRight} $R0 "$R1"
+   ${Trim} "$R0" $R0
 
    ${If} $CommandLineSyntaxError = 1
       ${If} "$R0" != ""

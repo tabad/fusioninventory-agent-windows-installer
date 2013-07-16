@@ -52,10 +52,10 @@
 ; EscapeSpecialRTFCharacters
 !define EscapeSpecialRTFCharacters "!insertmacro EscapeSpecialRTFCharacters"
 
-!macro EscapeSpecialRTFCharacters ResultVar String
+!macro EscapeSpecialRTFCharacters String ResultVar
    Push "${String}"
    Call EscapeSpecialRTFCharacters
-   Pop "${ResultVar}"
+   Pop ${ResultVar}
 !macroend
 
 Function EscapeSpecialRTFCharacters
@@ -95,10 +95,10 @@ FunctionEnd
 ; TrimLeft
 !define TrimLeft "!insertmacro TrimLeft"
 
-!macro TrimLeft ResultVar String
+!macro TrimLeft String ResultVar
    Push "${String}"
    Call TrimLeft
-   Pop "${ResultVar}"
+   Pop ${ResultVar}
 !macroend
 
 Function TrimLeft
@@ -123,10 +123,10 @@ FunctionEnd
 ; TrimRight
 !define TrimRight "!insertmacro TrimRight"
 
-!macro TrimRight ResultVar String
+!macro TrimRight String ResultVar
    Push "${String}"
    Call TrimRight
-   Pop "${ResultVar}"
+   Pop ${ResultVar}
 !macroend
 
 Function TrimRight
@@ -151,14 +151,9 @@ FunctionEnd
 ; Trim
 !define Trim "!insertmacro Trim"
 
-!macro Trim ResultVar String
-   Push "${String}"
-   Call TrimLeft
-   Pop "${ResultVar}"
-
-   Push "${ResultVar}"
-   Call TrimRight
-   Pop "${ResultVar}"
+!macro Trim String ResultVar
+   ${TrimLeft} "${String}" ${ResultVar}
+   ${TrimRight} "${ResultVar}" ${ResultVar}
 !macroend
 
 

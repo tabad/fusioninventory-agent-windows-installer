@@ -133,7 +133,7 @@ Function AddCommaStrCommaUStr
       ${EndIf}
 
       ; Trim $R2
-      ${Trim} $R2 "$R2"
+      ${Trim} "$R2" $R2
 
       ; Add $R2 to $R0
       Push $R0
@@ -179,7 +179,7 @@ Function AddStrCommaUStr
    Push $R2
 
    ; Trim $R1
-   ${Trim} $R1 "$R1"
+   ${Trim} "$R1" $R1
 
    ; Add $R1 to $R0
    ${WordAdd} "$R0" "," "+$R1" $R2

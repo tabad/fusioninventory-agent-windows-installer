@@ -183,7 +183,7 @@ Function BuildHelpFile
 
    ; /acceptlicense
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_ACCEPTLICENSE}"
-   ${EscapeSpecialRTFCharacters} $R9 $R9
+   ${EscapeSpecialRTFCharacters} "$R9" $R9
    ${If} $R9 = 0
       StrCpy $R9 $(hCtl_HelpPage_Help_No)
    ${Else}
@@ -199,7 +199,7 @@ Function BuildHelpFile
 
    ; /add-firewall-exception
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_ADD-FIREWALL-EXCEPTION}"
-   ${EscapeSpecialRTFCharacters} $R9 $R9
+   ${EscapeSpecialRTFCharacters} "$R9" $R9
    ${If} $R9 = 0
       StrCpy $R9 $(hCtl_HelpPage_Help_No)
    ${Else}
@@ -215,7 +215,7 @@ Function BuildHelpFile
 
    ; /backend-collect-timeout
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_BACKEND-COLLECT-TIMEOUT}"
-   ${EscapeSpecialRTFCharacters} $R9 $R9
+   ${EscapeSpecialRTFCharacters} "$R9" $R9
 
    ${FileWriteLine} $R0 `\pard\li400 /backend-collect-timeout=<\i timeout\i0 >\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_backend-collect-timeout_Paragraph_1)\par`
@@ -224,7 +224,7 @@ Function BuildHelpFile
 
    ; /ca-cert-dir
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_CA-CERT-DIR}"
-   ${EscapeSpecialRTFCharacters} $R9 $R9
+   ${EscapeSpecialRTFCharacters} "$R9" $R9
    ${If} "$R9" == ""
       StrCpy $R9 "$\"$\""
    ${EndIf}
@@ -236,7 +236,7 @@ Function BuildHelpFile
 
    ; /ca-cert-file
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_CA-CERT-FILE}"
-   ${EscapeSpecialRTFCharacters} $R9 $R9
+   ${EscapeSpecialRTFCharacters} "$R9" $R9
    ${If} "$R9" == ""
       StrCpy $R9 "$\"$\""
    ${EndIf}
@@ -250,7 +250,7 @@ Function BuildHelpFile
 
    ; /ca-cert-uri
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_CA-CERT-URI}"
-   ${EscapeSpecialRTFCharacters} $R9 $R9
+   ${EscapeSpecialRTFCharacters} "$R9" $R9
    ${If} "$R9" == ""
       StrCpy $R9 "$\"$\""
    ${EndIf}
@@ -264,7 +264,7 @@ Function BuildHelpFile
 
    ; /debug
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_DEBUG}"
-   ${EscapeSpecialRTFCharacters} $R9 $R9
+   ${EscapeSpecialRTFCharacters} "$R9" $R9
 
    ${FileWriteLine} $R0 `\pard\li400 /debug=<\i level\i0 >\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_debug_Paragraph_1)\par`
@@ -275,7 +275,7 @@ Function BuildHelpFile
 
    ; /delaytime
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_DELAYTIME}"
-   ${EscapeSpecialRTFCharacters} $R9 $R9
+   ${EscapeSpecialRTFCharacters} "$R9" $R9
 
    ${FileWriteLine} $R0 `\pard\li400 /delaytime=<\i limit\i0 >\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_delaytime_Paragraph_1)\par`
@@ -288,7 +288,7 @@ Function BuildHelpFile
 
    ; /execmode
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_EXECMODE}"
-   ${EscapeSpecialRTFCharacters} $R9 $R9
+   ${EscapeSpecialRTFCharacters} "$R9" $R9
 
    ${FileWriteLine} $R0 `\pard\li400 /execmode=<\i mode\i0 >\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_execmode_Paragraph_1)\par`
@@ -307,7 +307,7 @@ Function BuildHelpFile
 
    ; /html
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_HTML}"
-   ${EscapeSpecialRTFCharacters} $R9 $R9
+   ${EscapeSpecialRTFCharacters} "$R9" $R9
    ${If} $R9 = 0
       StrCpy $R9 $(hCtl_HelpPage_Help_No)
    ${Else}
@@ -329,7 +329,7 @@ Function BuildHelpFile
 
    ; /httpd-ip
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_HTTPD-IP}"
-   ${EscapeSpecialRTFCharacters} $R9 $R9
+   ${EscapeSpecialRTFCharacters} "$R9" $R9
 
    ${FileWriteLine} $R0 `\pard\li400 /httpd-ip=<\i ip\i0 >\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_httpd-ip_Paragraph_1)\par`
@@ -338,7 +338,7 @@ Function BuildHelpFile
 
    ; /httpd-port
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_HTTPD-PORT}"
-   ${EscapeSpecialRTFCharacters} $R9 $R9
+   ${EscapeSpecialRTFCharacters} "$R9" $R9
 
    ${FileWriteLine} $R0 `\pard\li400 /httpd-port=<\i port\i0 >\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_httpd-port_Paragraph_1)\par`
@@ -347,7 +347,7 @@ Function BuildHelpFile
 
    ; /httpd-trust
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_HTTPD-TRUST}"
-   ${EscapeSpecialRTFCharacters} $R9 $R9
+   ${EscapeSpecialRTFCharacters} "$R9" $R9
 
    ${FileWriteLine} $R0 `\pard\li400 /httpd-trust=\{<\i ip\i0 >|<\i range\i0 >|<\i hostname\i0 >\}[,\{<\i ip\i0 >|<\i range\i0 >|<\i hostname\i0 >\}[...]]\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_httpd-trust_Paragraph_1)\par`
@@ -360,7 +360,7 @@ Function BuildHelpFile
 
    ; /installdir
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_INSTALLDIR}"
-   ${EscapeSpecialRTFCharacters} $R9 $R9
+   ${EscapeSpecialRTFCharacters} "$R9" $R9
 
    ${FileWriteLine} $R0 `\pard\li400 /installdir=<\i absolute_pathname\i0 >\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_installdir_Paragraph_1)\par`
@@ -371,7 +371,7 @@ Function BuildHelpFile
 
    ; /installtasks
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_INSTALLTASKS}"
-   ${EscapeSpecialRTFCharacters} $R9 $R9
+   ${EscapeSpecialRTFCharacters} "$R9" $R9
 
    ${FileWriteLine} $R0 `\pard\li400 /installtasks=\{<\i task\i0 >[,<\i task\i0 >[...]]|<\i macro\i0 >\}\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_installtasks_Paragraph_1)\par`
@@ -384,7 +384,7 @@ Function BuildHelpFile
 
    ; /installtype
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_INSTALLTYPE}"
-   ${EscapeSpecialRTFCharacters} $R9 $R9
+   ${EscapeSpecialRTFCharacters} "$R9" $R9
 
    ${FileWriteLine} $R0 `\pard\li400 /installtype=\{from-scratch|from-current-config\}\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_installtype_Paragraph_1)\par`
@@ -395,7 +395,7 @@ Function BuildHelpFile
 
    ; /local
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_LOCAL}"
-   ${EscapeSpecialRTFCharacters} $R9 $R9
+   ${EscapeSpecialRTFCharacters} "$R9" $R9
    ${If} "$R9" == ""
       StrCpy $R9 "$\"$\""
    ${EndIf}
@@ -411,7 +411,7 @@ Function BuildHelpFile
 
    ; /logfile
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_LOGFILE}"
-   ${EscapeSpecialRTFCharacters} $R9 $R9
+   ${EscapeSpecialRTFCharacters} "$R9" $R9
    ${If} "$R9" == ""
       StrCpy $R9 "$\"$\""
    ${EndIf}
@@ -425,7 +425,7 @@ Function BuildHelpFile
 
    ; /logfile-maxsize
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_LOGFILE-MAXSIZE}"
-   ${EscapeSpecialRTFCharacters} $R9 $R9
+   ${EscapeSpecialRTFCharacters} "$R9" $R9
 
    ${FileWriteLine} $R0 `\pard\li400 /logfile-maxsize=<\i size\i0 >\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_logfile-maxsize_Paragraph_1)\par`
@@ -434,7 +434,7 @@ Function BuildHelpFile
 
    ; /logger
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_LOGGER}"
-   ${EscapeSpecialRTFCharacters} $R9 $R9
+   ${EscapeSpecialRTFCharacters} "$R9" $R9
 
    ${FileWriteLine} $R0 `\pard\li400 /logger=<\i backend\i0 >[,<\i backend\i0 >]\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_logger_Paragraph_1)\par`
@@ -445,7 +445,7 @@ Function BuildHelpFile
 
    ; /no-category
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_NO-CATEGORY}"
-   ${EscapeSpecialRTFCharacters} $R9 $R9
+   ${EscapeSpecialRTFCharacters} "$R9" $R9
    ${If} "$R9" == ""
       StrCpy $R9 "$\"$\""
    ${EndIf}
@@ -465,7 +465,7 @@ Function BuildHelpFile
 
    ; /no-httpd
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_NO-HTTPD}"
-   ${EscapeSpecialRTFCharacters} $R9 $R9
+   ${EscapeSpecialRTFCharacters} "$R9" $R9
    ${If} $R9 = 0
       StrCpy $R9 $(hCtl_HelpPage_Help_No)
    ${Else}
@@ -479,7 +479,7 @@ Function BuildHelpFile
 
    ; /no-p2p
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_NO-P2P}"
-   ${EscapeSpecialRTFCharacters} $R9 $R9
+   ${EscapeSpecialRTFCharacters} "$R9" $R9
    ${If} $R9 = 0
       StrCpy $R9 $(hCtl_HelpPage_Help_No)
    ${Else}
@@ -499,7 +499,7 @@ Function BuildHelpFile
 
    ; /no-ssl-check
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_NO-SSL-CHECK}"
-   ${EscapeSpecialRTFCharacters} $R9 $R9
+   ${EscapeSpecialRTFCharacters} "$R9" $R9
    ${If} $R9 = 0
       StrCpy $R9 $(hCtl_HelpPage_Help_No)
    ${Else}
@@ -515,7 +515,7 @@ Function BuildHelpFile
 
    ; /no-task
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_NO-TASK}"
-   ${EscapeSpecialRTFCharacters} $R9 $R9
+   ${EscapeSpecialRTFCharacters} "$R9" $R9
    ${If} "$R9" == ""
       StrCpy $R9 "$\"$\""
    ${EndIf}
@@ -535,7 +535,7 @@ Function BuildHelpFile
 
    ; /password
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_PASSWORD}"
-   ${EscapeSpecialRTFCharacters} $R9 $R9
+   ${EscapeSpecialRTFCharacters} "$R9" $R9
    ${If} "$R9" == ""
       StrCpy $R9 "$\"$\""
    ${EndIf}
@@ -549,7 +549,7 @@ Function BuildHelpFile
 
    ; /proxy
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_PROXY}"
-   ${EscapeSpecialRTFCharacters} $R9 $R9
+   ${EscapeSpecialRTFCharacters} "$R9" $R9
    ${If} "$R9" == ""
       StrCpy $R9 "$\"$\""
    ${EndIf}
@@ -563,7 +563,7 @@ Function BuildHelpFile
 
    ; /runnow
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_RUNNOW}"
-   ${EscapeSpecialRTFCharacters} $R9 $R9
+   ${EscapeSpecialRTFCharacters} "$R9" $R9
    ${If} $R9 = 0
       StrCpy $R9 $(hCtl_HelpPage_Help_No)
    ${Else}
@@ -577,7 +577,7 @@ Function BuildHelpFile
 
    ; /S
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_SILENTMODE}"
-   ${EscapeSpecialRTFCharacters} $R9 $R9
+   ${EscapeSpecialRTFCharacters} "$R9" $R9
    ${If} $R9 = 0
       StrCpy $R9 $(hCtl_HelpPage_Help_No)
    ${Else}
@@ -593,7 +593,7 @@ Function BuildHelpFile
 
    ; /scan-homedirs
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_SCAN-HOMEDIRS}"
-   ${EscapeSpecialRTFCharacters} $R9 $R9
+   ${EscapeSpecialRTFCharacters} "$R9" $R9
    ${If} $R9 = 0
       StrCpy $R9 $(hCtl_HelpPage_Help_No)
    ${Else}
@@ -607,7 +607,7 @@ Function BuildHelpFile
 
    ; /server
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_SERVER}"
-   ${EscapeSpecialRTFCharacters} $R9 $R9
+   ${EscapeSpecialRTFCharacters} "$R9" $R9
    ${If} "$R9" == ""
       StrCpy $R9 "$\"$\""
    ${EndIf}
@@ -629,7 +629,7 @@ Function BuildHelpFile
 
    ; /tag
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_TAG}"
-   ${EscapeSpecialRTFCharacters} $R9 $R9
+   ${EscapeSpecialRTFCharacters} "$R9" $R9
    ${If} "$R9" == ""
       StrCpy $R9 "$\"$\""
    ${EndIf}
@@ -643,7 +643,7 @@ Function BuildHelpFile
 
    ; /task-daily-modifier
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_TASK-DAILY-MODIFIER}"
-   ${EscapeSpecialRTFCharacters} $R9 $R9
+   ${EscapeSpecialRTFCharacters} "$R9" $R9
 
    ${FileWriteLine} $R0 `\pard\li400 /task-daily-modifier=<\i modifier\i0 >\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_task-daily-modifier_Paragraph_1)\par`
@@ -656,7 +656,7 @@ Function BuildHelpFile
 
    ; /task-frequency
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_TASK-FREQUENCY}"
-   ${EscapeSpecialRTFCharacters} $R9 $R9
+   ${EscapeSpecialRTFCharacters} "$R9" $R9
 
    ${FileWriteLine} $R0 `\pard\li400 /task-frequency=<\i frequency\i0 >\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_task-frequency_Paragraph_1)\par`
@@ -667,7 +667,7 @@ Function BuildHelpFile
 
    ; /task-hourly-modifier
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_TASK-HOURLY-MODIFIER}"
-   ${EscapeSpecialRTFCharacters} $R9 $R9
+   ${EscapeSpecialRTFCharacters} "$R9" $R9
 
    ${FileWriteLine} $R0 `\pard\li400 /task-hourly-modifier=<\i modifier\i0 >\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_task-hourly-modifier_Paragraph_1)\par`
@@ -680,7 +680,7 @@ Function BuildHelpFile
 
    ; /task-minute-modifier
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_TASK-MINUTE-MODIFIER}"
-   ${EscapeSpecialRTFCharacters} $R9 $R9
+   ${EscapeSpecialRTFCharacters} "$R9" $R9
 
    ${FileWriteLine} $R0 `\pard\li400 /task-minute-modifier=<\i modifier\i0 >\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_task-minute-modifier_Paragraph_1)\par`
@@ -693,7 +693,7 @@ Function BuildHelpFile
 
    ; /timeout
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_TIMEOUT}"
-   ${EscapeSpecialRTFCharacters} $R9 $R9
+   ${EscapeSpecialRTFCharacters} "$R9" $R9
 
    ${FileWriteLine} $R0 `\pard\li400 /timeout=<\i timeout\i0 >\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_timeout_Paragraph_1)\par`
@@ -704,7 +704,7 @@ Function BuildHelpFile
 
    ; /user
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_USER}"
-   ${EscapeSpecialRTFCharacters} $R9 $R9
+   ${EscapeSpecialRTFCharacters} "$R9" $R9
    ${If} "$R9" == ""
       StrCpy $R9 "$\"$\""
    ${EndIf}
@@ -718,7 +718,7 @@ Function BuildHelpFile
 
    ; /wait
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_WAIT}"
-   ${EscapeSpecialRTFCharacters} $R9 $R9
+   ${EscapeSpecialRTFCharacters} "$R9" $R9
 
    ${FileWriteLine} $R0 `\pard\li400 /wait=<\i limit\i0 >\par`
    ${FileWriteLine} $R0 `\pard\li800 $(hCtl_HelpPage_Help_Option_wait_Paragraph_1)\par`
