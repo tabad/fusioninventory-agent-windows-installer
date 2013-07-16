@@ -51,6 +51,8 @@
 
 !include LogicLib.nsh
 !include "${FIAI_DIR}\Include\INIFunc.nsh"
+!include "${FIAI_DIR}\Include\StrFunc.nsh"
+!include "${FIAI_DIR}\Include\CommaUStrFunc.nsh"
 !include "${FIAI_DIR}\Contrib\ModernUI2\Pages\TargetsPageLangStrings.nsh"
 
 
@@ -227,10 +229,12 @@ Function TargetsPage_Leave
 
    ; Save TextBox1 Text
    ${NSD_GetText} $hCtl_TargetsPage_TextBox1 $R1
+   ${Trim} "$R1" $R1
    ${WriteINIOption} "$R0" "${IO_LOCAL}" "$R1"
 
    ; Save TextBox2 Text
    ${NSD_GetText} $hCtl_TargetsPage_TextBox2 $R1
+   ${AddCommaStrCommaUStr} "" "$R1" $R1
    ${WriteINIOption} "$R0" "${IO_SERVER}" "$R1"
 
    ; Save CheckBox1 Check

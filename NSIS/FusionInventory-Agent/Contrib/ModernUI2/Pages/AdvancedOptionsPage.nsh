@@ -51,6 +51,8 @@
 
 !include LogicLib.nsh
 !include "${FIAI_DIR}\Include\INIFunc.nsh"
+!include "${FIAI_DIR}\Include\StrFunc.nsh"
+!include "${FIAI_DIR}\Include\CommaUStrFunc.nsh"
 !include "${FIAI_DIR}\Contrib\ModernUI2\Pages\AdvancedOptionsPageLangStrings.nsh"
 
 
@@ -240,18 +242,22 @@ Function AdvancedOptionsPage_Leave
 
    ; Save Number1 Text
    ${NSD_GetText} $hCtl_AdvancedOptionsPage_Number1 $R1
+   ${Trim} "$R1" $R1
    ${WriteINIOption} "$R0" "${IO_TIMEOUT}" "$R1"
 
    ; Save Number2 Text
    ${NSD_GetText} $hCtl_AdvancedOptionsPage_Number2 $R1
+   ${Trim} "$R1" $R1
    ${WriteINIOption} "$R0" "${IO_WAIT}" "$R1"
 
    ; Save Number3 Text
    ${NSD_GetText} $hCtl_AdvancedOptionsPage_Number3 $R1
+   ${Trim} "$R1" $R1
    ${WriteINIOption} "$R0" "${IO_DELAYTIME}" "$R1"
 
    ; Save Number4 Text
    ${NSD_GetText} $hCtl_AdvancedOptionsPage_Number4 $R1
+   ${Trim} "$R1" $R1
    ${WriteINIOption} "$R0" "${IO_BACKEND-COLLECT-TIMEOUT}" "$R1"
 
    ; Save CheckBox1 Check
@@ -264,10 +270,12 @@ Function AdvancedOptionsPage_Leave
 
    ; Save TextBox1 Text
    ${NSD_GetText} $hCtl_AdvancedOptionsPage_TextBox1 $R1
+   ${AddCommaStrCommaUStr} "" "$R1" $R1
    ${WriteINIOption} "$R0" "${IO_NO-TASK}" "$R1"
 
    ; Save TextBox2 Text
    ${NSD_GetText} $hCtl_AdvancedOptionsPage_TextBox2 $R1
+   ${AddCommaStrCommaUStr} "" "$R1" $R1
    ${WriteINIOption} "$R0" "${IO_NO-CATEGORY}" "$R1"
 
    ; Pop $R1 & $R0 off of the stack

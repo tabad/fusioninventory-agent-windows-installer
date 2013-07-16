@@ -200,6 +200,10 @@ Function GetCommandLineOptions
 
    ; Search for '/acceptlicense' option.
    ${CommandLineOptionsSearchBlock} "/acceptlicense" "${IO_ACCEPTLICENSE}"
+      ; Wipe $R3
+      ;    There should not be anything to wipe
+      Nop
+
       ; Check $R3 domain
       ${If} "$R3" != ""
          ; Syntax error.
@@ -214,6 +218,10 @@ Function GetCommandLineOptions
 
    ; Search for '/add-firewall-exception' option.
    ${CommandLineOptionsSearchBlock} "/add-firewall-exception" "${IO_ADD-FIREWALL-EXCEPTION}"
+      ; Wipe $R3
+      ;    There should not be anything to wipe
+      Nop
+
       ; Check $R3 domain
       ${If} "$R3" != ""
          ; Syntax error.
@@ -228,6 +236,9 @@ Function GetCommandLineOptions
 
    ; Search for '/backend-collect-timeout' option.
    ${CommandLineOptionsSearchBlock} "/backend-collect-timeout=" "${IO_BACKEND-COLLECT-TIMEOUT}"
+      ; Wipe $R3
+      ${Trim} "$R3" $R3
+
       ; Check $R3 domain
       ; ToDo
       ${If} $R3 < 0
@@ -241,6 +252,9 @@ Function GetCommandLineOptions
 
    ; Search for '/ca-cert-dir' option.
    ${CommandLineOptionsSearchBlock} "/ca-cert-dir=" "${IO_CA-CERT-DIR}"
+      ; Wipe $R3
+      ${Trim} "$R3" $R3
+
       ; Check $R3 domain
       ; ToDo
       ${If} $R3 != $R3
@@ -253,6 +267,9 @@ Function GetCommandLineOptions
 
    ; Search for '/ca-cert-file' option.
    ${CommandLineOptionsSearchBlock} "/ca-cert-file=" "${IO_CA-CERT-FILE}"
+      ; Wipe $R3
+      ${Trim} "$R3" $R3
+
       ; Check $R3 domain
       ; ToDo
       ${If} $R3 != $R3
@@ -265,6 +282,9 @@ Function GetCommandLineOptions
 
    ; Search for '/ca-cert-uri' option.
    ${CommandLineOptionsSearchBlock} "/ca-cert-uri=" "${IO_CA-CERT-URI}"
+      ; Wipe $R3
+      ${Trim} "$R3" $R3
+
       ; Check $R3 domain
       ; ToDo
       ${If} $R3 != $R3
@@ -277,6 +297,9 @@ Function GetCommandLineOptions
 
    ; Search for '/debug' option.
    ${CommandLineOptionsSearchBlock} "/debug=" "${IO_DEBUG}"
+      ; Wipe $R3
+      ${Trim} "$R3" $R3
+
       ; Check $R3 domain
       ${If} $R3 < 0
       ${OrIf} $R3 > 2
@@ -289,6 +312,9 @@ Function GetCommandLineOptions
 
    ; Search for '/delaytime' option.
    ${CommandLineOptionsSearchBlock} "/delaytime=" "${IO_DELAYTIME}"
+      ; Wipe $R3
+      ${Trim} "$R3" $R3
+
       ; Check $R3 domain
       ; ToDo
       ${If} $R3 < 0
@@ -302,6 +328,10 @@ Function GetCommandLineOptions
 
    ; Search for '/dumphelp' option.
    ${CommandLineOptionsSearchBlock} "/dumphelp" "${IO_DUMPHELP}"
+      ; Wipe $R3
+      ;    There should not be anything to wipe
+      Nop
+
       ; Check $R3 domain
       ${If} "$R3" != ""
          ; Syntax error.
@@ -316,6 +346,9 @@ Function GetCommandLineOptions
 
    ; Search for '/execmode' option.
    ${CommandLineOptionsSearchBlock} "/execmode=" "${IO_EXECMODE}"
+      ; Wipe $R3
+      ${Trim} "$R3" $R3
+
       ; Check $R3 domain
       ${If} "$R3" != "${EXECMODE_SERVICE}"
       ${AndIf} "$R3" != "${EXECMODE_TASK}"
@@ -336,6 +369,10 @@ Function GetCommandLineOptions
 
    ; Search for '/help' option.
    ${CommandLineOptionsSearchBlock} "/help" "${IO_HELP}"
+      ; Wipe $R3
+      ;    There should not be anything to wipe
+      Nop
+
       ; Check $R3 domain
       ${If} "$R3" != ""
          ; Syntax error.
@@ -350,6 +387,10 @@ Function GetCommandLineOptions
 
    ; Search for '/html' option.
    ${CommandLineOptionsSearchBlock} "/html" "${IO_HTML}"
+      ; Wipe $R3
+      ;    There should not be anything to wipe
+      Nop
+
       ; Check $R3 domain
       ${If} "$R3" != ""
          ; Syntax error.
@@ -364,6 +405,9 @@ Function GetCommandLineOptions
 
    ; Search for '/httpd-ip' option.
    ${CommandLineOptionsSearchBlock} "/httpd-ip=" "${IO_HTTPD-IP}"
+      ; Wipe $R3
+      ${Trim} "$R3" $R3
+
       ; Check $R3 domain
       ; ToDo
       ${If} $R3 != $R3
@@ -376,6 +420,9 @@ Function GetCommandLineOptions
 
    ; Search for '/httpd-port' option.
    ${CommandLineOptionsSearchBlock} "/httpd-port=" "${IO_HTTPD-PORT}"
+      ; Wipe $R3
+      ${Trim} "$R3" $R3
+
       ; Check $R3 domain
       ; ToDo
       ${If} $R3 < 0
@@ -389,6 +436,9 @@ Function GetCommandLineOptions
 
    ; Search for '/httpd-trust' option.
    ${CommandLineOptionsSearchBlock} "/httpd-trust=" "${IO_HTTPD-TRUST}"
+      ; Wipe $R3
+      ${AddCommaStrCommaUStr} "" "$R3" $R3
+
       ; Check $R3 domain
       ; ToDo
       ${If} $R3 != $R3
@@ -401,6 +451,10 @@ Function GetCommandLineOptions
 
    ; Search for '/httpd' option.
    ${CommandLineOptionsSearchBlock} "/httpd" "${IO_NO-HTTPD}"
+      ; Wipe $R3
+      ;    There should not be anything to wipe
+      Nop
+
       ; Check $R3 domain
       ${If} "$R3" != ""
          ; Syntax error.
@@ -415,6 +469,9 @@ Function GetCommandLineOptions
 
    ; Search for '/installdir' option.
    ${CommandLineOptionsSearchBlock} "/installdir=" "${IO_INSTALLDIR}"
+      ; Wipe $R3
+      ${Trim} "$R3" $R3
+
       ; Check $R3 domain
       ; ToDo
       ${If} $R3 != $R3
@@ -427,6 +484,9 @@ Function GetCommandLineOptions
 
    ; Search for '/installtasks' option.
    ${CommandLineOptionsSearchBlock} "/installtasks=" "${IO_INSTALLTASKS}"
+      ; Wipe $R3
+      ${AddCommaStrCommaUStr} "" "$R3" $R3
+
       ; Check $R3 domain
       ${Select} "$R3"
          ${Case} ""
@@ -464,6 +524,9 @@ Function GetCommandLineOptions
 
    ; Search for '/installtype' option.
    ${CommandLineOptionsSearchBlock} "/installtype=" "${IO_INSTALLTYPE}"
+      ; Wipe $R3
+      ${Trim} "$R3" $R3
+
       ; Check $R3 domain
       ${If} $R3 != "${INSTALLTYPE_FROMSCRATCH}"
       ${AndIf} $R3 != "${INSTALLTYPE_FROMCURRENTCONFIG}"
@@ -476,6 +539,9 @@ Function GetCommandLineOptions
 
    ; Search for '/local' option.
    ${CommandLineOptionsSearchBlock} "/local=" "${IO_LOCAL}"
+      ; Wipe $R3
+      ${Trim} "$R3" $R3
+
       ; Check $R3 domain
       ; ToDo
       ${If} $R3 != $R3
@@ -488,6 +554,9 @@ Function GetCommandLineOptions
 
    ; Search for '/logfile' option.
    ${CommandLineOptionsSearchBlock} "/logfile=" "${IO_LOGFILE}"
+      ; Wipe $R3
+      ${Trim} "$R3" $R3
+
       ; Check $R3 domain
       ; ToDo
       ${If} $R3 != $R3
@@ -500,6 +569,9 @@ Function GetCommandLineOptions
 
    ; Search for '/logfile-maxsize' option.
    ${CommandLineOptionsSearchBlock} "/logfile-maxsize=" "${IO_LOGFILE-MAXSIZE}"
+      ; Wipe $R3
+      ${Trim} "$R3" $R3
+
       ; Check $R3 domain
       ${If} $R3 < 0
          ; Syntax error.
@@ -511,6 +583,9 @@ Function GetCommandLineOptions
 
    ; Search for '/logger' option.
    ${CommandLineOptionsSearchBlock} "/logger=" "${IO_LOGGER}"
+      ; Wipe $R3
+      ${AddCommaStrCommaUStr} "" "$R3" $R3
+
       ; Check $R3 domain
       ; ToDo
       ${If} $R3 != $R3
@@ -523,6 +598,9 @@ Function GetCommandLineOptions
 
    ; Search for '/no-category' option.
    ${CommandLineOptionsSearchBlock} "/no-category=" "${IO_NO-CATEGORY}"
+      ; Wipe $R3
+      ${AddCommaStrCommaUStr} "" "$R3" $R3
+
       ; Check $R3 domain
       ; ToDo
       ${If} $R3 != $R3
@@ -535,6 +613,10 @@ Function GetCommandLineOptions
 
    ; Search for '/no-html' option.
    ${CommandLineOptionsSearchBlock} "/no-html" "${IO_HTML}"
+      ; Wipe $R3
+      ;    There should not be anything to wipe
+      Nop
+
       ; Check $R3 domain
       ${If} "$R3" != ""
          ; Syntax error.
@@ -549,6 +631,10 @@ Function GetCommandLineOptions
 
    ; Search for '/no-httpd' option.
    ${CommandLineOptionsSearchBlock} "/no-httpd" "${IO_NO-HTTPD}"
+      ; Wipe $R3
+      ;    There should not be anything to wipe
+      Nop
+
       ; Check $R3 domain
       ${If} "$R3" != ""
          ; Syntax error.
@@ -563,6 +649,10 @@ Function GetCommandLineOptions
 
    ; Search for '/no-p2p' option.
    ${CommandLineOptionsSearchBlock} "/no-p2p" "${IO_NO-P2P}"
+      ; Wipe $R3
+      ;    There should not be anything to wipe
+      Nop
+
       ; Check $R3 domain
       ${If} "$R3" != ""
          ; Syntax error.
@@ -577,6 +667,10 @@ Function GetCommandLineOptions
 
    ; Search for '/no-scan-homedirs' option.
    ${CommandLineOptionsSearchBlock} "/no-scan-homedirs" "${IO_SCAN-HOMEDIRS}"
+      ; Wipe $R3
+      ;    There should not be anything to wipe
+      Nop
+
       ; Check $R3 domain
       ${If} "$R3" != ""
          ; Syntax error.
@@ -591,6 +685,10 @@ Function GetCommandLineOptions
 
    ; Search for '/no-ssl-check' option.
    ${CommandLineOptionsSearchBlock} "/no-ssl-check" "${IO_NO-SSL-CHECK}"
+      ; Wipe $R3
+      ;    There should not be anything to wipe
+      Nop
+
       ; Check $R3 domain
       ${If} "$R3" != ""
          ; Syntax error.
@@ -605,6 +703,9 @@ Function GetCommandLineOptions
 
    ; Search for '/no-task' option.
    ${CommandLineOptionsSearchBlock} "/no-task=" "${IO_NO-TASK}"
+      ; Wipe $R3
+      ${AddCommaStrCommaUStr} "" "$R3" $R3
+
       ; Check $R3 domain
       ${Select} "$R3"
          ${Case} ""
@@ -633,6 +734,10 @@ Function GetCommandLineOptions
 
    ; Search for '/p2p' option.
    ${CommandLineOptionsSearchBlock} "/p2p" "${IO_NO-P2P}"
+      ; Wipe $R3
+      ;    There should not be anything to wipe
+      Nop
+
       ; Check $R3 domain
       ${If} "$R3" != ""
          ; Syntax error.
@@ -647,6 +752,9 @@ Function GetCommandLineOptions
 
    ; Search for '/password' option.
    ${CommandLineOptionsSearchBlock} "/password=" "${IO_PASSWORD}"
+      ; Wipe $R3
+      ${Trim} "$R3" $R3
+
       ; Check $R3 domain
       ; ToDo
       ${If} $R3 != $R3
@@ -659,6 +767,9 @@ Function GetCommandLineOptions
 
    ; Search for '/proxy' option.
    ${CommandLineOptionsSearchBlock} "/proxy=" "${IO_PROXY}"
+      ; Wipe $R3
+      ${Trim} "$R3" $R3
+
       ; Check $R3 domain
       ; ToDo
       ${If} $R3 != $R3
@@ -671,6 +782,10 @@ Function GetCommandLineOptions
 
    ; Search for '/runnow' option.
    ${CommandLineOptionsSearchBlock} "/runnow" "${IO_RUNNOW}"
+      ; Wipe $R3
+      ;    There should not be anything to wipe
+      Nop
+
       ; Check $R3 domain
       ${If} "$R3" != ""
          ; Syntax error.
@@ -685,6 +800,10 @@ Function GetCommandLineOptions
 
    ; Search for '/scan-homedirs' option.
    ${CommandLineOptionsSearchBlock} "/scan-homedirs" "${IO_SCAN-HOMEDIRS}"
+      ; Wipe $R3
+      ;    There should not be anything to wipe
+      Nop
+
       ; Check $R3 domain
       ${If} "$R3" != ""
          ; Syntax error.
@@ -699,6 +818,9 @@ Function GetCommandLineOptions
 
    ; Search for '/server' option.
    ${CommandLineOptionsSearchBlock} "/server=" "${IO_SERVER}"
+      ; Wipe $R3
+      ${AddCommaStrCommaUStr} "" "$R3" $R3
+
       ; Check $R3 domain
       ; ToDo
       ${If} $R3 != $R3
@@ -711,6 +833,10 @@ Function GetCommandLineOptions
 
    ; Search for '/ssl-check' option.
    ${CommandLineOptionsSearchBlock} "/ssl-check" "${IO_NO-SSL-CHECK}"
+      ; Wipe $R3
+      ;    There should not be anything to wipe
+      Nop
+
       ; Check $R3 domain
       ${If} "$R3" != ""
          ; Syntax error.
@@ -725,6 +851,9 @@ Function GetCommandLineOptions
 
    ; Search for '/tag' option.
    ${CommandLineOptionsSearchBlock} "/tag=" "${IO_TAG}"
+      ; Wipe $R3
+      ${Trim} "$R3" $R3
+
       ; Check $R3 domain
       ; ToDo
       ${If} $R3 != $R3
@@ -737,6 +866,9 @@ Function GetCommandLineOptions
 
    ; Search for '/task-daily-modifier' option.
    ${CommandLineOptionsSearchBlock} "/task-daily-modifier=" "${IO_TASK-DAILY-MODIFIER}"
+      ; Wipe $R3
+      ${Trim} "$R3" $R3
+
       ; Check $R3 domain
       ${If} $R3 < 1
       ${OrIf} $R3 > 30
@@ -749,6 +881,9 @@ Function GetCommandLineOptions
 
    ; Search for '/task-hourly-modifier' option.
    ${CommandLineOptionsSearchBlock} "/task-hourly-modifier=" "${IO_TASK-HOURLY-MODIFIER}"
+      ; Wipe $R3
+      ${Trim} "$R3" $R3
+
       ; Check $R3 domain
       ${If} $R3 < 1
       ${OrIf} $R3 > 23
@@ -761,6 +896,9 @@ Function GetCommandLineOptions
 
    ; Search for '/task-frequency' option.
    ${CommandLineOptionsSearchBlock} "/task-frequency=" "${IO_TASK-FREQUENCY}"
+      ; Wipe $R3
+      ${Trim} "$R3" $R3
+
       ; Check $R3 domain
       ; Push $0 onto the stack.
       Push $0
@@ -782,6 +920,9 @@ Function GetCommandLineOptions
 
    ; Search for '/task-minute-modifier' option.
    ${CommandLineOptionsSearchBlock} "/task-minute-modifier=" "${IO_TASK-MINUTE-MODIFIER}"
+      ; Wipe $R3
+      ${Trim} "$R3" $R3
+
       ; Check $R3 domain
       ; Push $0 onto the stack.
       Push $0
@@ -803,6 +944,9 @@ Function GetCommandLineOptions
 
    ; Search for '/timeout' option.
    ${CommandLineOptionsSearchBlock} "/timeout=" "${IO_TIMEOUT}"
+      ; Wipe $R3
+      ${Trim} "$R3" $R3
+
       ; Check $R3 domain
       ; ToDo
       ${If} $R3 < 0
@@ -816,6 +960,9 @@ Function GetCommandLineOptions
 
    ; Search for '/user' option.
    ${CommandLineOptionsSearchBlock} "/user=" "${IO_USER}"
+      ; Wipe $R3
+      ${Trim} "$R3" $R3
+
       ; Check $R3 domain
       ; ToDo
       ${If} $R3 != $R3
@@ -828,6 +975,9 @@ Function GetCommandLineOptions
 
    ; Search for '/wait' option.
    ${CommandLineOptionsSearchBlock} "/wait=" "${IO_WAIT}"
+      ; Wipe $R3
+      ${Trim} "$R3" $R3
+
       ; Check $R3 domain
       ; ToDo
       ${If} $R3 < 0
@@ -841,6 +991,10 @@ Function GetCommandLineOptions
 
    ; Search for '/S' option.
    ${CommandLineOptionsSearchBlock} "/S" "${IO_SILENTMODE}"
+               ; Wipe $R3
+               ;    There should not be anything to wipe
+               Nop
+
                ; Check $R3 domain
                ${If} "$R3" != ""
                   ; Syntax error.
@@ -905,6 +1059,10 @@ Function GetCommandLineOptions
             ${Trim} "$R1" $R0
 
             ${FileWriteLine} $R9 "New parameters (without '$R2[|$\'|$\"|$\`]$R3[$\`|$\"|$\'|]'): '$R0'"
+
+            ; Wipe $R3
+            ;    There should not be anything to wipe
+            Nop
 
             ; Check $R3 domain
             ${If} "$R3" != ""

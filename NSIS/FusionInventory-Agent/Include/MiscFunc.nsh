@@ -48,10 +48,11 @@
 
 !include FileFunc.nsh
 !include WordFunc.nsh
+!include "${FIAI_DIR}\Include\CommaUStrFunc.nsh"
 !include "${FIAI_DIR}\Include\INIFunc.nsh"
 !include "${FIAI_DIR}\Include\FileFunc.nsh"
 !include "${FIAI_DIR}\Include\RegFunc.nsh"
-;!include "${FIAI_DIR}\Include\SectionFunc.nsh"
+!include "${FIAI_DIR}\Include\StrFunc.nsh"
 !include "${FIAI_DIR}\Include\WindowsInfo.nsh"
 !include "${FIAI_DIR}\Include\WinServicesFunc.nsh"
 !include "${FIAI_DIR}\Include\WinTasksFunc.nsh"
@@ -118,6 +119,17 @@
 
 !macro TransferKeyToOption KeyName OptionName
    ${registry::Read} "${PRODUCT_INST_ROOT_KEY}\$R1" "${KeyName}" $R2 $R3
+   ${Switch} "${KeyName}"
+      ${Case} "${IO_HTTPD-TRUST}"
+      ${Case} "${IO_LOGGER}"
+      ${Case} "${IO_NO-CATEGORY}"
+      ${Case} "${IO_NO-TASK}"
+      ${Case} "${IO_SERVER}"
+         ${AddCommaStrCommaUStr} "" "$R2" $R2
+         ${Break}
+      ${CaseElse}
+         ${Trim} "$R2" $R2
+   ${EndSwitch}
    ${If} "$R2" != ""
       ; Write option into $R0 section
       ${If} "${OptionName}" == ""
@@ -130,14 +142,12 @@
 
 !macro TransferKeyToOptionMultiValue KeyName KeyValue OptionName OptionValue
    ${registry::Read} "${PRODUCT_INST_ROOT_KEY}\$R1" "${KeyName}" $R2 $R3
+   ${Trim} "$R2" $R2
    ${If} "$R2" == "${KeyValue}"
       ; Write option into $R0 section
       ${ReadINIOption} $R4 "$R0" "${OptionName}"
-      ${If} "$R4" == ""
-         ${WriteINIOption} "$R0" "${OptionName}" "${OptionValue}"
-      ${Else}
-         ${WriteINIOption} "$R0" "${OptionName}" "$R4,${OptionValue}"
-      ${EndIf}
+      ${AddStrCommaUStr} "$R4" "${OptionValue}" $R4
+      ${WriteINIOption} "$R0" "${OptionName}" "$R4"
    ${EndIf}
 !macroend
 
@@ -168,11 +178,14 @@ Function InitINIOptionSectionCurrentConfig
    ; Transfer deprecated key to multi-value option
    !insertmacro TransferKeyToOptionMultiValue "${IO_NO-INVENTORY}" "1" "${IO_NO-TASK}" "${TASK_INVENTORY}"
    !insertmacro TransferKeyToOptionMultiValue "${IO_NO-NETDISCOVERY}" "1" "${IO_NO-TASK}" "${TASK_NETDISCOVERY}"
-   !insertmacro TransferKeyToOptionMultiValue "${IO_NO-OCSDEPLOY}" "1" "${IO_NO-TASK}" "${TASK_OCSDEPLOY}"
-   !insertmacro TransferKeyToOptionMultiValue "${IO_NO-SNMPQUERY}" "1" "${IO_NO-TASK}" "${TASK_SNMPQUERY}"
+   !insertmacro TransferKeyToOptionMultiValue "${IO_NO-OCSDEPLOY}" "1" "${IO_NO-TASK}" "${TASK_DEPLOY}"
+   !insertmacro TransferKeyToOptionMultiValue "${IO_NO-SNMPQUERY}" "1" "${IO_NO-TASK}" "${TASK_NETINVENTORY}"
    !insertmacro TransferKeyToOptionMultiValue "${IO_NO-WAKEONLAN}" "1" "${IO_NO-TASK}" "${TASK_WAKEONLAN}"
    !insertmacro TransferKeyToOptionMultiValue "${IO_NO-PRINTER}" "1" "${IO_NO-CATEGORY}" "${CATEGORY_PRINTER}"
    !insertmacro TransferKeyToOptionMultiValue "${IO_NO-SOFTWARE}" "1" "${IO_NO-CATEGORY}" "${CATEGORY_SOFTWARE}"
+
+   ; Note: The values of current option have preference
+   ;       over the values of deprecated options
 
    ; Transfer key to option
    !insertmacro TransferKeyToOption "${IO_BACKEND-COLLECT-TIMEOUT}" ""

@@ -51,6 +51,8 @@
 
 !include LogicLib.nsh
 !include "${FIAI_DIR}\Include\INIFunc.nsh"
+!include "${FIAI_DIR}\Include\StrFunc.nsh"
+!include "${FIAI_DIR}\Include\CommaUStrFunc.nsh"
 !include "${FIAI_DIR}\Contrib\ModernUI2\Pages\HTTPServerOptionsPageLangStrings.nsh"
 
 
@@ -179,14 +181,17 @@ Function HTTPServerOptionsPage_Leave
 
    ; Save TextBox1 Text
    ${NSD_GetText} $hCtl_HTTPServerOptionsPage_TextBox1 $R1
+   ${Trim} "$R1" $R1
    ${WriteINIOption} "$R0" "${IO_HTTPD-IP}" "$R1"
 
    ; Save TextBox2 Text
    ${NSD_GetText} $hCtl_HTTPServerOptionsPage_Number1 $R1
+   ${Trim} "$R1" $R1
    ${WriteINIOption} "$R0" "${IO_HTTPD-PORT}" "$R1"
 
    ; Save TextBox3 Text
    ${NSD_GetText} $hCtl_HTTPServerOptionsPage_TextBox2 $R1
+   ${AddCommaStrCommaUStr} "" "$R1" $R1
    ${WriteINIOption} "$R0" "${IO_HTTPD-TRUST}" "$R1"
 
    ; Save CheckBox1 Check

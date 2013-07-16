@@ -51,6 +51,7 @@
 
 !include LogicLib.nsh
 !include "${FIAI_DIR}\Include\INIFunc.nsh"
+!include "${FIAI_DIR}\Include\StrFunc.nsh"
 !include "${FIAI_DIR}\Contrib\ModernUI2\Pages\DebugOptionsPageLangStrings.nsh"
 
 
@@ -209,10 +210,12 @@ Function DebugOptionsPage_Leave
 
    ; Save TextBox1 Text
    ${NSD_GetText} $hCtl_DebugOptionsPage_TextBox1 $R1
+   ${Trim} "$R1" $R1
    ${WriteINIOption} "$R0" "${IO_LOGFILE}" "$R1"
 
    ; Save Number1 Text
    ${NSD_GetText} $hCtl_DebugOptionsPage_Number1 $R1
+   ${Trim} "$R1" $R1
    ${WriteINIOption} "$R0" "${IO_LOGFILE-MAXSIZE}" "$R1"
 
    ; Pop $R1 & $R0 off of the stack

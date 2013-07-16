@@ -51,6 +51,7 @@
 
 !include LogicLib.nsh
 !include "${FIAI_DIR}\Include\INIFunc.nsh"
+!include "${FIAI_DIR}\Include\StrFunc.nsh"
 !include "${FIAI_DIR}\Contrib\ModernUI2\Pages\RemoteTargetsOptionsSecondPageLangStrings.nsh"
 
 
@@ -149,14 +150,17 @@ Function RemoteTargetsOptionsSecondPage_Leave
 
    ; Save TextBox1 Text
    ${NSD_GetText} $hCtl_RemoteTargetsOptionsSecondPage_TextBox1 $R1
+   ${Trim} "$R1" $R1
    ${WriteINIOption} "$R0" "${IO_PROXY}" "$R1"
 
    ; Save TextBox2 Text
    ${NSD_GetText} $hCtl_RemoteTargetsOptionsSecondPage_TextBox2 $R1
+   ${Trim} "$R1" $R1
    ${WriteINIOption} "$R0" "${IO_USER}" "$R1"
 
    ; Save Password1 Text
    ${NSD_GetText} $hCtl_RemoteTargetsOptionsSecondPage_Password1 $R1
+   ${Trim} "$R1" $R1
    ${WriteINIOption} "$R0" "${IO_PASSWORD}" "$R1"
 
    ; Pop $R1 & $R0 off of the stack

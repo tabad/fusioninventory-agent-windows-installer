@@ -51,6 +51,7 @@
 
 !include LogicLib.nsh
 !include "${FIAI_DIR}\Include\INIFunc.nsh"
+!include "${FIAI_DIR}\Include\StrFunc.nsh"
 !include "${FIAI_DIR}\Contrib\ModernUI2\Pages\MiscelaneousOptionsPageLangStrings.nsh"
 
 
@@ -185,6 +186,7 @@ Function MiscelaneousOptionsPage_Leave
 
    ; Save TextBox1 Text
    ${NSD_GetText} $hCtl_MiscelaneousOptionsPage_TextBox1 $R1
+   ${Trim} "$R1" $R1
    ${WriteINIOption} "$R0" "${IO_TAG}" "$R1"
 
    ; Pop $R1 & $R0 off of the stack

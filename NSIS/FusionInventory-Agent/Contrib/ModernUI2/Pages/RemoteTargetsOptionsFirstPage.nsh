@@ -51,6 +51,7 @@
 
 !include LogicLib.nsh
 !include "${FIAI_DIR}\Include\INIFunc.nsh"
+!include "${FIAI_DIR}\Include\StrFunc.nsh"
 !include "${FIAI_DIR}\Contrib\ModernUI2\Pages\RemoteTargetsOptionsFirstPageLangStrings.nsh"
 
 
@@ -220,14 +221,17 @@ Function RemoteTargetsOptionsFirstPage_Leave
 
    ; Save TextBox1 Text
    ${NSD_GetText} $hCtl_RemoteTargetsOptionsFirstPage_TextBox1 $R1
+   ${Trim} "$R1" $R1
    ${WriteINIOption} "$R0" "${IO_CA-CERT-DIR}" "$R1"
 
    ; Save TextBox2 Text
    ${NSD_GetText} $hCtl_RemoteTargetsOptionsFirstPage_TextBox2 $R1
+   ${Trim} "$R1" $R1
    ${WriteINIOption} "$R0" "${IO_CA-CERT-FILE}" "$R1"
 
    ; Save TextBox3 Text
    ${NSD_GetText} $hCtl_RemoteTargetsOptionsFirstPage_TextBox3 $R1
+   ${Trim} "$R1" $R1
    ${WriteINIOption} "$R0" "${IO_CA-CERT-URI}" "$R1"
 
    ; Save CheckBox1 Check
