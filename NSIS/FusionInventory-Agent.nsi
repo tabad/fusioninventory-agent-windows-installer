@@ -327,6 +327,8 @@ Var FusionInventoryAgentTaskNetCoreInstalled
 ;--------------------------------
 ; Modern UI 2.0 Custom Fuctions
 
+!define MUI_CUSTOMFUNCTION_ABORT UserAbort
+
 
 ;--------------------------------
 ; Custom Pages Functions
@@ -379,6 +381,16 @@ Page custom DebugOptionsPage_Show DebugOptionsPage_Leave ""
 ; Finish page settings
 ; Extra space for the title area
 !define MUI_FINISHPAGE_TITLE_3LINES
+
+
+;--------------------------------
+; Modern UI 2.0 Custom Fuctions
+
+!define MUI_CUSTOMFUNCTION_UNABORT un.UserAbort
+
+
+;--------------------------------
+; Custom Pages Functions
 
 
 ;--------------------------------
@@ -816,6 +828,14 @@ Function .onInstFailed
 FunctionEnd
 
 
+Function UserAbort
+   ; Unload registry plugin
+   ${registry::Unload}
+   ; Set the output path
+   SetOutPath "$TEMP"
+FunctionEnd
+
+
 ;--------------------------------
 ; Page Callback Installer Functions
 
@@ -887,6 +907,14 @@ FunctionEnd
 Function un.onUninstSuccess
    ; Unload registry plugin
    ${registry::Unload}
+FunctionEnd
+
+
+Function un.UserAbort
+   ; Unload registry plugin
+   ${registry::Unload}
+   ; Set the output path
+   SetOutPath "$TEMP"
 FunctionEnd
 
 
