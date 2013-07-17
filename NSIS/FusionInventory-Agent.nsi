@@ -402,6 +402,7 @@ Page custom DebugOptionsPage_Show DebugOptionsPage_Leave ""
 ;--------------------------------
 ; Reserve Files
 
+!insertmacro MUI_RESERVEFILE_LANGDLL
 ReserveFile "${NSISDIR}\Plugins\nsDialogs.dll"
 ReserveFile ".\Plugins\EnumINI.dll"
 ReserveFile ".\Plugins\GetVersion.dll"
