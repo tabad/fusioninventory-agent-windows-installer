@@ -52,6 +52,7 @@
 !include "${FIAI_DIR}\Include\CommaUStrFunc.nsh"
 !include "${FIAI_DIR}\Include\FileFunc.nsh"
 !include "${FIAI_DIR}\Include\INIFunc.nsh"
+!include "${FIAI_DIR}\Include\OptionChecks.nsh"
 !include "${FIAI_DIR}\Include\StrFunc.nsh"
 !include "${FIAI_DIR}\Include\WinTasksFunc.nsh"
 
@@ -116,7 +117,7 @@ Var CommandLineSyntaxError
                ; It's the first occurrence of $R2 into the command line
 
                ; Checks about $R3 below
-               ; See examples inside 'GetCommandLineOptions' macro definition.
+               ; See examples inside 'GetCommandLineOptions' macro definition
 !macroend
 
 
@@ -124,7 +125,7 @@ Var CommandLineSyntaxError
 
 !macro EndCommandLineOptionsSearchBlock
                ; After checks about $R3
-               ; See examples inside 'GetCommandLineOptions' macro definition.
+               ; See examples inside 'GetCommandLineOptions' macro definition
 
                ; Write "$R4=$R3" into the section $R8 of the file Options.ini
                ${WriteINIOption} "$R8" "$R4" "$R3"
@@ -132,7 +133,7 @@ Var CommandLineSyntaxError
                ${FileWriteLine} $R9 "'$R4=$R3' written into the section [$R8] of the file '$PLUGINSDIR\Options.ini'"
             ${Else}
                ; It's the second occurrence of $R2 into the command line
-               ; Syntax error. Only one occurrence is allowed.
+               ; Syntax error. Only one occurrence is allowed
                StrCpy $CommandLineSyntaxError 0
                ${FileWriteLine} $R9 "Syntax error. Only one occurrence of '$R2' is allowed into the command line."
                ${Break}
@@ -198,7 +199,7 @@ Function GetCommandLineOptions
    ${FileWriteLine} $R9 "$$CMDLINE: '$CMDLINE'"
    ${FileWriteLine} $R9 "GetParameters(): '$R0'"
 
-   ; Search for '/acceptlicense' option.
+   ; Search for '/acceptlicense' option
    ${CommandLineOptionsSearchBlock} "/acceptlicense" "${IO_ACCEPTLICENSE}"
       ; Wipe $R3
       ;    There should not be anything to wipe
@@ -206,7 +207,7 @@ Function GetCommandLineOptions
 
       ; Check $R3 domain
       ${If} "$R3" != ""
-         ; Syntax error.
+         ; Syntax error
          StrCpy $CommandLineSyntaxError 0
          ${FileWriteLine} $R9 "Syntax error. '$R2' is a switch, it has no values."
          ${Break}
@@ -216,7 +217,7 @@ Function GetCommandLineOptions
       ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 
-   ; Search for '/add-firewall-exception' option.
+   ; Search for '/add-firewall-exception' option
    ${CommandLineOptionsSearchBlock} "/add-firewall-exception" "${IO_ADD-FIREWALL-EXCEPTION}"
       ; Wipe $R3
       ;    There should not be anything to wipe
@@ -224,7 +225,7 @@ Function GetCommandLineOptions
 
       ; Check $R3 domain
       ${If} "$R3" != ""
-         ; Syntax error.
+         ; Syntax error
          StrCpy $CommandLineSyntaxError 0
          ${FileWriteLine} $R9 "Syntax error. '$R2' is a switch, it has no values."
          ${Break}
@@ -234,99 +235,91 @@ Function GetCommandLineOptions
       ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 
-   ; Search for '/backend-collect-timeout' option.
+   ; Search for '/backend-collect-timeout' option
    ${CommandLineOptionsSearchBlock} "/backend-collect-timeout=" "${IO_BACKEND-COLLECT-TIMEOUT}"
       ; Wipe $R3
       ${Trim} "$R3" $R3
 
       ; Check $R3 domain
-      ; ToDo
-      ${If} $R3 < 0
-      ${OrIf} $R3 > 600
-         ; Syntax error.
+      ${IfNot} ${IsValidOptionBackendCollectTimeoutValue} "$R3"
+         ; Syntax error
          StrCpy $CommandLineSyntaxError 0
          ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
          ${Break}
       ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 
-   ; Search for '/ca-cert-dir' option.
+   ; Search for '/ca-cert-dir' option
    ${CommandLineOptionsSearchBlock} "/ca-cert-dir=" "${IO_CA-CERT-DIR}"
       ; Wipe $R3
       ${Trim} "$R3" $R3
 
       ; Check $R3 domain
-      ; ToDo
-      ${If} $R3 != $R3
-         ; Syntax error.
+      ${IfNot} ${IsValidOptionCaCertDirValue} "$R3"
+         ; Syntax error
          StrCpy $CommandLineSyntaxError 0
          ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
          ${Break}
       ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 
-   ; Search for '/ca-cert-file' option.
+   ; Search for '/ca-cert-file' option
    ${CommandLineOptionsSearchBlock} "/ca-cert-file=" "${IO_CA-CERT-FILE}"
       ; Wipe $R3
       ${Trim} "$R3" $R3
 
       ; Check $R3 domain
-      ; ToDo
-      ${If} $R3 != $R3
-         ; Syntax error.
+      ${IfNot} ${IsValidOptionCaCertFileValue} "$R3"
+         ; Syntax error
          StrCpy $CommandLineSyntaxError 0
          ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
          ${Break}
       ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 
-   ; Search for '/ca-cert-uri' option.
+   ; Search for '/ca-cert-uri' option
    ${CommandLineOptionsSearchBlock} "/ca-cert-uri=" "${IO_CA-CERT-URI}"
       ; Wipe $R3
       ${Trim} "$R3" $R3
 
       ; Check $R3 domain
-      ; ToDo
-      ${If} $R3 != $R3
-         ; Syntax error.
+      ${IfNot} ${IsValidOptionCaCertUriValue} "$R3"
+         ; Syntax error
          StrCpy $CommandLineSyntaxError 0
          ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
          ${Break}
       ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 
-   ; Search for '/debug' option.
+   ; Search for '/debug' option
    ${CommandLineOptionsSearchBlock} "/debug=" "${IO_DEBUG}"
       ; Wipe $R3
       ${Trim} "$R3" $R3
 
       ; Check $R3 domain
-      ${If} $R3 < 0
-      ${OrIf} $R3 > 2
-         ; Syntax error.
+      ${IfNot} ${IsValidOptionDebugValue} "$R3"
+         ; Syntax error
          StrCpy $CommandLineSyntaxError 0
          ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
          ${Break}
       ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 
-   ; Search for '/delaytime' option.
+   ; Search for '/delaytime' option
    ${CommandLineOptionsSearchBlock} "/delaytime=" "${IO_DELAYTIME}"
       ; Wipe $R3
       ${Trim} "$R3" $R3
 
       ; Check $R3 domain
-      ; ToDo
-      ${If} $R3 < 0
-      ${OrIf} $R3 > 86400
-         ; Syntax error.
+      ${IfNot} ${IsValidOptionDelaytimeValue} "$R3"
+         ; Syntax error
          StrCpy $CommandLineSyntaxError 0
          ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
          ${Break}
       ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 
-   ; Search for '/dumphelp' option.
+   ; Search for '/dumphelp' option
    ${CommandLineOptionsSearchBlock} "/dumphelp" "${IO_DUMPHELP}"
       ; Wipe $R3
       ;    There should not be anything to wipe
@@ -334,7 +327,7 @@ Function GetCommandLineOptions
 
       ; Check $R3 domain
       ${If} "$R3" != ""
-         ; Syntax error.
+         ; Syntax error
          StrCpy $CommandLineSyntaxError 0
          ${FileWriteLine} $R9 "Syntax error. '$R2' is a switch, it has no values."
          ${Break}
@@ -344,30 +337,21 @@ Function GetCommandLineOptions
       ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 
-   ; Search for '/execmode' option.
+   ; Search for '/execmode' option
    ${CommandLineOptionsSearchBlock} "/execmode=" "${IO_EXECMODE}"
       ; Wipe $R3
       ${Trim} "$R3" $R3
 
       ; Check $R3 domain
-      ${If} "$R3" != "${EXECMODE_SERVICE}"
-      ${AndIf} "$R3" != "${EXECMODE_TASK}"
-      ${AndIf} "$R3" != "${EXECMODE_MANUAL}"
-      ${AndIf} "$R3" != "${EXECMODE_CURRENT}"
-         ; Syntax error.
+      ${IfNot} ${IsValidOptionExecmodeValue} "$R3"
+         ; Syntax error
          StrCpy $CommandLineSyntaxError 0
          ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
-         ${Break}
-      ${ElseIf} "$R3" == "${EXECMODE_TASK}"
-      ${AndIfNot} ${IsTargetOsValidForWindowsTask}
-         ; Syntax error.
-         StrCpy $CommandLineSyntaxError 0
-         ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed on this Windows version."
          ${Break}
       ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 
-   ; Search for '/help' option.
+   ; Search for '/help' option
    ${CommandLineOptionsSearchBlock} "/help" "${IO_HELP}"
       ; Wipe $R3
       ;    There should not be anything to wipe
@@ -375,7 +359,7 @@ Function GetCommandLineOptions
 
       ; Check $R3 domain
       ${If} "$R3" != ""
-         ; Syntax error.
+         ; Syntax error
          StrCpy $CommandLineSyntaxError 0
          ${FileWriteLine} $R9 "Syntax error. '$R2' is a switch, it has no values."
          ${Break}
@@ -385,7 +369,7 @@ Function GetCommandLineOptions
       ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 
-   ; Search for '/html' option.
+   ; Search for '/html' option
    ${CommandLineOptionsSearchBlock} "/html" "${IO_HTML}"
       ; Wipe $R3
       ;    There should not be anything to wipe
@@ -393,7 +377,7 @@ Function GetCommandLineOptions
 
       ; Check $R3 domain
       ${If} "$R3" != ""
-         ; Syntax error.
+         ; Syntax error
          StrCpy $CommandLineSyntaxError 0
          ${FileWriteLine} $R9 "Syntax error. '$R2' is a switch, it has no values."
          ${Break}
@@ -403,53 +387,49 @@ Function GetCommandLineOptions
       ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 
-   ; Search for '/httpd-ip' option.
+   ; Search for '/httpd-ip' option
    ${CommandLineOptionsSearchBlock} "/httpd-ip=" "${IO_HTTPD-IP}"
       ; Wipe $R3
       ${Trim} "$R3" $R3
 
       ; Check $R3 domain
-      ; ToDo
-      ${If} $R3 != $R3
-         ; Syntax error.
+      ${IfNot} ${IsValidOptionHttpdIpValue} "$R3"
+         ; Syntax error
          StrCpy $CommandLineSyntaxError 0
          ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
          ${Break}
       ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 
-   ; Search for '/httpd-port' option.
+   ; Search for '/httpd-port' option
    ${CommandLineOptionsSearchBlock} "/httpd-port=" "${IO_HTTPD-PORT}"
       ; Wipe $R3
       ${Trim} "$R3" $R3
 
       ; Check $R3 domain
-      ; ToDo
-      ${If} $R3 < 0
-      ${OrIf} $R3 > 65535
-         ; Syntax error.
+      ${IfNot} ${IsValidOptionHttpdPortValue} "$R3"
+         ; Syntax error
          StrCpy $CommandLineSyntaxError 0
          ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
          ${Break}
       ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 
-   ; Search for '/httpd-trust' option.
+   ; Search for '/httpd-trust' option
    ${CommandLineOptionsSearchBlock} "/httpd-trust=" "${IO_HTTPD-TRUST}"
       ; Wipe $R3
       ${AddCommaStrCommaUStr} "" "$R3" $R3
 
       ; Check $R3 domain
-      ; ToDo
-      ${If} $R3 != $R3
-         ; Syntax error.
+      ${IfNot} ${IsValidOptionHttpdTrustValue} "$R3"
+         ; Syntax error
          StrCpy $CommandLineSyntaxError 0
          ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
          ${Break}
       ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 
-   ; Search for '/httpd' option.
+   ; Search for '/httpd' option
    ${CommandLineOptionsSearchBlock} "/httpd" "${IO_NO-HTTPD}"
       ; Wipe $R3
       ;    There should not be anything to wipe
@@ -457,7 +437,7 @@ Function GetCommandLineOptions
 
       ; Check $R3 domain
       ${If} "$R3" != ""
-         ; Syntax error.
+         ; Syntax error
          StrCpy $CommandLineSyntaxError 0
          ${FileWriteLine} $R9 "Syntax error. '$R2' is a switch, it has no values."
          ${Break}
@@ -467,151 +447,119 @@ Function GetCommandLineOptions
       ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 
-   ; Search for '/installdir' option.
+   ; Search for '/installdir' option
    ${CommandLineOptionsSearchBlock} "/installdir=" "${IO_INSTALLDIR}"
       ; Wipe $R3
       ${Trim} "$R3" $R3
 
       ; Check $R3 domain
-      ; ToDo
-      ${If} $R3 != $R3
-         ; Syntax error.
+      ${IfNot} ${IsValidOptionInstalldirValue} "$R3"
+         ; Syntax error
          StrCpy $CommandLineSyntaxError 0
          ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
          ${Break}
       ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 
-   ; Search for '/installtasks' option.
+   ; Search for '/installtasks' option
    ${CommandLineOptionsSearchBlock} "/installtasks=" "${IO_INSTALLTASKS}"
       ; Wipe $R3
       ${AddCommaStrCommaUStr} "" "$R3" $R3
 
       ; Check $R3 domain
-      ${Select} "$R3"
-         ${Case} ""
-            ; Syntax error.
-            StrCpy $CommandLineSyntaxError 0
-         ${Case} "${INSTALLTASK_DEFAULT}"
-            ; Install default tasks.
-            Nop
-         ${Case} "${INSTALLTASK_MINIMAL}"
-            ; Install the minimal tasks.
-            Nop
-         ${Case} "${INSTALLTASK_FULL}"
-            ; Install all tasks.
-            Nop
-         ${CaseElse}
-            ; Check set of agent tasks.
-            ; Push $0 onto the stack.
-            Push $0
-            ; Get valid agent tasks.
-            ${GetValidAgentTasksCommaUStr} $0
-            ${IfNot} "$R3" IsASubCommaUStr "$0"
-               ; Syntax error.
-               StrCpy $CommandLineSyntaxError 0
-            ${EndIf}
-            ; Pop $0 off of the stack.
-            Pop $0
-      ${EndSelect}
-
-      ${If} $CommandLineSyntaxError = 0
+      ${IfNot} ${IsValidOptionInstalltasksValue} "$R3"
          ; Syntax error
+         StrCpy $CommandLineSyntaxError 0
          ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
          ${Break}
       ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 
-   ; Search for '/installtype' option.
+   ; Search for '/installtype' option
    ${CommandLineOptionsSearchBlock} "/installtype=" "${IO_INSTALLTYPE}"
       ; Wipe $R3
       ${Trim} "$R3" $R3
 
       ; Check $R3 domain
-      ${If} $R3 != "${INSTALLTYPE_FROMSCRATCH}"
-      ${AndIf} $R3 != "${INSTALLTYPE_FROMCURRENTCONFIG}"
-         ; Syntax error.
+      ${IfNot} ${IsValidOptionInstalltypeValue} "$R3"
+         ; Syntax error
          StrCpy $CommandLineSyntaxError 0
          ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
          ${Break}
       ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 
-   ; Search for '/local' option.
+   ; Search for '/local' option
    ${CommandLineOptionsSearchBlock} "/local=" "${IO_LOCAL}"
       ; Wipe $R3
       ${Trim} "$R3" $R3
 
       ; Check $R3 domain
-      ; ToDo
-      ${If} $R3 != $R3
-         ; Syntax error.
+      ${IfNot} ${IsValidOptionLocalValue} "$R3"
+         ; Syntax error
          StrCpy $CommandLineSyntaxError 0
          ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
          ${Break}
       ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 
-   ; Search for '/logfile' option.
+   ; Search for '/logfile' option
    ${CommandLineOptionsSearchBlock} "/logfile=" "${IO_LOGFILE}"
       ; Wipe $R3
       ${Trim} "$R3" $R3
 
       ; Check $R3 domain
-      ; ToDo
-      ${If} $R3 != $R3
-         ; Syntax error.
+      ${IfNot} ${IsValidOptionLogfileValue} "$R3"
+         ; Syntax error
          StrCpy $CommandLineSyntaxError 0
          ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
          ${Break}
       ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 
-   ; Search for '/logfile-maxsize' option.
+   ; Search for '/logfile-maxsize' option
    ${CommandLineOptionsSearchBlock} "/logfile-maxsize=" "${IO_LOGFILE-MAXSIZE}"
       ; Wipe $R3
       ${Trim} "$R3" $R3
 
       ; Check $R3 domain
-      ${If} $R3 < 0
-         ; Syntax error.
+      ${IfNot} ${IsValidOptionLogfileMaxsizeValue} "$R3"
+         ; Syntax error
          StrCpy $CommandLineSyntaxError 0
          ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
          ${Break}
       ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 
-   ; Search for '/logger' option.
+   ; Search for '/logger' option
    ${CommandLineOptionsSearchBlock} "/logger=" "${IO_LOGGER}"
       ; Wipe $R3
       ${AddCommaStrCommaUStr} "" "$R3" $R3
 
       ; Check $R3 domain
-      ; ToDo
-      ${If} $R3 != $R3
-         ; Syntax error.
+      ${IfNot} ${IsValidOptionLoggerValue} "$R3"
+         ; Syntax error
          StrCpy $CommandLineSyntaxError 0
          ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
          ${Break}
       ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 
-   ; Search for '/no-category' option.
+   ; Search for '/no-category' option
    ${CommandLineOptionsSearchBlock} "/no-category=" "${IO_NO-CATEGORY}"
       ; Wipe $R3
       ${AddCommaStrCommaUStr} "" "$R3" $R3
 
       ; Check $R3 domain
-      ; ToDo
-      ${If} $R3 != $R3
-         ; Syntax error.
+      ${IfNot} ${IsValidOptionNoCategoryValue} "$R3"
+         ; Syntax error
          StrCpy $CommandLineSyntaxError 0
          ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
          ${Break}
       ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 
-   ; Search for '/no-html' option.
+   ; Search for '/no-html' option
    ${CommandLineOptionsSearchBlock} "/no-html" "${IO_HTML}"
       ; Wipe $R3
       ;    There should not be anything to wipe
@@ -619,7 +567,7 @@ Function GetCommandLineOptions
 
       ; Check $R3 domain
       ${If} "$R3" != ""
-         ; Syntax error.
+         ; Syntax error
          StrCpy $CommandLineSyntaxError 0
          ${FileWriteLine} $R9 "Syntax error. '$R2' is a switch, it has no values."
          ${Break}
@@ -629,7 +577,7 @@ Function GetCommandLineOptions
       ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 
-   ; Search for '/no-httpd' option.
+   ; Search for '/no-httpd' option
    ${CommandLineOptionsSearchBlock} "/no-httpd" "${IO_NO-HTTPD}"
       ; Wipe $R3
       ;    There should not be anything to wipe
@@ -637,7 +585,7 @@ Function GetCommandLineOptions
 
       ; Check $R3 domain
       ${If} "$R3" != ""
-         ; Syntax error.
+         ; Syntax error
          StrCpy $CommandLineSyntaxError 0
          ${FileWriteLine} $R9 "Syntax error. '$R2' is a switch, it has no values."
          ${Break}
@@ -647,7 +595,7 @@ Function GetCommandLineOptions
       ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 
-   ; Search for '/no-p2p' option.
+   ; Search for '/no-p2p' option
    ${CommandLineOptionsSearchBlock} "/no-p2p" "${IO_NO-P2P}"
       ; Wipe $R3
       ;    There should not be anything to wipe
@@ -655,7 +603,7 @@ Function GetCommandLineOptions
 
       ; Check $R3 domain
       ${If} "$R3" != ""
-         ; Syntax error.
+         ; Syntax error
          StrCpy $CommandLineSyntaxError 0
          ${FileWriteLine} $R9 "Syntax error. '$R2' is a switch, it has no values."
          ${Break}
@@ -665,7 +613,7 @@ Function GetCommandLineOptions
       ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 
-   ; Search for '/no-scan-homedirs' option.
+   ; Search for '/no-scan-homedirs' option
    ${CommandLineOptionsSearchBlock} "/no-scan-homedirs" "${IO_SCAN-HOMEDIRS}"
       ; Wipe $R3
       ;    There should not be anything to wipe
@@ -673,7 +621,7 @@ Function GetCommandLineOptions
 
       ; Check $R3 domain
       ${If} "$R3" != ""
-         ; Syntax error.
+         ; Syntax error
          StrCpy $CommandLineSyntaxError 0
          ${FileWriteLine} $R9 "Syntax error. '$R2' is a switch, it has no values."
          ${Break}
@@ -683,7 +631,7 @@ Function GetCommandLineOptions
       ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 
-   ; Search for '/no-ssl-check' option.
+   ; Search for '/no-ssl-check' option
    ${CommandLineOptionsSearchBlock} "/no-ssl-check" "${IO_NO-SSL-CHECK}"
       ; Wipe $R3
       ;    There should not be anything to wipe
@@ -691,7 +639,7 @@ Function GetCommandLineOptions
 
       ; Check $R3 domain
       ${If} "$R3" != ""
-         ; Syntax error.
+         ; Syntax error
          StrCpy $CommandLineSyntaxError 0
          ${FileWriteLine} $R9 "Syntax error. '$R2' is a switch, it has no values."
          ${Break}
@@ -701,38 +649,21 @@ Function GetCommandLineOptions
       ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 
-   ; Search for '/no-task' option.
+   ; Search for '/no-task' option
    ${CommandLineOptionsSearchBlock} "/no-task=" "${IO_NO-TASK}"
       ; Wipe $R3
       ${AddCommaStrCommaUStr} "" "$R3" $R3
 
       ; Check $R3 domain
-      ${Select} "$R3"
-         ${Case} ""
-            ; Valid value
-            Nop
-         ${CaseElse}
-            ; Check set of agent tasks.
-            ; Push $0 onto the stack.
-            Push $0
-            ; Get valid agent tasks.
-            ${GetValidAgentTasksCommaUStr} $0
-            ${IfNot} "$R3" IsASubCommaUStr "$0"
-               ; Syntax error.
-               StrCpy $CommandLineSyntaxError 0
-            ${EndIf}
-            ; Pop $0 off of the stack.
-            Pop $0
-      ${EndSelect}
-
-      ${If} $CommandLineSyntaxError = 0
+      ${IfNot} ${IsValidOptionNoTaskValue} "$R3"
          ; Syntax error
+         StrCpy $CommandLineSyntaxError 0
          ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
          ${Break}
       ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 
-   ; Search for '/p2p' option.
+   ; Search for '/p2p' option
    ${CommandLineOptionsSearchBlock} "/p2p" "${IO_NO-P2P}"
       ; Wipe $R3
       ;    There should not be anything to wipe
@@ -740,7 +671,7 @@ Function GetCommandLineOptions
 
       ; Check $R3 domain
       ${If} "$R3" != ""
-         ; Syntax error.
+         ; Syntax error
          StrCpy $CommandLineSyntaxError 0
          ${FileWriteLine} $R9 "Syntax error. '$R2' is a switch, it has no values."
          ${Break}
@@ -750,37 +681,35 @@ Function GetCommandLineOptions
       ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 
-   ; Search for '/password' option.
+   ; Search for '/password' option
    ${CommandLineOptionsSearchBlock} "/password=" "${IO_PASSWORD}"
       ; Wipe $R3
       ${Trim} "$R3" $R3
 
       ; Check $R3 domain
-      ; ToDo
-      ${If} $R3 != $R3
-         ; Syntax error.
+      ${IfNot} ${IsValidOptionPasswordValue} "$R3"
+         ; Syntax error
          StrCpy $CommandLineSyntaxError 0
          ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
          ${Break}
       ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 
-   ; Search for '/proxy' option.
+   ; Search for '/proxy' option
    ${CommandLineOptionsSearchBlock} "/proxy=" "${IO_PROXY}"
       ; Wipe $R3
       ${Trim} "$R3" $R3
 
       ; Check $R3 domain
-      ; ToDo
-      ${If} $R3 != $R3
-         ; Syntax error.
+      ${IfNot} ${IsValidOptionProxyValue} "$R3"
+         ; Syntax error
          StrCpy $CommandLineSyntaxError 0
          ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
          ${Break}
       ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 
-   ; Search for '/runnow' option.
+   ; Search for '/runnow' option
    ${CommandLineOptionsSearchBlock} "/runnow" "${IO_RUNNOW}"
       ; Wipe $R3
       ;    There should not be anything to wipe
@@ -788,7 +717,7 @@ Function GetCommandLineOptions
 
       ; Check $R3 domain
       ${If} "$R3" != ""
-         ; Syntax error.
+         ; Syntax error
          StrCpy $CommandLineSyntaxError 0
          ${FileWriteLine} $R9 "Syntax error. '$R2' is a switch, it has no values."
          ${Break}
@@ -798,7 +727,7 @@ Function GetCommandLineOptions
       ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 
-   ; Search for '/scan-homedirs' option.
+   ; Search for '/scan-homedirs' option
    ${CommandLineOptionsSearchBlock} "/scan-homedirs" "${IO_SCAN-HOMEDIRS}"
       ; Wipe $R3
       ;    There should not be anything to wipe
@@ -806,7 +735,7 @@ Function GetCommandLineOptions
 
       ; Check $R3 domain
       ${If} "$R3" != ""
-         ; Syntax error.
+         ; Syntax error
          StrCpy $CommandLineSyntaxError 0
          ${FileWriteLine} $R9 "Syntax error. '$R2' is a switch, it has no values."
          ${Break}
@@ -816,22 +745,21 @@ Function GetCommandLineOptions
       ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 
-   ; Search for '/server' option.
+   ; Search for '/server' option
    ${CommandLineOptionsSearchBlock} "/server=" "${IO_SERVER}"
       ; Wipe $R3
       ${AddCommaStrCommaUStr} "" "$R3" $R3
 
       ; Check $R3 domain
-      ; ToDo
-      ${If} $R3 != $R3
-         ; Syntax error.
+      ${IfNot} ${IsValidOptionServerValue} "$R3"
+         ; Syntax error
          StrCpy $CommandLineSyntaxError 0
          ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
          ${Break}
       ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 
-   ; Search for '/ssl-check' option.
+   ; Search for '/ssl-check' option
    ${CommandLineOptionsSearchBlock} "/ssl-check" "${IO_NO-SSL-CHECK}"
       ; Wipe $R3
       ;    There should not be anything to wipe
@@ -839,7 +767,7 @@ Function GetCommandLineOptions
 
       ; Check $R3 domain
       ${If} "$R3" != ""
-         ; Syntax error.
+         ; Syntax error
          StrCpy $CommandLineSyntaxError 0
          ${FileWriteLine} $R9 "Syntax error. '$R2' is a switch, it has no values."
          ${Break}
@@ -849,147 +777,119 @@ Function GetCommandLineOptions
       ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 
-   ; Search for '/tag' option.
+   ; Search for '/tag' option
    ${CommandLineOptionsSearchBlock} "/tag=" "${IO_TAG}"
       ; Wipe $R3
       ${Trim} "$R3" $R3
 
       ; Check $R3 domain
-      ; ToDo
-      ${If} $R3 != $R3
-         ; Syntax error.
+      ${IfNot} ${IsValidOptionTagValue} "$R3"
+         ; Syntax error
          StrCpy $CommandLineSyntaxError 0
          ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
          ${Break}
       ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 
-   ; Search for '/task-daily-modifier' option.
+   ; Search for '/task-daily-modifier' option
    ${CommandLineOptionsSearchBlock} "/task-daily-modifier=" "${IO_TASK-DAILY-MODIFIER}"
       ; Wipe $R3
       ${Trim} "$R3" $R3
 
       ; Check $R3 domain
-      ${If} $R3 < 1
-      ${OrIf} $R3 > 30
-         ; Syntax error.
+      ${IfNot} ${IsValidOptionTaskDailyModifierValue} "$R3"
+         ; Syntax error
          StrCpy $CommandLineSyntaxError 0
          ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
          ${Break}
       ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 
-   ; Search for '/task-hourly-modifier' option.
+   ; Search for '/task-hourly-modifier' option
    ${CommandLineOptionsSearchBlock} "/task-hourly-modifier=" "${IO_TASK-HOURLY-MODIFIER}"
       ; Wipe $R3
       ${Trim} "$R3" $R3
 
       ; Check $R3 domain
-      ${If} $R3 < 1
-      ${OrIf} $R3 > 23
-         ; Syntax error.
+      ${IfNot} ${IsValidOptionTaskHourlyModifierValue} "$R3"
+         ; Syntax error
          StrCpy $CommandLineSyntaxError 0
          ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
          ${Break}
       ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 
-   ; Search for '/task-frequency' option.
+   ; Search for '/task-frequency' option
    ${CommandLineOptionsSearchBlock} "/task-frequency=" "${IO_TASK-FREQUENCY}"
       ; Wipe $R3
       ${Trim} "$R3" $R3
 
       ; Check $R3 domain
-      ; Push $0 onto the stack.
-      Push $0
-      ; Get valid Windows Task frequencies.
-      ${GetValidWindowsTaskFrequencyCommaUStr} $0
-      ${IfNot} "$R3" IsInCommaUStr "$0"
-         ; Syntax error.
+      ${IfNot} ${IsValidOptionTaskFrequencyValue} "$R3"
+         ; Syntax error
          StrCpy $CommandLineSyntaxError 0
-      ${EndIf}
-      ; Pop $0 off of the stack.
-      Pop $0
-
-      ${If} $CommandLineSyntaxError = 0
-        ; Syntax error.
-        ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
-        ${Break}
+         ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
+         ${Break}
       ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 
-   ; Search for '/task-minute-modifier' option.
+   ; Search for '/task-minute-modifier' option
    ${CommandLineOptionsSearchBlock} "/task-minute-modifier=" "${IO_TASK-MINUTE-MODIFIER}"
       ; Wipe $R3
       ${Trim} "$R3" $R3
 
       ; Check $R3 domain
-      ; Push $0 onto the stack.
-      Push $0
-      ; Get valid Windows Task minute modifier.
-      ${GetValidWindowsTaskMinuteModifierCommaUStr} $0
-      ${IfNot} "$R3" IsInCommaUStr "$0"
-         ; Syntax error.
+      ${IfNot} ${IsValidOptionTaskMinuteModifierValue} "$R3"
+         ; Syntax error
          StrCpy $CommandLineSyntaxError 0
-      ${EndIf}
-      ; Pop $0 off of the stack.
-      Pop $0
-
-      ${If} $CommandLineSyntaxError = 0
-         ; Syntax error.
          ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
          ${Break}
       ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 
-   ; Search for '/timeout' option.
+   ; Search for '/timeout' option
    ${CommandLineOptionsSearchBlock} "/timeout=" "${IO_TIMEOUT}"
       ; Wipe $R3
       ${Trim} "$R3" $R3
 
       ; Check $R3 domain
-      ; ToDo
-      ${If} $R3 < 0
-      ${OrIf} $R3 > 600
-         ; Syntax error.
+      ${IfNot} ${IsValidOptionTimeoutValue} "$R3"
+         ; Syntax error
          StrCpy $CommandLineSyntaxError 0
          ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
          ${Break}
       ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 
-   ; Search for '/user' option.
+   ; Search for '/user' option
    ${CommandLineOptionsSearchBlock} "/user=" "${IO_USER}"
       ; Wipe $R3
       ${Trim} "$R3" $R3
 
       ; Check $R3 domain
-      ; ToDo
-      ${If} $R3 != $R3
-         ; Syntax error.
+      ${IfNot} ${IsValidOptionUserValue} "$R3"
+         ; Syntax error
          StrCpy $CommandLineSyntaxError 0
          ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
          ${Break}
       ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 
-   ; Search for '/wait' option.
+   ; Search for '/wait' option
    ${CommandLineOptionsSearchBlock} "/wait=" "${IO_WAIT}"
       ; Wipe $R3
       ${Trim} "$R3" $R3
 
       ; Check $R3 domain
-      ; ToDo
-      ${If} $R3 < 0
-      ${OrIf} $R3 > 86400
-         ; Syntax error.
+      ${IfNot} ${IsValidOptionWaitValue} "$R3"
+         ; Syntax error
          StrCpy $CommandLineSyntaxError 0
          ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
          ${Break}
       ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 
-   ; Search for '/S' option.
+   ; Search for '/S' option
    ${CommandLineOptionsSearchBlock} "/S" "${IO_SILENTMODE}"
                ; Wipe $R3
                ;    There should not be anything to wipe
@@ -997,7 +897,7 @@ Function GetCommandLineOptions
 
                ; Check $R3 domain
                ${If} "$R3" != ""
-                  ; Syntax error.
+                  ; Syntax error
                   StrCpy $CommandLineSyntaxError 0
                   ${FileWriteLine} $R9 "Syntax error. '$R2' is a switch, it has no values."
                   ${Break}
@@ -1006,7 +906,7 @@ Function GetCommandLineOptions
                   StrCpy $R3 1
                ${EndIf}
 
-               ; Like ${EndCommandLineOptionsSearchBlock} but not exactly.
+               ; Like ${EndCommandLineOptionsSearchBlock} but not exactly
 
                ; Write "$R4=$R3" into the section $R8 of the file Options.ini
                ${WriteINIOption} "$R8" "$R4" "$R3"
@@ -1014,7 +914,7 @@ Function GetCommandLineOptions
                ${FileWriteLine} $R9 "'$R4=$R3' written into the section [$R8] of the file '$PLUGINSDIR\Options.ini'"
             ${Else}
                ; It's the nth occurrence of $R2 into the command line
-               ; It's allowed in this case.
+               ; It's allowed in this case
                Nop
             ${EndIf}
 
@@ -1028,7 +928,7 @@ Function GetCommandLineOptions
       ${Loop}
    ${EndIf}
 
-   ; Search for '/NCRC' option.
+   ; Search for '/NCRC' option
    ${If} $CommandLineSyntaxError = 1
    ${AndIf} $R0 != ""
       ${Do}
@@ -1066,7 +966,7 @@ Function GetCommandLineOptions
 
             ; Check $R3 domain
             ${If} "$R3" != ""
-               ; Syntax error.
+               ; Syntax error
                StrCpy $CommandLineSyntaxError 0
                ${FileWriteLine} $R9 "Syntax error. '$R2' is a switch, it has no values."
                ${Break}
@@ -1090,14 +990,14 @@ Function GetCommandLineOptions
 
    ${If} $CommandLineSyntaxError = 1
       ${If} "$R0" != ""
-         ; Syntax error. Invalid options.
+         ; Syntax error. Invalid options
          StrCpy $CommandLineSyntaxError 0
          ${FileWriteLine} $R9 "Syntax error. Invalid options '$R0'."
       ${Else}
          ${FileWriteLine} $R9 "Syntax OK. All options have been recognized."
       ${EndIf}
    ${Else}
-      ; Syntax Error.
+      ; Syntax Error
       ${FileWriteLine} $R9 "Syntax error. For more information see above."
    ${EndIf}
 
