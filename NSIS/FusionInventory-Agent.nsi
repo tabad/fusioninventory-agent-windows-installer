@@ -244,6 +244,7 @@ Var FusionInventoryAgentTaskNetCoreInstalled
 !include "${FIAI_DIR}\Include\SectionFunc.nsh"
 !include "${FIAI_DIR}\Include\WinServicesFunc.nsh"
 !include "${FIAI_DIR}\Include\WinTasksFunc.nsh"
+!include "${FIAI_DIR}\Include\CurrentConfig.nsh"
 
 
 ;--------------------------------

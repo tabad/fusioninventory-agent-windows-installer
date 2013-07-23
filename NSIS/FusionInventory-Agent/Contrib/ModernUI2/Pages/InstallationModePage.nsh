@@ -53,6 +53,7 @@
 !include WordFunc.nsh
 !include "${FIAI_DIR}\Include\INIFunc.nsh"
 !include "${FIAI_DIR}\Include\MiscFunc.nsh"
+!include "${FIAI_DIR}\Include\CurrentConfig.nsh"
 !include "${FIAI_DIR}\Contrib\ModernUI2\Pages\InstallationModePageLangStrings.nsh"
 
 
