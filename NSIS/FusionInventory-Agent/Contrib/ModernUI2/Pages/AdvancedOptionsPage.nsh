@@ -52,6 +52,7 @@
 !include LogicLib.nsh
 !include "${FIAI_DIR}\Include\INIFunc.nsh"
 !include "${FIAI_DIR}\Include\StrFunc.nsh"
+!include "${FIAI_DIR}\Include\OptionChecks.nsh"
 !include "${FIAI_DIR}\Include\CommaUStrFunc.nsh"
 !include "${FIAI_DIR}\Contrib\ModernUI2\Pages\AdvancedOptionsPageLangStrings.nsh"
 
@@ -233,52 +234,257 @@ FunctionEnd
 
 
 Function AdvancedOptionsPage_Leave
-   ; Push $R0 & $R1 onto the stack
+   ; Push $R0, $R1 & $R2 onto the stack
    Push $R0
    Push $R1
+   Push $R2
 
    ; Set default section
    StrCpy $R0 "${IOS_GUI}"
 
+   ; Initialize $R1
+   StrCpy $R1 1
+
    ; Save Number1 Text
-   ${NSD_GetText} $hCtl_AdvancedOptionsPage_Number1 $R1
-   ${Trim} "$R1" $R1
-   ${WriteINIOption} "$R0" "${IO_TIMEOUT}" "$R1"
+   ${NSD_GetText} $hCtl_AdvancedOptionsPage_Number1 $R2
+   ${Trim} "$R2" $R2
+   ${If} ${IsValidOptionTimeoutValue} "$R2"
+      ${WriteINIOption} "$R0" "${IO_TIMEOUT}" "$R2"
+   ${Else}
+      ; Invalid value
+      ; Show warning message
+      Push "$R0"
+      Call AdvancedOptionsPage_Number1_ShowWarning
+      ; Mark for abort
+      StrCpy $R1 0
+   ${EndIf}
 
    ; Save Number2 Text
-   ${NSD_GetText} $hCtl_AdvancedOptionsPage_Number2 $R1
-   ${Trim} "$R1" $R1
-   ${WriteINIOption} "$R0" "${IO_WAIT}" "$R1"
+   ${NSD_GetText} $hCtl_AdvancedOptionsPage_Number2 $R2
+   ${Trim} "$R2" $R2
+   ${If} ${IsValidOptionWaitValue} "$R2"
+      ${WriteINIOption} "$R0" "${IO_WAIT}" "$R2"
+   ${Else}
+      ; Invalid value
+      ; Show warning message
+      Push "$R0"
+      Call AdvancedOptionsPage_Number2_ShowWarning
+      ; Mark for abort
+      StrCpy $R1 0
+   ${EndIf}
 
    ; Save Number3 Text
-   ${NSD_GetText} $hCtl_AdvancedOptionsPage_Number3 $R1
-   ${Trim} "$R1" $R1
-   ${WriteINIOption} "$R0" "${IO_DELAYTIME}" "$R1"
+   ${NSD_GetText} $hCtl_AdvancedOptionsPage_Number3 $R2
+   ${Trim} "$R2" $R2
+   ${If} ${IsValidOptionDelaytimeValue} "$R2"
+      ${WriteINIOption} "$R0" "${IO_DELAYTIME}" "$R2"
+   ${Else}
+      ; Invalid value
+      ; Show warning message
+      Push "$R0"
+      Call AdvancedOptionsPage_Number3_ShowWarning
+      ; Mark for abort
+      StrCpy $R1 0
+   ${EndIf}
 
    ; Save Number4 Text
-   ${NSD_GetText} $hCtl_AdvancedOptionsPage_Number4 $R1
-   ${Trim} "$R1" $R1
-   ${WriteINIOption} "$R0" "${IO_BACKEND-COLLECT-TIMEOUT}" "$R1"
+   ${NSD_GetText} $hCtl_AdvancedOptionsPage_Number4 $R2
+   ${Trim} "$R2" $R2
+   ${If} ${IsValidOptionBackendCollectTimeoutValue} "$R2"
+      ${WriteINIOption} "$R0" "${IO_BACKEND-COLLECT-TIMEOUT}" "$R2"
+   ${Else}
+      ; Invalid value
+      ; Show warning message
+      Push "$R0"
+      Call AdvancedOptionsPage_Number4_ShowWarning
+      ; Mark for abort
+      StrCpy $R1 0
+   ${EndIf}
 
    ; Save CheckBox1 Check
-   ${NSD_GetState} $hCtl_AdvancedOptionsPage_CheckBox1 $R1
-   ${If} $R1 = ${BST_CHECKED}
+   ${NSD_GetState} $hCtl_AdvancedOptionsPage_CheckBox1 $R2
+   ${If} $R2 = ${BST_CHECKED}
       ${WriteINIOption} "$R0" "${IO_NO-P2P}" "1"
    ${Else}
       ${WriteINIOption} "$R0" "${IO_NO-P2P}" "0"
    ${EndIf}
 
    ; Save TextBox1 Text
-   ${NSD_GetText} $hCtl_AdvancedOptionsPage_TextBox1 $R1
-   ${AddCommaStrCommaUStr} "" "$R1" $R1
-   ${WriteINIOption} "$R0" "${IO_NO-TASK}" "$R1"
+   ${NSD_GetText} $hCtl_AdvancedOptionsPage_TextBox1 $R2
+   ${AddCommaStrCommaUStr} "" "$R2" $R2
+   ${If} ${IsValidOptionNoTaskValue} "$R2"
+      ${WriteINIOption} "$R0" "${IO_NO-TASK}" "$R2"
+   ${Else}
+      ; Invalid value
+      ; Show warning message
+      Push "$R0"
+      Call AdvancedOptionsPage_TextBox1_ShowWarning
+      ; Mark for abort
+      StrCpy $R1 0
+   ${EndIf}
 
    ; Save TextBox2 Text
-   ${NSD_GetText} $hCtl_AdvancedOptionsPage_TextBox2 $R1
-   ${AddCommaStrCommaUStr} "" "$R1" $R1
-   ${WriteINIOption} "$R0" "${IO_NO-CATEGORY}" "$R1"
+   ${NSD_GetText} $hCtl_AdvancedOptionsPage_TextBox2 $R2
+   ${AddCommaStrCommaUStr} "" "$R2" $R2
+   ${If} ${IsValidOptionNoCategoryValue} "$R2"
+      ${WriteINIOption} "$R0" "${IO_NO-CATEGORY}" "$R2"
+   ${Else}
+      ; Invalid value
+      ; Show warning message
+      Push "$R0"
+      Call AdvancedOptionsPage_TextBox2_ShowWarning
+      ; Mark for abort
+      StrCpy $R1 0
+   ${EndIf}
 
-   ; Pop $R1 & $R0 off of the stack
+   ; Is it necessary to abort?
+   ${If} $R1 = 0
+      ; Pop $R2, $R1 & $R0 off of the stack
+      Pop $R2
+      Pop $R1
+      Pop $R0
+      ; Abort
+      Abort
+   ${Else}
+      ; Pop $R2, $R1 & $R0 off of the stack
+      Pop $R2
+      Pop $R1
+      Pop $R0
+   ${EndIf}
+FunctionEnd
+
+
+Function AdvancedOptionsPage_Number1_ShowWarning
+   ; Get parameter
+   Exch $R0
+
+   ; Push $R1 & $R2 onto the stack
+   Push $R1
+   Push $R2
+
+   ; Get Label2 Text
+   ${NSD_GetText} $hCtl_AdvancedOptionsPage_Label2 $R1
+
+   ; Get Number1 Text
+   ${NSD_GetText} $hCtl_AdvancedOptionsPage_Number1 $R2
+
+   ; Mark invalid value
+   ${NSD_SetText} $hCtl_AdvancedOptionsPage_Number1 ""
+   SetCtlColors $hCtl_AdvancedOptionsPage_Number1 0x000000 0xffcc33
+   ${NSD_SetText} $hCtl_AdvancedOptionsPage_Number1 "$R2"
+
+   ; Show warning message
+   MessageBox MB_OK|MB_ICONEXCLAMATION "$(AdvancedOptionsPage_TextBox_Warning)"
+
+   ; Reset Number1 Text
+   ${ReadINIOption} $R2 "$R0" "${IO_TIMEOUT}"
+   SetCtlColors $hCtl_AdvancedOptionsPage_Number1 0x000000 0xffffff
+   ${NSD_SetText} $hCtl_AdvancedOptionsPage_Number1 "$R2"
+
+   ; Pop $R2, $R1 & $R0 off of the stack
+   Pop $R2
+   Pop $R1
+   Pop $R0
+FunctionEnd
+
+
+Function AdvancedOptionsPage_Number2_ShowWarning
+   ; Get parameter
+   Exch $R0
+
+   ; Push $R1 & $R2 onto the stack
+   Push $R1
+   Push $R2
+
+   ; Get Label3 Text
+   ${NSD_GetText} $hCtl_AdvancedOptionsPage_Label3 $R1
+
+   ; Get Number2 Text
+   ${NSD_GetText} $hCtl_AdvancedOptionsPage_Number2 $R2
+
+   ; Mark invalid value
+   ${NSD_SetText} $hCtl_AdvancedOptionsPage_Number2 ""
+   SetCtlColors $hCtl_AdvancedOptionsPage_Number2 0x000000 0xffcc33
+   ${NSD_SetText} $hCtl_AdvancedOptionsPage_Number2 "$R2"
+
+   ; Show warning message
+   MessageBox MB_OK|MB_ICONEXCLAMATION "$(AdvancedOptionsPage_TextBox_Warning)"
+
+   ; Reset Number2 Text
+   ${ReadINIOption} $R2 "$R0" "${IO_WAIT}"
+   SetCtlColors $hCtl_AdvancedOptionsPage_Number2 0x000000 0xffffff
+   ${NSD_SetText} $hCtl_AdvancedOptionsPage_Number2 "$R2"
+
+   ; Pop $R2, $R1 & $R0 off of the stack
+   Pop $R2
+   Pop $R1
+   Pop $R0
+FunctionEnd
+
+
+Function AdvancedOptionsPage_Number3_ShowWarning
+   ; Get parameter
+   Exch $R0
+
+   ; Push $R1 & $R2 onto the stack
+   Push $R1
+   Push $R2
+
+   ; Get Label4 Text
+   ${NSD_GetText} $hCtl_AdvancedOptionsPage_Label4 $R1
+
+   ; Get Number3 Text
+   ${NSD_GetText} $hCtl_AdvancedOptionsPage_Number3 $R2
+
+   ; Mark invalid value
+   ${NSD_SetText} $hCtl_AdvancedOptionsPage_Number3 ""
+   SetCtlColors $hCtl_AdvancedOptionsPage_Number3 0x000000 0xffcc33
+   ${NSD_SetText} $hCtl_AdvancedOptionsPage_Number3 "$R2"
+
+   ; Show warning message
+   MessageBox MB_OK|MB_ICONEXCLAMATION "$(AdvancedOptionsPage_TextBox_Warning)"
+
+   ; Reset Number3 Text
+   ${ReadINIOption} $R2 "$R0" "${IO_DELAYTIME}"
+   SetCtlColors $hCtl_AdvancedOptionsPage_Number3 0x000000 0xffffff
+   ${NSD_SetText} $hCtl_AdvancedOptionsPage_Number3 "$R2"
+
+   ; Pop $R2, $R1 & $R0 off of the stack
+   Pop $R2
+   Pop $R1
+   Pop $R0
+FunctionEnd
+
+
+Function AdvancedOptionsPage_Number4_ShowWarning
+   ; Get parameter
+   Exch $R0
+
+   ; Push $R1 & $R2 onto the stack
+   Push $R1
+   Push $R2
+
+   ; Get Label5 Text
+   ${NSD_GetText} $hCtl_AdvancedOptionsPage_Label5 $R1
+
+   ; Get Number4 Text
+   ${NSD_GetText} $hCtl_AdvancedOptionsPage_Number4 $R2
+
+   ; Mark invalid value
+   ${NSD_SetText} $hCtl_AdvancedOptionsPage_Number4 ""
+   SetCtlColors $hCtl_AdvancedOptionsPage_Number4 0x000000 0xffcc33
+   ${NSD_SetText} $hCtl_AdvancedOptionsPage_Number4 "$R2"
+
+   ; Show warning message
+   MessageBox MB_OK|MB_ICONEXCLAMATION "$(AdvancedOptionsPage_TextBox_Warning)"
+
+   ; Reset Number4 Text
+   ${ReadINIOption} $R2 "$R0" "${IO_BACKEND-COLLECT-TIMEOUT}"
+   SetCtlColors $hCtl_AdvancedOptionsPage_Number4 0x000000 0xffffff
+   ${NSD_SetText} $hCtl_AdvancedOptionsPage_Number4 "$R2"
+
+   ; Pop $R2, $R1 & $R0 off of the stack
+   Pop $R2
    Pop $R1
    Pop $R0
 FunctionEnd
@@ -296,5 +502,73 @@ Function AdvancedOptionsPage_Show
    ${EndIf}
 
    ; Pop $R0 off of the stack
+   Pop $R0
+FunctionEnd
+
+
+Function AdvancedOptionsPage_TextBox1_ShowWarning
+   ; Get parameter
+   Exch $R0
+
+   ; Push $R1 & $R2 onto the stack
+   Push $R1
+   Push $R2
+
+   ; Get Label6 Text
+   ${NSD_GetText} $hCtl_AdvancedOptionsPage_Label6 $R1
+
+   ; Get TextBox1 Text
+   ${NSD_GetText} $hCtl_AdvancedOptionsPage_TextBox1 $R2
+
+   ; Mark invalid value
+   ${NSD_SetText} $hCtl_AdvancedOptionsPage_TextBox1 ""
+   SetCtlColors $hCtl_AdvancedOptionsPage_TextBox1 0x000000 0xffcc33
+   ${NSD_SetText} $hCtl_AdvancedOptionsPage_TextBox1 "$R2"
+
+   ; Show warning message
+   MessageBox MB_OK|MB_ICONEXCLAMATION "$(AdvancedOptionsPage_TextBox_Warning)"
+
+   ; Reset TextBox1 Text
+   ${ReadINIOption} $R2 "$R0" "${IO_NO-TASK}"
+   SetCtlColors $hCtl_AdvancedOptionsPage_TextBox1 0x000000 0xffffff
+   ${NSD_SetText} $hCtl_AdvancedOptionsPage_TextBox1 "$R2"
+
+   ; Pop $R2, $R1 & $R0 off of the stack
+   Pop $R2
+   Pop $R1
+   Pop $R0
+FunctionEnd
+
+
+Function AdvancedOptionsPage_TextBox2_ShowWarning
+   ; Get parameter
+   Exch $R0
+
+   ; Push $R1 & $R2 onto the stack
+   Push $R1
+   Push $R2
+
+   ; Get Label8 Text
+   ${NSD_GetText} $hCtl_AdvancedOptionsPage_Label8 $R1
+
+   ; Get TextBox2 Text
+   ${NSD_GetText} $hCtl_AdvancedOptionsPage_TextBox2 $R2
+
+   ; Mark invalid value
+   ${NSD_SetText} $hCtl_AdvancedOptionsPage_TextBox2 ""
+   SetCtlColors $hCtl_AdvancedOptionsPage_TextBox2 0x000000 0xffcc33
+   ${NSD_SetText} $hCtl_AdvancedOptionsPage_TextBox2 "$R2"
+
+   ; Show warning message
+   MessageBox MB_OK|MB_ICONEXCLAMATION "$(AdvancedOptionsPage_TextBox_Warning)"
+
+   ; Reset TextBox2 Text
+   ${ReadINIOption} $R2 "$R0" "${IO_NO-CATEGORY}"
+   SetCtlColors $hCtl_AdvancedOptionsPage_TextBox2 0x000000 0xffffff
+   ${NSD_SetText} $hCtl_AdvancedOptionsPage_TextBox2 "$R2"
+
+   ; Pop $R2, $R1 & $R0 off of the stack
+   Pop $R2
+   Pop $R1
    Pop $R0
 FunctionEnd

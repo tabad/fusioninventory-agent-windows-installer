@@ -99,5 +99,10 @@ LangString hCtl_DebugOptionsPage_SelectFileDialog_Filter2 ${LANG_ENGLISH} "Log F
 LangString hCtl_DebugOptionsPage_SelectFileDialog_Filter2 ${LANG_FRENCH} "fLog Files (*.log)"
 LangString hCtl_DebugOptionsPage_SelectFileDialog_Filter2 ${LANG_SPANISH} "Ficheros de Registro (*.log)"
 
+; DebugOptionsPage_TextBox_Warning
+LangString DebugOptionsPage_TextBox_Warning ${LANG_ENGLISH} "The value $\"$R2$\" is not valid for the field $\"$R1$\"."
+LangString DebugOptionsPage_TextBox_Warning ${LANG_FRENCH} "fThe value $\"$R2$\" is not valid for the field $\"$R1$\"."
+LangString DebugOptionsPage_TextBox_Warning ${LANG_SPANISH} "El valor $\"$R2$\" no es válido para el campo $\"$R1$\"."
+
 
 !endif

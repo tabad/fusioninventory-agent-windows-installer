@@ -52,6 +52,7 @@
 !include LogicLib.nsh
 !include "${FIAI_DIR}\Include\INIFunc.nsh"
 !include "${FIAI_DIR}\Include\StrFunc.nsh"
+!include "${FIAI_DIR}\Include\OptionChecks.nsh"
 !include "${FIAI_DIR}\Contrib\ModernUI2\Pages\MiscelaneousOptionsPageLangStrings.nsh"
 
 
@@ -153,45 +154,69 @@ FunctionEnd
 
 
 Function MiscelaneousOptionsPage_Leave
-   ; Push $R0 & $R1 onto the stack
+   ; Push $R0, $R1 & $R2 onto the stack
    Push $R0
    Push $R1
+   Push $R2
 
    ; Set default section
    StrCpy $R0 "${IOS_GUI}"
 
+   ; Initialize $R1
+   StrCpy $R1 1
+
    ; Save CheckBox1 Check
-   ${NSD_GetState} $hCtl_MiscelaneousOptionsPage_CheckBox1 $R1
-   ${If} $R1 = ${BST_CHECKED}
+   ${NSD_GetState} $hCtl_MiscelaneousOptionsPage_CheckBox1 $R2
+   ${If} $R2 = ${BST_CHECKED}
       ${WriteINIOption} "$R0" "${IO_RUNNOW}" "1"
    ${Else}
       ${WriteINIOption} "$R0" "${IO_RUNNOW}" "0"
    ${EndIf}
 
    ; Save CheckBox2 Check
-   ${NSD_GetState} $hCtl_MiscelaneousOptionsPage_CheckBox2 $R1
-   ${If} $R1 = ${BST_CHECKED}
+   ${NSD_GetState} $hCtl_MiscelaneousOptionsPage_CheckBox2 $R2
+   ${If} $R2 = ${BST_CHECKED}
       ${WriteINIOption} "$R0" "${IO_HTML}" "1"
    ${Else}
       ${WriteINIOption} "$R0" "${IO_HTML}" "0"
    ${EndIf}
 
    ; Save CheckBox3 Check
-   ${NSD_GetState} $hCtl_MiscelaneousOptionsPage_CheckBox3 $R1
-   ${If} $R1 = ${BST_CHECKED}
+   ${NSD_GetState} $hCtl_MiscelaneousOptionsPage_CheckBox3 $R2
+   ${If} $R2 = ${BST_CHECKED}
       ${WriteINIOption} "$R0" "${IO_SCAN-HOMEDIRS}" "1"
    ${Else}
       ${WriteINIOption} "$R0" "${IO_SCAN-HOMEDIRS}" "0"
    ${EndIf}
 
    ; Save TextBox1 Text
-   ${NSD_GetText} $hCtl_MiscelaneousOptionsPage_TextBox1 $R1
-   ${Trim} "$R1" $R1
-   ${WriteINIOption} "$R0" "${IO_TAG}" "$R1"
+   ${NSD_GetText} $hCtl_MiscelaneousOptionsPage_TextBox1 $R2
+   ${Trim} "$R2" $R2
+   ${If} ${IsValidOptionTagValue} "$R2"
+      ${WriteINIOption} "$R0" "${IO_TAG}" "$R2"
+   ${Else}
+      ; Invalid value
+      ; Show warning message
+      Push "$R0"
+      Call MiscelaneousOptionsPage_TextBox1_ShowWarning
+      ; Mark for abort
+      StrCpy $R1 0
+   ${EndIf}
 
-   ; Pop $R1 & $R0 off of the stack
-   Pop $R1
-   Pop $R0
+   ; Is it necessary to abort?
+   ${If} $R1 = 0
+      ; Pop $R2, $R1 & $R0 off of the stack
+      Pop $R2
+      Pop $R1
+      Pop $R0
+      ; Abort
+      Abort
+   ${Else}
+      ; Pop $R2, $R1 & $R0 off of the stack
+      Pop $R2
+      Pop $R1
+      Pop $R0
+   ${EndIf}
 FunctionEnd
 
 
@@ -207,5 +232,39 @@ Function MiscelaneousOptionsPage_Show
    ${EndIf}
 
    ; Pop $R0 off of the stack
+   Pop $R0
+FunctionEnd
+
+
+Function MiscelaneousOptionsPage_TextBox1_ShowWarning
+   ; Get parameter
+   Exch $R0
+
+   ; Push $R1 & $R2 onto the stack
+   Push $R1
+   Push $R2
+
+   ; Get Label1 Text
+   ${NSD_GetText} $hCtl_MiscelaneousOptionsPage_Label1 $R1
+
+   ; Get TextBox1 Text
+   ${NSD_GetText} $hCtl_MiscelaneousOptionsPage_TextBox1 $R2
+
+   ; Mark invalid value
+   ${NSD_SetText} $hCtl_MiscelaneousOptionsPage_TextBox1 ""
+   SetCtlColors $hCtl_MiscelaneousOptionsPage_TextBox1 0x000000 0xffcc33
+   ${NSD_SetText} $hCtl_MiscelaneousOptionsPage_TextBox1 "$R2"
+
+   ; Show warning message
+   MessageBox MB_OK|MB_ICONEXCLAMATION "$(MiscelaneousOptionsPage_TextBox_Warning)"
+
+   ; Reset TextBox1 Text
+   ${ReadINIOption} $R2 "$R0" "${IO_TAG}"
+   SetCtlColors $hCtl_MiscelaneousOptionsPage_TextBox1 0x000000 0xffffff
+   ${NSD_SetText} $hCtl_MiscelaneousOptionsPage_TextBox1 "$R2"
+
+   ; Pop $R2, $R1 & $R0 off of the stack
+   Pop $R2
+   Pop $R1
    Pop $R0
 FunctionEnd

@@ -84,5 +84,10 @@ LangString hCtl_MiscelaneousOptionsPage_Label1_Text ${LANG_ENGLISH} "Tag"
 LangString hCtl_MiscelaneousOptionsPage_Label1_Text ${LANG_FRENCH} "fTag"
 LangString hCtl_MiscelaneousOptionsPage_Label1_Text ${LANG_SPANISH} "Etiqueta"
 
+; MiscelaneousOptionsPage_TextBox_Warning
+LangString MiscelaneousOptionsPage_TextBox_Warning ${LANG_ENGLISH} "The value $\"$R2$\" is not valid for the field $\"$R1$\"."
+LangString MiscelaneousOptionsPage_TextBox_Warning ${LANG_FRENCH} "fThe value $\"$R2$\" is not valid for the field $\"$R1$\"."
+LangString MiscelaneousOptionsPage_TextBox_Warning ${LANG_SPANISH} "El valor $\"$R2$\" no es válido para el campo $\"$R1$\"."
+
 
 !endif

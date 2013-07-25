@@ -59,35 +59,40 @@ LangString hCtl_HTTPServerOptionsPage_SubText ${LANG_ENGLISH} "Set embedded HTTP
 LangString hCtl_HTTPServerOptionsPage_SubText ${LANG_FRENCH} "fSet embedded HTTP server options."
 LangString hCtl_HTTPServerOptionsPage_SubText ${LANG_SPANISH} "Establezca las opciones del servidor HTTP integrado."
 
-; hCtl_RemoteOptionsFirsrtPage_GroupBox1_Text
+; hCtl_HTTPServerOptionsPage_GroupBox1_Text
 LangString hCtl_HTTPServerOptionsPage_GroupBox1_Text ${LANG_ENGLISH} "Embedded HTTP Server Options"
 LangString hCtl_HTTPServerOptionsPage_GroupBox1_Text ${LANG_FRENCH} "fEmbedded HTTP Server Options"
 LangString hCtl_HTTPServerOptionsPage_GroupBox1_Text ${LANG_SPANISH} "Opciones del Servidor HTTP Integrado"
 
-; hCtl_RemoteOptionsFirsrtPage_Label1_Text
+; hCtl_HTTPServerOptionsPage_Label1_Text
 LangString hCtl_HTTPServerOptionsPage_Label1_Text ${LANG_ENGLISH} "IP"
 LangString hCtl_HTTPServerOptionsPage_Label1_Text ${LANG_FRENCH} "fIP"
 LangString hCtl_HTTPServerOptionsPage_Label1_Text ${LANG_SPANISH} "IP"
 
-; hCtl_RemoteOptionsFirsrtPage_Label2_Text
+; hCtl_HTTPServerOptionsPage_Label2_Text
 LangString hCtl_HTTPServerOptionsPage_Label2_Text ${LANG_ENGLISH} "Port"
 LangString hCtl_HTTPServerOptionsPage_Label2_Text ${LANG_FRENCH} "fPort"
 LangString hCtl_HTTPServerOptionsPage_Label2_Text ${LANG_SPANISH} "Puerto"
 
-; hCtl_RemoteOptionsFirsrtPage_Label3_Text
+; hCtl_HTTPServerOptionsPage_Label3_Text
 LangString hCtl_HTTPServerOptionsPage_Label3_Text ${LANG_ENGLISH} "Trusted IPs"
 LangString hCtl_HTTPServerOptionsPage_Label3_Text ${LANG_FRENCH} "fTrusted IPs"
 LangString hCtl_HTTPServerOptionsPage_Label3_Text ${LANG_SPANISH} "IPs de Confianza"
 
-; hCtl_RemoteOptionsFirsrtPage_CheckBox1_Text
+; hCtl_HTTPServerOptionsPage_CheckBox1_Text
 LangString hCtl_HTTPServerOptionsPage_CheckBox1_Text ${LANG_ENGLISH} "Add exception on the Windows Firewall"
 LangString hCtl_HTTPServerOptionsPage_CheckBox1_Text ${LANG_FRENCH} "fAdd exception on the Windows Firewall"
 LangString hCtl_HTTPServerOptionsPage_CheckBox1_Text ${LANG_SPANISH} "Añadir excepción al Cortafuegos de Windows"
 
-; hCtl_RemoteOptionsFirsrtPage_CheckBox2_Text
+; hCtl_HTTPServerOptionsPage_CheckBox2_Text
 LangString hCtl_HTTPServerOptionsPage_CheckBox2_Text ${LANG_ENGLISH} "Enable embedded HTTP server"
 LangString hCtl_HTTPServerOptionsPage_CheckBox2_Text ${LANG_FRENCH} "fEnable embedded HTTP server"
 LangString hCtl_HTTPServerOptionsPage_CheckBox2_Text ${LANG_SPANISH} "Habilitar servidor HTTP integrado"
+
+; HTTPServerOptionsPage_TextBox_Warning
+LangString HTTPServerOptionsPage_TextBox_Warning ${LANG_ENGLISH} "The value $\"$R2$\" is not valid for the field $\"$R1$\"."
+LangString HTTPServerOptionsPage_TextBox_Warning ${LANG_FRENCH} "fThe value $\"$R2$\" is not valid for the field $\"$R1$\"."
+LangString HTTPServerOptionsPage_TextBox_Warning ${LANG_SPANISH} "El valor $\"$R2$\" no es válido para el campo $\"$R1$\"."
 
 
 !endif

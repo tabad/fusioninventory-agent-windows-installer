@@ -52,6 +52,7 @@
 !include LogicLib.nsh
 !include "${FIAI_DIR}\Include\INIFunc.nsh"
 !include "${FIAI_DIR}\Include\StrFunc.nsh"
+!include "${FIAI_DIR}\Include\OptionChecks.nsh"
 !include "${FIAI_DIR}\Contrib\ModernUI2\Pages\DebugOptionsPageLangStrings.nsh"
 
 
@@ -193,32 +194,99 @@ FunctionEnd
 
 
 Function DebugOptionsPage_Leave
-   ; Push $R0 & $R1 onto the stack
+   ; Push $R0, $R1 & $R2 onto the stack
    Push $R0
    Push $R1
+   Push $R2
 
    ; Set default section
    StrCpy $R0 "${IOS_GUI}"
 
+   ; Initialize $R1
+   StrCpy $R1 1
+
    ; Save DropList1 Text
-   ${NSD_GetText} $hCtl_DebugOptionsPage_DropList1 $R1
-   ${WriteINIOption} "$R0" "${IO_DEBUG}" "$R1"
+   ${NSD_GetText} $hCtl_DebugOptionsPage_DropList1 $R2
+   ${WriteINIOption} "$R0" "${IO_DEBUG}" "$R2"
 
    ; Save DropList2 Text
-   ${NSD_GetText} $hCtl_DebugOptionsPage_DropList2 $R1
-   ${WriteINIOption} "$R0" "${IO_LOGGER}" "$R1"
+   ${NSD_GetText} $hCtl_DebugOptionsPage_DropList2 $R2
+   ${WriteINIOption} "$R0" "${IO_LOGGER}" "$R2"
 
    ; Save TextBox1 Text
-   ${NSD_GetText} $hCtl_DebugOptionsPage_TextBox1 $R1
-   ${Trim} "$R1" $R1
-   ${WriteINIOption} "$R0" "${IO_LOGFILE}" "$R1"
+   ${NSD_GetText} $hCtl_DebugOptionsPage_TextBox1 $R2
+   ${Trim} "$R2" $R2
+   ${If} ${IsValidOptionLogfileValue} "$R2"
+      ${WriteINIOption} "$R0" "${IO_LOGFILE}" "$R2"
+   ${Else}
+      ; Invalid value
+      ; Show warning message
+      Push "$R0"
+      Call DebugOptionsPage_TextBox1_ShowWarning
+      ; Mark for abort
+      StrCpy $R1 0
+   ${EndIf}
 
    ; Save Number1 Text
-   ${NSD_GetText} $hCtl_DebugOptionsPage_Number1 $R1
-   ${Trim} "$R1" $R1
-   ${WriteINIOption} "$R0" "${IO_LOGFILE-MAXSIZE}" "$R1"
+   ${NSD_GetText} $hCtl_DebugOptionsPage_Number1 $R2
+   ${Trim} "$R2" $R2
+   ${If} ${IsValidOptionLogfileMaxsizeValue} "$R2"
+      ${WriteINIOption} "$R0" "${IO_LOGFILE-MAXSIZE}" "$R2"
+   ${Else}
+      ; Invalid value
+      ; Show warning message
+      Push "$R0"
+      Call DebugOptionsPage_Number1_ShowWarning
+      ; Mark for abort
+      StrCpy $R1 0
+   ${EndIf}
 
-   ; Pop $R1 & $R0 off of the stack
+   ; Is it necessary to abort?
+   ${If} $R1 = 0
+      ; Pop $R2, $R1 & $R0 off of the stack
+      Pop $R2
+      Pop $R1
+      Pop $R0
+      ; Abort
+      Abort
+   ${Else}
+      ; Pop $R2, $R1 & $R0 off of the stack
+      Pop $R2
+      Pop $R1
+      Pop $R0
+   ${EndIf}
+FunctionEnd
+
+
+Function DebugOptionsPage_Number1_ShowWarning
+   ; Get parameter
+   Exch $R0
+
+   ; Push $R1 & $R2 onto the stack
+   Push $R1
+   Push $R2
+
+   ; Get Label4 Text
+   ${NSD_GetText} $hCtl_DebugOptionsPage_Label4 $R1
+
+   ; Get Number1 Text
+   ${NSD_GetText} $hCtl_DebugOptionsPage_Number1 $R2
+
+   ; Mark invalid value
+   ${NSD_SetText} $hCtl_DebugOptionsPage_Number1 ""
+   SetCtlColors $hCtl_DebugOptionsPage_Number1 0x000000 0xffcc33
+   ${NSD_SetText} $hCtl_DebugOptionsPage_Number1 "$R2"
+
+   ; Show warning message
+   MessageBox MB_OK|MB_ICONEXCLAMATION "$(DebugOptionsPage_TextBox_Warning)"
+
+   ; Reset Number1 Text
+   ${ReadINIOption} $R2 "$R0" "${IO_LOGFILE-MAXSIZE}"
+   SetCtlColors $hCtl_DebugOptionsPage_Number1 0x000000 0xffffff
+   ${NSD_SetText} $hCtl_DebugOptionsPage_Number1 "$R2"
+
+   ; Pop $R2, $R1 & $R0 off of the stack
+   Pop $R2
    Pop $R1
    Pop $R0
 FunctionEnd
@@ -236,5 +304,39 @@ Function DebugOptionsPage_Show
    ${EndIf}
 
    ; Pop $R0 off of the stack
+   Pop $R0
+FunctionEnd
+
+
+Function DebugOptionsPage_TextBox1_ShowWarning
+   ; Get parameter
+   Exch $R0
+
+   ; Push $R1 & $R2 onto the stack
+   Push $R1
+   Push $R2
+
+   ; Get Label3 Text
+   ${NSD_GetText} $hCtl_DebugOptionsPage_Label3 $R1
+
+   ; Get TextBox1 Text
+   ${NSD_GetText} $hCtl_DebugOptionsPage_TextBox1 $R2
+
+   ; Mark invalid value
+   ${NSD_SetText} $hCtl_DebugOptionsPage_TextBox1 ""
+   SetCtlColors $hCtl_DebugOptionsPage_TextBox1 0x000000 0xffcc33
+   ${NSD_SetText} $hCtl_DebugOptionsPage_TextBox1 "$R2"
+
+   ; Show warning message
+   MessageBox MB_OK|MB_ICONEXCLAMATION "$(DebugOptionsPage_TextBox_Warning)"
+
+   ; Reset TextBox1 Text
+   ${ReadINIOption} $R2 "$R0" "${IO_LOGFILE}"
+   SetCtlColors $hCtl_DebugOptionsPage_TextBox1 0x000000 0xffffff
+   ${NSD_SetText} $hCtl_DebugOptionsPage_TextBox1 "$R2"
+
+   ; Pop $R2, $R1 & $R0 off of the stack
+   Pop $R2
+   Pop $R1
    Pop $R0
 FunctionEnd

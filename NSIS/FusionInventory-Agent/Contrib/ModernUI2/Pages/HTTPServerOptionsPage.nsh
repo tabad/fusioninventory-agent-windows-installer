@@ -52,6 +52,7 @@
 !include LogicLib.nsh
 !include "${FIAI_DIR}\Include\INIFunc.nsh"
 !include "${FIAI_DIR}\Include\StrFunc.nsh"
+!include "${FIAI_DIR}\Include\OptionChecks.nsh"
 !include "${FIAI_DIR}\Include\CommaUStrFunc.nsh"
 !include "${FIAI_DIR}\Contrib\ModernUI2\Pages\HTTPServerOptionsPageLangStrings.nsh"
 
@@ -141,11 +142,11 @@ Function HTTPServerOptionsPage_Create
    ${ReadINIOption} $R1 "$R0" "${IO_HTTPD-IP}"
    ${NSD_SetText} $hCtl_HTTPServerOptionsPage_TextBox1 "$R1"
 
-   ; Set TextBox2 Text
+   ; Set Number1 Text
    ${ReadINIOption} $R1 "$R0" "${IO_HTTPD-PORT}"
    ${NSD_SetText} $hCtl_HTTPServerOptionsPage_Number1 "$R1"
 
-   ; Set TextBox3 Text
+   ; Set TextBox2 Text
    ${ReadINIOption} $R1 "$R0" "${IO_HTTPD-TRUST}"
    ${NSD_SetText} $hCtl_HTTPServerOptionsPage_TextBox2 "$R1"
 
@@ -172,45 +173,121 @@ FunctionEnd
 
 
 Function HTTPServerOptionsPage_Leave
-   ; Push $R0 & $R1 onto the stack
+   ; Push $R0, $R1 & $R2 onto the stack
    Push $R0
    Push $R1
+   Push $R2
 
    ; Set default section
    StrCpy $R0 "${IOS_GUI}"
 
+   ; Initialize $R1
+   StrCpy $R1 1
+
    ; Save TextBox1 Text
-   ${NSD_GetText} $hCtl_HTTPServerOptionsPage_TextBox1 $R1
-   ${Trim} "$R1" $R1
-   ${WriteINIOption} "$R0" "${IO_HTTPD-IP}" "$R1"
+   ${NSD_GetText} $hCtl_HTTPServerOptionsPage_TextBox1 $R2
+   ${Trim} "$R2" $R2
+   ${If} ${IsValidOptionHttpdIpValue} "$R2"
+      ${WriteINIOption} "$R0" "${IO_HTTPD-IP}" "$R2"
+   ${Else}
+      ; Invalid value
+      ; Show warning message
+      Push "$R0"
+      Call HTTPServerOptionsPage_TextBox1_ShowWarning
+      ; Mark for abort
+      StrCpy $R1 0
+   ${EndIf}
+
+   ; Save Number1 Text
+   ${NSD_GetText} $hCtl_HTTPServerOptionsPage_Number1 $R2
+   ${Trim} "$R2" $R2
+   ${If} ${IsValidOptionHttpdPortValue} "$R2"
+      ${WriteINIOption} "$R0" "${IO_HTTPD-PORT}" "$R2"
+   ${Else}
+      ; Invalid value
+      ; Show warning message
+      Push "$R0"
+      Call HTTPServerOptionsPage_Number1_ShowWarning
+      ; Mark for abort
+      StrCpy $R1 0
+   ${EndIf}
 
    ; Save TextBox2 Text
-   ${NSD_GetText} $hCtl_HTTPServerOptionsPage_Number1 $R1
-   ${Trim} "$R1" $R1
-   ${WriteINIOption} "$R0" "${IO_HTTPD-PORT}" "$R1"
-
-   ; Save TextBox3 Text
-   ${NSD_GetText} $hCtl_HTTPServerOptionsPage_TextBox2 $R1
-   ${AddCommaStrCommaUStr} "" "$R1" $R1
-   ${WriteINIOption} "$R0" "${IO_HTTPD-TRUST}" "$R1"
+   ${NSD_GetText} $hCtl_HTTPServerOptionsPage_TextBox2 $R2
+   ${AddCommaStrCommaUStr} "" "$R2" $R2
+   ${If} ${IsValidOptionHttpdTrustValue} "$R2"
+      ${WriteINIOption} "$R0" "${IO_HTTPD-TRUST}" "$R2"
+   ${Else}
+      ; Invalid value
+      ; Show warning message
+      Push "$R0"
+      Call HTTPServerOptionsPage_TextBox2_ShowWarning
+      ; Mark for abort
+      StrCpy $R1 0
+   ${EndIf}
 
    ; Save CheckBox1 Check
-   ${NSD_GetState} $hCtl_HTTPServerOptionsPage_CheckBox1 $R1
-   ${If} $R1 = ${BST_CHECKED}
+   ${NSD_GetState} $hCtl_HTTPServerOptionsPage_CheckBox1 $R2
+   ${If} $R2 = ${BST_CHECKED}
       ${WriteINIOption} "$R0" "${IO_ADD-FIREWALL-EXCEPTION}" "1"
    ${Else}
       ${WriteINIOption} "$R0" "${IO_ADD-FIREWALL-EXCEPTION}" "0"
    ${EndIf}
 
    ; Save CheckBox2 Check
-   ${NSD_GetState} $hCtl_HTTPServerOptionsPage_CheckBox2 $R1
-   ${If} $R1 = ${BST_CHECKED}
+   ${NSD_GetState} $hCtl_HTTPServerOptionsPage_CheckBox2 $R2
+   ${If} $R2 = ${BST_CHECKED}
       ${WriteINIOption} "$R0" "${IO_NO-HTTPD}" "0"
    ${Else}
       ${WriteINIOption} "$R0" "${IO_NO-HTTPD}" "1"
    ${EndIf}
 
-   ; Pop $R1 & $R0 off of the stack
+   ; Is it necessary to abort?
+   ${If} $R1 = 0
+      ; Pop $R2, $R1 & $R0 off of the stack
+      Pop $R2
+      Pop $R1
+      Pop $R0
+      ; Abort
+      Abort
+   ${Else}
+      ; Pop $R2, $R1 & $R0 off of the stack
+      Pop $R2
+      Pop $R1
+      Pop $R0
+   ${EndIf}
+FunctionEnd
+
+
+Function HTTPServerOptionsPage_Number1_ShowWarning
+   ; Get parameter
+   Exch $R0
+
+   ; Push $R1 & $R2 onto the stack
+   Push $R1
+   Push $R2
+
+   ; Get Label2 Text
+   ${NSD_GetText} $hCtl_HTTPServerOptionsPage_Label2 $R1
+
+   ; Get Number1 Text
+   ${NSD_GetText} $hCtl_HTTPServerOptionsPage_Number1 $R2
+
+   ; Mark invalid value
+   ${NSD_SetText} $hCtl_HTTPServerOptionsPage_Number1 ""
+   SetCtlColors $hCtl_HTTPServerOptionsPage_Number1 0x000000 0xffcc33
+   ${NSD_SetText} $hCtl_HTTPServerOptionsPage_Number1 "$R2"
+
+   ; Show warning message
+   MessageBox MB_OK|MB_ICONEXCLAMATION "$(HTTPServerOptionsPage_TextBox_Warning)"
+
+   ; Reset Number1 Text
+   ${ReadINIOption} $R2 "$R0" "${IO_HTTPD-PORT}"
+   SetCtlColors $hCtl_HTTPServerOptionsPage_Number1 0x000000 0xffffff
+   ${NSD_SetText} $hCtl_HTTPServerOptionsPage_Number1 "$R2"
+
+   ; Pop $R2, $R1 & $R0 off of the stack
+   Pop $R2
    Pop $R1
    Pop $R0
 FunctionEnd
@@ -232,5 +309,73 @@ Function HTTPServerOptionsPage_Show
    ${EndIf}
 
    ; Pop $R0 off of the stack
+   Pop $R0
+FunctionEnd
+
+
+Function HTTPServerOptionsPage_TextBox1_ShowWarning
+   ; Get parameter
+   Exch $R0
+
+   ; Push $R1 & $R2 onto the stack
+   Push $R1
+   Push $R2
+
+   ; Get Label1 Text
+   ${NSD_GetText} $hCtl_HTTPServerOptionsPage_Label1 $R1
+
+   ; Get TextBox1 Text
+   ${NSD_GetText} $hCtl_HTTPServerOptionsPage_TextBox1 $R2
+
+   ; Mark invalid value
+   ${NSD_SetText} $hCtl_HTTPServerOptionsPage_TextBox1 ""
+   SetCtlColors $hCtl_HTTPServerOptionsPage_TextBox1 0x000000 0xffcc33
+   ${NSD_SetText} $hCtl_HTTPServerOptionsPage_TextBox1 "$R2"
+
+   ; Show warning message
+   MessageBox MB_OK|MB_ICONEXCLAMATION "$(HTTPServerOptionsPage_TextBox_Warning)"
+
+   ; Reset TextBox1 Text
+   ${ReadINIOption} $R2 "$R0" "${IO_HTTPD-IP}"
+   SetCtlColors $hCtl_HTTPServerOptionsPage_TextBox1 0x000000 0xffffff
+   ${NSD_SetText} $hCtl_HTTPServerOptionsPage_TextBox1 "$R2"
+
+   ; Pop $R2, $R1 & $R0 off of the stack
+   Pop $R2
+   Pop $R1
+   Pop $R0
+FunctionEnd
+
+
+Function HTTPServerOptionsPage_TextBox2_ShowWarning
+   ; Get parameter
+   Exch $R0
+
+   ; Push $R1 & $R2 onto the stack
+   Push $R1
+   Push $R2
+
+   ; Get Label3 Text
+   ${NSD_GetText} $hCtl_HTTPServerOptionsPage_Label3 $R1
+
+   ; Get TextBox2 Text
+   ${NSD_GetText} $hCtl_HTTPServerOptionsPage_TextBox2 $R2
+
+   ; Mark invalid value
+   ${NSD_SetText} $hCtl_HTTPServerOptionsPage_TextBox2 ""
+   SetCtlColors $hCtl_HTTPServerOptionsPage_TextBox2 0x000000 0xffcc33
+   ${NSD_SetText} $hCtl_HTTPServerOptionsPage_TextBox2 "$R2"
+
+   ; Show warning message
+   MessageBox MB_OK|MB_ICONEXCLAMATION "$(HTTPServerOptionsPage_TextBox_Warning)"
+
+   ; Reset TextBox2 Text
+   ${ReadINIOption} $R2 "$R0" "${IO_HTTPD-TRUST}"
+   SetCtlColors $hCtl_HTTPServerOptionsPage_TextBox2 0x000000 0xffffff
+   ${NSD_SetText} $hCtl_HTTPServerOptionsPage_TextBox2 "$R2"
+
+   ; Pop $R2, $R1 & $R0 off of the stack
+   Pop $R2
+   Pop $R1
    Pop $R0
 FunctionEnd

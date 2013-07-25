@@ -52,6 +52,7 @@
 !include LogicLib.nsh
 !include "${FIAI_DIR}\Include\INIFunc.nsh"
 !include "${FIAI_DIR}\Include\StrFunc.nsh"
+!include "${FIAI_DIR}\Include\OptionChecks.nsh"
 !include "${FIAI_DIR}\Contrib\ModernUI2\Pages\RemoteTargetsOptionsSecondPageLangStrings.nsh"
 
 
@@ -141,29 +142,105 @@ FunctionEnd
 
 
 Function RemoteTargetsOptionsSecondPage_Leave
-   ; Push $R0 & $R1 onto the stack
+   ; Push $R0, $R1 & $R2 onto the stack
    Push $R0
    Push $R1
+   Push $R2
 
    ; Set default section
    StrCpy $R0 "${IOS_GUI}"
 
+   ; Initialize $R1
+   StrCpy $R1 1
+
    ; Save TextBox1 Text
-   ${NSD_GetText} $hCtl_RemoteTargetsOptionsSecondPage_TextBox1 $R1
-   ${Trim} "$R1" $R1
-   ${WriteINIOption} "$R0" "${IO_PROXY}" "$R1"
+   ${NSD_GetText} $hCtl_RemoteTargetsOptionsSecondPage_TextBox1 $R2
+   ${Trim} "$R2" $R2
+   ${If} ${IsValidOptionProxyValue} "$R2"
+      ${WriteINIOption} "$R0" "${IO_PROXY}" "$R2"
+   ${Else}
+      ; Invalid value
+      ; Show warning message
+      Push "$R0"
+      Call RemoteTargetsOptionsSecondPage_TextBox1_ShowWarning
+      ; Mark for abort
+      StrCpy $R1 0
+   ${EndIf}
 
    ; Save TextBox2 Text
-   ${NSD_GetText} $hCtl_RemoteTargetsOptionsSecondPage_TextBox2 $R1
-   ${Trim} "$R1" $R1
-   ${WriteINIOption} "$R0" "${IO_USER}" "$R1"
+   ${NSD_GetText} $hCtl_RemoteTargetsOptionsSecondPage_TextBox2 $R2
+   ${Trim} "$R2" $R2
+   ${If} ${IsValidOptionUserValue} "$R2"
+      ${WriteINIOption} "$R0" "${IO_USER}" "$R2"
+   ${Else}
+      ; Invalid value
+      ; Show warning message
+      Push "$R0"
+      Call RemoteTargetsOptionsSecondPage_TextBox2_ShowWarning
+      ; Mark for abort
+      StrCpy $R1 0
+   ${EndIf}
 
    ; Save Password1 Text
-   ${NSD_GetText} $hCtl_RemoteTargetsOptionsSecondPage_Password1 $R1
-   ${Trim} "$R1" $R1
-   ${WriteINIOption} "$R0" "${IO_PASSWORD}" "$R1"
+   ${NSD_GetText} $hCtl_RemoteTargetsOptionsSecondPage_Password1 $R2
+   ${Trim} "$R2" $R2
+   ${If} ${IsValidOptionPasswordValue} "$R2"
+      ${WriteINIOption} "$R0" "${IO_PASSWORD}" "$R2"
+   ${Else}
+      ; Invalid value
+      ; Show warning message
+      Push "$R0"
+      Call RemoteTargetsOptionsSecondPage_Password1_ShowWarning
+      ; Mark for abort
+      StrCpy $R1 0
+   ${EndIf}
 
-   ; Pop $R1 & $R0 off of the stack
+   ; Is it necessary to abort?
+   ${If} $R1 = 0
+      ; Pop $R2, $R1 & $R0 off of the stack
+      Pop $R2
+      Pop $R1
+      Pop $R0
+      ; Abort
+      Abort
+   ${Else}
+      ; Pop $R2, $R1 & $R0 off of the stack
+      Pop $R2
+      Pop $R1
+      Pop $R0
+   ${EndIf}
+FunctionEnd
+
+
+Function RemoteTargetsOptionsSecondPage_Password1_ShowWarning
+   ; Get parameter
+   Exch $R0
+
+   ; Push $R1 & $R2 onto the stack
+   Push $R1
+   Push $R2
+
+   ; Get Label3 Text
+   ${NSD_GetText} $hCtl_RemoteTargetsOptionsSecondPage_Label3 $R1
+
+   ; Get Password1 Text
+   ${NSD_GetText} $hCtl_RemoteTargetsOptionsSecondPage_Password1 $R2
+
+   ; Mark invalid value
+   ${NSD_SetText} $hCtl_RemoteTargetsOptionsSecondPage_Password1 ""
+   SetCtlColors $hCtl_RemoteTargetsOptionsSecondPage_Password1 0x000000 0xffcc33
+   ${NSD_SetText} $hCtl_RemoteTargetsOptionsSecondPage_Password1 "$R2"
+
+   ; Show warning message
+   MessageBox MB_OK|MB_ICONEXCLAMATION "$(RemoteTargetsOptionsSecondPage_TextBox_Warning)"
+
+   ; Reset Password1 Text
+   ${ReadINIOption} $R2 "$R0" "${IO_PASSWORD}"
+   SetCtlColors $hCtl_RemoteTargetsOptionsSecondPage_Password1 0x000000 0xffffff
+   ${NSD_SetText} $hCtl_RemoteTargetsOptionsSecondPage_Password1 "$R2"
+
+   ; Pop $R2, $R1 & $R0 off of the stack
+   Pop $R2
    Pop $R1
    Pop $R0
 FunctionEnd
@@ -185,5 +262,73 @@ Function RemoteTargetsOptionsSecondPage_Show
    ${EndIf}
 
    ; Pop $R0 off of the stack
+   Pop $R0
+FunctionEnd
+
+
+Function RemoteTargetsOptionsSecondPage_TextBox1_ShowWarning
+   ; Get parameter
+   Exch $R0
+
+   ; Push $R1 & $R2 onto the stack
+   Push $R1
+   Push $R2
+
+   ; Get Label1 Text
+   ${NSD_GetText} $hCtl_RemoteTargetsOptionsSecondPage_Label1 $R1
+
+   ; Get TextBox1 Text
+   ${NSD_GetText} $hCtl_RemoteTargetsOptionsSecondPage_TextBox1 $R2
+
+   ; Mark invalid value
+   ${NSD_SetText} $hCtl_RemoteTargetsOptionsSecondPage_TextBox1 ""
+   SetCtlColors $hCtl_RemoteTargetsOptionsSecondPage_TextBox1 0x000000 0xffcc33
+   ${NSD_SetText} $hCtl_RemoteTargetsOptionsSecondPage_TextBox1 "$R2"
+
+   ; Show warning message
+   MessageBox MB_OK|MB_ICONEXCLAMATION "$(RemoteTargetsOptionsSecondPage_TextBox_Warning)"
+
+   ; Reset TextBox1 Text
+   ${ReadINIOption} $R2 "$R0" "${IO_PROXY}"
+   SetCtlColors $hCtl_RemoteTargetsOptionsSecondPage_TextBox1 0x000000 0xffffff
+   ${NSD_SetText} $hCtl_RemoteTargetsOptionsSecondPage_TextBox1 "$R2"
+
+   ; Pop $R2, $R1 & $R0 off of the stack
+   Pop $R2
+   Pop $R1
+   Pop $R0
+FunctionEnd
+
+
+Function RemoteTargetsOptionsSecondPage_TextBox2_ShowWarning
+   ; Get parameter
+   Exch $R0
+
+   ; Push $R1 & $R2 onto the stack
+   Push $R1
+   Push $R2
+
+   ; Get Label2 Text
+   ${NSD_GetText} $hCtl_RemoteTargetsOptionsSecondPage_Label2 $R1
+
+   ; Get TextBox2 Text
+   ${NSD_GetText} $hCtl_RemoteTargetsOptionsSecondPage_TextBox2 $R2
+
+   ; Mark invalid value
+   ${NSD_SetText} $hCtl_RemoteTargetsOptionsSecondPage_TextBox2 ""
+   SetCtlColors $hCtl_RemoteTargetsOptionsSecondPage_TextBox2 0x000000 0xffcc33
+   ${NSD_SetText} $hCtl_RemoteTargetsOptionsSecondPage_TextBox2 "$R2"
+
+   ; Show warning message
+   MessageBox MB_OK|MB_ICONEXCLAMATION "$(RemoteTargetsOptionsSecondPage_TextBox_Warning)"
+
+   ; Reset TextBox2 Text
+   ${ReadINIOption} $R2 "$R0" "${IO_USER}"
+   SetCtlColors $hCtl_RemoteTargetsOptionsSecondPage_TextBox2 0x000000 0xffffff
+   ${NSD_SetText} $hCtl_RemoteTargetsOptionsSecondPage_TextBox2 "$R2"
+
+   ; Pop $R2, $R1 & $R0 off of the stack
+   Pop $R2
+   Pop $R1
    Pop $R0
 FunctionEnd

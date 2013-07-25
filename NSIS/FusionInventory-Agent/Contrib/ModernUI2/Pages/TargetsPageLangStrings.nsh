@@ -104,5 +104,10 @@ LangString hCtl_TargetsPage_NextButton_Text_Install ${LANG_ENGLISH} "&Install"
 LangString hCtl_TargetsPage_NextButton_Text_Install ${LANG_FRENCH} "&Installer"
 LangString hCtl_TargetsPage_NextButton_Text_Install ${LANG_SPANISH} "&Instalar"
 
+; TargetsPage_TextBox_Warning
+LangString TargetsPage_TextBox_Warning ${LANG_ENGLISH} "The value $\"$R2$\" is not valid for the field $\"$R1$\"."
+LangString TargetsPage_TextBox_Warning ${LANG_FRENCH} "fThe value $\"$R2$\" is not valid for the field $\"$R1$\"."
+LangString TargetsPage_TextBox_Warning ${LANG_SPANISH} "El valor $\"$R2$\" no es válido para el campo $\"$R1$\"."
+
 
 !endif

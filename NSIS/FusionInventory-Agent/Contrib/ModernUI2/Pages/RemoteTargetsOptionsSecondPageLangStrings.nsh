@@ -79,5 +79,10 @@ LangString hCtl_RemoteTargetsOptionsSecondPage_Label3_Text ${LANG_ENGLISH} "Pass
 LangString hCtl_RemoteTargetsOptionsSecondPage_Label3_Text ${LANG_FRENCH} "fPassword"
 LangString hCtl_RemoteTargetsOptionsSecondPage_Label3_Text ${LANG_SPANISH} "Contraseña"
 
+; RemoteTargetsOptionsSecondPage_TextBox_Warning
+LangString RemoteTargetsOptionsSecondPage_TextBox_Warning ${LANG_ENGLISH} "The value $\"$R2$\" is not valid for the field $\"$R1$\"."
+LangString RemoteTargetsOptionsSecondPage_TextBox_Warning ${LANG_FRENCH} "fThe value $\"$R2$\" is not valid for the field $\"$R1$\"."
+LangString RemoteTargetsOptionsSecondPage_TextBox_Warning ${LANG_SPANISH} "El valor $\"$R2$\" no es válido para el campo $\"$R1$\"."
+
 
 !endif

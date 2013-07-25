@@ -119,5 +119,10 @@ LangString hCtl_AdvancedOptionsPage_Label9_Text ${LANG_ENGLISH} "(list separated
 LangString hCtl_AdvancedOptionsPage_Label9_Text ${LANG_FRENCH} "f(list separated by commas)"
 LangString hCtl_AdvancedOptionsPage_Label9_Text ${LANG_SPANISH} "(lista separada por comas)"
 
+; AdvancedOptionsPage_TextBox_Warning
+LangString AdvancedOptionsPage_TextBox_Warning ${LANG_ENGLISH} "The value $\"$R2$\" is not valid for the field $\"$R1$\"."
+LangString AdvancedOptionsPage_TextBox_Warning ${LANG_FRENCH} "fThe value $\"$R2$\" is not valid for the field $\"$R1$\"."
+LangString AdvancedOptionsPage_TextBox_Warning ${LANG_SPANISH} "El valor $\"$R2$\" no es válido para el campo $\"$R1$\"."
+
 
 !endif

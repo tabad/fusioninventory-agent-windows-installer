@@ -109,5 +109,10 @@ LangString hCtl_RemoteTargetsOptionsFirstPage_SelectFileDialog_Filter2 ${LANG_EN
 LangString hCtl_RemoteTargetsOptionsFirstPage_SelectFileDialog_Filter2 ${LANG_FRENCH} "fPEM Certificates (*.pem)"
 LangString hCtl_RemoteTargetsOptionsFirstPage_SelectFileDialog_Filter2 ${LANG_SPANISH} "Certificados PEM (*.pem)"
 
+; RemoteTargetsOptionsFirstPage_TextBox_Warning
+LangString RemoteTargetsOptionsFirstPage_TextBox_Warning ${LANG_ENGLISH} "The value $\"$R2$\" is not valid for the field $\"$R1$\"."
+LangString RemoteTargetsOptionsFirstPage_TextBox_Warning ${LANG_FRENCH} "fThe value $\"$R2$\" is not valid for the field $\"$R1$\"."
+LangString RemoteTargetsOptionsFirstPage_TextBox_Warning ${LANG_SPANISH} "El valor $\"$R2$\" no es válido para el campo $\"$R1$\"."
+
 
 !endif
