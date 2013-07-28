@@ -138,6 +138,7 @@
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Logger"
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Target"
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Tools"
+   CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Tools\Generic"
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent\XML"
    CreateDirectory "$R0\perl\bin"
    CreateDirectory "$R0\share"
@@ -171,13 +172,11 @@
    File "${FIA_DIR}\lib\FusionInventory\Agent.pm"
 
    ; Install $R0\perl\agent\FusionInventory\Agent\*.pm
-   ; but not $R0\perl\agent\FusionInventory\Agent\Manufacturer.pm
-   ;         $R0\perl\agent\FusionInventory\Agent\SNMP.pm
+   ; but not $R0\perl\agent\FusionInventory\Agent\SNMP.pm
    ;         $R0\perl\agent\FusionInventory\Agent\Threads.pm
    SetOutPath "$R0\perl\agent\FusionInventory\Agent"
-   File /x "Manufacturer.pm" \
-        /x "SNMP.pm"         \
-        /x "Threads.pm"      \
+   File /x "SNMP.pm"    \
+        /x "Threads.pm" \
         "${FIA_DIR}\lib\FusionInventory\Agent\*.pm"
 
    ; Install $R0\perl\agent\FusionInventory\Agent\HTTP\*.*
@@ -192,12 +191,17 @@
    SetOutPath "$R0\perl\agent\FusionInventory\Agent\Target"
    File /r "${FIA_DIR}\lib\FusionInventory\Agent\Target\*.*"
 
-   ; Install $R0\perl\agent\FusionInventory\Agent\Tools\*.*
-   ; but not $R0\perl\agent\FusionInventory\Agent\Tools\SNMP.pm
+   ; Install $R0\perl\agent\FusionInventory\Agent\Tools\*.pm
+   ; but not $R0\perl\agent\FusionInventory\Agent\Tools\Hardware.pm
+   ;         $R0\perl\agent\FusionInventory\Agent\Tools\SNMP.pm
    SetOutPath "$R0\perl\agent\FusionInventory\Agent\Tools"
-   File /r           \
-        /x "SNMP.pm" \
-        "${FIA_DIR}\lib\FusionInventory\Agent\Tools\*.*"
+   File /x "Hardware.pm" \
+        /x "SNMP.pm"     \
+        "${FIA_DIR}\lib\FusionInventory\Agent\Tools\*.pm"
+
+   ; Install $R0\perl\agent\FusionInventory\Agent\Tools\Generic\*.*
+   SetOutPath "$R0\perl\agent\FusionInventory\Agent\Tools\Generic"
+   File /r "${FIA_DIR}\lib\FusionInventory\Agent\Tools\Generic\*.*"
 
    ; Install $R0\perl\agent\FusionInventory\Agent\XML\*.*
    SetOutPath "$R0\perl\agent\FusionInventory\Agent\XML"
@@ -409,29 +413,29 @@
       CreateDirectory "$R0\perl\agent"
       CreateDirectory "$R0\perl\agent\FusionInventory"
       CreateDirectory "$R0\perl\agent\FusionInventory\Agent"
-      CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Manufacturer"
       CreateDirectory "$R0\perl\agent\FusionInventory\Agent\SNMP"
       CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Tools"
+      CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Tools\Hardware"
 
-      ; Install $R0\perl\agent\FusionInventory\Agent\Manufacturer.pm
-      ;         $R0\perl\agent\FusionInventory\Agent\SNMP.pm
+      ; Install $R0\perl\agent\FusionInventory\Agent\SNMP.pm
       ;         $R0\perl\agent\FusionInventory\Agent\Threads.pm
       SetOutPath "$R0\perl\agent\FusionInventory\Agent"
-      File "${FIA_DIR}\lib\FusionInventory\Agent\Manufacturer.pm"
       File "${FIA_DIR}\lib\FusionInventory\Agent\SNMP.pm"
       File "${FIA_DIR}\lib\FusionInventory\Agent\Threads.pm"
-
-      ; Install $R0\perl\agent\FusionInventory\Agent\Manufacturer\*.*
-      SetOutPath "$R0\perl\agent\FusionInventory\Agent\Manufacturer"
-      File /r "${FIA_DIR}\lib\FusionInventory\Agent\Manufacturer\*.*"
 
       ; Install $R0\perl\agent\FusionInventory\Agent\SNMP\*.*
       SetOutPath "$R0\perl\agent\FusionInventory\Agent\SNMP"
       File /r "${FIA_DIR}\lib\FusionInventory\Agent\SNMP\*.*"
 
-      ; Install $R0\perl\agent\FusionInventory\Agent\Tools\SNMP.pm
+      ; Install $R0\perl\agent\FusionInventory\Agent\Tools\Hardware.pm
+      ;         $R0\perl\agent\FusionInventory\Agent\Tools\SNMP.pm
       SetOutPath "$R0\perl\agent\FusionInventory\Agent\Tools"
+      File "${FIA_DIR}\lib\FusionInventory\Agent\Tools\Hardware.pm"
       File "${FIA_DIR}\lib\FusionInventory\Agent\Tools\SNMP.pm"
+
+      ; Install $R0\perl\agent\FusionInventory\Agent\Tools\Hardware\*.*
+      SetOutPath "$R0\perl\agent\FusionInventory\Agent\Tools\Hardware"
+      File /r "${FIA_DIR}\lib\FusionInventory\Agent\Tools\Hardware\*.*"
    ${EndIf}
 
    ; Pop $R0 off of the stack
