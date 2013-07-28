@@ -249,6 +249,19 @@
 !macroend
 
 
+; GetValidCategoryCommaUStr
+!define GetValidCategoryCommaUStr "!insertmacro GetValidCategoryCommaUStr"
+
+!macro GetValidCategoryCommaUStr ResultVar
+   StrCpy ${ResultVar} ""
+   ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_ENVIRONMENT}" ${ResultVar}
+   ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_PRINTER}" ${ResultVar}
+   ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_PROCESS}" ${ResultVar}
+   ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_SOFTWARE}" ${ResultVar}
+   ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_USER}" ${ResultVar}
+!macroend
+
+
 ; GetValidTasksCommaUStr
 !define GetValidTasksCommaUStr "!insertmacro GetInstallTasksFullCommaUStr"
 
