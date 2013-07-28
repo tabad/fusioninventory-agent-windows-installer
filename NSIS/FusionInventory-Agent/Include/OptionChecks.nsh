@@ -706,21 +706,25 @@ FunctionEnd
 Function IsValidOptionInstalltypeValue
    ; $R0 Option value
    ; $R1 Error code
+   ; $R2 Valid values
 
    ; Note: $R0 is used also as output variable
 
    ; Get parameter
    Exch $R0
 
-   ; Push $R1 onto the stack
+   ; Push $R1 & $R2 onto the stack
    Push $R1
+   Push $R2
 
    ; Initialize $R1
    StrCpy $R1 0
 
+   ; Get valid installation types
+   ${GetValidInstalltypeCommaUStr} $R2
+
    ; Check
-   ${If} $R0 != "${INSTALLTYPE_FROMSCRATCH}"
-   ${AndIf} $R0 != "${INSTALLTYPE_FROMCURRENTCONFIG}"
+   ${IfNot} "$R0" IsInCommaUStr "$R2"
       ; $R0 is an invalid value
       StrCpy $R1 1
    ${EndIf}
@@ -728,7 +732,8 @@ Function IsValidOptionInstalltypeValue
    ; Copy return value in $R0
    StrCpy $R0 "$R1"
 
-   ; Pop $R1 off of the stack
+   ; Pop $R2 & $R1 off of the stack
+   Pop $R2
    Pop $R1
 
    ; Exchange the top element of the stack with $R0

@@ -229,6 +229,16 @@
 !macroend
 
 
+; GetValidInstalltypeCommaUStr
+!define GetValidInstalltypeCommaUStr "!insertmacro GetValidInstalltypeCommaUStr"
+
+!macro GetValidInstalltypeCommaUStr ResultVar
+   StrCpy ${ResultVar} ""
+   ${AddStrCommaUStr} ${ResultVar} "${INSTALLTYPE_FROMCURRENTCONFIG}" ${ResultVar}
+   ${AddStrCommaUStr} ${ResultVar} "${INSTALLTYPE_FROMSCRATCH}" ${ResultVar}
+!macroend
+
+
 ; GetValidTasksCommaUStr
 !define GetValidTasksCommaUStr "!insertmacro GetInstallTasksFullCommaUStr"
 
