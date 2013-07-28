@@ -371,24 +371,25 @@ FunctionEnd
 Function IsValidOptionExecmodeValue
    ; $R0 Option value
    ; $R1 Error code
+   ; $R2 Valid values
 
    ; Note: $R0 is used also as output variable
 
    ; Get parameter
    Exch $R0
 
-   ; Push $R1 onto the stack
+   ; Push $R1 & $R2 onto the stack
    Push $R1
+   Push $R2
 
    ; Initialize $R1
    StrCpy $R1 0
 
+   ; Get valid execution modes
+   ${GetValidExecmodeCommaUStr} $R2
+
    ; Check
-   ${If} "$R0" != "${EXECMODE_SERVICE}"
-   ${AndIf} "$R0" != "${EXECMODE_TASK}"
-   ${AndIf} "$R0" != "${EXECMODE_MANUAL}"
-   ${AndIf} "$R0" != "${EXECMODE_CURRENT}"
-      ; $R0 is an invalid value
+   ${IfNot} "$R0" IsInCommaUStr "$R2"
       StrCpy $R1 1
    ${ElseIf} "$R0" == "${EXECMODE_TASK}"
    ${AndIfNot} ${IsTargetOsValidForWindowsTask}
@@ -399,7 +400,8 @@ Function IsValidOptionExecmodeValue
    ; Copy return value in $R0
    StrCpy $R0 "$R1"
 
-   ; Pop $R1 off of the stack
+   ; Pop $R2 & $R1 off of the stack
+   Pop $R2
    Pop $R1
 
    ; Exchange the top element of the stack with $R0

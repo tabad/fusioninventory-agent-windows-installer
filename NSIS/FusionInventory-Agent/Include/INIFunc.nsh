@@ -217,6 +217,18 @@
 !macroend
 
 
+; GetValidExecmodeCommaUStr
+!define GetValidExecmodeCommaUStr "!insertmacro GetValidExecmodeCommaUStr"
+
+!macro GetValidExecmodeCommaUStr ResultVar
+   StrCpy ${ResultVar} ""
+   ${AddStrCommaUStr} ${ResultVar} "${EXECMODE_SERVICE}" ${ResultVar}
+   ${AddStrCommaUStr} ${ResultVar} "${EXECMODE_TASK}" ${ResultVar}
+   ${AddStrCommaUStr} ${ResultVar} "${EXECMODE_MANUAL}" ${ResultVar}
+   ${AddStrCommaUStr} ${ResultVar} "${EXECMODE_CURRENT}" ${ResultVar}
+!macroend
+
+
 ; GetValidTasksCommaUStr
 !define GetValidTasksCommaUStr "!insertmacro GetInstallTasksFullCommaUStr"
 
