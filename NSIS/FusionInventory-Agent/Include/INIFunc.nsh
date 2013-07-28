@@ -239,6 +239,16 @@
 !macroend
 
 
+; GetValidLoggerCommaUStr
+!define GetValidLoggerCommaUStr "!insertmacro GetValidLoggerCommaUStr"
+
+!macro GetValidLoggerCommaUStr ResultVar
+   StrCpy ${ResultVar} ""
+   ${AddStrCommaUStr} ${ResultVar} "${LOGGER_FILE}" ${ResultVar}
+   ${AddStrCommaUStr} ${ResultVar} "${LOGGER_STDERR}" ${ResultVar}
+!macroend
+
+
 ; GetValidTasksCommaUStr
 !define GetValidTasksCommaUStr "!insertmacro GetInstallTasksFullCommaUStr"
 

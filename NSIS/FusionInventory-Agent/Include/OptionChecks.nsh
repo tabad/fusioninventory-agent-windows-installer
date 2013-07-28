@@ -889,28 +889,40 @@ FunctionEnd
 Function IsValidOptionLoggerValue
    ; $R0 Option value
    ; $R1 Error code
+   ; $R2 Valid values
 
    ; Note: $R0 is used also as output variable
 
    ; Get parameter
    Exch $R0
 
-   ; Push $R1 onto the stack
+   ; Push $R1 & $R2 onto the stack
    Push $R1
+   Push $R2
 
    ; Initialize $R1
    StrCpy $R1 0
 
-   ; Check (ToDo)
-   ${If} "$R0" != "$R0"
-      ; $R0 is an invalid value
-      StrCpy $R1 1
-   ${EndIf}
+   ; Check
+   ${Select} "$R0"
+      ${Case} ""
+         ; Invalid value
+         StrCpy $R1 1
+      ${CaseElse}
+         ; Get valid loggers
+         ${GetValidLoggerCommaUStr} $R2
+         ; Check set of loggers
+         ${IfNot} "$R0" IsASubCommaUStr "$R2"
+            ; $R0 is an invalid value
+            StrCpy $R1 1
+         ${EndIf}
+   ${EndSelect}
 
    ; Copy return value in $R0
    StrCpy $R0 "$R1"
 
-   ; Pop $R1 off of the stack
+   ; Pop $R2 & $R1 off of the stack
+   Pop $R2
    Pop $R1
 
    ; Exchange the top element of the stack with $R0
