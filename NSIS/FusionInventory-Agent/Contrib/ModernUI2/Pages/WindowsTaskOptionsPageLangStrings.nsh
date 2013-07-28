@@ -49,45 +49,45 @@
 ;--------------------------------
 ; LangString Variables
 
-; hCtl_WindowsTaskOptionsPage_Text
-LangString hCtl_WindowsTaskOptionsPage_Text ${LANG_ENGLISH} "Windows Task Options"
-LangString hCtl_WindowsTaskOptionsPage_Text ${LANG_FRENCH} "fWindows Task Options"
-LangString hCtl_WindowsTaskOptionsPage_Text ${LANG_SPANISH} "Opciones de la tarea de Windows"
+; WindowsTaskOptionsPage_Text
+LangString WindowsTaskOptionsPage_Text ${LANG_ENGLISH} "Windows Task Options"
+LangString WindowsTaskOptionsPage_Text ${LANG_FRENCH} "fWindows Task Options"
+LangString WindowsTaskOptionsPage_Text ${LANG_SPANISH} "Opciones de la tarea de Windows"
 
-; hCtl_WindowsTaskOptionsPage_SubText
-LangString hCtl_WindowsTaskOptionsPage_SubText ${LANG_ENGLISH} "Set Windows Task Options."
-LangString hCtl_WindowsTaskOptionsPage_SubText ${LANG_FRENCH} "fSet Windoes Task Options."
-LangString hCtl_WindowsTaskOptionsPage_SubText ${LANG_SPANISH} "Establezca las opciones de la tarea de Windows."
+; WindowsTaskOptionsPage_SubText
+LangString WindowsTaskOptionsPage_SubText ${LANG_ENGLISH} "Set Windows Task Options."
+LangString WindowsTaskOptionsPage_SubText ${LANG_FRENCH} "fSet Windoes Task Options."
+LangString WindowsTaskOptionsPage_SubText ${LANG_SPANISH} "Establezca las opciones de la tarea de Windows."
 
-; hCtl_WindowsTaskOptionsPage_GroupBox1_Text
-LangString hCtl_WindowsTaskOptionsPage_GroupBox1_Text ${LANG_ENGLISH} "Windows Task Options"
-LangString hCtl_WindowsTaskOptionsPage_GroupBox1_Text ${LANG_FRENCH} "fWindows Task Options"
-LangString hCtl_WindowsTaskOptionsPage_GroupBox1_Text ${LANG_SPANISH} "Opciones de la Tarea de Windows"
+; WindowsTaskOptionsPage_GroupBox1_Text
+LangString WindowsTaskOptionsPage_GroupBox1_Text ${LANG_ENGLISH} "Windows Task Options"
+LangString WindowsTaskOptionsPage_GroupBox1_Text ${LANG_FRENCH} "fWindows Task Options"
+LangString WindowsTaskOptionsPage_GroupBox1_Text ${LANG_SPANISH} "Opciones de la Tarea de Windows"
 
-; hCtl_WindowsTaskOptionsPage_Label1_Text
-LangString hCtl_WindowsTaskOptionsPage_Label1_Text ${LANG_ENGLISH} "Frequency"
-LangString hCtl_WindowsTaskOptionsPage_Label1_Text ${LANG_FRENCH} "fFrequency"
-LangString hCtl_WindowsTaskOptionsPage_Label1_Text ${LANG_SPANISH} "Frecuencia"
+; WindowsTaskOptionsPage_Label1_Text
+LangString WindowsTaskOptionsPage_Label1_Text ${LANG_ENGLISH} "Frequency"
+LangString WindowsTaskOptionsPage_Label1_Text ${LANG_FRENCH} "fFrequency"
+LangString WindowsTaskOptionsPage_Label1_Text ${LANG_SPANISH} "Frecuencia"
 
-; hCtl_WindowsTaskOptionsPage_Label2_Text
-LangString hCtl_WindowsTaskOptionsPage_Label2_Text ${LANG_ENGLISH} "$R2 Interval"
-LangString hCtl_WindowsTaskOptionsPage_Label2_Text ${LANG_FRENCH} "f$R2 Interval"
-LangString hCtl_WindowsTaskOptionsPage_Label2_Text ${LANG_SPANISH} "Invervalo de $R2"
+; WindowsTaskOptionsPage_Label2_Text
+LangString WindowsTaskOptionsPage_Label2_Text ${LANG_ENGLISH} "$R2 Interval"
+LangString WindowsTaskOptionsPage_Label2_Text ${LANG_FRENCH} "f$R2 Interval"
+LangString WindowsTaskOptionsPage_Label2_Text ${LANG_SPANISH} "Invervalo de $R2"
 
-; hCtl_WindowsTaskOptionsPage_Minute
-LangString hCtl_WindowsTaskOptionsPage_Minute ${LANG_ENGLISH} "Minute"
-LangString hCtl_WindowsTaskOptionsPage_Minute ${LANG_FRENCH} "fMinute"
-LangString hCtl_WindowsTaskOptionsPage_Minute ${LANG_SPANISH} "Minutos"
+; WindowsTaskOptionsPage_Minute
+LangString WindowsTaskOptionsPage_Minute ${LANG_ENGLISH} "Minute"
+LangString WindowsTaskOptionsPage_Minute ${LANG_FRENCH} "fMinute"
+LangString WindowsTaskOptionsPage_Minute ${LANG_SPANISH} "Minutos"
 
-; hCtl_WindowsTaskOptionsPage_Hour
-LangString hCtl_WindowsTaskOptionsPage_Hour ${LANG_ENGLISH} "Hour"
-LangString hCtl_WindowsTaskOptionsPage_Hour ${LANG_FRENCH} "fHour"
-LangString hCtl_WindowsTaskOptionsPage_Hour ${LANG_SPANISH} "Horas"
+; WindowsTaskOptionsPage_Hour
+LangString WindowsTaskOptionsPage_Hour ${LANG_ENGLISH} "Hour"
+LangString WindowsTaskOptionsPage_Hour ${LANG_FRENCH} "fHour"
+LangString WindowsTaskOptionsPage_Hour ${LANG_SPANISH} "Horas"
 
-; hCtl_WindowsTaskOptionsPage_Day
-LangString hCtl_WindowsTaskOptionsPage_Day ${LANG_ENGLISH} "Day"
-LangString hCtl_WindowsTaskOptionsPage_Day ${LANG_FRENCH} "fDay"
-LangString hCtl_WindowsTaskOptionsPage_Day ${LANG_SPANISH} "Días"
+; WindowsTaskOptionsPage_Day
+LangString WindowsTaskOptionsPage_Day ${LANG_ENGLISH} "Day"
+LangString WindowsTaskOptionsPage_Day ${LANG_FRENCH} "fDay"
+LangString WindowsTaskOptionsPage_Day ${LANG_SPANISH} "Días"
 
 
 !endif

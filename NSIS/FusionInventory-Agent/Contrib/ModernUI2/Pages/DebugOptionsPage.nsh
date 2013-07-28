@@ -85,7 +85,7 @@ Function DebugOptionsPage_Button1_OnClick
    Push $R0
 
    ${NSD_GetText} $hCtl_DebugOptionsPage_TextBox1 $R0
-   nsDialogs::SelectFileDialog "open" "$R0" "$(hCtl_DebugOptionsPage_SelectFileDialog_Filter2)|*.log|$(hCtl_DebugOptionsPage_SelectFileDialog_Filter1)|*.*"
+   nsDialogs::SelectFileDialog "open" "$R0" "$(DebugOptionsPage_SelectFileDialog_Filter2)|*.log|$(DebugOptionsPage_SelectFileDialog_Filter1)|*.*"
    Pop $R0
 
    ; Check the user action
@@ -109,14 +109,14 @@ Function DebugOptionsPage_Create
    ${If} $hCtl_DebugOptionsPage == error
      Abort
    ${EndIf}
-   !insertmacro MUI_HEADER_TEXT "$(hCtl_DebugOptionsPage_Text)" "$(hCtl_DebugOptionsPage_SubText)"
+   !insertmacro MUI_HEADER_TEXT "$(DebugOptionsPage_Text)" "$(DebugOptionsPage_SubText)"
 
    ; === GroupBox1 (type: GroupBox) ===
-   ${NSD_CreateGroupBox} 0u 16u 294u 95u "$(hCtl_DebugOptionsPage_GroupBox1_Text)"
+   ${NSD_CreateGroupBox} 0u 16u 294u 95u "$(DebugOptionsPage_GroupBox1_Text)"
    Pop $hCtl_DebugOptionsPage_GroupBox1
 
    ; === Label1 (type: Label) ===
-   ${NSD_CreateLabel} 13u 29u 95u 8u "$(hCtl_DebugOptionsPage_Label1_Text)"
+   ${NSD_CreateLabel} 13u 29u 95u 8u "$(DebugOptionsPage_Label1_Text)"
    Pop $hCtl_DebugOptionsPage_Label1
 
    ; === DropList1 (type: DropList) ===
@@ -129,7 +129,7 @@ Function DebugOptionsPage_Create
    ${NSD_CB_SelectString} $hCtl_DebugOptionsPage_DropList1 "0"
 
    ; === Label2 (type: Label) ===
-   ${NSD_CreateLabel} 126u 29u 95u 8u "$(hCtl_DebugOptionsPage_Label2_Text)"
+   ${NSD_CreateLabel} 126u 29u 95u 8u "$(DebugOptionsPage_Label2_Text)"
    Pop $hCtl_DebugOptionsPage_Label2
 
    ; === DropList2 (type: DropList) ===
@@ -141,7 +141,7 @@ Function DebugOptionsPage_Create
    ${NSD_CB_SelectString} $hCtl_DebugOptionsPage_DropList2 "File"
 
    ; === Label3 (type: Label) ===
-   ${NSD_CreateLabel} 13u 56u 192u 8u "$(hCtl_DebugOptionsPage_Label3_Text)"
+   ${NSD_CreateLabel} 13u 56u 192u 8u "$(DebugOptionsPage_Label3_Text)"
    Pop $hCtl_DebugOptionsPage_Label3
 
    ; === TextBox1 (type: Text) ===
@@ -149,12 +149,12 @@ Function DebugOptionsPage_Create
    Pop $hCtl_DebugOptionsPage_TextBox1
 
    ; === Button1 (type: Button) ===
-   ${NSD_CreateButton} 215u 63u 68u 14u "$(hCtl_DebugOptionsPage_Button1_Text)"
+   ${NSD_CreateButton} 215u 63u 68u 14u "$(DebugOptionsPage_Button1_Text)"
    Pop $hCtl_DebugOptionsPage_Button1
    ${NSD_OnClick} $hCtl_DebugOptionsPage_Button1 DebugOptionsPage_Button1_OnClick
 
    ; === Label4 (type: Label) ===
-   ${NSD_CreateLabel} 13u 81u 192u 8u "$(hCtl_DebugOptionsPage_Label4_Text)"
+   ${NSD_CreateLabel} 13u 81u 192u 8u "$(DebugOptionsPage_Label4_Text)"
    Pop $hCtl_DebugOptionsPage_Label4
 
    ; === Number1 (type: Number) ===

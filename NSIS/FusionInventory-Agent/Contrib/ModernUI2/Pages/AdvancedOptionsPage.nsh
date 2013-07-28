@@ -97,18 +97,18 @@ Function AdvancedOptionsPage_Create
    ${If} $hCtl_AdvancedOptionsPage == error
      Abort
    ${EndIf}
-   !insertmacro MUI_HEADER_TEXT "$(hCtl_AdvancedOptionsPage_Text)" "$(hCtl_AdvancedOptionsPage_SubText)"
+   !insertmacro MUI_HEADER_TEXT "$(AdvancedOptionsPage_Text)" "$(AdvancedOptionsPage_SubText)"
 
    ; === Label1 (type: Label) ===
-   ${NSD_CreateLabel} 0u 0u 294u 18u "$(hCtl_AdvancedOptionsPage_Label1_Text)"
+   ${NSD_CreateLabel} 0u 0u 294u 18u "$(AdvancedOptionsPage_Label1_Text)"
    Pop $hCtl_AdvancedOptionsPage_Label1
 
    ; === GroupBox1 (type: GroupBox) ===
-   ${NSD_CreateGroupBox} 0u 21u 144u 108u "$(hCtl_AdvancedOptionsPage_GroupBox1_Text)"
+   ${NSD_CreateGroupBox} 0u 21u 144u 108u "$(AdvancedOptionsPage_GroupBox1_Text)"
    Pop $hCtl_AdvancedOptionsPage_GroupBox1
 
    ; === Label2 (type: Label) ===
-   ${NSD_CreateLabel} 11u 34u 123u 8u "$(hCtl_AdvancedOptionsPage_Label2_Text)"
+   ${NSD_CreateLabel} 11u 34u 123u 8u "$(AdvancedOptionsPage_Label2_Text)"
    Pop $hCtl_AdvancedOptionsPage_Label2
    ${NSD_AddStyle} $hCtl_AdvancedOptionsPage_Label2 ${SS_CENTER}
 
@@ -119,7 +119,7 @@ Function AdvancedOptionsPage_Create
    ${NSD_SetTextLimit} $hCtl_AdvancedOptionsPage_Number1 "4"
 
    ; === Label3 (type: Label) ===
-   ${NSD_CreateLabel} 11u 57u 123u 8u "$(hCtl_AdvancedOptionsPage_Label3_Text)"
+   ${NSD_CreateLabel} 11u 57u 123u 8u "$(AdvancedOptionsPage_Label3_Text)"
    Pop $hCtl_AdvancedOptionsPage_Label3
    ${NSD_AddStyle} $hCtl_AdvancedOptionsPage_Label3 ${SS_CENTER}
 
@@ -130,7 +130,7 @@ Function AdvancedOptionsPage_Create
    ${NSD_SetTextLimit} $hCtl_AdvancedOptionsPage_Number2 "4"
 
    ; === Label4 (type: Label) ===
-   ${NSD_CreateLabel} 11u 79u 123u 8u "$(hCtl_AdvancedOptionsPage_Label4_Text)"
+   ${NSD_CreateLabel} 11u 79u 123u 8u "$(AdvancedOptionsPage_Label4_Text)"
    Pop $hCtl_AdvancedOptionsPage_Label4
    ${NSD_AddStyle} $hCtl_AdvancedOptionsPage_Label4 ${SS_CENTER}
 
@@ -141,7 +141,7 @@ Function AdvancedOptionsPage_Create
    ${NSD_SetTextLimit} $hCtl_AdvancedOptionsPage_Number3 "4"
 
    ; === Label5 (type: Label) ===
-   ${NSD_CreateLabel} 11u 102u 123u 8u "$(hCtl_AdvancedOptionsPage_Label5_Text)"
+   ${NSD_CreateLabel} 11u 102u 123u 8u "$(AdvancedOptionsPage_Label5_Text)"
    Pop $hCtl_AdvancedOptionsPage_Label5
    ${NSD_AddStyle} $hCtl_AdvancedOptionsPage_Label5 ${SS_CENTER}
 
@@ -152,15 +152,15 @@ Function AdvancedOptionsPage_Create
    ${NSD_SetTextLimit} $hCtl_AdvancedOptionsPage_Number4 "4"
 
    ; === GroupBox2 (type: GroupBox) ===
-   ${NSD_CreateGroupBox} 155u 20u 142u 108u "$(hCtl_AdvancedOptionsPage_GroupBox2_Text)"
+   ${NSD_CreateGroupBox} 155u 20u 142u 108u "$(AdvancedOptionsPage_GroupBox2_Text)"
    Pop $hCtl_AdvancedOptionsPage_GroupBox2
 
    ; === CheckBox1 (type: Checkbox) ===
-   ${NSD_CreateCheckbox} 165u 38u 121u 11u "$(hCtl_AdvancedOptionsPage_CheckBox1_Text)"
+   ${NSD_CreateCheckbox} 165u 38u 121u 11u "$(AdvancedOptionsPage_CheckBox1_Text)"
    Pop $hCtl_AdvancedOptionsPage_CheckBox1
 
    ; === Label6 (type: Label) ===
-   ${NSD_CreateLabel} 168u 56u 118u 8u "$(hCtl_AdvancedOptionsPage_Label6_Text)"
+   ${NSD_CreateLabel} 168u 56u 118u 8u "$(AdvancedOptionsPage_Label6_Text)"
    Pop $hCtl_AdvancedOptionsPage_Label6
 
    ; === TextBox1 (type: Text) ===
@@ -168,12 +168,12 @@ Function AdvancedOptionsPage_Create
    Pop $hCtl_AdvancedOptionsPage_TextBox1
 
    ; === Label7 (type: Label) ===
-   ${NSD_CreateLabel} 165u 77u 121u 8u "$(hCtl_AdvancedOptionsPage_Label7_Text)"
+   ${NSD_CreateLabel} 165u 77u 121u 8u "$(AdvancedOptionsPage_Label7_Text)"
    Pop $hCtl_AdvancedOptionsPage_Label7
    ${NSD_AddStyle} $hCtl_AdvancedOptionsPage_Label7 ${SS_CENTER}
 
    ; === Label8 (type: Label) ===
-   ${NSD_CreateLabel} 168u 90u 118u 8u "$(hCtl_AdvancedOptionsPage_Label8_Text)"
+   ${NSD_CreateLabel} 168u 90u 118u 8u "$(AdvancedOptionsPage_Label8_Text)"
    Pop $hCtl_AdvancedOptionsPage_Label8
 
    ; === TextBox2 (type: Text) ===
@@ -181,7 +181,7 @@ Function AdvancedOptionsPage_Create
    Pop $hCtl_AdvancedOptionsPage_TextBox2
 
    ; === Label9 (type: Label) ===
-   ${NSD_CreateLabel} 165u 111u 121u 8u "$(hCtl_AdvancedOptionsPage_Label9_Text)"
+   ${NSD_CreateLabel} 165u 111u 121u 8u "$(AdvancedOptionsPage_Label9_Text)"
    Pop $hCtl_AdvancedOptionsPage_Label9
    ${NSD_AddStyle} $hCtl_AdvancedOptionsPage_Label9 ${SS_CENTER}
 

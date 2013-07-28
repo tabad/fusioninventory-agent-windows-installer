@@ -49,75 +49,75 @@
 ;--------------------------------
 ; LangString Variables
 
-; hCtl_AdvancedOptionsPage_Text
-LangString hCtl_AdvancedOptionsPage_Text ${LANG_ENGLISH} "Advanced Options"
-LangString hCtl_AdvancedOptionsPage_Text ${LANG_FRENCH} "fAdvanced Options"
-LangString hCtl_AdvancedOptionsPage_Text ${LANG_SPANISH} "Opciones avanzadas"
+; AdvancedOptionsPage_Text
+LangString AdvancedOptionsPage_Text ${LANG_ENGLISH} "Advanced Options"
+LangString AdvancedOptionsPage_Text ${LANG_FRENCH} "fAdvanced Options"
+LangString AdvancedOptionsPage_Text ${LANG_SPANISH} "Opciones avanzadas"
 
-; hCtl_AdvancedOptionsPage_SubText
-LangString hCtl_AdvancedOptionsPage_SubText ${LANG_ENGLISH} "Set Advanced Options."
-LangString hCtl_AdvancedOptionsPage_SubText ${LANG_FRENCH} "fSet Advanced Task Options."
-LangString hCtl_AdvancedOptionsPage_SubText ${LANG_SPANISH} "Establezca las opciones avanzadas."
+; AdvancedOptionsPage_SubText
+LangString AdvancedOptionsPage_SubText ${LANG_ENGLISH} "Set Advanced Options."
+LangString AdvancedOptionsPage_SubText ${LANG_FRENCH} "fSet Advanced Task Options."
+LangString AdvancedOptionsPage_SubText ${LANG_SPANISH} "Establezca las opciones avanzadas."
 
-; hCtl_AdvancedOptionsPage_Label1_Text
-LangString hCtl_AdvancedOptionsPage_Label1_Text ${LANG_ENGLISH} "Please, do not change the following options whether you are not totally sure what you are doing and why."
-LangString hCtl_AdvancedOptionsPage_Label1_Text ${LANG_FRENCH} "fPlease, do not change the following options whether you are not totally sure what you are doing and why."
-LangString hCtl_AdvancedOptionsPage_Label1_Text ${LANG_SPANISH} "Por favor, no cambie las siguientes opciones si no está totalmente segurio de lo que está haciendo y por qué."
+; AdvancedOptionsPage_Label1_Text
+LangString AdvancedOptionsPage_Label1_Text ${LANG_ENGLISH} "Please, do not change the following options whether you are not totally sure what you are doing and why."
+LangString AdvancedOptionsPage_Label1_Text ${LANG_FRENCH} "fPlease, do not change the following options whether you are not totally sure what you are doing and why."
+LangString AdvancedOptionsPage_Label1_Text ${LANG_SPANISH} "Por favor, no cambie las siguientes opciones si no está totalmente segurio de lo que está haciendo y por qué."
 
-; hCtl_AdvancedOptionsPage_GroupBox1_Text
-LangString hCtl_AdvancedOptionsPage_GroupBox1_Text ${LANG_ENGLISH} "Time Options (in seconds)"
-LangString hCtl_AdvancedOptionsPage_GroupBox1_Text ${LANG_FRENCH} "fTime Options (in seconds)"
-LangString hCtl_AdvancedOptionsPage_GroupBox1_Text ${LANG_SPANISH} "Opciones de Tiempo (en segundos)"
+; AdvancedOptionsPage_GroupBox1_Text
+LangString AdvancedOptionsPage_GroupBox1_Text ${LANG_ENGLISH} "Time Options (in seconds)"
+LangString AdvancedOptionsPage_GroupBox1_Text ${LANG_FRENCH} "fTime Options (in seconds)"
+LangString AdvancedOptionsPage_GroupBox1_Text ${LANG_SPANISH} "Opciones de Tiempo (en segundos)"
 
-; hCtl_AdvancedOptionsPage_Label2_Text
-LangString hCtl_AdvancedOptionsPage_Label2_Text ${LANG_ENGLISH} "Connection Time Out"
-LangString hCtl_AdvancedOptionsPage_Label2_Text ${LANG_FRENCH} "fConnection Time Out"
-LangString hCtl_AdvancedOptionsPage_Label2_Text ${LANG_SPANISH} "Límite de Conexión"
+; AdvancedOptionsPage_Label2_Text
+LangString AdvancedOptionsPage_Label2_Text ${LANG_ENGLISH} "Connection Time Out"
+LangString AdvancedOptionsPage_Label2_Text ${LANG_FRENCH} "fConnection Time Out"
+LangString AdvancedOptionsPage_Label2_Text ${LANG_SPANISH} "Límite de Conexión"
 
-; hCtl_AdvancedOptionsPage_Label3_Text
-LangString hCtl_AdvancedOptionsPage_Label3_Text ${LANG_ENGLISH} "Delay Between Each Target"
-LangString hCtl_AdvancedOptionsPage_Label3_Text ${LANG_FRENCH} "fDelay Between Each Target"
-LangString hCtl_AdvancedOptionsPage_Label3_Text ${LANG_SPANISH} "Demora Entre Cada Destino"
+; AdvancedOptionsPage_Label3_Text
+LangString AdvancedOptionsPage_Label3_Text ${LANG_ENGLISH} "Delay Between Each Target"
+LangString AdvancedOptionsPage_Label3_Text ${LANG_FRENCH} "fDelay Between Each Target"
+LangString AdvancedOptionsPage_Label3_Text ${LANG_SPANISH} "Demora Entre Cada Destino"
 
-; hCtl_AdvancedOptionsPage_Label4_Text
-LangString hCtl_AdvancedOptionsPage_Label4_Text ${LANG_ENGLISH} "Delay Before the First Target"
-LangString hCtl_AdvancedOptionsPage_Label4_Text ${LANG_FRENCH} "fDelay Before the First Target"
-LangString hCtl_AdvancedOptionsPage_Label4_Text ${LANG_SPANISH} "Demora Antes del Primer Destino"
+; AdvancedOptionsPage_Label4_Text
+LangString AdvancedOptionsPage_Label4_Text ${LANG_ENGLISH} "Delay Before the First Target"
+LangString AdvancedOptionsPage_Label4_Text ${LANG_FRENCH} "fDelay Before the First Target"
+LangString AdvancedOptionsPage_Label4_Text ${LANG_SPANISH} "Demora Antes del Primer Destino"
 
-; hCtl_AdvancedOptionsPage_Label5_Text
-LangString hCtl_AdvancedOptionsPage_Label5_Text ${LANG_ENGLISH} "Task Execution Time Out"
-LangString hCtl_AdvancedOptionsPage_Label5_Text ${LANG_FRENCH} "fTask Execution Time Out"
-LangString hCtl_AdvancedOptionsPage_Label5_Text ${LANG_SPANISH} "Límite de Ejecución de una Tarea"
+; AdvancedOptionsPage_Label5_Text
+LangString AdvancedOptionsPage_Label5_Text ${LANG_ENGLISH} "Task Execution Time Out"
+LangString AdvancedOptionsPage_Label5_Text ${LANG_FRENCH} "fTask Execution Time Out"
+LangString AdvancedOptionsPage_Label5_Text ${LANG_SPANISH} "Límite de Ejecución de una Tarea"
 
-; hCtl_AdvancedOptionsPage_GroupBox2_Text
-LangString hCtl_AdvancedOptionsPage_GroupBox2_Text ${LANG_ENGLISH} "Other Options"
-LangString hCtl_AdvancedOptionsPage_GroupBox2_Text ${LANG_FRENCH} "fOther Options"
-LangString hCtl_AdvancedOptionsPage_GroupBox2_Text ${LANG_SPANISH} "Otras Opciones"
+; AdvancedOptionsPage_GroupBox2_Text
+LangString AdvancedOptionsPage_GroupBox2_Text ${LANG_ENGLISH} "Other Options"
+LangString AdvancedOptionsPage_GroupBox2_Text ${LANG_FRENCH} "fOther Options"
+LangString AdvancedOptionsPage_GroupBox2_Text ${LANG_SPANISH} "Otras Opciones"
 
-; hCtl_AdvancedOptionsPage_CheckBox1_Text
-LangString hCtl_AdvancedOptionsPage_CheckBox1_Text ${LANG_ENGLISH} "No P2P"
-LangString hCtl_AdvancedOptionsPage_CheckBox1_Text ${LANG_FRENCH} "fNo P2P"
-LangString hCtl_AdvancedOptionsPage_CheckBox1_Text ${LANG_SPANISH} "No P2P"
+; AdvancedOptionsPage_CheckBox1_Text
+LangString AdvancedOptionsPage_CheckBox1_Text ${LANG_ENGLISH} "No P2P"
+LangString AdvancedOptionsPage_CheckBox1_Text ${LANG_FRENCH} "fNo P2P"
+LangString AdvancedOptionsPage_CheckBox1_Text ${LANG_SPANISH} "No P2P"
 
-; hCtl_AdvancedOptionsPage_Label6_Text
-LangString hCtl_AdvancedOptionsPage_Label6_Text ${LANG_ENGLISH} "Omit These Tasks"
-LangString hCtl_AdvancedOptionsPage_Label6_Text ${LANG_FRENCH} "fOmit These Tasks"
-LangString hCtl_AdvancedOptionsPage_Label6_Text ${LANG_SPANISH} "Omitir Estas Tareas"
+; AdvancedOptionsPage_Label6_Text
+LangString AdvancedOptionsPage_Label6_Text ${LANG_ENGLISH} "Omit These Tasks"
+LangString AdvancedOptionsPage_Label6_Text ${LANG_FRENCH} "fOmit These Tasks"
+LangString AdvancedOptionsPage_Label6_Text ${LANG_SPANISH} "Omitir Estas Tareas"
 
-; hCtl_AdvancedOptionsPage_Label7_Text
-LangString hCtl_AdvancedOptionsPage_Label7_Text ${LANG_ENGLISH} "(list separated by commas)"
-LangString hCtl_AdvancedOptionsPage_Label7_Text ${LANG_FRENCH} "f(list separated by commas)"
-LangString hCtl_AdvancedOptionsPage_Label7_Text ${LANG_SPANISH} "(lista separada por comas)"
+; AdvancedOptionsPage_Label7_Text
+LangString AdvancedOptionsPage_Label7_Text ${LANG_ENGLISH} "(list separated by commas)"
+LangString AdvancedOptionsPage_Label7_Text ${LANG_FRENCH} "f(list separated by commas)"
+LangString AdvancedOptionsPage_Label7_Text ${LANG_SPANISH} "(lista separada por comas)"
 
-; hCtl_AdvancedOptionsPage_Label8_Text
-LangString hCtl_AdvancedOptionsPage_Label8_Text ${LANG_ENGLISH} "Omit These Categories"
-LangString hCtl_AdvancedOptionsPage_Label8_Text ${LANG_FRENCH} "fOmit These Categories"
-LangString hCtl_AdvancedOptionsPage_Label8_Text ${LANG_SPANISH} "Omitir Estas Categorías"
+; AdvancedOptionsPage_Label8_Text
+LangString AdvancedOptionsPage_Label8_Text ${LANG_ENGLISH} "Omit These Categories"
+LangString AdvancedOptionsPage_Label8_Text ${LANG_FRENCH} "fOmit These Categories"
+LangString AdvancedOptionsPage_Label8_Text ${LANG_SPANISH} "Omitir Estas Categorías"
 
-; hCtl_AdvancedOptionsPage_Label9_Text
-LangString hCtl_AdvancedOptionsPage_Label9_Text ${LANG_ENGLISH} "(list separated by commas)"
-LangString hCtl_AdvancedOptionsPage_Label9_Text ${LANG_FRENCH} "f(list separated by commas)"
-LangString hCtl_AdvancedOptionsPage_Label9_Text ${LANG_SPANISH} "(lista separada por comas)"
+; AdvancedOptionsPage_Label9_Text
+LangString AdvancedOptionsPage_Label9_Text ${LANG_ENGLISH} "(list separated by commas)"
+LangString AdvancedOptionsPage_Label9_Text ${LANG_FRENCH} "f(list separated by commas)"
+LangString AdvancedOptionsPage_Label9_Text ${LANG_SPANISH} "(lista separada por comas)"
 
 ; AdvancedOptionsPage_TextBox_Warning
 LangString AdvancedOptionsPage_TextBox_Warning ${LANG_ENGLISH} "The value $\"$R2$\" is not valid for the field $\"$R1$\"."

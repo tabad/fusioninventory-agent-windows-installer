@@ -83,14 +83,14 @@ Function RemoteTargetsOptionsSecondPage_Create
    ${If} $hCtl_RemoteTargetsOptionsSecondPage == error
      Abort
    ${EndIf}
-   !insertmacro MUI_HEADER_TEXT "$(hCtl_RemoteTargetsOptionsSecondPage_Text)" "$(hCtl_RemoteTargetsOptionsSecondPage_SubText)"
+   !insertmacro MUI_HEADER_TEXT "$(RemoteTargetsOptionsSecondPage_Text)" "$(RemoteTargetsOptionsSecondPage_SubText)"
 
    ; === GroupBox1 (type: GroupBox) ===
-   ${NSD_CreateGroupBox} 3u 23u 289u 86u "$(hCtl_RemoteTargetsOptionsSecondPage_GroupBox1_Text)"
+   ${NSD_CreateGroupBox} 3u 23u 289u 86u "$(RemoteTargetsOptionsSecondPage_GroupBox1_Text)"
    Pop $hCtl_RemoteTargetsOptionsSecondPage_GroupBox1
 
    ; === Label1 (type: Label) ===
-   ${NSD_CreateLabel} 16u 36u 265u 8u "$(hCtl_RemoteTargetsOptionsSecondPage_Label1_Text)"
+   ${NSD_CreateLabel} 16u 36u 265u 8u "$(RemoteTargetsOptionsSecondPage_Label1_Text)"
    Pop $hCtl_RemoteTargetsOptionsSecondPage_Label1
 
    ; === TextBox1 (type: Text) ===
@@ -98,7 +98,7 @@ Function RemoteTargetsOptionsSecondPage_Create
    Pop $hCtl_RemoteTargetsOptionsSecondPage_TextBox1
 
    ; === Label2 (type: Label) ===
-   ${NSD_CreateLabel} 16u 59u 265u 8u "$(hCtl_RemoteTargetsOptionsSecondPage_Label2_Text)"
+   ${NSD_CreateLabel} 16u 59u 265u 8u "$(RemoteTargetsOptionsSecondPage_Label2_Text)"
    Pop $hCtl_RemoteTargetsOptionsSecondPage_Label2
 
    ; === TextBox2 (type: Text) ===
@@ -106,7 +106,7 @@ Function RemoteTargetsOptionsSecondPage_Create
    Pop $hCtl_RemoteTargetsOptionsSecondPage_TextBox2
 
    ; === Label3 (type: Label) ===
-   ${NSD_CreateLabel} 16u 81u 265u 8u "$(hCtl_RemoteTargetsOptionsSecondPage_Label3_Text)"
+   ${NSD_CreateLabel} 16u 81u 265u 8u "$(RemoteTargetsOptionsSecondPage_Label3_Text)"
    Pop $hCtl_RemoteTargetsOptionsSecondPage_Label3
 
    ; === Password1 (type: Password) ===

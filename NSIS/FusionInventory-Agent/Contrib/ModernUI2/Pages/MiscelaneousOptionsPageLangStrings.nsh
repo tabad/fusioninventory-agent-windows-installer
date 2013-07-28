@@ -49,40 +49,40 @@
 ;--------------------------------
 ; LangString Variables
 
-; hCtl_MiscelaneousOptionsPage_Text
-LangString hCtl_MiscelaneousOptionsPage_Text ${LANG_ENGLISH} "Miscelaneous Options"
-LangString hCtl_MiscelaneousOptionsPage_Text ${LANG_FRENCH} "fMiscelaneous Options"
-LangString hCtl_MiscelaneousOptionsPage_Text ${LANG_SPANISH} "Miscelánea de opciones"
+; MiscelaneousOptionsPage_Text
+LangString MiscelaneousOptionsPage_Text ${LANG_ENGLISH} "Miscelaneous Options"
+LangString MiscelaneousOptionsPage_Text ${LANG_FRENCH} "fMiscelaneous Options"
+LangString MiscelaneousOptionsPage_Text ${LANG_SPANISH} "Miscelánea de opciones"
 
-; hCtl_MiscelaneousOptionsPage_SubText
-LangString hCtl_MiscelaneousOptionsPage_SubText ${LANG_ENGLISH} "Set preferences about miscelaneous options."
-LangString hCtl_MiscelaneousOptionsPage_SubText ${LANG_FRENCH} "fSet preferences about miscelaneous options."
-LangString hCtl_MiscelaneousOptionsPage_SubText ${LANG_SPANISH} "Establezca sus preferencias sobre opciones diversas."
+; MiscelaneousOptionsPage_SubText
+LangString MiscelaneousOptionsPage_SubText ${LANG_ENGLISH} "Set preferences about miscelaneous options."
+LangString MiscelaneousOptionsPage_SubText ${LANG_FRENCH} "fSet preferences about miscelaneous options."
+LangString MiscelaneousOptionsPage_SubText ${LANG_SPANISH} "Establezca sus preferencias sobre opciones diversas."
 
-; hCtl_MiscelaneousOptionsPage_GroupBox1_Text
-LangString hCtl_MiscelaneousOptionsPage_GroupBox1_Text ${LANG_ENGLISH} "Miscelaneous Options"
-LangString hCtl_MiscelaneousOptionsPage_GroupBox1_Text ${LANG_FRENCH} "fMiscelaneous Options"
-LangString hCtl_MiscelaneousOptionsPage_GroupBox1_Text ${LANG_SPANISH} "Miscelánea de Opciones"
+; MiscelaneousOptionsPage_GroupBox1_Text
+LangString MiscelaneousOptionsPage_GroupBox1_Text ${LANG_ENGLISH} "Miscelaneous Options"
+LangString MiscelaneousOptionsPage_GroupBox1_Text ${LANG_FRENCH} "fMiscelaneous Options"
+LangString MiscelaneousOptionsPage_GroupBox1_Text ${LANG_SPANISH} "Miscelánea de Opciones"
 
-; hCtl_MiscelaneousOptionsPage_CheckBox1_Text
-LangString hCtl_MiscelaneousOptionsPage_CheckBox1_Text ${LANG_ENGLISH} "Launch an inventory immediately after of installation"
-LangString hCtl_MiscelaneousOptionsPage_CheckBox1_Text ${LANG_FRENCH} "fLaunch an inventory immediately after of installation"
-LangString hCtl_MiscelaneousOptionsPage_CheckBox1_Text ${LANG_SPANISH} "Lanzar un inventario inmediatamente después de la instalación"
+; MiscelaneousOptionsPage_CheckBox1_Text
+LangString MiscelaneousOptionsPage_CheckBox1_Text ${LANG_ENGLISH} "Launch an inventory immediately after of installation"
+LangString MiscelaneousOptionsPage_CheckBox1_Text ${LANG_FRENCH} "fLaunch an inventory immediately after of installation"
+LangString MiscelaneousOptionsPage_CheckBox1_Text ${LANG_SPANISH} "Lanzar un inventario inmediatamente después de la instalación"
 
-; hCtl_MiscelaneousOptionsPage_CheckBox2_Text
-LangString hCtl_MiscelaneousOptionsPage_CheckBox2_Text ${LANG_ENGLISH} "Save inventory as HTML (only for local target)"
-LangString hCtl_MiscelaneousOptionsPage_CheckBox2_Text ${LANG_FRENCH} "fSave inventory as HTML (only for local target)"
-LangString hCtl_MiscelaneousOptionsPage_CheckBox2_Text ${LANG_SPANISH} "Grabar inventario como HTML (sólo para destino local)"
+; MiscelaneousOptionsPage_CheckBox2_Text
+LangString MiscelaneousOptionsPage_CheckBox2_Text ${LANG_ENGLISH} "Save inventory as HTML (only for local target)"
+LangString MiscelaneousOptionsPage_CheckBox2_Text ${LANG_FRENCH} "fSave inventory as HTML (only for local target)"
+LangString MiscelaneousOptionsPage_CheckBox2_Text ${LANG_SPANISH} "Grabar inventario como HTML (sólo para destino local)"
 
-; hCtl_MiscelaneousOptionsPage_CheckBox3_Text
-LangString hCtl_MiscelaneousOptionsPage_CheckBox3_Text ${LANG_ENGLISH} "Scan home directory for virtual machines"
-LangString hCtl_MiscelaneousOptionsPage_CheckBox3_Text ${LANG_FRENCH} "fScan home directory for virtual machines"
-LangString hCtl_MiscelaneousOptionsPage_CheckBox3_Text ${LANG_SPANISH} "Buscar máquinas virtuales en el directorio personal"
+; MiscelaneousOptionsPage_CheckBox3_Text
+LangString MiscelaneousOptionsPage_CheckBox3_Text ${LANG_ENGLISH} "Scan home directory for virtual machines"
+LangString MiscelaneousOptionsPage_CheckBox3_Text ${LANG_FRENCH} "fScan home directory for virtual machines"
+LangString MiscelaneousOptionsPage_CheckBox3_Text ${LANG_SPANISH} "Buscar máquinas virtuales en el directorio personal"
 
-; hCtl_MiscelaneousOptionsPage_Label1_Text
-LangString hCtl_MiscelaneousOptionsPage_Label1_Text ${LANG_ENGLISH} "Tag"
-LangString hCtl_MiscelaneousOptionsPage_Label1_Text ${LANG_FRENCH} "fTag"
-LangString hCtl_MiscelaneousOptionsPage_Label1_Text ${LANG_SPANISH} "Etiqueta"
+; MiscelaneousOptionsPage_Label1_Text
+LangString MiscelaneousOptionsPage_Label1_Text ${LANG_ENGLISH} "Tag"
+LangString MiscelaneousOptionsPage_Label1_Text ${LANG_FRENCH} "fTag"
+LangString MiscelaneousOptionsPage_Label1_Text ${LANG_SPANISH} "Etiqueta"
 
 ; MiscelaneousOptionsPage_TextBox_Warning
 LangString MiscelaneousOptionsPage_TextBox_Warning ${LANG_ENGLISH} "The value $\"$R2$\" is not valid for the field $\"$R1$\"."

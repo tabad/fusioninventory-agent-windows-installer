@@ -49,35 +49,35 @@
 ;--------------------------------
 ; LangString Variables
 
-; hCtl_ExecutionModePage_Text
-LangString hCtl_ExecutionModePage_Text ${LANG_ENGLISH} "Choose an Execution Mode"
-LangString hCtl_ExecutionModePage_Text ${LANG_FRENCH} "fChoose an Execution Mode"
-LangString hCtl_ExecutionModePage_Text ${LANG_SPANISH} "Elija un modo de ejecución"
+; ExecutionModePage_Text
+LangString ExecutionModePage_Text ${LANG_ENGLISH} "Choose an Execution Mode"
+LangString ExecutionModePage_Text ${LANG_FRENCH} "fChoose an Execution Mode"
+LangString ExecutionModePage_Text ${LANG_SPANISH} "Elija un modo de ejecución"
 
-; hCtl_ExecutionModePage_SubText
-LangString hCtl_ExecutionModePage_SubText ${LANG_ENGLISH} "Choose which way you want ${PRODUCT_NAME} to be executed."
-LangString hCtl_ExecutionModePage_SubText ${LANG_FRENCH} "fChoose which way you want ${PRODUCT_NAME} to be executed."
-LangString hCtl_ExecutionModePage_SubText ${LANG_SPANISH} "Elija de qué manera quiere que se ejecute ${PRODUCT_NAME}."
+; ExecutionModePage_SubText
+LangString ExecutionModePage_SubText ${LANG_ENGLISH} "Choose which way you want ${PRODUCT_NAME} to be executed."
+LangString ExecutionModePage_SubText ${LANG_FRENCH} "fChoose which way you want ${PRODUCT_NAME} to be executed."
+LangString ExecutionModePage_SubText ${LANG_SPANISH} "Elija de qué manera quiere que se ejecute ${PRODUCT_NAME}."
 
-; hCtl_ExecutionModePage_GroupBox1_Text
-LangString hCtl_ExecutionModePage_GroupBox1_Text ${LANG_ENGLISH} "Execution Mode"
-LangString hCtl_ExecutionModePage_GroupBox1_Text ${LANG_FRENCH} "fExecution Mode"
-LangString hCtl_ExecutionModePage_GroupBox1_Text ${LANG_SPANISH} "Modo de Ejecución"
+; ExecutionModePage_GroupBox1_Text
+LangString ExecutionModePage_GroupBox1_Text ${LANG_ENGLISH} "Execution Mode"
+LangString ExecutionModePage_GroupBox1_Text ${LANG_FRENCH} "fExecution Mode"
+LangString ExecutionModePage_GroupBox1_Text ${LANG_SPANISH} "Modo de Ejecución"
 
-; hCtl_ExecutionModePage_RadioButton1_Text
-LangString hCtl_ExecutionModePage_RadioButton1_Text ${LANG_ENGLISH} "As a Windows Service"
-LangString hCtl_ExecutionModePage_RadioButton1_Text ${LANG_FRENCH} "fAs a Windows Service"
-LangString hCtl_ExecutionModePage_RadioButton1_Text ${LANG_SPANISH} "Como un Servicio de Windows"
+; ExecutionModePage_RadioButton1_Text
+LangString ExecutionModePage_RadioButton1_Text ${LANG_ENGLISH} "As a Windows Service"
+LangString ExecutionModePage_RadioButton1_Text ${LANG_FRENCH} "fAs a Windows Service"
+LangString ExecutionModePage_RadioButton1_Text ${LANG_SPANISH} "Como un Servicio de Windows"
 
-; hCtl_ExecutionModePage_RadioButton2_Text
-LangString hCtl_ExecutionModePage_RadioButton2_Text ${LANG_ENGLISH} "As a Windows Task"
-LangString hCtl_ExecutionModePage_RadioButton2_Text ${LANG_FRENCH} "fAs a Windows Task"
-LangString hCtl_ExecutionModePage_RadioButton2_Text ${LANG_SPANISH} "Como una Tarea de Windows"
+; ExecutionModePage_RadioButton2_Text
+LangString ExecutionModePage_RadioButton2_Text ${LANG_ENGLISH} "As a Windows Task"
+LangString ExecutionModePage_RadioButton2_Text ${LANG_FRENCH} "fAs a Windows Task"
+LangString ExecutionModePage_RadioButton2_Text ${LANG_SPANISH} "Como una Tarea de Windows"
 
-; hCtl_ExecutionModePage_RadioButton3_Text
-LangString hCtl_ExecutionModePage_RadioButton3_Text ${LANG_ENGLISH} "Manually"
-LangString hCtl_ExecutionModePage_RadioButton3_Text ${LANG_FRENCH} "fManually"
-LangString hCtl_ExecutionModePage_RadioButton3_Text ${LANG_SPANISH} "Manualmente"
+; ExecutionModePage_RadioButton3_Text
+LangString ExecutionModePage_RadioButton3_Text ${LANG_ENGLISH} "Manually"
+LangString ExecutionModePage_RadioButton3_Text ${LANG_FRENCH} "fManually"
+LangString ExecutionModePage_RadioButton3_Text ${LANG_SPANISH} "Manualmente"
 
 
 !endif

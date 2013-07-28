@@ -84,7 +84,7 @@ Function TargetsPage_Button1_OnClick
    Push $R0
 
    ${NSD_GetText} $hCtl_TargetsPage_TextBox1 $R0
-   nsDialogs::SelectFolderDialog "$(hCtl_TargetsPage_SelectFolderDialog_Title)" "$R0"
+   nsDialogs::SelectFolderDialog "$(TargetsPage_SelectFolderDialog_Title)" "$R0"
    Pop $R0
 
    ; Check the user action
@@ -117,9 +117,9 @@ Function TargetsPage_CheckBox1_OnClick
    ; Change the text of button 'Next'
    ${NSD_GetState} $hCtl_TargetsPage_CheckBox1 $R1
    ${If} $R1 = ${BST_CHECKED}
-      ${NSD_SetText} $R0 "$(hCtl_TargetsPage_NextButton_Text_Install)"
+      ${NSD_SetText} $R0 "$(TargetsPage_NextButton_Text_Install)"
    ${Else}
-      ${NSD_SetText} $R0 "$(hCtl_TargetsPage_NextButton_Text_Next)"
+      ${NSD_SetText} $R0 "$(TargetsPage_NextButton_Text_Next)"
    ${EndIf}
 
    ; Pop $R1 & $R0 off of the stack
@@ -135,10 +135,10 @@ Function TargetsPage_Create
    ${If} "$hCtl_TargetsPage" == "error"
      Abort
    ${EndIf}
-   !insertmacro MUI_HEADER_TEXT "$(hCtl_TargetsPage_Text)" "$(hCtl_TargetsPage_SubText)"
+   !insertmacro MUI_HEADER_TEXT "$(TargetsPage_Text)" "$(TargetsPage_SubText)"
 
    ; === GroupBox1 (type: GroupBox) ===
-   ${NSD_CreateGroupBox} 0u 0u 294u 47u "$(hCtl_TargetsPage_GroupBox1_Text)"
+   ${NSD_CreateGroupBox} 0u 0u 294u 47u "$(TargetsPage_GroupBox1_Text)"
    Pop $hCtl_TargetsPage_GroupBox1
 
    ; === TextBox1 (type: Text) ===
@@ -146,17 +146,17 @@ Function TargetsPage_Create
    Pop $hCtl_TargetsPage_TextBox1
 
    ; === Button1 (type: Button) ===
-   ${NSD_CreateButton} 215u 14u 68u 14u "$(hCtl_TargetsPage_Button1_Text)"
+   ${NSD_CreateButton} 215u 14u 68u 14u "$(TargetsPage_Button1_Text)"
    Pop $hCtl_TargetsPage_Button1
    ${NSD_OnClick} $hCtl_TargetsPage_Button1 TargetsPage_Button1_OnClick
 
    ; === Label1 (type: Label) ===
-   ${NSD_CreateLabel} 11u 32u 194u 11u "$(hCtl_TargetsPage_Label1_Text)"
+   ${NSD_CreateLabel} 11u 32u 194u 11u "$(TargetsPage_Label1_Text)"
    Pop $hCtl_TargetsPage_Label1
    ${NSD_AddStyle} $hCtl_TargetsPage_Label1 ${SS_CENTER}
 
    ; === GroupBox2 (type: GroupBox) ===
-   ${NSD_CreateGroupBox} 0u 54u 294u 54u "$(hCtl_TargetsPage_GroupBox2_Text)"
+   ${NSD_CreateGroupBox} 0u 54u 294u 54u "$(TargetsPage_GroupBox2_Text)"
    Pop $hCtl_TargetsPage_GroupBox2
 
    ; === TextBox2 (type: Text) ===
@@ -164,12 +164,12 @@ Function TargetsPage_Create
    Pop $hCtl_TargetsPage_TextBox2
 
    ; === Label2 (type: Label) ===
-   ${NSD_CreateLabel} 11u 86u 271u 18u "$(hCtl_TargetsPage_Label2_Text)"
+   ${NSD_CreateLabel} 11u 86u 271u 18u "$(TargetsPage_Label2_Text)"
    Pop $hCtl_TargetsPage_Label2
    ${NSD_AddStyle} $hCtl_TargetsPage_Label2 ${SS_CENTER}
 
    ; === CheckBox1 (type: Checkbox) ===
-   ${NSD_CreateCheckbox} 11u 117u 271u 11u "$(hCtl_TargetsPage_CheckBox1_Text)"
+   ${NSD_CreateCheckbox} 11u 117u 271u 11u "$(TargetsPage_CheckBox1_Text)"
    Pop $hCtl_TargetsPage_CheckBox1
    ${NSD_AddStyle} $hCtl_TargetsPage_CheckBox1 ${BS_RIGHT}|${BS_RIGHTBUTTON}
    ${NSD_OnClick} $hCtl_TargetsPage_CheckBox1 TargetsPage_CheckBox1_OnClick
@@ -198,11 +198,11 @@ Function TargetsPage_Create
    ${If} "$R1" != "0"
       GetDlgItem $R1 $HWNDPARENT 1
       ${NSD_Check} $hCtl_TargetsPage_CheckBox1
-      ${NSD_SetText} $R1 "$(hCtl_TargetsPage_NextButton_Text_Install)"
+      ${NSD_SetText} $R1 "$(TargetsPage_NextButton_Text_Install)"
    ${Else}
       GetDlgItem $R1 $HWNDPARENT 1
       ${NSD_Uncheck} $hCtl_TargetsPage_CheckBox1
-      ${NSD_SetText} $R1 "$(hCtl_TargetsPage_NextButton_Text_Next)"
+      ${NSD_SetText} $R1 "$(TargetsPage_NextButton_Text_Next)"
    ${EndIf}
 
    ; Set focus on TextBox2 whether TextBox1 and TextBox2 are empty

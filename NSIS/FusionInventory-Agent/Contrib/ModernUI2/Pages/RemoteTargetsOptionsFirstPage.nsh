@@ -85,7 +85,7 @@ Function RemoteTargetsOptionsFirstPage_Button1_OnClick
    Push $R0
 
    ${NSD_GetText} $hCtl_RemoteTargetsOptionsFirstPage_TextBox1 $R0
-   nsDialogs::SelectFolderDialog "$(hCtl_RemoteTargetsOptionsFirstPage_SelectFolderDialog_Title)" "$R0"
+   nsDialogs::SelectFolderDialog "$(RemoteTargetsOptionsFirstPage_SelectFolderDialog_Title)" "$R0"
    Pop $R0
 
    ; Check the user action
@@ -107,7 +107,7 @@ Function RemoteTargetsOptionsFirstPage_Button2_OnClick
    Push $R0
 
    ${NSD_GetText} $hCtl_RemoteTargetsOptionsFirstPage_TextBox2 $R0
-   nsDialogs::SelectFileDialog "open" "$R0" "$(hCtl_RemoteTargetsOptionsFirstPage_SelectFileDialog_Filter2)|*.pem|$(hCtl_RemoteTargetsOptionsFirstPage_SelectFileDialog_Filter1)|*.*"
+   nsDialogs::SelectFileDialog "open" "$R0" "$(RemoteTargetsOptionsFirstPage_SelectFileDialog_Filter2)|*.pem|$(RemoteTargetsOptionsFirstPage_SelectFileDialog_Filter1)|*.*"
    Pop $R0
 
    ; Check the user action
@@ -131,14 +131,14 @@ Function RemoteTargetsOptionsFirstPage_Create
    ${If} $hCtl_RemoteTargetsOptionsFirstPage == error
      Abort
    ${EndIf}
-   !insertmacro MUI_HEADER_TEXT "$(hCtl_RemoteTargetsOptionsFirstPage_Text)" "$(hCtl_RemoteTargetsOptionsFirstPage_SubText)"
+   !insertmacro MUI_HEADER_TEXT "$(RemoteTargetsOptionsFirstPage_Text)" "$(RemoteTargetsOptionsFirstPage_SubText)"
 
    ; === GroupBox1 (type: GroupBox) ===
-   ${NSD_CreateGroupBox} 0u 11u 294u 86u "$(hCtl_RemoteTargetsOptionsFirstPage_GroupBox1_Text)"
+   ${NSD_CreateGroupBox} 0u 11u 294u 86u "$(RemoteTargetsOptionsFirstPage_GroupBox1_Text)"
    Pop $hCtl_RemoteTargetsOptionsFirstPage_GroupBox1
 
    ; === Label1 (type: Label) ===
-   ${NSD_CreateLabel} 13u 25u 192u 8u "$(hCtl_RemoteTargetsOptionsFirstPage_Label1_Text)"
+   ${NSD_CreateLabel} 13u 25u 192u 8u "$(RemoteTargetsOptionsFirstPage_Label1_Text)"
    Pop $hCtl_RemoteTargetsOptionsFirstPage_Label1
 
    ; === TextBox1 (type: Text) ===
@@ -146,12 +146,12 @@ Function RemoteTargetsOptionsFirstPage_Create
    Pop $hCtl_RemoteTargetsOptionsFirstPage_TextBox1
 
    ; === Button1 (type: Button) ===
-   ${NSD_CreateButton} 215u 32u 68u 14u "$(hCtl_RemoteTargetsOptionsFirstPage_Button1_Text)"
+   ${NSD_CreateButton} 215u 32u 68u 14u "$(RemoteTargetsOptionsFirstPage_Button1_Text)"
    Pop $hCtl_RemoteTargetsOptionsFirstPage_Button1
    ${NSD_OnClick} $hCtl_RemoteTargetsOptionsFirstPage_Button1 RemoteTargetsOptionsFirstPage_Button1_OnClick
 
    ; === Label2 (type: Label) ===
-   ${NSD_CreateLabel} 13u 47u 192u 8u "$(hCtl_RemoteTargetsOptionsFirstPage_Label2_Text)"
+   ${NSD_CreateLabel} 13u 47u 192u 8u "$(RemoteTargetsOptionsFirstPage_Label2_Text)"
    Pop $hCtl_RemoteTargetsOptionsFirstPage_Label2
 
    ; === TextBox2 (type: Text) ===
@@ -159,12 +159,12 @@ Function RemoteTargetsOptionsFirstPage_Create
    Pop $hCtl_RemoteTargetsOptionsFirstPage_TextBox2
 
    ; === Button2 (type: Button) ===
-   ${NSD_CreateButton} 215u 54u 68u 14u "$(hCtl_RemoteTargetsOptionsFirstPage_Button2_Text)"
+   ${NSD_CreateButton} 215u 54u 68u 14u "$(RemoteTargetsOptionsFirstPage_Button2_Text)"
    Pop $hCtl_RemoteTargetsOptionsFirstPage_Button2
    ${NSD_OnClick} $hCtl_RemoteTargetsOptionsFirstPage_Button2 RemoteTargetsOptionsFirstPage_Button2_OnClick
 
    ; === Label3 (type: Label) ===
-   ${NSD_CreateLabel} 13u 70u 192u 8u "$(hCtl_RemoteTargetsOptionsFirstPage_Label3_Text)"
+   ${NSD_CreateLabel} 13u 70u 192u 8u "$(RemoteTargetsOptionsFirstPage_Label3_Text)"
    Pop $hCtl_RemoteTargetsOptionsFirstPage_Label3
 
    ; === TextBox3 (type: Text) ===
@@ -172,7 +172,7 @@ Function RemoteTargetsOptionsFirstPage_Create
    Pop $hCtl_RemoteTargetsOptionsFirstPage_TextBox3
 
    ; === CheckBox1 (type: Checkbox) ===
-   ${NSD_CreateCheckbox} 13u 106u 265u 11u "$(hCtl_RemoteTargetsOptionsFirstPage_CheckBox1_Text)"
+   ${NSD_CreateCheckbox} 13u 106u 265u 11u "$(RemoteTargetsOptionsFirstPage_CheckBox1_Text)"
    Pop $hCtl_RemoteTargetsOptionsFirstPage_CheckBox1
    ${NSD_AddStyle} $hCtl_RemoteTargetsOptionsFirstPage_CheckBox1 ${BS_RIGHT}|${BS_RIGHTBUTTON}
 

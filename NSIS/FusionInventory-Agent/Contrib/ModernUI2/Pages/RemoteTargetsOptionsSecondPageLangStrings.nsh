@@ -49,35 +49,35 @@
 ;--------------------------------
 ; LangString Variables
 
-; hCtl_RemoteTargetsOptionsSecondPage_Text
-LangString hCtl_RemoteTargetsOptionsSecondPage_Text ${LANG_ENGLISH} "Remote Targets Options (2/2)"
-LangString hCtl_RemoteTargetsOptionsSecondPage_Text ${LANG_FRENCH} "fRemote Targets Options (2/2)"
-LangString hCtl_RemoteTargetsOptionsSecondPage_Text ${LANG_SPANISH} "Opciones de destinos remotos (2/2)"
+; RemoteTargetsOptionsSecondPage_Text
+LangString RemoteTargetsOptionsSecondPage_Text ${LANG_ENGLISH} "Remote Targets Options (2/2)"
+LangString RemoteTargetsOptionsSecondPage_Text ${LANG_FRENCH} "fRemote Targets Options (2/2)"
+LangString RemoteTargetsOptionsSecondPage_Text ${LANG_SPANISH} "Opciones de destinos remotos (2/2)"
 
-; hCtl_RemoteTargetsOptionsSecondPage_SubText
-LangString hCtl_RemoteTargetsOptionsSecondPage_SubText ${LANG_ENGLISH} "Set proxy options."
-LangString hCtl_RemoteTargetsOptionsSecondPage_SubText ${LANG_FRENCH} "fSet proxy options."
-LangString hCtl_RemoteTargetsOptionsSecondPage_SubText ${LANG_SPANISH} "Establezca opciones de proxy."
+; RemoteTargetsOptionsSecondPage_SubText
+LangString RemoteTargetsOptionsSecondPage_SubText ${LANG_ENGLISH} "Set proxy options."
+LangString RemoteTargetsOptionsSecondPage_SubText ${LANG_FRENCH} "fSet proxy options."
+LangString RemoteTargetsOptionsSecondPage_SubText ${LANG_SPANISH} "Establezca opciones de proxy."
 
-; hCtl_RemoteTargetsOptionsSecondPage_GroupBox1_Text
-LangString hCtl_RemoteTargetsOptionsSecondPage_GroupBox1_Text ${LANG_ENGLISH} "Proxy Options"
-LangString hCtl_RemoteTargetsOptionsSecondPage_GroupBox1_Text ${LANG_FRENCH} "fProxy Options"
-LangString hCtl_RemoteTargetsOptionsSecondPage_GroupBox1_Text ${LANG_SPANISH} "Opciones Proxy"
+; RemoteTargetsOptionsSecondPage_GroupBox1_Text
+LangString RemoteTargetsOptionsSecondPage_GroupBox1_Text ${LANG_ENGLISH} "Proxy Options"
+LangString RemoteTargetsOptionsSecondPage_GroupBox1_Text ${LANG_FRENCH} "fProxy Options"
+LangString RemoteTargetsOptionsSecondPage_GroupBox1_Text ${LANG_SPANISH} "Opciones Proxy"
 
-; hCtl_RemoteTargetsOptionsSecondPage_Label1_Text
-LangString hCtl_RemoteTargetsOptionsSecondPage_Label1_Text ${LANG_ENGLISH} "Server"
-LangString hCtl_RemoteTargetsOptionsSecondPage_Label1_Text ${LANG_FRENCH} "fServer"
-LangString hCtl_RemoteTargetsOptionsSecondPage_Label1_Text ${LANG_SPANISH} "Servidor"
+; RemoteTargetsOptionsSecondPage_Label1_Text
+LangString RemoteTargetsOptionsSecondPage_Label1_Text ${LANG_ENGLISH} "Server"
+LangString RemoteTargetsOptionsSecondPage_Label1_Text ${LANG_FRENCH} "fServer"
+LangString RemoteTargetsOptionsSecondPage_Label1_Text ${LANG_SPANISH} "Servidor"
 
-; hCtl_RemoteTargetsOptionsSecondPage_Label2_Text
-LangString hCtl_RemoteTargetsOptionsSecondPage_Label2_Text ${LANG_ENGLISH} "User"
-LangString hCtl_RemoteTargetsOptionsSecondPage_Label2_Text ${LANG_FRENCH} "fUser"
-LangString hCtl_RemoteTargetsOptionsSecondPage_Label2_Text ${LANG_SPANISH} "Usuario"
+; RemoteTargetsOptionsSecondPage_Label2_Text
+LangString RemoteTargetsOptionsSecondPage_Label2_Text ${LANG_ENGLISH} "User"
+LangString RemoteTargetsOptionsSecondPage_Label2_Text ${LANG_FRENCH} "fUser"
+LangString RemoteTargetsOptionsSecondPage_Label2_Text ${LANG_SPANISH} "Usuario"
 
-; hCtl_RemoteTargetsOptionsSecondPage_Label3_Text
-LangString hCtl_RemoteTargetsOptionsSecondPage_Label3_Text ${LANG_ENGLISH} "Password"
-LangString hCtl_RemoteTargetsOptionsSecondPage_Label3_Text ${LANG_FRENCH} "fPassword"
-LangString hCtl_RemoteTargetsOptionsSecondPage_Label3_Text ${LANG_SPANISH} "Contraseña"
+; RemoteTargetsOptionsSecondPage_Label3_Text
+LangString RemoteTargetsOptionsSecondPage_Label3_Text ${LANG_ENGLISH} "Password"
+LangString RemoteTargetsOptionsSecondPage_Label3_Text ${LANG_FRENCH} "fPassword"
+LangString RemoteTargetsOptionsSecondPage_Label3_Text ${LANG_SPANISH} "Contraseña"
 
 ; RemoteTargetsOptionsSecondPage_TextBox_Warning
 LangString RemoteTargetsOptionsSecondPage_TextBox_Warning ${LANG_ENGLISH} "The value $\"$R2$\" is not valid for the field $\"$R1$\"."

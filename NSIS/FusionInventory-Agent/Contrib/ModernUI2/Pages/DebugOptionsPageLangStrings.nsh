@@ -49,55 +49,55 @@
 ;--------------------------------
 ; LangString Variables
 
-; hCtl_DebugOptionsPage_Text
-LangString hCtl_DebugOptionsPage_Text ${LANG_ENGLISH} "Debug Options"
-LangString hCtl_DebugOptionsPage_Text ${LANG_FRENCH} "fDebug Options"
-LangString hCtl_DebugOptionsPage_Text ${LANG_SPANISH} "Opciones de depuración"
+; DebugOptionsPage_Text
+LangString DebugOptionsPage_Text ${LANG_ENGLISH} "Debug Options"
+LangString DebugOptionsPage_Text ${LANG_FRENCH} "fDebug Options"
+LangString DebugOptionsPage_Text ${LANG_SPANISH} "Opciones de depuración"
 
-; hCtl_DebugOptionsPage_SubText
-LangString hCtl_DebugOptionsPage_SubText ${LANG_ENGLISH} "Set debug options."
-LangString hCtl_DebugOptionsPage_SubText ${LANG_FRENCH} "fSet debug options."
-LangString hCtl_DebugOptionsPage_SubText ${LANG_SPANISH} "Establezca opciones de depuración."
+; DebugOptionsPage_SubText
+LangString DebugOptionsPage_SubText ${LANG_ENGLISH} "Set debug options."
+LangString DebugOptionsPage_SubText ${LANG_FRENCH} "fSet debug options."
+LangString DebugOptionsPage_SubText ${LANG_SPANISH} "Establezca opciones de depuración."
 
-; hCtl_DebugOptionsPage_GroupBox1_Text
-LangString hCtl_DebugOptionsPage_GroupBox1_Text ${LANG_ENGLISH} "Debug Options"
-LangString hCtl_DebugOptionsPage_GroupBox1_Text ${LANG_FRENCH} "fDebug Options"
-LangString hCtl_DebugOptionsPage_GroupBox1_Text ${LANG_SPANISH} "Opciones de Depuración"
+; DebugOptionsPage_GroupBox1_Text
+LangString DebugOptionsPage_GroupBox1_Text ${LANG_ENGLISH} "Debug Options"
+LangString DebugOptionsPage_GroupBox1_Text ${LANG_FRENCH} "fDebug Options"
+LangString DebugOptionsPage_GroupBox1_Text ${LANG_SPANISH} "Opciones de Depuración"
 
-; hCtl_DebugOptionsPage_Label1_Text
-LangString hCtl_DebugOptionsPage_Label1_Text ${LANG_ENGLISH} "Debug Level"
-LangString hCtl_DebugOptionsPage_Label1_Text ${LANG_FRENCH} "fDebug Level"
-LangString hCtl_DebugOptionsPage_Label1_Text ${LANG_SPANISH} "Nivel de Depuración"
+; DebugOptionsPage_Label1_Text
+LangString DebugOptionsPage_Label1_Text ${LANG_ENGLISH} "Debug Level"
+LangString DebugOptionsPage_Label1_Text ${LANG_FRENCH} "fDebug Level"
+LangString DebugOptionsPage_Label1_Text ${LANG_SPANISH} "Nivel de Depuración"
 
-; hCtl_DebugOptionsPage_Label2_Text
-LangString hCtl_DebugOptionsPage_Label2_Text ${LANG_ENGLISH} "Logger"
-LangString hCtl_DebugOptionsPage_Label2_Text ${LANG_FRENCH} "fLogger"
-LangString hCtl_DebugOptionsPage_Label2_Text ${LANG_SPANISH} "Registro de Depuración"
+; DebugOptionsPage_Label2_Text
+LangString DebugOptionsPage_Label2_Text ${LANG_ENGLISH} "Logger"
+LangString DebugOptionsPage_Label2_Text ${LANG_FRENCH} "fLogger"
+LangString DebugOptionsPage_Label2_Text ${LANG_SPANISH} "Registro de Depuración"
 
-; hCtl_DebugOptionsPage_Label3_Text
-LangString hCtl_DebugOptionsPage_Label3_Text ${LANG_ENGLISH} "Log File"
-LangString hCtl_DebugOptionsPage_Label3_Text ${LANG_FRENCH} "fLog File"
-LangString hCtl_DebugOptionsPage_Label3_Text ${LANG_SPANISH} "Fichero de Registro"
+; DebugOptionsPage_Label3_Text
+LangString DebugOptionsPage_Label3_Text ${LANG_ENGLISH} "Log File"
+LangString DebugOptionsPage_Label3_Text ${LANG_FRENCH} "fLog File"
+LangString DebugOptionsPage_Label3_Text ${LANG_SPANISH} "Fichero de Registro"
 
-; hCtl_DebugOptionsPage_Label4_Text
-LangString hCtl_DebugOptionsPage_Label4_Text ${LANG_ENGLISH} "Log File Max. Size (in GiB)"
-LangString hCtl_DebugOptionsPage_Label4_Text ${LANG_FRENCH} "fLog File Max. Size (in GiB)"
-LangString hCtl_DebugOptionsPage_Label4_Text ${LANG_SPANISH} "Tamaño Max. Fichero de Registro (en GiB)"
+; DebugOptionsPage_Label4_Text
+LangString DebugOptionsPage_Label4_Text ${LANG_ENGLISH} "Log File Max. Size (in GiB)"
+LangString DebugOptionsPage_Label4_Text ${LANG_FRENCH} "fLog File Max. Size (in GiB)"
+LangString DebugOptionsPage_Label4_Text ${LANG_SPANISH} "Tamaño Max. Fichero de Registro (en GiB)"
 
-; hCtl_DebugOptionsPage_Button1_Text
-LangString hCtl_DebugOptionsPage_Button1_Text ${LANG_ENGLISH} "Browser..."
-LangString hCtl_DebugOptionsPage_Button1_Text ${LANG_FRENCH} "fBrowser..."
-LangString hCtl_DebugOptionsPage_Button1_Text ${LANG_SPANISH} "Examinar..."
+; DebugOptionsPage_Button1_Text
+LangString DebugOptionsPage_Button1_Text ${LANG_ENGLISH} "Browser..."
+LangString DebugOptionsPage_Button1_Text ${LANG_FRENCH} "fBrowser..."
+LangString DebugOptionsPage_Button1_Text ${LANG_SPANISH} "Examinar..."
 
-; hCtl_DebugOptionsPage_SelectFileDialog_Filter1
-LangString hCtl_DebugOptionsPage_SelectFileDialog_Filter1 ${LANG_ENGLISH} "All Files (*.*)"
-LangString hCtl_DebugOptionsPage_SelectFileDialog_Filter1 ${LANG_FRENCH} "fAll Files (*.*)"
-LangString hCtl_DebugOptionsPage_SelectFileDialog_Filter1 ${LANG_SPANISH} "Todos (*.*)"
+; DebugOptionsPage_SelectFileDialog_Filter1
+LangString DebugOptionsPage_SelectFileDialog_Filter1 ${LANG_ENGLISH} "All Files (*.*)"
+LangString DebugOptionsPage_SelectFileDialog_Filter1 ${LANG_FRENCH} "fAll Files (*.*)"
+LangString DebugOptionsPage_SelectFileDialog_Filter1 ${LANG_SPANISH} "Todos (*.*)"
 
-; hCtl_DebugOptionsPage_SelectFileDialog_Filter2
-LangString hCtl_DebugOptionsPage_SelectFileDialog_Filter2 ${LANG_ENGLISH} "Log Files (*.log)"
-LangString hCtl_DebugOptionsPage_SelectFileDialog_Filter2 ${LANG_FRENCH} "fLog Files (*.log)"
-LangString hCtl_DebugOptionsPage_SelectFileDialog_Filter2 ${LANG_SPANISH} "Ficheros de Registro (*.log)"
+; DebugOptionsPage_SelectFileDialog_Filter2
+LangString DebugOptionsPage_SelectFileDialog_Filter2 ${LANG_ENGLISH} "Log Files (*.log)"
+LangString DebugOptionsPage_SelectFileDialog_Filter2 ${LANG_FRENCH} "fLog Files (*.log)"
+LangString DebugOptionsPage_SelectFileDialog_Filter2 ${LANG_SPANISH} "Ficheros de Registro (*.log)"
 
 ; DebugOptionsPage_TextBox_Warning
 LangString DebugOptionsPage_TextBox_Warning ${LANG_ENGLISH} "The value $\"$R2$\" is not valid for the field $\"$R1$\"."

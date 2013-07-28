@@ -82,27 +82,27 @@ Function InstallationModePage_Create
      Pop $R0
      Abort
    ${EndIf}
-   !insertmacro MUI_HEADER_TEXT "$(hCtl_InstallationModePage_Text)" "$(hCtl_InstallationModePage_SubText)"
+   !insertmacro MUI_HEADER_TEXT "$(InstallationModePage_Text)" "$(InstallationModePage_SubText)"
 
    ; === Label1 (type: Label) ===
-   ${NSD_CreateLabel} 0u 0u 294u 36u "$(hCtl_InstallationModePage_Label1_Text)"
+   ${NSD_CreateLabel} 0u 0u 294u 36u "$(InstallationModePage_Label1_Text)"
    Pop $hCtl_InstallationModePage_Label1
 
    ; === RadioButton1 (type: RadioButton) ===
-   ${NSD_CreateRadioButton} 16u 41u 252u 14u "$(hCtl_InstallationModePage_RadioButton1_Text)"
+   ${NSD_CreateRadioButton} 16u 41u 252u 14u "$(InstallationModePage_RadioButton1_Text)"
    Pop $hCtl_InstallationModePage_RadioButton1
    ${NSD_AddStyle} $hCtl_InstallationModePage_RadioButton1 ${WS_GROUP}
 
    ; === Label2 (type: Label) ===
-   ${NSD_CreateLabel} 32u 54u 236u 23u "$(hCtl_InstallationModePage_Label2_Text)"
+   ${NSD_CreateLabel} 32u 54u 236u 23u "$(InstallationModePage_Label2_Text)"
    Pop $hCtl_InstallationModePage_Label2
 
    ; === RadioButton2 (type: RadioButton) ===
-   ${NSD_CreateRadioButton} 16u 81u 252u 14u "$(hCtl_InstallationModePage_RadioButton2_Text)"
+   ${NSD_CreateRadioButton} 16u 81u 252u 14u "$(InstallationModePage_RadioButton2_Text)"
    Pop $hCtl_InstallationModePage_RadioButton2
 
    ; === Label3 (type: Label) ===
-   ${NSD_CreateLabel} 32u 95u 236u 23u "$(hCtl_InstallationModePage_Label3_Text)"
+   ${NSD_CreateLabel} 32u 95u 236u 23u "$(InstallationModePage_Label3_Text)"
    Pop $hCtl_InstallationModePage_Label3
 
    ; OnBack function

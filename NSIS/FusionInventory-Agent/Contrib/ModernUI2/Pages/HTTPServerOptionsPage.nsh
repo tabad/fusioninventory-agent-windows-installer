@@ -87,14 +87,14 @@ Function HTTPServerOptionsPage_Create
    ${If} $hCtl_HTTPServerOptionsPage == error
      Abort
    ${EndIf}
-   !insertmacro MUI_HEADER_TEXT "$(hCtl_HTTPServerOptionsPage_Text)" "$(hCtl_HTTPServerOptionsPage_SubText)"
+   !insertmacro MUI_HEADER_TEXT "$(HTTPServerOptionsPage_Text)" "$(HTTPServerOptionsPage_SubText)"
 
    ; === GroupBox1 (type: GroupBox) ===
-   ${NSD_CreateGroupBox} 3u 18u 289u 65u "$(hCtl_HTTPServerOptionsPage_GroupBox1_Text)"
+   ${NSD_CreateGroupBox} 3u 18u 289u 65u "$(HTTPServerOptionsPage_GroupBox1_Text)"
    Pop $hCtl_HTTPServerOptionsPage_GroupBox1
 
    ; === Label1 (type: Label) ===
-   ${NSD_CreateLabel} 16u 32u 81u 8u "$(hCtl_HTTPServerOptionsPage_Label1_Text)"
+   ${NSD_CreateLabel} 16u 32u 81u 8u "$(HTTPServerOptionsPage_Label1_Text)"
    Pop $hCtl_HTTPServerOptionsPage_Label1
 
    ; === TextBox1 (type: Text) ===
@@ -102,7 +102,7 @@ Function HTTPServerOptionsPage_Create
    Pop $hCtl_HTTPServerOptionsPage_TextBox1
 
    ; === Label2 (type: Label) ===
-   ${NSD_CreateLabel} 105u 32u 39u 8u "$(hCtl_HTTPServerOptionsPage_Label2_Text)"
+   ${NSD_CreateLabel} 105u 32u 39u 8u "$(HTTPServerOptionsPage_Label2_Text)"
    Pop $hCtl_HTTPServerOptionsPage_Label2
 
    ; === Number1 (type: Number) ===
@@ -111,7 +111,7 @@ Function HTTPServerOptionsPage_Create
    ${NSD_SetTextLimit} $hCtl_HTTPServerOptionsPage_Number1 "5"
 
    ; === Label3 (type: Label) ===
-   ${NSD_CreateLabel} 16u 54u 265u 8u "$(hCtl_HTTPServerOptionsPage_Label3_Text)"
+   ${NSD_CreateLabel} 16u 54u 265u 8u "$(HTTPServerOptionsPage_Label3_Text)"
    Pop $hCtl_HTTPServerOptionsPage_Label3
 
    ; === TextBox2 (type: Text) ===
@@ -119,12 +119,12 @@ Function HTTPServerOptionsPage_Create
    Pop $hCtl_HTTPServerOptionsPage_TextBox2
 
    ; === CheckBox1 (type: Checkbox) ===
-   ${NSD_CreateCheckbox} 16u 90u 263u 11u "$(hCtl_HTTPServerOptionsPage_CheckBox1_Text)"
+   ${NSD_CreateCheckbox} 16u 90u 263u 11u "$(HTTPServerOptionsPage_CheckBox1_Text)"
    Pop $hCtl_HTTPServerOptionsPage_CheckBox1
    ${NSD_AddStyle} $hCtl_HTTPServerOptionsPage_CheckBox1 ${BS_RIGHT}|${BS_RIGHTBUTTON}
 
    ; === CheckBox2 (type: Checkbox) ===
-   ${NSD_CreateCheckbox} 16u 104u 263u 11u "$(hCtl_HTTPServerOptionsPage_CheckBox2_Text)"
+   ${NSD_CreateCheckbox} 16u 104u 263u 11u "$(HTTPServerOptionsPage_CheckBox2_Text)"
    Pop $hCtl_HTTPServerOptionsPage_CheckBox2
    ${NSD_AddStyle} $hCtl_HTTPServerOptionsPage_CheckBox2 ${BS_RIGHT}|${BS_RIGHTBUTTON}
 

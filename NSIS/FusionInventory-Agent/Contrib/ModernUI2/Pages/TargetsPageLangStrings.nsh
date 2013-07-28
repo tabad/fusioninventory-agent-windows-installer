@@ -49,60 +49,60 @@
 ;--------------------------------
 ; LangString Variables
 
-; hCtl_TargetsPage_Text
-LangString hCtl_TargetsPage_Text ${LANG_ENGLISH} "Choose Targets"
-LangString hCtl_TargetsPage_Text ${LANG_FRENCH} "fChoose Targets"
-LangString hCtl_TargetsPage_Text ${LANG_SPANISH} "Elija destinos"
+; TargetsPage_Text
+LangString TargetsPage_Text ${LANG_ENGLISH} "Choose Targets"
+LangString TargetsPage_Text ${LANG_FRENCH} "fChoose Targets"
+LangString TargetsPage_Text ${LANG_SPANISH} "Elija destinos"
 
-; hCtl_TargetsPage_SubText
-LangString hCtl_TargetsPage_SubText ${LANG_ENGLISH} "Choose where the result will send."
-LangString hCtl_TargetsPage_SubText ${LANG_FRENCH} "fChoose where the result will send."
-LangString hCtl_TargetsPage_SubText ${LANG_SPANISH} "Elija dónde se enviará el resultado."
+; TargetsPage_SubText
+LangString TargetsPage_SubText ${LANG_ENGLISH} "Choose where the result will send."
+LangString TargetsPage_SubText ${LANG_FRENCH} "fChoose where the result will send."
+LangString TargetsPage_SubText ${LANG_SPANISH} "Elija dónde se enviará el resultado."
 
-; hCtl_TargetsPage_GroupBox1_Text
-LangString hCtl_TargetsPage_GroupBox1_Text ${LANG_ENGLISH} "Local Target"
-LangString hCtl_TargetsPage_GroupBox1_Text ${LANG_FRENCH} "fLocal Target"
-LangString hCtl_TargetsPage_GroupBox1_Text ${LANG_SPANISH} "Destino Local"
+; TargetsPage_GroupBox1_Text
+LangString TargetsPage_GroupBox1_Text ${LANG_ENGLISH} "Local Target"
+LangString TargetsPage_GroupBox1_Text ${LANG_FRENCH} "fLocal Target"
+LangString TargetsPage_GroupBox1_Text ${LANG_SPANISH} "Destino Local"
 
-; hCtl_TargetsPage_Button1_Text
-LangString hCtl_TargetsPage_Button1_Text ${LANG_ENGLISH} "Browser..."
-LangString hCtl_TargetsPage_Button1_Text ${LANG_FRENCH} "fBrowser..."
-LangString hCtl_TargetsPage_Button1_Text ${LANG_SPANISH} "Examinar..."
+; TargetsPage_Button1_Text
+LangString TargetsPage_Button1_Text ${LANG_ENGLISH} "Browser..."
+LangString TargetsPage_Button1_Text ${LANG_FRENCH} "fBrowser..."
+LangString TargetsPage_Button1_Text ${LANG_SPANISH} "Examinar..."
 
-; hCtl_TargetsPage_Label1_Text
-LangString hCtl_TargetsPage_Label1_Text ${LANG_ENGLISH} "Local path or UNC path"
-LangString hCtl_TargetsPage_Label1_Text ${LANG_FRENCH} "fLocal path or UNC path"
-LangString hCtl_TargetsPage_Label1_Text ${LANG_SPANISH} "Directorio local o ruta UNC"
+; TargetsPage_Label1_Text
+LangString TargetsPage_Label1_Text ${LANG_ENGLISH} "Local path or UNC path"
+LangString TargetsPage_Label1_Text ${LANG_FRENCH} "fLocal path or UNC path"
+LangString TargetsPage_Label1_Text ${LANG_SPANISH} "Directorio local o ruta UNC"
 
-; hCtl_TargetsPage_GroupBox2_Text
-LangString hCtl_TargetsPage_GroupBox2_Text ${LANG_ENGLISH} "Remote Targets"
-LangString hCtl_TargetsPage_GroupBox2_Text ${LANG_FRENCH} "fRemote Targets"
-LangString hCtl_TargetsPage_GroupBox2_Text ${LANG_SPANISH} "Destinos Remotos"
+; TargetsPage_GroupBox2_Text
+LangString TargetsPage_GroupBox2_Text ${LANG_ENGLISH} "Remote Targets"
+LangString TargetsPage_GroupBox2_Text ${LANG_FRENCH} "fRemote Targets"
+LangString TargetsPage_GroupBox2_Text ${LANG_SPANISH} "Destinos Remotos"
 
-; hCtl_TargetsPage_Label2_Text
-LangString hCtl_TargetsPage_Label2_Text ${LANG_ENGLISH} "You can indicate multiple URIs by separating them with commas$\r$\n'http://<server>/glpi/plugins/fusioninventory, http://<server>/ocsinventory, ...'"
-LangString hCtl_TargetsPage_Label2_Text ${LANG_FRENCH} "fYou can indicate multiple URIs by separating them with commas$\r$\n'http://<server>/glpi/plugins/fusioninventory, ...'"
-LangString hCtl_TargetsPage_Label2_Text ${LANG_SPANISH} "Puede indicar múltiples URIs separándolos por comas$\r$\n'http://<server>/glpi/plugins/fusioninventory, http://<server>/ocsinventory, ...'"
+; TargetsPage_Label2_Text
+LangString TargetsPage_Label2_Text ${LANG_ENGLISH} "You can indicate multiple URIs by separating them with commas$\r$\n'http://<server>/glpi/plugins/fusioninventory, http://<server>/ocsinventory, ...'"
+LangString TargetsPage_Label2_Text ${LANG_FRENCH} "fYou can indicate multiple URIs by separating them with commas$\r$\n'http://<server>/glpi/plugins/fusioninventory, ...'"
+LangString TargetsPage_Label2_Text ${LANG_SPANISH} "Puede indicar múltiples URIs separándolos por comas$\r$\n'http://<server>/glpi/plugins/fusioninventory, http://<server>/ocsinventory, ...'"
 
-; hCtl_TargetsPage_CheckBox1_Text
-LangString hCtl_TargetsPage_CheckBox1_Text ${LANG_ENGLISH} "Quick installation (do not show the rest of windows of options)"
-LangString hCtl_TargetsPage_CheckBox1_Text ${LANG_FRENCH} "fQuick installation (do not show the rest of windows of options)"
-LangString hCtl_TargetsPage_CheckBox1_Text ${LANG_SPANISH} "Instalación rápida (no mostrar el resto de ventanas de opciones)"
+; TargetsPage_CheckBox1_Text
+LangString TargetsPage_CheckBox1_Text ${LANG_ENGLISH} "Quick installation (do not show the rest of windows of options)"
+LangString TargetsPage_CheckBox1_Text ${LANG_FRENCH} "fQuick installation (do not show the rest of windows of options)"
+LangString TargetsPage_CheckBox1_Text ${LANG_SPANISH} "Instalación rápida (no mostrar el resto de ventanas de opciones)"
 
-; hCtl_TargetsPage_SelectFolderDialog_Title
-LangString hCtl_TargetsPage_SelectFolderDialog_Title ${LANG_ENGLISH} "Select the folder where the result will send:"
-LangString hCtl_TargetsPage_SelectFolderDialog_Title ${LANG_FRENCH} "fSelect the folder where the result will send:"
-LangString hCtl_TargetsPage_SelectFolderDialog_Title ${LANG_SPANISH} "Seleccione el directorio al que se enviará el resultado:"
+; TargetsPage_SelectFolderDialog_Title
+LangString TargetsPage_SelectFolderDialog_Title ${LANG_ENGLISH} "Select the folder where the result will send:"
+LangString TargetsPage_SelectFolderDialog_Title ${LANG_FRENCH} "fSelect the folder where the result will send:"
+LangString TargetsPage_SelectFolderDialog_Title ${LANG_SPANISH} "Seleccione el directorio al que se enviará el resultado:"
 
-; hCtl_TargetsPage_NextButton_Text_Next
-LangString hCtl_TargetsPage_NextButton_Text_Next ${LANG_ENGLISH} "&Next >"
-LangString hCtl_TargetsPage_NextButton_Text_Next ${LANG_FRENCH} "&Suivant >"
-LangString hCtl_TargetsPage_NextButton_Text_Next ${LANG_SPANISH} "&Siguiente >"
+; TargetsPage_NextButton_Text_Next
+LangString TargetsPage_NextButton_Text_Next ${LANG_ENGLISH} "&Next >"
+LangString TargetsPage_NextButton_Text_Next ${LANG_FRENCH} "&Suivant >"
+LangString TargetsPage_NextButton_Text_Next ${LANG_SPANISH} "&Siguiente >"
 
-; hCtl_TargetsPage_NextButton_Text_Install
-LangString hCtl_TargetsPage_NextButton_Text_Install ${LANG_ENGLISH} "&Install"
-LangString hCtl_TargetsPage_NextButton_Text_Install ${LANG_FRENCH} "&Installer"
-LangString hCtl_TargetsPage_NextButton_Text_Install ${LANG_SPANISH} "&Instalar"
+; TargetsPage_NextButton_Text_Install
+LangString TargetsPage_NextButton_Text_Install ${LANG_ENGLISH} "&Install"
+LangString TargetsPage_NextButton_Text_Install ${LANG_FRENCH} "&Installer"
+LangString TargetsPage_NextButton_Text_Install ${LANG_SPANISH} "&Instalar"
 
 ; TargetsPage_TextBox_Warning
 LangString TargetsPage_TextBox_Warning ${LANG_ENGLISH} "The value $\"$R2$\" is not valid for the field $\"$R1$\"."

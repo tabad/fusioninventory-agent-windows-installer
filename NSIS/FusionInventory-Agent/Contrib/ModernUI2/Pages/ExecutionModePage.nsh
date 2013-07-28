@@ -80,23 +80,23 @@ Function ExecutionModePage_Create
    ${If} $hCtl_ExecutionModePage == error
      Abort
    ${EndIf}
-   !insertmacro MUI_HEADER_TEXT "$(hCtl_ExecutionModePage_Text)" "$(hCtl_ExecutionModePage_SubText)"
+   !insertmacro MUI_HEADER_TEXT "$(ExecutionModePage_Text)" "$(ExecutionModePage_SubText)"
 
    ; === GroupBox1 (type: GroupBox) ===
-   ${NSD_CreateGroupBox} 50u 30u 196u 65u "$(hCtl_ExecutionModePage_GroupBox1_Text)"
+   ${NSD_CreateGroupBox} 50u 30u 196u 65u "$(ExecutionModePage_GroupBox1_Text)"
    Pop $hCtl_ExecutionModePage_GroupBox1
 
    ; === RadioButton1 (type: RadioButton) ===
-   ${NSD_CreateRadioButton} 60u 43u 130u 11u "$(hCtl_ExecutionModePage_RadioButton1_Text)"
+   ${NSD_CreateRadioButton} 60u 43u 130u 11u "$(ExecutionModePage_RadioButton1_Text)"
    Pop $hCtl_ExecutionModePage_RadioButton1
    ${NSD_AddStyle} $hCtl_ExecutionModePage_RadioButton1 ${WS_GROUP}
 
    ; === RadioButton2 (type: RadioButton) ===
-   ${NSD_CreateRadioButton} 60u 59u 130u 11u "$(hCtl_ExecutionModePage_RadioButton2_Text)"
+   ${NSD_CreateRadioButton} 60u 59u 130u 11u "$(ExecutionModePage_RadioButton2_Text)"
    Pop $hCtl_ExecutionModePage_RadioButton2
 
    ; === RadioButton3 (type: RadioButton) ===
-   ${NSD_CreateRadioButton} 60u 75u 130u 11u "$(hCtl_ExecutionModePage_RadioButton3_Text)"
+   ${NSD_CreateRadioButton} 60u 75u 130u 11u "$(ExecutionModePage_RadioButton3_Text)"
    Pop $hCtl_ExecutionModePage_RadioButton3
 
    ; OnBack Function

@@ -110,13 +110,13 @@ Function WindowsTaskOptionsPage_DropList1_Load
    ; Set Label2 Text depending on the value of $R1
    ${Select} "$R1"
       ${Case} "${FREQUENCY_MINUTE}"
-         StrCpy $R2 "$(hCtl_WindowsTaskOptionsPage_Minute)"
+         StrCpy $R2 "$(WindowsTaskOptionsPage_Minute)"
       ${Case} "${FREQUENCY_HOURLY}"
-         StrCpy $R2 "$(hCtl_WindowsTaskOptionsPage_Hour)"
+         StrCpy $R2 "$(WindowsTaskOptionsPage_Hour)"
       ${Case} "${FREQUENCY_DAILY}"
-         StrCpy $R2 "$(hCtl_WindowsTaskOptionsPage_Day)"
+         StrCpy $R2 "$(WindowsTaskOptionsPage_Day)"
    ${EndSelect}
-   ${NSD_SetText} $hCtl_WindowsTaskOptionsPage_Label2 "$(hCtl_WindowsTaskOptionsPage_Label2_Text)"
+   ${NSD_SetText} $hCtl_WindowsTaskOptionsPage_Label2 "$(WindowsTaskOptionsPage_Label2_Text)"
 
    ; Pop $R2, $R1 & $R0 off of the stack
    Pop $R2
@@ -147,13 +147,13 @@ Function WindowsTaskOptionsPage_DropList1_OnChange
    ; Set Label2 Text depending on the value of $R1
    ${Select} "$R1"
       ${Case} "${FREQUENCY_MINUTE}"
-         StrCpy $R2 "$(hCtl_WindowsTaskOptionsPage_Minute)"
+         StrCpy $R2 "$(WindowsTaskOptionsPage_Minute)"
       ${Case} "${FREQUENCY_HOURLY}"
-         StrCpy $R2 "$(hCtl_WindowsTaskOptionsPage_Hour)"
+         StrCpy $R2 "$(WindowsTaskOptionsPage_Hour)"
       ${Case} "${FREQUENCY_DAILY}"
-         StrCpy $R2 "$(hCtl_WindowsTaskOptionsPage_Day)"
+         StrCpy $R2 "$(WindowsTaskOptionsPage_Day)"
    ${EndSelect}
-   ${NSD_SetText} $hCtl_WindowsTaskOptionsPage_Label2 "$(hCtl_WindowsTaskOptionsPage_Label2_Text)"
+   ${NSD_SetText} $hCtl_WindowsTaskOptionsPage_Label2 "$(WindowsTaskOptionsPage_Label2_Text)"
 
    ; Load DropList2
    Call WindowsTaskOptionsPage_DropList2_Load
@@ -286,14 +286,14 @@ Function WindowsTaskOptionsPage_Create
    ${If} $hCtl_WindowsTaskOptionsPage == error
      Abort
    ${EndIf}
-   !insertmacro MUI_HEADER_TEXT "$(hCtl_WindowsTaskOptionsPage_Text)" "$(hCtl_WindowsTaskOptionsPage_SubText)"
+   !insertmacro MUI_HEADER_TEXT "$(WindowsTaskOptionsPage_Text)" "$(WindowsTaskOptionsPage_SubText)"
 
    ; === GroupBox1 (type: GroupBox) ===
-   ${NSD_CreateGroupBox} 50u 30u 196u 65u "$(hCtl_WindowsTaskOptionsPage_GroupBox1_Text)"
+   ${NSD_CreateGroupBox} 50u 30u 196u 65u "$(WindowsTaskOptionsPage_GroupBox1_Text)"
    Pop $hCtl_WindowsTaskOptionsPage_GroupBox1
 
    ; === Label1 (type: Label) ===
-   ${NSD_CreateLabel} 63u 52u 81u 8u "$(hCtl_WindowsTaskOptionsPage_Label1_Text)"
+   ${NSD_CreateLabel} 63u 52u 81u 8u "$(WindowsTaskOptionsPage_Label1_Text)"
    Pop $hCtl_WindowsTaskOptionsPage_Label1
 
    ; === DropList1 (type: DropList) ===

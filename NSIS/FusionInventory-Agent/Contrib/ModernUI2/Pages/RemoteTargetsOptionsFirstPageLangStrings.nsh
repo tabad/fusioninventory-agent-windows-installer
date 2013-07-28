@@ -49,65 +49,65 @@
 ;--------------------------------
 ; LangString Variables
 
-; hCtl_RemoteTargetsOptionsFirstPage_Text
-LangString hCtl_RemoteTargetsOptionsFirstPage_Text ${LANG_ENGLISH} "Remote Targets Options (1/2)"
-LangString hCtl_RemoteTargetsOptionsFirstPage_Text ${LANG_FRENCH} "fRemote Targets Options (1/2)"
-LangString hCtl_RemoteTargetsOptionsFirstPage_Text ${LANG_SPANISH} "Opciones de destinos remotos (1/2)"
+; RemoteTargetsOptionsFirstPage_Text
+LangString RemoteTargetsOptionsFirstPage_Text ${LANG_ENGLISH} "Remote Targets Options (1/2)"
+LangString RemoteTargetsOptionsFirstPage_Text ${LANG_FRENCH} "fRemote Targets Options (1/2)"
+LangString RemoteTargetsOptionsFirstPage_Text ${LANG_SPANISH} "Opciones de destinos remotos (1/2)"
 
-; hCtl_RemoteTargetsOptionsFirstPage_SubText
-LangString hCtl_RemoteTargetsOptionsFirstPage_SubText ${LANG_ENGLISH} "Set SSL options."
-LangString hCtl_RemoteTargetsOptionsFirstPage_SubText ${LANG_FRENCH} "fSet SSL options."
-LangString hCtl_RemoteTargetsOptionsFirstPage_SubText ${LANG_SPANISH} "Establezca opciones de SSL."
+; RemoteTargetsOptionsFirstPage_SubText
+LangString RemoteTargetsOptionsFirstPage_SubText ${LANG_ENGLISH} "Set SSL options."
+LangString RemoteTargetsOptionsFirstPage_SubText ${LANG_FRENCH} "fSet SSL options."
+LangString RemoteTargetsOptionsFirstPage_SubText ${LANG_SPANISH} "Establezca opciones de SSL."
 
-; hCtl_RemoteTargetsOptionsFirstPage_GroupBox1_Text
-LangString hCtl_RemoteTargetsOptionsFirstPage_GroupBox1_Text ${LANG_ENGLISH} "SSL Options"
-LangString hCtl_RemoteTargetsOptionsFirstPage_GroupBox1_Text ${LANG_FRENCH} "fSSL Options"
-LangString hCtl_RemoteTargetsOptionsFirstPage_GroupBox1_Text ${LANG_SPANISH} "Opciones SSL"
+; RemoteTargetsOptionsFirstPage_GroupBox1_Text
+LangString RemoteTargetsOptionsFirstPage_GroupBox1_Text ${LANG_ENGLISH} "SSL Options"
+LangString RemoteTargetsOptionsFirstPage_GroupBox1_Text ${LANG_FRENCH} "fSSL Options"
+LangString RemoteTargetsOptionsFirstPage_GroupBox1_Text ${LANG_SPANISH} "Opciones SSL"
 
-; hCtl_RemoteTargetsOptionsFirstPage_Label1_Text
-LangString hCtl_RemoteTargetsOptionsFirstPage_Label1_Text ${LANG_ENGLISH} "Certificates Directory"
-LangString hCtl_RemoteTargetsOptionsFirstPage_Label1_Text ${LANG_FRENCH} "fCertificates Directory"
-LangString hCtl_RemoteTargetsOptionsFirstPage_Label1_Text ${LANG_SPANISH} "Directorio de Certificados"
+; RemoteTargetsOptionsFirstPage_Label1_Text
+LangString RemoteTargetsOptionsFirstPage_Label1_Text ${LANG_ENGLISH} "Certificates Directory"
+LangString RemoteTargetsOptionsFirstPage_Label1_Text ${LANG_FRENCH} "fCertificates Directory"
+LangString RemoteTargetsOptionsFirstPage_Label1_Text ${LANG_SPANISH} "Directorio de Certificados"
 
-; hCtl_RemoteTargetsOptionsFirstPage_Button1_Text
-LangString hCtl_RemoteTargetsOptionsFirstPage_Button1_Text ${LANG_ENGLISH} "Browser..."
-LangString hCtl_RemoteTargetsOptionsFirstPage_Button1_Text ${LANG_FRENCH} "fBrowser..."
-LangString hCtl_RemoteTargetsOptionsFirstPage_Button1_Text ${LANG_SPANISH} "Examinar..."
+; RemoteTargetsOptionsFirstPage_Button1_Text
+LangString RemoteTargetsOptionsFirstPage_Button1_Text ${LANG_ENGLISH} "Browser..."
+LangString RemoteTargetsOptionsFirstPage_Button1_Text ${LANG_FRENCH} "fBrowser..."
+LangString RemoteTargetsOptionsFirstPage_Button1_Text ${LANG_SPANISH} "Examinar..."
 
-; hCtl_RemoteTargetsOptionsFirstPage_Label2_Text
-LangString hCtl_RemoteTargetsOptionsFirstPage_Label2_Text ${LANG_ENGLISH} "Certificate File"
-LangString hCtl_RemoteTargetsOptionsFirstPage_Label2_Text ${LANG_FRENCH} "fCertificate File"
-LangString hCtl_RemoteTargetsOptionsFirstPage_Label2_Text ${LANG_SPANISH} "Fichero del Certificado"
+; RemoteTargetsOptionsFirstPage_Label2_Text
+LangString RemoteTargetsOptionsFirstPage_Label2_Text ${LANG_ENGLISH} "Certificate File"
+LangString RemoteTargetsOptionsFirstPage_Label2_Text ${LANG_FRENCH} "fCertificate File"
+LangString RemoteTargetsOptionsFirstPage_Label2_Text ${LANG_SPANISH} "Fichero del Certificado"
 
-; hCtl_RemoteTargetsOptionsFirstPage_Button2_Text
-LangString hCtl_RemoteTargetsOptionsFirstPage_Button2_Text ${LANG_ENGLISH} "Browser..."
-LangString hCtl_RemoteTargetsOptionsFirstPage_Button2_Text ${LANG_FRENCH} "fBrowser..."
-LangString hCtl_RemoteTargetsOptionsFirstPage_Button2_Text ${LANG_SPANISH} "Examinar..."
+; RemoteTargetsOptionsFirstPage_Button2_Text
+LangString RemoteTargetsOptionsFirstPage_Button2_Text ${LANG_ENGLISH} "Browser..."
+LangString RemoteTargetsOptionsFirstPage_Button2_Text ${LANG_FRENCH} "fBrowser..."
+LangString RemoteTargetsOptionsFirstPage_Button2_Text ${LANG_SPANISH} "Examinar..."
 
-; hCtl_RemoteTargetsOptionsFirstPage_Label3_Text
-LangString hCtl_RemoteTargetsOptionsFirstPage_Label3_Text ${LANG_ENGLISH} "Certificate URI"
-LangString hCtl_RemoteTargetsOptionsFirstPage_Label3_Text ${LANG_FRENCH} "fCertificate URI"
-LangString hCtl_RemoteTargetsOptionsFirstPage_Label3_Text ${LANG_SPANISH} "URI del Certificado"
+; RemoteTargetsOptionsFirstPage_Label3_Text
+LangString RemoteTargetsOptionsFirstPage_Label3_Text ${LANG_ENGLISH} "Certificate URI"
+LangString RemoteTargetsOptionsFirstPage_Label3_Text ${LANG_FRENCH} "fCertificate URI"
+LangString RemoteTargetsOptionsFirstPage_Label3_Text ${LANG_SPANISH} "URI del Certificado"
 
-; hCtl_RemoteTargetsOptionsFirstPage_CheckBox1_Text
-LangString hCtl_RemoteTargetsOptionsFirstPage_CheckBox1_Text ${LANG_ENGLISH} "Disable SSL check (use only for debugging)"
-LangString hCtl_RemoteTargetsOptionsFirstPage_CheckBox1_Text ${LANG_FRENCH} "fDisable SSL check (use only for debugging)"
-LangString hCtl_RemoteTargetsOptionsFirstPage_CheckBox1_Text ${LANG_SPANISH} "Desactivar comprobación SSL (usar solo para depuración)"
+; RemoteTargetsOptionsFirstPage_CheckBox1_Text
+LangString RemoteTargetsOptionsFirstPage_CheckBox1_Text ${LANG_ENGLISH} "Disable SSL check (use only for debugging)"
+LangString RemoteTargetsOptionsFirstPage_CheckBox1_Text ${LANG_FRENCH} "fDisable SSL check (use only for debugging)"
+LangString RemoteTargetsOptionsFirstPage_CheckBox1_Text ${LANG_SPANISH} "Desactivar comprobación SSL (usar solo para depuración)"
 
-; hCtl_RemoteTargetsOptionsFirstPage_SelectFolderDialog_Title
-LangString hCtl_RemoteTargetsOptionsFirstPage_SelectFolderDialog_Title ${LANG_ENGLISH} "Select the folder where certificates are:"
-LangString hCtl_RemoteTargetsOptionsFirstPage_SelectFolderDialog_Title ${LANG_FRENCH} "fSelect the folder where certificates are:"
-LangString hCtl_RemoteTargetsOptionsFirstPage_SelectFolderDialog_Title ${LANG_SPANISH} "Seleccione el directorio donde están los certificados:"
+; RemoteTargetsOptionsFirstPage_SelectFolderDialog_Title
+LangString RemoteTargetsOptionsFirstPage_SelectFolderDialog_Title ${LANG_ENGLISH} "Select the folder where certificates are:"
+LangString RemoteTargetsOptionsFirstPage_SelectFolderDialog_Title ${LANG_FRENCH} "fSelect the folder where certificates are:"
+LangString RemoteTargetsOptionsFirstPage_SelectFolderDialog_Title ${LANG_SPANISH} "Seleccione el directorio donde están los certificados:"
 
-; hCtl_RemoteTargetsOptionsFirstPage_SelectFileDialog_Filter1
-LangString hCtl_RemoteTargetsOptionsFirstPage_SelectFileDialog_Filter1 ${LANG_ENGLISH} "All Files (*.*)"
-LangString hCtl_RemoteTargetsOptionsFirstPage_SelectFileDialog_Filter1 ${LANG_FRENCH} "fAll Files (*.*)"
-LangString hCtl_RemoteTargetsOptionsFirstPage_SelectFileDialog_Filter1 ${LANG_SPANISH} "Todos (*.*)"
+; RemoteTargetsOptionsFirstPage_SelectFileDialog_Filter1
+LangString RemoteTargetsOptionsFirstPage_SelectFileDialog_Filter1 ${LANG_ENGLISH} "All Files (*.*)"
+LangString RemoteTargetsOptionsFirstPage_SelectFileDialog_Filter1 ${LANG_FRENCH} "fAll Files (*.*)"
+LangString RemoteTargetsOptionsFirstPage_SelectFileDialog_Filter1 ${LANG_SPANISH} "Todos (*.*)"
 
-; hCtl_RemoteTargetsOptionsFirstPage_SelectFileDialog_Filter2
-LangString hCtl_RemoteTargetsOptionsFirstPage_SelectFileDialog_Filter2 ${LANG_ENGLISH} "PEM Certificates (*.pem)"
-LangString hCtl_RemoteTargetsOptionsFirstPage_SelectFileDialog_Filter2 ${LANG_FRENCH} "fPEM Certificates (*.pem)"
-LangString hCtl_RemoteTargetsOptionsFirstPage_SelectFileDialog_Filter2 ${LANG_SPANISH} "Certificados PEM (*.pem)"
+; RemoteTargetsOptionsFirstPage_SelectFileDialog_Filter2
+LangString RemoteTargetsOptionsFirstPage_SelectFileDialog_Filter2 ${LANG_ENGLISH} "PEM Certificates (*.pem)"
+LangString RemoteTargetsOptionsFirstPage_SelectFileDialog_Filter2 ${LANG_FRENCH} "fPEM Certificates (*.pem)"
+LangString RemoteTargetsOptionsFirstPage_SelectFileDialog_Filter2 ${LANG_SPANISH} "Certificados PEM (*.pem)"
 
 ; RemoteTargetsOptionsFirstPage_TextBox_Warning
 LangString RemoteTargetsOptionsFirstPage_TextBox_Warning ${LANG_ENGLISH} "The value $\"$R2$\" is not valid for the field $\"$R1$\"."

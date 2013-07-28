@@ -83,26 +83,26 @@ Function MiscelaneousOptionsPage_Create
    ${If} $hCtl_MiscelaneousOptionsPage == error
      Abort
    ${EndIf}
-   !insertmacro MUI_HEADER_TEXT "$(hCtl_MiscelaneousOptionsPage_Text)" "$(hCtl_MiscelaneousOptionsPage_SubText)"
+   !insertmacro MUI_HEADER_TEXT "$(MiscelaneousOptionsPage_Text)" "$(MiscelaneousOptionsPage_SubText)"
 
    ; === GroupBox1 (type: GroupBox) ===
-   ${NSD_CreateGroupBox} 28u 19u 242u 89u "$(hCtl_MiscelaneousOptionsPage_GroupBox1_Text)"
+   ${NSD_CreateGroupBox} 28u 19u 242u 89u "$(MiscelaneousOptionsPage_GroupBox1_Text)"
    Pop $hCtl_MiscelaneousOptionsPage_GroupBox1
 
    ; === CheckBox1 (type: Checkbox) ===
-   ${NSD_CreateCheckbox} 39u 36u 218u 11u "$(hCtl_MiscelaneousOptionsPage_CheckBox1_Text)"
+   ${NSD_CreateCheckbox} 39u 36u 218u 11u "$(MiscelaneousOptionsPage_CheckBox1_Text)"
    Pop $hCtl_MiscelaneousOptionsPage_CheckBox1
 
    ; === CheckBox2 (type: Checkbox) ===
-   ${NSD_CreateCheckbox} 39u 51u 218u 11u "$(hCtl_MiscelaneousOptionsPage_CheckBox2_Text)"
+   ${NSD_CreateCheckbox} 39u 51u 218u 11u "$(MiscelaneousOptionsPage_CheckBox2_Text)"
    Pop $hCtl_MiscelaneousOptionsPage_CheckBox2
 
    ; === CheckBox3 (type: Checkbox) ===
-   ${NSD_CreateCheckbox} 39u 65u 218u 11u "$(hCtl_MiscelaneousOptionsPage_CheckBox3_Text)"
+   ${NSD_CreateCheckbox} 39u 65u 218u 11u "$(MiscelaneousOptionsPage_CheckBox3_Text)"
    Pop $hCtl_MiscelaneousOptionsPage_CheckBox3
 
    ; === Label1 (type: Label) ===
-   ${NSD_CreateLabel} 41u 79u 215u 8u "$(hCtl_MiscelaneousOptionsPage_Label1_Text)"
+   ${NSD_CreateLabel} 41u 79u 215u 8u "$(MiscelaneousOptionsPage_Label1_Text)"
    Pop $hCtl_MiscelaneousOptionsPage_Label1
 
    ; === TextBox1 (type: Text) ===

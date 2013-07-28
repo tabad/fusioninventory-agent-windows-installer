@@ -49,40 +49,40 @@
 ;--------------------------------
 ; LangString Variables
 
-; hCtl_InstallationModePage_Text
-LangString hCtl_InstallationModePage_Text ${LANG_ENGLISH} "Choose an Installation Mode"
-LangString hCtl_InstallationModePage_Text ${LANG_FRENCH} "fChoose an Installation Mode"
-LangString hCtl_InstallationModePage_Text ${LANG_SPANISH} "Elija un modo de instalación"
+; InstallationModePage_Text
+LangString InstallationModePage_Text ${LANG_ENGLISH} "Choose an Installation Mode"
+LangString InstallationModePage_Text ${LANG_FRENCH} "fChoose an Installation Mode"
+LangString InstallationModePage_Text ${LANG_SPANISH} "Elija un modo de instalación"
 
-; hCtl_InstallationModePage_SubText
-LangString hCtl_InstallationModePage_SubText ${LANG_ENGLISH} "Choose how you want to install ${PRODUCT_NAME}."
-LangString hCtl_InstallationModePage_SubText ${LANG_FRENCH} "fChoose how you want to install ${PRODUCT_NAME}."
-LangString hCtl_InstallationModePage_SubText ${LANG_SPANISH} "Elija cómo quiere instalar ${PRODUCT_NAME}."
+; InstallationModePage_SubText
+LangString InstallationModePage_SubText ${LANG_ENGLISH} "Choose how you want to install ${PRODUCT_NAME}."
+LangString InstallationModePage_SubText ${LANG_FRENCH} "fChoose how you want to install ${PRODUCT_NAME}."
+LangString InstallationModePage_SubText ${LANG_SPANISH} "Elija cómo quiere instalar ${PRODUCT_NAME}."
 
-; hCtl_InstallationModePage_Label1_Text
-LangString hCtl_InstallationModePage_Label1_Text ${LANG_ENGLISH} "You have FusionInventory Agent already installed in your computer. In your case, you have the possibility of install this new version of two different modes.$\r$\n$\r$\nYou should decide whether you want to:"
-LangString hCtl_InstallationModePage_Label1_Text ${LANG_FRENCH} "fYou have FusionInventory Agent already installed in your computer. In your case, you have the possibility of install this new version of two different modes.$\r$\n$\r$\nYou should decide whether you want to:"
-LangString hCtl_InstallationModePage_Label1_Text ${LANG_SPANISH} "Usted ya tiene FusionInventory Agent instalado en su computador. En su caso, usted tiene la posibilidad de instalar esta nueva version de dos diferentes modos.$\r$\n$\r$\nUsted debería decidir si quiere:"
+; InstallationModePage_Label1_Text
+LangString InstallationModePage_Label1_Text ${LANG_ENGLISH} "You have FusionInventory Agent already installed in your computer. In your case, you have the possibility of install this new version of two different modes.$\r$\n$\r$\nYou should decide whether you want to:"
+LangString InstallationModePage_Label1_Text ${LANG_FRENCH} "fYou have FusionInventory Agent already installed in your computer. In your case, you have the possibility of install this new version of two different modes.$\r$\n$\r$\nYou should decide whether you want to:"
+LangString InstallationModePage_Label1_Text ${LANG_SPANISH} "Usted ya tiene FusionInventory Agent instalado en su computador. En su caso, usted tiene la posibilidad de instalar esta nueva version de dos diferentes modos.$\r$\n$\r$\nUsted debería decidir si quiere:"
 
-; hCtl_InstallationModePage_RadioButton1
-LangString hCtl_InstallationModePage_RadioButton1_Text ${LANG_ENGLISH} "Install from scratch"
-LangString hCtl_InstallationModePage_RadioButton1_Text ${LANG_FRENCH} "fInstall from scratch"
-LangString hCtl_InstallationModePage_RadioButton1_Text ${LANG_SPANISH} "Instalar desde cero"
+; InstallationModePage_RadioButton1
+LangString InstallationModePage_RadioButton1_Text ${LANG_ENGLISH} "Install from scratch"
+LangString InstallationModePage_RadioButton1_Text ${LANG_FRENCH} "fInstall from scratch"
+LangString InstallationModePage_RadioButton1_Text ${LANG_SPANISH} "Instalar desde cero"
 
-; hCtl_InstallationModePage_Label2
-LangString hCtl_InstallationModePage_Label2_Text ${LANG_ENGLISH} "The new FusionInventory Agent will be installed using options values based on its default values."
-LangString hCtl_InstallationModePage_Label2_Text ${LANG_FRENCH} "fThe new FusionInventory Agent will be installed using options values based on its default values."
-LangString hCtl_InstallationModePage_Label2_Text ${LANG_SPANISH} "El nuevo FusionInventory Agent será instalado usando valores de opciones basados en sus valores por defecto."
+; InstallationModePage_Label2
+LangString InstallationModePage_Label2_Text ${LANG_ENGLISH} "The new FusionInventory Agent will be installed using options values based on its default values."
+LangString InstallationModePage_Label2_Text ${LANG_FRENCH} "fThe new FusionInventory Agent will be installed using options values based on its default values."
+LangString InstallationModePage_Label2_Text ${LANG_SPANISH} "El nuevo FusionInventory Agent será instalado usando valores de opciones basados en sus valores por defecto."
 
-; hCtl_InstallationModePage_RadioButton2
-LangString hCtl_InstallationModePage_RadioButton2_Text ${LANG_ENGLISH} "Install from current configuration"
-LangString hCtl_InstallationModePage_RadioButton2_Text ${LANG_FRENCH} "fInstall from current configuration"
-LangString hCtl_InstallationModePage_RadioButton2_Text ${LANG_SPANISH} "Instalar desde la configuración actual"
+; InstallationModePage_RadioButton2
+LangString InstallationModePage_RadioButton2_Text ${LANG_ENGLISH} "Install from current configuration"
+LangString InstallationModePage_RadioButton2_Text ${LANG_FRENCH} "fInstall from current configuration"
+LangString InstallationModePage_RadioButton2_Text ${LANG_SPANISH} "Instalar desde la configuración actual"
 
-; hCtl_InstallationModePage_Label3
-LangString hCtl_InstallationModePage_Label3_Text ${LANG_ENGLISH} "The new FusionInventory Agent will be installed using options values based on its current values."
-LangString hCtl_InstallationModePage_Label3_Text ${LANG_FRENCH} "fThe new FusionInventory Agent will be installed using options values based on its current values."
-LangString hCtl_InstallationModePage_Label3_Text ${LANG_SPANISH} "El nuevo FusionInventory Agent será instalado usando valores de opciones basados en sus valores actuales."
+; InstallationModePage_Label3
+LangString InstallationModePage_Label3_Text ${LANG_ENGLISH} "The new FusionInventory Agent will be installed using options values based on its current values."
+LangString InstallationModePage_Label3_Text ${LANG_FRENCH} "fThe new FusionInventory Agent will be installed using options values based on its current values."
+LangString InstallationModePage_Label3_Text ${LANG_SPANISH} "El nuevo FusionInventory Agent será instalado usando valores de opciones basados en sus valores actuales."
 
 
 !endif
