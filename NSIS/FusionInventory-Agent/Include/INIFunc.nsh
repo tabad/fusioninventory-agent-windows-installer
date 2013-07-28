@@ -217,8 +217,8 @@
 !macroend
 
 
-; GetValidAgentTasksCommaUStr
-!define GetValidAgentTasksCommaUStr "!insertmacro GetInstallTasksFullCommaUStr"
+; GetValidTasksCommaUStr
+!define GetValidTasksCommaUStr "!insertmacro GetInstallTasksFullCommaUStr"
 
 
 ; GetValidWindowsTaskMinuteModifierCommaUStr

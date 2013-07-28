@@ -669,8 +669,8 @@ Function IsValidOptionInstalltasksValue
          ; Install all tasks
          Nop
       ${CaseElse}
-         ; Get valid agent tasks
-         ${GetValidAgentTasksCommaUStr} $R2
+         ; Get valid tasks
+         ${GetValidTasksCommaUStr} $R2
          ; Check set of agent tasks
          ${IfNot} "$R0" IsASubCommaUStr "$R2"
             ; $R0 is an invalid value
@@ -1440,8 +1440,8 @@ Function IsValidOptionNoTaskValue
          ; Valid value
          Nop
       ${CaseElse}
-         ; Get valid agent tasks
-         ${GetValidAgentTasksCommaUStr} $R2
+         ; Get valid tasks
+         ${GetValidTasksCommaUStr} $R2
          ; Check set of agent tasks
          ${IfNot} "$R0" IsASubCommaUStr "$R2"
             ; $R0 is an invalid value

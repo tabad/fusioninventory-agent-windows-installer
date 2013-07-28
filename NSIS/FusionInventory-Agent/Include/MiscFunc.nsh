@@ -735,13 +735,13 @@ Function NormalizeOptions
    Push $R3
 
    ; Normalize 'installtasks' option
-   ${GetValidAgentTasksCommaUStr} $R1
+   ${GetValidTasksCommaUStr} $R1
    ${ReadINIOption} $R2 "$R0" "${IO_INSTALLTASKS}"
    ${NormalizeOption} "$R1" "$R2" $R3
    ${WriteINIOption} "$R0" "${IO_INSTALLTASKS}" "$R3"
 
    ; Normalize 'no-task' option
-   ${GetValidAgentTasksCommaUStr} $R1
+   ${GetValidTasksCommaUStr} $R1
    ${ReadINIOption} $R2 "$R0" "${IO_NO-TASK}"
    ${NormalizeOption} "$R1" "$R2" $R3
    ${WriteINIOption} "$R0" "${IO_NO-TASK}" "$R3"
