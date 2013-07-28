@@ -130,11 +130,11 @@
 
 
 ; Define INI options values
-!define CATEGORY_ENVIRONMENT "environment"
-!define CATEGORY_PRINTER "printer"
-!define CATEGORY_PROCESS "process"
-!define CATEGORY_SOFTWARE "software"
-!define CATEGORY_USER "user"
+!define CATEGORY_ENVIRONMENT "Environment"
+!define CATEGORY_PRINTER "Printer"
+!define CATEGORY_PROCESS "Process"
+!define CATEGORY_SOFTWARE "Software"
+!define CATEGORY_USER "User"
 
 !define EXECMODE_SERVICE "Service"
 !define EXECMODE_TASK "Task"
