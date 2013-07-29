@@ -68,7 +68,7 @@ Function AddUninstallInformation
    Call EraseUninstallInformation
 
    ; Register key 'Architecture'
-   !if ${FIAI_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
+   !if ${PRODUCT_PLATFORM_ARCHITECTURE} == ${PLATFORM_ARCHITECTURE_32}
       ${registry::Write} "${PRODUCT_UNINST_ROOT_KEY}\$PRODUCT_UNINST_SUBKEY" "Architecture" "32" "REG_DWORD" $R2
    !else
       ${registry::Write} "${PRODUCT_UNINST_ROOT_KEY}\$PRODUCT_UNINST_SUBKEY" "Architecture" "64" "REG_DWORD" $R2
@@ -79,10 +79,10 @@ Function AddUninstallInformation
    ${registry::Write} "${PRODUCT_UNINST_ROOT_KEY}\$PRODUCT_UNINST_SUBKEY" "DisplayIcon" "$R1\${PRODUCT_UNINSTALLER}" "REG_SZ" $R2
 
    ; Register key 'DisplayName'
-   !if ${FIAI_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
-      ${registry::Write} "${PRODUCT_UNINST_ROOT_KEY}\$PRODUCT_UNINST_SUBKEY" "DisplayName" "${PRODUCT_NAME} ${PRODUCT_VERSION} (${LABEL_PLATFORM_ARCHITECTURE_32} edition)" "REG_SZ" $R2
+   !if ${PRODUCT_PLATFORM_ARCHITECTURE} == ${PLATFORM_ARCHITECTURE_32}
+      ${registry::Write} "${PRODUCT_UNINST_ROOT_KEY}\$PRODUCT_UNINST_SUBKEY" "DisplayName" "${PRODUCT_NAME} ${PRODUCT_VERSION} (${PLATFORM_ARCHITECTURE_32} edition)" "REG_SZ" $R2
    !else
-      ${registry::Write} "${PRODUCT_UNINST_ROOT_KEY}\$PRODUCT_UNINST_SUBKEY" "DisplayName" "${PRODUCT_NAME} ${PRODUCT_VERSION} (${LABEL_PLATFORM_ARCHITECTURE_64} edition)" "REG_SZ" $R2
+      ${registry::Write} "${PRODUCT_UNINST_ROOT_KEY}\$PRODUCT_UNINST_SUBKEY" "DisplayName" "${PRODUCT_NAME} ${PRODUCT_VERSION} (${PLATFORM_ARCHITECTURE_64} edition)" "REG_SZ" $R2
    !endif
 
    ; Register key 'DisplayVersion'

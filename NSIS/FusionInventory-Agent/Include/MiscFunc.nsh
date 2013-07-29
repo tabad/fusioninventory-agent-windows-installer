@@ -79,7 +79,7 @@
          StrCpy $PRODUCT_INST_SUBKEY "SOFTWARE\${PRODUCT_INTERNAL_NAME}"
          StrCpy $PRODUCT_UNINST_SUBKEY "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_INTERNAL_NAME}"
 
-         ${If} ${FIAI_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_64}
+         ${If} ${PRODUCT_PLATFORM_ARCHITECTURE} == ${PLATFORM_ARCHITECTURE_64}
             ; Platform 32bits / Installer 64bits !!!
             StrCpy $CompatibleTargetPlatformArchitecture 1
          ${EndIf}
@@ -88,7 +88,7 @@
          SetRegView 32
       ${Else}
          ; Platform 64bits
-         ${If} ${FIAI_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
+         ${If} ${PRODUCT_PLATFORM_ARCHITECTURE} == ${PLATFORM_ARCHITECTURE_32}
             ; Platform 64bits / Installer 32bits
             StrCpy $PRODUCT_INST_SUBKEY "SOFTWARE\Wow6432Node\${PRODUCT_INTERNAL_NAME}"
             StrCpy $PRODUCT_UNINST_SUBKEY "SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_INTERNAL_NAME}"

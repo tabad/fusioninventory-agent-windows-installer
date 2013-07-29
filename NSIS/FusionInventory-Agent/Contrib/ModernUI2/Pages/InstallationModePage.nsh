@@ -249,7 +249,7 @@ Function InstallationModePage_Leave
          ${ReadINIOption} $R0 "${IOS_COMMANDLINE}" "${IO_CA-CERT-DIR}"
          ${If} "$R0" == ""
             ${ReadINIOption} $R0 "${IOS_GUI}" "${IO_CA-CERT-DIR}"
-            !if ${FIAI_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
+            !if ${PRODUCT_PLATFORM_ARCHITECTURE} == ${PLATFORM_ARCHITECTURE_32}
                ${WordReplace} "$R0" "$PROGRAMFILES64\" "$PROGRAMFILES32\" "+1" "$R0"
             !else
                ${WordReplace} "$R0" "$PROGRAMFILES32\" "$PROGRAMFILES64\" "+1" "$R0"
@@ -263,7 +263,7 @@ Function InstallationModePage_Leave
          ${ReadINIOption} $R0 "${IOS_COMMANDLINE}" "${IO_CA-CERT-FILE}"
          ${If} "$R0" == ""
             ${ReadINIOption} $R0 "${IOS_GUI}" "${IO_CA-CERT-FILE}"
-            !if ${FIAI_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
+            !if ${PRODUCT_PLATFORM_ARCHITECTURE} == ${PLATFORM_ARCHITECTURE_32}
                ${WordReplace} "$R0" "$PROGRAMFILES64\" "$PROGRAMFILES32\" "+1" "$R0"
             !else
                ${WordReplace} "$R0" "$PROGRAMFILES32\" "$PROGRAMFILES64\" "+1" "$R0"
@@ -291,7 +291,7 @@ Function InstallationModePage_Leave
          ${ReadINIOption} $R0 "${IOS_COMMANDLINE}" "${IO_LOGFILE}"
          ${If} "$R0" == ""
             ${ReadINIOption} $R0 "${IOS_GUI}" "${IO_LOGFILE}"
-            !if ${FIAI_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
+            !if ${PRODUCT_PLATFORM_ARCHITECTURE} == ${PLATFORM_ARCHITECTURE_32}
                ${WordReplace} "$R0" "$PROGRAMFILES64\" "$PROGRAMFILES32\" "+1" "$R0"
             !else
                ${WordReplace} "$R0" "$PROGRAMFILES32\" "$PROGRAMFILES64\" "+1" "$R0"

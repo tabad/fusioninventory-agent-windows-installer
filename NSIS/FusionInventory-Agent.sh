@@ -66,7 +66,7 @@ if [ "${MSYSTEM}" = "MSYS" ]; then
    # Windows OS with MinGW/MSYS
 
    basename="${0##*\\}"
-   option_nsis_define='-DFIAI_PLATFORM_ARCHITECTURE=${arch}'
+   option_nsis_define='-DPRODUCT_PLATFORM_ARCHITECTURE=${arch}'
 else
    if [ -n "${WINDIR}" ]; then
       # It's a Windows OS
@@ -96,7 +96,7 @@ else
    fi
 
    basename="${0##*/}"
-   option_nsis_define='-DFIAI_PLATFORM_ARCHITECTURE=${arch}'
+   option_nsis_define='-DPRODUCT_PLATFORM_ARCHITECTURE=${arch}'
 fi
 
 # All seems be correct...
