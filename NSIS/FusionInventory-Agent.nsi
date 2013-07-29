@@ -69,23 +69,23 @@ SetCompressor /FINAL /SOLID lzma
    !define PRODUCT_PLATFORM_ARCHITECTURE ${DEFAULT_PRODUCT_PLATFORM_ARCHITECTURE}
 !endif
 
-!define LABEL_RELEASE_TYPE_STABLE "stable"
-!define LABEL_RELEASE_TYPE_CANDIDATE "candidate"
-!define LABEL_RELEASE_TYPE_DEVELOPMENT "development"
-!define DEFAULT_FIAI_RELEASE_TYPE "${LABEL_RELEASE_TYPE_DEVELOPMENT}"
+!define RELEASE_TYPE_STABLE "stable"
+!define RELEASE_TYPE_CANDIDATE "candidate"
+!define RELEASE_TYPE_DEVELOPMENT "development"
+!define DEFAULT_PRODUCT_RELEASE_TYPE "${RELEASE_TYPE_DEVELOPMENT}"
 
 ; Use MakeNSIS '/D' option for choose the release type
-!ifdef FIAI_RELEASE_TYPE
-   !if "${FIAI_RELEASE_TYPE}" != "${LABEL_RELEASE_TYPE_STABLE}"
-      !if "${FIAI_RELEASE_TYPE}" != "${LABEL_RELEASE_TYPE_CANDIDATE}"
-         !if "${FIAI_RELEASE_TYPE}" != "${LABEL_RELEASE_TYPE_DEVELOPMENT}"
-            !undef FIAI_RELEASE_TYPE
-            !define FIAI_RELEASE_TYPE "${DEFAULT_FIAI_RELEASE_TYPE}"
+!ifdef PRODUCT_RELEASE_TYPE
+   !if "${PRODUCT_RELEASE_TYPE}" != "${RELEASE_TYPE_STABLE}"
+      !if "${PRODUCT_RELEASE_TYPE}" != "${RELEASE_TYPE_CANDIDATE}"
+         !if "${PRODUCT_RELEASE_TYPE}" != "${RELEASE_TYPE_DEVELOPMENT}"
+            !undef PRODUCT_RELEASE_TYPE
+            !define PRODUCT_RELEASE_TYPE "${DEFAULT_PRODUCT_RELEASE_TYPE}"
          !endif
       !endif
    !endif
 !else
-   !define FIAI_RELEASE_TYPE "${DEFAULT_FIAI_RELEASE_TYPE}"
+   !define PRODUCT_RELEASE_TYPE "${DEFAULT_PRODUCT_RELEASE_TYPE}"
 !endif
 
 !define STRAWBERRY_RELEASE "5.16.3.1"
@@ -103,7 +103,7 @@ SetCompressor /FINAL /SOLID lzma
 !define PRODUCT_VERSION_MINOR "2"
 !define PRODUCT_VERSION_RELEASE "9902"
 !define PRODUCT_VERSION_BUILD "2013072901"
-!if "${FIAI_RELEASE_TYPE}" == "${LABEL_RELEASE_TYPE_STABLE}"
+!if "${PRODUCT_RELEASE_TYPE}" == "${RELEASE_TYPE_STABLE}"
    !define PRODUCT_VERSION_SUFFIX ""
 !else
    !define PRODUCT_VERSION_SUFFIX "_dev"
@@ -132,13 +132,13 @@ SetCompressor /FINAL /SOLID lzma
 
 !define FIAI_HELP_FILE "fusioninventory-agent_windows-${PRODUCT_PLATFORM_ARCHITECTURE}_${PRODUCT_VERSION}.rtf"
 
-!if "${FIAI_RELEASE_TYPE}" == "${LABEL_RELEASE_TYPE_STABLE}"
+!if "${PRODUCT_RELEASE_TYPE}" == "${RELEASE_TYPE_STABLE}"
    !define MUI_HEADERIMAGE_BITMAP_FILE  "${FIAI_DIR}\Contrib\Skins\Default\HeaderRightMUI2.bmp"
    !define MUI_HEADERIMAGE_UNBITMAP_FILE "${FIAI_DIR}\Contrib\Skins\Default\HeaderRightMUI2.bmp"
    !define MUI_WELCOMEFINISHPAGE_BITMAP_FILE "${FIAI_DIR}\Contrib\Skins\Default\WelcomeMUI2.bmp"
    !define MUI_UNWELCOMEFINISHPAGE_BITMAP_FILE "${FIAI_DIR}\Contrib\Skins\Default\WelcomeMUI2.bmp"
 !else
-   !if "${FIAI_RELEASE_TYPE}" == "${LABEL_RELEASE_TYPE_CANDIDATE}"
+   !if "${PRODUCT_RELEASE_TYPE}" == "${RELEASE_TYPE_CANDIDATE}"
       !define MUI_HEADERIMAGE_BITMAP_FILE  "${FIAI_DIR}\Contrib\Skins\Default\HeaderRightMUI2CandidateVersion.bmp"
       !define MUI_HEADERIMAGE_UNBITMAP_FILE "${FIAI_DIR}\Contrib\Skins\Default\HeaderRightMUI2CandidateVersion.bmp"
       !define MUI_WELCOMEFINISHPAGE_BITMAP_FILE "${FIAI_DIR}\Contrib\Skins\Default\WelcomeMUI2CandidateVersion.bmp"
@@ -636,7 +636,7 @@ Section "-un.Init"
    ; Delete directory $R0\certs (whether is empty)
    RMDir "$R0\certs"
 
-   !if "${FIAI_RELEASE_TYPE}" == "${LABEL_RELEASE_TYPE_DEVELOPMENT}"
+   !if "${PRODUCT_RELEASE_TYPE}" == "${RELEASE_TYPE_DEVELOPMENT}"
       ; Delete directory $R0\debug
       RMDir /r "$R0\debug"
    !endif
@@ -761,7 +761,7 @@ FunctionEnd
 
 
 Function .onInstSuccess
-   !if "${FIAI_RELEASE_TYPE}" == "${LABEL_RELEASE_TYPE_DEVELOPMENT}"
+   !if "${PRODUCT_RELEASE_TYPE}" == "${RELEASE_TYPE_DEVELOPMENT}"
       ${ReadINIOption} $R0 "${IOS_FINAL}" "${IO_INSTALLDIR}"
       CreateDirectory "$R0\debug\"
       CopyFiles "${INI_OPTIONS_FILE}" "$R0\debug\"
@@ -780,7 +780,7 @@ FunctionEnd
 
 
 Function .onInstFailed
-   !if "${FIAI_RELEASE_TYPE}" == "${LABEL_RELEASE_TYPE_DEVELOPMENT}"
+   !if "${PRODUCT_RELEASE_TYPE}" == "${RELEASE_TYPE_DEVELOPMENT}"
       ${ReadINIOption} $R0 "${IOS_FINAL}" "${IO_INSTALLDIR}"
       CreateDirectory "$R0\debug\"
       CopyFiles "${INI_OPTIONS_FILE}" "$R0\debug\"
