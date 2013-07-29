@@ -51,11 +51,7 @@ SetCompressor /FINAL /SOLID lzma
 ; Notes: FusionInventory Agent (FIA)
 ;        FusionInventory Agent Installer (FIAI)
 
-!ifndef OS_BUILDER_NO_WINDOWS
-   !define FIAI_DIR ".\FusionInventory-Agent"
-!else
-   !define FIAI_DIR "./FusionInventory-Agent"
-!endif
+!define FIAI_DIR ".\FusionInventory-Agent"
 
 !define LABEL_PLATFORM_ARCHITECTURE_32 "x86"
 !define LABEL_PLATFORM_ARCHITECTURE_64 "x64"
@@ -124,39 +120,6 @@ SetCompressor /FINAL /SOLID lzma
 
 !define FILE_VERSION "${PRODUCT_VERSION_MAJOR}.${PRODUCT_VERSION_MINOR}.${PRODUCT_VERSION_RELEASE}.${PRODUCT_VERSION_BUILD}"
 !define VI_PRODUCT_VERSION "${FILE_VERSION}"
-
-!ifndef OS_BUILDER_NO_WINDOWS
-   !define PRODUCT_BUILD_ID_FILE "${FIAI_DIR}\Include\BuildID.nsh"
-!else
-   !define PRODUCT_BUILD_ID_FILE "${FIAI_DIR}/Include/BuildID.nsh"
-!endif
-!searchparse /file "${PRODUCT_BUILD_ID_FILE}" `!define PREVIOUS_PRODUCT_X86_BUILD_ID "` PREVIOUS_PRODUCT_X86_BUILD_ID `"`
-!searchparse /file "${PRODUCT_BUILD_ID_FILE}" `!define PREVIOUS_PRODUCT_X64_BUILD_ID "` PREVIOUS_PRODUCT_X64_BUILD_ID `"`
-!if ${FIAI_PLATFORM_ARCHITECTURE} == ${LABEL_PLATFORM_ARCHITECTURE_32}
-   !define /math PRODUCT_BUILD_ID ${PREVIOUS_PRODUCT_X86_BUILD_ID} + 1
-   !undef PREVIOUS_PRODUCT_X86_BUILD_ID
-   !define PREVIOUS_PRODUCT_X86_BUILD_ID ${PRODUCT_BUILD_ID}
-!else
-   !define /math PRODUCT_BUILD_ID ${PREVIOUS_PRODUCT_X64_BUILD_ID} + 1
-   !undef PREVIOUS_PRODUCT_X64_BUILD_ID
-   !define PREVIOUS_PRODUCT_X64_BUILD_ID ${PRODUCT_BUILD_ID}
-!endif
-!ifndef OS_BUILDER_NO_WINDOWS
-   !system `echo ;> "${PRODUCT_BUILD_ID_FILE}"`
-   !system `echo ; Do not edit!>> "${PRODUCT_BUILD_ID_FILE}"`
-   !system `echo ;>> "${PRODUCT_BUILD_ID_FILE}"`
-   !system `echo !define PREVIOUS_PRODUCT_X86_BUILD_ID "${PREVIOUS_PRODUCT_X86_BUILD_ID}">> "${PRODUCT_BUILD_ID_FILE}"`
-   !system `echo !define PREVIOUS_PRODUCT_X64_BUILD_ID "${PREVIOUS_PRODUCT_X64_BUILD_ID}">> "${PRODUCT_BUILD_ID_FILE}"`
-!else
-   !system `echo ';' > "${PRODUCT_BUILD_ID_FILE}"`
-   !system `echo '; Do not edit!' >> "${PRODUCT_BUILD_ID_FILE}"`
-   !system `echo ';' >> "${PRODUCT_BUILD_ID_FILE}"`
-   !system `echo '!define PREVIOUS_PRODUCT_X86_BUILD_ID "${PREVIOUS_PRODUCT_X86_BUILD_ID}"' >> "${PRODUCT_BUILD_ID_FILE}"`
-   !system `echo '!define PREVIOUS_PRODUCT_X64_BUILD_ID "${PREVIOUS_PRODUCT_X64_BUILD_ID}"' >> "${PRODUCT_BUILD_ID_FILE}"`
-!endif
-
-!undef PREVIOUS_PRODUCT_X86_BUILD_ID
-!undef PREVIOUS_PRODUCT_X64_BUILD_ID
 
 !define 7ZIP_DIR "..\Tools\7zip\${FIAI_PLATFORM_ARCHITECTURE}"
 !define DMIDECODE_DIR "..\Tools\dmidecode\${LABEL_PLATFORM_ARCHITECTURE_32}"
@@ -442,7 +405,7 @@ VIAddVersionKey /LANG=${LANG_ENGLISH} "CompanyName" "${PRODUCT_PUBLISHER} (${PRO
 VIAddVersionKey /LANG=${LANG_ENGLISH} "LegalTrademarks" "${PRODUCT_NAME} is distributed under GNU GPL License"
 VIAddVersionKey /LANG=${LANG_ENGLISH} "LegalCopyright" "${PRODUCT_PUBLISHER}"
 VIAddVersionKey /LANG=${LANG_ENGLISH} "FileDescription" "${PRODUCT_NAME} for Microsoft Windows"
-VIAddVersionKey /LANG=${LANG_ENGLISH} "FileVersion" "${FILE_VERSION} (Build ${PRODUCT_BUILD_ID})"
+VIAddVersionKey /LANG=${LANG_ENGLISH} "FileVersion" "${FILE_VERSION}"
 VIAddVersionKey /LANG=${LANG_ENGLISH} "ProductVersion" "${PRODUCT_VERSION}"
 VIAddVersionKey /LANG=${LANG_ENGLISH} "InternalName" "${PRODUCT_INTERNAL_NAME}"
 ;VIAddVersionKey /LANG=${LANG_ENGLISH} "OriginalFilename" ""
@@ -455,7 +418,7 @@ VIAddVersionKey /LANG=${LANG_FRENCH} "CompanyName" "${PRODUCT_PUBLISHER}  (${PRO
 VIAddVersionKey /LANG=${LANG_FRENCH} "LegalTrademarks" "f${PRODUCT_NAME} is distributed under GNU GPL License"
 VIAddVersionKey /LANG=${LANG_FRENCH} "LegalCopyright" "${PRODUCT_PUBLISHER}"
 VIAddVersionKey /LANG=${LANG_FRENCH} "FileDescription" "f${PRODUCT_NAME} for Microsoft Windows"
-VIAddVersionKey /LANG=${LANG_FRENCH} "FileVersion" "${FILE_VERSION} (Build ${PRODUCT_BUILD_ID})"
+VIAddVersionKey /LANG=${LANG_FRENCH} "FileVersion" "${FILE_VERSION}"
 VIAddVersionKey /LANG=${LANG_FRENCH} "ProductVersion" "${PRODUCT_VERSION}"
 VIAddVersionKey /LANG=${LANG_FRENCH} "InternalName" "${PRODUCT_INTERNAL_NAME}"
 ;VIAddVersionKey /LANG=${LANG_FRENCH} "OriginalFilename" ""
@@ -468,7 +431,7 @@ VIAddVersionKey /LANG=${LANG_SPANISH} "CompanyName" "${PRODUCT_PUBLISHER}  (${PR
 VIAddVersionKey /LANG=${LANG_SPANISH} "LegalTrademarks" "${PRODUCT_NAME} es distribuido bajo licencia GNU GPL"
 VIAddVersionKey /LANG=${LANG_SPANISH} "LegalCopyright" "${PRODUCT_PUBLISHER}"
 VIAddVersionKey /LANG=${LANG_SPANISH} "FileDescription" "${PRODUCT_NAME} para Microsoft Windows"
-VIAddVersionKey /LANG=${LANG_SPANISH} "FileVersion" "${FILE_VERSION} (Build ${PRODUCT_BUILD_ID})"
+VIAddVersionKey /LANG=${LANG_SPANISH} "FileVersion" "${FILE_VERSION}"
 VIAddVersionKey /LANG=${LANG_SPANISH} "ProductVersion" "${PRODUCT_VERSION}"
 VIAddVersionKey /LANG=${LANG_SPANISH} "InternalName" "${PRODUCT_INTERNAL_NAME}"
 ;VIAddVersionKey /LANG=${LANG_SPANISH} "OriginalFilename" ""

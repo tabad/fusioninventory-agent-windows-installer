@@ -96,7 +96,7 @@ else
    fi
 
    basename="${0##*/}"
-   option_nsis_define='-DFIAI_PLATFORM_ARCHITECTURE=${arch} -DOS_BUILDER_NO_WINDOWS'
+   option_nsis_define='-DFIAI_PLATFORM_ARCHITECTURE=${arch}'
 fi
 
 # All seems be correct...

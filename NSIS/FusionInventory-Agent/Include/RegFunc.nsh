@@ -74,9 +74,6 @@ Function AddUninstallInformation
       ${registry::Write} "${PRODUCT_UNINST_ROOT_KEY}\$PRODUCT_UNINST_SUBKEY" "Architecture" "64" "REG_DWORD" $R2
    !endif
 
-   ; Register key 'BuildID'
-   ${registry::Write} "${PRODUCT_UNINST_ROOT_KEY}\$PRODUCT_UNINST_SUBKEY" "BuildID" "${PRODUCT_BUILD_ID}" "REG_DWORD" $R2
-
    ; Register key 'DisplayIcon'
    ${ReadINIOption} $R1 "$R0" "${IO_INSTALLDIR}"
    ${registry::Write} "${PRODUCT_UNINST_ROOT_KEY}\$PRODUCT_UNINST_SUBKEY" "DisplayIcon" "$R1\${PRODUCT_UNINSTALLER}" "REG_SZ" $R2
