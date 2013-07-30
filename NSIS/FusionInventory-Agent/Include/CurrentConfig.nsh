@@ -389,6 +389,19 @@ Function InitINIOptionSectionCurrentConfig
    ${ElseIf} ${FusionInventoryAgentTaskIsInstalled}
       ; FusionInventory Agent Windows task installed
       ${WriteINIOption} "$R0" "${IO_EXECMODE}" "${EXECMODE_TASK}"
+      ${GetFusionInventoryTaskSchedule} $R1 $R2
+
+      ${IfNot} ${Errors}
+         ${WriteINIOption} "$R0" "${IO_TASK-FREQUENCY}" "$R1"
+         ${Select} "$R1"
+            ${Case} "${FREQUENCY_MINUTE}"
+               ${WriteINIOption} "$R0" "${IO_TASK-MINUTE-MODIFIER}" "$R2"
+            ${Case} "${FREQUENCY_HOURLY}"
+               ${WriteINIOption} "$R0" "${IO_TASK-HOURLY-MODIFIER}" "$R2"
+            ${Case} "${FREQUENCY_DAILY}"
+               ${WriteINIOption} "$R0" "${IO_TASK-DAILY-MODIFIER}" "$R2"
+         ${EndSelect}
+      ${EndIf}
    ${EndIf}
 
    ${ReadINIOption} $R1 "$R0" "${IO_EXECMODE}"

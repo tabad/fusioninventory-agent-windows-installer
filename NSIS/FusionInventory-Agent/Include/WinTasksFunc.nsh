@@ -275,4 +275,151 @@ Function RunAgentNow
 FunctionEnd
 
 
+; GetFusionInventoryTaskSchedule
+!define GetFusionInventoryTaskSchedule "!insertmacro GetFusionInventoryTaskSchedule"
+
+!macro GetFusionInventoryTaskSchedule Frequency Modifier
+   Call GetFusionInventoryTaskSchedule
+   Pop ${Frequency}
+   Pop ${Modifier}
+!macroend
+
+Function GetFusionInventoryTaskSchedule
+   ${If} ${AtLeastWinVista}
+      Call GetFusionInventoryTaskSchedule2_0
+   ${Else}
+      Call GetFusionInventoryTaskSchedule1_0
+   ${EndIf}
+FunctionEnd
+
+; Get the agent's task schedule in systems with Task Scheduler 2.0
+Function GetFusionInventoryTaskSchedule2_0
+   ; TODO
+
+   ; Clear errors
+   ClearErrors
+
+   Push 0
+   Push "Unknown"
+
+   SetErrors
+FunctionEnd
+
+; Get the agent's task schedule in systems with Task Scheduler 1.0
+Function GetFusionInventoryTaskSchedule1_0
+   ; $R0 API function's exit code
+   ; $R1 ITaskScheduler object
+   ; $R2 ITask object
+   ; $R3 ITaskTrigger object
+   ; $R4 TASK_TRIGGER struct
+   ; $R5 Interval in minutes
+   ; $R6 Trigger type
+   ; $R7 Interval in days
+   ; $R8 Frequency returned
+   ; $R9 Frequency modifier returned
+
+   ; Push $R9, $R8, $R0, $R1, $R2, $R3, $R4, $R5, $R6 & $R7 onto the stack
+   Push $R9
+   Push $R8
+   Push $R0
+   Push $R1
+   Push $R2
+   Push $R3
+   Push $R4
+   Push $R5
+   Push $R6
+   Push $R7
+
+   ; Clear errors
+   ClearErrors
+
+   StrCpy $R9 "Unknown"
+   StrCpy $R8 0
+
+   !define GUIDITask "{148BD524-A2AB-11CE-B11F-00AA00530503}"
+   !define GUIDTaskScheduler "{148BD52A-A2AB-11CE-B11F-00AA00530503}"
+   !define GUIDITaskScheduler "{148BD527-A2AB-11CE-B11F-00AA00530503}"
+
+   ; Get ITaskScheduler
+   System::Call "ole32::CoCreateInstance(g '${GUIDTaskScheduler}',i 0, i 11, g '${GUIDITaskScheduler}', *i .R1) i.R0"
+
+   ; Don't continue in case of error
+   IntCmp $R0 0 0 Error
+
+   ; ITaskScheduler->Activate(). Get reference to the task
+   System::Call '$R1->6(w "${PRODUCT_INTERNAL_NAME}", g "${GUIDITask}", *i .R2) i.R0'
+
+   ; Release ITaskScheduler
+   System::Call '$R1->2() i'
+
+   ; Don't continue in case of error
+   IntCmp $R0 0 0 Error
+
+   ; ITask->GetTrigger
+   System::Call '$R2->6(i 0, *i .R3) i.R0'
+
+   ; Release ITask
+   System::Call '$R2->2() i'
+
+   ; Don't continue in case of error
+   IntCmp $R0 0 0 Error
+
+   ; Struct to hold the trigger's properties
+   System::Call "*(&l2, &v46) i.s"
+   Pop $R4
+
+   ; ITaskTrigger->GetTrigger
+   System::Call '$R3->4(i R4 R4) i.R0'
+
+   ; Get data from TASK_TRIGGER struct
+   System::Call "*$R4(i2 .., i2 ..\
+      &i2 .., &i2 .., &i2 .., \
+      &i2 .., &i2 .., &i2 .., \
+      &i2 .., &i2 .., \
+      &i4 .., &i4 .R5, \
+      &i4 .., \
+      &i2 .R6, \
+      &i2 .., &i2 .R7)"
+
+   ; Free struct's memory
+   System::Free $R4
+
+   ; Don't continue in case of error
+   IntCmp $R0 0 0 Error
+
+   ${If} $R6 = 1 ; Trigger's type is daily even for hourly or minute frequency
+      ${If} $R5 = 0
+         StrCpy $R8 $R7
+         StrCpy $R9 "${FREQUENCY_DAILY}"
+      ${ElseIf} $R5 < 60
+        StrCpy $R8 $R5
+        StrCpy $R9 "${FREQUENCY_MINUTE}"
+      ${Else}
+        IntOp $R8 $R5 / 60
+        StrCpy $R9 "${FREQUENCY_HOURLY}"
+      ${EndIf}
+
+      Goto End
+   ${EndIf}
+
+Error:
+   SetErrors
+
+End:
+   ; Pop $R7, $R6, $R5, $R4, $R3, $R2, $R1 & $R0 off the stack
+   Pop $R7
+   Pop $R6
+   Pop $R5
+   Pop $R4
+   Pop $R3
+   Pop $R2
+   Pop $R1
+   Pop $R0
+
+   Exch $R8
+   Exch
+   Exch $R9
+FunctionEnd
+
+
 !endif
