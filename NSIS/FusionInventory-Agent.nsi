@@ -51,44 +51,51 @@ SetCompressor /FINAL /SOLID lzma
 ; Notes: FusionInventory Agent (FIA)
 ;        FusionInventory Agent Installer (FIAI)
 
+!define FIAI_RELEASE "2.2.9901"
 !define FIAI_DIR ".\FusionInventory-Agent"
 
+; Use MakeNSIS '/D' option for choose the architecture
+;    (Symbol: PRODUCT_PLATFORM_ARCHITECTURE)
+
+; Check symbol PRODUCT_PLATFORM_ARCHITECTURE
 !define PLATFORM_ARCHITECTURE_32 "x86"
 !define PLATFORM_ARCHITECTURE_64 "x64"
-!define DEFAULT_PRODUCT_PLATFORM_ARCHITECTURE ${PLATFORM_ARCHITECTURE_32}
 
-; Use MakeNSIS '/D' option for choose the architecture
 !ifdef PRODUCT_PLATFORM_ARCHITECTURE
    !if ${PRODUCT_PLATFORM_ARCHITECTURE} != ${PLATFORM_ARCHITECTURE_32}
       !if ${PRODUCT_PLATFORM_ARCHITECTURE} != ${PLATFORM_ARCHITECTURE_64}
-         !undef PRODUCT_PLATFORM_ARCHITECTURE
-         !define PRODUCT_PLATFORM_ARCHITECTURE ${DEFAULT_PRODUCT_PLATFORM_ARCHITECTURE}
+         !error "The symbol 'PRODUCT_PLATFORM_ARCHITECTURE' has been defined with an invalid value!"
       !endif
    !endif
 !else
-   !define PRODUCT_PLATFORM_ARCHITECTURE ${DEFAULT_PRODUCT_PLATFORM_ARCHITECTURE}
+   !error "The symbol 'PRODUCT_PLATFORM_ARCHITECTURE' hasn't been defined!"
 !endif
 
+; Type of release of the agent
+;    (Symbol:  PRODUCT_RELEASE_TYPE)
+!define PRODUCT_RELEASE_TYPE "candidate"
+
+; Check symbol PRODUCT_RELEASE_TYPE
 !define RELEASE_TYPE_STABLE "stable"
 !define RELEASE_TYPE_CANDIDATE "candidate"
 !define RELEASE_TYPE_DEVELOPMENT "development"
-!define DEFAULT_PRODUCT_RELEASE_TYPE "${RELEASE_TYPE_DEVELOPMENT}"
 
-; Use MakeNSIS '/D' option for choose the release type
 !ifdef PRODUCT_RELEASE_TYPE
    !if "${PRODUCT_RELEASE_TYPE}" != "${RELEASE_TYPE_STABLE}"
       !if "${PRODUCT_RELEASE_TYPE}" != "${RELEASE_TYPE_CANDIDATE}"
          !if "${PRODUCT_RELEASE_TYPE}" != "${RELEASE_TYPE_DEVELOPMENT}"
-            !undef PRODUCT_RELEASE_TYPE
-            !define PRODUCT_RELEASE_TYPE "${DEFAULT_PRODUCT_RELEASE_TYPE}"
+            !error "The symbol 'PRODUCT_RELEASE_TYPE' has been defined with an invalid value!"
          !endif
       !endif
    !endif
 !else
-   !define PRODUCT_RELEASE_TYPE "${DEFAULT_PRODUCT_RELEASE_TYPE}"
+   !error "The symbol 'PRODUCT_RELEASE_TYPE' hasn't been defined!"
 !endif
 
+; Release of Strawberry Perl Portable Edition Package for FusionInventory Agent
 !define STRAWBERRY_RELEASE "5.16.3.1"
+
+; Release of FusionInventory Agent and FusionInventory Agent Tasks
 !define FIA_RELEASE "2.2.9902"
 !define FIA_TASK_DEPLOY_RELEASE "2.0.4"
 !define FIA_TASK_ESX_RELEASE "2.2.1"
@@ -97,59 +104,129 @@ SetCompressor /FINAL /SOLID lzma
 !define FIA_TASK_NETINVENTORY_RELEASE "2.2.0"
 !define FIA_TASK_WAKEONLAN_RELEASE "2.0"
 
-!define PRODUCT_NAME "FusionInventory Agent"
-!define PRODUCT_INTERNAL_NAME "FusionInventory-Agent"
-!define PRODUCT_VERSION_MAJOR "2"
-!define PRODUCT_VERSION_MINOR "2"
-!define PRODUCT_VERSION_RELEASE "9902"
-!define PRODUCT_VERSION_BUILD "2013072901"
+; Release of the product
+;    Note: The 'product' is the installer generated
+;
+;    This is the pattern of the product:
+;
+;         product = "fusioninventory-agent_windows-" , platform , "_" , version , ".exe"
+;
+;        platform = "x86" | "x64" ;
+;
+;         version = sversion
+;                 | cversion
+;                 | dversion ;
+;
+;        (* sversion: stable version *)
+;
+;        sversion = mayor , "." , minor , "." , release , [ "-" , <patch> ]
+;                 | commit ;
+;
+;                 (* commit: the first ten digits only *)
+;
+;        (* cversion: candidate version *)
+;
+;        cversion = mayor , "." , minor , "." , release , "-rc" , candidate
+;                 | commit , "-rc" , candidate ;
+;
+;                 (* commit: the first ten digits only *)
+;
+;        (* dversion: development version *)
+;
+;        dversion = commit , "-dev" ;
+;
+;                 (* commit: the first ten digits only *)
+;
+;
 !if "${PRODUCT_RELEASE_TYPE}" == "${RELEASE_TYPE_STABLE}"
-   !define PRODUCT_VERSION_SUFFIX ""
-!else
-   !define PRODUCT_VERSION_SUFFIX "_dev"
-!endif
-!define PRODUCT_VERSION "${PRODUCT_VERSION_MAJOR}.${PRODUCT_VERSION_MINOR}.${PRODUCT_VERSION_RELEASE}-${PRODUCT_VERSION_BUILD}${PRODUCT_VERSION_SUFFIX}"
-!define PRODUCT_PUBLISHER "FusionInventory Team"
-!define PRODUCT_WEB_FOR_SUPPORT "http://forge.fusioninventory.org/projects/fusioninventory-agent"
-!define PRODUCT_WEB_SITE "http://www.fusioninventory.org"
-!define PRODUCT_UNINSTALLER "Uninstall.exe"
-!define PRODUCT_INST_ROOT_KEY "HKEY_LOCAL_MACHINE"
-!define PRODUCT_UNINST_ROOT_KEY "HKEY_LOCAL_MACHINE"
-!define PRODUCT_INSTALLER "fusioninventory-agent_windows-${PRODUCT_PLATFORM_ARCHITECTURE}_${PRODUCT_VERSION}.exe"
-!define PRODUCT_WEB_FOR_UPDATES "http://prebuilt.fusioninventory.org/stable/windows-${PRODUCT_PLATFORM_ARCHITECTURE}/"
+   ; Product version for stable releases
+   !define PRODUCT_VERSION "2.3.0"
 
-!define FILE_VERSION "${PRODUCT_VERSION_MAJOR}.${PRODUCT_VERSION_MINOR}.${PRODUCT_VERSION_RELEASE}.${PRODUCT_VERSION_BUILD}"
-!define VI_PRODUCT_VERSION "${FILE_VERSION}"
+   ; If PRODUCT_VERSION is a commit then
+   ;    define the following symbols as empty string
+   !define PRODUCT_VERSION_MAJOR "2"
+   !define PRODUCT_VERSION_MINOR "3"
+   !define PRODUCT_VERSION_RELEASE "0"
+   !define PRODUCT_VERSION_PATCH "0"
 
-!define 7ZIP_DIR "..\Tools\7zip\${PRODUCT_PLATFORM_ARCHITECTURE}"
-!define DMIDECODE_DIR "..\Tools\dmidecode\${PLATFORM_ARCHITECTURE_32}"
-!define HDPARM_DIR "..\Tools\hdparm\${PLATFORM_ARCHITECTURE_32}"
-!define SED_DIR "..\Tools\sed\${PLATFORM_ARCHITECTURE_32}"
-!define SETACL_DIR "..\Tools\setacl\${PRODUCT_PLATFORM_ARCHITECTURE}"
-!define STRAWBERRY_DIR "..\Perl\Strawberry\${STRAWBERRY_RELEASE}\${PRODUCT_PLATFORM_ARCHITECTURE}"
+   ; File version
+   ;    for Windows Version Information
+   ;
+   ; If PRODUCT_VERSION is a commit then
+   ;    define the following symbols as '0.0.0.0'
+   !define FILE_VERSION "2.3.0.0"
 
-!define FIA_DIR "${STRAWBERRY_DIR}\cpan\sources\FusionInventory-Agent-${FIA_RELEASE}"
-
-!define PRODUCT_HELP_FILE "fusioninventory-agent_windows-${PRODUCT_PLATFORM_ARCHITECTURE}_${PRODUCT_VERSION}.rtf"
-
-!if "${PRODUCT_RELEASE_TYPE}" == "${RELEASE_TYPE_STABLE}"
+   ; Bitmaps for stable releases
    !define MUI_HEADERIMAGE_BITMAP_FILE  "${FIAI_DIR}\Contrib\Skins\Default\HeaderRightMUI2.bmp"
    !define MUI_HEADERIMAGE_UNBITMAP_FILE "${FIAI_DIR}\Contrib\Skins\Default\HeaderRightMUI2.bmp"
    !define MUI_WELCOMEFINISHPAGE_BITMAP_FILE "${FIAI_DIR}\Contrib\Skins\Default\WelcomeMUI2.bmp"
    !define MUI_UNWELCOMEFINISHPAGE_BITMAP_FILE "${FIAI_DIR}\Contrib\Skins\Default\WelcomeMUI2.bmp"
 !else
    !if "${PRODUCT_RELEASE_TYPE}" == "${RELEASE_TYPE_CANDIDATE}"
+      ; Product version for candidate releases
+      !define PRODUCT_VERSION "2.3.0-rc2"
+
+      ; If PRODUCT_VERSION is a commit then
+      ;    define the following symbols as empty string
+      !define PRODUCT_VERSION_MAJOR "2"
+      !define PRODUCT_VERSION_MINOR "3"
+      !define PRODUCT_VERSION_RELEASE "0"
+      !define PRODUCT_VERSION_CANDIDATE "2"
+
+      ; File version
+      ;    for Windows Version Information
+      ;
+      ; If PRODUCT_VERSION is a commit then
+      ;    define the following symbols as '0.0.0.0'
+      !define FILE_VERSION "2.2.9902.0"
+
+   ; Bitmaps for stable releases
+      ; Bitmaps for candidate releases
       !define MUI_HEADERIMAGE_BITMAP_FILE  "${FIAI_DIR}\Contrib\Skins\Default\HeaderRightMUI2CandidateVersion.bmp"
       !define MUI_HEADERIMAGE_UNBITMAP_FILE "${FIAI_DIR}\Contrib\Skins\Default\HeaderRightMUI2CandidateVersion.bmp"
       !define MUI_WELCOMEFINISHPAGE_BITMAP_FILE "${FIAI_DIR}\Contrib\Skins\Default\WelcomeMUI2CandidateVersion.bmp"
       !define MUI_UNWELCOMEFINISHPAGE_BITMAP_FILE "${FIAI_DIR}\Contrib\Skins\Default\WelcomeMUI2CandidateVersion.bmp"
    !else
+      ; Product version for development releases
+      !define PRODUCT_VERSION "e8fea0fd45-dev"
+
+      ; File version
+      ;    for Windows Version Information
+      !define FILE_VERSION "0.0.0.0"
+
+      ; Bitmaps for development releases
       !define MUI_HEADERIMAGE_BITMAP_FILE  "${FIAI_DIR}\Contrib\Skins\Default\HeaderRightMUI2DevelopmentVersion.bmp"
       !define MUI_HEADERIMAGE_UNBITMAP_FILE "${FIAI_DIR}\Contrib\Skins\Default\HeaderRightMUI2DevelopmentVersion.bmp"
       !define MUI_WELCOMEFINISHPAGE_BITMAP_FILE "${FIAI_DIR}\Contrib\Skins\Default\WelcomeMUI2DevelopmentVersion.bmp"
       !define MUI_UNWELCOMEFINISHPAGE_BITMAP_FILE "${FIAI_DIR}\Contrib\Skins\Default\WelcomeMUI2DevelopmentVersion.bmp"
    !endif
 !endif
+
+; More information about the product
+!define PRODUCT_NAME "FusionInventory Agent"
+!define PRODUCT_INTERNAL_NAME "FusionInventory-Agent"
+!define PRODUCT_PUBLISHER "FusionInventory Team"
+!define PRODUCT_WEB_FOR_SUPPORT "http://forge.fusioninventory.org/projects/fusioninventory-agent"
+!define PRODUCT_WEB_SITE "http://www.fusioninventory.org"
+!define PRODUCT_UNINSTALLER "Uninstall.exe"
+!define PRODUCT_INST_ROOT_KEY "HKEY_LOCAL_MACHINE"
+!define PRODUCT_UNINST_ROOT_KEY "HKEY_LOCAL_MACHINE"
+!define PRODUCT_HELP_FILE "fusioninventory-agent_windows-${PRODUCT_PLATFORM_ARCHITECTURE}_${PRODUCT_VERSION}.rtf"
+!define PRODUCT_INSTALLER "fusioninventory-agent_windows-${PRODUCT_PLATFORM_ARCHITECTURE}_${PRODUCT_VERSION}.exe"
+!define PRODUCT_WEB_FOR_UPDATES "http://prebuilt.fusioninventory.org/stable/windows-${PRODUCT_PLATFORM_ARCHITECTURE}/"
+
+; Strawberry Perl directory
+!define STRAWBERRY_DIR "..\Perl\Strawberry\${STRAWBERRY_RELEASE}\${PRODUCT_PLATFORM_ARCHITECTURE}"
+
+; FusionInventory Agent sources directory
+!define FIA_DIR "${STRAWBERRY_DIR}\cpan\sources\FusionInventory-Agent-${FIA_RELEASE}"
+
+; Tools directories
+!define 7ZIP_DIR "..\Tools\7zip\${PRODUCT_PLATFORM_ARCHITECTURE}"
+!define DMIDECODE_DIR "..\Tools\dmidecode\${PLATFORM_ARCHITECTURE_32}"
+!define HDPARM_DIR "..\Tools\hdparm\${PLATFORM_ARCHITECTURE_32}"
+!define SED_DIR "..\Tools\sed\${PLATFORM_ARCHITECTURE_32}"
+!define SETACL_DIR "..\Tools\setacl\${PRODUCT_PLATFORM_ARCHITECTURE}"
 
 
 ;--------------------------------
@@ -397,7 +474,7 @@ ReserveFile "${SED_DIR}\sed.exe"
 ;--------------------------------
 ;Version Information
 
-VIProductVersion "${VI_PRODUCT_VERSION}"
+VIProductVersion "${FILE_VERSION}"
 
 VIAddVersionKey /LANG=${LANG_ENGLISH} "ProductName" "${PRODUCT_NAME}"
 VIAddVersionKey /LANG=${LANG_ENGLISH} "Comments" "Setup ${PRODUCT_NAME} for Microsoft Windows"

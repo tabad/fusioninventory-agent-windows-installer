@@ -91,6 +91,9 @@ Function AddUninstallInformation
    ; Register key 'HelpLink'
    ${registry::Write} "${PRODUCT_UNINST_ROOT_KEY}\$PRODUCT_UNINST_SUBKEY" "HelpLink" "${PRODUCT_WEB_FOR_SUPPORT}" "REG_SZ" $R2
 
+   ; Register key 'InstallerVersion'
+   ${registry::Write} "${PRODUCT_UNINST_ROOT_KEY}\$PRODUCT_UNINST_SUBKEY" "InstallerVersion" "${FIAI_RELEASE}" "REG_SZ" $R2
+
    ; Register key 'InstallLocation'
    ${ReadINIOption} $R1 "$R0" "${IO_INSTALLDIR}"
    ${registry::Write} "${PRODUCT_UNINST_ROOT_KEY}\$PRODUCT_UNINST_SUBKEY" "InstallLocation" "$R1" "REG_SZ" $R2
@@ -111,17 +114,40 @@ Function AddUninstallInformation
    ; Register key 'URLUpdateInfo'
    ${registry::Write} "${PRODUCT_UNINST_ROOT_KEY}\$PRODUCT_UNINST_SUBKEY" "URLUpdateInfo" "${PRODUCT_WEB_FOR_UPDATES}" "REG_SZ" $R2
 
+   ; Register key 'VersionCandidate'
+   !ifdef PRODUCT_VERSION_CANDIDATE
+      !if ${PRODUCT_VERSION_CANDIDATE} != ""
+         ${registry::Write} "${PRODUCT_UNINST_ROOT_KEY}\$PRODUCT_UNINST_SUBKEY" "VersionCandidate" "${PRODUCT_VERSION_CANDIDATE}" "REG_DWORD" $R2
+      !endif
+   !endif
+
    ; Register key 'VersionMajor'
-   ${registry::Write} "${PRODUCT_UNINST_ROOT_KEY}\$PRODUCT_UNINST_SUBKEY" "VersionMayor" "${PRODUCT_VERSION_MAJOR}" "REG_DWORD" $R2
+   !ifdef PRODUCT_VERSION_MAJOR
+      !if ${PRODUCT_VERSION_MAJOR} != ""
+         ${registry::Write} "${PRODUCT_UNINST_ROOT_KEY}\$PRODUCT_UNINST_SUBKEY" "VersionMayor" "${PRODUCT_VERSION_MAJOR}" "REG_DWORD" $R2
+      !endif
+   !endif
 
    ; Register key 'VersionMinor'
-   ${registry::Write} "${PRODUCT_UNINST_ROOT_KEY}\$PRODUCT_UNINST_SUBKEY" "VersionMinor" "${PRODUCT_VERSION_MINOR}" "REG_DWORD" $R2
+   !ifdef PRODUCT_VERSION_MINOR
+      !if ${PRODUCT_VERSION_MINOR} != ""
+         ${registry::Write} "${PRODUCT_UNINST_ROOT_KEY}\$PRODUCT_UNINST_SUBKEY" "VersionMinor" "${PRODUCT_VERSION_MINOR}" "REG_DWORD" $R2
+      !endif
+   !endif
+
+   ; Register key 'VersionPatch'
+   !ifdef PRODUCT_VERSION_PATCH
+      !if ${PRODUCT_VERSION_PATCH} != ""
+         ${registry::Write} "${PRODUCT_UNINST_ROOT_KEY}\$PRODUCT_UNINST_SUBKEY" "VersionPatch" "${PRODUCT_VERSION_PATCH}" "REG_DWORD" $R2
+      !endif
+   !endif
 
    ; Register key 'VersionRelease'
-   ${registry::Write} "${PRODUCT_UNINST_ROOT_KEY}\$PRODUCT_UNINST_SUBKEY" "VersionRelease" "${PRODUCT_VERSION_RELEASE}" "REG_DWORD" $R2
-
-   ; Register key 'VersionBuild'
-   ${registry::Write} "${PRODUCT_UNINST_ROOT_KEY}\$PRODUCT_UNINST_SUBKEY" "VersionBuild" "${PRODUCT_VERSION_BUILD}" "REG_DWORD" $R2
+   !ifdef PRODUCT_VERSION_RELEASE
+      !if ${PRODUCT_VERSION_RELEASE} != ""
+         ${registry::Write} "${PRODUCT_UNINST_ROOT_KEY}\$PRODUCT_UNINST_SUBKEY" "VersionRelease" "${PRODUCT_VERSION_RELEASE}" "REG_DWORD" $R2
+      !endif
+   !endif
 
    ; Pop $R2, $R1 & $R0 off of the stack
    Pop $R2
