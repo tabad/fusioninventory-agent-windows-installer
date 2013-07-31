@@ -329,11 +329,7 @@ Function InitINIOptionSectionDefault
    ${WriteINIOption} "$R0" "${IO_ACCEPTLICENSE}" "0"
    ${WriteINIOption} "$R0" "${IO_ADD-FIREWALL-EXCEPTION}" "0"
    ${WriteINIOption} "$R0" "${IO_BACKEND-COLLECT-TIMEOUT}" "180"
-   !if ${PRODUCT_PLATFORM_ARCHITECTURE} == ${PLATFORM_ARCHITECTURE_32}
-      ${WriteINIOption} "$R0" "${IO_CA-CERT-DIR}" "$PROGRAMFILES32\${PRODUCT_INTERNAL_NAME}\certs"
-   !else
-      ${WriteINIOption} "$R0" "${IO_CA-CERT-DIR}" "$PROGRAMFILES64\${PRODUCT_INTERNAL_NAME}\certs"
-   !endif
+   ${WriteINIOption} "$R0" "${IO_CA-CERT-DIR}" ""
    ${WriteINIOption} "$R0" "${IO_CA-CERT-FILE}" ""
    ${WriteINIOption} "$R0" "${IO_CA-CERT-URI}" ""
    ${WriteINIOption} "$R0" "${IO_DEBUG}" "0"
