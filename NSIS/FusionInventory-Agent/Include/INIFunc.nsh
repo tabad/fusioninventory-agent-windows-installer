@@ -108,7 +108,6 @@
 !define IO_TASK-MINUTE-MODIFIER "task-minute-modifier"
 !define IO_TIMEOUT "timeout"
 !define IO_USER "user"
-!define IO_WAIT "wait"
 
 
 ; Define INI deprecated options
@@ -377,7 +376,6 @@ Function InitINIOptionSectionDefault
    ${WriteINIOption} "$R0" "${IO_TASK-MINUTE-MODIFIER}" "15"
    ${WriteINIOption} "$R0" "${IO_TIMEOUT}" "180"
    ${WriteINIOption} "$R0" "${IO_USER}" ""
-   ${WriteINIOption} "$R0" "${IO_WAIT}" "0"
 
    ; Pop $R0 off of the stack
    Pop $R0

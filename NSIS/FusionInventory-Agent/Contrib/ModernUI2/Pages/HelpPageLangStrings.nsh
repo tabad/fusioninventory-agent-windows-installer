@@ -737,16 +737,6 @@ LangString HelpPage_Help_Option_user_Paragraph_2 ${LANG_ENGLISH} "This option co
 LangString HelpPage_Help_Option_user_Paragraph_2 ${LANG_FRENCH} "fThis option comes into play only if you have also indicated a value for the option \i /server\i0 ."
 LangString HelpPage_Help_Option_user_Paragraph_2 ${LANG_SPANISH} "Esta opción entra en juego únicamente si se ha indicado también un valor para la opción \i /server\i0 ."
 
-; HelpPage_Help_Option_wait_Paragraph_1
-LangString HelpPage_Help_Option_wait_Paragraph_1 ${LANG_ENGLISH} "Sets a delay between each target. (By default: $R9 seconds)"
-LangString HelpPage_Help_Option_wait_Paragraph_1 ${LANG_FRENCH} "fSets a delay between each target. (By default: $R9 seconds)"
-LangString HelpPage_Help_Option_wait_Paragraph_1 ${LANG_SPANISH} "Establece un retardo entre cada destino. (Por defecto: $R9 segundos )"
-
-; HelpPage_Help_Option_wait_Paragraph_2
-LangString HelpPage_Help_Option_wait_Paragraph_2 ${LANG_ENGLISH} "ToDo"
-LangString HelpPage_Help_Option_wait_Paragraph_2 ${LANG_FRENCH} "fToDo"
-LangString HelpPage_Help_Option_wait_Paragraph_2 ${LANG_SPANISH} "Por hacer"
-
 ; HelpPage_Help_Author
 LangString HelpPage_Help_Author ${LANG_ENGLISH} "AUTHOR"
 LangString HelpPage_Help_Author ${LANG_FRENCH} "fAUTHOR"

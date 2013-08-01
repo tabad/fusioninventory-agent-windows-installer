@@ -716,17 +716,6 @@ Function BuildHelpFile
    ${FileWriteLine} $R0 `\par`
    ${FileWriteLine} $R0 ``
 
-   ; /wait
-   ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_WAIT}"
-   ${EscapeSpecialRTFCharacters} "$R9" $R9
-
-   ${FileWriteLine} $R0 `\pard\li400 /wait=<\i limit\i0 >\par`
-   ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_wait_Paragraph_1)\par`
-   ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_wait_Paragraph_2)\par`
-   ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 ``
-
    ; Author
    ${FileWriteLine} $R0 `\pard\b $(HelpPage_Help_Author)\b0\par`
    ${FileWriteLine} $R0 `\pard\li400 $(HelpPage_Help_Author_Paragraph_1)\par`

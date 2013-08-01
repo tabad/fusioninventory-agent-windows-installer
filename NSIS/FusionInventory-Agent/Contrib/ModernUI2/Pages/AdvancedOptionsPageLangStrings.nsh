@@ -75,19 +75,14 @@ LangString AdvancedOptionsPage_Label2_Text ${LANG_FRENCH} "fConnection Time Out"
 LangString AdvancedOptionsPage_Label2_Text ${LANG_SPANISH} "Límite de Conexión"
 
 ; AdvancedOptionsPage_Label3_Text
-LangString AdvancedOptionsPage_Label3_Text ${LANG_ENGLISH} "Delay Between Each Target"
-LangString AdvancedOptionsPage_Label3_Text ${LANG_FRENCH} "fDelay Between Each Target"
-LangString AdvancedOptionsPage_Label3_Text ${LANG_SPANISH} "Demora Entre Cada Destino"
+LangString AdvancedOptionsPage_Label3_Text ${LANG_ENGLISH} "Delay Before the First Target"
+LangString AdvancedOptionsPage_Label3_Text ${LANG_FRENCH} "fDelay Before the First Target"
+LangString AdvancedOptionsPage_Label3_Text ${LANG_SPANISH} "Demora Antes del Primer Destino"
 
 ; AdvancedOptionsPage_Label4_Text
-LangString AdvancedOptionsPage_Label4_Text ${LANG_ENGLISH} "Delay Before the First Target"
-LangString AdvancedOptionsPage_Label4_Text ${LANG_FRENCH} "fDelay Before the First Target"
-LangString AdvancedOptionsPage_Label4_Text ${LANG_SPANISH} "Demora Antes del Primer Destino"
-
-; AdvancedOptionsPage_Label5_Text
-LangString AdvancedOptionsPage_Label5_Text ${LANG_ENGLISH} "Task Execution Time Out"
-LangString AdvancedOptionsPage_Label5_Text ${LANG_FRENCH} "fTask Execution Time Out"
-LangString AdvancedOptionsPage_Label5_Text ${LANG_SPANISH} "Límite de Ejecución de una Tarea"
+LangString AdvancedOptionsPage_Label4_Text ${LANG_ENGLISH} "Task Execution Time Out"
+LangString AdvancedOptionsPage_Label4_Text ${LANG_FRENCH} "fTask Execution Time Out"
+LangString AdvancedOptionsPage_Label4_Text ${LANG_SPANISH} "Límite de Ejecución de una Tarea"
 
 ; AdvancedOptionsPage_GroupBox2_Text
 LangString AdvancedOptionsPage_GroupBox2_Text ${LANG_ENGLISH} "Other Options"
@@ -99,25 +94,25 @@ LangString AdvancedOptionsPage_CheckBox1_Text ${LANG_ENGLISH} "No P2P"
 LangString AdvancedOptionsPage_CheckBox1_Text ${LANG_FRENCH} "fNo P2P"
 LangString AdvancedOptionsPage_CheckBox1_Text ${LANG_SPANISH} "No P2P"
 
+; AdvancedOptionsPage_Label5_Text
+LangString AdvancedOptionsPage_Label5_Text ${LANG_ENGLISH} "Omit These Tasks"
+LangString AdvancedOptionsPage_Label5_Text ${LANG_FRENCH} "fOmit These Tasks"
+LangString AdvancedOptionsPage_Label5_Text ${LANG_SPANISH} "Omitir Estas Tareas"
+
 ; AdvancedOptionsPage_Label6_Text
-LangString AdvancedOptionsPage_Label6_Text ${LANG_ENGLISH} "Omit These Tasks"
-LangString AdvancedOptionsPage_Label6_Text ${LANG_FRENCH} "fOmit These Tasks"
-LangString AdvancedOptionsPage_Label6_Text ${LANG_SPANISH} "Omitir Estas Tareas"
+LangString AdvancedOptionsPage_Label6_Text ${LANG_ENGLISH} "(list separated by commas)"
+LangString AdvancedOptionsPage_Label6_Text ${LANG_FRENCH} "f(list separated by commas)"
+LangString AdvancedOptionsPage_Label6_Text ${LANG_SPANISH} "(lista separada por comas)"
 
 ; AdvancedOptionsPage_Label7_Text
-LangString AdvancedOptionsPage_Label7_Text ${LANG_ENGLISH} "(list separated by commas)"
-LangString AdvancedOptionsPage_Label7_Text ${LANG_FRENCH} "f(list separated by commas)"
-LangString AdvancedOptionsPage_Label7_Text ${LANG_SPANISH} "(lista separada por comas)"
+LangString AdvancedOptionsPage_Label7_Text ${LANG_ENGLISH} "Omit These Categories"
+LangString AdvancedOptionsPage_Label7_Text ${LANG_FRENCH} "fOmit These Categories"
+LangString AdvancedOptionsPage_Label7_Text ${LANG_SPANISH} "Omitir Estas Categorías"
 
 ; AdvancedOptionsPage_Label8_Text
-LangString AdvancedOptionsPage_Label8_Text ${LANG_ENGLISH} "Omit These Categories"
-LangString AdvancedOptionsPage_Label8_Text ${LANG_FRENCH} "fOmit These Categories"
-LangString AdvancedOptionsPage_Label8_Text ${LANG_SPANISH} "Omitir Estas Categorías"
-
-; AdvancedOptionsPage_Label9_Text
-LangString AdvancedOptionsPage_Label9_Text ${LANG_ENGLISH} "(list separated by commas)"
-LangString AdvancedOptionsPage_Label9_Text ${LANG_FRENCH} "f(list separated by commas)"
-LangString AdvancedOptionsPage_Label9_Text ${LANG_SPANISH} "(lista separada por comas)"
+LangString AdvancedOptionsPage_Label8_Text ${LANG_ENGLISH} "(list separated by commas)"
+LangString AdvancedOptionsPage_Label8_Text ${LANG_FRENCH} "f(list separated by commas)"
+LangString AdvancedOptionsPage_Label8_Text ${LANG_SPANISH} "(lista separada por comas)"
 
 ; AdvancedOptionsPage_TextBox_Warning
 LangString AdvancedOptionsPage_TextBox_Warning ${LANG_ENGLISH} "The value $\"$R2$\" is not valid for the field $\"$R1$\"."

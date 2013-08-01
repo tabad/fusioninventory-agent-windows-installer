@@ -553,10 +553,6 @@ Function WriteConfigurationOptions
    ${ReadINIOption} $R1 "$R0" "${IO_USER}"
    ${registry::Write} "${PRODUCT_INST_ROOT_KEY}\$PRODUCT_INST_SUBKEY" "${IO_USER}" "$R1" "REG_SZ" $R2
 
-   ; Register key '${IO_WAIT}'
-   ${ReadINIOption} $R1 "$R0" "${IO_WAIT}"
-   ${registry::Write} "${PRODUCT_INST_ROOT_KEY}\$PRODUCT_INST_SUBKEY" "${IO_WAIT}" "$R1" "REG_SZ" $R2
-
    ; Pop $R2, $R1 & $R0 off of the stack
    Pop $R2
    Pop $R1

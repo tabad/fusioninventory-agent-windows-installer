@@ -69,16 +69,14 @@ Var hCtl_AdvancedOptionsPage_Label3
 Var hCtl_AdvancedOptionsPage_Number2
 Var hCtl_AdvancedOptionsPage_Label4
 Var hCtl_AdvancedOptionsPage_Number3
-Var hCtl_AdvancedOptionsPage_Label5
-Var hCtl_AdvancedOptionsPage_Number4
 Var hCtl_AdvancedOptionsPage_GroupBox2
 Var hCtl_AdvancedOptionsPage_CheckBox1
-Var hCtl_AdvancedOptionsPage_Label6
+Var hCtl_AdvancedOptionsPage_Label5
 Var hCtl_AdvancedOptionsPage_TextBox1
+Var hCtl_AdvancedOptionsPage_Label6
 Var hCtl_AdvancedOptionsPage_Label7
-Var hCtl_AdvancedOptionsPage_Label8
 Var hCtl_AdvancedOptionsPage_TextBox2
-Var hCtl_AdvancedOptionsPage_Label9
+Var hCtl_AdvancedOptionsPage_Label8
 
 
 
@@ -108,48 +106,37 @@ Function AdvancedOptionsPage_Create
    Pop $hCtl_AdvancedOptionsPage_GroupBox1
 
    ; === Label2 (type: Label) ===
-   ${NSD_CreateLabel} 11u 34u 123u 8u "$(AdvancedOptionsPage_Label2_Text)"
+   ${NSD_CreateLabel} 11u 39u 123u 8u "$(AdvancedOptionsPage_Label2_Text)"
    Pop $hCtl_AdvancedOptionsPage_Label2
    ${NSD_AddStyle} $hCtl_AdvancedOptionsPage_Label2 ${SS_CENTER}
 
    ; === Number1 (type: Number) ===
-   ${NSD_CreateNumber} 47u 43u 53u 11u ""
+   ${NSD_CreateNumber} 47u 48u 53u 11u ""
    Pop $hCtl_AdvancedOptionsPage_Number1
    ${NSD_AddStyle} $hCtl_AdvancedOptionsPage_Number1 ${SS_CENTER}
-   ${NSD_SetTextLimit} $hCtl_AdvancedOptionsPage_Number1 "4"
+   ${NSD_SetTextLimit} $hCtl_AdvancedOptionsPage_Number1 "3"
 
    ; === Label3 (type: Label) ===
-   ${NSD_CreateLabel} 11u 57u 123u 8u "$(AdvancedOptionsPage_Label3_Text)"
+   ${NSD_CreateLabel} 11u 68u 123u 8u "$(AdvancedOptionsPage_Label3_Text)"
    Pop $hCtl_AdvancedOptionsPage_Label3
    ${NSD_AddStyle} $hCtl_AdvancedOptionsPage_Label3 ${SS_CENTER}
 
    ; === Number2 (type: Number) ===
-   ${NSD_CreateNumber} 47u 66u 53u 11u ""
+   ${NSD_CreateNumber} 47u 77u 53u 11u ""
    Pop $hCtl_AdvancedOptionsPage_Number2
    ${NSD_AddStyle} $hCtl_AdvancedOptionsPage_Number2 ${SS_CENTER}
-   ${NSD_SetTextLimit} $hCtl_AdvancedOptionsPage_Number2 "4"
+   ${NSD_SetTextLimit} $hCtl_AdvancedOptionsPage_Number2 "5"
 
    ; === Label4 (type: Label) ===
-   ${NSD_CreateLabel} 11u 79u 123u 8u "$(AdvancedOptionsPage_Label4_Text)"
+   ${NSD_CreateLabel} 11u 97u 123u 8u "$(AdvancedOptionsPage_Label4_Text)"
    Pop $hCtl_AdvancedOptionsPage_Label4
    ${NSD_AddStyle} $hCtl_AdvancedOptionsPage_Label4 ${SS_CENTER}
 
    ; === Number3 (type: Number) ===
-   ${NSD_CreateNumber} 47u 88u 53u 11u ""
+   ${NSD_CreateNumber} 47u 106u 53u 11u ""
    Pop $hCtl_AdvancedOptionsPage_Number3
    ${NSD_AddStyle} $hCtl_AdvancedOptionsPage_Number3 ${SS_CENTER}
-   ${NSD_SetTextLimit} $hCtl_AdvancedOptionsPage_Number3 "4"
-
-   ; === Label5 (type: Label) ===
-   ${NSD_CreateLabel} 11u 102u 123u 8u "$(AdvancedOptionsPage_Label5_Text)"
-   Pop $hCtl_AdvancedOptionsPage_Label5
-   ${NSD_AddStyle} $hCtl_AdvancedOptionsPage_Label5 ${SS_CENTER}
-
-   ; === Number4 (type: Number) ===
-   ${NSD_CreateNumber} 47u 111u 53u 11u ""
-   Pop $hCtl_AdvancedOptionsPage_Number4
-   ${NSD_AddStyle} $hCtl_AdvancedOptionsPage_Number4 ${SS_CENTER}
-   ${NSD_SetTextLimit} $hCtl_AdvancedOptionsPage_Number4 "4"
+   ${NSD_SetTextLimit} $hCtl_AdvancedOptionsPage_Number3 "3"
 
    ; === GroupBox2 (type: GroupBox) ===
    ${NSD_CreateGroupBox} 155u 20u 142u 108u "$(AdvancedOptionsPage_GroupBox2_Text)"
@@ -159,31 +146,31 @@ Function AdvancedOptionsPage_Create
    ${NSD_CreateCheckbox} 165u 38u 121u 11u "$(AdvancedOptionsPage_CheckBox1_Text)"
    Pop $hCtl_AdvancedOptionsPage_CheckBox1
 
-   ; === Label6 (type: Label) ===
-   ${NSD_CreateLabel} 168u 56u 118u 8u "$(AdvancedOptionsPage_Label6_Text)"
-   Pop $hCtl_AdvancedOptionsPage_Label6
+   ; === Label5 (type: Label) ===
+   ${NSD_CreateLabel} 168u 56u 118u 8u "$(AdvancedOptionsPage_Label5_Text)"
+   Pop $hCtl_AdvancedOptionsPage_Label5
 
    ; === TextBox1 (type: Text) ===
    ${NSD_CreateText} 165u 65u 121u 11u ""
    Pop $hCtl_AdvancedOptionsPage_TextBox1
 
-   ; === Label7 (type: Label) ===
-   ${NSD_CreateLabel} 165u 77u 121u 8u "$(AdvancedOptionsPage_Label7_Text)"
-   Pop $hCtl_AdvancedOptionsPage_Label7
-   ${NSD_AddStyle} $hCtl_AdvancedOptionsPage_Label7 ${SS_CENTER}
+   ; === Label6 (type: Label) ===
+   ${NSD_CreateLabel} 165u 77u 121u 8u "$(AdvancedOptionsPage_Label6_Text)"
+   Pop $hCtl_AdvancedOptionsPage_Label6
+   ${NSD_AddStyle} $hCtl_AdvancedOptionsPage_Label6 ${SS_CENTER}
 
-   ; === Label8 (type: Label) ===
-   ${NSD_CreateLabel} 168u 90u 118u 8u "$(AdvancedOptionsPage_Label8_Text)"
-   Pop $hCtl_AdvancedOptionsPage_Label8
+   ; === Label7 (type: Label) ===
+   ${NSD_CreateLabel} 168u 90u 118u 8u "$(AdvancedOptionsPage_Label7_Text)"
+   Pop $hCtl_AdvancedOptionsPage_Label7
 
    ; === TextBox2 (type: Text) ===
    ${NSD_CreateText} 165u 99u 121u 11u ""
    Pop $hCtl_AdvancedOptionsPage_TextBox2
 
-   ; === Label9 (type: Label) ===
-   ${NSD_CreateLabel} 165u 111u 121u 8u "$(AdvancedOptionsPage_Label9_Text)"
-   Pop $hCtl_AdvancedOptionsPage_Label9
-   ${NSD_AddStyle} $hCtl_AdvancedOptionsPage_Label9 ${SS_CENTER}
+   ; === Label8 (type: Label) ===
+   ${NSD_CreateLabel} 165u 111u 121u 8u "$(AdvancedOptionsPage_Label8_Text)"
+   Pop $hCtl_AdvancedOptionsPage_Label8
+   ${NSD_AddStyle} $hCtl_AdvancedOptionsPage_Label8 ${SS_CENTER}
 
    ; OnBack Function
    ${NSD_OnBack} AdvancedOptionsPage_Back
@@ -200,16 +187,12 @@ Function AdvancedOptionsPage_Create
    ${NSD_SetText} $hCtl_AdvancedOptionsPage_Number1 "$R1"
 
    ; Set Number2 Text
-   ${ReadINIOption} $R1 "$R0" "${IO_WAIT}"
+   ${ReadINIOption} $R1 "$R0" "${IO_DELAYTIME}"
    ${NSD_SetText} $hCtl_AdvancedOptionsPage_Number2 "$R1"
 
    ; Set Number3 Text
-   ${ReadINIOption} $R1 "$R0" "${IO_DELAYTIME}"
-   ${NSD_SetText} $hCtl_AdvancedOptionsPage_Number3 "$R1"
-
-   ; Set Number4 Text
    ${ReadINIOption} $R1 "$R0" "${IO_BACKEND-COLLECT-TIMEOUT}"
-   ${NSD_SetText} $hCtl_AdvancedOptionsPage_Number4 "$R1"
+   ${NSD_SetText} $hCtl_AdvancedOptionsPage_Number3 "$R1"
 
    ; Set CheckBox1 Check
    ${ReadINIOption} $R1 "$R0" "${IO_NO-P2P}"
@@ -262,8 +245,8 @@ Function AdvancedOptionsPage_Leave
    ; Save Number2 Text
    ${NSD_GetText} $hCtl_AdvancedOptionsPage_Number2 $R2
    ${Trim} "$R2" $R2
-   ${If} ${IsValidOptionWaitValue} "$R2"
-      ${WriteINIOption} "$R0" "${IO_WAIT}" "$R2"
+   ${If} ${IsValidOptionDelaytimeValue} "$R2"
+      ${WriteINIOption} "$R0" "${IO_DELAYTIME}" "$R2"
    ${Else}
       ; Invalid value
       ; Show warning message
@@ -276,27 +259,13 @@ Function AdvancedOptionsPage_Leave
    ; Save Number3 Text
    ${NSD_GetText} $hCtl_AdvancedOptionsPage_Number3 $R2
    ${Trim} "$R2" $R2
-   ${If} ${IsValidOptionDelaytimeValue} "$R2"
-      ${WriteINIOption} "$R0" "${IO_DELAYTIME}" "$R2"
-   ${Else}
-      ; Invalid value
-      ; Show warning message
-      Push "$R0"
-      Call AdvancedOptionsPage_Number3_ShowWarning
-      ; Mark for abort
-      StrCpy $R1 0
-   ${EndIf}
-
-   ; Save Number4 Text
-   ${NSD_GetText} $hCtl_AdvancedOptionsPage_Number4 $R2
-   ${Trim} "$R2" $R2
    ${If} ${IsValidOptionBackendCollectTimeoutValue} "$R2"
       ${WriteINIOption} "$R0" "${IO_BACKEND-COLLECT-TIMEOUT}" "$R2"
    ${Else}
       ; Invalid value
       ; Show warning message
       Push "$R0"
-      Call AdvancedOptionsPage_Number4_ShowWarning
+      Call AdvancedOptionsPage_Number3_ShowWarning
       ; Mark for abort
       StrCpy $R1 0
    ${EndIf}
@@ -411,7 +380,7 @@ Function AdvancedOptionsPage_Number2_ShowWarning
    MessageBox MB_OK|MB_ICONEXCLAMATION "$(AdvancedOptionsPage_TextBox_Warning)"
 
    ; Reset Number2 Text
-   ${ReadINIOption} $R2 "$R0" "${IO_WAIT}"
+   ${ReadINIOption} $R2 "$R0" "${IO_DELAYTIME}"
    SetCtlColors $hCtl_AdvancedOptionsPage_Number2 0x000000 0xffffff
    ${NSD_SetText} $hCtl_AdvancedOptionsPage_Number2 "$R2"
 
@@ -445,43 +414,9 @@ Function AdvancedOptionsPage_Number3_ShowWarning
    MessageBox MB_OK|MB_ICONEXCLAMATION "$(AdvancedOptionsPage_TextBox_Warning)"
 
    ; Reset Number3 Text
-   ${ReadINIOption} $R2 "$R0" "${IO_DELAYTIME}"
+   ${ReadINIOption} $R2 "$R0" "${IO_BACKEND-COLLECT-TIMEOUT}"
    SetCtlColors $hCtl_AdvancedOptionsPage_Number3 0x000000 0xffffff
    ${NSD_SetText} $hCtl_AdvancedOptionsPage_Number3 "$R2"
-
-   ; Pop $R2, $R1 & $R0 off of the stack
-   Pop $R2
-   Pop $R1
-   Pop $R0
-FunctionEnd
-
-
-Function AdvancedOptionsPage_Number4_ShowWarning
-   ; Get parameter
-   Exch $R0
-
-   ; Push $R1 & $R2 onto the stack
-   Push $R1
-   Push $R2
-
-   ; Get Label5 Text
-   ${NSD_GetText} $hCtl_AdvancedOptionsPage_Label5 $R1
-
-   ; Get Number4 Text
-   ${NSD_GetText} $hCtl_AdvancedOptionsPage_Number4 $R2
-
-   ; Mark invalid value
-   ${NSD_SetText} $hCtl_AdvancedOptionsPage_Number4 ""
-   SetCtlColors $hCtl_AdvancedOptionsPage_Number4 0x000000 0xffcc33
-   ${NSD_SetText} $hCtl_AdvancedOptionsPage_Number4 "$R2"
-
-   ; Show warning message
-   MessageBox MB_OK|MB_ICONEXCLAMATION "$(AdvancedOptionsPage_TextBox_Warning)"
-
-   ; Reset Number4 Text
-   ${ReadINIOption} $R2 "$R0" "${IO_BACKEND-COLLECT-TIMEOUT}"
-   SetCtlColors $hCtl_AdvancedOptionsPage_Number4 0x000000 0xffffff
-   ${NSD_SetText} $hCtl_AdvancedOptionsPage_Number4 "$R2"
 
    ; Pop $R2, $R1 & $R0 off of the stack
    Pop $R2
@@ -514,8 +449,8 @@ Function AdvancedOptionsPage_TextBox1_ShowWarning
    Push $R1
    Push $R2
 
-   ; Get Label6 Text
-   ${NSD_GetText} $hCtl_AdvancedOptionsPage_Label6 $R1
+   ; Get Label5 Text
+   ${NSD_GetText} $hCtl_AdvancedOptionsPage_Label5 $R1
 
    ; Get TextBox1 Text
    ${NSD_GetText} $hCtl_AdvancedOptionsPage_TextBox1 $R2
@@ -548,8 +483,8 @@ Function AdvancedOptionsPage_TextBox2_ShowWarning
    Push $R1
    Push $R2
 
-   ; Get Label8 Text
-   ${NSD_GetText} $hCtl_AdvancedOptionsPage_Label8 $R1
+   ; Get Label7 Text
+   ${NSD_GetText} $hCtl_AdvancedOptionsPage_Label7 $R1
 
    ; Get TextBox2 Text
    ${NSD_GetText} $hCtl_AdvancedOptionsPage_TextBox2 $R2

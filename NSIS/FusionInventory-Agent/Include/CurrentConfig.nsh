@@ -320,16 +320,6 @@ Function GetCurrentOptions
       ${EndIf}
    ${EndIf}
 
-   ; Get option 'wait'
-   ${registry::Read} "${PRODUCT_INST_ROOT_KEY}\$R1" "${IO_WAIT}" $R2 $R3
-   ${If} "$R3" == "REG_SZ"
-      ${Trim} "$R2" $R2
-      ${If} ${IsValidOptionWaitValue} "$R2"
-         ; Write option into $R0 section
-         ${WriteINIOption} "$R0" "${IO_WAIT}" "$R2"
-      ${EndIf}
-   ${EndIf}
-
    ; Pop $R3 & $R2 off of the stack
    Pop $R3
    Pop $R2
