@@ -130,7 +130,7 @@ SetCompressor /FINAL /SOLID lzma
 
 !define FIA_DIR "${STRAWBERRY_DIR}\cpan\sources\FusionInventory-Agent-${FIA_RELEASE}"
 
-!define FIAI_HELP_FILE "fusioninventory-agent_windows-${PRODUCT_PLATFORM_ARCHITECTURE}_${PRODUCT_VERSION}.rtf"
+!define PRODUCT_HELP_FILE "fusioninventory-agent_windows-${PRODUCT_PLATFORM_ARCHITECTURE}_${PRODUCT_VERSION}.rtf"
 
 !if "${PRODUCT_RELEASE_TYPE}" == "${RELEASE_TYPE_STABLE}"
    !define MUI_HEADERIMAGE_BITMAP_FILE  "${FIAI_DIR}\Contrib\Skins\Default\HeaderRightMUI2.bmp"
@@ -729,7 +729,7 @@ Function .onInit
       ${If} $R0 = 1
          ; Dump help file
          Call BuildHelpFile
-         CopyFiles /SILENT /FILESONLY "$PLUGINSDIR\${FIAI_HELP_FILE}" "$EXEDIR\${FIAI_HELP_FILE}"
+         CopyFiles /SILENT /FILESONLY "$PLUGINSDIR\${PRODUCT_HELP_FILE}" "$EXEDIR\${PRODUCT_HELP_FILE}"
          Abort
       ${EndIf}
    ${EndIf}

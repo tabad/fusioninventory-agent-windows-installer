@@ -93,7 +93,7 @@ Function HelpPage_Create
    Pop $hCtl_HelpPage_RichEdit1
 
    Call BuildHelpFile
-   nsRichEdit::Load $hCtl_HelpPage_RichEdit1 "$PLUGINSDIR\${FIAI_HELP_FILE}"
+   nsRichEdit::Load $hCtl_HelpPage_RichEdit1 "$PLUGINSDIR\${PRODUCT_HELP_FILE}"
 
    ; === Button1 (type: Button) ===
    ${NSD_CreateButton} 249u 126u 49u 14u "$(HelpPage_Button1_Text)"
@@ -156,8 +156,8 @@ Function BuildHelpFile
    Push $R9
 
    ; Create an empty help file
-   Delete "$PLUGINSDIR\${FIAI_HELP_FILE}"
-   FileOpen $R0 "$PLUGINSDIR\${FIAI_HELP_FILE}" w
+   Delete "$PLUGINSDIR\${PRODUCT_HELP_FILE}"
+   FileOpen $R0 "$PLUGINSDIR\${PRODUCT_HELP_FILE}" w
 
    ; Header
    ${FileWriteLine} $R0 `{\rtf1\ansi\ansicpg1252\deff0\deflang3082{\fonttbl{\f0\fswiss\fcharset0 Courier New;}}`
