@@ -94,7 +94,7 @@ while (( ${iter} < ${#archs[@]} )); do
    arch_label=${arch_labels[${iter}]}
 
    # Uninstall FusionInventory-Agent
-   echo -n "Uninstalling from Strawberry Perl ${strawberry_release} (${strawberry_version}-${arch_label}s)."
+   echo -n "Uninstalling FusionInventory-Agent ${fusinv_agent_commit} from Strawberry Perl ${strawberry_release} (${strawberry_version}-${arch_label}s)."
    eval ${rm} -rf "${strawberry_arch_path}/cpan/sources/${fusinv_agent_mod_name}-${fusinv_agent_commit}" > /dev/null 2>&1
    echo ".Done!"
 

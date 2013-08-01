@@ -111,7 +111,7 @@ while (( ${iter} < ${#archs[@]} )); do
    # Check whether 'install-fusioninventory-agent.${script_suffix}' was launched
    if [ ! -d "${base_path}" ]; then
       echo
-      echo "Sorry but it seems that you didn't install FusionInventory-Agent before."
+      echo "Sorry but it seems that you didn't install FusionInventory-Agent ${fusinv_agent_commit} before."
       echo "Please, install it with 'install-fusioninventory-agent.${script_suffix}' and try again."
       echo
 
@@ -119,7 +119,7 @@ while (( ${iter} < ${#archs[@]} )); do
    fi
 
    # Display task
-   echo -n "Patching FusionInventory-Agent for Strawberry Perl ${strawberry_release} (${strawberry_version}-${arch_label}s)."
+   echo -n "Patching FusionInventory-Agent ${fusinv_agent_commit} for Strawberry Perl ${strawberry_release} (${strawberry_version}-${arch_label}s)."
 
    # Patches for file ${base_path}/bin/fusioninventory-agent
    if [ ! -f "${base_path}/bin/fusioninventory-agent.org" ]; then

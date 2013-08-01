@@ -104,7 +104,7 @@ fusinv_agent_url="${fusinv_agent_repository%.git}/tarball/${fusinv_agent_commit}
 fusinv_agent_filename="${fusinv_agent_mod_name}-${fusinv_agent_commit}.tar.gz"
 
 # Download FusionInventory-Agent
-echo -n "Downloading FusionInventory-Agent."
+echo -n "Downloading FusionInventory-Agent ${fusinv_agent_commit}."
 
 # Download FusionInventory-Agent
 ${curl} --silent --location --max-redirs 6 --output "/tmp/${fusinv_agent_filename}" \
@@ -135,7 +135,7 @@ while (( ${iter} < ${#archs[@]} )); do
    eval ${rm} -rf "${strawberry_arch_path}/cpan/sources/${fusinv_agent_mod_name}-${fusinv_agent_commit}" > /dev/null 2>&1
 
    # Install FusionInventory-Agent
-   echo -n "Installing into Strawberry Perl ${strawberry_release} (${strawberry_version}-${arch_label}s)."
+   echo -n "Installing FusionInventory-Agent ${fusinv_agent_commit} into Strawberry Perl ${strawberry_release} (${strawberry_version}-${arch_label}s)."
    eval ${install} --mode 0775 --directory "${strawberry_arch_path}/cpan/sources/${fusinv_agent_filename%.tar.gz}"
    eval ${tar} -C "${strawberry_arch_path}/cpan/sources/${fusinv_agent_filename%.tar.gz}" \
       --strip-components 1 -xf "/tmp/${fusinv_agent_filename}" > /dev/null 2>&1
