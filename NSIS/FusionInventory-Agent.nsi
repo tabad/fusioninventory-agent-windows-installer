@@ -73,7 +73,7 @@ SetCompressor /FINAL /SOLID lzma
 
 ; Type of release of the agent
 ;    (Symbol:  PRODUCT_RELEASE_TYPE)
-!define PRODUCT_RELEASE_TYPE "candidate"
+!define PRODUCT_RELEASE_TYPE "stable"
 
 ; Check symbol PRODUCT_RELEASE_TYPE
 !define RELEASE_TYPE_STABLE "stable"
@@ -96,7 +96,7 @@ SetCompressor /FINAL /SOLID lzma
 !define STRAWBERRY_RELEASE "5.16.3.1"
 
 ; Release of FusionInventory Agent and FusionInventory Agent Tasks
-!define FIA_RELEASE "2.2.9902"
+!define FIA_RELEASE "2.3.0"
 !define FIA_TASK_DEPLOY_RELEASE "2.0.4"
 !define FIA_TASK_ESX_RELEASE "2.2.1"
 !define FIA_TASK_INVENTORY_RELEASE "1.0"
@@ -188,7 +188,7 @@ SetCompressor /FINAL /SOLID lzma
       !define MUI_UNWELCOMEFINISHPAGE_BITMAP_FILE "${FIAI_DIR}\Contrib\Skins\Default\WelcomeMUI2CandidateVersion.bmp"
    !else
       ; Product version for development releases
-      !define PRODUCT_VERSION "e8fea0fd45-dev"
+      !define PRODUCT_VERSION "ba8acdb894-dev"
 
       ; File version
       ;    for Windows Version Information
