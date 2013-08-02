@@ -80,9 +80,9 @@ LangString DebugOptionsPage_Label3_Text ${LANG_FRENCH} "fLog File"
 LangString DebugOptionsPage_Label3_Text ${LANG_SPANISH} "Fichero de Registro"
 
 ; DebugOptionsPage_Label4_Text
-LangString DebugOptionsPage_Label4_Text ${LANG_ENGLISH} "Log File Max. Size (in GiB)"
-LangString DebugOptionsPage_Label4_Text ${LANG_FRENCH} "fLog File Max. Size (in GiB)"
-LangString DebugOptionsPage_Label4_Text ${LANG_SPANISH} "Tamaño Max. Fichero de Registro (en GiB)"
+LangString DebugOptionsPage_Label4_Text ${LANG_ENGLISH} "Log File Max. Size (in MiB)"
+LangString DebugOptionsPage_Label4_Text ${LANG_FRENCH} "fLog File Max. Size (in MiB)"
+LangString DebugOptionsPage_Label4_Text ${LANG_SPANISH} "Tamaño Max. Fichero de Registro (en MiB)"
 
 ; DebugOptionsPage_Button1_Text
 LangString DebugOptionsPage_Button1_Text ${LANG_ENGLISH} "Browser..."
