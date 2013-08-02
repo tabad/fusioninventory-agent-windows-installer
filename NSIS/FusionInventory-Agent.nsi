@@ -54,6 +54,24 @@ SetCompressor /FINAL /SOLID lzma
 !define FIAI_RELEASE "2.2.9901"
 !define FIAI_DIR ".\FusionInventory-Agent"
 
+; Use MakeNSIS '/D' option for choose the debug mode
+;    (Symbol: FIAI_DEBUG_LEVEL)
+
+; Check symbol FIAI_DEBUG_LEVEL
+!define FIAI_DEBUG_LEVEL_0 "0"
+!define FIAI_DEBUG_LEVEL_1 "1"
+
+!ifdef FIAI_DEBUG_LEVEL
+   !if ${FIAI_DEBUG_LEVEL} != ${FIAI_DEBUG_LEVEL_0}
+      !if ${FIAI_DEBUG_LEVEL} != ${FIAI_DEBUG_LEVEL_1}
+         !undef FIAI_DEBUG_LEVEL
+         !define FIAI_DEBUG_LEVEL "${FIAI_DEBUG_LEVEL_0}"
+      !endif
+   !endif
+!else
+   !define FIAI_DEBUG_LEVEL "${FIAI_DEBUG_LEVEL_0}"
+!endif
+
 ; Use MakeNSIS '/D' option for choose the architecture
 ;    (Symbol: PRODUCT_PLATFORM_ARCHITECTURE)
 
@@ -713,7 +731,7 @@ Section "-un.Init"
    ; Delete directory $R0\certs (whether is empty)
    RMDir "$R0\certs"
 
-   !if "${PRODUCT_RELEASE_TYPE}" == "${RELEASE_TYPE_DEVELOPMENT}"
+   !if ${FIAI_DEBUG_LEVEL} != ${FIAI_DEBUG_LEVEL_0}
       ; Delete directory $R0\debug
       RMDir /r "$R0\debug"
    !endif
@@ -838,7 +856,7 @@ FunctionEnd
 
 
 Function .onInstSuccess
-   !if "${PRODUCT_RELEASE_TYPE}" == "${RELEASE_TYPE_DEVELOPMENT}"
+   !if ${FIAI_DEBUG_LEVEL} != ${FIAI_DEBUG_LEVEL_0}
       ${ReadINIOption} $R0 "${IOS_FINAL}" "${IO_INSTALLDIR}"
       CreateDirectory "$R0\debug\"
       CopyFiles "${INI_OPTIONS_FILE}" "$R0\debug\"
@@ -857,7 +875,7 @@ FunctionEnd
 
 
 Function .onInstFailed
-   !if "${PRODUCT_RELEASE_TYPE}" == "${RELEASE_TYPE_DEVELOPMENT}"
+   !if ${FIAI_DEBUG_LEVEL} != ${FIAI_DEBUG_LEVEL_0}
       ${ReadINIOption} $R0 "${IOS_FINAL}" "${IO_INSTALLDIR}"
       CreateDirectory "$R0\debug\"
       CopyFiles "${INI_OPTIONS_FILE}" "$R0\debug\"
