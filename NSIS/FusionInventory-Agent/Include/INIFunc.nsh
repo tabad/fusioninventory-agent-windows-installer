@@ -353,7 +353,7 @@ Function InitINIOptionSectionDefault
    !else
       ${WriteINIOption} "$R0" "${IO_LOGFILE}" "$PROGRAMFILES64\${PRODUCT_INTERNAL_NAME}\fusioninventory-agent.log"
    !endif
-   ${WriteINIOption} "$R0" "${IO_LOGFILE-MAXSIZE}" "5"
+   ${WriteINIOption} "$R0" "${IO_LOGFILE-MAXSIZE}" "16"
    ${WriteINIOption} "$R0" "${IO_LOGGER}" "${LOGGER_FILE}"
    ${WriteINIOption} "$R0" "${IO_NO-CATEGORY}" ""
    ${WriteINIOption} "$R0" "${IO_NO-HTTPD}" "0"
