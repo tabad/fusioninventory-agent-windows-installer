@@ -362,7 +362,7 @@ Function InitINIOptionSectionDefault
    ${WriteINIOption} "$R0" "${IO_NO-TASK}" ""
    ${WriteINIOption} "$R0" "${IO_PASSWORD}" ""
    ${WriteINIOption} "$R0" "${IO_PROXY}" ""
-   ${WriteINIOption} "$R0" "${IO_QUICK-INSTALL}" "0"
+   ${WriteINIOption} "$R0" "${IO_QUICK-INSTALL}" "1"
    ${WriteINIOption} "$R0" "${IO_RUNNOW}" "0"
    ${WriteINIOption} "$R0" "${IO_SCAN-HOMEDIRS}" "0"
    ${WriteINIOption} "$R0" "${IO_SERVER}" ""

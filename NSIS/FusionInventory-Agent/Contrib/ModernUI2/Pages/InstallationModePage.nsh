@@ -197,6 +197,9 @@ Function InstallationModePage_Leave
          ; Synchronize NSIS sections with 'installtasks' option
          Push "${IOS_GUI}"
          Call SyncNSISSectionsWithInstallTasksOption
+
+         ; Unset "quick install" when installing from scratch
+         ${WriteINIOption} "${IOS_GUI}" "${IO_QUICK-INSTALL}" "0"
       ${EndIf}
    ${Else}
       ; ${INSTALLTYPE_FROMCURRENTCONFIG}
