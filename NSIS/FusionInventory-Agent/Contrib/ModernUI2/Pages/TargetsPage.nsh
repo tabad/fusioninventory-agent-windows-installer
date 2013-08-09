@@ -210,7 +210,7 @@ Function TargetsPage_Create
    ${If} "$R1" == ""
       ${NSD_GetText} $hCtl_TargetsPage_TextBox2 $R1
       ${If} "$R1" == ""
-         SendMessage $hCtl_TargetsPage_TextBox2 ${WM_SETFOCUS} $HWNDPARENT 0
+         ${NSD_SetFocus} $hCtl_TargetsPage_TextBox2
       ${EndIf}
    ${EndIf}
 
