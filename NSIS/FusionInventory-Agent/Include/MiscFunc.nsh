@@ -764,6 +764,18 @@ Function NormalizeOptions
 FunctionEnd
 
 
+; PrepareToExit
+!define PrepareToExit "!insertmacro PrepareToExit"
+
+!macro PrepareToExit
+   ; Sets the output path to $TEMP
+   SetOutPath "$TEMP"
+
+   ; Unload registry plugin
+   ${registry::Unload}
+!macroend
+
+
 ; UninstallCurrentAgent
 !define UninstallCurrentAgent "!insertmacro UninstallCurrentAgent"
 

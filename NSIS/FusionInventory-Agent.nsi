@@ -869,8 +869,8 @@ Function .onInstSuccess
       ${RunAgentNow}
    ${EndIf}
 
-   ; Unload registry plugin
-   ${registry::Unload}
+   ; Prepare to exit
+   ${PrepareToExit}
 FunctionEnd
 
 
@@ -882,16 +882,14 @@ Function .onInstFailed
       CopyFiles "$PLUGINSDIR\CommandLineParser.log" "$R0\debug\"
    !endif
 
-   ; Unload registry plugin
-   ${registry::Unload}
+   ; Prepare to exit
+   ${PrepareToExit}
 FunctionEnd
 
 
 Function UserAbort
-   ; Unload registry plugin
-   ${registry::Unload}
-   ; Set the output path
-   SetOutPath "$TEMP"
+   ; Prepare to exit
+   ${PrepareToExit}
 FunctionEnd
 
 
@@ -958,22 +956,20 @@ FunctionEnd
 
 
 Function un.onUninstFailed
-   ; Unload registry plugin
-   ${registry::Unload}
+   ; Prepare to exit
+   ${PrepareToExit}
 FunctionEnd
 
 
 Function un.onUninstSuccess
-   ; Unload registry plugin
-   ${registry::Unload}
+   ; Prepare to exit
+   ${PrepareToExit}
 FunctionEnd
 
 
 Function un.UserAbort
-   ; Unload registry plugin
-   ${registry::Unload}
-   ; Set the output path
-   SetOutPath "$TEMP"
+   ; Prepare to exit
+   ${PrepareToExit}
 FunctionEnd
 
 
