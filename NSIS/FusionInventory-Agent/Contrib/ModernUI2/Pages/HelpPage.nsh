@@ -122,14 +122,24 @@ Function HelpPage_Show
    ; Pushes $R0 onto the stack
    Push $R0
 
-   ${ReadINIOption} $R0 "${IOS_COMMANDLINE}" "${IO_HELP}"
    ${IfNot} ${CommandLineSyntaxError}
-   ${AndIf} $R0 = 0
-      ; Pop $R0 off of the stack
-      Pop $R0
+      ; Check whether is needed dump the help and exit
+      ${ReadINIOption} $R0 "${IOS_COMMANDLINE}" "${IO_DUMPHELP}"
+      ${If} $R0 = 1
+         ; Dump help file
+         Call BuildHelpFile
+         CopyFiles /SILENT /FILESONLY "$PLUGINSDIR\${PRODUCT_HELP_FILE}" "$EXEDIR\${PRODUCT_HELP_FILE}"
+         ${PrepareToExit}
+         Quit
+      ${EndIf}
 
-      ; Abort
-      Abort
+      ; Check whether is needed show the help
+      ${ReadINIOption} $R0 "${IOS_COMMANDLINE}" "${IO_HELP}"
+      ${If} $R0 = 0
+         ; Abort
+         Pop $R0
+         Abort
+      ${EndIf}
    ${EndIf}
 
    Call HelpPage_Create

@@ -819,12 +819,13 @@ Function .onInit
 
    ; Check for dump help file
    ${IfNot} ${CommandLineSyntaxError}
-   ${AndIfNot} ${Silent}
+   ${AndIf} ${Silent}
       ${ReadINIOption} $R0 "${IOS_COMMANDLINE}" "${IO_DUMPHELP}"
       ${If} $R0 = 1
          ; Dump help file
          Call BuildHelpFile
          CopyFiles /SILENT /FILESONLY "$PLUGINSDIR\${PRODUCT_HELP_FILE}" "$EXEDIR\${PRODUCT_HELP_FILE}"
+         ${PrepareToExit}
          Abort
       ${EndIf}
    ${EndIf}
