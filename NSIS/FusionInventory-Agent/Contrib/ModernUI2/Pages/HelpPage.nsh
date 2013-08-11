@@ -175,21 +175,24 @@ Function BuildHelpFile
 
    ; Name
    ${FileWriteLine} $R0 `\pard\b $(HelpPage_Help_Name)\b0\par`
-   ${FileWriteLine} $R0 `\pard\li400 ${PRODUCT_INSTALLER} - $(^Name) ${PRODUCT_VERSION} Setup\par`
+   ${FileWriteLine} $R0 `\pard\li400\b ${PRODUCT_INSTALLER}\b0  -- $(^Name) Setup\par`
    ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 ``
 
    ; Synopsys
    ${FileWriteLine} $R0 `\pard\b $(HelpPage_Help_Synopsis)\b0\par`
-   ${FileWriteLine} $R0 `\pard\li400 ${PRODUCT_INSTALLER} [$(HelpPage_Help_Option)]...\par`
+   ${FileWriteLine} $R0 `\pard\li400\b ${PRODUCT_INSTALLER}\b0  [\i /$(HelpPage_Help_Option)\i0 [ \i /$(HelpPage_Help_Option)\i0 [ ...]]]\par`
    ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 ``
 
    ; Description
    ${FileWriteLine} $R0 `\pard\b $(HelpPage_Help_Description)\b0\par`
    ${FileWriteLine} $R0 `\pard\li400 $(HelpPage_Help_Description_Paragraph_1)\par`
+   ${FileWriteLine} $R0 `\par $(HelpPage_Help_Description_Paragraph_2)\par`
+   ${FileWriteLine} $R0 `\par $(HelpPage_Help_Description_Paragraph_3)\par`
+   ${FileWriteLine} $R0 `\par $(HelpPage_Help_Description_Paragraph_4)\par`
+   ${FileWriteLine} $R0 `\par $(HelpPage_Help_Description_Paragraph_5)\par`
+   ${FileWriteLine} $R0 `\par $(HelpPage_Help_Description_Paragraph_6)\par`
+   ${FileWriteLine} $R0 `\par $(HelpPage_Help_Description_Paragraph_7)\par`
    ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 ``
 
    ; /acceptlicense
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_ACCEPTLICENSE}"
@@ -200,12 +203,10 @@ Function BuildHelpFile
       StrCpy $R9 $(HelpPage_Help_Yes)
    ${EndIf}
 
-   ${FileWriteLine} $R0 `\pard\li400 /acceptlicense\par`
+   ${FileWriteLine} $R0 `\pard\li400\b /acceptlicense\b0\par`
    ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_acceptlicense_Paragraph_1)\par`
+   ${FileWriteLine} $R0 `\par $(HelpPage_Help_Option_acceptlicense_Paragraph_2)\par`
    ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_acceptlicense_Paragraph_2)\par`
-   ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 ``
 
    ; /add-firewall-exception
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_ADD-FIREWALL-EXCEPTION}"
@@ -216,21 +217,18 @@ Function BuildHelpFile
       StrCpy $R9 $(HelpPage_Help_Yes)
    ${EndIf}
 
-   ${FileWriteLine} $R0 `\pard\li400 /add-firewall-exception\par`
+   ${FileWriteLine} $R0 `\pard\li400\b /add-firewall-exception\b0\par`
    ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_add-firewall-exception_Paragraph_1)\par`
+   ${FileWriteLine} $R0 `\par $(HelpPage_Help_Option_add-firewall-exception_Paragraph_2)\par`
    ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_add-firewall-exception_Paragraph_2)\par`
-   ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 ``
 
    ; /backend-collect-timeout
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_BACKEND-COLLECT-TIMEOUT}"
    ${EscapeSpecialRTFCharacters} "$R9" $R9
 
-   ${FileWriteLine} $R0 `\pard\li400 /backend-collect-timeout=<\i timeout\i0 >\par`
+   ${FileWriteLine} $R0 `\pard\li400\b /backend-collect-timeout\b0 =\i timeout\i0\par`
    ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_backend-collect-timeout_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 ``
 
    ; /ca-cert-dir
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_CA-CERT-DIR}"
@@ -239,10 +237,12 @@ Function BuildHelpFile
       StrCpy $R9 "$\"$\""
    ${EndIf}
 
-   ${FileWriteLine} $R0 `\pard\li400 /ca-cert-dir=<\i absolute_pathname\i0 >\par`
+   ${FileWriteLine} $R0 `\pard\li400\b /ca-cert-dir\b0 =\i pathname\i0\par`
    ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_ca-cert-dir_Paragraph_1)\par`
+   ${FileWriteLine} $R0 `\par $(HelpPage_Help_Option_ca-cert-dir_Paragraph_2)\par`
+   ${FileWriteLine} $R0 `\par $(HelpPage_Help_Option_ca-cert-dir_Paragraph_3)\par`
+   ${FileWriteLine} $R0 `\par $(HelpPage_Help_Option_ca-cert-dir_Paragraph_4)\par`
    ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 ``
 
    ; /ca-cert-file
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_CA-CERT-FILE}"
@@ -251,12 +251,11 @@ Function BuildHelpFile
       StrCpy $R9 "$\"$\""
    ${EndIf}
 
-   ${FileWriteLine} $R0 `\pard\li400 /ca-cert-file=<\i filename\i0 >\par`
+   ${FileWriteLine} $R0 `\pard\li400\b /ca-cert-file\b0 =\i filename\i0\par`
    ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_ca-cert-file_Paragraph_1)\par`
+   ${FileWriteLine} $R0 `\par $(HelpPage_Help_Option_ca-cert-file_Paragraph_2)\par`
+   ${FileWriteLine} $R0 `\par $(HelpPage_Help_Option_ca-cert-file_Paragraph_3)\par`
    ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_ca-cert-file_Paragraph_2)\par`
-   ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 ``
 
    ; /ca-cert-uri
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_CA-CERT-URI}"
@@ -265,55 +264,51 @@ Function BuildHelpFile
       StrCpy $R9 "$\"$\""
    ${EndIf}
 
-   ${FileWriteLine} $R0 `\pard\li400 /ca-cert-uri=<\i URI\i0 >\par`
+   ${FileWriteLine} $R0 `\pard\li400\b /ca-cert-uri\b0 =\i URI\i0\par`
    ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_ca-cert-uri_Paragraph_1)\par`
+   ${FileWriteLine} $R0 `\par $(HelpPage_Help_Option_ca-cert-uri_Paragraph_2)\par`
+   ${FileWriteLine} $R0 `\par $(HelpPage_Help_Option_ca-cert-uri_Paragraph_3)\par`
    ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_ca-cert-uri_Paragraph_2)\par`
-   ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 ``
 
    ; /debug
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_DEBUG}"
    ${EscapeSpecialRTFCharacters} "$R9" $R9
 
-   ${FileWriteLine} $R0 `\pard\li400 /debug=<\i level\i0 >\par`
+   ${FileWriteLine} $R0 `\pard\li400\b /debug\b0 =\i level\i0\par`
    ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_debug_Paragraph_1)\par`
+   ${FileWriteLine} $R0 `\par $(HelpPage_Help_Option_debug_Paragraph_2)\par`
    ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_debug_Paragraph_2)\par`
-   ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 ``
 
    ; /delaytime
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_DELAYTIME}"
    ${EscapeSpecialRTFCharacters} "$R9" $R9
 
-   ${FileWriteLine} $R0 `\pard\li400 /delaytime=<\i limit\i0 >\par`
+   ${FileWriteLine} $R0 `\pard\li400\b /delaytime\b0 =\i limit\i0\par`
    ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_delaytime_Paragraph_1)\par`
+   ${FileWriteLine} $R0 `\par $(HelpPage_Help_Option_delaytime_Paragraph_2)\par`
+   ${FileWriteLine} $R0 `\par $(HelpPage_Help_Option_delaytime_Paragraph_3)\par`
    ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_delaytime_Paragraph_2)\par`
+
+   ; /dumphelp
+   ${FileWriteLine} $R0 `\pard\li400\b /dumphelp\b0\par`
+   ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_dumphelp_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_delaytime_Paragraph_3)\par`
-   ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 ``
 
    ; /execmode
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_EXECMODE}"
    ${EscapeSpecialRTFCharacters} "$R9" $R9
 
-   ${FileWriteLine} $R0 `\pard\li400 /execmode=<\i mode\i0 >\par`
+   ${FileWriteLine} $R0 `\pard\li400\b /execmode\b0 =\i mode\i0\par`
    ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_execmode_Paragraph_1)\par`
+   ${FileWriteLine} $R0 `\par $(HelpPage_Help_Option_execmode_Paragraph_2)\par`
+   ${FileWriteLine} $R0 `\par $(HelpPage_Help_Option_execmode_Paragraph_3)\par`
    ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_execmode_Paragraph_2)\par`
-   ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_execmode_Paragraph_3)\par`
-   ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 ``
 
    ; /help
-   ${FileWriteLine} $R0 `\pard\li400 /help\par`
+   ${FileWriteLine} $R0 `\pard\li400\b /help\b0\par`
    ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_help_Paragraph_1)\par`
+   ${FileWriteLine} $R0 `\par $(HelpPage_Help_Option_help_Paragraph_2)\par`
    ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 ``
 
    ; /html
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_HTML}"
@@ -324,84 +319,69 @@ Function BuildHelpFile
       StrCpy $R9 $(HelpPage_Help_Yes)
    ${EndIf}
 
-   ${FileWriteLine} $R0 `\pard\li400 /html\par`
+   ${FileWriteLine} $R0 `\pard\li400\b /html\b0\par`
    ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_html_Paragraph_1)\par`
+   ${FileWriteLine} $R0 `\par $(HelpPage_Help_Option_html_Paragraph_2)\par`
    ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_html_Paragraph_2)\par`
-   ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 ``
 
    ; /httpd
-   ${FileWriteLine} $R0 `\pard\li400 /httpd\par`
+   ${FileWriteLine} $R0 `\pard\li400\b /httpd\b0\par`
    ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_httpd_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 ``
 
    ; /httpd-ip
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_HTTPD-IP}"
    ${EscapeSpecialRTFCharacters} "$R9" $R9
 
-   ${FileWriteLine} $R0 `\pard\li400 /httpd-ip=<\i ip\i0 >\par`
+   ${FileWriteLine} $R0 `\pard\li400\b /httpd-ip\b0 =\i ip\i0\par`
    ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_httpd-ip_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 ``
 
    ; /httpd-port
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_HTTPD-PORT}"
    ${EscapeSpecialRTFCharacters} "$R9" $R9
 
-   ${FileWriteLine} $R0 `\pard\li400 /httpd-port=<\i port\i0 >\par`
+   ${FileWriteLine} $R0 `\pard\li400\b /httpd-port\b0 =\i port\i0\par`
    ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_httpd-port_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 ``
 
    ; /httpd-trust
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_HTTPD-TRUST}"
    ${EscapeSpecialRTFCharacters} "$R9" $R9
 
-   ${FileWriteLine} $R0 `\pard\li400 /httpd-trust=\{<\i ip\i0 >|<\i range\i0 >|<\i hostname\i0 >\}[,\{<\i ip\i0 >|<\i range\i0 >|<\i hostname\i0 >\}[...]]\par`
+   ${FileWriteLine} $R0 `\pard\li400\b /httpd-trust\b0 =\{\i ip\i0 |\i range\i0 |\i hostname\i0 \}[,\{\i ip\i0 |\i range\i0 |\i hostname\i0 \}[...]]\par`
    ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_httpd-trust_Paragraph_1)\par`
+   ${FileWriteLine} $R0 `\par $(HelpPage_Help_Option_httpd-trust_Paragraph_2)\par`
+   ${FileWriteLine} $R0 `\par $(HelpPage_Help_Option_httpd-trust_Paragraph_3)\par`
    ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_httpd-trust_Paragraph_2)\par`
-   ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_httpd-trust_Paragraph_3)\par`
-   ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 ``
 
    ; /installdir
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_INSTALLDIR}"
    ${EscapeSpecialRTFCharacters} "$R9" $R9
 
-   ${FileWriteLine} $R0 `\pard\li400 /installdir=<\i absolute_pathname\i0 >\par`
+   ${FileWriteLine} $R0 `\pard\li400\b /installdir\b0 =\i pathname\i0\par`
    ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_installdir_Paragraph_1)\par`
+   ${FileWriteLine} $R0 `\par $(HelpPage_Help_Option_installdir_Paragraph_2)\par`
+   ${FileWriteLine} $R0 `\par $(HelpPage_Help_Option_installdir_Paragraph_3)\par`
    ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_installdir_Paragraph_2)\par`
-   ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 ``
 
    ; /installtasks
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_INSTALLTASKS}"
    ${EscapeSpecialRTFCharacters} "$R9" $R9
 
-   ${FileWriteLine} $R0 `\pard\li400 /installtasks=\{<\i task\i0 >[,<\i task\i0 >[...]]|<\i macro\i0 >\}\par`
+   ${FileWriteLine} $R0 `\pard\li400\b /installtasks\b0 =\{\i task\i0 [,\i task\i0 [...]]|\i macro\i0 \}\par`
    ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_installtasks_Paragraph_1)\par`
+   ${FileWriteLine} $R0 `\par $(HelpPage_Help_Option_installtasks_Paragraph_2)\par`
+   ${FileWriteLine} $R0 `\par $(HelpPage_Help_Option_installtasks_Paragraph_3)\par`
    ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_installtasks_Paragraph_2)\par`
-   ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_installtasks_Paragraph_3)\par`
-   ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 ``
 
    ; /installtype
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_INSTALLTYPE}"
    ${EscapeSpecialRTFCharacters} "$R9" $R9
 
-   ${FileWriteLine} $R0 `\pard\li400 /installtype=\{from-scratch|from-current-config\}\par`
+   ${FileWriteLine} $R0 `\pard\li400\b /installtype\b0 =\{\b from-scratch\b0 |\b from-current-config\b0\}\par`
    ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_installtype_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_installtype_Paragraph_2)\par`
-   ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 ``
 
    ; /local
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_LOCAL}"
@@ -410,14 +390,11 @@ Function BuildHelpFile
       StrCpy $R9 "$\"$\""
    ${EndIf}
 
-   ${FileWriteLine} $R0 `\pard\li400 /local=<\i absolute_pathname\i0 >\par`
+   ${FileWriteLine} $R0 `\pard\li400\b /local\b0 =\i pathname\i0\par`
    ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_local_Paragraph_1)\par`
+   ${FileWriteLine} $R0 `\par $(HelpPage_Help_Option_local_Paragraph_2)\par`
+   ${FileWriteLine} $R0 `\par $(HelpPage_Help_Option_local_Paragraph_3)\par`
    ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_local_Paragraph_2)\par`
-   ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_local_Paragraph_3)\par`
-   ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 ``
 
    ; /logfile
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_LOGFILE}"
@@ -426,32 +403,27 @@ Function BuildHelpFile
       StrCpy $R9 "$\"$\""
    ${EndIf}
 
-   ${FileWriteLine} $R0 `\pard\li400 /logfile=<\i filename\i0 >\par`
+   ${FileWriteLine} $R0 `\pard\li400\b /logfile\b0 =\i filename\i0\par`
    ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_logfile_Paragraph_1)\par`
+   ${FileWriteLine} $R0 `\par $(HelpPage_Help_Option_logfile_Paragraph_2)\par`
    ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_logfile_Paragraph_2)\par`
-   ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 ``
 
    ; /logfile-maxsize
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_LOGFILE-MAXSIZE}"
    ${EscapeSpecialRTFCharacters} "$R9" $R9
 
-   ${FileWriteLine} $R0 `\pard\li400 /logfile-maxsize=<\i size\i0 >\par`
+   ${FileWriteLine} $R0 `\pard\li400\b /logfile-maxsize\b0 =\i size\i0\par`
    ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_logfile-maxsize_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 ``
 
    ; /logger
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_LOGGER}"
    ${EscapeSpecialRTFCharacters} "$R9" $R9
 
-   ${FileWriteLine} $R0 `\pard\li400 /logger=<\i backend\i0 >[,<\i backend\i0 >]\par`
+   ${FileWriteLine} $R0 `\pard\li400\b /logger\b0 =\i backend\i0 [,\i backend\i0 ]\par`
    ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_logger_Paragraph_1)\par`
+   ${FileWriteLine} $R0 `\par $(HelpPage_Help_Option_logger_Paragraph_2)\par`
    ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_logger_Paragraph_2)\par`
-   ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 ``
 
    ; /no-category
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_NO-CATEGORY}"
@@ -460,18 +432,15 @@ Function BuildHelpFile
       StrCpy $R9 "$\"$\""
    ${EndIf}
 
-   ${FileWriteLine} $R0 `\pard\li400 /no-category=<\i category\i0 >[,<\i category\i0 >[...]]\par`
+   ${FileWriteLine} $R0 `\pard\li400\b /no-category\b0 =\i category\i0 [,\i category\i0 [...]]\par`
    ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_no-category_Paragraph_1)\par`
+   ${FileWriteLine} $R0 `\par $(HelpPage_Help_Option_no-category_Paragraph_2)\par`
    ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_no-category_Paragraph_2)\par`
-   ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 ``
 
    ; /no-html
-   ${FileWriteLine} $R0 `\pard\li400 /no-html\par`
+   ${FileWriteLine} $R0 `\pard\li400\b /no-html\b0\par`
    ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_no-html_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 ``
 
    ; /no-httpd
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_NO-HTTPD}"
@@ -482,10 +451,9 @@ Function BuildHelpFile
       StrCpy $R9 $(HelpPage_Help_Yes)
    ${EndIf}
 
-   ${FileWriteLine} $R0 `\pard\li400 /no-httpd\par`
+   ${FileWriteLine} $R0 `\pard\li400\b /no-httpd\b0\par`
    ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_no-httpd_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 ``
 
    ; /no-p2p
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_NO-P2P}"
@@ -496,16 +464,14 @@ Function BuildHelpFile
       StrCpy $R9 $(HelpPage_Help_Yes)
    ${EndIf}
 
-   ${FileWriteLine} $R0 `\pard\li400 /no-p2p\par`
+   ${FileWriteLine} $R0 `\pard\li400\b /no-p2p\b0\par`
    ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_no-p2p_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 ``
 
    ; /no-scan-homedirs
-   ${FileWriteLine} $R0 `\pard\li400 /no-scan-homedirs\par`
+   ${FileWriteLine} $R0 `\pard\li400\b /no-scan-homedirs\b0\par`
    ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_no-scan-homedirs_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 ``
 
    ; /no-ssl-check
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_NO-SSL-CHECK}"
@@ -516,12 +482,9 @@ Function BuildHelpFile
       StrCpy $R9 $(HelpPage_Help_Yes)
    ${EndIf}
 
-   ${FileWriteLine} $R0 `\pard\li400 /no-ssl-check\par`
+   ${FileWriteLine} $R0 `\pard\li400\b /no-ssl-check\b0\par`
    ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_no-ssl-check_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_no-ssl-check_Paragraph_2)\par`
-   ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 ``
 
    ; /no-task
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_NO-TASK}"
@@ -530,18 +493,15 @@ Function BuildHelpFile
       StrCpy $R9 "$\"$\""
    ${EndIf}
 
-   ${FileWriteLine} $R0 `\pard\li400 /no-task=<\i task\i0 >[,<\i task\i0 >[...]]\par`
+   ${FileWriteLine} $R0 `\pard\li400\b /no-task\b0 =\i task\i0 [,\i task\i0 [...]]\par`
    ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_no-task_Paragraph_1)\par`
+   ${FileWriteLine} $R0 `\par $(HelpPage_Help_Option_no-task_Paragraph_2)\par`
    ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_no-task_Paragraph_2)\par`
-   ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 ``
 
    ; /p2p
-   ${FileWriteLine} $R0 `\pard\li400 /p2p\par`
+   ${FileWriteLine} $R0 `\pard\li400\b /p2p\b0\par`
    ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_p2p_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 ``
 
    ; /password
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_PASSWORD}"
@@ -550,12 +510,10 @@ Function BuildHelpFile
       StrCpy $R9 "$\"$\""
    ${EndIf}
 
-   ${FileWriteLine} $R0 `\pard\li400 /password=<\i password\i0 >\par`
+   ${FileWriteLine} $R0 `\pard\li400\b /password\b0 =\i password\i0\par`
    ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_password_Paragraph_1)\par`
+   ${FileWriteLine} $R0 `\par $(HelpPage_Help_Option_password_Paragraph_2)\par`
    ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_password_Paragraph_2)\par`
-   ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 ``
 
    ; /proxy
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_PROXY}"
@@ -564,12 +522,9 @@ Function BuildHelpFile
       StrCpy $R9 "$\"$\""
    ${EndIf}
 
-   ${FileWriteLine} $R0 `\pard\li400 /proxy=<\i URI\i0 >\par`
+   ${FileWriteLine} $R0 `\pard\li400\b /proxy\b0 =\i URI\i0\par`
    ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_proxy_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_proxy_Paragraph_2)\par`
-   ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 ``
 
    ; /runnow
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_RUNNOW}"
@@ -580,10 +535,9 @@ Function BuildHelpFile
       StrCpy $R9 $(HelpPage_Help_Yes)
    ${EndIf}
 
-   ${FileWriteLine} $R0 `\pard\li400 /runnow\par`
+   ${FileWriteLine} $R0 `\pard\li400\b /runnow\b0\par`
    ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_runnow_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 ``
 
    ; /S
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_SILENTMODE}"
@@ -594,12 +548,10 @@ Function BuildHelpFile
       StrCpy $R9 $(HelpPage_Help_Yes)
    ${EndIf}
 
-   ${FileWriteLine} $R0 `\pard\li400 /S\par`
+   ${FileWriteLine} $R0 `\pard\li400\b /S\b0\par`
    ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_S_Paragraph_1)\par`
+   ${FileWriteLine} $R0 `\par $(HelpPage_Help_Option_S_Paragraph_2)\par`
    ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_S_Paragraph_2)\par`
-   ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 ``
 
    ; /scan-homedirs
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_SCAN-HOMEDIRS}"
@@ -610,10 +562,9 @@ Function BuildHelpFile
       StrCpy $R9 $(HelpPage_Help_Yes)
    ${EndIf}
 
-   ${FileWriteLine} $R0 `\pard\li400 /scan-homedirs\par`
+   ${FileWriteLine} $R0 `\pard\li400\b /scan-homedirs\b0\par`
    ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_scan-homedirs_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 ``
 
    ; /server
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_SERVER}"
@@ -622,20 +573,16 @@ Function BuildHelpFile
       StrCpy $R9 "$\"$\""
    ${EndIf}
 
-   ${FileWriteLine} $R0 `\pard\li400 /server=<\i URI\i0 >[,<\i URI\i0 >[...]]\par`
+   ${FileWriteLine} $R0 `\pard\li400\b /server\b0 =\i URI\i0 [,\i URI\i0 [...]]\par`
    ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_server_Paragraph_1)\par`
+   ${FileWriteLine} $R0 `\par $(HelpPage_Help_Option_server_Paragraph_2)\par`
+   ${FileWriteLine} $R0 `\par $(HelpPage_Help_Option_server_Paragraph_3)\par`
    ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_server_Paragraph_2)\par`
-   ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_server_Paragraph_3)\par`
-   ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 ``
 
    ; /ssl-check
-   ${FileWriteLine} $R0 `\pard\li400 /ssl-check\par`
+   ${FileWriteLine} $R0 `\pard\li400\b /ssl-check\b0\par`
    ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_ssl-check_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 ``
 
    ; /tag
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_TAG}"
@@ -644,73 +591,57 @@ Function BuildHelpFile
       StrCpy $R9 "$\"$\""
    ${EndIf}
 
-   ${FileWriteLine} $R0 `\pard\li400 /tag=<\i tag\i0 >\par`
+   ${FileWriteLine} $R0 `\pard\li400\b /tag\b0 =\i tag\i0\par`
    ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_tag_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_tag_Paragraph_2)\par`
-   ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 ``
 
    ; /task-daily-modifier
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_TASK-DAILY-MODIFIER}"
    ${EscapeSpecialRTFCharacters} "$R9" $R9
 
-   ${FileWriteLine} $R0 `\pard\li400 /task-daily-modifier=<\i modifier\i0 >\par`
+   ${FileWriteLine} $R0 `\pard\li400\b /task-daily-modifier\b0 =\i modifier\i0\par`
    ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_task-daily-modifier_Paragraph_1)\par`
+   ${FileWriteLine} $R0 `\par $(HelpPage_Help_Option_task-daily-modifier_Paragraph_2)\par`
+   ${FileWriteLine} $R0 `\par $(HelpPage_Help_Option_task-daily-modifier_Paragraph_3)\par`
    ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_task-daily-modifier_Paragraph_2)\par`
-   ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_task-daily-modifier_Paragraph_3)\par`
-   ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 ``
 
    ; /task-frequency
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_TASK-FREQUENCY}"
    ${EscapeSpecialRTFCharacters} "$R9" $R9
 
-   ${FileWriteLine} $R0 `\pard\li400 /task-frequency=<\i frequency\i0 >\par`
+   ${FileWriteLine} $R0 `\pard\li400\b /task-frequency\b0 =\i frequency\i0\par`
    ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_task-frequency_Paragraph_1)\par`
+   ${FileWriteLine} $R0 `\par $(HelpPage_Help_Option_task-frequency_Paragraph_2)\par`
    ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_task-frequency_Paragraph_2)\par`
-   ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 ``
 
    ; /task-hourly-modifier
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_TASK-HOURLY-MODIFIER}"
    ${EscapeSpecialRTFCharacters} "$R9" $R9
 
-   ${FileWriteLine} $R0 `\pard\li400 /task-hourly-modifier=<\i modifier\i0 >\par`
+   ${FileWriteLine} $R0 `\pard\li400\b /task-hourly-modifier\b0 =\i modifier\i0\par`
    ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_task-hourly-modifier_Paragraph_1)\par`
+   ${FileWriteLine} $R0 `\par $(HelpPage_Help_Option_task-hourly-modifier_Paragraph_2)\par`
+   ${FileWriteLine} $R0 `\par $(HelpPage_Help_Option_task-hourly-modifier_Paragraph_3)\par`
    ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_task-hourly-modifier_Paragraph_2)\par`
-   ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_task-hourly-modifier_Paragraph_3)\par`
-   ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 ``
 
    ; /task-minute-modifier
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_TASK-MINUTE-MODIFIER}"
    ${EscapeSpecialRTFCharacters} "$R9" $R9
 
-   ${FileWriteLine} $R0 `\pard\li400 /task-minute-modifier=<\i modifier\i0 >\par`
+   ${FileWriteLine} $R0 `\pard\li400\b /task-minute-modifier\b0 =\i modifier\i0\par`
    ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_task-minute-modifier_Paragraph_1)\par`
+   ${FileWriteLine} $R0 `\par $(HelpPage_Help_Option_task-minute-modifier_Paragraph_2)\par`
+   ${FileWriteLine} $R0 `\par $(HelpPage_Help_Option_task-minute-modifier_Paragraph_3)\par`
    ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_task-minute-modifier_Paragraph_2)\par`
-   ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_task-minute-modifier_Paragraph_3)\par`
-   ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 ``
 
    ; /timeout
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_TIMEOUT}"
    ${EscapeSpecialRTFCharacters} "$R9" $R9
 
-   ${FileWriteLine} $R0 `\pard\li400 /timeout=<\i timeout\i0 >\par`
+   ${FileWriteLine} $R0 `\pard\li400\b /timeout\b0 =\i timeout\i0\par`
    ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_timeout_Paragraph_1)\par`
+   ${FileWriteLine} $R0 `\par $(HelpPage_Help_Option_timeout_Paragraph_2)\par`
    ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_timeout_Paragraph_2)\par`
-   ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 ``
 
    ; /user
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_USER}"
@@ -719,36 +650,40 @@ Function BuildHelpFile
       StrCpy $R9 "$\"$\""
    ${EndIf}
 
-   ${FileWriteLine} $R0 `\pard\li400 /user=<\i user\i0 >\par`
+   ${FileWriteLine} $R0 `\pard\li400\b /user\b0 =\i user\i0\par`
    ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_user_Paragraph_1)\par`
+   ${FileWriteLine} $R0 `\par $(HelpPage_Help_Option_user_Paragraph_2)\par`
    ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_user_Paragraph_2)\par`
-   ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 ``
 
-   ; Author
-   ${FileWriteLine} $R0 `\pard\b $(HelpPage_Help_Author)\b0\par`
-   ${FileWriteLine} $R0 `\pard\li400 $(HelpPage_Help_Author_Paragraph_1)\par`
+   ; Examples
+   ${FileWriteLine} $R0 `\pard\b $(HelpPage_Help_Examples)\b0\par`
+   ${FileWriteLine} $R0 `\pard\li400 $(HelpPage_Help_Examples_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 ``
+
+   ; Version
+   ${FileWriteLine} $R0 `\pard\b $(HelpPage_Help_Version)\b0\par`
+   ${FileWriteLine} $R0 `\pard\li400 $(HelpPage_Help_Version_Paragraph_1)\par`
+   ${FileWriteLine} $R0 `\par`
 
    ; Bugs
    ${FileWriteLine} $R0 `\pard\b $(HelpPage_Help_Bugs)\b0\par`
    ${FileWriteLine} $R0 `\pard\li400 $(HelpPage_Help_Bugs_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 ``
 
    ; Copyright
    ${FileWriteLine} $R0 `\pard\b $(HelpPage_Help_Copyright)\b0\par`
    ${FileWriteLine} $R0 `\pard\li400 $(HelpPage_Help_Copyright_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 ``
 
    ; SeeAlso
    ${FileWriteLine} $R0 `\pard\b $(HelpPage_Help_SeeAlso)\b0\par`
    ${FileWriteLine} $R0 `\pard\li400 $(HelpPage_Help_SeeAlso_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
-   ${FileWriteLine} $R0 ``
+
+   ; Author
+   ${FileWriteLine} $R0 `\pard\b $(HelpPage_Help_Author)\b0\par`
+   ${FileWriteLine} $R0 `\pard\li400 $(HelpPage_Help_Author_Paragraph_1)\par`
+   ${FileWriteLine} $R0 `\par`
 
    ; End of file
    ${FileWriteLine} $R0 `}`
