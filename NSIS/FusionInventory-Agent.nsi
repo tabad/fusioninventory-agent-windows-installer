@@ -158,21 +158,21 @@ SetCompressor /FINAL /SOLID lzma
 ;
 !if "${PRODUCT_RELEASE_TYPE}" == "${RELEASE_TYPE_STABLE}"
    ; Product version for stable releases
-   !define PRODUCT_VERSION "2.3.0"
+   !define PRODUCT_VERSION "2.3.0-1"
 
    ; If PRODUCT_VERSION is a commit then
    ;    define the following symbols as empty string
    !define PRODUCT_VERSION_MAJOR "2"
    !define PRODUCT_VERSION_MINOR "3"
    !define PRODUCT_VERSION_RELEASE "0"
-   !define PRODUCT_VERSION_PATCH "0"
+   !define PRODUCT_VERSION_PATCH "1"
 
    ; File version
    ;    for Windows Version Information
    ;
    ; If PRODUCT_VERSION is a commit then
    ;    define the following symbols as '0.0.0.0'
-   !define FILE_VERSION "2.3.0.0"
+   !define FILE_VERSION "2.3.0.1"
 
    ; Bitmaps for stable releases
    !define MUI_HEADERIMAGE_BITMAP_FILE  "${FIAI_DIR}\Contrib\Skins\Default\HeaderRightMUI2.bmp"
