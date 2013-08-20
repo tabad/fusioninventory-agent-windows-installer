@@ -1255,6 +1255,9 @@ Function .onInitVisualMode
          ; Synchronize NSIS sections with 'installtasks' option
          Push "${IOS_DEFAULTGUI}"
          Call SyncNSISSectionsWithInstallTasksOption
+
+         ; Unset "quick install" when installing from scratch
+         ${WriteINIOption} "${IOS_DEFAULTGUI}" "${IO_QUICK-INSTALL}" "0"
       ${Else}
          ; Install the agent from current configuration
 
@@ -1398,6 +1401,9 @@ Function .onInitVisualMode
       ; Synchronize NSIS sections with 'installtasks' option
       Push "${IOS_DEFAULTGUI}"
       Call SyncNSISSectionsWithInstallTasksOption
+
+      ; Unset "quick install" when installing from scratch
+      ${WriteINIOption} "${IOS_DEFAULTGUI}" "${IO_QUICK-INSTALL}" "0"
    ${EndIf}
 
    ; Build the ${IOS_GUI} section in the Options.ini file
