@@ -381,6 +381,7 @@ Function BuildHelpFile
 
    ${FileWriteLine} $R0 `\pard\li400\b /installtype\b0 =\{\b from-scratch\b0 |\b from-current-config\b0\}\par`
    ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_installtype_Paragraph_1)\par`
+   ${FileWriteLine} $R0 `\par $(HelpPage_Help_Option_installtype_Paragraph_2)\par`
    ${FileWriteLine} $R0 `\par`
 
    ; /local
