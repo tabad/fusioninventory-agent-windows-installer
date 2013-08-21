@@ -680,7 +680,10 @@ Section "-End" SecEnd
    ${EndIf}
 
    ; Install Start Menu folder
-   ${InstallStartMenuFolder}
+   ${ReadINIOption} $R0 "${IOS_FINAL}" "${IO_NO-START-MENU}"
+   ${If} $R0 = 0
+      ${InstallStartMenuFolder}
+   ${EndIf}
 SectionEnd
 
 !insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN

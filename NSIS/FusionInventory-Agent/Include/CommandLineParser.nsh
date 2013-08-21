@@ -649,6 +649,24 @@ Function GetCommandLineOptions
       ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 
+   ; Search for '/no-start-menu' option
+   ${CommandLineOptionsSearchBlock} "/no-start-menu" "${IO_NO-START-MENU}"
+      ; Wipe $R3
+      ;    There should not be anything to wipe
+      Nop
+
+      ; Check $R3 domain
+      ${If} "$R3" != ""
+         ; Syntax error
+         StrCpy $CommandLineSyntaxError 0
+         ${FileWriteLine} $R9 "Syntax error. '$R2' is a switch, it has no values."
+         ${Break}
+      ${Else}
+         ; Override $R3
+         StrCpy $R3 1
+      ${EndIf}
+   ${EndCommandLineOptionsSearchBlock}
+
    ; Search for '/no-task' option
    ${CommandLineOptionsSearchBlock} "/no-task=" "${IO_NO-TASK}"
       ; Wipe $R3
@@ -761,6 +779,24 @@ Function GetCommandLineOptions
 
    ; Search for '/ssl-check' option
    ${CommandLineOptionsSearchBlock} "/ssl-check" "${IO_NO-SSL-CHECK}"
+      ; Wipe $R3
+      ;    There should not be anything to wipe
+      Nop
+
+      ; Check $R3 domain
+      ${If} "$R3" != ""
+         ; Syntax error
+         StrCpy $CommandLineSyntaxError 0
+         ${FileWriteLine} $R9 "Syntax error. '$R2' is a switch, it has no values."
+         ${Break}
+      ${Else}
+         ; Override $R3
+         StrCpy $R3 0
+      ${EndIf}
+   ${EndCommandLineOptionsSearchBlock}
+
+   ; Search for '/start-menu' option
+   ${CommandLineOptionsSearchBlock} "/start-menu" "${IO_NO-START-MENU}"
       ; Wipe $R3
       ;    There should not be anything to wipe
       Nop
