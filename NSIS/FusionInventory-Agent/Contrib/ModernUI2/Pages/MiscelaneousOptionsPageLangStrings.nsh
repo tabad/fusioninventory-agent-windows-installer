@@ -65,19 +65,24 @@ LangString MiscelaneousOptionsPage_GroupBox1_Text ${LANG_FRENCH} "fMiscelaneous 
 LangString MiscelaneousOptionsPage_GroupBox1_Text ${LANG_SPANISH} "Miscelánea de Opciones"
 
 ; MiscelaneousOptionsPage_CheckBox1_Text
-LangString MiscelaneousOptionsPage_CheckBox1_Text ${LANG_ENGLISH} "Launch an inventory immediately after of installation"
-LangString MiscelaneousOptionsPage_CheckBox1_Text ${LANG_FRENCH} "fLaunch an inventory immediately after of installation"
-LangString MiscelaneousOptionsPage_CheckBox1_Text ${LANG_SPANISH} "Lanzar un inventario inmediatamente después de la instalación"
+LangString MiscelaneousOptionsPage_CheckBox1_Text ${LANG_ENGLISH} "Create Start Menu for all users"
+LangString MiscelaneousOptionsPage_CheckBox1_Text ${LANG_FRENCH} "fCreate Start Menu for all users"
+LangString MiscelaneousOptionsPage_CheckBox1_Text ${LANG_SPANISH} "Crear Menú de Inicio para todos los usuarios"
 
 ; MiscelaneousOptionsPage_CheckBox2_Text
-LangString MiscelaneousOptionsPage_CheckBox2_Text ${LANG_ENGLISH} "Save inventory as HTML (only for local target)"
-LangString MiscelaneousOptionsPage_CheckBox2_Text ${LANG_FRENCH} "fSave inventory as HTML (only for local target)"
-LangString MiscelaneousOptionsPage_CheckBox2_Text ${LANG_SPANISH} "Grabar inventario como HTML (sólo para destino local)"
+LangString MiscelaneousOptionsPage_CheckBox2_Text ${LANG_ENGLISH} "Launch an inventory immediately after of installation"
+LangString MiscelaneousOptionsPage_CheckBox2_Text ${LANG_FRENCH} "fLaunch an inventory immediately after of installation"
+LangString MiscelaneousOptionsPage_CheckBox2_Text ${LANG_SPANISH} "Lanzar un inventario inmediatamente después de la instalación"
 
 ; MiscelaneousOptionsPage_CheckBox3_Text
-LangString MiscelaneousOptionsPage_CheckBox3_Text ${LANG_ENGLISH} "Scan home directory for virtual machines"
-LangString MiscelaneousOptionsPage_CheckBox3_Text ${LANG_FRENCH} "fScan home directory for virtual machines"
-LangString MiscelaneousOptionsPage_CheckBox3_Text ${LANG_SPANISH} "Buscar máquinas virtuales en el directorio personal"
+LangString MiscelaneousOptionsPage_CheckBox3_Text ${LANG_ENGLISH} "Save inventory as HTML (only for local target)"
+LangString MiscelaneousOptionsPage_CheckBox3_Text ${LANG_FRENCH} "fSave inventory as HTML (only for local target)"
+LangString MiscelaneousOptionsPage_CheckBox3_Text ${LANG_SPANISH} "Grabar inventario como HTML (sólo para destino local)"
+
+; MiscelaneousOptionsPage_CheckBox4_Text
+LangString MiscelaneousOptionsPage_CheckBox4_Text ${LANG_ENGLISH} "Scan home directory for virtual machines"
+LangString MiscelaneousOptionsPage_CheckBox4_Text ${LANG_FRENCH} "fScan home directory for virtual machines"
+LangString MiscelaneousOptionsPage_CheckBox4_Text ${LANG_SPANISH} "Buscar máquinas virtuales en el directorio personal"
 
 ; MiscelaneousOptionsPage_Label1_Text
 LangString MiscelaneousOptionsPage_Label1_Text ${LANG_ENGLISH} "Tag"

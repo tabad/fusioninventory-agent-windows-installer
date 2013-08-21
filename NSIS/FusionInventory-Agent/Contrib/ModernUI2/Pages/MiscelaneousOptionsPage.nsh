@@ -64,6 +64,7 @@ Var hCtl_MiscelaneousOptionsPage_GroupBox1
 Var hCtl_MiscelaneousOptionsPage_CheckBox1
 Var hCtl_MiscelaneousOptionsPage_CheckBox2
 Var hCtl_MiscelaneousOptionsPage_CheckBox3
+Var hCtl_MiscelaneousOptionsPage_CheckBox4
 Var hCtl_MiscelaneousOptionsPage_Label1
 Var hCtl_MiscelaneousOptionsPage_TextBox1
 
@@ -86,27 +87,31 @@ Function MiscelaneousOptionsPage_Create
    !insertmacro MUI_HEADER_TEXT "$(MiscelaneousOptionsPage_Text)" "$(MiscelaneousOptionsPage_SubText)"
 
    ; === GroupBox1 (type: GroupBox) ===
-   ${NSD_CreateGroupBox} 28u 19u 242u 89u "$(MiscelaneousOptionsPage_GroupBox1_Text)"
+   ${NSD_CreateGroupBox} 28u 11u 242u 104u "$(MiscelaneousOptionsPage_GroupBox1_Text)"
    Pop $hCtl_MiscelaneousOptionsPage_GroupBox1
 
    ; === CheckBox1 (type: Checkbox) ===
-   ${NSD_CreateCheckbox} 39u 36u 218u 11u "$(MiscelaneousOptionsPage_CheckBox1_Text)"
+   ${NSD_CreateCheckbox} 39u 28u 218u 11u "$(MiscelaneousOptionsPage_CheckBox1_Text)"
    Pop $hCtl_MiscelaneousOptionsPage_CheckBox1
 
    ; === CheckBox2 (type: Checkbox) ===
-   ${NSD_CreateCheckbox} 39u 51u 218u 11u "$(MiscelaneousOptionsPage_CheckBox2_Text)"
+   ${NSD_CreateCheckbox} 39u 43u 218u 11u "$(MiscelaneousOptionsPage_CheckBox2_Text)"
    Pop $hCtl_MiscelaneousOptionsPage_CheckBox2
 
    ; === CheckBox3 (type: Checkbox) ===
-   ${NSD_CreateCheckbox} 39u 65u 218u 11u "$(MiscelaneousOptionsPage_CheckBox3_Text)"
+   ${NSD_CreateCheckbox} 39u 57u 218u 11u "$(MiscelaneousOptionsPage_CheckBox3_Text)"
    Pop $hCtl_MiscelaneousOptionsPage_CheckBox3
 
+   ; === CheckBox4 (type: Checkbox) ===
+   ${NSD_CreateCheckbox} 39u 72u 218u 11u "$(MiscelaneousOptionsPage_CheckBox4_Text)"
+   Pop $hCtl_MiscelaneousOptionsPage_CheckBox4
+
    ; === Label1 (type: Label) ===
-   ${NSD_CreateLabel} 41u 79u 215u 8u "$(MiscelaneousOptionsPage_Label1_Text)"
+   ${NSD_CreateLabel} 41u 86u 215u 8u "$(MiscelaneousOptionsPage_Label1_Text)"
    Pop $hCtl_MiscelaneousOptionsPage_Label1
 
    ; === TextBox1 (type: Text) ===
-   ${NSD_CreateText} 39u 88u 218u 11u ""
+   ${NSD_CreateText} 39u 95u 218u 11u ""
    Pop $hCtl_MiscelaneousOptionsPage_TextBox1
 
    ; OnBack Function
@@ -120,15 +125,15 @@ Function MiscelaneousOptionsPage_Create
    StrCpy $R0 "${IOS_GUI}"
 
    ; Set CheckBox1 Check
-   ${ReadINIOption} $R1 "$R0" "${IO_RUNNOW}"
+   ${ReadINIOption} $R1 "$R0" "${IO_NO-START-MENU}"
    ${If} "$R1" != "0"
-      ${NSD_Check} $hCtl_MiscelaneousOptionsPage_CheckBox1
-   ${Else}
       ${NSD_Uncheck} $hCtl_MiscelaneousOptionsPage_CheckBox1
+   ${Else}
+      ${NSD_Check} $hCtl_MiscelaneousOptionsPage_CheckBox1
    ${EndIf}
 
    ; Set CheckBox2 Check
-   ${ReadINIOption} $R1 "$R0" "${IO_HTML}"
+   ${ReadINIOption} $R1 "$R0" "${IO_RUNNOW}"
    ${If} "$R1" != "0"
       ${NSD_Check} $hCtl_MiscelaneousOptionsPage_CheckBox2
    ${Else}
@@ -136,11 +141,19 @@ Function MiscelaneousOptionsPage_Create
    ${EndIf}
 
    ; Set CheckBox3 Check
-   ${ReadINIOption} $R1 "$R0" "${IO_SCAN-HOMEDIRS}"
+   ${ReadINIOption} $R1 "$R0" "${IO_HTML}"
    ${If} "$R1" != "0"
       ${NSD_Check} $hCtl_MiscelaneousOptionsPage_CheckBox3
    ${Else}
       ${NSD_Uncheck} $hCtl_MiscelaneousOptionsPage_CheckBox3
+   ${EndIf}
+
+   ; Set CheckBox4 Check
+   ${ReadINIOption} $R1 "$R0" "${IO_SCAN-HOMEDIRS}"
+   ${If} "$R1" != "0"
+      ${NSD_Check} $hCtl_MiscelaneousOptionsPage_CheckBox4
+   ${Else}
+      ${NSD_Uncheck} $hCtl_MiscelaneousOptionsPage_CheckBox4
    ${EndIf}
 
    ; Set TextBox1 Text
@@ -168,21 +181,29 @@ Function MiscelaneousOptionsPage_Leave
    ; Save CheckBox1 Check
    ${NSD_GetState} $hCtl_MiscelaneousOptionsPage_CheckBox1 $R2
    ${If} $R2 = ${BST_CHECKED}
+      ${WriteINIOption} "$R0" "${IO_NO-START-MENU}" "0"
+   ${Else}
+      ${WriteINIOption} "$R0" "${IO_NO-START-MENU}" "1"
+   ${EndIf}
+
+   ; Save CheckBox2 Check
+   ${NSD_GetState} $hCtl_MiscelaneousOptionsPage_CheckBox2 $R2
+   ${If} $R2 = ${BST_CHECKED}
       ${WriteINIOption} "$R0" "${IO_RUNNOW}" "1"
    ${Else}
       ${WriteINIOption} "$R0" "${IO_RUNNOW}" "0"
    ${EndIf}
 
-   ; Save CheckBox2 Check
-   ${NSD_GetState} $hCtl_MiscelaneousOptionsPage_CheckBox2 $R2
+   ; Save CheckBox3 Check
+   ${NSD_GetState} $hCtl_MiscelaneousOptionsPage_CheckBox3 $R2
    ${If} $R2 = ${BST_CHECKED}
       ${WriteINIOption} "$R0" "${IO_HTML}" "1"
    ${Else}
       ${WriteINIOption} "$R0" "${IO_HTML}" "0"
    ${EndIf}
 
-   ; Save CheckBox3 Check
-   ${NSD_GetState} $hCtl_MiscelaneousOptionsPage_CheckBox3 $R2
+   ; Save CheckBox4 Check
+   ${NSD_GetState} $hCtl_MiscelaneousOptionsPage_CheckBox4 $R2
    ${If} $R2 = ${BST_CHECKED}
       ${WriteINIOption} "$R0" "${IO_SCAN-HOMEDIRS}" "1"
    ${Else}

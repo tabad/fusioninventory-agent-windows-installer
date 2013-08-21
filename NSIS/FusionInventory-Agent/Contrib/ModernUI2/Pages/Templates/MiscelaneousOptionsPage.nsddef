@@ -5,11 +5,12 @@ http://coolsoft.altervista.org/nsisdialogdesigner
 Do not edit manually!
 -->
 <Dialog Name="MiscelaneousOptionsPage" Title="Dialog title..." Subtitle="Dialog subtitle..." Style="none" ExStyle="none">
-  <GroupBox Name="GroupBox1" Location="43, 34" Size="369, 158" Text="Miscelaneous options" TabIndex="0" Style="none" ExStyle="none">
-    <CheckBox Name="CheckBox1" Location="16, 30" Size="332, 20" Text="Launch an inventory immediately after of installation" TabIndex="0" Style="none" ExStyle="none" />
-    <CheckBox Name="CheckBox2" Location="16, 56" Size="332, 20" Text="Save inventory as HTML (only for local target)" TabIndex="1" Style="none" ExStyle="none" />
-    <CheckBox Name="CheckBox3" Location="16, 82" Size="332, 20" Text="Scan home directory for virtual machines" TabIndex="2" Style="none" ExStyle="none" />
-    <Label Name="Label1" Location="20, 106" Size="328, 15" Text="Tag" TabIndex="3" Style="none" ExStyle="none" />
-    <TextBox Name="TextBox1" Location="16, 122" Size="332, 20" TabIndex="4" Style="none" ExStyle="none" />
+  <GroupBox Name="GroupBox1" Location="43, 20" Size="369, 184" Text="Miscelaneous options" TabIndex="0" Style="none" ExStyle="none">
+    <CheckBox Name="CheckBox1" Location="16, 30" Size="332, 20" Text="Create Start Menu for all users" TabIndex="0" Style="none" ExStyle="none" />
+    <CheckBox Name="CheckBox2" Location="16, 56" Size="332, 20" Text="Launch an inventory immediately after of installation" TabIndex="1" Style="none" ExStyle="none" />
+    <CheckBox Name="CheckBox3" Location="16, 82" Size="332, 20" Text="Save inventory as HTML (only for local target)" TabIndex="2" Style="none" ExStyle="none" />
+    <CheckBox Name="CheckBox4" Location="16, 108" Size="332, 20" Text="Scan home directory for virtual machines" TabIndex="3" Style="none" ExStyle="none" />
+    <Label Name="Label1" Location="20, 132" Size="328, 15" Text="Tag" TabIndex="4" Style="none" ExStyle="none" />
+    <TextBox Name="TextBox1" Location="16, 148" Size="332, 20" TabIndex="5" Style="none" ExStyle="none" />
   </GroupBox>
 </Dialog>
