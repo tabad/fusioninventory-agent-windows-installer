@@ -622,6 +622,16 @@ LangString HelpPage_Help_Option_no-ssl-check_Paragraph_1 ${LANG_ENGLISH} "Do not
 LangString HelpPage_Help_Option_no-ssl-check_Paragraph_1 ${LANG_FRENCH} "fDo not check server certificate. (By default: $R9)"
 LangString HelpPage_Help_Option_no-ssl-check_Paragraph_1 ${LANG_SPANISH} "No comprobar el certificado del servidor. (Por defecto: $R9)"
 
+; HelpPage_Help_Option_no-start-menu_Paragraph_1
+LangString HelpPage_Help_Option_no-start-menu_Paragraph_1 ${LANG_ENGLISH} "Do not create the \i ${PRODUCT_NAME}\i0  folder on the Start Menu. (By default: $R9)"
+LangString HelpPage_Help_Option_no-start-menu_Paragraph_1 ${LANG_FRENCH} "fDo not create the \i ${PRODUCT_NAME}\i0  folder on the Start Menu. (By default: $R9)"
+LangString HelpPage_Help_Option_no-start-menu_Paragraph_1 ${LANG_SPANISH} "No crear la carpeta \i ${PRODUCT_NAME}\i0  en el Menú de Inicio. (Por defecto: $R9)"
+
+; HelpPage_Help_Option_no-start-menu_Paragraph_2
+LangString HelpPage_Help_Option_no-start-menu_Paragraph_2 ${LANG_ENGLISH} "The \i ${PRODUCT_NAME}\i0  folder is created, or not, for all users."
+LangString HelpPage_Help_Option_no-start-menu_Paragraph_2 ${LANG_FRENCH} "fThe \i ${PRODUCT_NAME}\i0  folder is created, or not, for all users."
+LangString HelpPage_Help_Option_no-start-menu_Paragraph_2 ${LANG_SPANISH} "La carpeta \i ${PRODUCT_NAME}\i0  es creada, o no, para todos los usuarios."
+
 ; HelpPage_Help_Option_no-task_Paragraph_1
 LangString HelpPage_Help_Option_no-task_Paragraph_1 ${LANG_ENGLISH} "Disables the given tasks. (By default: $R9)"
 LangString HelpPage_Help_Option_no-task_Paragraph_1 ${LANG_FRENCH} "fDisables the given tasks. (By default: $R9)"
@@ -718,6 +728,11 @@ LangString HelpPage_Help_Option_server_Paragraph_3 ${LANG_SPANISH} "Puede emplea
 LangString HelpPage_Help_Option_ssl-check_Paragraph_1 ${LANG_ENGLISH} "This option is the opposite of \b /no-ssl-check\b0 . See \b /no-ssl-check\b0  for more information."
 LangString HelpPage_Help_Option_ssl-check_Paragraph_1 ${LANG_FRENCH} "fThis option is the opposite of \b /no-ssl-check\b0 . See \b /no-ssl-check\b0  for more information."
 LangString HelpPage_Help_Option_ssl-check_Paragraph_1 ${LANG_SPANISH} "Esta opción es la opuesta a \b /no-ssl-check\b0 . Ver \b /no-ssl-check\b0  para más información."
+
+; HelpPage_Help_Option_start-menu_Paragraph_1
+LangString HelpPage_Help_Option_start-menu_Paragraph_1 ${LANG_ENGLISH} "This option is the opposite of \b /no-start-menu\b0 . See \b /no-start-menu\b0  for more information."
+LangString HelpPage_Help_Option_start-menu_Paragraph_1 ${LANG_FRENCH} "fThis option is the opposite of \b /no-start-menu\b0 . See \b /no-start-menu\b0  for more information."
+LangString HelpPage_Help_Option_start-menu_Paragraph_1 ${LANG_SPANISH} "Esta opción es la opuesta a \b /no-start-menu\b0 . Ver \b /no-start-menu\b0  para más información."
 
 ; HelpPage_Help_Option_tag_Paragraph_1
 LangString HelpPage_Help_Option_tag_Paragraph_1 ${LANG_ENGLISH} "Marks the computer with the tag \i tag\i0  . (By default: $R9)"

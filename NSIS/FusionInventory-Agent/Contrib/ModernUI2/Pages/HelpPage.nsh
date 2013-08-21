@@ -486,6 +486,20 @@ Function BuildHelpFile
    ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_no-ssl-check_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
 
+   ; /no-start-menu
+   ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_NO-START-MENU}"
+   ${EscapeSpecialRTFCharacters} "$R9" $R9
+   ${If} $R9 = 0
+      StrCpy $R9 $(HelpPage_Help_No)
+   ${Else}
+      StrCpy $R9 $(HelpPage_Help_Yes)
+   ${EndIf}
+
+   ${FileWriteLine} $R0 `\pard\li400\b /no-start-menu\b0\par`
+   ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_no-start-menu_Paragraph_1)\par`
+   ${FileWriteLine} $R0 `\par $(HelpPage_Help_Option_no-start-menu_Paragraph_2)\par`
+   ${FileWriteLine} $R0 `\par`
+
    ; /no-task
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_NO-TASK}"
    ${EscapeSpecialRTFCharacters} "$R9" $R9
@@ -582,6 +596,11 @@ Function BuildHelpFile
    ; /ssl-check
    ${FileWriteLine} $R0 `\pard\li400\b /ssl-check\b0\par`
    ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_ssl-check_Paragraph_1)\par`
+   ${FileWriteLine} $R0 `\par`
+
+   ; /start-menu
+   ${FileWriteLine} $R0 `\pard\li400\b /start-menu\b0\par`
+   ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_start-menu_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
 
    ; /tag
