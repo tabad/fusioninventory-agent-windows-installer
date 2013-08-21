@@ -240,6 +240,13 @@ Function GetCurrentOptions
       ${EndIf}
    ${EndIf}
 
+   ; Set option 'no-start-menu'
+   SetShellVarContext all
+   ${IfNot} ${FileExists} "$SMPROGRAMS\FusionInventory Status.url"
+   ${AndIfNot} ${FileExists} "$SMPROGRAMS\${PRODUCT_NAME}\FusionInventory Website.url"
+      ${WriteINIOption} "$R0" "${IO_NO-START-MENU}" "1"
+   ${EndIf}
+
    ; Get option 'no-task'
    ${registry::Read} "${PRODUCT_INST_ROOT_KEY}\$R1" "${IO_NO-TASK}" $R2 $R3
    ${If} "$R3" == "REG_SZ"
