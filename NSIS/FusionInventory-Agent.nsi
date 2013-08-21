@@ -678,6 +678,9 @@ Section "-End" SecEnd
    ${If} "$R0" == "${EXECMODE_TASK}"
       ${AddFusionInventoryWindowsTask}
    ${EndIf}
+
+   ; Install Start Menu folder
+   ${InstallStartMenuFolder}
 SectionEnd
 
 !insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
@@ -702,6 +705,10 @@ Section "-un.Init"
 
    ; Set mode at which commands print their status
    SetDetailsPrint textonly
+
+   ; Delete Start Menu folder
+   SetShellVarContext all
+   RMDir /r "$SMPROGRAMS\${PRODUCT_NAME}"
 
    ; Remove Windows service
    ${RemoveFusionInventoryWindowsService}

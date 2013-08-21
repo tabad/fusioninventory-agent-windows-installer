@@ -595,6 +595,66 @@
 !macroend
 
 
+; InstallStartMenuFolder
+!define InstallStartMenuFolder "!insertmacro InstallStartMenuFolder"
+
+!macro InstallStartMenuFolder
+   ; Push $R0, $R1 & $R2 onto the stack
+   Push $R0
+   Push $R1
+   Push $R2
+
+   ; Set mode at which commands print their status
+   SetDetailsPrint textonly
+
+   ; Set the context of $SMPROGRAMS and other shell folders
+   SetShellVarContext all
+
+   ; Create directory
+   StrCpy $R0 "$SMPROGRAMS\${PRODUCT_NAME}"
+   CreateDirectory "$R0"
+
+   ; Check whether the execution mode is as a Windows service
+   ${ReadINIOption} $R1 "${IOS_FINAL}" "${IO_EXECMODE}"
+   ${If} "$R1" == "${EXECMODE_SERVICE}"
+      ; Create $R0\${PRODUCT_NAME} Status.url
+      FileOpen $R1 "$R0\${PRODUCT_NAME} Status.url" w
+      ${ReadINIOption} $R2 "${IOS_FINAL}" "${IO_HTTPD-PORT}"
+      ${FileWriteLine} $R1 "[DEFAULT]"
+      ${FileWriteLine} $R1 "BASEURL=http://localhost:$R2/"
+      ${FileWriteLine} $R1 "[{000214A0-0000-0000-C000-000000000046}]"
+      ${FileWriteLine} $R1 "Prop3=19,2"
+      ${FileWriteLine} $R1 "[InternetShortcut]"
+      ${FileWriteLine} $R1 "URL=http://localhost:$R2/"
+      ${FileWriteLine} $R1 "IDList="
+      ${FileWriteLine} $R1 "IconFile=http://localhost:$R2/favicon.ico"
+      ${FileWriteLine} $R1 "IconIndex=1"
+      FileClose $R1
+   ${EndIf}
+
+   ; Create $R0\FusionInventory Website.url
+   FileOpen $R1 "$R0\FusionInventory Website.url" w
+   ${FileWriteLine} $R1 "[DEFAULT]"
+   ${FileWriteLine} $R1 "BASEURL=http://www.fusioninventory.org/"
+   ${FileWriteLine} $R1 "[{000214A0-0000-0000-C000-000000000046}]"
+   ${FileWriteLine} $R1 "Prop3=19,2"
+   ${FileWriteLine} $R1 "[InternetShortcut]"
+   ${FileWriteLine} $R1 "URL=http://www.fusioninventory.org/"
+   ${FileWriteLine} $R1 "IDList="
+   ${FileWriteLine} $R1 "IconFile=http://www.fusioninventory.org/favicon.ico"
+   ${FileWriteLine} $R1 "IconIndex=1"
+   FileClose $R1
+
+   ; Set mode at which commands print their status
+   SetDetailsPrint lastused
+
+   ; Pop $R2, $R1 & $R0 off of the stack
+   Pop $R2
+   Pop $R1
+   Pop $R0
+!macroend
+
+
 ; InstallStrawberryPerl
 !define InstallStrawberryPerl "!insertmacro InstallStrawberryPerl"
 
