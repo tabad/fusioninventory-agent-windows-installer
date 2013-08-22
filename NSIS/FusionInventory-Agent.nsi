@@ -396,7 +396,7 @@ Var FusionInventoryAgentTaskNetCoreInstalled
 !include "${FIAI_DIR}\Contrib\ModernUI2\Pages\DebugOptionsPage.nsh"
 !include "${FIAI_DIR}\Contrib\ModernUI2\Pages\ExecutionModePage.nsh"
 !include "${FIAI_DIR}\Contrib\ModernUI2\Pages\HelpPage.nsh"
-!include "${FIAI_DIR}\Contrib\ModernUI2\Pages\InstallationModePage.nsh"
+!include "${FIAI_DIR}\Contrib\ModernUI2\Pages\InstallationTypePage.nsh"
 !include "${FIAI_DIR}\Contrib\ModernUI2\Pages\HTTPServerOptionsPage.nsh"
 !include "${FIAI_DIR}\Contrib\ModernUI2\Pages\MiscelaneousOptionsPage.nsh"
 !include "${FIAI_DIR}\Contrib\ModernUI2\Pages\RemoteTargetsOptionsFirstPage.nsh"
@@ -413,7 +413,7 @@ Page custom HelpPage_Show HelpPage_Leave ""
 !insertmacro MUI_PAGE_WELCOME
 !define MUI_PAGE_CUSTOMFUNCTION_PRE "LicensePage_Pre"
 !insertmacro MUI_PAGE_LICENSE "${FIAI_DIR}\LicenseEnglish.rtf"
-Page custom InstallationModePage_Show InstallationModePage_Leave ""
+Page custom InstallationTypePage_Show InstallationTypePage_Leave ""
 !insertmacro MUI_PAGE_COMPONENTS
 !insertmacro MUI_PAGE_DIRECTORY
 Page custom TargetsPage_Show TargetsPage_Leave ""
@@ -1008,7 +1008,7 @@ Function .onInitSilentMode
    ${If} ${FusionInventoryAgentIsInstalled}
       ; The agent is already installed
 
-      ; What kind of installation is requested?
+      ; What type of installation is requested?
       ${ReadINIOption} $R0 "${IOS_COMMANDLINE}" "${IO_INSTALLTYPE}"
 
       ${If} "$R0" == "${INSTALLTYPE_FROMSCRATCH}"
@@ -1216,9 +1216,9 @@ Function .onInitVisualMode
       ; The agent is already installed
 
       ; Note: Whether you change this block of code, please, remember also to do the necessary changes
-      ;       into function InstallModePage Leave in ${FIAI_DIR}\Contrib\ModernUI2\Pages\InstallModePage.nsh
+      ;       into function InstallationTypePage_Leave in ${FIAI_DIR}\Contrib\ModernUI2\Pages\InstallationTypePage.nsh
 
-      ; What kind of installation is requested?
+      ; What type of installation is requested?
       ${ReadINIOption} $R0 "${IOS_COMMANDLINE}" "${IO_INSTALLTYPE}"
 
       ${If} "$R0" == "${INSTALLTYPE_FROMSCRATCH}"

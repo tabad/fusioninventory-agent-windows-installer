@@ -29,7 +29,7 @@
    ------------------------------------------------------------------------
 
    @package   FusionInventory Agent Installer for Microsoft Windows
-   @file      .\FusionInventory Agent\Contrib\ModernUI2\Pages\InstallationModePage.nsh
+   @file      .\FusionInventory Agent\Contrib\ModernUI2\Pages\InstallationTypePage.nsh
    @author    Tomas Abad <tabadgp@gmail.com>
    @copyright Copyright (c) 2010-2013 FusionInventory Team
    @license   GNU GPL version 2 or (at your option) any later version
@@ -54,75 +54,75 @@
 !include "${FIAI_DIR}\Include\INIFunc.nsh"
 !include "${FIAI_DIR}\Include\MiscFunc.nsh"
 !include "${FIAI_DIR}\Include\CurrentConfig.nsh"
-!include "${FIAI_DIR}\Contrib\ModernUI2\Pages\InstallationModePageLangStrings.nsh"
+!include "${FIAI_DIR}\Contrib\ModernUI2\Pages\InstallationTypePageLangStrings.nsh"
 
 
 ;--------------------------------
 ; Handle Variables
 
-Var hCtl_InstallationModePage
-Var hCtl_InstallationModePage_Label1
-Var hCtl_InstallationModePage_RadioButton1
-Var hCtl_InstallationModePage_Label2
-Var hCtl_InstallationModePage_RadioButton2
-Var hCtl_InstallationModePage_Label3
+Var hCtl_InstallationTypePage
+Var hCtl_InstallationTypePage_Label1
+Var hCtl_InstallationTypePage_RadioButton1
+Var hCtl_InstallationTypePage_Label2
+Var hCtl_InstallationTypePage_RadioButton2
+Var hCtl_InstallationTypePage_Label3
 
 
 ;--------------------------------
-; InstallMode Page Functions
+; InstallationType Page Functions
 
-Function InstallationModePage_Create
+Function InstallationTypePage_Create
    ; Push $R0 onto the stack
    Push $R0
 
-   ; === InstallationModePage (type: Dialog) ===
+   ; === InstallationTypePage (type: Dialog) ===
    nsDialogs::Create 1018
-   Pop $hCtl_InstallationModePage
-   ${If} "$hCtl_InstallationModePage" == "error"
+   Pop $hCtl_InstallationTypePage
+   ${If} "$hCtl_InstallationTypePage" == "error"
      Pop $R0
      Abort
    ${EndIf}
-   !insertmacro MUI_HEADER_TEXT "$(InstallationModePage_Text)" "$(InstallationModePage_SubText)"
+   !insertmacro MUI_HEADER_TEXT "$(InstallationTypePage_Text)" "$(InstallationTypePage_SubText)"
 
    ; === Label1 (type: Label) ===
-   ${NSD_CreateLabel} 0u 0u 294u 36u "$(InstallationModePage_Label1_Text)"
-   Pop $hCtl_InstallationModePage_Label1
+   ${NSD_CreateLabel} 0u 0u 294u 36u "$(InstallationTypePage_Label1_Text)"
+   Pop $hCtl_InstallationTypePage_Label1
 
    ; === RadioButton1 (type: RadioButton) ===
-   ${NSD_CreateRadioButton} 16u 41u 252u 14u "$(InstallationModePage_RadioButton1_Text)"
-   Pop $hCtl_InstallationModePage_RadioButton1
-   ${NSD_AddStyle} $hCtl_InstallationModePage_RadioButton1 ${WS_GROUP}
+   ${NSD_CreateRadioButton} 16u 41u 252u 14u "$(InstallationTypePage_RadioButton1_Text)"
+   Pop $hCtl_InstallationTypePage_RadioButton1
+   ${NSD_AddStyle} $hCtl_InstallationTypePage_RadioButton1 ${WS_GROUP}
 
    ; === Label2 (type: Label) ===
-   ${NSD_CreateLabel} 32u 54u 236u 23u "$(InstallationModePage_Label2_Text)"
-   Pop $hCtl_InstallationModePage_Label2
+   ${NSD_CreateLabel} 32u 54u 236u 23u "$(InstallationTypePage_Label2_Text)"
+   Pop $hCtl_InstallationTypePage_Label2
 
    ; === RadioButton2 (type: RadioButton) ===
-   ${NSD_CreateRadioButton} 16u 81u 252u 14u "$(InstallationModePage_RadioButton2_Text)"
-   Pop $hCtl_InstallationModePage_RadioButton2
+   ${NSD_CreateRadioButton} 16u 81u 252u 14u "$(InstallationTypePage_RadioButton2_Text)"
+   Pop $hCtl_InstallationTypePage_RadioButton2
 
    ; === Label3 (type: Label) ===
-   ${NSD_CreateLabel} 32u 95u 236u 23u "$(InstallationModePage_Label3_Text)"
-   Pop $hCtl_InstallationModePage_Label3
+   ${NSD_CreateLabel} 32u 95u 236u 23u "$(InstallationTypePage_Label3_Text)"
+   Pop $hCtl_InstallationTypePage_Label3
 
    ; OnBack function
-   ${NSD_OnBack} InstallationModePage_Back
+   ${NSD_OnBack} InstallationTypePage_Back
 
    ; Default values
    ${ReadINIOption} $R0 "${IOS_GUI}" "${IO_INSTALLTYPE}"
 
    ${If} "$R0" == "${INSTALLTYPE_FROMSCRATCH}"
       ; Check RadioButton1
-      ${NSD_Check} $hCtl_InstallationModePage_RadioButton1
-      ${NSD_Uncheck} $hCtl_InstallationModePage_RadioButton2
+      ${NSD_Check} $hCtl_InstallationTypePage_RadioButton1
+      ${NSD_Uncheck} $hCtl_InstallationTypePage_RadioButton2
    ${ElseIf} "$R0" == "${INSTALLTYPE_FROMCURRENTCONFIG}"
       ; Check RadioButton2
-      ${NSD_Uncheck} $hCtl_InstallationModePage_RadioButton1
-      ${NSD_Check} $hCtl_InstallationModePage_RadioButton2
+      ${NSD_Uncheck} $hCtl_InstallationTypePage_RadioButton1
+      ${NSD_Check} $hCtl_InstallationTypePage_RadioButton2
    ${Else}
       ; Check RadioButton2
-      ${NSD_Uncheck} $hCtl_InstallationModePage_RadioButton1
-      ${NSD_Check} $hCtl_InstallationModePage_RadioButton2
+      ${NSD_Uncheck} $hCtl_InstallationTypePage_RadioButton1
+      ${NSD_Check} $hCtl_InstallationTypePage_RadioButton2
    ${EndIf}
 
    ; Pop $R0 off of the stack
@@ -130,12 +130,12 @@ Function InstallationModePage_Create
 FunctionEnd
 
 
-Function InstallationModePage_Show
+Function InstallationTypePage_Show
    ; Is FusionInventory Agent installed?
    ${If} ${FusionInventoryAgentIsInstalled}
       ; The agent is already installed
-      Call InstallationModePage_Create
-      nsDialogs::Show $hCtl_InstallationModePage
+      Call InstallationTypePage_Create
+      nsDialogs::Show $hCtl_InstallationTypePage
    ${Else}
       ; The agent is not installed yet
       Abort
@@ -143,12 +143,12 @@ Function InstallationModePage_Show
 FunctionEnd
 
 
-Function InstallationModePage_Leave
+Function InstallationTypePage_Leave
    ; Push $R0 & $R1 onto the stack
    Push $R0
    Push $R1
 
-   ${NSD_GetState} $hCtl_InstallationModePage_RadioButton1 $R0
+   ${NSD_GetState} $hCtl_InstallationTypePage_RadioButton1 $R0
 
    ${If} "$R0" == "${BST_CHECKED}"
       ; ${INSTALLTYPE_FROMSCRATCH}
@@ -310,6 +310,6 @@ Function InstallationModePage_Leave
 FunctionEnd
 
 
-Function InstallationModePage_Back
-   Call InstallationModePage_Leave
+Function InstallationTypePage_Back
+   Call InstallationTypePage_Leave
 FunctionEnd
