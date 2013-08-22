@@ -181,8 +181,8 @@ LangString HelpPage_Help_Option ${LANG_FRENCH} "fOption"
 LangString HelpPage_Help_Option ${LANG_SPANISH} "Opción"
 
 ; HelpPage_Help_Option_acceptlicense_Paragraph_1
-LangString HelpPage_Help_Option_acceptlicense_Paragraph_1 ${LANG_ENGLISH} "You accept and acknowledge that you have read, and understand, the terms and conditions of ${PRODUCT_NAME} ${PRODUCT_VERSION} license. (By default: $R9)"
-LangString HelpPage_Help_Option_acceptlicense_Paragraph_1 ${LANG_FRENCH} "fYou accept and acknowledge that you have read, and understand, the terms and conditions of ${PRODUCT_NAME} ${PRODUCT_VERSION} license. (By default: $R9)"
+LangString HelpPage_Help_Option_acceptlicense_Paragraph_1 ${LANG_ENGLISH} "You accept and acknowledge that you have read, and understood, the terms and conditions of ${PRODUCT_NAME} ${PRODUCT_VERSION} license. (By default: $R9)"
+LangString HelpPage_Help_Option_acceptlicense_Paragraph_1 ${LANG_FRENCH} "fYou accept and acknowledge that you have read, and understood, the terms and conditions of ${PRODUCT_NAME} ${PRODUCT_VERSION} license. (By default: $R9)"
 LangString HelpPage_Help_Option_acceptlicense_Paragraph_1 ${LANG_SPANISH} "Acepta y reconoce que ha leído y entendido los términos y condiciones de la licencia de ${PRODUCT_NAME} ${PRODUCT_VERSION}. (Por defecto: $R9)"
 
 ; HelpPage_Help_Option_acceptlicense_Paragraph_2
@@ -512,8 +512,8 @@ LangString HelpPage_Help_Option_installtype_Paragraph_1 ${LANG_FRENCH} "fSelects
 LangString HelpPage_Help_Option_installtype_Paragraph_1 ${LANG_SPANISH} "Selecciona entre una instalación desde cero (\b from-scratch\b0 ) o, si el sistema tiene un agente previamente instalado, una instalación basada en la configuración actual (\b from-current-config\b0 ). (Por defecto: \b $R9\b0 )"
 
 ; HelpPage_Help_Option_installtype_Paragraph_2
-LangString HelpPage_Help_Option_installtype_Paragraph_2 ${LANG_ENGLISH} "The installer automatically switch from \b from-current-config\b0  to \b from-scratch\b0  whether it's not able to detect a ${PRODUCT_NAME} previously installed on the system. This behaviour makes unnecesary to have to indicate \b /installtype\b0 =\b from-scratch\b0  to perform a ${PRODUCT_NAME} installation on those systems in which it doesn't exist previously and, at the same time, facillitates the update of ${PRODUCT_NAME} on those systems in which it exists."
-LangString HelpPage_Help_Option_installtype_Paragraph_2 ${LANG_FRENCH} "fThe installer automatically switch from \b from-current-config\b0  to \b from-scratch\b0  whether it's not able to detect a ${PRODUCT_NAME} previously installed on the system. This behaviour makes unnecesary to have to indicate \b /installtype\b0 =\b from-scratch\b0  to perform a ${PRODUCT_NAME} installation on those systems in which it doesn't exist previously and, at the same time, facillitates the update of ${PRODUCT_NAME} on those systems in which it exists."
+LangString HelpPage_Help_Option_installtype_Paragraph_2 ${LANG_ENGLISH} "The installer automatically switches from \b from-current-config\b0  to \b from-scratch\b0  whether it's not able to detect a ${PRODUCT_NAME} previously installed on the system. This behaviour makes unnecesary to have to indicate \b /installtype\b0 =\b from-scratch\b0  to perform a ${PRODUCT_NAME} installation on those systems in which it doesn't exist previously and, at the same time, facillitates the update of ${PRODUCT_NAME} on those systems in which it exists."
+LangString HelpPage_Help_Option_installtype_Paragraph_2 ${LANG_FRENCH} "fThe installer automatically switches from \b from-current-config\b0  to \b from-scratch\b0  whether it's not able to detect a ${PRODUCT_NAME} previously installed on the system. This behaviour makes unnecesary to have to indicate \b /installtype\b0 =\b from-scratch\b0  to perform a ${PRODUCT_NAME} installation on those systems in which it doesn't exist previously and, at the same time, facillitates the update of ${PRODUCT_NAME} on those systems in which it exists."
 LangString HelpPage_Help_Option_installtype_Paragraph_2 ${LANG_SPANISH} "El instalador cambia automáticamente de \b from-current-config\b0  a \b from-scratch\b0  si no es capaz de detectar un agente instalado previamente en el sistema. Este comportamiento hace innecesario tener que indicar \b /installtype\b0 =\b from-scratch\b0  para realizar una instalación de ${PRODUCT_NAME} en aquellos sistemas en los que no existe con anterioridad y, al mismo tiempo, facilita la actualización de ${PRODUCT_NAME} en aquellos sistemas en los que existe."
 
 ; HelpPage_Help_Option_local_Paragraph_1
@@ -537,8 +537,8 @@ LangString HelpPage_Help_Option_logfile_Paragraph_1 ${LANG_FRENCH} "fWrites log 
 LangString HelpPage_Help_Option_logfile_Paragraph_1 ${LANG_SPANISH} "Escribe los mensajes de registro en el archivo \i filename\i0 . (Por defecto: $R9)"
 
 ; HelpPage_Help_Option_logfile_Paragraph_2
-LangString HelpPage_Help_Option_logfile_Paragraph_2 ${LANG_ENGLISH} "You must indicate an full path in \i filename\i0 . The \b /local\b0  option comes into play only if you have also indicated \b File\b0  as a value of the \b /logger\b0  option."
-LangString HelpPage_Help_Option_logfile_Paragraph_2 ${LANG_FRENCH} "fYou must indicate an full path in \i filename\i0 . The \b /local\b0  option comes into play only if you have also indicated \b File\b0  as a value of the \b /logger\b0  option."
+LangString HelpPage_Help_Option_logfile_Paragraph_2 ${LANG_ENGLISH} "You must indicate a full path in \i filename\i0 . The \b /local\b0  option comes into play only if you have also indicated \b File\b0  as a value of the \b /logger\b0  option."
+LangString HelpPage_Help_Option_logfile_Paragraph_2 ${LANG_FRENCH} "fYou must indicate a full path in \i filename\i0 . The \b /local\b0  option comes into play only if you have also indicated \b File\b0  as a value of the \b /logger\b0  option."
 LangString HelpPage_Help_Option_logfile_Paragraph_2 ${LANG_SPANISH} "Debe indicar una ruta completa en \i filename\i0 . The opción \b /local\b0  entra en juego únicamente si ha indicado también \b File\b0  como un valor de la opción \b /logger\b0 ."
 
 ; HelpPage_Help_Option_logfile-maxsize_Paragraph_1
@@ -750,8 +750,8 @@ LangString HelpPage_Help_Option_task-daily-modifier_Paragraph_1 ${LANG_FRENCH} "
 LangString HelpPage_Help_Option_task-daily-modifier_Paragraph_1 ${LANG_SPANISH} "Modificador de planificador de tareas diario. (Por defecto: $R9 día)"
 
 ; HelpPage_Help_Option_task-daily-modifier_Paragraph_2
-LangString HelpPage_Help_Option_task-daily-modifier_Paragraph_2 ${LANG_ENGLISH} "\i modifier\i0  can takes values between 1 and 30, both included."
-LangString HelpPage_Help_Option_task-daily-modifier_Paragraph_2 ${LANG_FRENCH} "f\i modifier\i0  can takes values between 1 and 30, both included."
+LangString HelpPage_Help_Option_task-daily-modifier_Paragraph_2 ${LANG_ENGLISH} "\i modifier\i0  can take values between 1 and 30, both included."
+LangString HelpPage_Help_Option_task-daily-modifier_Paragraph_2 ${LANG_FRENCH} "f\i modifier\i0  can take values between 1 and 30, both included."
 LangString HelpPage_Help_Option_task-daily-modifier_Paragraph_2 ${LANG_SPANISH} "\i modifier\i0  puede tomar valores entre 1 y 30, ambos incluidos."
 
 ; HelpPage_Help_Option_task-daily-modifier_Paragraph_3
@@ -778,7 +778,7 @@ LangString HelpPage_Help_Option_task-frequency_Paragraph_2 ${LANG_FRENCH} \
 \tab\b Hourly\b0 : At hour intervals (see option \b /task-hourly-modifier\b0 )\par\
 \tab\b Daily\b0 : At day intervals (see option \b /task-daily-modifier\b0 )"
 LangString HelpPage_Help_Option_task-frequency_Paragraph_2 ${LANG_SPANISH} \
-"f\i frequency\i0  puede ser cualquiera de los siguientes valores:\par\
+"\i frequency\i0  puede ser cualquiera de los siguientes valores:\par\
 \par\
 \tab\b Minute\b0 : En intervalos de minuto (ver opción \b /task-minute-modifier\b0 )\par\
 \tab\b Hourly\b0 : En intervalos de hora (ver opción \b /task-hourly-modifier\b0 )\par\
@@ -790,8 +790,8 @@ LangString HelpPage_Help_Option_task-hourly-modifier_Paragraph_1 ${LANG_FRENCH} 
 LangString HelpPage_Help_Option_task-hourly-modifier_Paragraph_1 ${LANG_SPANISH} "Modificador de planificador de tareas horario. (Por defecto: $R9 hora)"
 
 ; HelpPage_Help_Option_task-hourly-modifier_Paragraph_2
-LangString HelpPage_Help_Option_task-hourly-modifier_Paragraph_2 ${LANG_ENGLISH} "\i modifier\i0  can takes values between 1 and 23, both included."
-LangString HelpPage_Help_Option_task-hourly-modifier_Paragraph_2 ${LANG_FRENCH} "f\i modifier\i0  can takes values between 1 and 23, both included."
+LangString HelpPage_Help_Option_task-hourly-modifier_Paragraph_2 ${LANG_ENGLISH} "\i modifier\i0  can take values between 1 and 23, both included."
+LangString HelpPage_Help_Option_task-hourly-modifier_Paragraph_2 ${LANG_FRENCH} "f\i modifier\i0  can take values between 1 and 23, both included."
 LangString HelpPage_Help_Option_task-hourly-modifier_Paragraph_2 ${LANG_SPANISH} "\i modifier\i0  puede tomar valores entre 1 y 23, ambos incluidos."
 
 ; HelpPage_Help_Option_task-hourly-modifier_Paragraph_3
