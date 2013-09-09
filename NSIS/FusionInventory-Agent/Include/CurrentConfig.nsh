@@ -333,6 +333,105 @@ Function GetCurrentOptions
 FunctionEnd
 
 
+; GetCurrentProductArchitecture
+!define GetCurrentProductArchitecture "!insertmacro GetCurrentProductArchitecture"
+
+!macro GetCurrentProductArchitecture ResultVar
+   Call GetCurrentProductArchitecture
+   Pop "${ResultVar}"
+!macroend
+
+Function GetCurrentProductArchitecture
+   ; Push $R0, $R1, $R2 & $R3 onto the stack
+   Push $R0
+   Push $R1
+   Push $R2
+   Push $R3
+
+   ; Initialize $R0
+   StrCpy $R0 ""
+
+   ; Get current uninstall subkey
+   Call GetCurrentUninstallSubkey
+   Pop $R1
+
+   ${If} "$R1" != ""
+      ; Get current uninstall string
+      ${registry::Read} "${PRODUCT_UNINST_ROOT_KEY}\$R1" "Architecture" $R2 $R3
+
+      ${If} "$R2" != ""
+      ${AndIf} "$R3" == "REG_SZ"
+         ${Trim} "$R2" $R2
+         ${Select} "$R2"
+            ${Case} "32"
+               ; x86 architecture
+               StrCpy $R0 "${PLATFORM_ARCHITECTURE_32}"
+            ${Case} "64"
+               ; x64 architecture
+               StrCpy $R0 "${PLATFORM_ARCHITECTURE_64}"
+            ${CaseElse}
+               ; Invalid architecture
+               StrCpy $R0 "Error!"
+         ${EndSelect}
+      ${Else}
+         ; x86 architecture
+         ;    Previous installer
+         StrCpy $R0 "${PLATFORM_ARCHITECTURE_32}"
+      ${EndIf}
+   ${EndIf}
+
+   ; Pop $R3, $R2 & $R1 off of the stack
+   Pop $R3
+   Pop $R2
+   Pop $R1
+
+   ; Exchanges the top element of the stack with $R0
+   Exch $R0
+FunctionEnd
+
+
+; GetCurrentProductVersion
+!define GetCurrentProductVersion "!insertmacro GetCurrentProductVersion"
+
+!macro GetCurrentProductVersion ResultVar
+   Call GetCurrentProductVersion
+   Pop "${ResultVar}"
+!macroend
+
+Function GetCurrentProductVersion
+   ; Push $R0, $R1, $R2 & $R3 onto the stack
+   Push $R0
+   Push $R1
+   Push $R2
+   Push $R3
+
+   ; Initialize $R0
+   StrCpy $R0 ""
+
+   ; Get current uninstall subkey
+   Call GetCurrentUninstallSubkey
+   Pop $R1
+
+   ${If} "$R1" != ""
+      ; Get current uninstall string
+      ${registry::Read} "${PRODUCT_UNINST_ROOT_KEY}\$R1" "DisplayVersion" $R2 $R3
+
+      ${If} "$R2" != ""
+      ${AndIf} "$R3" == "REG_SZ"
+         StrCpy $R0 "$R2"
+      ${EndIf}
+   ${EndIf}
+
+   ; Pop $R3, $R2 & $R1 off of the stack
+   Pop $R3
+   Pop $R2
+   Pop $R1
+
+   ; Exchanges the top element of the stack with $R0
+   Exch $R0
+FunctionEnd
+
+
 ; InitINIOptionsSectionCurrentConfig
 !define InitINIOptionSectionCurrentConfig "Call InitINIOptionSectionCurrentConfig"
 
