@@ -72,8 +72,9 @@ Var hCtl_InstallationTypePage_Label3
 ; InstallationType Page Functions
 
 Function InstallationTypePage_Create
-   ; Push $R0 onto the stack
+   ; Push $R0 & $R1 onto the stack
    Push $R0
+   Push $R1
 
    ; === InstallationTypePage (type: Dialog) ===
    nsDialogs::Create 1018
@@ -84,25 +85,33 @@ Function InstallationTypePage_Create
    ${EndIf}
    !insertmacro MUI_HEADER_TEXT "$(InstallationTypePage_Text)" "$(InstallationTypePage_SubText)"
 
+   ; Get current product version
+   ;    Label1_Text use it.
+   ${GetCurrentProductVersion} $R0
+
+   ; Get current product architecture
+   ;    Label1_Text use it.
+   ${GetCurrentProductArchitecture} $R1
+
    ; === Label1 (type: Label) ===
-   ${NSD_CreateLabel} 0u 0u 294u 36u "$(InstallationTypePage_Label1_Text)"
+   ${NSD_CreateLabel} 0u 0u 294u 45u "$(InstallationTypePage_Label1_Text)"
    Pop $hCtl_InstallationTypePage_Label1
 
    ; === RadioButton1 (type: RadioButton) ===
-   ${NSD_CreateRadioButton} 16u 41u 252u 14u "$(InstallationTypePage_RadioButton1_Text)"
+   ${NSD_CreateRadioButton} 16u 50u 252u 14u "$(InstallationTypePage_RadioButton1_Text)"
    Pop $hCtl_InstallationTypePage_RadioButton1
    ${NSD_AddStyle} $hCtl_InstallationTypePage_RadioButton1 ${WS_GROUP}
 
    ; === Label2 (type: Label) ===
-   ${NSD_CreateLabel} 32u 54u 236u 23u "$(InstallationTypePage_Label2_Text)"
+   ${NSD_CreateLabel} 32u 63u 236u 23u "$(InstallationTypePage_Label2_Text)"
    Pop $hCtl_InstallationTypePage_Label2
 
    ; === RadioButton2 (type: RadioButton) ===
-   ${NSD_CreateRadioButton} 16u 81u 252u 14u "$(InstallationTypePage_RadioButton2_Text)"
+   ${NSD_CreateRadioButton} 16u 90u 252u 14u "$(InstallationTypePage_RadioButton2_Text)"
    Pop $hCtl_InstallationTypePage_RadioButton2
 
    ; === Label3 (type: Label) ===
-   ${NSD_CreateLabel} 32u 95u 236u 23u "$(InstallationTypePage_Label3_Text)"
+   ${NSD_CreateLabel} 32u 104u 236u 23u "$(InstallationTypePage_Label3_Text)"
    Pop $hCtl_InstallationTypePage_Label3
 
    ; OnBack function
@@ -125,7 +134,8 @@ Function InstallationTypePage_Create
       ${NSD_Check} $hCtl_InstallationTypePage_RadioButton2
    ${EndIf}
 
-   ; Pop $R0 off of the stack
+   ; Pop $R1 & $R0 off of the stack
+   Pop $R1
    Pop $R0
 FunctionEnd
 

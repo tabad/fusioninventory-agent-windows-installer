@@ -60,9 +60,9 @@ LangString InstallationTypePage_SubText ${LANG_FRENCH} "fChoose how you want to 
 LangString InstallationTypePage_SubText ${LANG_SPANISH} "Elija cómo quiere instalar ${PRODUCT_NAME}."
 
 ; InstallationTypePage_Label1_Text
-LangString InstallationTypePage_Label1_Text ${LANG_ENGLISH} "You have FusionInventory Agent already installed in your computer. In your case, you have two different types of installation to install this new version.$\r$\n$\r$\nYou should decide whether you want to:"
-LangString InstallationTypePage_Label1_Text ${LANG_FRENCH} "fYou have FusionInventory Agent already installed in your computer. In your case, you have two different types of installation to install this new version.$\r$\n$\r$\nYou should decide whether you want to:"
-LangString InstallationTypePage_Label1_Text ${LANG_SPANISH} "Usted ya tiene FusionInventory Agent instalado en su computador. En su caso, usted dispone de dos diferentes tipos de instalación para instalar esta nueva versión.$\r$\n$\r$\nUsted debería decidir si quiere:"
+LangString InstallationTypePage_Label1_Text ${LANG_ENGLISH} "You have FusionInventory Agent $R0 ($R1 edition) already installed in your computer. In your case, you have two different types of installation to install this new version.$\r$\n$\r$\nYou should decide whether you want to:"
+LangString InstallationTypePage_Label1_Text ${LANG_FRENCH} "fYou have FusionInventory Agent $R0 ($R1 edition) already installed in your computer. In your case, you have two different types of installation to install this new version.$\r$\n$\r$\nYou should decide whether you want to:"
+LangString InstallationTypePage_Label1_Text ${LANG_SPANISH} "Usted ya tiene FusionInventory Agent $R0 ($R1 edition) instalado en su computador. En su caso, usted dispone de dos diferentes tipos de instalación para instalar esta nueva versión.$\r$\n$\r$\nUsted debería decidir si quiere:"
 
 ; InstallationTypePage_RadioButton1
 LangString InstallationTypePage_RadioButton1_Text ${LANG_ENGLISH} "Install from scratch"

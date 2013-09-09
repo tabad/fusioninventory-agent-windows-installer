@@ -5,9 +5,9 @@ http://coolsoft.altervista.org/nsisdialogdesigner
 Do not edit manually!
 -->
 <Dialog Name="InstallationTypePage" Title="Dialog title..." Subtitle="Dialog subtitle..." Style="none" ExStyle="none">
-  <Label Name="Label1" Location="0, 0" Size="448, 64" Text="You have FusionInventory Agent already installed in your computer. In your case, you have two different types of installation to install this new version. You should decide whether you want to:&#xD;&#xA;" TabIndex="0" Style="none" ExStyle="none" />
-  <RadioButton Name="RadioButton1" Location="24, 72" Size="384, 24" Text="Install from scratch" Checked="True" TabIndex="1" Style="none" ExStyle="none" />
-  <Label Name="Label2" Location="48, 96" Size="360, 40" Text="The new FusionInventory Agent will be installed using options values based on its default values.&#xD;&#xA;" TabIndex="2" Style="none" ExStyle="none" />
-  <RadioButton Name="RadioButton2" Location="24, 144" Size="384, 24" Text="Install from current configuration" TabIndex="3" Style="none" ExStyle="none" />
-  <Label Name="Label3" Location="48, 168" Size="360, 40" Text="The new FusionInventory Agent will be installed using options values based on its current values." TabIndex="4" Style="none" ExStyle="none" />
+  <Label Name="Label1" Location="0, 0" Size="448, 80" Text="You have FusionInventory Agent already installed in your computer. In your case, you have two different types of installation to install this new version. You should decide whether you want to:&#xD;&#xA;" TabIndex="0" Style="none" ExStyle="none" />
+  <RadioButton Name="RadioButton1" Location="24, 88" Size="384, 24" Text="Install from scratch" Checked="True" TabIndex="1" Style="none" ExStyle="none" />
+  <Label Name="Label2" Location="48, 112" Size="360, 40" Text="The new FusionInventory Agent will be installed using options values based on its default values.&#xD;&#xA;" TabIndex="2" Style="none" ExStyle="none" />
+  <RadioButton Name="RadioButton2" Location="24, 160" Size="384, 24" Text="Install from current configuration" TabIndex="3" Style="none" ExStyle="none" />
+  <Label Name="Label3" Location="48, 184" Size="360, 40" Text="The new FusionInventory Agent will be installed using options values based on its current values." TabIndex="4" Style="none" ExStyle="none" />
 </Dialog>
