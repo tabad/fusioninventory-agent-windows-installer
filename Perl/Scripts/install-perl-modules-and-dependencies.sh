@@ -150,7 +150,7 @@ while (( ${iter} < ${#archs[@]} )); do
 
    # Install modules
    echo "Installing modules..."
-   ${perl} ${cpanm} --install --auto-cleanup 1 --skip-installed --notest --quiet ${fusinv_mod_dependences}
+   ${perl} ${cpanm} --install --auto-cleanup 1 --skip-satisfied --notest --quiet ${fusinv_mod_dependences}
    echo
 
    # Remove perl_path from PATH
