@@ -47,7 +47,6 @@ source ./load-perl-environment
 declare perl=''
 declare cpanm=''
 declare perl_path=''
-declare cpanoutdated=''
 
 declare -i iter=0
 declare basename=''
@@ -148,17 +147,6 @@ while (( ${iter} < ${#archs[@]} )); do
    # Update cpanm
    echo "Updating 'cpanm'..."
    ${perl} ${cpanm} --install --auto-cleanup 1 --skip-installed --notest --quiet App::cpanminus
-
-   # Install cpan-outdated
-   echo "Installing 'cpan-outdated'..."
-   ${perl} ${cpanm} --install --auto-cleanup 1 --skip-installed --notest --quiet App::cpanoutdated
-
-   # Set cpanoutdated
-   cpanoutdated=$(type -P cpan-outdated)
-
-   # Update outdated CPAN modules
-   echo "Updating modules..."
-   ${perl} ${cpanoutdated} -p | ${perl} ${cpanm} --install --auto-cleanup 1 --skip-installed --notest --quiet
 
    # Install modules
    echo "Installing modules..."
