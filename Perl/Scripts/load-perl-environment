@@ -68,7 +68,7 @@ declare -r fusinv_agent_repository='https://github.com/fusinv/fusioninventory-ag
 declare -r fusinv_agent_mod_dependences='Archive::Extract Crypt::DES Compress::Zlib Digest::MD5 Digest::SHA File::Copy::Recursive File::Which HTTP::Daemon IO::Socket::SSL JSON LWP LWP::Protocol::https Net::IP Net::NBName Net::SNMP Parse::EDID POE::Component::Client::Ping Socket::GetAddrInfo Text::Template UNIVERSAL::require URI::Escape Win32::Daemon Win32::Job Win32::OLE Win32::TieRegistry XML::TreePP'
 declare -r fusinv_agent_mod_uses='Compress::Zlib English Fcntl File::Temp File::Spec File::Basename Getopt::Long LWP::UserAgent Pod::Usage threads threads::shared Win32 Win32::Daemon XML::TreePP'
 
-declare -r fusinv_mod_uses_not_detected_by_par='Encode::Byte Encode::Unicode Memoize Tie::Hash::NamedCapture Time::localtime User::pwent Win32::OLE::Const'
+declare -r fusinv_mod_uses_not_detected_by_par='Encode::Byte Encode::Unicode Encode::CN Memoize Tie::Hash::NamedCapture Time::localtime User::pwent Win32::OLE::Const'
 
 if (( ${#fusinv_agent_commit} > ${maximum_commit_length} )); then
    fusinv_agent_commit="${fusinv_agent_commit:0:${maximum_commit_length}}"
