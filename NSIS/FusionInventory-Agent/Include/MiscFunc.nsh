@@ -193,10 +193,8 @@
 
    ; Install $R0\perl\agent\FusionInventory\Agent\Tools\*.pm
    ; but not $R0\perl\agent\FusionInventory\Agent\Tools\Hardware.pm
-   ;         $R0\perl\agent\FusionInventory\Agent\Tools\SNMP.pm
    SetOutPath "$R0\perl\agent\FusionInventory\Agent\Tools"
    File /x "Hardware.pm" \
-        /x "SNMP.pm"     \
         "${FIA_DIR}\lib\FusionInventory\Agent\Tools\*.pm"
 
    ; Install $R0\perl\agent\FusionInventory\Agent\Tools\Generic\*.*
@@ -428,10 +426,8 @@
       File /r "${FIA_DIR}\lib\FusionInventory\Agent\SNMP\*.*"
 
       ; Install $R0\perl\agent\FusionInventory\Agent\Tools\Hardware.pm
-      ;         $R0\perl\agent\FusionInventory\Agent\Tools\SNMP.pm
       SetOutPath "$R0\perl\agent\FusionInventory\Agent\Tools"
       File "${FIA_DIR}\lib\FusionInventory\Agent\Tools\Hardware.pm"
-      File "${FIA_DIR}\lib\FusionInventory\Agent\Tools\SNMP.pm"
 
       ; Install $R0\perl\agent\FusionInventory\Agent\Tools\Hardware\*.*
       SetOutPath "$R0\perl\agent\FusionInventory\Agent\Tools\Hardware"
