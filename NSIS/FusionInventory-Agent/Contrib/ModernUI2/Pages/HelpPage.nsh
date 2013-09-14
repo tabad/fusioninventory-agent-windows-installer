@@ -206,6 +206,7 @@ Function BuildHelpFile
    ${FileWriteLine} $R0 `\pard\li400\b /acceptlicense\b0\par`
    ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_acceptlicense_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par $(HelpPage_Help_Option_acceptlicense_Paragraph_2)\par`
+   ${FileWriteLine} $R0 `\par $(HelpPage_Help_Option_acceptlicense_Paragraph_3)\par`
    ${FileWriteLine} $R0 `\par`
 
    ; /add-firewall-exception

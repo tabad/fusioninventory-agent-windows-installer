@@ -100,8 +100,8 @@ LangString HelpPage_Help_Description_Paragraph_1 ${LANG_FRENCH} "f\b ${PRODUCT_I
 LangString HelpPage_Help_Description_Paragraph_1 ${LANG_SPANISH} "\b ${PRODUCT_INSTALLER}\b0  instala ${PRODUCT_NAME} ${PRODUCT_VERSION} en su sistema operativo Microsoft Windows."
 
 ; HelpPage_Help_Description_Paragraph_2
-LangString HelpPage_Help_Description_Paragraph_2 ${LANG_ENGLISH} "\b ${PRODUCT_INSTALLER}\b0  it has two types of installation; the \b from-scratch\b0  type, that allows to perform an installation of ${PRODUCT_NAME} from the beginning, based on the options' default values (see below), and the \b from-current-config\b0  type, that allows to perform an installation based on the options values of the ${PRODUCT_NAME} previously installed on the system, whether it exists (see \b /installtype\b0 ). (Bear in mind that, with independence of the type of installation you choose, any existing release of ${PRODUCT_NAME} will be uninstalled automatically immediately before installing ${PRODUCT_NAME} ${PRODUCT_VERSION})"
-LangString HelpPage_Help_Description_Paragraph_2 ${LANG_FRENCH} "f\b ${PRODUCT_INSTALLER}\b0  it has two types of installation; the \b from-scratch\b0  type, that allows to perform an installation of ${PRODUCT_NAME} from the beginning, based on the options' default values (see below), and the \b from-current-config\b0  type, that allows to perform an installation based on the options values of the ${PRODUCT_NAME} previously installed on the system, whether it exists (see \b /installtype\b0 ). (Bear in mind that, with independence of the type of installation you choose, any existing release of ${PRODUCT_NAME} will be uninstalled automatically immediately before installing ${PRODUCT_NAME} ${PRODUCT_VERSION})"
+LangString HelpPage_Help_Description_Paragraph_2 ${LANG_ENGLISH} "\b ${PRODUCT_INSTALLER}\b0  has two types of installation; the \b from-scratch\b0  type, that allows to perform an installation of ${PRODUCT_NAME} from the beginning, based on the options' default values (see below), and the \b from-current-config\b0  type, that allows to perform an installation based on the options values of the ${PRODUCT_NAME} previously installed on the system, whether it exists (see \b /installtype\b0 ). (Bear in mind that, with independence of the type of installation you choose, any existing release of ${PRODUCT_NAME} will be uninstalled automatically immediately before installing ${PRODUCT_NAME} ${PRODUCT_VERSION})"
+LangString HelpPage_Help_Description_Paragraph_2 ${LANG_FRENCH} "f\b ${PRODUCT_INSTALLER}\b0  has two types of installation; the \b from-scratch\b0  type, that allows to perform an installation of ${PRODUCT_NAME} from the beginning, based on the options' default values (see below), and the \b from-current-config\b0  type, that allows to perform an installation based on the options values of the ${PRODUCT_NAME} previously installed on the system, whether it exists (see \b /installtype\b0 ). (Bear in mind that, with independence of the type of installation you choose, any existing release of ${PRODUCT_NAME} will be uninstalled automatically immediately before installing ${PRODUCT_NAME} ${PRODUCT_VERSION})"
 LangString HelpPage_Help_Description_Paragraph_2 ${LANG_SPANISH} "\b ${PRODUCT_INSTALLER}\b0  dispone de dos tipos de instalación; el tipo \b from-scratch\b0 , que permite realizar una instalación de ${PRODUCT_NAME} desde cero, basada en los valores por defecto de las opciones (ver abajo), y el tipo \b from-current-config\b0 , que permite realizar una instalación basada en el valor de las opciones del ${PRODUCT_NAME} previamente instalado en el sistema, si existe (ver \b /installtype\b0 ). (Tenga en cuenta que, con independencia del tipo de instalación que elija, cualquier versión existente de ${PRODUCT_NAME} será desinstalada automáticamente inmediatamente antes de instalar ${PRODUCT_NAME} ${PRODUCT_VERSION})"
 
 ; HelpPage_Help_Description_Paragraph_3
@@ -141,7 +141,7 @@ LangString HelpPage_Help_Description_Paragraph_6 ${LANG_ENGLISH} "\
 * The value of the options, unless otherwise specified, is not case sensitive (\i /local=C:\\Temp\i0  is the same that \i /local=c:\\temp\i0 ).\par\par\
 * In the options that have a value,\par\par\
 \tab - there should be no separation around the equal sign (\i /local = c:\\temp\i0  is incorrect).\par\par\
-\tab - if the value contains a space or the '/' sign, should go between single (') or double ($\") quotes (\i /local='C:\\FusionInventory Agent'\i0 ).\par\par\
+\tab - if the value contains a space or the (/) character, should go between single (') or double ($\") quotes (\i /local='C:\\FusionInventory Agent'\i0 ).\par\par\
 \tab - if you want to set a empty value, you must indicate a empty string (\i /local=''\i0 ).\par"
 LangString HelpPage_Help_Description_Paragraph_6 ${LANG_FRENCH} "f\
 * There are two types of options; those that act as a switch (\i /option\i0 ), and those that have a value (\i /option=value\i0 ).\par\par\
@@ -149,7 +149,7 @@ LangString HelpPage_Help_Description_Paragraph_6 ${LANG_FRENCH} "f\
 * The value of the options, unless otherwise specified, is not case sensitive (\i /local=C:\\Temp\i0  is the same that \i /local=c:\\temp\i0 ).\par\par\
 * In the options that have a value,\par\par\
 \tab - there should be no separation around the equal sign (\i /local = c:\\temp\i0  is incorrect).\par\par\
-\tab - if the value contains a space or the '/' sign, should go between single (') or double ($\") quotes (\i /local='C:\\FusionInventory Agent'\i0 ).\par\par\
+\tab - if the value contains a space or the (/) character, should go between single (') or double ($\") quotes (\i /local='C:\\FusionInventory Agent'\i0 ).\par\par\
 \tab - if you want to set a empty value, you must indicate a empty string (\i /local=''\i0 ).\par"
 LangString HelpPage_Help_Description_Paragraph_6 ${LANG_SPANISH} "\
 * Existen dos tipos de opciones; aquellas que actuan como un conmutador (\i /opción\i0 ), y aquellas que tienen un valor (\i /opción=valor\i0 ).\par\par\
@@ -157,7 +157,7 @@ LangString HelpPage_Help_Description_Paragraph_6 ${LANG_SPANISH} "\
 * El valor de las opciones, a menos que se indique lo contrario, no es sensible a mayúsculas y minúsculas (\i /local=C:\\Temp\i0  es lo mismo que \i /local=c:\\temp\i0 ).\par\par\
 * En las opciones que tienen un valor,\par\par\
 \tab - no debería haber ninguna separación alrededor del signo igual (\i /local = c:\\temp\i0  es incorrecto).\par\par\
-\tab - si el valor contiene un espacio o el signo '/', debería ir entre comillas simples (') o dobles ($\") (\i /local='C:\\FusionInventory Agent'\i0 ).\par\par\
+\tab - si el valor contiene un espacio o el carácter (/), debería ir entre comillas simples (') o dobles ($\") (\i /local='C:\\FusionInventory Agent'\i0 ).\par\par\
 \tab - si quiere establecer un valor vacío, debe indicar una cadena vacía (\i /local=''\i0 ).\par"
 
 ; HelpPage_Help_Description_Paragraph_7
@@ -189,6 +189,11 @@ LangString HelpPage_Help_Option_acceptlicense_Paragraph_1 ${LANG_SPANISH} "Acept
 LangString HelpPage_Help_Option_acceptlicense_Paragraph_2 ${LANG_ENGLISH} "You must use this option if you perform the installation in silent mode (see \b /S\b0 )."
 LangString HelpPage_Help_Option_acceptlicense_Paragraph_2 ${LANG_FRENCH} "fYou must use this option if you perform the installation in silent mode (see \b /S\b0 )."
 LangString HelpPage_Help_Option_acceptlicense_Paragraph_2 ${LANG_SPANISH} "Debe usar esta opción si realiza la instalación en modo silencioso (ver \b /S\b0 )."
+
+; HelpPage_Help_Option_acceptlicense_Paragraph_3
+LangString HelpPage_Help_Option_acceptlicense_Paragraph_3 ${LANG_ENGLISH} "If you indicate this option on the command line, but not the \b /S\b0  option, the \i visual mode\i0  installation will omit any question about the license."
+LangString HelpPage_Help_Option_acceptlicense_Paragraph_3 ${LANG_FRENCH} "fIf you indicate this option on the command line, but not the \b /S\b0  option, the \i visual mode\i0  installation will omit any question about the license."
+LangString HelpPage_Help_Option_acceptlicense_Paragraph_3 ${LANG_SPANISH} "Si indica esta opción en la línea de comandos, pero no la opción \b /S\b0 , la instalación en \i modo visual\i0  omitirá cualquier pregunta acerca de la licencia."
 
 ; HelpPage_Help_Option_add-firewall-exception_Paragraph_1
 LangString HelpPage_Help_Option_add-firewall-exception_Paragraph_1 ${LANG_ENGLISH} "Adds ${PRODUCT_NAME} to the Windows Firewall exception list. (By default: $R9)"
@@ -422,20 +427,29 @@ LangString HelpPage_Help_Option_httpd-trust_Paragraph_2 ${LANG_SPANISH} \
 
 ; HelpPage_Help_Option_httpd-trust_Paragraph_3
 LangString HelpPage_Help_Option_httpd-trust_Paragraph_3 ${LANG_ENGLISH} \
-"Bear in mind that \b /httpd-trust\b0  should include the hostname part of those URIs that are set up in \b /server\b0 . The following is an example.\par\
+"Bear in mind that \b /httpd-trust\b0  should not include the hostname part of those URIs that are set up in \b /server\b0  because they are tacitly included. The following is an example; both configurations are equal.\par\
 \par\
 \tab /httpd-trust=$\"127.0.0.1/32,itms.acme.org$\"\par\
-\tab /server=http://itms.acme.org/glpi/plugins/fusioninventory"
+\tab /server=$\"http://itms.acme.org/glpi/plugins/fusioninventory/$\"\par\
+\par\
+\tab /httpd-trust=$\"127.0.0.1/32$\"\par\
+\tab /server=$\"http://itms.acme.org/glpi/plugins/fusioninventory/$\""
 LangString HelpPage_Help_Option_httpd-trust_Paragraph_3 ${LANG_FRENCH} \
-"fBear in mind that \b /httpd-trust\b0  should include the hostname part of those URIs that are set up in \b /server\b0 . The following is an example.\par\
+"fBear in mind that \b /httpd-trust\b0  should not include the hostname part of those URIs that are set up in \b /server\b0  because they are tacitly include. The following is an example; both configurations are equal.\par\
 \par\
 \tab /httpd-trust=$\"127.0.0.1/32,itms.acme.org$\"\par\
-\tab /server=http://itms.acme.org/glpi/plugins/fusioninventory"
+\tab /server=$\"http://itms.acme.org/glpi/plugins/fusioninventory/$\"\par\
+\par\
+\tab /httpd-trust=$\"127.0.0.1/32$\"\par\
+\tab /server=$\"http://itms.acme.org/glpi/plugins/fusioninventory/$\""
 LangString HelpPage_Help_Option_httpd-trust_Paragraph_3 ${LANG_SPANISH} \
-"Tenga en cuenta que \b /httpd-trust\b0  debería incluir la parte \i hostname\i0  de aquellas URI que están establecidas en \b /server\b0 . Lo siguiente es un ejemplo.\par\
+"Tenga en cuenta que \b /httpd-trust\b0  no debería incluir la parte \i hostname\i0  de aquellas URI que están establecidas en \b /server\b0  porque están tácitamente incluidas. Lo siguiente es un ejemplo; ambas configuraciones son iguales.\par\
 \par\
 \tab /httpd-trust=$\"127.0.0.1/32,itms.acme.org$\"\par\
-\tab /server=http://itms.acme.org/glpi/plugins/fusioninventory"
+\tab /server=$\"http://itms.acme.org/glpi/plugins/fusioninventory/$\"\par\
+\par\
+\tab /httpd-trust=$\"127.0.0.1/32$\"\par\
+\tab /server=$\"http://itms.acme.org/glpi/plugins/fusioninventory/$\""
 
 ; HelpPage_Help_Option_installdir_Paragraph_1
 LangString HelpPage_Help_Option_installdir_Paragraph_1 ${LANG_ENGLISH} "Sets the installation base directory of the agent. (By default: $R9)"
@@ -633,9 +647,9 @@ LangString HelpPage_Help_Option_no-start-menu_Paragraph_1 ${LANG_FRENCH} "fDo no
 LangString HelpPage_Help_Option_no-start-menu_Paragraph_1 ${LANG_SPANISH} "No crear la carpeta \i ${PRODUCT_NAME}\i0  en el Menú de Inicio. (Por defecto: $R9)"
 
 ; HelpPage_Help_Option_no-start-menu_Paragraph_2
-LangString HelpPage_Help_Option_no-start-menu_Paragraph_2 ${LANG_ENGLISH} "The \i ${PRODUCT_NAME}\i0  folder is created, or not, for all users."
-LangString HelpPage_Help_Option_no-start-menu_Paragraph_2 ${LANG_FRENCH} "fThe \i ${PRODUCT_NAME}\i0  folder is created, or not, for all users."
-LangString HelpPage_Help_Option_no-start-menu_Paragraph_2 ${LANG_SPANISH} "La carpeta \i ${PRODUCT_NAME}\i0  es creada, o no, para todos los usuarios."
+LangString HelpPage_Help_Option_no-start-menu_Paragraph_2 ${LANG_ENGLISH} "The \i ${PRODUCT_NAME}\i0  folder, whether it is created, it is for all users."
+LangString HelpPage_Help_Option_no-start-menu_Paragraph_2 ${LANG_FRENCH} "fThe \i ${PRODUCT_NAME}\i0  folder, whether it is created, it is for all users."
+LangString HelpPage_Help_Option_no-start-menu_Paragraph_2 ${LANG_SPANISH} "La carpeta \i ${PRODUCT_NAME}\i0 , si es creada, lo es para todos los usuarios."
 
 ; HelpPage_Help_Option_no-task_Paragraph_1
 LangString HelpPage_Help_Option_no-task_Paragraph_1 ${LANG_ENGLISH} "Disables the given tasks. (By default: $R9)"
