@@ -51,7 +51,7 @@ SetCompressor /FINAL /SOLID lzma
 ; Notes: FusionInventory Agent (FIA)
 ;        FusionInventory Agent Installer (FIAI)
 
-!define FIAI_RELEASE "2.2.9902"
+!define FIAI_RELEASE "2.2.9903"
 !define FIAI_DIR ".\FusionInventory-Agent"
 
 ; Use MakeNSIS '/D' option for choose the debug mode
