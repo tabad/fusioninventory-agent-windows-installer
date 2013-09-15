@@ -427,7 +427,7 @@ LangString HelpPage_Help_Option_httpd-trust_Paragraph_2 ${LANG_SPANISH} \
 
 ; HelpPage_Help_Option_httpd-trust_Paragraph_3
 LangString HelpPage_Help_Option_httpd-trust_Paragraph_3 ${LANG_ENGLISH} \
-"Bear in mind that \b /httpd-trust\b0  should not include the hostname part of those URIs that are set up in \b /server\b0  because they are tacitly included. The following is an example; both configurations are equal.\par\
+"Bear in mind that \b /httpd-trust\b0  does not have to include the hostname part of those URIs that are set up in \b /server\b0  because they are tacitly included. The following is an example; both configurations are equal.\par\
 \par\
 \tab /httpd-trust=$\"127.0.0.1/32,itms.acme.org$\"\par\
 \tab /server=$\"http://itms.acme.org/glpi/plugins/fusioninventory/$\"\par\
@@ -435,7 +435,7 @@ LangString HelpPage_Help_Option_httpd-trust_Paragraph_3 ${LANG_ENGLISH} \
 \tab /httpd-trust=$\"127.0.0.1/32$\"\par\
 \tab /server=$\"http://itms.acme.org/glpi/plugins/fusioninventory/$\""
 LangString HelpPage_Help_Option_httpd-trust_Paragraph_3 ${LANG_FRENCH} \
-"fBear in mind that \b /httpd-trust\b0  should not include the hostname part of those URIs that are set up in \b /server\b0  because they are tacitly include. The following is an example; both configurations are equal.\par\
+"fBear in mind that \b /httpd-trust\b0  does not have to include the hostname part of those URIs that are set up in \b /server\b0  because they are tacitly include. The following is an example; both configurations are equal.\par\
 \par\
 \tab /httpd-trust=$\"127.0.0.1/32,itms.acme.org$\"\par\
 \tab /server=$\"http://itms.acme.org/glpi/plugins/fusioninventory/$\"\par\
@@ -443,7 +443,7 @@ LangString HelpPage_Help_Option_httpd-trust_Paragraph_3 ${LANG_FRENCH} \
 \tab /httpd-trust=$\"127.0.0.1/32$\"\par\
 \tab /server=$\"http://itms.acme.org/glpi/plugins/fusioninventory/$\""
 LangString HelpPage_Help_Option_httpd-trust_Paragraph_3 ${LANG_SPANISH} \
-"Tenga en cuenta que \b /httpd-trust\b0  no debería incluir la parte \i hostname\i0  de aquellas URI que están establecidas en \b /server\b0  porque están tácitamente incluidas. Lo siguiente es un ejemplo; ambas configuraciones son iguales.\par\
+"Tenga en cuenta que \b /httpd-trust\b0  no tiene que incluir la parte \i hostname\i0  de aquellas URI que están establecidas en \b /server\b0  porque están tácitamente incluidas. Lo siguiente es un ejemplo; ambas configuraciones son iguales.\par\
 \par\
 \tab /httpd-trust=$\"127.0.0.1/32,itms.acme.org$\"\par\
 \tab /server=$\"http://itms.acme.org/glpi/plugins/fusioninventory/$\"\par\
