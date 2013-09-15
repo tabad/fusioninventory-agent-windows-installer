@@ -28,15 +28,16 @@
 
    ------------------------------------------------------------------------
 
-   @package   FusionInventory Agent Installer for Microsoft Windows
-   @file      .\FusionInventory Agent\Contrib\ModernUI2\Pages\ExecutionModePageLangStrings.nsh
-   @author    Manuel J. Garrido <manuel.garrido@gmail.com>
-   @copyright Copyright (c) 2010-2013 FusionInventory Team
-   @license   GNU GPL version 2 or (at your option) any later version
-              http://www.gnu.org/licenses/old-licenses/gpl-2.0-standalone.html
-   @link      http://www.fusioninventory.org/
-   @link      http://forge.fusioninventory.org/projects/fusioninventory-agent
-   @since     2012
+   @package    FusionInventory Agent Installer for Microsoft Windows
+   @file       .\FusionInventory Agent\Contrib\ModernUI2\Pages\ExecutionModePageLangStrings.nsh
+   @author     Manuel J. Garrido <manuel.garrido@gmail.com>
+   @translator Emmanuel Le Normand <manu@le-normand.org> (French Translation)
+   @copyright  Copyright (c) 2010-2013 FusionInventory Team
+   @license    GNU GPL version 2 or (at your option) any later version
+               http://www.gnu.org/licenses/old-licenses/gpl-2.0-standalone.html
+   @link       http://www.fusioninventory.org/
+   @link       http://forge.fusioninventory.org/projects/fusioninventory-agent
+   @since      2012
 
    ------------------------------------------------------------------------
 */
@@ -51,32 +52,32 @@
 
 ; ExecutionModePage_Text
 LangString ExecutionModePage_Text ${LANG_ENGLISH} "Choose an Execution Mode"
-LangString ExecutionModePage_Text ${LANG_FRENCH} "fChoose an Execution Mode"
+LangString ExecutionModePage_Text ${LANG_FRENCH} "Choisir le mode d'Exécution"
 LangString ExecutionModePage_Text ${LANG_SPANISH} "Elija un modo de ejecución"
 
 ; ExecutionModePage_SubText
 LangString ExecutionModePage_SubText ${LANG_ENGLISH} "Choose which way you want ${PRODUCT_NAME} to be executed."
-LangString ExecutionModePage_SubText ${LANG_FRENCH} "fChoose which way you want ${PRODUCT_NAME} to be executed."
+LangString ExecutionModePage_SubText ${LANG_FRENCH} "Choisissez la façon dont vous voulez que ${PRODUCT_NAME} soit exécuté."
 LangString ExecutionModePage_SubText ${LANG_SPANISH} "Elija de qué manera quiere que se ejecute ${PRODUCT_NAME}."
 
 ; ExecutionModePage_GroupBox1_Text
 LangString ExecutionModePage_GroupBox1_Text ${LANG_ENGLISH} "Execution Mode"
-LangString ExecutionModePage_GroupBox1_Text ${LANG_FRENCH} "fExecution Mode"
+LangString ExecutionModePage_GroupBox1_Text ${LANG_FRENCH} "Mode d'Exécution"
 LangString ExecutionModePage_GroupBox1_Text ${LANG_SPANISH} "Modo de Ejecución"
 
 ; ExecutionModePage_RadioButton1_Text
 LangString ExecutionModePage_RadioButton1_Text ${LANG_ENGLISH} "As a Windows Service"
-LangString ExecutionModePage_RadioButton1_Text ${LANG_FRENCH} "fAs a Windows Service"
+LangString ExecutionModePage_RadioButton1_Text ${LANG_FRENCH} "Comme un Service Windows"
 LangString ExecutionModePage_RadioButton1_Text ${LANG_SPANISH} "Como un Servicio de Windows"
 
 ; ExecutionModePage_RadioButton2_Text
 LangString ExecutionModePage_RadioButton2_Text ${LANG_ENGLISH} "As a Windows Task"
-LangString ExecutionModePage_RadioButton2_Text ${LANG_FRENCH} "fAs a Windows Task"
+LangString ExecutionModePage_RadioButton2_Text ${LANG_FRENCH} "Comme une Tâche Windows"
 LangString ExecutionModePage_RadioButton2_Text ${LANG_SPANISH} "Como una Tarea de Windows"
 
 ; ExecutionModePage_RadioButton3_Text
 LangString ExecutionModePage_RadioButton3_Text ${LANG_ENGLISH} "Manually"
-LangString ExecutionModePage_RadioButton3_Text ${LANG_FRENCH} "fManually"
+LangString ExecutionModePage_RadioButton3_Text ${LANG_FRENCH} "Manuellement"
 LangString ExecutionModePage_RadioButton3_Text ${LANG_SPANISH} "Manualmente"
 
 

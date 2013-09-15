@@ -28,15 +28,16 @@
 
    ------------------------------------------------------------------------
 
-   @package   FusionInventory Agent Installer for Microsoft Windows
-   @file      .\FusionInventory Agent\Contrib\ModernUI2\Pages\TargetsPageLangStrings.nsh
-   @author    Tomas Abad <tabadgp@gmail.com>
-   @copyright Copyright (c) 2010-2013 FusionInventory Team
-   @license   GNU GPL version 2 or (at your option) any later version
-              http://www.gnu.org/licenses/old-licenses/gpl-2.0-standalone.html
-   @link      http://www.fusioninventory.org/
-   @link      http://forge.fusioninventory.org/projects/fusioninventory-agent
-   @since     2012
+   @package    FusionInventory Agent Installer for Microsoft Windows
+   @file       .\FusionInventory Agent\Contrib\ModernUI2\Pages\TargetsPageLangStrings.nsh
+   @author     Tomas Abad <tabadgp@gmail.com>
+   @translator Emmanuel Le Normand <manu@le-normand.org> (French Translation)
+   @copyright  Copyright (c) 2010-2013 FusionInventory Team
+   @license    GNU GPL version 2 or (at your option) any later version
+               http://www.gnu.org/licenses/old-licenses/gpl-2.0-standalone.html
+   @link       http://www.fusioninventory.org/
+   @link       http://forge.fusioninventory.org/projects/fusioninventory-agent
+   @since      2012
 
    ------------------------------------------------------------------------
 */
@@ -51,47 +52,47 @@
 
 ; TargetsPage_Text
 LangString TargetsPage_Text ${LANG_ENGLISH} "Choose Targets"
-LangString TargetsPage_Text ${LANG_FRENCH} "fChoose Targets"
+LangString TargetsPage_Text ${LANG_FRENCH} "Choisir la destination"
 LangString TargetsPage_Text ${LANG_SPANISH} "Elija destinos"
 
 ; TargetsPage_SubText
 LangString TargetsPage_SubText ${LANG_ENGLISH} "Choose where the result will send."
-LangString TargetsPage_SubText ${LANG_FRENCH} "fChoose where the result will send."
+LangString TargetsPage_SubText ${LANG_FRENCH} "Choisissez où les résultats seront envoyés."
 LangString TargetsPage_SubText ${LANG_SPANISH} "Elija dónde se enviará el resultado."
 
 ; TargetsPage_GroupBox1_Text
 LangString TargetsPage_GroupBox1_Text ${LANG_ENGLISH} "Local Target"
-LangString TargetsPage_GroupBox1_Text ${LANG_FRENCH} "fLocal Target"
+LangString TargetsPage_GroupBox1_Text ${LANG_FRENCH} "Mode Local"
 LangString TargetsPage_GroupBox1_Text ${LANG_SPANISH} "Destino Local"
 
 ; TargetsPage_Button1_Text
 LangString TargetsPage_Button1_Text ${LANG_ENGLISH} "Browser..."
-LangString TargetsPage_Button1_Text ${LANG_FRENCH} "fBrowser..."
+LangString TargetsPage_Button1_Text ${LANG_FRENCH} "Parcourir..."
 LangString TargetsPage_Button1_Text ${LANG_SPANISH} "Examinar..."
 
 ; TargetsPage_Label1_Text
 LangString TargetsPage_Label1_Text ${LANG_ENGLISH} "Local path or UNC path"
-LangString TargetsPage_Label1_Text ${LANG_FRENCH} "fLocal path or UNC path"
+LangString TargetsPage_Label1_Text ${LANG_FRENCH} "Dossier Local ou localisation UNC"
 LangString TargetsPage_Label1_Text ${LANG_SPANISH} "Directorio local o ruta UNC"
 
 ; TargetsPage_GroupBox2_Text
 LangString TargetsPage_GroupBox2_Text ${LANG_ENGLISH} "Remote Targets"
-LangString TargetsPage_GroupBox2_Text ${LANG_FRENCH} "fRemote Targets"
+LangString TargetsPage_GroupBox2_Text ${LANG_FRENCH} "Mode Serveurs"
 LangString TargetsPage_GroupBox2_Text ${LANG_SPANISH} "Destinos Remotos"
 
 ; TargetsPage_Label2_Text
 LangString TargetsPage_Label2_Text ${LANG_ENGLISH} "You can indicate multiple URIs by separating them with commas$\r$\n'http://<server>/glpi/plugins/fusioninventory, http://<server>/ocsinventory, ...'"
-LangString TargetsPage_Label2_Text ${LANG_FRENCH} "fYou can indicate multiple URIs by separating them with commas$\r$\n'http://<server>/glpi/plugins/fusioninventory, ...'"
+LangString TargetsPage_Label2_Text ${LANG_FRENCH} "Vous pouvez indiquer plusieurs URIs séparés par des vigules$\r$\n'http://<serveur>/glpi/plugins/fusioninventory, http://<serveur>/ocsinventory,...'"
 LangString TargetsPage_Label2_Text ${LANG_SPANISH} "Puede indicar múltiples URIs separándolos por comas$\r$\n'http://<server>/glpi/plugins/fusioninventory, http://<server>/ocsinventory, ...'"
 
 ; TargetsPage_CheckBox1_Text
 LangString TargetsPage_CheckBox1_Text ${LANG_ENGLISH} "Quick installation (do not show the rest of windows of options)"
-LangString TargetsPage_CheckBox1_Text ${LANG_FRENCH} "fQuick installation (do not show the rest of windows of options)"
+LangString TargetsPage_CheckBox1_Text ${LANG_FRENCH} "Installation rapide (N'affiche pas les autres options Windows)"
 LangString TargetsPage_CheckBox1_Text ${LANG_SPANISH} "Instalación rápida (no mostrar el resto de ventanas de opciones)"
 
 ; TargetsPage_SelectFolderDialog_Title
 LangString TargetsPage_SelectFolderDialog_Title ${LANG_ENGLISH} "Select the folder where the result will send:"
-LangString TargetsPage_SelectFolderDialog_Title ${LANG_FRENCH} "fSelect the folder where the result will send:"
+LangString TargetsPage_SelectFolderDialog_Title ${LANG_FRENCH} "Sélectionner le dossier destinataire des résultats :"
 LangString TargetsPage_SelectFolderDialog_Title ${LANG_SPANISH} "Seleccione el directorio al que se enviará el resultado:"
 
 ; TargetsPage_NextButton_Text_Next
@@ -106,7 +107,7 @@ LangString TargetsPage_NextButton_Text_Install ${LANG_SPANISH} "&Instalar"
 
 ; TargetsPage_TextBox_Warning
 LangString TargetsPage_TextBox_Warning ${LANG_ENGLISH} "The value $\"$R2$\" is not valid for the field $\"$R1$\"."
-LangString TargetsPage_TextBox_Warning ${LANG_FRENCH} "fThe value $\"$R2$\" is not valid for the field $\"$R1$\"."
+LangString TargetsPage_TextBox_Warning ${LANG_FRENCH} "La valeur $\"$R2$\" n'est pas valable pour le champ $\"$R1$\"."
 LangString TargetsPage_TextBox_Warning ${LANG_SPANISH} "El valor $\"$R2$\" no es válido para el campo $\"$R1$\"."
 
 

@@ -28,15 +28,16 @@
 
    ------------------------------------------------------------------------
 
-   @package   FusionInventory Agent Installer for Microsoft Windows
-   @file      .\FusionInventory Agent\Include\PadLockLangStrings.nsh
-   @author    Tomas Abad <tabadgp@gmail.com>
-   @copyright Copyright (c) 2010-2013 FusionInventory Team
-   @license   GNU GPL version 2 or (at your option) any later version
-              http://www.gnu.org/licenses/old-licenses/gpl-2.0-standalone.html
-   @link      http://www.fusioninventory.org/
-   @link      http://forge.fusioninventory.org/projects/fusioninventory-agent
-   @since     2012
+   @package    FusionInventory Agent Installer for Microsoft Windows
+   @file       .\FusionInventory Agent\Include\PadLockLangStrings.nsh
+   @author     Tomas Abad <tabadgp@gmail.com>
+   @translator Emmanuel Le Normand <manu@le-normand.org> (French Translation)
+   @copyright  Copyright (c) 2010-2013 FusionInventory Team
+   @license    GNU GPL version 2 or (at your option) any later version
+               http://www.gnu.org/licenses/old-licenses/gpl-2.0-standalone.html
+   @link       http://www.fusioninventory.org/
+   @link       http://forge.fusioninventory.org/projects/fusioninventory-agent
+   @since      2012
 
    ------------------------------------------------------------------------
 */
@@ -55,10 +56,9 @@
 LangString ClosePadLock_Text ${LANG_ENGLISH} \
 "Another installation or uninstallation process of ${PRODUCT_NAME} ${PRODUCT_VERSION} is already running."
 LangString ClosePadLock_Text ${LANG_FRENCH} \
-"fAnother installation or uninstallation process of ${PRODUCT_NAME} ${PRODUCT_VERSION} is already running."
+"Un autre processus d'installation ou désinstallation de ${PRODUCT_NAME} ${PRODUCT_VERSION} est encours."
 LangString ClosePadLock_Text ${LANG_SPANISH} \
 "Otro proceso de instalación o desinstalación de ${PRODUCT_NAME} ${PRODUCT_VERSION} está ya en ejecución."
 
 
 !endif
-

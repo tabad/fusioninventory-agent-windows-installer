@@ -28,15 +28,16 @@
 
    ------------------------------------------------------------------------
 
-   @package   FusionInventory Agent Installer for Microsoft Windows
-   @file      .\FusionInventory Agent\Include\LangStrings.nsh
-   @author    Tomas Abad <tabadgp@gmail.com>
-   @copyright Copyright (c) 2010-2013 FusionInventory Team
-   @license   GNU GPL version 2 or (at your option) any later version
-              http://www.gnu.org/licenses/old-licenses/gpl-2.0-standalone.html
-   @link      http://www.fusioninventory.org/
-   @link      http://forge.fusioninventory.org/projects/fusioninventory-agent
-   @since     2012
+   @package    FusionInventory Agent Installer for Microsoft Windows
+   @file       .\FusionInventory Agent\Include\LangStrings.nsh
+   @author     Tomas Abad <tabadgp@gmail.com>
+   @translator Emmanuel Le Normand <manu@le-normand.org> (French Translation)
+   @copyright  Copyright (c) 2010-2013 FusionInventory Team
+   @license    GNU GPL version 2 or (at your option) any later version
+               http://www.gnu.org/licenses/old-licenses/gpl-2.0-standalone.html
+   @link       http://www.fusioninventory.org/
+   @link       http://forge.fusioninventory.org/projects/fusioninventory-agent
+   @since      2012
 
    ------------------------------------------------------------------------
 */
@@ -57,21 +58,21 @@
 ; For use with: InstType
 ;
 LangString InstType_Default ${LANG_ENGLISH} "Default"
-LangString InstType_Default ${LANG_FRENCH} "fDefault"
+LangString InstType_Default ${LANG_FRENCH} "Défaut"
 LangString InstType_Default ${LANG_SPANISH} "Por Defecto"
 
 ;   LangString: InstType_Full
 ; For use with: InstType
 ;
 LangString InstType_Full ${LANG_ENGLISH} "Full"
-LangString InstType_Full ${LANG_FRENCH} "fFull"
+LangString InstType_Full ${LANG_FRENCH} "Complète"
 LangString InstType_Full ${LANG_SPANISH} "Completa"
 
 ;   LangString: InstType_Minimal
 ; For use with: InstType
 ;
 LangString InstType_Minimal ${LANG_ENGLISH} "Minimal"
-LangString InstType_Minimal ${LANG_FRENCH} "fMinimal"
+LangString InstType_Minimal ${LANG_FRENCH} "Minimale"
 LangString InstType_Minimal ${LANG_SPANISH} "Mínima"
 
 ;   LangString: SectionGroup_FusionInventoryAgentTasks
@@ -86,8 +87,8 @@ LangString SectionGroup_FusionInventoryAgentTasks ${LANG_SPANISH} "${PRODUCT_NAM
 ;
 LangString Msg_IncompatibleTargetPlatformArchitecture ${LANG_ENGLISH} "It is not possible to install $(^Name) \
 in a Microsoft Windows operative system over a ${PLATFORM_ARCHITECTURE_32} platform architecture."
-LangString Msg_IncompatibleTargetPlatformArchitecture ${LANG_FRENCH} "fIt is not possible to install $(^Name) \
-in a Microsoft Windows operative system over a ${PLATFORM_ARCHITECTURE_32} platform architecture."
+LangString Msg_IncompatibleTargetPlatformArchitecture ${LANG_FRENCH} "Ce n'est pas possible d'installer $(^Name) \
+sur un système Microsoft Windows ayant une architecture ${PLATFORM_ARCHITECTURE_32}."
 LangString Msg_IncompatibleTargetPlatformArchitecture ${LANG_SPANISH} "No es posible instalar $(^Name) \
 en un sistema operativo Microsoft Windows sobre una plataforma de arquitectura ${PLATFORM_ARCHITECTURE_32}."
 
@@ -95,49 +96,49 @@ en un sistema operativo Microsoft Windows sobre una plataforma de arquitectura $
 ; For use with: Sections SecDeploy, SecESX, SecInventory, SecNetwork and SecWakeOnLan. 
 ;
 LangString Msg_InstallingSection ${LANG_ENGLISH} "Installing Section $0..."
-LangString Msg_InstallingSection ${LANG_FRENCH} "fInstalling Section $0..."
+LangString Msg_InstallingSection ${LANG_FRENCH} "Installation de la section $0..."
 LangString Msg_InstallingSection ${LANG_SPANISH} "Instalando Sección $0..."
 
 ;   LangString: SecDeploy_Description
 ; For use with: XPUI_DESCRIPTION_TEXT ${SecDeploy}
 ;
 LangString SecDeploy_Description ${LANG_ENGLISH} "Task Deploy ${FIA_TASK_DEPLOY_RELEASE}."
-LangString SecDeploy_Description ${LANG_FRENCH} "fTask Deploy ${FIA_TASK_DEPLOY_RELEASE}."
+LangString SecDeploy_Description ${LANG_FRENCH} "Tâche Déploiement ${FIA_TASK_DEPLOY_RELEASE}."
 LangString SecDeploy_Description ${LANG_SPANISH} "Tarea Deploy ${FIA_TASK_DEPLOY_RELEASE}."
 
 ;   LangString: SecESX_Description
 ; For use with: XPUI_DESCRIPTION_TEXT ${SecESX}
 ;
 LangString SecESX_Description ${LANG_ENGLISH} "Task ESX ${FIA_TASK_ESX_RELEASE}."
-LangString SecESX_Description ${LANG_FRENCH} "fTask ESX ${FIA_TASK_ESX_RELEASE}."
+LangString SecESX_Description ${LANG_FRENCH} "Tâche ESX ${FIA_TASK_ESX_RELEASE}."
 LangString SecESX_Description ${LANG_SPANISH} "Tarea ESX ${FIA_TASK_ESX_RELEASE}."
 
 ;   LangString: SecInventory_Description
 ; For use with: XPUI_DESCRIPTION_TEXT ${SecInventory}
 ;
 LangString SecInventory_Description ${LANG_ENGLISH} "Task Inventory ${FIA_TASK_INVENTORY_RELEASE}."
-LangString SecInventory_Description ${LANG_FRENCH} "fTask Inventory ${FIA_TASK_INVENTORY_RELEASE}."
+LangString SecInventory_Description ${LANG_FRENCH} "Tâche Inventaire ${FIA_TASK_INVENTORY_RELEASE}."
 LangString SecInventory_Description ${LANG_SPANISH} "Tarea Inventory ${FIA_TASK_INVENTORY_RELEASE}."
 
 ;   LangString: SecNeDiscovery_Description
 ; For use with: XPUI_DESCRIPTION_TEXT ${SecNetDiscovery}
 ;
 LangString SecNetDiscovery_Description ${LANG_ENGLISH} "Task NetDiscovery ${FIA_TASK_NETDISCOVERY_RELEASE}."
-LangString SecNetDiscovery_Description ${LANG_FRENCH} "fTask NetDiscovery ${FIA_TASK_NETDISCOVERY_RELEASE}."
+LangString SecNetDiscovery_Description ${LANG_FRENCH} "Tâche NetDiscovery ${FIA_TASK_NETDISCOVERY_RELEASE}."
 LangString SecNetDiscovery_Description ${LANG_SPANISH} "Tarea NetDiscovery ${FIA_TASK_NETDISCOVERY_RELEASE}."
 
 ;   LangString: SecNetInventory
 ; For use with: XPUI_DESCRIPTION_TEXT ${SecNetInventory}
 ;
 LangString SecNetInventory_Description ${LANG_ENGLISH} "Task NetInventory ${FIA_TASK_NETINVENTORY_RELEASE}."
-LangString SecNetInventory_Description ${LANG_FRENCH} "fTask NetInventory ${FIA_TASK_NETINVENTORY_RELEASE}."
+LangString SecNetInventory_Description ${LANG_FRENCH} "Tâche NetInventory ${FIA_TASK_NETINVENTORY_RELEASE}."
 LangString SecNetInventory_Description ${LANG_SPANISH} "Tarea NetInventory ${FIA_TASK_NETINVENTORY_RELEASE}."
 
 ;   LangString: SecWakeOnLan_Description
 ; For use with: XPUI_DESCRIPTION_TEXT ${SecWakeOnLan}
 ;
 LangString SecWakeOnLan_Description ${LANG_ENGLISH} "Task WakeOnLan ${FIA_TASK_WAKEONLAN_RELEASE}."
-LangString SecWakeOnLan_Description ${LANG_FRENCH} "fTask WakeOnLan ${FIA_TASK_WAKEONLAN_RELEASE}."
+LangString SecWakeOnLan_Description ${LANG_FRENCH} "Tâche WakeOnLan ${FIA_TASK_WAKEONLAN_RELEASE}."
 LangString SecWakeOnLan_Description ${LANG_SPANISH} "Tarea WakeOnLan ${FIA_TASK_WAKEONLAN_RELEASE}."
 
 !endif

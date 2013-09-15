@@ -28,15 +28,16 @@
 
    ------------------------------------------------------------------------
 
-   @package   FusionInventory Agent Installer for Microsoft Windows
-   @file      .\FusionInventory Agent\Include\WinServicesFuncLangStrings.nsh
-   @author    Tomas Abad <tabadgp@gmail.com>
-   @copyright Copyright (c) 2010-2013 FusionInventory Team
-   @license   GNU GPL version 2 or (at your option) any later version
-              http://www.gnu.org/licenses/old-licenses/gpl-2.0-standalone.html
-   @link      http://www.fusioninventory.org/
-   @link      http://forge.fusioninventory.org/projects/fusioninventory-agent
-   @since     2012
+   @package    FusionInventory Agent Installer for Microsoft Windows
+   @file       .\FusionInventory Agent\Include\WinServicesFuncLangStrings.nsh
+   @author     Tomas Abad <tabadgp@gmail.com>
+   @translator Emmanuel Le Normand <manu@le-normand.org> (French Translation)
+   @copyright  Copyright (c) 2010-2013 FusionInventory Team
+   @license    GNU GPL version 2 or (at your option) any later version
+               http://www.gnu.org/licenses/old-licenses/gpl-2.0-standalone.html
+   @link       http://www.fusioninventory.org/
+   @link       http://forge.fusioninventory.org/projects/fusioninventory-agent
+   @since      2012
 
    ------------------------------------------------------------------------
 */
@@ -55,7 +56,7 @@
 LangString InstallFusionInventoryWindowsService_Description ${LANG_ENGLISH} \
 "${PRODUCT_NAME} Service."
 LangString InstallFusionInventoryWindowsService_Description ${LANG_FRENCH} \
-"f${PRODUCT_NAME} Service."
+"Service ${PRODUCT_NAME}."
 LangString InstallFusionInventoryWindowsService_Description ${LANG_SPANISH} \
 "Servicio ${PRODUCT_NAME}."
 
