@@ -148,7 +148,7 @@
    FileOpen $R1 "$R0\fusioninventory-agent.bat" w
    ${FileWriteLine} $R1 "@echo off"
    ${FileWriteLine} $R1 "for %%p in ($\".$\") do pushd $\"%%~fsp$\""
-   ${FileWriteLine} $R1 "cd $\"%~dp0\perl\bin$\""
+   ${FileWriteLine} $R1 "cd /d $\"%~dp0\perl\bin$\""
    ${FileWriteLine} $R1 "perl.exe fusioninventory-agent %*"
    ${FileWriteLine} $R1 "popd"
    FileClose $R1
@@ -297,7 +297,7 @@
    FileOpen $R1 "$R0\fusioninventory-esx.bat" w
    ${FileWriteLine} $R1 "@echo off"
    ${FileWriteLine} $R1 "for %%p in ($\".$\") do pushd $\"%%~fsp$\""
-   ${FileWriteLine} $R1 "cd $\"%~dp0\perl\bin$\""
+   ${FileWriteLine} $R1 "cd /d $\"%~dp0\perl\bin$\""
    ${FileWriteLine} $R1 "perl.exe fusioninventory-esx %*"
    ${FileWriteLine} $R1 "popd"
    FileClose $R1
@@ -349,7 +349,7 @@
    FileOpen $R1 "$R0\fusioninventory-injector.bat" w
    ${FileWriteLine} $R1 "@echo off"
    ${FileWriteLine} $R1 "for %%p in ($\".$\") do pushd $\"%%~fsp$\""
-   ${FileWriteLine} $R1 "cd $\"%~dp0\perl\bin$\""
+   ${FileWriteLine} $R1 "cd /d $\"%~dp0\perl\bin$\""
    ${FileWriteLine} $R1 "perl.exe fusioninventory-injector %*"
    ${FileWriteLine} $R1 "popd"
    FileClose $R1
@@ -358,7 +358,7 @@
    FileOpen $R1 "$R0\fusioninventory-inventory.bat" w
    ${FileWriteLine} $R1 "@echo off"
    ${FileWriteLine} $R1 "for %%p in ($\".$\") do pushd $\"%%~fsp$\""
-   ${FileWriteLine} $R1 "cd $\"%~dp0\perl\bin$\""
+   ${FileWriteLine} $R1 "cd /d $\"%~dp0\perl\bin$\""
    ${FileWriteLine} $R1 "perl.exe fusioninventory-inventory %*"
    ${FileWriteLine} $R1 "popd"
    FileClose $R1
@@ -469,7 +469,7 @@
    FileOpen $R1 "$R0\fusioninventory-netdiscovery.bat" w
    ${FileWriteLine} $R1 "@echo off"
    ${FileWriteLine} $R1 "for %%p in ($\".$\") do pushd $\"%%~fsp$\""
-   ${FileWriteLine} $R1 "cd $\"%~dp0\perl\bin$\""
+   ${FileWriteLine} $R1 "cd /d $\"%~dp0\perl\bin$\""
    ${FileWriteLine} $R1 "perl.exe fusioninventory-netdiscovery %*"
    ${FileWriteLine} $R1 "popd"
    FileClose $R1
@@ -523,7 +523,7 @@
    FileOpen $R1 "$R0\fusioninventory-netinventory.bat" w
    ${FileWriteLine} $R1 "@echo off"
    ${FileWriteLine} $R1 "for %%p in ($\".$\") do pushd $\"%%~fsp$\""
-   ${FileWriteLine} $R1 "cd $\"%~dp0\perl\bin$\""
+   ${FileWriteLine} $R1 "cd /d $\"%~dp0\perl\bin$\""
    ${FileWriteLine} $R1 "perl.exe fusioninventory-netinventory %*"
    ${FileWriteLine} $R1 "popd"
    FileClose $R1
@@ -569,7 +569,7 @@
    FileOpen $R1 "$R0\fusioninventory-wakeonlan.bat" w
    ${FileWriteLine} $R1 "@echo off"
    ${FileWriteLine} $R1 "for %%p in ($\".$\") do pushd $\"%%~fsp$\""
-   ${FileWriteLine} $R1 "cd $\"%~dp0\perl\bin$\""
+   ${FileWriteLine} $R1 "cd /d $\"%~dp0\perl\bin$\""
    ${FileWriteLine} $R1 "perl.exe fusioninventory-wakeonlan %*"
    ${FileWriteLine} $R1 "popd"
    FileClose $R1
