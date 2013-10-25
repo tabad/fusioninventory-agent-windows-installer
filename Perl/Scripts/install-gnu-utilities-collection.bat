@@ -43,7 +43,7 @@
 @echo off
 
 set MINGW_PATH=%SYSTEMDRIVE%\MinGW
-set MINGW_GET_BIN_URL=http://sourceforge.net/projects/mingw/files/Installer/mingw-get/mingw-get-0.5-beta-20120426-1/mingw-get-0.5-mingw32-beta-20120426-1-bin.zip
+set MINGW_GET_BIN_URL=http://sourceforge.net/projects/mingw/files/Installer/mingw-get/mingw-get-0.6.2-beta-20131004-1/mingw-get-0.6.2-mingw32-beta-20131004-1-bin.zip
 
 if exist "%MINGW_PATH%" goto already_installed
 :: MinGW/MSYS is not installed
