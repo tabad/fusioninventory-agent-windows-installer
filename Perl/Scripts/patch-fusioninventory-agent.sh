@@ -132,7 +132,6 @@ while (( ${iter} < ${#archs[@]} )); do
              -e "s,\(datadir => '\)./share\('\,\),\1../../share\2," \
              -e "s,\(libdir  => '\)./lib\('\,\),\1../agent\2,"      \
              -e "s,\(vardir  => '\)./var\('\,\),\1../../var\2,"     \
-             -e "s,\(PREFIX/\)etc\(/agent.cfg.\),\1../../etc\2,"    \
              "${base_path}/bin/fusioninventory-agent"
    echo -n "."
    (cd "${base_path}/bin";                  \
@@ -165,7 +164,6 @@ while (( ${iter} < ${#archs[@]} )); do
              -e "s,\(datadir => '\)./share\('\,\),\1../../share\2," \
              -e "s,\(libdir  => '\)./lib\('\,\),\1../agent\2,"      \
              -e "s,\(vardir  => '\)./var\('\,\),\1../../var\2,"     \
-             -e "s,\(PREFIX/\)etc\(/agent.cfg.\),\1../../etc\2,"    \
              "${base_path}/bin/fusioninventory-inventory"
    echo -n "."
    (cd "${base_path}/bin";                      \
