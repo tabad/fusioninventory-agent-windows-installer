@@ -177,7 +177,11 @@ while (( ${iter} < ${#archs[@]} )); do
                   "${base_path}/bin/fusioninventory-netdiscovery.org"
       echo -n "."
    fi
-   ${sed} -i -e "s,\(use lib '\)./lib\(';\),\1../agent\2," \
+   ${sed} -i -e "s,\(use lib '\)./lib\(';\),\1../agent\2,"          \
+             -e "s,\(confdir => '\)./etc\('\,\),\1../../etc\2,"     \
+             -e "s,\(datadir => '\)./share\('\,\),\1../../share\2," \
+             -e "s,\(libdir  => '\)./lib\('\,\),\1../agent\2,"      \
+             -e "s,\(vardir  => '\)./var\('\,\),\1../../var\2,"     \
              "${base_path}/bin/fusioninventory-netdiscovery"
    echo -n "."
    (cd "${base_path}/bin";                        \
@@ -191,7 +195,11 @@ while (( ${iter} < ${#archs[@]} )); do
                   "${base_path}/bin/fusioninventory-netinventory.org"
       echo -n "."
    fi
-   ${sed} -i -e "s,\(use lib '\)./lib\(';\),\1../agent\2," \
+   ${sed} -i -e "s,\(use lib '\)./lib\(';\),\1../agent\2,"          \
+             -e "s,\(confdir => '\)./etc\('\,\),\1../../etc\2,"     \
+             -e "s,\(datadir => '\)./share\('\,\),\1../../share\2," \
+             -e "s,\(libdir  => '\)./lib\('\,\),\1../agent\2,"      \
+             -e "s,\(vardir  => '\)./var\('\,\),\1../../var\2,"     \
              "${base_path}/bin/fusioninventory-netinventory"
    echo -n "."
    (cd "${base_path}/bin";                        \

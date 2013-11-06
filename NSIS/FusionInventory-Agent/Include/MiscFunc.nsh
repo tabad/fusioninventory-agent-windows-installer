@@ -155,9 +155,11 @@
 
    ; Install $R0\{license,readme,thanks}.txt
    SetOutPath "$R0\"
+   File /oname=changes.txt "${FIA_DIR}\Changes"
    File /oname=license.txt "${FIA_DIR}\LICENSE"
    File /oname=readme.txt "${FIA_DIR}\README"
    File /oname=thanks.txt "${FIA_DIR}\THANKS"
+   nsExec::Exec '"$PLUGINSDIR\sed.exe" -i -e "s/$$/\r/" "$R0\changes.txt"'
    nsExec::Exec '"$PLUGINSDIR\sed.exe" -i -e "s/$$/\r/" "$R0\license.txt"'
    nsExec::Exec '"$PLUGINSDIR\sed.exe" -i -e "s/$$/\r/" "$R0\readme.txt"'
    nsExec::Exec '"$PLUGINSDIR\sed.exe" -i -e "s/$$/\r/" "$R0\thanks.txt"'
