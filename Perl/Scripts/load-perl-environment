@@ -45,8 +45,8 @@ declare arch_label=''
 declare -a -r archs=(x64 x86)
 declare -a -r arch_labels=(64bit 32bit)
 
-declare -r strawberry_version='5.18.1.1'
-declare -r strawberry_release='Aug 2013'
+declare -r strawberry_version='5.18.2.1'
+declare -r strawberry_release='Jan 2014'
 declare -r strawberry_path="../Strawberry/${strawberry_version}"
 
 declare -r strawberry_arch_path='${strawberry_path}/${arch}'
