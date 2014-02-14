@@ -102,43 +102,43 @@ LangString Msg_InstallingSection ${LANG_SPANISH} "Instalando Sección $0..."
 ;   LangString: SecDeploy_Description
 ; For use with: XPUI_DESCRIPTION_TEXT ${SecDeploy}
 ;
-LangString SecDeploy_Description ${LANG_ENGLISH} "Task Deploy ${FIA_TASK_DEPLOY_RELEASE}."
-LangString SecDeploy_Description ${LANG_FRENCH} "Tâche Déploiement ${FIA_TASK_DEPLOY_RELEASE}."
-LangString SecDeploy_Description ${LANG_SPANISH} "Tarea Deploy ${FIA_TASK_DEPLOY_RELEASE}."
+LangString SecDeploy_Description ${LANG_ENGLISH} "Task Deploy."
+LangString SecDeploy_Description ${LANG_FRENCH} "Tâche Déploiement."
+LangString SecDeploy_Description ${LANG_SPANISH} "Tarea Deploy."
 
 ;   LangString: SecESX_Description
 ; For use with: XPUI_DESCRIPTION_TEXT ${SecESX}
 ;
-LangString SecESX_Description ${LANG_ENGLISH} "Task ESX ${FIA_TASK_ESX_RELEASE}."
-LangString SecESX_Description ${LANG_FRENCH} "Tâche ESX ${FIA_TASK_ESX_RELEASE}."
-LangString SecESX_Description ${LANG_SPANISH} "Tarea ESX ${FIA_TASK_ESX_RELEASE}."
+LangString SecESX_Description ${LANG_ENGLISH} "Task ESX."
+LangString SecESX_Description ${LANG_FRENCH} "Tâche ESX."
+LangString SecESX_Description ${LANG_SPANISH} "Tarea ESX."
 
 ;   LangString: SecInventory_Description
 ; For use with: XPUI_DESCRIPTION_TEXT ${SecInventory}
 ;
-LangString SecInventory_Description ${LANG_ENGLISH} "Task Inventory ${FIA_TASK_INVENTORY_RELEASE}."
-LangString SecInventory_Description ${LANG_FRENCH} "Tâche Inventaire ${FIA_TASK_INVENTORY_RELEASE}."
-LangString SecInventory_Description ${LANG_SPANISH} "Tarea Inventory ${FIA_TASK_INVENTORY_RELEASE}."
+LangString SecInventory_Description ${LANG_ENGLISH} "Task Inventory."
+LangString SecInventory_Description ${LANG_FRENCH} "Tâche Inventaire."
+LangString SecInventory_Description ${LANG_SPANISH} "Tarea Inventory."
 
 ;   LangString: SecNeDiscovery_Description
 ; For use with: XPUI_DESCRIPTION_TEXT ${SecNetDiscovery}
 ;
-LangString SecNetDiscovery_Description ${LANG_ENGLISH} "Task NetDiscovery ${FIA_TASK_NETDISCOVERY_RELEASE}."
-LangString SecNetDiscovery_Description ${LANG_FRENCH} "Tâche NetDiscovery ${FIA_TASK_NETDISCOVERY_RELEASE}."
-LangString SecNetDiscovery_Description ${LANG_SPANISH} "Tarea NetDiscovery ${FIA_TASK_NETDISCOVERY_RELEASE}."
+LangString SecNetDiscovery_Description ${LANG_ENGLISH} "Task NetDiscovery."
+LangString SecNetDiscovery_Description ${LANG_FRENCH} "Tâche NetDiscovery."
+LangString SecNetDiscovery_Description ${LANG_SPANISH} "Tarea NetDiscovery."
 
 ;   LangString: SecNetInventory
 ; For use with: XPUI_DESCRIPTION_TEXT ${SecNetInventory}
 ;
-LangString SecNetInventory_Description ${LANG_ENGLISH} "Task NetInventory ${FIA_TASK_NETINVENTORY_RELEASE}."
-LangString SecNetInventory_Description ${LANG_FRENCH} "Tâche NetInventory ${FIA_TASK_NETINVENTORY_RELEASE}."
-LangString SecNetInventory_Description ${LANG_SPANISH} "Tarea NetInventory ${FIA_TASK_NETINVENTORY_RELEASE}."
+LangString SecNetInventory_Description ${LANG_ENGLISH} "Task NetInventory."
+LangString SecNetInventory_Description ${LANG_FRENCH} "Tâche NetInventory."
+LangString SecNetInventory_Description ${LANG_SPANISH} "Tarea NetInventory."
 
 ;   LangString: SecWakeOnLan_Description
 ; For use with: XPUI_DESCRIPTION_TEXT ${SecWakeOnLan}
 ;
-LangString SecWakeOnLan_Description ${LANG_ENGLISH} "Task WakeOnLan ${FIA_TASK_WAKEONLAN_RELEASE}."
-LangString SecWakeOnLan_Description ${LANG_FRENCH} "Tâche WakeOnLan ${FIA_TASK_WAKEONLAN_RELEASE}."
-LangString SecWakeOnLan_Description ${LANG_SPANISH} "Tarea WakeOnLan ${FIA_TASK_WAKEONLAN_RELEASE}."
+LangString SecWakeOnLan_Description ${LANG_ENGLISH} "Task WakeOnLan."
+LangString SecWakeOnLan_Description ${LANG_FRENCH} "Tâche WakeOnLan."
+LangString SecWakeOnLan_Description ${LANG_SPANISH} "Tarea WakeOnLan."
 
 !endif
