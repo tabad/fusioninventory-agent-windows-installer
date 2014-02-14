@@ -134,12 +134,14 @@
    CreateDirectory "$R0\perl\agent"
    CreateDirectory "$R0\perl\agent\FusionInventory"
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent"
+   CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Config"
+   CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Controller"
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent\HTTP"
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Logger"
-   CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Target"
+   CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Message"
+   CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Recipient"
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Tools"
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Tools\Generic"
-   CreateDirectory "$R0\perl\agent\FusionInventory\Agent\XML"
    CreateDirectory "$R0\perl\bin"
    CreateDirectory "$R0\share"
    CreateDirectory "$R0\var"
@@ -181,6 +183,14 @@
         /x "Threads.pm" \
         "${FIA_DIR}\lib\FusionInventory\Agent\*.pm"
 
+   ; Install $R0\perl\agent\FusionInventory\Agent\Config\*.*
+   SetOutPath "$R0\perl\agent\FusionInventory\Agent\Config"
+   File /r "${FIA_DIR}\lib\FusionInventory\Agent\Config\*.*"
+
+   ; Install $R0\perl\agent\FusionInventory\Agent\Controller\*.*
+   SetOutPath "$R0\perl\agent\FusionInventory\Agent\Controller"
+   File /r "${FIA_DIR}\lib\FusionInventory\Agent\Controller\*.*"
+
    ; Install $R0\perl\agent\FusionInventory\Agent\HTTP\*.*
    SetOutPath "$R0\perl\agent\FusionInventory\Agent\HTTP"
    File /r "${FIA_DIR}\lib\FusionInventory\Agent\HTTP\*.*"
@@ -189,9 +199,13 @@
    SetOutPath "$R0\perl\agent\FusionInventory\Agent\Logger"
    File /r "${FIA_DIR}\lib\FusionInventory\Agent\Logger\*.*"
 
-   ; Install $R0\perl\agent\FusionInventory\Agent\Target\*.*
-   SetOutPath "$R0\perl\agent\FusionInventory\Agent\Target"
-   File /r "${FIA_DIR}\lib\FusionInventory\Agent\Target\*.*"
+   ; Install $R0\perl\agent\FusionInventory\Agent\Message\*.*
+   SetOutPath "$R0\perl\agent\FusionInventory\Agent\Message"
+   File /r "${FIA_DIR}\lib\FusionInventory\Agent\Message\*.*"
+
+   ; Install $R0\perl\agent\FusionInventory\Agent\Recipient\*.*
+   SetOutPath "$R0\perl\agent\FusionInventory\Agent\Recipient"
+   File /r "${FIA_DIR}\lib\FusionInventory\Agent\Recipient\*.*"
 
    ; Install $R0\perl\agent\FusionInventory\Agent\Tools\*.pm
    ; but not $R0\perl\agent\FusionInventory\Agent\Tools\Hardware.pm
@@ -202,10 +216,6 @@
    ; Install $R0\perl\agent\FusionInventory\Agent\Tools\Generic\*.*
    SetOutPath "$R0\perl\agent\FusionInventory\Agent\Tools\Generic"
    File /r "${FIA_DIR}\lib\FusionInventory\Agent\Tools\Generic\*.*"
-
-   ; Install $R0\perl\agent\FusionInventory\Agent\XML\*.*
-   SetOutPath "$R0\perl\agent\FusionInventory\Agent\XML"
-   File /r "${FIA_DIR}\lib\FusionInventory\Agent\XML\*.*"
 
    ; Install $R0\perl\bin\7z.dll
    ;         $R0\perl\bin\7z.exe
@@ -225,6 +235,48 @@
    ; Install $R0\share
    SetOutPath "$R0\share\"
    File /r "${FIA_DIR}\share\*.*"
+
+   ; Set mode at which commands print their status
+   SetDetailsPrint lastused
+
+   ; Pop $R0 off of the stack
+   Pop $R1
+   Pop $R0
+!macroend
+
+
+; InstallFusionInventoryAgentTaskCollect
+!define InstallFusionInventoryAgentTaskCollect "!insertmacro InstallFusionInventoryAgentTaskCollect"
+
+!macro InstallFusionInventoryAgentTaskCollect
+   ; Push $R0 onto the stack
+   Push $R0
+   Push $R1
+
+   ; Set mode at which commands print their status
+   SetDetailsPrint textonly
+
+   ; Create directories
+   ${ReadINIOption} $R0 "${IOS_FINAL}" "${IO_INSTALLDIR}"
+   CreateDirectory "$R0"
+   CreateDirectory "$R0\perl"
+   CreateDirectory "$R0\perl\agent"
+   CreateDirectory "$R0\perl\agent\FusionInventory"
+   CreateDirectory "$R0\perl\agent\FusionInventory\Agent"
+   CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Task"
+
+   ; Create $R0\fusioninventory-collect.bat
+   FileOpen $R1 "$R0\fusioninventory-collect.bat" w
+   ${FileWriteLine} $R1 "@echo off"
+   ${FileWriteLine} $R1 "for %%p in ($\".$\") do pushd $\"%%~fsp$\""
+   ${FileWriteLine} $R1 "cd /d $\"%~dp0\perl\bin$\""
+   ${FileWriteLine} $R1 "perl.exe fusioninventory-collect %*"
+   ${FileWriteLine} $R1 "popd"
+   FileClose $R1
+
+   ; Install $R0\perl\agent\FusionInventory\Agent\Task\Collect.pm
+   SetOutPath "$R0\perl\agent\FusionInventory\Agent\Task"
+   File "${FIA_DIR}\lib\FusionInventory\Agent\Task\Collect.pm"
 
    ; Set mode at which commands print their status
    SetDetailsPrint lastused

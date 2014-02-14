@@ -139,6 +139,24 @@ while (( ${iter} < ${#archs[@]} )); do
                "fusioninventory-agent"  > "fusioninventory-agent.patch")
    echo -n "."
 
+   # Patches for file ${base_path}/bin/fusioninventory-collect
+   if [ ! -f "${base_path}/bin/fusioninventory-collect.org" ]; then
+      ${rsync} -a "${base_path}/bin/fusioninventory-collect" \
+                  "${base_path}/bin/fusioninventory-collect.org"
+      echo -n "."
+   fi
+   ${sed} -i -e "s,\(use lib '\)./lib\(';\),\1../agent\2,"          \
+             -e "s,\(confdir => '\)./etc\('\,\),\1../../etc\2,"     \
+             -e "s,\(datadir => '\)./share\('\,\),\1../../share\2," \
+             -e "s,\(libdir  => '\)./lib\('\,\),\1../agent\2,"      \
+             -e "s,\(vardir  => '\)./var\('\,\),\1../../var\2,"     \
+             "${base_path}/bin/fusioninventory-collect"
+   echo -n "."
+   (cd "${base_path}/bin";                    \
+    ${diff} -u "fusioninventory-collect.org"  \
+               "fusioninventory-collect"  > "fusioninventory-collect.patch")
+   echo -n "."
+
    # Patches for file ${base_path}/bin/fusioninventory-esx
    if [ ! -f "${base_path}/bin/fusioninventory-esx.org" ]; then
       ${rsync} -a "${base_path}/bin/fusioninventory-esx" \
