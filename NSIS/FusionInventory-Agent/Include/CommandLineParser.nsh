@@ -369,24 +369,6 @@ Function GetCommandLineOptions
       ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 
-   ; Search for '/html' option
-   ${CommandLineOptionsSearchBlock} "/html" "${IO_HTML}"
-      ; Wipe $R3
-      ;    There should not be anything to wipe
-      Nop
-
-      ; Check $R3 domain
-      ${If} "$R3" != ""
-         ; Syntax error
-         StrCpy $CommandLineSyntaxError 0
-         ${FileWriteLine} $R9 "Syntax error. '$R2' is a switch, it has no values."
-         ${Break}
-      ${Else}
-         ; Override $R3
-         StrCpy $R3 1
-      ${EndIf}
-   ${EndCommandLineOptionsSearchBlock}
-
    ; Search for '/httpd-ip' option
    ${CommandLineOptionsSearchBlock} "/httpd-ip=" "${IO_HTTPD-IP}"
       ; Wipe $R3
@@ -556,24 +538,6 @@ Function GetCommandLineOptions
          StrCpy $CommandLineSyntaxError 0
          ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
          ${Break}
-      ${EndIf}
-   ${EndCommandLineOptionsSearchBlock}
-
-   ; Search for '/no-html' option
-   ${CommandLineOptionsSearchBlock} "/no-html" "${IO_HTML}"
-      ; Wipe $R3
-      ;    There should not be anything to wipe
-      Nop
-
-      ; Check $R3 domain
-      ${If} "$R3" != ""
-         ; Syntax error
-         StrCpy $CommandLineSyntaxError 0
-         ${FileWriteLine} $R9 "Syntax error. '$R2' is a switch, it has no values."
-         ${Break}
-      ${Else}
-         ; Override $R3
-         StrCpy $R3 0
       ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 

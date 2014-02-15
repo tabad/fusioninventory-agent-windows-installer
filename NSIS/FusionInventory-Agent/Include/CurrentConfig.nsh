@@ -120,16 +120,6 @@ Function GetCurrentOptions
       ${EndIf}
    ${EndIf}
 
-   ; Get option 'html'
-   ${registry::Read} "${PRODUCT_INST_ROOT_KEY}\$R1" "${IO_HTML}" $R2 $R3
-   ${If} "$R3" == "REG_SZ"
-      ${Trim} "$R2" $R2
-      ${If} ${IsValidOptionHtmlValue} "$R2"
-         ; Write option into $R0 section
-         ${WriteINIOption} "$R0" "${IO_HTML}" "$R2"
-      ${EndIf}
-   ${EndIf}
-
    ; Get option 'httpd-ip'
    ${registry::Read} "${PRODUCT_INST_ROOT_KEY}\$R1" "${IO_HTTPD-IP}" $R2 $R3
    ${If} "$R3" == "REG_SZ"

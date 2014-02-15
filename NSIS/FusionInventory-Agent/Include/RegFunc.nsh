@@ -473,10 +473,6 @@ Function WriteConfigurationOptions
    ${ReadINIOption} $R1 "$R0" "${IO_DELAYTIME}"
    ${registry::Write} "${PRODUCT_INST_ROOT_KEY}\$PRODUCT_INST_SUBKEY" "${IO_DELAYTIME}" "$R1" "REG_SZ" $R2
 
-   ; Register key '${IO_HTML}'
-   ${ReadINIOption} $R1 "$R0" "${IO_HTML}"
-   ${registry::Write} "${PRODUCT_INST_ROOT_KEY}\$PRODUCT_INST_SUBKEY" "${IO_HTML}" "$R1" "REG_SZ" $R2
-
    ; Register key '${IO_HTTPD-IP}'
    ${ReadINIOption} $R1 "$R0" "${IO_HTTPD-IP}"
    ${registry::Write} "${PRODUCT_INST_ROOT_KEY}\$PRODUCT_INST_SUBKEY" "${IO_HTTPD-IP}" "$R1" "REG_SZ" $R2

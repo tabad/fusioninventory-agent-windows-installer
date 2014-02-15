@@ -311,20 +311,6 @@ Function BuildHelpFile
    ${FileWriteLine} $R0 `\par $(HelpPage_Help_Option_help_Paragraph_2)\par`
    ${FileWriteLine} $R0 `\par`
 
-   ; /html
-   ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_HTML}"
-   ${EscapeSpecialRTFCharacters} "$R9" $R9
-   ${If} $R9 = 0
-      StrCpy $R9 $(HelpPage_Help_No)
-   ${Else}
-      StrCpy $R9 $(HelpPage_Help_Yes)
-   ${EndIf}
-
-   ${FileWriteLine} $R0 `\pard\li400\b /html\b0\par`
-   ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_html_Paragraph_1)\par`
-   ${FileWriteLine} $R0 `\par $(HelpPage_Help_Option_html_Paragraph_2)\par`
-   ${FileWriteLine} $R0 `\par`
-
    ; /httpd
    ${FileWriteLine} $R0 `\pard\li400\b /httpd\b0\par`
    ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_httpd_Paragraph_1)\par`
@@ -437,11 +423,6 @@ Function BuildHelpFile
    ${FileWriteLine} $R0 `\pard\li400\b /no-category\b0 =\i category\i0 [,\i category\i0 [...]]\par`
    ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_no-category_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par $(HelpPage_Help_Option_no-category_Paragraph_2)\par`
-   ${FileWriteLine} $R0 `\par`
-
-   ; /no-html
-   ${FileWriteLine} $R0 `\pard\li400\b /no-html\b0\par`
-   ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_no-html_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
 
    ; /no-httpd

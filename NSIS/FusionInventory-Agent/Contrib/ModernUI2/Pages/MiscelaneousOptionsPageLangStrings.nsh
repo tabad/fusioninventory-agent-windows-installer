@@ -76,14 +76,9 @@ LangString MiscelaneousOptionsPage_CheckBox2_Text ${LANG_FRENCH} "Lancer un inve
 LangString MiscelaneousOptionsPage_CheckBox2_Text ${LANG_SPANISH} "Lanzar un inventario inmediatamente después de la instalación"
 
 ; MiscelaneousOptionsPage_CheckBox3_Text
-LangString MiscelaneousOptionsPage_CheckBox3_Text ${LANG_ENGLISH} "Save inventory as HTML (only for local target)"
-LangString MiscelaneousOptionsPage_CheckBox3_Text ${LANG_FRENCH} "Sauvegarder l'inventaire en HTML (seulement pour Mode Locale)"
-LangString MiscelaneousOptionsPage_CheckBox3_Text ${LANG_SPANISH} "Grabar inventario como HTML (sólo para destino local)"
-
-; MiscelaneousOptionsPage_CheckBox4_Text
-LangString MiscelaneousOptionsPage_CheckBox4_Text ${LANG_ENGLISH} "Scan home directory for virtual machines"
-LangString MiscelaneousOptionsPage_CheckBox4_Text ${LANG_FRENCH} "Rechercher les machines virtuelles dans les dossiers personnels"
-LangString MiscelaneousOptionsPage_CheckBox4_Text ${LANG_SPANISH} "Buscar máquinas virtuales en el directorio personal"
+LangString MiscelaneousOptionsPage_CheckBox3_Text ${LANG_ENGLISH} "Scan home directory for virtual machines"
+LangString MiscelaneousOptionsPage_CheckBox3_Text ${LANG_FRENCH} "Rechercher les machines virtuelles dans les dossiers personnels"
+LangString MiscelaneousOptionsPage_CheckBox3_Text ${LANG_SPANISH} "Buscar máquinas virtuales en el directorio personal"
 
 ; MiscelaneousOptionsPage_Label1_Text
 LangString MiscelaneousOptionsPage_Label1_Text ${LANG_ENGLISH} "Tag"

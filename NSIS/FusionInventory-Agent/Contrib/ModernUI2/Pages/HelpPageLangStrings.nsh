@@ -382,16 +382,6 @@ LangString HelpPage_Help_Option_help_Paragraph_2 ${LANG_ENGLISH} "You could pref
 LangString HelpPage_Help_Option_help_Paragraph_2 ${LANG_FRENCH} "Vous pourriez préférer faire usage de l'option \b /dumphelp\b0  au lieu de l'option \b /help\b0  pour avoir toutes les informations. L'option \b /dumphelp\b0  crée un fichier RTF contenant l'aide, et arrête l'installation."
 LangString HelpPage_Help_Option_help_Paragraph_2 ${LANG_SPANISH} "Podría preferir hacer uso de la opción \b /dumphelp\b0  en su lugar de la opción \b /help\b0  para obtener información. La opción \b /dumphelp\b0  crea un archivo RTF con esta ayuda y aborta la instalación."
 
-; HelpPage_Help_Option_html_Paragraph_1
-LangString HelpPage_Help_Option_html_Paragraph_1 ${LANG_ENGLISH} "Save the inventory as HTML instead of XML. (By default: $R9)"
-LangString HelpPage_Help_Option_html_Paragraph_1 ${LANG_FRENCH} "Sauvegarde l'inventaire en HTML au lieu du XML. (Par défaut: $R9)"
-LangString HelpPage_Help_Option_html_Paragraph_1 ${LANG_SPANISH} "Graba el inventario como HTML en lugar de XML. (Por defecto: $R9)"
-
-; HelpPage_Help_Option_html_Paragraph_2
-LangString HelpPage_Help_Option_html_Paragraph_2 ${LANG_ENGLISH} "The \b /html\b0  option comes into play only if you have also indicated a value for the \b /local\b0  option."
-LangString HelpPage_Help_Option_html_Paragraph_2 ${LANG_FRENCH} "L'option \b /html\b0  est utilisée seulement si vous avez aussi indiqué une valeur pour l'option /local\b0."
-LangString HelpPage_Help_Option_html_Paragraph_2 ${LANG_SPANISH} "La opción \b /html\b0  entra en juego únicamente si se ha indicado también un valor para la opción \b /local\b0 ."
-
 ; HelpPage_Help_Option_httpd_Paragraph_1
 LangString HelpPage_Help_Option_httpd_Paragraph_1 ${LANG_ENGLISH} "This option is the opposite of \b /no-httpd\b0 . See \b /no-httpd\b0  for more information."
 LangString HelpPage_Help_Option_httpd_Paragraph_1 ${LANG_FRENCH} "Cette option est l'opposée de \b /no-httpd\b0 . Voir \b /no-httpd\b0  pour plus d'information."
@@ -616,11 +606,6 @@ LangString HelpPage_Help_Option_no-category_Paragraph_2 ${LANG_SPANISH} \
 \tab\b Software\b0 : \i Software\i0\par\
 \tab\b User\b0 : Usuarios\par\
 \par Si indica una cadena vacía ($\"$\"), todas las categorías de elementos serán inventariadas."
-
-; HelpPage_Help_Option_no-html_Paragraph_1
-LangString HelpPage_Help_Option_no-html_Paragraph_1 ${LANG_ENGLISH} "This option is the opposite of \b /html\b0 . See \b /html\b0  for more information."
-LangString HelpPage_Help_Option_no-html_Paragraph_1 ${LANG_FRENCH} "Cette option est l'opposée de \b /html\b0 . Voir \b /html\b0  pour plus d'information."
-LangString HelpPage_Help_Option_no-html_Paragraph_1 ${LANG_SPANISH} "Esta opción es la opuesta a \b /html\b0 . Ver \b /html\b0  para más información."
 
 ; HelpPage_Help_Option_no-httpd_Paragraph_1
 LangString HelpPage_Help_Option_no-httpd_Paragraph_1 ${LANG_ENGLISH} "Disables the embedded web server. (By default: $R9)"

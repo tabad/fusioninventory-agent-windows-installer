@@ -409,51 +409,6 @@ Function IsValidOptionExecmodeValue
 FunctionEnd
 
 
-; IsValidOptionHtmlValue
-!define IsValidOptionHtmlValue `"" IsValidOptionHtmlValue`
-
-!macro _IsValidOptionHtmlValue _a _b _t _f
-   !insertmacro _LOGICLIB_TEMP
-   Push `${_b}`
-   Call IsValidOptionHtmlValue
-   Pop $_LOGICLIB_TEMP
-   !insertmacro _= $_LOGICLIB_TEMP 0 `${_t}` `${_f}`
-!macroend
-
-Function IsValidOptionHtmlValue
-   ; $R0 Option value
-   ; $R1 Error code
-
-   ; Note: $R0 is used also as output variable
-
-   ; Get parameter
-   Exch $R0
-
-   ; Push $R1 onto the stack
-   Push $R1
-
-   ; Initialize $R1
-   StrCpy $R1 0
-
-   ; Check
-   ${If} $R0 < 0
-   ${OrIf} $R0 > 1
-   ${OrIfNot} ${IsAnIntegerNumber} "$R0"
-      ; $R0 is an invalid value
-      StrCpy $R1 1
-   ${EndIf}
-
-   ; Copy return value in $R0
-   StrCpy $R0 "$R1"
-
-   ; Pop $R1 off of the stack
-   Pop $R1
-
-   ; Exchange the top element of the stack with $R0
-   Exch $R0
-FunctionEnd
-
-
 ; IsValidOptionHttpdIpValue
 !define IsValidOptionHttpdIpValue `"" IsValidOptionHttpdIpValue`
 
