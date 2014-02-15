@@ -223,12 +223,12 @@ Function BuildHelpFile
    ${FileWriteLine} $R0 `\par $(HelpPage_Help_Option_add-firewall-exception_Paragraph_2)\par`
    ${FileWriteLine} $R0 `\par`
 
-   ; /backend-collect-timeout
-   ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_BACKEND-COLLECT-TIMEOUT}"
+   ; /collect-timeout
+   ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_COLLECT-TIMEOUT}"
    ${EscapeSpecialRTFCharacters} "$R9" $R9
 
-   ${FileWriteLine} $R0 `\pard\li400\b /backend-collect-timeout\b0 =\i timeout\i0\par`
-   ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_backend-collect-timeout_Paragraph_1)\par`
+   ${FileWriteLine} $R0 `\pard\li400\b /collect-timeout\b0 =\i timeout\i0\par`
+   ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_collect-timeout_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
 
    ; /ca-cert-dir

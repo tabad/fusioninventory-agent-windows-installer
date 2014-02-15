@@ -62,18 +62,18 @@
 !macroend
 
 
-; IsValidOptionBackendCollectTimeoutValue
-!define IsValidOptionBackendCollectTimeoutValue `"" IsValidOptionBackendCollectTimeoutValue`
+; IsValidOptionCollectTimeoutValue
+!define IsValidOptionCollectTimeoutValue `"" IsValidOptionCollectTimeoutValue`
 
-!macro _IsValidOptionBackendCollectTimeoutValue _a _b _t _f
+!macro _IsValidOptionCollectTimeoutValue _a _b _t _f
    !insertmacro _LOGICLIB_TEMP
    Push `${_b}`
-   Call IsValidOptionBackendCollectTimeoutValue
+   Call IsValidOptionCollectTimeoutValue
    Pop $_LOGICLIB_TEMP
    !insertmacro _= $_LOGICLIB_TEMP 0 `${_t}` `${_f}`
 !macroend
 
-Function IsValidOptionBackendCollectTimeoutValue
+Function IsValidOptionCollectTimeoutValue
    ; $R0 Option value
    ; $R1 Error code
 

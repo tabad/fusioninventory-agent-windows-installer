@@ -235,13 +235,13 @@ Function GetCommandLineOptions
       ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 
-   ; Search for '/backend-collect-timeout' option
-   ${CommandLineOptionsSearchBlock} "/backend-collect-timeout=" "${IO_BACKEND-COLLECT-TIMEOUT}"
+   ; Search for '/collect-timeout' option
+   ${CommandLineOptionsSearchBlock} "/collect-timeout=" "${IO_COLLECT-TIMEOUT}"
       ; Wipe $R3
       ${Trim} "$R3" $R3
 
       ; Check $R3 domain
-      ${IfNot} ${IsValidOptionBackendCollectTimeoutValue} "$R3"
+      ${IfNot} ${IsValidOptionCollectTimeoutValue} "$R3"
          ; Syntax error
          StrCpy $CommandLineSyntaxError 0
          ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."

@@ -67,10 +67,10 @@
 ; Define INI options
 !define IO_ACCEPTLICENSE "acceptlicense"
 !define IO_ADD-FIREWALL-EXCEPTION "add-firewall-exception"
-!define IO_BACKEND-COLLECT-TIMEOUT "backend-collect-timeout"
 !define IO_CA-CERT-DIR "ca-cert-dir"
 !define IO_CA-CERT-FILE "ca-cert-file"
 !define IO_CA-CERT-URI "ca-cert-uri"
+!define IO_COLLECT-TIMEOUT "collect-timeout"
 !define IO_DEBUG "debug"
 !define IO_DELAYTIME "delaytime"
 !define IO_DUMPHELP "dumphelp"
@@ -112,6 +112,7 @@
 
 
 ; Define INI deprecated options
+!define IO_BACKEND-COLLECT-TIMEOUT "backend-collect-timeout"
 !define IO_D "D"
 !define IO_DAEMON-NO-FORK "daemon-no-fork"
 !define IO_INFO "info"
@@ -328,7 +329,7 @@ Function InitINIOptionSectionDefault
    ; Write default options values
    ${WriteINIOption} "$R0" "${IO_ACCEPTLICENSE}" "0"
    ${WriteINIOption} "$R0" "${IO_ADD-FIREWALL-EXCEPTION}" "0"
-   ${WriteINIOption} "$R0" "${IO_BACKEND-COLLECT-TIMEOUT}" "180"
+   ${WriteINIOption} "$R0" "${IO_COLLECT-TIMEOUT}" "180"
    ${WriteINIOption} "$R0" "${IO_CA-CERT-DIR}" ""
    ${WriteINIOption} "$R0" "${IO_CA-CERT-FILE}" ""
    ${WriteINIOption} "$R0" "${IO_CA-CERT-URI}" ""

@@ -191,7 +191,7 @@ Function AdvancedOptionsPage_Create
    ${NSD_SetText} $hCtl_AdvancedOptionsPage_Number2 "$R1"
 
    ; Set Number3 Text
-   ${ReadINIOption} $R1 "$R0" "${IO_BACKEND-COLLECT-TIMEOUT}"
+   ${ReadINIOption} $R1 "$R0" "${IO_COLLECT-TIMEOUT}"
    ${NSD_SetText} $hCtl_AdvancedOptionsPage_Number3 "$R1"
 
    ; Set CheckBox1 Check
@@ -259,8 +259,8 @@ Function AdvancedOptionsPage_Leave
    ; Save Number3 Text
    ${NSD_GetText} $hCtl_AdvancedOptionsPage_Number3 $R2
    ${Trim} "$R2" $R2
-   ${If} ${IsValidOptionBackendCollectTimeoutValue} "$R2"
-      ${WriteINIOption} "$R0" "${IO_BACKEND-COLLECT-TIMEOUT}" "$R2"
+   ${If} ${IsValidOptionCollectTimeoutValue} "$R2"
+      ${WriteINIOption} "$R0" "${IO_COLLECT-TIMEOUT}" "$R2"
    ${Else}
       ; Invalid value
       ; Show warning message
@@ -414,7 +414,7 @@ Function AdvancedOptionsPage_Number3_ShowWarning
    MessageBox MB_OK|MB_ICONEXCLAMATION "$(AdvancedOptionsPage_TextBox_Warning)"
 
    ; Reset Number3 Text
-   ${ReadINIOption} $R2 "$R0" "${IO_BACKEND-COLLECT-TIMEOUT}"
+   ${ReadINIOption} $R2 "$R0" "${IO_COLLECT-TIMEOUT}"
    SetCtlColors $hCtl_AdvancedOptionsPage_Number3 0x000000 0xffffff
    ${NSD_SetText} $hCtl_AdvancedOptionsPage_Number3 "$R2"
 

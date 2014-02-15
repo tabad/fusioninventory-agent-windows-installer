@@ -70,13 +70,13 @@ Function GetCurrentOptions
    Push $R2
    Push $R3
 
-   ; Get option 'backend-collect-timeout'
-   ${registry::Read} "${PRODUCT_INST_ROOT_KEY}\$R1" "${IO_BACKEND-COLLECT-TIMEOUT}" $R2 $R3
+   ; Get option 'collect-timeout'
+   ${registry::Read} "${PRODUCT_INST_ROOT_KEY}\$R1" "${IO_COLLECT-TIMEOUT}" $R2 $R3
    ${If} "$R3" == "REG_SZ"
       ${Trim} "$R2" $R2
-      ${If} ${IsValidOptionBackendCollectTimeoutValue} "$R2"
+      ${If} ${IsValidOptionCollectTimeoutValue} "$R2"
          ; Write option into $R0 section
-         ${WriteINIOption} "$R0" "${IO_BACKEND-COLLECT-TIMEOUT}" "$R2"
+         ${WriteINIOption} "$R0" "${IO_COLLECT-TIMEOUT}" "$R2"
       ${EndIf}
    ${EndIf}
 
@@ -559,6 +559,16 @@ Function MigrateDeprecatedOptions
    ; Push $R2 & $R3 onto the stack
    Push $R2
    Push $R3
+
+   ; Migrate option 'backend-collect-timeout'
+   ${registry::Read} "${PRODUCT_INST_ROOT_KEY}\$R1" "${IO_BACKEND-COLLECT-TIMEOUT}" $R2 $R3
+   ${If} "$R3" == "REG_SZ"
+      ${Trim} "$R2" $R2
+      ${If} ${IsValidOptionCollectTimeoutValue} "$R2"
+         ; Write option into $R0 section
+         ${WriteINIOption} "$R0" "${IO_COLLECT-TIMEOUT}" "$R2"
+      ${EndIf}
+   ${EndIf}
 
    ; Migrate option 'no-inventory'
    ${registry::Read} "${PRODUCT_INST_ROOT_KEY}\$R1" "${IO_NO-INVENTORY}" $R2 $R3

@@ -453,9 +453,9 @@ Function WriteConfigurationOptions
    ; Erase registry subkey
    ${EraseConfigurationOptions}
 
-   ; Register key '${IO_BACKEND-COLLECT-TIMEOUT}'
-   ${ReadINIOption} $R1 "$R0" "${IO_BACKEND-COLLECT-TIMEOUT}"
-   ${registry::Write} "${PRODUCT_INST_ROOT_KEY}\$PRODUCT_INST_SUBKEY" "${IO_BACKEND-COLLECT-TIMEOUT}" "$R1" "REG_SZ" $R2
+   ; Register key '${IO_COLLECT-TIMEOUT}'
+   ${ReadINIOption} $R1 "$R0" "${IO_COLLECT-TIMEOUT}"
+   ${registry::Write} "${PRODUCT_INST_ROOT_KEY}\$PRODUCT_INST_SUBKEY" "${IO_COLLECT-TIMEOUT}" "$R1" "REG_SZ" $R2
 
    ; Register key '${IO_CA-CERT-DIR}'
    ${ReadINIOption} $R1 "$R0" "${IO_CA-CERT-DIR}"

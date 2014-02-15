@@ -206,10 +206,10 @@ LangString HelpPage_Help_Option_add-firewall-exception_Paragraph_2 ${LANG_ENGLIS
 LangString HelpPage_Help_Option_add-firewall-exception_Paragraph_2 ${LANG_FRENCH} "À faire"
 LangString HelpPage_Help_Option_add-firewall-exception_Paragraph_2 ${LANG_SPANISH} "Por hacer"
 
-; HelpPage_Help_Option_backend-collect-timeout_Paragraph_1
-LangString HelpPage_Help_Option_backend-collect-timeout_Paragraph_1 ${LANG_ENGLISH} "Timeout for task \b Inventory\b0  modules execution. (By default: $R9 seconds)"
-LangString HelpPage_Help_Option_backend-collect-timeout_Paragraph_1 ${LANG_FRENCH} "Temps maximum pour exécuter les modules de la tâche  \b Inventory\b0. (Par défaut: $R9 secondes)"
-LangString HelpPage_Help_Option_backend-collect-timeout_Paragraph_1 ${LANG_SPANISH} "Tiempo límite para la ejecución de los módulos de la tarea \b Inventory\b0 . (Por defecto: $R9 segundos)"
+; HelpPage_Help_Option_collect-timeout_Paragraph_1
+LangString HelpPage_Help_Option_collect-timeout_Paragraph_1 ${LANG_ENGLISH} "Timeout for task \b Inventory\b0  modules execution. (By default: $R9 seconds)"
+LangString HelpPage_Help_Option_collect-timeout_Paragraph_1 ${LANG_FRENCH} "Temps maximum pour exécuter les modules de la tâche  \b Inventory\b0. (Par défaut: $R9 secondes)"
+LangString HelpPage_Help_Option_collect-timeout_Paragraph_1 ${LANG_SPANISH} "Tiempo límite para la ejecución de los módulos de la tarea \b Inventory\b0 . (Por defecto: $R9 segundos)"
 
 ; HelpPage_Help_Option_ca-cert-dir_Paragraph_1
 LangString HelpPage_Help_Option_ca-cert-dir_Paragraph_1 ${LANG_ENGLISH} "Absolute path to the standard certificate directory of certificate authorities (CA). (By default: $R9)"
