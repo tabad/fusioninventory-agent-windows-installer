@@ -82,7 +82,6 @@
 !define IO_INSTALLDIR "installdir"
 !define IO_INSTALLTASKS "installtasks"
 !define IO_INSTALLTYPE "installtype"
-!define IO_LOCAL "local"
 !define IO_LOGFILE "logfile"
 !define IO_LOGFILE-MAXSIZE "logfile-maxsize"
 !define IO_LOGGER "logger"
@@ -116,6 +115,7 @@
 !define IO_DAEMON-NO-FORK "daemon-no-fork"
 !define IO_HTML "html"
 !define IO_INFO "info"
+!define IO_LOCAL "local"
 !define IO_NO-INVENTORY "no-inventory"
 !define IO_NO-NETDISCOVERY "no-netdiscovery"
 !define IO_NO-PRINTER "no-printer"
@@ -348,7 +348,6 @@ Function InitINIOptionSectionDefault
    !endif
    ${WriteINIOption} "$R0" "${IO_INSTALLTASKS}" "${INSTALLTASK_DEFAULT}"
    ${WriteINIOption} "$R0" "${IO_INSTALLTYPE}" "${INSTALLTYPE_FROMCURRENTCONFIG}"
-   ${WriteINIOption} "$R0" "${IO_LOCAL}" ""
    !if ${PRODUCT_PLATFORM_ARCHITECTURE} == ${PLATFORM_ARCHITECTURE_32}
       ${WriteINIOption} "$R0" "${IO_LOGFILE}" "$PROGRAMFILES32\${PRODUCT_INTERNAL_NAME}\fusioninventory-agent.log"
    !else

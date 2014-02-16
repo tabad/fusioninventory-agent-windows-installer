@@ -109,16 +109,14 @@ Function InstallFusionInventoryWindowsService
    ; $R1 Install directory
    ; $R2 Service status / start type
    ; $R3 Return code
-   ; $R4 The ${IO_LOCAL} target
-   ; $R5 The ${IO_SERVER} target
+   ; $R4 The ${IO_SERVER} target
 
-   ; Push $R0, $R1, $R2, $R3, $R4 & $R5 onto the stack
+   ; Push $R0, $R1, $R2, $R3 & $R4 onto the stack
    Push $R0
    Push $R1
    Push $R2
    Push $R3
    Push $R4
-   Push $R5
 
    ; Set the section from which to read
    StrCpy $R0 "${IOS_FINAL}"
@@ -147,13 +145,11 @@ Function InstallFusionInventoryWindowsService
    ${OrIf} $R2 = ${SERVICE_STATUS_CONTINUE_PENDING}
       ; Start service, but only whether there is a target defined
 
-      ; Get ${IO_LOCAL} and ${IO_SERVER} target definitions
-      ${ReadINIOption} $R4 "$R0" "${IO_LOCAL}"
-      ${ReadINIOption} $R5 "$R0" "${IO_SERVER}"
+      ; Get ${IO_SERVER} target definition
+      ${ReadINIOption} $R4 "$R0" "${IO_SERVER}"
 
-      ; Check target definitions
+      ; Check target definition
       ${If} "$R4" != ""
-      ${OrIf} "$R5" != ""
          ; At least there is a target defined, start service
          SimpleSC::StartService "${PRODUCT_INTERNAL_NAME}" "" "${SERVICE_CHANGE_STATE_TIMEOUT}"
          Pop $R3
@@ -172,8 +168,7 @@ Function InstallFusionInventoryWindowsService
    SimpleSC::SetServiceStartType "${PRODUCT_INTERNAL_NAME}" "$R2"
    Pop $R3
 
-   ; Pop $R5, $R4, $R3, $R2, $R1 & $R0 off of the stack
-   Pop $R5
+   ; Pop $R4, $R3, $R2, $R1 & $R0 off of the stack
    Pop $R4
    Pop $R3
    Pop $R2

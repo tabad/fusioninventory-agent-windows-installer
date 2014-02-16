@@ -521,21 +521,6 @@ LangString HelpPage_Help_Option_installtype_Paragraph_2 ${LANG_ENGLISH} "The ins
 LangString HelpPage_Help_Option_installtype_Paragraph_2 ${LANG_FRENCH} "L'installation commutera automatiquement de \b from-current-config\b0  à \b from-scratch\b0  si la détection, sur votre système, d'une version précédente de ${PRODUCT_NAME} échoue. Ce test rend inutile de préciser \b /installtype\b0 =\b from-scratch\b0  pour installer ${PRODUCT_NAME} sur des systèmes n'ayant pas d'agent installé, tout en facilitant la mise à jour de système ayant déjà ${PRODUCT_NAME} d'installé avec une seule procédure commune."
 LangString HelpPage_Help_Option_installtype_Paragraph_2 ${LANG_SPANISH} "El instalador cambia automáticamente de \b from-current-config\b0  a \b from-scratch\b0  si no es capaz de detectar un agente instalado previamente en el sistema. Este comportamiento hace innecesario tener que indicar \b /installtype\b0 =\b from-scratch\b0  para realizar una instalación de ${PRODUCT_NAME} en aquellos sistemas en los que no existe con anterioridad y, al mismo tiempo, facilita la actualización de ${PRODUCT_NAME} en aquellos sistemas en los que existe."
 
-; HelpPage_Help_Option_local_Paragraph_1
-LangString HelpPage_Help_Option_local_Paragraph_1 ${LANG_ENGLISH} "Writes the results of tasks execution into the given directory. (By default: $R9)"
-LangString HelpPage_Help_Option_local_Paragraph_1 ${LANG_FRENCH} "Écrit les résultats de l'exécution des tâches dans le dossier donné. (Par défaut: $R9)"
-LangString HelpPage_Help_Option_local_Paragraph_1 ${LANG_SPANISH} "Escribe los resultados de la ejecución de las tareas en el directorio indicado. (Por defecto: $R9)"
-
-; HelpPage_Help_Option_local_Paragraph_2
-LangString HelpPage_Help_Option_local_Paragraph_2 ${LANG_ENGLISH} "You must indicate an absolute pathname or an empty string ($\"$\"). If you indicate an empty string, the results of tasks execution will not be written locally."
-LangString HelpPage_Help_Option_local_Paragraph_2 ${LANG_FRENCH} "Vous devez donner un chemin absolu ou une chaîne vide ($\"$\"). Si vous utilisez une chaîne vide, le résultat de l'exécution de la tâche ne pourra pas être écrit localement."
-LangString HelpPage_Help_Option_local_Paragraph_2 ${LANG_SPANISH} "Debe indicar un nombre de ruta absoluta o una cadena vacia ($\"$\"). Si indica una cadena vacía, los resultados de la ejecución de las tareas no se escribirán localmente."
-
-; HelpPage_Help_Option_local_Paragraph_3
-LangString HelpPage_Help_Option_local_Paragraph_3 ${LANG_ENGLISH} "You can use the \b /local\b0  and \b /server\b0  options simultaneously."
-LangString HelpPage_Help_Option_local_Paragraph_3 ${LANG_FRENCH} "Vous pouvez utiliser les options \b /local\b0  et \b /server\b0  simultanément."
-LangString HelpPage_Help_Option_local_Paragraph_3 ${LANG_SPANISH} "Puede emplear las opciones \b /local\b0  y \b /server\b0  simultáneamente."
-
 ; HelpPage_Help_Option_logfile_Paragraph_1
 LangString HelpPage_Help_Option_logfile_Paragraph_1 ${LANG_ENGLISH} "Writes log messages into the file \i filename\i0 . (By default: $R9)"
 LangString HelpPage_Help_Option_logfile_Paragraph_1 ${LANG_FRENCH} "Écrit les messages de log dans le fichier \i filename\i0 . (Par défaut: $R9)"

@@ -61,29 +61,14 @@ LangString TargetsPage_SubText ${LANG_FRENCH} "Choisissez où les résultats seron
 LangString TargetsPage_SubText ${LANG_SPANISH} "Elija dónde se enviará el resultado."
 
 ; TargetsPage_GroupBox1_Text
-LangString TargetsPage_GroupBox1_Text ${LANG_ENGLISH} "Local Target"
-LangString TargetsPage_GroupBox1_Text ${LANG_FRENCH} "Mode Local"
-LangString TargetsPage_GroupBox1_Text ${LANG_SPANISH} "Destino Local"
-
-; TargetsPage_Button1_Text
-LangString TargetsPage_Button1_Text ${LANG_ENGLISH} "Browser..."
-LangString TargetsPage_Button1_Text ${LANG_FRENCH} "Parcourir..."
-LangString TargetsPage_Button1_Text ${LANG_SPANISH} "Examinar..."
+LangString TargetsPage_GroupBox1_Text ${LANG_ENGLISH} "Remote Targets"
+LangString TargetsPage_GroupBox1_Text ${LANG_FRENCH} "Mode Serveurs"
+LangString TargetsPage_GroupBox1_Text ${LANG_SPANISH} "Destinos Remotos"
 
 ; TargetsPage_Label1_Text
-LangString TargetsPage_Label1_Text ${LANG_ENGLISH} "Local path or UNC path"
-LangString TargetsPage_Label1_Text ${LANG_FRENCH} "Dossier Local ou localisation UNC"
-LangString TargetsPage_Label1_Text ${LANG_SPANISH} "Directorio local o ruta UNC"
-
-; TargetsPage_GroupBox2_Text
-LangString TargetsPage_GroupBox2_Text ${LANG_ENGLISH} "Remote Targets"
-LangString TargetsPage_GroupBox2_Text ${LANG_FRENCH} "Mode Serveurs"
-LangString TargetsPage_GroupBox2_Text ${LANG_SPANISH} "Destinos Remotos"
-
-; TargetsPage_Label2_Text
-LangString TargetsPage_Label2_Text ${LANG_ENGLISH} "You can indicate multiple URIs by separating them with commas$\r$\n'http://<server>/glpi/plugins/fusioninventory/, http://<server>/ocsinventory/, ...'"
-LangString TargetsPage_Label2_Text ${LANG_FRENCH} "Vous pouvez indiquer plusieurs URIs séparés par des vigules$\r$\n'http://<serveur>/glpi/plugins/fusioninventory/, http://<serveur>/ocsinventory/,...'"
-LangString TargetsPage_Label2_Text ${LANG_SPANISH} "Puede indicar múltiples URIs separándolos por comas$\r$\n'http://<server>/glpi/plugins/fusioninventory/, http://<server>/ocsinventory/, ...'"
+LangString TargetsPage_Label1_Text ${LANG_ENGLISH} "You can indicate multiple URIs by separating them with commas$\r$\n'http://<server>/glpi/plugins/fusioninventory/, http://<server>/ocsinventory/, ...'"
+LangString TargetsPage_Label1_Text ${LANG_FRENCH} "Vous pouvez indiquer plusieurs URIs séparés par des vigules$\r$\n'http://<serveur>/glpi/plugins/fusioninventory/, http://<serveur>/ocsinventory/,...'"
+LangString TargetsPage_Label1_Text ${LANG_SPANISH} "Puede indicar múltiples URIs separándolos por comas$\r$\n'http://<server>/glpi/plugins/fusioninventory/, http://<server>/ocsinventory/, ...'"
 
 ; TargetsPage_CheckBox1_Text
 LangString TargetsPage_CheckBox1_Text ${LANG_ENGLISH} "Quick installation (do not show the rest of windows of options)"

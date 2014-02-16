@@ -371,19 +371,6 @@ Function BuildHelpFile
    ${FileWriteLine} $R0 `\par $(HelpPage_Help_Option_installtype_Paragraph_2)\par`
    ${FileWriteLine} $R0 `\par`
 
-   ; /local
-   ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_LOCAL}"
-   ${EscapeSpecialRTFCharacters} "$R9" $R9
-   ${If} "$R9" == ""
-      StrCpy $R9 "$\"$\""
-   ${EndIf}
-
-   ${FileWriteLine} $R0 `\pard\li400\b /local\b0 =\i pathname\i0\par`
-   ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_local_Paragraph_1)\par`
-   ${FileWriteLine} $R0 `\par $(HelpPage_Help_Option_local_Paragraph_2)\par`
-   ${FileWriteLine} $R0 `\par $(HelpPage_Help_Option_local_Paragraph_3)\par`
-   ${FileWriteLine} $R0 `\par`
-
    ; /logfile
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_LOGFILE}"
    ${EscapeSpecialRTFCharacters} "$R9" $R9

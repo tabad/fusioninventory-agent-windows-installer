@@ -150,16 +150,6 @@ Function GetCurrentOptions
       ${EndIf}
    ${EndIf}
 
-   ; Get option 'local'
-   ${registry::Read} "${PRODUCT_INST_ROOT_KEY}\$R1" "${IO_LOCAL}" $R2 $R3
-   ${If} "$R3" == "REG_SZ"
-      ${Trim} "$R2" $R2
-      ${If} ${IsValidOptionLocalValue} "$R2"
-         ; Write option into $R0 section
-         ${WriteINIOption} "$R0" "${IO_LOCAL}" "$R2"
-      ${EndIf}
-   ${EndIf}
-
    ; Get option 'logfile'
    ${registry::Read} "${PRODUCT_INST_ROOT_KEY}\$R1" "${IO_LOGFILE}" $R2 $R3
    ${If} "$R3" == "REG_SZ"

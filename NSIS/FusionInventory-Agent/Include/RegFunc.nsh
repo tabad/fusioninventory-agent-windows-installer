@@ -485,10 +485,6 @@ Function WriteConfigurationOptions
    ${ReadINIOption} $R1 "$R0" "${IO_HTTPD-TRUST}"
    ${registry::Write} "${PRODUCT_INST_ROOT_KEY}\$PRODUCT_INST_SUBKEY" "${IO_HTTPD-TRUST}" "$R1" "REG_SZ" $R2
 
-   ; Register key '${IO_LOCAL}'
-   ${ReadINIOption} $R1 "$R0" "${IO_LOCAL}"
-   ${registry::Write} "${PRODUCT_INST_ROOT_KEY}\$PRODUCT_INST_SUBKEY" "${IO_LOCAL}" "$R1" "REG_SZ" $R2
-
    ; Register key '${IO_LOGFILE}'
    ${ReadINIOption} $R1 "$R0" "${IO_LOGFILE}"
    ${registry::Write} "${PRODUCT_INST_ROOT_KEY}\$PRODUCT_INST_SUBKEY" "${IO_LOGFILE}" "$R1" "REG_SZ" $R2
