@@ -490,6 +490,9 @@ Function InitINIOptionSectionCurrentConfig
    ${GetCurrentInstallLocation} $R1
    ${If} "$R1" != ""
       StrCpy $R2 ""
+      ${If} ${FileExists} "$R1\perl\agent\FusionInventory\Agent\Task\Collect.pm"
+          ${AddStrCommaUStr} "$R2" "${TASK_COLLECT}" $R2
+      ${EndIf}
       ${If} ${FileExists} "$R1\perl\agent\FusionInventory\Agent\Task\Deploy.pm"
       ${OrIf} ${FileExists} "$R1\perl\lib\FusionInventory\Agent\Task\OCSDeploy.pm"
           ${AddStrCommaUStr} "$R2" "${TASK_DEPLOY}" $R2

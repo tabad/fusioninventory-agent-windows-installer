@@ -584,6 +584,17 @@ Section "-FusionInventoryAgent" SecFusionInventoryAgent
 SectionEnd
 
 SectionGroup /e "$(SectionGroup_FusionInventoryAgentTasks)" SecGrpFusionInventoryAgentTasks
+   Section /o "Collect" SecCollect
+      SectionIn 2
+
+      ; Debug
+      SectionGetText ${SecCollect} $0
+      DetailPrint "$(Msg_InstallingSection)"
+
+      ; Install FusionInventory Agent Task Collect
+      ${InstallFusionInventoryAgentTaskCollect}
+   SectionEnd
+
    Section /o "Deploy" SecDeploy
       SectionIn 2
 
@@ -681,6 +692,7 @@ Section "-End" SecEnd
 SectionEnd
 
 !insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
+   !insertmacro MUI_DESCRIPTION_TEXT ${SecCollect} "$(SecCollect_Description)"
    !insertmacro MUI_DESCRIPTION_TEXT ${SecDeploy} "$(SecDeploy_Description)"
    !insertmacro MUI_DESCRIPTION_TEXT ${SecESX} "$(SecESX_Description)"
    !insertmacro MUI_DESCRIPTION_TEXT ${SecInventory} "$(SecInventory_Description)"
@@ -1516,6 +1528,9 @@ Function .onSelChange
          ; The section $R4 is selected
          ; According to $R4...
          ${Select} $R4
+            ${Case} ${SecCollect}
+               ; Section ${SecCollect} selected
+               ${AddStrCommaUStr} "$R6" "${TASK_COLLECT}" $R6
             ${Case} ${SecDeploy}
                ; Section ${SecDeploy} selected
                ${AddStrCommaUStr} "$R6" "${TASK_DEPLOY}" $R6
@@ -1584,6 +1599,9 @@ Function SyncNSISSectionsWithInstallTasksOption
          ${Case} ""
             ; There are no more agent tasks
             ${ExitDo}
+         ${Case} "${TASK_COLLECT}"
+            ; Select ${SecCollect} section
+            ${SelectSection} ${SecCollect}
          ${Case} "${TASK_DEPLOY}"
             ; Select ${SecDeploy} section
             ${SelectSection} ${SecDeploy}
