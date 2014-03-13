@@ -65,10 +65,10 @@ declare -i -r maximum_commit_length=10
 declare +r fusinv_agent_commit='2.3.5'
 declare -r fusinv_agent_mod_name='FusionInventory-Agent'
 declare -r fusinv_agent_repository='https://github.com/fusinv/fusioninventory-agent.git'
-declare -r fusinv_agent_mod_dependences='Archive::Extract Crypt::DES Compress::Zlib Digest::MD5 Digest::SHA File::Copy::Recursive File::Which HTTP::Daemon IO::Socket::SSL JSON LWP LWP::Protocol::https Net::IP Net::NBName Net::SNMP Parse::EDID POE::Component::Client::Ping Socket::GetAddrInfo Text::Template UNIVERSAL::require URI::Escape Win32::Daemon Win32::Job Win32::OLE Win32::TieRegistry XML::TreePP'
-declare -r fusinv_agent_mod_uses='Compress::Zlib English Fcntl File::Temp File::Spec File::Basename Getopt::Long LWP::UserAgent Pod::Usage threads threads::shared Win32 Win32::Daemon XML::TreePP'
+declare -r fusinv_agent_mod_dependences='Archive::Extract Compress::Zlib Crypt::DES Digest::MD5 Digest::SHA File::Copy::Recursive File::Which HTTP::Daemon IO::Socket::SSL JSON LWP LWP::Protocol::https Net::IP Net::NBName Net::SNMP Parse::EDID POE::Component::Client::Ping Socket::GetAddrInfo Text::Template UNIVERSAL::require URI::Escape Win32::Daemon Win32::Job Win32::OLE Win32::TieRegistry XML::TreePP'
+declare -r fusinv_agent_mod_uses='base Compress::Zlib Config constant Cwd Data::Dumper Digest::MD5 Digest::SHA Encode English Fcntl File::Basename File::Copy::Recursive File::Find File::Glob File::Path File::Spec File::stat File::Temp File::Which Getopt::Long HTTP::Cookies HTTP::Daemon HTTP::Request HTTP::Request::Common HTTP::Status IO::Handle IO::Socket::SSL JSON List::Util LWP LWP::UserAgent Memoize MIME::Base64 Net::Domain Net::IP Net::SNMP Pod::Usage POE POSIX Scalar::Util Socket Storable Sys::Hostname Text::Template threads threads::shared Time::Local Time::localtime UNIVERSAL::require URI URI::Escape User::pwent Win32 Win32::Daemon Win32::Job Win32::OLE Win32::OLE::Const Win32::OLE::Variant XML::TreePP'
 
-declare -r fusinv_mod_uses_not_detected_by_par='Encode::Byte Encode::Unicode Encode::CN Memoize Tie::Hash::NamedCapture Time::localtime User::pwent Win32::OLE::Const'
+declare -r fusinv_mod_uses_not_detected_by_par='Encode::Byte Encode::Unicode Encode::CN Tie::Hash::NamedCapture'
 
 if (( ${#fusinv_agent_commit} > ${maximum_commit_length} )); then
    fusinv_agent_commit="${fusinv_agent_commit:0:${maximum_commit_length}}"
