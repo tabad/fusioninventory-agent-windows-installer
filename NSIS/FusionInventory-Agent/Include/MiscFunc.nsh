@@ -415,7 +415,6 @@
       CreateDirectory "$R0\perl\agent\FusionInventory\Agent"
       CreateDirectory "$R0\perl\agent\FusionInventory\Agent\SNMP"
       CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Tools"
-      CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Tools\Hardware"
 
       ; Install $R0\perl\agent\FusionInventory\Agent\SNMP.pm
       ;         $R0\perl\agent\FusionInventory\Agent\Threads.pm
@@ -430,10 +429,6 @@
       ; Install $R0\perl\agent\FusionInventory\Agent\Tools\Hardware.pm
       SetOutPath "$R0\perl\agent\FusionInventory\Agent\Tools"
       File "${FIA_DIR}\lib\FusionInventory\Agent\Tools\Hardware.pm"
-
-      ; Install $R0\perl\agent\FusionInventory\Agent\Tools\Hardware\*.*
-      SetOutPath "$R0\perl\agent\FusionInventory\Agent\Tools\Hardware"
-      File /r "${FIA_DIR}\lib\FusionInventory\Agent\Tools\Hardware\*.*"
    ${EndIf}
 
    ; Pop $R0 off of the stack
@@ -464,7 +459,6 @@
    CreateDirectory "$R0\perl\agent\FusionInventory"
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent"
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Task"
-   CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Task\NetDiscovery"
    CreateDirectory "$R0\perl\bin"
 
    ; Create $R0\fusioninventory-netdiscovery.bat
@@ -479,10 +473,6 @@
    ; Install $R0\perl\agent\FusionInventory\Agent\Task\NetDiscovery.pm
    SetOutPath "$R0\perl\agent\FusionInventory\Agent\Task"
    File "${FIA_DIR}\lib\FusionInventory\Agent\Task\NetDiscovery.pm"
-
-   ; Install $R0\perl\agent\FusionInventory\Agent\Task\NetDiscovery\*.*
-   SetOutPath "$R0\perl\agent\FusionInventory\Agent\Task\NetDiscovery"
-   File /r "${FIA_DIR}\lib\FusionInventory\Agent\Task\NetDiscovery\*.*"
 
    ; Install $R0\perl\bin\fusioninventory-netdiscovery
    SetOutPath "$R0\perl\bin\"
