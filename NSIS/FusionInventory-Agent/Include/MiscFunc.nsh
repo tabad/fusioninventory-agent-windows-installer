@@ -467,7 +467,6 @@
       CreateDirectory "$R0\perl\agent\FusionInventory\Agent"
       CreateDirectory "$R0\perl\agent\FusionInventory\Agent\SNMP"
       CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Tools"
-      CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Tools\Hardware"
 
       ; Install $R0\perl\agent\FusionInventory\Agent\SNMP.pm
       ;         $R0\perl\agent\FusionInventory\Agent\Threads.pm
@@ -482,10 +481,6 @@
       ; Install $R0\perl\agent\FusionInventory\Agent\Tools\Hardware.pm
       SetOutPath "$R0\perl\agent\FusionInventory\Agent\Tools"
       File "${FIA_DIR}\lib\FusionInventory\Agent\Tools\Hardware.pm"
-
-      ; Install $R0\perl\agent\FusionInventory\Agent\Tools\Hardware\*.*
-      SetOutPath "$R0\perl\agent\FusionInventory\Agent\Tools\Hardware"
-      File /r "${FIA_DIR}\lib\FusionInventory\Agent\Tools\Hardware\*.*"
    ${EndIf}
 
    ; Pop $R0 off of the stack
