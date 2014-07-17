@@ -273,6 +273,7 @@ while (( ${iter} < ${#archs[@]} )); do
    eval ${install} "${strawberry_arch_path}/perl/bin/perl{.exe,*.*.*.exe,*.dll}" "${tmpdir}/Strawberry/${strawberry_version}/${arch}/perl/bin"
    eval ${install} "${strawberry_arch_path}/perl/bin/libstdc++-6.dll" "${tmpdir}/Strawberry/${strawberry_version}/${arch}/perl/bin"
    eval ${install} "${strawberry_arch_path}/perl/bin/libgcc_s_sjlj-1.dll" "${tmpdir}/Strawberry/${strawberry_version}/${arch}/perl/bin"
+   eval ${install} "${strawberry_arch_path}/perl/bin/libwinpthread-1.dll" "${tmpdir}/Strawberry/${strawberry_version}/${arch}/perl/bin"
 
    # Select files
    phase=1
