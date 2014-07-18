@@ -1,0 +1,3 @@
+FusionInventory Agent Windows Installer - Acknowledgments
+
+ToDo (This is the most difficult part of the project, sorry)

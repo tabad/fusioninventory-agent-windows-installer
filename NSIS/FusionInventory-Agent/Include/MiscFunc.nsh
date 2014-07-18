@@ -156,15 +156,26 @@
    FileClose $R1
 
    ; Install $R0\docs\releases\agent-{changes,license,readme,thanks}.txt
+   ;         $R0\docs\releades\installer-{acknowledgments,changes,contributions,license,readme}.txt
    SetOutPath "$R0\docs\releases"
    File /oname=agent-changes.txt "${FIA_DIR}\Changes"
    File /oname=agent-license.txt "${FIA_DIR}\LICENSE"
    File /oname=agent-readme.txt "${FIA_DIR}\README"
    File /oname=agent-thanks.txt "${FIA_DIR}\THANKS"
+   File /oname=installer-acknowledgments.txt "..\Acknowledgments.txt"
+   File /oname=installer-changes.txt "..\Changes.txt"
+   File /oname=installer-contributions.txt "..\Contributions.txt"
+   File /oname=installer-license.txt "..\License.txt"
+   File /oname=installer-readme.txt "..\Readme.txt"
    nsExec::Exec '"$PLUGINSDIR\sed.exe" -i -e "s/$$/\r/" "$R0\docs\releases\agent-changes.txt"'
    nsExec::Exec '"$PLUGINSDIR\sed.exe" -i -e "s/$$/\r/" "$R0\docs\releases\agent-license.txt"'
    nsExec::Exec '"$PLUGINSDIR\sed.exe" -i -e "s/$$/\r/" "$R0\docs\releases\agent-readme.txt"'
    nsExec::Exec '"$PLUGINSDIR\sed.exe" -i -e "s/$$/\r/" "$R0\docs\releases\agent-thanks.txt"'
+   nsExec::Exec '"$PLUGINSDIR\sed.exe" -i -e "s/$$/\r/" "$R0\docs\releases\installer-acknowledgments.txt"'
+   nsExec::Exec '"$PLUGINSDIR\sed.exe" -i -e "s/$$/\r/" "$R0\docs\releases\installer-changes.txt"'
+   nsExec::Exec '"$PLUGINSDIR\sed.exe" -i -e "s/$$/\r/" "$R0\docs\releases\installer-contributions.txt"'
+   nsExec::Exec '"$PLUGINSDIR\sed.exe" -i -e "s/$$/\r/" "$R0\docs\releases\installer-license.txt"'
+   nsExec::Exec '"$PLUGINSDIR\sed.exe" -i -e "s/$$/\r/" "$R0\docs\releases\installer-readme.txt"'
    Delete "$R0\docs\releases\sed*"
 
    ; Install $R0\etc
