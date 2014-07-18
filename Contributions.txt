@@ -1,0 +1,16 @@
+FusionInventory Agent Windows Installer - Contributors List
+
+If you have searched yourself in this list and didn't find you, you think
+you have contributed with the evolution of the project and would like to
+appear together with all these others great people...  quick!,
+write me an e-mail to
+
+   * Tomás Abad <tabadgp at gmail dot com>
+
+Sure, the project has a serious bug. ;)
+
+
+These are the people that had contributed (some of them still do it) in one
+or other way to the project, a lot of thanks to all of them!.
+
+ToDo
