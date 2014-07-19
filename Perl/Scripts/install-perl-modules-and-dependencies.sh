@@ -51,6 +51,7 @@ declare perl_path=''
 declare -i iter=0
 declare basename=''
 declare fusinv_mod_dependences=''
+declare fusinv_mod_specific_dependences=''
 
 declare -r rm=$(type -P rm)
 declare -r sort=$(type -P sort)
@@ -122,6 +123,14 @@ fusinv_mod_dependences="$(echo ${fusinv_agent_mod_dependences} | \
                         ${tr} '\n' ' ')"
 fusinv_mod_dependences="${fusinv_mod_dependences% *}"
 
+# Select perl specific modules to install
+fusinv_mod_specific_dependences="$(echo ${fusinv_agent_mod_specific_dependences} | \
+                                 ${tr} '[:space:]' '\n'                          | \
+                                 ${sort} -i                                      | \
+                                 ${uniq}                                         | \
+                                 ${tr} '\n' ' ')"
+fusinv_mod_specific_dependences="${fusinv_mod_specific_dependences% *}"
+
 # Installation loop
 while (( ${iter} < ${#archs[@]} )); do
    # Set arch and arch_label
@@ -151,7 +160,15 @@ while (( ${iter} < ${#archs[@]} )); do
    # Install modules
    echo "Installing modules..."
    ${perl} ${cpanm} --install --auto-cleanup 1 --skip-satisfied --notest --quiet ${fusinv_mod_dependences}
-   echo
+
+   # Install specific modules
+   if [ -z "${fusinv_mod_specific_dependences}" ]; then
+      echo
+   else
+      echo "Installing specific modules..."
+      ${perl} ${cpanm} --install --auto-cleanup 1 --notest --quiet ${fusinv_mod_specific_dependences}
+      echo
+   fi
 
    # Remove perl_path from PATH
    PATH="${PATH/${perl_path}/}"
