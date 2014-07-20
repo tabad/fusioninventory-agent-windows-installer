@@ -533,6 +533,10 @@ Function WriteConfigurationOptions
    ${ReadINIOption} $R1 "$R0" "${IO_SCAN-HOMEDIRS}"
    ${registry::Write} "${PRODUCT_INST_ROOT_KEY}\$PRODUCT_INST_SUBKEY" "${IO_SCAN-HOMEDIRS}" "$R1" "REG_SZ" $R2
 
+   ; Register key '${IO_SCAN-PROFILES}'
+   ${ReadINIOption} $R1 "$R0" "${IO_SCAN-PROFILES}"
+   ${registry::Write} "${PRODUCT_INST_ROOT_KEY}\$PRODUCT_INST_SUBKEY" "${IO_SCAN-PROFILES}" "$R1" "REG_SZ" $R2
+
    ; Register key '${IO_TAG}'
    ${ReadINIOption} $R1 "$R0" "${IO_TAG}"
    ${registry::Write} "${PRODUCT_INST_ROOT_KEY}\$PRODUCT_INST_SUBKEY" "${IO_TAG}" "$R1" "REG_SZ" $R2

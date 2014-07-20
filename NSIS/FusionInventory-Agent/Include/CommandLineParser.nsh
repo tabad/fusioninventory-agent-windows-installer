@@ -581,6 +581,24 @@ Function GetCommandLineOptions
       ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 
+   ; Search for '/no-scan-profiles' option
+   ${CommandLineOptionsSearchBlock} "/no-scan-profiles" "${IO_SCAN-PROFILES}"
+      ; Wipe $R3
+      ;    There should not be anything to wipe
+      Nop
+
+      ; Check $R3 domain
+      ${If} "$R3" != ""
+         ; Syntax error
+         StrCpy $CommandLineSyntaxError 0
+         ${FileWriteLine} $R9 "Syntax error. '$R2' is a switch, it has no values."
+         ${Break}
+      ${Else}
+         ; Override $R3
+         StrCpy $R3 0
+      ${EndIf}
+   ${EndCommandLineOptionsSearchBlock}
+
    ; Search for '/no-ssl-check' option
    ${CommandLineOptionsSearchBlock} "/no-ssl-check" "${IO_NO-SSL-CHECK}"
       ; Wipe $R3
@@ -697,6 +715,24 @@ Function GetCommandLineOptions
 
    ; Search for '/scan-homedirs' option
    ${CommandLineOptionsSearchBlock} "/scan-homedirs" "${IO_SCAN-HOMEDIRS}"
+      ; Wipe $R3
+      ;    There should not be anything to wipe
+      Nop
+
+      ; Check $R3 domain
+      ${If} "$R3" != ""
+         ; Syntax error
+         StrCpy $CommandLineSyntaxError 0
+         ${FileWriteLine} $R9 "Syntax error. '$R2' is a switch, it has no values."
+         ${Break}
+      ${Else}
+         ; Override $R3
+         StrCpy $R3 1
+      ${EndIf}
+   ${EndCommandLineOptionsSearchBlock}
+
+   ; Search for '/scan-profiles' option
+   ${CommandLineOptionsSearchBlock} "/scan-profiles" "${IO_SCAN-PROFILES}"
       ; Wipe $R3
       ;    There should not be anything to wipe
       Nop
