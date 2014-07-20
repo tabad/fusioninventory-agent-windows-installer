@@ -43,7 +43,7 @@
 
 /*
    ------------------------------------------------------------------------
-   This file was generated with the help of NSISDialogDesigner 1.1.2.0
+   This file was generated with the help of NSISDialogDesigner 1.2.0.0
    http://coolsoft.altervista.org/nsisdialogdesigner
    ------------------------------------------------------------------------
 */
@@ -65,6 +65,7 @@ Var hCtl_MiscelaneousOptionsPage_CheckBox1
 Var hCtl_MiscelaneousOptionsPage_CheckBox2
 Var hCtl_MiscelaneousOptionsPage_CheckBox3
 Var hCtl_MiscelaneousOptionsPage_CheckBox4
+Var hCtl_MiscelaneousOptionsPage_CheckBox5
 Var hCtl_MiscelaneousOptionsPage_Label1
 Var hCtl_MiscelaneousOptionsPage_TextBox1
 
@@ -87,31 +88,35 @@ Function MiscelaneousOptionsPage_Create
    !insertmacro MUI_HEADER_TEXT "$(MiscelaneousOptionsPage_Text)" "$(MiscelaneousOptionsPage_SubText)"
 
    ; === GroupBox1 (type: GroupBox) ===
-   ${NSD_CreateGroupBox} 28u 11u 242u 104u "$(MiscelaneousOptionsPage_GroupBox1_Text)"
+   ${NSD_CreateGroupBox} 28.3u 4.92u 242.89u 129.23u "$(MiscelaneousOptionsPage_GroupBox1_Text)"
    Pop $hCtl_MiscelaneousOptionsPage_GroupBox1
 
    ; === CheckBox1 (type: Checkbox) ===
-   ${NSD_CreateCheckbox} 39u 28u 218u 11u "$(MiscelaneousOptionsPage_CheckBox1_Text)"
+   ${NSD_CreateCheckbox} 38.84u 23.38u 218.53u 12.31u "$(MiscelaneousOptionsPage_CheckBox1_Text)"
    Pop $hCtl_MiscelaneousOptionsPage_CheckBox1
 
    ; === CheckBox2 (type: Checkbox) ===
-   ${NSD_CreateCheckbox} 39u 43u 218u 11u "$(MiscelaneousOptionsPage_CheckBox2_Text)"
+   ${NSD_CreateCheckbox} 38.84u 39.38u 218.53u 12.31u "$(MiscelaneousOptionsPage_CheckBox2_Text)"
    Pop $hCtl_MiscelaneousOptionsPage_CheckBox2
 
    ; === CheckBox3 (type: Checkbox) ===
-   ${NSD_CreateCheckbox} 39u 57u 218u 11u "$(MiscelaneousOptionsPage_CheckBox3_Text)"
+   ${NSD_CreateCheckbox} 38.84u 55.38u 218.53u 12.31u "$(MiscelaneousOptionsPage_CheckBox3_Text)"
    Pop $hCtl_MiscelaneousOptionsPage_CheckBox3
 
    ; === CheckBox4 (type: Checkbox) ===
-   ${NSD_CreateCheckbox} 39u 72u 218u 11u "$(MiscelaneousOptionsPage_CheckBox4_Text)"
+   ${NSD_CreateCheckbox} 38.84u 71.38u 218.53u 12.31u "$(MiscelaneousOptionsPage_CheckBox4_Text)"
    Pop $hCtl_MiscelaneousOptionsPage_CheckBox4
 
+   ; === CheckBox5 (type: Checkbox) ===
+   ${NSD_CreateCheckbox} 38.84u 87.38u 218.53u 12.31u "$(MiscelaneousOptionsPage_CheckBox5_Text)"
+   Pop $hCtl_MiscelaneousOptionsPage_CheckBox5
+
    ; === Label1 (type: Label) ===
-   ${NSD_CreateLabel} 41u 86u 215u 8u "$(MiscelaneousOptionsPage_Label1_Text)"
+   ${NSD_CreateLabel} 41.47u 102.15u 215.9u 9.23u "$(MiscelaneousOptionsPage_Label1_Text)"
    Pop $hCtl_MiscelaneousOptionsPage_Label1
 
    ; === TextBox1 (type: Text) ===
-   ${NSD_CreateText} 39u 95u 218u 11u ""
+   ${NSD_CreateText} 38.84u 112u 218.53u 12.31u ""
    Pop $hCtl_MiscelaneousOptionsPage_TextBox1
 
    ; OnBack Function
@@ -154,6 +159,14 @@ Function MiscelaneousOptionsPage_Create
       ${NSD_Check} $hCtl_MiscelaneousOptionsPage_CheckBox4
    ${Else}
       ${NSD_Uncheck} $hCtl_MiscelaneousOptionsPage_CheckBox4
+   ${EndIf}
+
+   ; Set CheckBox5 Check
+   ${ReadINIOption} $R1 "$R0" "${IO_SCAN-PROFILES}"
+   ${If} "$R1" != "0"
+      ${NSD_Check} $hCtl_MiscelaneousOptionsPage_CheckBox5
+   ${Else}
+      ${NSD_Uncheck} $hCtl_MiscelaneousOptionsPage_CheckBox5
    ${EndIf}
 
    ; Set TextBox1 Text
@@ -208,6 +221,14 @@ Function MiscelaneousOptionsPage_Leave
       ${WriteINIOption} "$R0" "${IO_SCAN-HOMEDIRS}" "1"
    ${Else}
       ${WriteINIOption} "$R0" "${IO_SCAN-HOMEDIRS}" "0"
+   ${EndIf}
+
+   ; Save CheckBox5 Check
+   ${NSD_GetState} $hCtl_MiscelaneousOptionsPage_CheckBox5 $R2
+   ${If} $R2 = ${BST_CHECKED}
+      ${WriteINIOption} "$R0" "${IO_SCAN-PROFILES}" "1"
+   ${Else}
+      ${WriteINIOption} "$R0" "${IO_SCAN-PROFILES}" "0"
    ${EndIf}
 
    ; Save TextBox1 Text

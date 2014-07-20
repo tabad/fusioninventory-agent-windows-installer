@@ -85,6 +85,11 @@ LangString MiscelaneousOptionsPage_CheckBox4_Text ${LANG_ENGLISH} "Scan home dir
 LangString MiscelaneousOptionsPage_CheckBox4_Text ${LANG_FRENCH} "Rechercher les machines virtuelles dans les dossiers personnels"
 LangString MiscelaneousOptionsPage_CheckBox4_Text ${LANG_SPANISH} "Buscar máquinas virtuales en el directorio personal"
 
+; MiscelaneousOptionsPage_CheckBox5_Text
+LangString MiscelaneousOptionsPage_CheckBox5_Text ${LANG_ENGLISH} "Scan user profiles for software"
+LangString MiscelaneousOptionsPage_CheckBox5_Text ${LANG_FRENCH} "Recherche de logiciels dans les profils utilisateurs"
+LangString MiscelaneousOptionsPage_CheckBox5_Text ${LANG_SPANISH} "Buscar software en perfiles de usuario"
+
 ; MiscelaneousOptionsPage_Label1_Text
 LangString MiscelaneousOptionsPage_Label1_Text ${LANG_ENGLISH} "Tag"
 LangString MiscelaneousOptionsPage_Label1_Text ${LANG_FRENCH} "Tag"
