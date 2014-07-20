@@ -374,7 +374,7 @@ Var FusionInventoryAgentTaskNetCoreInstalled
 ; Do not check the 'Run program' checkbox by default
 ;!define MUI_FINISHPAGE_RUN_NOTCHECKED
 ; File or website which the user can select to view using a checkbox
-!define MUI_FINISHPAGE_SHOWREADME "$INSTDIR\readme.txt"
+!define MUI_FINISHPAGE_SHOWREADME "$INSTDIR\docs\releases\agent-readme.txt"
 ; Do not check the 'Show Readme' checkbox by default
 ;!define MUI_FINISHPAGE_SHOWREADME_NOTCHECKED
 ; Text for a link on the which the user can click to view a website or file
@@ -726,18 +726,6 @@ Section "-un.Init"
    ReadRegStr $R1 "${PRODUCT_INST_ROOT_KEY}" "$PRODUCT_INST_SUBKEY" "${IO_LOGFILE}"
    Delete "$R1"
 
-   ; Delete file $R0\changes.txt
-   Delete "$R0\changes.txt"
-
-   ; Delete file $R0\license.txt
-   Delete "$R0\license.txt"
-
-   ; Delete file $R0\readme.txt
-   Delete "$R0\readme.txt"
-
-   ; Delete file $R0\thanks.txt
-   Delete "$R0\thanks.txt"
-
    ; Delete file $R0\${PRODUCT_UNINSTALLER}
    Delete "$R0\${PRODUCT_UNINSTALLER}"
 
@@ -748,6 +736,9 @@ Section "-un.Init"
       ; Delete directory $R0\debug
       RMDir /r "$R0\debug"
    !endif
+
+   ; Delete directory $R0\docs
+   RMDir /r "$R0\docs"
 
    ; Delete directory $R0\etc
    RMDir /r "$R0\etc"

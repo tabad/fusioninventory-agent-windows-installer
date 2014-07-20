@@ -129,6 +129,8 @@
    ${ReadINIOption} $R0 "${IOS_FINAL}" "${IO_INSTALLDIR}"
    CreateDirectory "$R0"
    CreateDirectory "$R0\certs"
+   CreateDirectory "$R0\docs"
+   CreateDirectory "$R0\docs\releases"
    CreateDirectory "$R0\etc"
    CreateDirectory "$R0\perl"
    CreateDirectory "$R0\perl\agent"
@@ -153,17 +155,17 @@
    ${FileWriteLine} $R1 "popd"
    FileClose $R1
 
-   ; Install $R0\{license,readme,thanks}.txt
-   SetOutPath "$R0\"
-   File /oname=changes.txt "${FIA_DIR}\Changes"
-   File /oname=license.txt "${FIA_DIR}\LICENSE"
-   File /oname=readme.txt "${FIA_DIR}\README"
-   File /oname=thanks.txt "${FIA_DIR}\THANKS"
-   nsExec::Exec '"$PLUGINSDIR\sed.exe" -i -e "s/$$/\r/" "$R0\changes.txt"'
-   nsExec::Exec '"$PLUGINSDIR\sed.exe" -i -e "s/$$/\r/" "$R0\license.txt"'
-   nsExec::Exec '"$PLUGINSDIR\sed.exe" -i -e "s/$$/\r/" "$R0\readme.txt"'
-   nsExec::Exec '"$PLUGINSDIR\sed.exe" -i -e "s/$$/\r/" "$R0\thanks.txt"'
-   Delete "$R0\sed*"
+   ; Install $R0\docs\releases\agent-{changes,license,readme,thanks}.txt
+   SetOutPath "$R0\docs\releases"
+   File /oname=agent-changes.txt "${FIA_DIR}\Changes"
+   File /oname=agent-license.txt "${FIA_DIR}\LICENSE"
+   File /oname=agent-readme.txt "${FIA_DIR}\README"
+   File /oname=agent-thanks.txt "${FIA_DIR}\THANKS"
+   nsExec::Exec '"$PLUGINSDIR\sed.exe" -i -e "s/$$/\r/" "$R0\docs\releases\agent-changes.txt"'
+   nsExec::Exec '"$PLUGINSDIR\sed.exe" -i -e "s/$$/\r/" "$R0\docs\releases\agent-license.txt"'
+   nsExec::Exec '"$PLUGINSDIR\sed.exe" -i -e "s/$$/\r/" "$R0\docs\releases\agent-readme.txt"'
+   nsExec::Exec '"$PLUGINSDIR\sed.exe" -i -e "s/$$/\r/" "$R0\docs\releases\agent-thanks.txt"'
+   Delete "$R0\docs\releases\sed*"
 
    ; Install $R0\etc
    SetOutPath "$R0\etc\"
