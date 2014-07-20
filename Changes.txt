@@ -1,3 +1,24 @@
 FusionInventory Agent Windows Installer - History of Revisions and Changes
 
-2.3.9
+2.3.9 Sun, 20 Jul 2014 20:36:03 +0200
+agent:
+* FusionInventory Agent 2.3.9 (commit: cdabed8526)
+
+command line interface:
+* Add support to the new --scan-profiles option (#2608)
+
+core:
+* Place documentation in the new directory 'docs' (#2613)
+
+graphic user interface:
+* Add support to the new --scan-profiles option (#2609)
+
+project maintenance:
+* Add 'Acknowledgments.txt', 'Changes.txt', 'Contributions.txt' and
+  other information files (#2101)
+
+strawberry perl package:
+* Add Japanese, Korean and Taiwan-based Chinese encodings (#2606)
+* Based on Strawbarry Perl 5.20.0.1 (May 2014) with Perl module
+  IO::Socket::SSL upgraded from 1.991 to 1.997 (#2607)
+* Fix deployment of big files via HTTPS (#2401)
