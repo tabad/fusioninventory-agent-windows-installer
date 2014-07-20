@@ -475,6 +475,11 @@ Function BuildHelpFile
    ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_no-scan-homedirs_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
 
+   ; /no-scan-profiles
+   ${FileWriteLine} $R0 `\pard\li400\b /no-scan-profiles\b0\par`
+   ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_no-scan-profiles_Paragraph_1)\par`
+   ${FileWriteLine} $R0 `\par`
+
    ; /no-ssl-check
    ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_NO-SSL-CHECK}"
    ${EscapeSpecialRTFCharacters} "$R9" $R9
@@ -580,6 +585,19 @@ Function BuildHelpFile
 
    ${FileWriteLine} $R0 `\pard\li400\b /scan-homedirs\b0\par`
    ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_scan-homedirs_Paragraph_1)\par`
+   ${FileWriteLine} $R0 `\par`
+
+   ; /scan-profiles
+   ${ReadINIOption} $R9 "${IOS_DEFAULT}" "${IO_SCAN-PROFILES}"
+   ${EscapeSpecialRTFCharacters} "$R9" $R9
+   ${If} $R9 = 0
+      StrCpy $R9 $(HelpPage_Help_No)
+   ${Else}
+      StrCpy $R9 $(HelpPage_Help_Yes)
+   ${EndIf}
+
+   ${FileWriteLine} $R0 `\pard\li400\b /scan-profiles\b0\par`
+   ${FileWriteLine} $R0 `\pard\li800 $(HelpPage_Help_Option_scan-profiles_Paragraph_1)\par`
    ${FileWriteLine} $R0 `\par`
 
    ; /server

@@ -637,6 +637,11 @@ LangString HelpPage_Help_Option_no-scan-homedirs_Paragraph_1 ${LANG_ENGLISH} "Th
 LangString HelpPage_Help_Option_no-scan-homedirs_Paragraph_1 ${LANG_FRENCH} "Cette option est l'opposée de \b /scan-homedirs\b0 . Voir \b /scan-homedirs\b0  pour plus d'information."
 LangString HelpPage_Help_Option_no-scan-homedirs_Paragraph_1 ${LANG_SPANISH} "Esta opción es la opuesta a \b /scan-homedirs\b0 . Ver \b /scan-homedirs\b0  para más información."
 
+; HelpPage_Help_Option_no-scan-profiles_Paragraph_1
+LangString HelpPage_Help_Option_no-scan-profiles_Paragraph_1 ${LANG_ENGLISH} "This option is the opposite of \b /scan-profiles\b0 . See \b /scan-profiles\b0  for more information."
+LangString HelpPage_Help_Option_no-scan-profiles_Paragraph_1 ${LANG_FRENCH} "Cette option est l'opposée de \b /scan-profiles\b0 . Voir \b /scan-profiles\b0  pour plus d'information."
+LangString HelpPage_Help_Option_no-scan-profiles_Paragraph_1 ${LANG_SPANISH} "Esta opción es la opuesta a \b /scan-profiles\b0 . Ver \b /scan-profiles\b0  para más información."
+
 ; HelpPage_Help_Option_no-ssl-check_Paragraph_1
 LangString HelpPage_Help_Option_no-ssl-check_Paragraph_1 ${LANG_ENGLISH} "Do not check server certificate. (By default: $R9)"
 LangString HelpPage_Help_Option_no-ssl-check_Paragraph_1 ${LANG_FRENCH} "Ne pas vérifier le certificat du serveur. (Par défaut: $R9)"
@@ -728,6 +733,11 @@ LangString HelpPage_Help_Option_S_Paragraph_2 ${LANG_SPANISH} "Debe aceptar la l
 LangString HelpPage_Help_Option_scan-homedirs_Paragraph_1 ${LANG_ENGLISH} "Allows the agent to scan home directories for virtual machines. (By default: $R9)"
 LangString HelpPage_Help_Option_scan-homedirs_Paragraph_1 ${LANG_FRENCH} "Autorise l'agent à scanner les dossiers utilisateurs pour trouver les machines virtuelles. (Par défaut: $R9)"
 LangString HelpPage_Help_Option_scan-homedirs_Paragraph_1 ${LANG_SPANISH} "Permite al agente buscar máquinas virtuales en los directorios \i home\i0 . (Por defecto: $R9)"
+
+; HelpPage_Help_Option_scan-profiles_Paragraph_1
+LangString HelpPage_Help_Option_scan-profiles_Paragraph_1 ${LANG_ENGLISH} "Allows the agent to scan user profiles for software. (By default: $R9)"
+LangString HelpPage_Help_Option_scan-profiles_Paragraph_1 ${LANG_FRENCH} "Autorise à l'agent de scanner les profils utilisateurs à la recherche de logiciels. (Par défaut: $R9)"
+LangString HelpPage_Help_Option_scan-profiles_Paragraph_1 ${LANG_SPANISH} "Permite al agente buscar \i software\i0  en los perfiles de usuario. (Por defecto: $R9)"
 
 ; HelpPage_Help_Option_server_Paragraph_1
 LangString HelpPage_Help_Option_server_Paragraph_1 ${LANG_ENGLISH} "Sends results of tasks execution to given servers. (By default: $R9)"
