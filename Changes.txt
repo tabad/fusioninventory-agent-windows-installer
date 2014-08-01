@@ -1,6 +1,6 @@
 FusionInventory Agent Windows Installer - History of Revisions and Changes
 
-2.3.9 Sun, 20 Jul 2014 20:36:03 +0200
+2.3.9 Sun, 20 Jul 2014
 agent:
 * FusionInventory Agent 2.3.9 (commit: cdabed8526)
 
