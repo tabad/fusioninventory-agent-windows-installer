@@ -1,5 +1,15 @@
 FusionInventory Agent Windows Installer - History of Revisions and Changes
 
+2.3.10 Sat, 02 Aug 2014
+agent:
+* FusionInventory Agent 2.3.10 (commit: e02610dbf9)
+
+strawberry perl package:
+* Regression to Strawbarry Perl 5.18.2.2 (Apr 2014) with many Perl modules
+  upgraded. Please, take a look to #2643 regarding implications about this
+  issue and why it is needed
+* Fix inventory of software (#2626)
+
 2.3.9 Sun, 20 Jul 2014
 agent:
 * FusionInventory Agent 2.3.9 (commit: cdabed8526)
