@@ -18,7 +18,7 @@ graphic user interface:
 * Remove support for 'local' option (deprecated)
 * Remove support for 'html' option (deprecated)
 
-2.3.9 Sun, 20 Jul 2014 20:36:03 +0200
+2.3.9 Sun, 20 Jul 2014
 agent:
 * FusionInventory Agent 2.3.9 (commit: cdabed8526)
 
