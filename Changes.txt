@@ -1,5 +1,23 @@
 FusionInventory Agent Windows Installer - History of Revisions and Changes
 
+2.4.0
+agent:
+* FusionInventory Agent master branch (commit: 9269e24590)
+
+command line interface:
+* Add support to the new 'Collect' task
+* Rename 'backend-collect-timeout' option to 'collect-timeout'
+* Remove support for 'local' option (deprecated)
+* Remove support for 'html' option (deprecated)
+
+core:
+* Add support to the new 'Collect' task
+
+graphic user interface:
+* Add support to the new 'Collect' task
+* Remove support for 'local' option (deprecated)
+* Remove support for 'html' option (deprecated)
+
 2.3.9 Sun, 20 Jul 2014 20:36:03 +0200
 agent:
 * FusionInventory Agent 2.3.9 (commit: cdabed8526)
