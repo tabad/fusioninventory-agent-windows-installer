@@ -2,7 +2,7 @@ FusionInventory Agent Windows Installer - History of Revisions and Changes
 
 2.4.0
 agent:
-* FusionInventory Agent master branch (commit: 63fb2a61c2)
+* FusionInventory Agent master branch (commit: fbe3531829)
 
 command line interface:
 * Add support to the new 'Collect' task
