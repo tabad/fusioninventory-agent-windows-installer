@@ -71,7 +71,7 @@ LangString MiscelaneousOptionsPage_CheckBox1_Text ${LANG_FRENCH} "Créer un racco
 LangString MiscelaneousOptionsPage_CheckBox1_Text ${LANG_SPANISH} "Crear Menú de Inicio para todos los usuarios"
 
 ; MiscelaneousOptionsPage_CheckBox2_Text
-LangString MiscelaneousOptionsPage_CheckBox2_Text ${LANG_ENGLISH} "Launch an inventory immediately after of installation"
+LangString MiscelaneousOptionsPage_CheckBox2_Text ${LANG_ENGLISH} "Launch an inventory immediately after installation"
 LangString MiscelaneousOptionsPage_CheckBox2_Text ${LANG_FRENCH} "Lancer un inventaire immédiatement après l'installation"
 LangString MiscelaneousOptionsPage_CheckBox2_Text ${LANG_SPANISH} "Lanzar un inventario inmediatamente después de la instalación"
 

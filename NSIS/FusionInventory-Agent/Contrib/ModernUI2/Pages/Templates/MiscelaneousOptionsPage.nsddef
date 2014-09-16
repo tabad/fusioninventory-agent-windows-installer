@@ -7,7 +7,7 @@ Do not edit manually!
 <Dialog Name="MiscelaneousOptionsPage" Title="Dialog title..." Subtitle="Dialog subtitle..." Style="none" ExStyle="none">
   <GroupBox Name="GroupBox1" Location="43, 8" Size="369, 210" Text="Miscelaneous options" TabIndex="0" Style="none" ExStyle="none">
     <CheckBox Name="CheckBox1" Location="16, 30" Size="332, 20" Text="Create Start Menu for all users" TabIndex="0" Style="none" ExStyle="none" />
-    <CheckBox Name="CheckBox2" Location="16, 56" Size="332, 20" Text="Launch an inventory immediately after of installation" TabIndex="1" Style="none" ExStyle="none" />
+    <CheckBox Name="CheckBox2" Location="16, 56" Size="332, 20" Text="Launch an inventory immediately after installation" TabIndex="1" Style="none" ExStyle="none" />
     <CheckBox Name="CheckBox3" Location="16, 82" Size="332, 20" Text="Save inventory as HTML (only for local target)" TabIndex="2" Style="none" ExStyle="none" />
     <CheckBox Name="CheckBox4" Location="16, 108" Size="332, 20" Text="Scan home directory for virtual machines" TabIndex="3" Style="none" ExStyle="none" />
     <CheckBox Name="CheckBox5" Location="16, 134" Size="332, 20" Text="Scan user profiles for software" TabIndex="4" Style="none" ExStyle="none" />

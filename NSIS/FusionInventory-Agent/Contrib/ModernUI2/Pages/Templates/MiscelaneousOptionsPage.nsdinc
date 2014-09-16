@@ -35,7 +35,7 @@ Function fnc_MiscelaneousOptionsPage_Create
   Pop $hCtl_MiscelaneousOptionsPage_CheckBox1
   
   ; === CheckBox2 (type: Checkbox) ===
-  ${NSD_CreateCheckbox} 38.84u 39.38u 218.53u 12.31u "Launch an inventory immediately after of installation"
+  ${NSD_CreateCheckbox} 38.84u 39.38u 218.53u 12.31u "Launch an inventory immediately after installation"
   Pop $hCtl_MiscelaneousOptionsPage_CheckBox2
   
   ; === CheckBox3 (type: Checkbox) ===
