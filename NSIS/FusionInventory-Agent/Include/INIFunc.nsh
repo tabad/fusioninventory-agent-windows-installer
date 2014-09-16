@@ -131,11 +131,30 @@
 
 
 ; Define INI options values
+!define CATEGORY_BATTERY "Battery"
+!define CATEGORY_CONTROLLER "Controller"
+!define CATEGORY_CPU "CPU"
+!define CATEGORY_DRIVE "Drive"
 !define CATEGORY_ENVIRONMENT "Environment"
+!define CATEGORY_INPUT "Input"
+!define CATEGORY_LICENSE "License"
+!define CATEGORY_LOCAL-GROUP "Local_Group"
+!define CATEGORY_LOCAL-USER "Local_User"
+!define CATEGORY_LVM "LVM"
+!define CATEGORY_MEMORY "Memory"
+!define CATEGORY_MODEM "Modem"
+!define CATEGORY_MONITOR "Monitor"
+!define CATEGORY_NETWORK "Network"
 !define CATEGORY_PRINTER "Printer"
 !define CATEGORY_PROCESS "Process"
+!define CATEGORY_SLOT "Slot"
 !define CATEGORY_SOFTWARE "Software"
+!define CATEGORY_SOUND "Sound"
+!define CATEGORY_STORAGE "Storage"
+!define CATEGORY_USB "USB"
 !define CATEGORY_USER "User"
+!define CATEGORY_VIDEO "Video"
+!define CATEGORY_VIRTUAL-MACHINE "VirtualMachine"
 
 !define EXECMODE_SERVICE "Service"
 !define EXECMODE_TASK "Task"
@@ -255,11 +274,30 @@
 
 !macro GetValidCategoryCommaUStr ResultVar
    StrCpy ${ResultVar} ""
+   ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_BATTERY}" ${ResultVar}
+   ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_CONTROLLER}" ${ResultVar}
+   ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_CPU}" ${ResultVar}
+   ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_DRIVE}" ${ResultVar}
    ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_ENVIRONMENT}" ${ResultVar}
+   ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_INPUT}" ${ResultVar}
+   ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_LICENSE}" ${ResultVar}
+   ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_LOCAL-GROUP}" ${ResultVar}
+   ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_LOCAL-USER}" ${ResultVar}
+   ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_LVM}" ${ResultVar}
+   ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_MEMORY}" ${ResultVar}
+   ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_MODEM}" ${ResultVar}
+   ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_MONITOR}" ${ResultVar}
+   ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_NETWORK}" ${ResultVar}
    ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_PRINTER}" ${ResultVar}
    ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_PROCESS}" ${ResultVar}
+   ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_SLOT}" ${ResultVar}
    ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_SOFTWARE}" ${ResultVar}
+   ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_SOUND}" ${ResultVar}
+   ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_STORAGE}" ${ResultVar}
+   ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_USB}" ${ResultVar}
    ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_USER}" ${ResultVar}
+   ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_VIDEO}" ${ResultVar}
+   ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_VIRTUAL-MACHINE}" ${ResultVar}
 !macroend
 
 
