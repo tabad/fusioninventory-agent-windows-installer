@@ -140,7 +140,6 @@
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Logger"
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Target"
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Tools"
-   CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Tools\Generic"
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent\XML"
    CreateDirectory "$R0\perl\bin"
    CreateDirectory "$R0\share"
@@ -211,10 +210,6 @@
    SetOutPath "$R0\perl\agent\FusionInventory\Agent\Tools"
    File /x "Hardware.pm" \
         "${FIA_DIR}\lib\FusionInventory\Agent\Tools\*.pm"
-
-   ; Install $R0\perl\agent\FusionInventory\Agent\Tools\Generic\*.*
-   SetOutPath "$R0\perl\agent\FusionInventory\Agent\Tools\Generic"
-   File /r "${FIA_DIR}\lib\FusionInventory\Agent\Tools\Generic\*.*"
 
    ; Install $R0\perl\agent\FusionInventory\Agent\XML\*.*
    SetOutPath "$R0\perl\agent\FusionInventory\Agent\XML"
