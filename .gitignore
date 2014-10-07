@@ -1,5 +1,6 @@
 *~
 *.swp
+NSIS/FusionInventory-Agent/Doc/*.html
 NSIS/fusioninventory-agent_windows-x64_*.exe
 NSIS/fusioninventory-agent_windows-x86_*.exe
 NSIS/fusioninventory-agent_windows-x64_*.exe.*

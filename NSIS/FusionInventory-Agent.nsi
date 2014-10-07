@@ -477,7 +477,6 @@ Page custom DebugOptionsPage_Show DebugOptionsPage_Leave ""
 ReserveFile "${NSISDIR}\Plugins\nsDialogs.dll"
 ReserveFile ".\Plugins\EnumINI.dll"
 ReserveFile ".\Plugins\GetVersion.dll"
-ReserveFile ".\Plugins\nsRichEdit.dll"
 ReserveFile ".\Plugins\registry.dll"
 ReserveFile ".\Plugins\SimpleFC.dll"
 ReserveFile ".\Plugins\SimpleSC.dll"
@@ -821,26 +820,22 @@ Function .onInit
    ; GetCommandLineOptions
    ${GetCommandLineOptions}
 
-   ; Check for dump help file
-   ${IfNot} ${CommandLineSyntaxError}
-   ${AndIf} ${Silent}
-      ${ReadINIOption} $R0 "${IOS_COMMANDLINE}" "${IO_DUMPHELP}"
-      ${If} $R0 = 1
-         ; Dump help file
-         Call BuildHelpFile
-         CopyFiles /SILENT /FILESONLY "$PLUGINSDIR\${PRODUCT_HELP_FILE}" "$EXEDIR\${PRODUCT_HELP_FILE}"
-         ${PrepareToExit}
-         Abort
-      ${EndIf}
-   ${EndIf}
-
    ; Check for silent installation mode
    ${If} ${Silent}
       ; Silent installation mode
 
       ; Check for command line syntax error
       ${IfNot} ${CommandLineSyntaxError}
-         Call .onInitSilentMode
+         ; Check for help
+         ${ReadINIOption} $R0 "${IOS_COMMANDLINE}" "${IO_HELP}"
+         ${If} $R0 = 1
+            ; Display help and exit
+            Call ShowHelpFile
+            ${PrepareToExit}
+            Abort
+         ${Else}
+            Call .onInitSilentMode
+         ${EndIf}
       ${Else}
          Abort
       ${EndIf}

@@ -45,19 +45,24 @@ declare -r installer_file='./fusioninventory-agent_windows-${arch}_*.exe'
 declare -r nsis_log_level='3'
 declare -r nsis_script='./FusionInventory-Agent.nsi'
 declare -r nsis_log_file='./FusionInventory-Agent_MakeNSIS-Output-${arch}.txt'
+declare -r help_file='./FusionInventory-Agent/Doc/fusioninventory-agent_windows_installer_${lang}.md'
 
 declare arch=''
+declare lang=''
 declare digest=''
 declare basename=''
 declare installer=''
 declare -a -r archs=(x64 x86)
+declare -a -r langs=(en es fr)
 declare -a -r digests=(md5 sha1 sha256)
 
 declare option_nsis_define=''
 declare -r option_nsis_log_file="-O${nsis_log_file}"
 declare -r option_nsis_log_level="-V${nsis_log_level}"
 
+
 declare -r makensis=$(type -P makensis)
+declare -r pandoc=$(type -P pandoc)
 declare -r openssl=$(type -P openssl)
 declare -r rm=$(type -P rm)
 
@@ -104,6 +109,27 @@ fi
 # Delete current installers
 for arch in ${archs[@]}; do
    eval ${rm} -f "${nsis_log_file}" "${installer_file}" "${installer_file}.*" > /dev/null 2>&1
+done
+
+# Delete current help files
+for lang in ${langs[@]}; do
+   eval ${rm} -f "${help_file%.md}.html" > /dev/null 2>&1
+done
+
+# Build help files
+for lang in ${langs[@]}; do
+   eval ${pandoc}                      \
+      --normalize                      \
+      --section-divs                   \
+      --standalone                     \
+      --smart                          \
+      --tab-stop=3                     \
+      --table-of-contents              \
+      --toc-depth=3                    \
+      --from markdown                  \
+      --to html                        \
+      --output "${help_file%.md}.html" \
+      "${help_file}" > /dev/null 2>&1
 done
 
 # Build installers

@@ -49,49 +49,6 @@
 !include LogicLib.nsh
 
 
-; EscapeSpecialRTFCharacters
-!define EscapeSpecialRTFCharacters "!insertmacro EscapeSpecialRTFCharacters"
-
-!macro EscapeSpecialRTFCharacters String ResultVar
-   Push "${String}"
-   Call EscapeSpecialRTFCharacters
-   Pop ${ResultVar}
-!macroend
-
-Function EscapeSpecialRTFCharacters
-   Exch $R1
-   Push $R2
-   Push $R3
-   Push $R4
-
-   StrCpy $R2 ""
-   StrCpy $R3 ""
-   StrLen $R4 "$R1"
-
-   ${DoWhile} $R4 > 0
-      IntOp $R4 $R4 - 1
-      StrCpy $R2 "$R1" 1 $R4
-      ${Switch} $R2
-         ${Case} "\"
-         ${Case} "{"
-         ${Case} "}"
-            StrCpy $R3 "\$R2$R3"
-            ${Break}
-         ${CaseElse}
-            StrCpy $R3 "$R2$R3"
-            ${Break}
-      ${EndSwitch}
-   ${Loop}
-
-   StrCpy $R1 "$R3"
-
-   Pop $R4
-   Pop $R3
-   Pop $R2
-   Exch $R1
-FunctionEnd
-
-
 ; TrimLeft
 !define TrimLeft "!insertmacro TrimLeft"
 
