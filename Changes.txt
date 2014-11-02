@@ -18,6 +18,19 @@ graphic user interface:
 * Remove support for 'local' option (deprecated)
 * Remove support for 'html' option (deprecated)
 
+2.3.11.1 Fri, 26 Sep 2014
+agent:
+* FusionInventory Agent 2.3.11.1 (commit: 3ed5c4026c)
+
+core:
+* Add support for new categories (#2721)
+* Fix categories check (#2722)
+* Update PCI IDs database (pci.ids file) from 2014.07.14 to 2014.09.25
+* Update USB IDs database (usb.ids file) from 2014.07.08 to 2014.08.25
+
+strawberry perl package:
+* Add Win32::Unicode::File Perl package (#2717)
+
 2.3.10.1 Mon, 04 Aug 2014
 agent:
 * FusionInventory Agent 2.3.10.1 (commit: 9b8b9c3355)
