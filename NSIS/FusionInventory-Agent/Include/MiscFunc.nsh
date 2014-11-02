@@ -143,7 +143,6 @@
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Message"
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Recipient"
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Tools"
-   CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Tools\Generic"
    CreateDirectory "$R0\perl\bin"
    CreateDirectory "$R0\share"
    CreateDirectory "$R0\var"
@@ -225,10 +224,6 @@
    SetOutPath "$R0\perl\agent\FusionInventory\Agent\Tools"
    File /x "Hardware.pm" \
         "${FIA_DIR}\lib\FusionInventory\Agent\Tools\*.pm"
-
-   ; Install $R0\perl\agent\FusionInventory\Agent\Tools\Generic\*.*
-   SetOutPath "$R0\perl\agent\FusionInventory\Agent\Tools\Generic"
-   File /r "${FIA_DIR}\lib\FusionInventory\Agent\Tools\Generic\*.*"
 
    ; Install $R0\perl\bin\7z.dll
    ;         $R0\perl\bin\7z.exe
