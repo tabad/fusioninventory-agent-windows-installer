@@ -114,7 +114,7 @@ SetCompressor /FINAL /SOLID lzma
 !define STRAWBERRY_RELEASE "5.18.2.2"
 
 ; Release of FusionInventory Agent and FusionInventory Agent Tasks
-!define FIA_RELEASE "fbe3531829"
+!define FIA_RELEASE "dd5b069395"
 
 ; Release of the product
 ;    Note: The 'product' is the installer generated
@@ -190,7 +190,7 @@ SetCompressor /FINAL /SOLID lzma
       ;
       ; If PRODUCT_VERSION is a commit then
       ;    define the following symbols as '0.0.0.0'
-      !define FILE_VERSION "2.3.10.9902"
+      !define FILE_VERSION "2.3.9901.0"
 
    ; Bitmaps for stable releases
       ; Bitmaps for candidate releases
@@ -200,7 +200,7 @@ SetCompressor /FINAL /SOLID lzma
       !define MUI_UNWELCOMEFINISHPAGE_BITMAP_FILE "${FIAI_DIR}\Contrib\Skins\Default\WelcomeMUI2CandidateVersion.bmp"
    !else
       ; Product version for development releases
-      !define PRODUCT_VERSION "20140811-dev"
+      !define PRODUCT_VERSION "20141024-dev"
 
       ; File version
       ;    for Windows Version Information
