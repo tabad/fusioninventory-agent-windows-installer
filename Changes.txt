@@ -1,8 +1,8 @@
 FusionInventory Agent Windows Installer - History of Revisions and Changes
 
-2.4.0
+2.3.9901 Web, 5 Nov 2014
 agent:
-* FusionInventory Agent master branch (commit: fbe3531829)
+* FusionInventory Agent master branch (commit: dd5b069395)
 
 command line interface:
 * Add support to the new 'Collect' task
@@ -12,6 +12,8 @@ command line interface:
 
 core:
 * Add support to the new 'Collect' task
+* Update PCI IDs database (pci.ids file) from 2014.07.14 to 2014.11.03
+* Update USB IDs database (usb.ids file) from 2014.07.08 to 2014.08.25
 
 graphic user interface:
 * Add support to the new 'Collect' task
