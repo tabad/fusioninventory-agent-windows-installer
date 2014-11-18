@@ -1,5 +1,23 @@
 FusionInventory Agent Windows Installer - History of Revisions and Changes
 
+2.3.13 Wed, 19 Nov 2014
+agent:
+* FusionInventory Agent 2.3.13 (commit: 2b74cdfb6e)
+
+core:
+* Make use of dmidecode v2.12 (#2795)
+* Update PCI IDs database (pci.ids file) from 2014.07.14 to 2014.11.15
+* Update USB IDs database (usb.ids file) from 2014.07.08 to 2014.08.25
+
+documentation:
+* The documentation has been written from scratch in Markdown (Pandoc's
+  Markdown). Making use of Pandoc, it is transformed into HTML, that is
+  actually the way the installer shows the documentation to user (#2741)
+
+strawberry perl package:
+* Add Thread::Queue Perl module (#2785)
+* Update specific Perl modules (#2789)
+
 2.3.12 Wed, 8 Oct 2014
 agent:
 * FusionInventory Agent 2.3.12 (commit: c3a2043dc6)
