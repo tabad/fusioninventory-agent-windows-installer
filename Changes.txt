@@ -1,5 +1,14 @@
 FusionInventory Agent Windows Installer - History of Revisions and Changes
 
+2.3.14 Mon, 22 Dec 2014
+agent:
+* FusionInventory Agent 2.3.14 (commit: c1acd1a7e4)
+
+core:
+* Make use of dmidecode v2.12 (#2795)
+* Update PCI IDs database (pci.ids file) from 2014.07.14 to 2014.12.22
+* Update USB IDs database (usb.ids file) from 2014.07.08 to 2014.12.08
+
 2.3.13 Wed, 19 Nov 2014
 agent:
 * FusionInventory Agent 2.3.13 (commit: 2b74cdfb6e)
