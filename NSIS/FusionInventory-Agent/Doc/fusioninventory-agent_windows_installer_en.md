@@ -1,25 +1,25 @@
 % FusionInventory Agent Windows Installer\
-  User's Guide for 2.3.13\
+  User's Guide for 2.3.14\
   (Draft v0.1)
 % Tomás Abad Gómez-Pastrana
-% Nov 18, 2014
+% Dec 22, 2014
 
 ----------
 
 # Synopsys
 
-> `fusioninventory-agent_windows-x86_2.3.13.exe [/Option [/Option [...]]]`
+> `fusioninventory-agent_windows-x86_2.3.14.exe [/Option [/Option [...]]]`
 >
-> `fusioninventory-agent_windows-x64_2.3.13.exe [/Option [/Option [...]]]`
+> `fusioninventory-agent_windows-x64_2.3.14.exe [/Option [/Option [...]]]`
 [^fiawi64]
 
-[^fiawi64]: *`fusioninventory-agent_windows-x64_2.3.13.exe`* can only be
+[^fiawi64]: *`fusioninventory-agent_windows-x64_2.3.14.exe`* can only be
     installed on 64-bit (x86_64) systems.
 
 # Description
 
-FusionInventory Agent Windows Installer 2.3.13 installs FusionInventory Agent
-2.3.13 on Microsoft Windows operating systems[^acronyms].
+FusionInventory Agent Windows Installer 2.3.14 installs FusionInventory Agent
+2.3.14 on Microsoft Windows operating systems[^acronyms].
 
 It has two types of installation; the *from-scratch* type, that allows to
 perform an installation of FusionInventory Agent from the beginning ---based on
@@ -36,7 +36,7 @@ interactive way.
 It is needed to bear in mind that, with independence of the type of
 installation choosed, any existing release of FusionInventory Agent present on
 the system will be uninstalled automatically just before installing
-FusionInventory Agent 2.3.13. It is also noteworthy that, in the case of a
+FusionInventory Agent 2.3.14. It is also noteworthy that, in the case of a
 *from-current-config* installation, any deprecated option will not be taken
 into account, and that any other change regarding options ---renaming,
 splitting or grouping--- will be managed automatically.
@@ -795,7 +795,7 @@ any of these ways.
 
 # Authors
 
-TomÃ¡s Abad GÃ³mez-Pastrana \<tabadgp@gmail.com\>
+Tomás Abad Gómez-Pastrana \<tabadgp@gmail.com\>
 
 # Copyright
 
