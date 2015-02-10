@@ -1,25 +1,25 @@
 % FusionInventory Agent Windows Installer\
-  User's Guide for 2.3.14\
+  User's Guide for 2.3.15\
   (Draft v0.1)
 % Tomás Abad Gómez-Pastrana
-% Dec 22, 2014
+% Feb 11, 2015
 
 ----------
 
 # Synopsys
 
-> `fusioninventory-agent_windows-x86_2.3.14.exe [/Option [/Option [...]]]`
+> `fusioninventory-agent_windows-x86_2.3.15.exe [/Option [/Option [...]]]`
 >
-> `fusioninventory-agent_windows-x64_2.3.14.exe [/Option [/Option [...]]]`
+> `fusioninventory-agent_windows-x64_2.3.15.exe [/Option [/Option [...]]]`
 [^fiawi64]
 
-[^fiawi64]: *`fusioninventory-agent_windows-x64_2.3.14.exe`* can only be
+[^fiawi64]: *`fusioninventory-agent_windows-x64_2.3.15.exe`* can only be
     installed on 64-bit (x86_64) systems.
 
 # Description
 
-FusionInventory Agent Windows Installer 2.3.14 installs FusionInventory Agent
-2.3.14 on Microsoft Windows operating systems[^acronyms].
+FusionInventory Agent Windows Installer 2.3.15 installs FusionInventory Agent
+2.3.15 on Microsoft Windows operating systems[^acronyms].
 
 It has two types of installation; the *from-scratch* type, that allows to
 perform an installation of FusionInventory Agent from the beginning ---based on
@@ -36,7 +36,7 @@ interactive way.
 It is needed to bear in mind that, with independence of the type of
 installation choosed, any existing release of FusionInventory Agent present on
 the system will be uninstalled automatically just before installing
-FusionInventory Agent 2.3.14. It is also noteworthy that, in the case of a
+FusionInventory Agent 2.3.15. It is also noteworthy that, in the case of a
 *from-current-config* installation, any deprecated option will not be taken
 into account, and that any other change regarding options ---renaming,
 splitting or grouping--- will be managed automatically.
@@ -410,8 +410,6 @@ information about how to configure and how to use FusionInventory Agent in
 :   Save the result of Inventory task as HTML instead of XML. (By default:
     `No`)
 
-    > *This option will be deprecated in the next FIAWI 2.4.0*
-
 `/httpd`{#httpd}
 :   This option is the opposite of `/no-httpd`.
 
@@ -482,8 +480,6 @@ information about how to configure and how to use FusionInventory Agent in
     execution will not be written locally.
 
     You can use the `/local` and [`/server`](#server) options simultaneously.
-
-    > *This option will be deprecated in the next FIAWI 2.4.0*
 
 `/logfile`{#logfile}=*filename*
 :   Writes log messages into the file *filename*. (By default:
@@ -576,8 +572,6 @@ information about how to configure and how to use FusionInventory Agent in
 :   This option is the opposite of `/html`.
 
     See [`/html`](#html) for more information.
-
-    > *This option will be deprecated in the next FIAWI 2.4.0*
 
 `/no-httpd`{#no-httpd}
 :   Disables the embedded web server. (By default: `No`)
@@ -799,7 +793,7 @@ Tomás Abad Gómez-Pastrana \<tabadgp@gmail.com\>
 
 # Copyright
 
-Copyright 2012-2014 FusionInventory Team. [GNU GPL version 2] or (at your
+Copyright 2012-2015 FusionInventory Team. [GNU GPL version 2] or (at your
 option) any later version. This is free software: you are free to change and
 redistribute it. There is NO WARRANTY, to the extent permitted by law.
 
