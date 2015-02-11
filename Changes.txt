@@ -1,5 +1,13 @@
 FusionInventory Agent Windows Installer - History of Revisions and Changes
 
+2.3.15 Wed, 11 Feb 2015
+agent:
+* FusionInventory Agent 2.3.15 (commit: 27e95c43bf)
+
+core:
+* Update PCI IDs database (pci.ids file) from 2014.07.14 to 2015.02.09
+* Update USB IDs database (usb.ids file) from 2014.07.08 to 2015.02.03
+
 2.3.14 Mon, 22 Dec 2014
 agent:
 * FusionInventory Agent 2.3.14 (commit: c1acd1a7e4)
