@@ -157,18 +157,16 @@ while (( ${iter} < ${#archs[@]} )); do
    echo "Updating 'cpanm'..."
    ${perl} ${cpanm} --install --auto-cleanup 1 --skip-installed --notest --quiet App::cpanminus
 
+   # Install specific modules
+   if [ -n "${fusinv_mod_specific_dependences}" ]; then
+      echo "Installing specific modules..."
+      ${perl} ${cpanm} --install --auto-cleanup 1 --notest --quiet ${fusinv_mod_specific_dependences}
+   fi
+
    # Install modules
    echo "Installing modules..."
    ${perl} ${cpanm} --install --auto-cleanup 1 --skip-satisfied --notest --quiet ${fusinv_mod_dependences}
-
-   # Install specific modules
-   if [ -z "${fusinv_mod_specific_dependences}" ]; then
-      echo
-   else
-      echo "Installing specific modules..."
-      ${perl} ${cpanm} --install --auto-cleanup 1 --notest --quiet ${fusinv_mod_specific_dependences}
-      echo
-   fi
+   echo
 
    # Remove perl_path from PATH
    PATH="${PATH/${perl_path}/}"

@@ -268,6 +268,8 @@ while (( ${iter} < ${#archs[@]} )); do
 
    # Copy files
    eval ${install} "${strawberry_arch_path}/c/bin/libeay32*.dll" "${tmpdir}/Strawberry/${strawberry_version}/${arch}/c/bin"
+   eval ${install} "${strawberry_arch_path}/c/bin/liblzma-5*.dll" "${tmpdir}/Strawberry/${strawberry_version}/${arch}/c/bin"
+   eval ${install} "${strawberry_arch_path}/c/bin/pthreadGC2-w*.dll" "${tmpdir}/Strawberry/${strawberry_version}/${arch}/c/bin"
    eval ${install} "${strawberry_arch_path}/c/bin/ssleay32*.dll" "${tmpdir}/Strawberry/${strawberry_version}/${arch}/c/bin"
    eval ${install} "${strawberry_arch_path}/c/bin/zlib1*.dll" "${tmpdir}/Strawberry/${strawberry_version}/${arch}/c/bin"
    eval ${install} "${strawberry_arch_path}/perl/bin/perl{.exe,*.*.*.exe,*.dll}" "${tmpdir}/Strawberry/${strawberry_version}/${arch}/perl/bin"
