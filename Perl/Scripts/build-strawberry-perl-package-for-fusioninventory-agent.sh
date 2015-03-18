@@ -267,14 +267,15 @@ while (( ${iter} < ${#archs[@]} )); do
    eval ${rm} -f "${tmpdir}/${strawberry_pepfia_par_file}" > /dev/null 2>&1
 
    # Copy files
+   eval ${install} "${strawberry_arch_path}/c/bin/libbz2-1*.dll" "${tmpdir}/Strawberry/${strawberry_version}/${arch}/c/bin"
    eval ${install} "${strawberry_arch_path}/c/bin/libeay32*.dll" "${tmpdir}/Strawberry/${strawberry_version}/${arch}/c/bin"
    eval ${install} "${strawberry_arch_path}/c/bin/liblzma-5*.dll" "${tmpdir}/Strawberry/${strawberry_version}/${arch}/c/bin"
-   eval ${install} "${strawberry_arch_path}/c/bin/pthreadGC2-w*.dll" "${tmpdir}/Strawberry/${strawberry_version}/${arch}/c/bin"
    eval ${install} "${strawberry_arch_path}/c/bin/ssleay32*.dll" "${tmpdir}/Strawberry/${strawberry_version}/${arch}/c/bin"
    eval ${install} "${strawberry_arch_path}/c/bin/zlib1*.dll" "${tmpdir}/Strawberry/${strawberry_version}/${arch}/c/bin"
    eval ${install} "${strawberry_arch_path}/perl/bin/perl{.exe,*.*.*.exe,*.dll}" "${tmpdir}/Strawberry/${strawberry_version}/${arch}/perl/bin"
    eval ${install} "${strawberry_arch_path}/perl/bin/libstdc++-6.dll" "${tmpdir}/Strawberry/${strawberry_version}/${arch}/perl/bin"
    eval ${install} "${strawberry_arch_path}/perl/bin/libgcc_s_sjlj-1.dll" "${tmpdir}/Strawberry/${strawberry_version}/${arch}/perl/bin"
+   eval ${install} "${strawberry_arch_path}/perl/bin/libwinpthread-1.dll" "${tmpdir}/Strawberry/${strawberry_version}/${arch}/perl/bin"
 
    # Select files
    phase=1
