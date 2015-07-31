@@ -173,6 +173,7 @@
 !define INSTALLTASK_NETDISCOVERY "NetDiscovery"
 !define INSTALLTASK_NETINVENTORY "NetInventory"
 !define INSTALLTASK_WAKEONLAN "WakeOnLan"
+!define INSTALLTASK_COLLECT "Collect"
 
 !define INSTALLTYPE_FROMCURRENTCONFIG "from-current-config"
 !define INSTALLTYPE_FROMSCRATCH "from-scratch"
@@ -188,6 +189,7 @@
 !define TASK_OCSDEPLOY "OCSDeploy"
 !define TASK_SNMPQUERY "SNMPQuery"
 !define TASK_WAKEONLAN "${INSTALLTASK_WAKEONLAN}"
+!define TASK_COLLECT "${INSTALLTASK_COLLECT}"
 
 !define SERVICE_STARTTYPE_BOOT 0
 !define SERVICE_STARTTYPE_SYSTEM 1
@@ -233,6 +235,7 @@
    ${AddStrCommaUStr} ${ResultVar} "${TASK_NETDISCOVERY}" ${ResultVar}
    ${AddStrCommaUStr} ${ResultVar} "${TASK_NETINVENTORY}" ${ResultVar}
    ${AddStrCommaUStr} ${ResultVar} "${TASK_WAKEONLAN}" ${ResultVar}
+   ${AddStrCommaUStr} ${ResultVar} "${TASK_COLLECT}" ${ResultVar}
 !macroend
 
 
