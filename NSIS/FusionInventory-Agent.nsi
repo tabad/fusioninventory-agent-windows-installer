@@ -121,6 +121,7 @@ SetCompressor /FINAL /SOLID lzma
 !define FIA_TASK_NETDISCOVERY_RELEASE "2.2.0"
 !define FIA_TASK_NETINVENTORY_RELEASE "2.2.0"
 !define FIA_TASK_WAKEONLAN_RELEASE "2.0"
+!define FIA_TASK_COLLECT_RELEASE "2.3.17"
 
 ; Release of the product
 ;    Note: The 'product' is the installer generated
@@ -654,6 +655,17 @@ SectionGroup /e "$(SectionGroup_FusionInventoryAgentTasks)" SecGrpFusionInventor
       ; Install FusionInventory Agent Task WakeOnLan
       ${InstallFusionInventoryAgentTaskWakeOnLan}
    SectionEnd
+
+   Section /o "Collect" Collect
+      SectionIn 2
+
+      ; Debug
+      SectionGetText ${SecCollect} $0
+      DetailPrint "$(Msg_InstallingSection)"
+
+      ; Install FusionInventory Agent Task Collect
+      ${InstallFusionInventoryAgentTaskCollect}
+   SectionEnd
 SectionGroupEnd
 
 Section "-End" SecEnd
@@ -692,6 +704,7 @@ SectionEnd
    !insertmacro MUI_DESCRIPTION_TEXT ${SecNetDiscovery} "$(SecNetDiscovery_Description)"
    !insertmacro MUI_DESCRIPTION_TEXT ${SecNetInventory} "$(SecNetInventory_Description)"
    !insertmacro MUI_DESCRIPTION_TEXT ${SecWakeOnLan} "$(SecWakeOnLan_Description)"
+   !insertmacro MUI_DESCRIPTION_TEXT ${SecCollect} "$(SecCollect_Description)"
 !insertmacro MUI_FUNCTION_DESCRIPTION_END
 
 
@@ -985,7 +998,7 @@ Function .onInitSilentMode
    Push $R0
    Push $R1
 
-   ; Has the user accepted the licence?
+   ; Has the user accepted the license?
    ${ReadINIOption} $R0 "${IOS_COMMANDLINE}" "${IO_ACCEPTLICENSE}"
    ${If} $R0 = 0
    ${OrIf} "$R0" == ""
@@ -1526,6 +1539,9 @@ Function .onSelChange
             ${Case} ${SecWakeOnLan}
                ; Section ${SecWakeOnLan} selected
                ${AddStrCommaUStr} "$R6" "${TASK_WAKEONLAN}" $R6
+            ${Case} ${SecCollect}
+               ; Section ${SecCollect} selected
+               ${AddStrCommaUStr} "$R6" "${TASK_COLLECT}" $R6
          ${EndSelect}
       ${EndIf}
    ${Next}
@@ -1594,6 +1610,9 @@ Function SyncNSISSectionsWithInstallTasksOption
          ${Case} "${TASK_WAKEONLAN}"
             ; Select ${SecWakeOnLan} section
             ${SelectSection} ${SecWakeOnLan}
+         ${Case} "${TASK_COLLECT}"
+            ; Select ${SecCollect} section
+            ${SelectSection} ${SecCollect}
       ${EndSelect}
 
       ; Get the next agent task to install

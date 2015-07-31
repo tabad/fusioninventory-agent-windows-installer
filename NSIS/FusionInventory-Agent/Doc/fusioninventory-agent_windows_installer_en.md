@@ -198,6 +198,8 @@ behaviour](#specific-options-of-the-agent).
     > :   Network Inventory task
     > `WakeOnLan`
     > :   Wake on LAN task
+    > `Collect`
+    > :   Collect task
 
     There are three macros defined to simplify the mission, they are the
     following:
@@ -208,7 +210,7 @@ behaviour](#specific-options-of-the-agent).
     > :   It is equivalent to `Inventory`
     > `Full`
     > :   It is equivalent to
-    >     `Deploy`,`ESX`,`Inventory`,`NetDiscovery`,`NetInventory`,`WakeOnLan`
+    >     `Deploy`,`ESX`,`Inventory`,`NetDiscovery`,`NetInventory`,`WakeOnLan`,`Collect`
 
     It should be noted that the `Inventory` task will be always installed and
     that the `NetDiscovery` and `NetInventory` tasks are inter-dependent.
@@ -612,6 +614,8 @@ information about how to configure and how to use FusionInventory Agent in
     > :   Network Inventory task
     > `WakeOnLan`
     > :   Wake on LAN task
+    > `Collect`
+    > :   Collect task
 
     If you indicate an empty string (`''`) ---the default value--- all tasks
     will be executed.

@@ -591,6 +591,39 @@
 !macroend
 
 
+; InstallFusionInventoryAgentTaskCollect
+!define InstallFusionInventoryAgentTaskCollect "!insertmacro InstallFusionInventoryAgentTaskCollect"
+
+!macro InstallFusionInventoryAgentTaskCollect
+   ; Push $R0 onto the stack
+   Push $R0
+   Push $R1
+
+   ; Set mode at which commands print their status
+   SetDetailsPrint textonly
+
+   ; Create directories
+   ${ReadINIOption} $R0 "${IOS_FINAL}" "${IO_INSTALLDIR}"
+   CreateDirectory "$R0"
+   CreateDirectory "$R0\perl"
+   CreateDirectory "$R0\perl\agent"
+   CreateDirectory "$R0\perl\agent\FusionInventory"
+   CreateDirectory "$R0\perl\agent\FusionInventory\Agent"
+   CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Task"
+
+   ; Install $R0\perl\agent\FusionInventory\Agent\Task\Collect.pm
+   SetOutPath "$R0\perl\agent\FusionInventory\Agent\Task"
+   File "${FIA_DIR}\lib\FusionInventory\Agent\Task\Collect.pm"
+
+   ; Set mode at which commands print their status
+   SetDetailsPrint lastused
+
+   ; Pop $R0 off of the stack
+   Pop $R1
+   Pop $R0
+!macroend
+
+
 ; InstallStartMenuFolder
 !define InstallStartMenuFolder "!insertmacro InstallStartMenuFolder"
 

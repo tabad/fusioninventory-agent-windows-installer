@@ -544,6 +544,10 @@ Function InitINIOptionSectionCurrentConfig
       ${OrIf} ${FileExists} "$R1\perl\lib\FusionInventory\Agent\Task\WakeOnLan.pm"
           ${AddStrCommaUStr} "$R2" "${TASK_WAKEONLAN}" $R2
       ${EndIf}
+      ${If} ${FileExists} "$R1\perl\agent\FusionInventory\Agent\Task\Collect.pm"
+      ${OrIf} ${FileExists} "$R1\perl\lib\FusionInventory\Agent\Task\Collect.pm"
+          ${AddStrCommaUStr} "$R2" "${TASK_COLLECT}" $R2
+      ${EndIf}
       ${WriteINIOption} "$R0" "${IO_INSTALLTASKS}" "$R2"
    ${EndIf}
 

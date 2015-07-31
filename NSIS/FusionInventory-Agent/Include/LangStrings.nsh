@@ -141,4 +141,11 @@ LangString SecWakeOnLan_Description ${LANG_ENGLISH} "Task WakeOnLan ${FIA_TASK_W
 LangString SecWakeOnLan_Description ${LANG_FRENCH} "Tâche WakeOnLan ${FIA_TASK_WAKEONLAN_RELEASE}."
 LangString SecWakeOnLan_Description ${LANG_SPANISH} "Tarea WakeOnLan ${FIA_TASK_WAKEONLAN_RELEASE}."
 
+;   LangString: SecCollect_Description
+; For use with: XPUI_DESCRIPTION_TEXT ${SecCollect}
+;
+LangString SecCollect_Description ${LANG_ENGLISH} "Task Collect ${FIA_TASK_COLLECT_RELEASE}."
+LangString SecCollect_Description ${LANG_FRENCH} "Tâche Collect ${FIA_TASK_COLLECT_RELEASE}."
+LangString SecCollect_Description ${LANG_SPANISH} "Tarea Collect ${FIA_TASK_COLLECT_RELEASE}."
+
 !endif
