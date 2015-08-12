@@ -81,10 +81,27 @@ if not "x%LOCAL_PATH%" == "x%PATH%" (
 endlocal & set PATH=%PATH%%LOCAL_PATH%
 set LOCAL_PATH=
 
+setlocal enabledelayedexpansion
+set LOCAL_PATH=%PATH%
+set LOCAL_PATH=!LOCAL_PATH:;%LOCALAPPDATA%\Pandoc=!
+if not "x%LOCAL_PATH%" == "x%PATH%" (
+   set LOCAL_PATH=
+) else (
+   set LOCAL_PATH=;%LOCALAPPDATA%\Pandoc
+)
+endlocal & set PATH=%PATH%%LOCAL_PATH%
+set LOCAL_PATH=
+
 :: Launch the bash shell script
 %MSYS_PATH%\bin\bash.exe "%~dpn0.sh" %*
 
 :: Unload aditional environment
+setlocal enabledelayedexpansion
+set LOCAL_PATH=%PATH%
+set LOCAL_PATH=!LOCAL_PATH:;%LOCALAPPDATA%\Pandoc=!
+endlocal & set PATH=%LOCAL_PATH%
+set LOCAL_PATH=
+
 setlocal enabledelayedexpansion
 set LOCAL_PATH=%PATH%
 set LOCAL_PATH=!LOCAL_PATH:;%NSIS_PATH%=!
