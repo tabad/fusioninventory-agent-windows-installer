@@ -42,6 +42,9 @@
 
 @echo off
 
+for %%p in (".") do pushd "%%~fsp"
+cd /d "%~dp0"
+
 set MINGW_PATH=%SYSTEMDRIVE%\MinGW
 
 if not exist "%MINGW_PATH%" goto not_installed
@@ -77,3 +80,6 @@ echo.
 :: unset environment variables
 
 set MINGW_PATH=
+
+popd
+exit /b 0

@@ -42,6 +42,9 @@
 
 @echo off
 
+for %%p in (".") do pushd "%%~fsp"
+cd /d "%~dp0"
+
 set MINGW_PATH=%SYSTEMDRIVE%\MinGW
 set MINGW_GET_BIN_URL=http://sourceforge.net/projects/mingw/files/Installer/mingw-get/mingw-get-0.6.2-beta-20131004-1/mingw-get-0.6.2-mingw32-beta-20131004-1-bin.zip
 
@@ -112,3 +115,6 @@ echo.
 
 set MINGW_PATH=
 set MINGW_GET_BIN_URL=
+
+popd
+exit /b 0
