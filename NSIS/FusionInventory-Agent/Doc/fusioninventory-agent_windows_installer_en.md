@@ -186,6 +186,8 @@ behaviour](#specific-options-of-the-agent).
 
     *task* can be any of the following values:
 
+    > `Collect`
+    > :   Collect task
     > `Deploy`
     > :   Deploy task
     > `ESX`
@@ -208,7 +210,7 @@ behaviour](#specific-options-of-the-agent).
     > :   It is equivalent to `Inventory`
     > `Full`
     > :   It is equivalent to
-    >     `Deploy`,`ESX`,`Inventory`,`NetDiscovery`,`NetInventory`,`WakeOnLan`
+    >     `Collect`,`Deploy`,`ESX`,`Inventory`,`NetDiscovery`,`NetInventory`,`WakeOnLan`
 
     It should be noted that the `Inventory` task will be always installed and
     that the `NetDiscovery` and `NetInventory` tasks are inter-dependent.
@@ -600,6 +602,8 @@ information about how to configure and how to use FusionInventory Agent in
 
     *task* can be any of the following values:
 
+    > `Collect`
+    > :   Collect task
     > `Deploy`
     > :   Deploy task
     > `ESX`

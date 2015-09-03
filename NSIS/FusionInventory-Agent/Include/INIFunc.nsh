@@ -164,6 +164,7 @@
 !define FREQUENCY_HOURLY "Hourly"
 !define FREQUENCY_DAILY "Daily"
 
+!define INSTALLTASK_COLLECT "Collect"
 !define INSTALLTASK_DEFAULT "Default"
 !define INSTALLTASK_DEPLOY "Deploy"
 !define INSTALLTASK_ESX "ESX"
@@ -180,6 +181,7 @@
 !define LOGGER_FILE "File"
 !define LOGGER_STDERR "Stderr"
 
+!define TASK_COLLECT "${INSTALLTASK_COLLECT}"
 !define TASK_DEPLOY "${INSTALLTASK_DEPLOY}"
 !define TASK_ESX "${INSTALLTASK_ESX}"
 !define TASK_INVENTORY "${INSTALLTASK_INVENTORY}"
@@ -227,6 +229,7 @@
 
 !macro GetInstallTasksFullCommaUStr ResultVar
    StrCpy ${ResultVar} ""
+   ${AddStrCommaUStr} ${ResultVar} "${TASK_COLLECT}" ${ResultVar}
    ${AddStrCommaUStr} ${ResultVar} "${TASK_DEPLOY}" ${ResultVar}
    ${AddStrCommaUStr} ${ResultVar} "${TASK_ESX}" ${ResultVar}
    ${AddStrCommaUStr} ${ResultVar} "${TASK_INVENTORY}" ${ResultVar}

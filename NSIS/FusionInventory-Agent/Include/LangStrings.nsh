@@ -99,6 +99,13 @@ LangString Msg_InstallingSection ${LANG_ENGLISH} "Installing Section $0..."
 LangString Msg_InstallingSection ${LANG_FRENCH} "Installation de la section $0..."
 LangString Msg_InstallingSection ${LANG_SPANISH} "Instalando Sección $0..."
 
+;   LangString: SecCollect_Description
+; For use with: XPUI_DESCRIPTION_TEXT ${SecCollect}
+;
+LangString SecCollect_Description ${LANG_ENGLISH} "Task Collect ${FIA_TASK_COLLECT_RELEASE}."
+LangString SecCollect_Description ${LANG_FRENCH} "Tâche Collect ${FIA_TASK_COLLECT_RELEASE}."
+LangString SecCollect_Description ${LANG_SPANISH} "Tarea Collect ${FIA_TASK_COLLECT_RELEASE}."
+
 ;   LangString: SecDeploy_Description
 ; For use with: XPUI_DESCRIPTION_TEXT ${SecDeploy}
 ;
