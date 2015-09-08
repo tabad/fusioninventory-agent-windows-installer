@@ -1,8 +1,8 @@
 % FusionInventory Agent Windows Installer\
-  User's Guide for 2.3.16\
+  User's Guide for 2.3.17\
   (Draft v0.1)
 % Tomás Abad Gómez-Pastrana
-% Mar 18, 2015
+% Jul 20, 2015
 
 ----------
 
