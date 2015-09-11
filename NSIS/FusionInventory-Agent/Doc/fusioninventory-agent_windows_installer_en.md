@@ -133,7 +133,7 @@ behaviour](#specific-options-of-the-agent).
 
 `/dumphelp`{#dumphelp}
 
-:   This option has been deprecated in FusionInventory Agent Windows Installer
+:   This option was deprecated in FusionInventory Agent Windows Installer
     2.3.13.
 
 `/execmode`{#execmode}=*mode*
