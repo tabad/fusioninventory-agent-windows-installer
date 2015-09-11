@@ -354,9 +354,6 @@ information about how to configure and how to use FusionInventory Agent in
 
     *timeout* is expressed in seconds.
 
-    > *This option will be renamed to `/collect-timeout` in the next FIAWI
-    > 2.4.0*
-
 `/ca-cert-dir`{#ca-cert-dir}=*pathname*
 
 :   Absolute path to the standard certificate directory [^scd] of certificate
