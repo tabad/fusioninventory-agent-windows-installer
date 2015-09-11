@@ -53,7 +53,7 @@ splitting or grouping--- will be managed automatically.
 # Where to achieve *FusionInventory Agent Windows Installer*?
 
 It is possible to achieve FusionInventory Agent Windows Installer from
-[FusionInventory Forge] or [SourceForge].
+[GitHub] or [SourceForge].
 
 # Using *FusionInventory Agent Windows Installer*
 
@@ -341,7 +341,7 @@ and `--no-category`, etc.---, and that they are the only options used by
 [*FusionInventory Agent*
 configuration](#the-fusioninventory-agent-configuration). You can find more
 information about how to configure and how to use FusionInventory Agent in
-[FusionInventory Documentation], in [FusionInventory] web site.  
+[FusionInventory Agent configuration], in [FusionInventory] web site.
 
 [^options-for-from-current-config]: Options [`/httpd`](#httpd),
     [`/no-html`](#no-html), [`/no-scan-homedirs`](#no-scan-homedirs),
@@ -858,13 +858,14 @@ any of these ways.
 
     <http://lists.alioth.debian.org/mailman/listinfo/fusioninventory-devel>
 
-  * Project manager of FusionInventory
-
-    <http://forge.fusioninventory.org/projects/fusioninventory-agent-windows-installer>
-
   * Forums of FusionInventory
 
     <http://forum.fusioninventory.org/index.php>
+
+  * Issue area of FusionInventory Agent Windows Installer in GitHub
+
+    <https://github.com/tabad/fusioninventory-agent-windows-installer/issues>
+
 
 # See also
 
@@ -879,10 +880,6 @@ any of these ways.
   * FusionInventory Agent Windows Installer in SourceForge
 
     <http://sourceforge.net/projects/fiawi>
-
-  * FusionInventory Agent Windows Installer in FusionInventory Forge
-
-    <http://forge.fusioninventory.org/projects/fusioninventory-agent-windows-installer>
 
 # Authors
 
@@ -900,13 +897,13 @@ redistribute it. There is NO WARRANTY, to the extent permitted by law.
 [bug #2190]: http://forge.fusioninventory.org/issues/2190
 [bug #2555]: http://forge.fusioninventory.org/issues/2555
 [FusionInventory]: http://www.fusioninventory.org/ "FusionInventory Web Site"
-[FusionInventory Agent Usage]: http://www.fusioninventory.org/documentation/agent/usage/ "FusionInventory Agent Usage"
-[FusionInventory Documentation]: http://www.fusioninventory.org/documentation/ "FusionInventory Documentation"
-[FusionInventory Forge]: http://forge.fusioninventory.org/projects/fusioninventory-agent-windows-installer/files
+[FusionInventory Agent configuration]: http://fusioninventory.org/documentation/documentation/agent/configuration.html "FusionInventory Agent configuration"
+[FusionInventory Agent Usage]: http://fusioninventory.org/documentation/documentation/agent/usage.html "FusionInventory Agent Usage"
+[GitHub]: https://github.com/tabad/fusioninventory-agent-windows-installer/releases/
 [GNU GPL version 2]: http://www.gnu.org/licenses/old-licenses/gpl-2.0-standalone.html
 [Net::IP]: https://metacpan.org/pod/Net::IP#DESCRIPTION
 [OpenSSL]: http://slproweb.com/products/Win32OpenSSL.html "OpenSSL for Windows"
 [Regedit.exe]: https://www.microsoft.com/resources/documentation/windows/xp/all/proddocs/en-us/tools_regeditors.mspx?mfr=true
-[SourceForge]: http://sourceforge.net/projects/fiawi/
+[SourceForge]: http://sourceforge.net/projects/fiawi/files/
 [x509(1)]: https://www.openssl.org/docs/apps/x509.html
 
