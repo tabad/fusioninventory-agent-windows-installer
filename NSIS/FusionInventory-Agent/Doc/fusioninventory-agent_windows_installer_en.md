@@ -103,6 +103,7 @@ behaviour](#specific-options-of-the-agent).
 ## Specific options of the installer
 
 `/acceptlicense`{#acceptlicense}
+
 :   You accept and acknowledge that you have read, and understood, the terms
     and conditions of the license. (By default: `No`)
 
@@ -114,12 +115,14 @@ behaviour](#specific-options-of-the-agent).
     license.
 
 `/add-firewall-exception`{#add-firewall-exception}
+
 :   Adds FusionInventory Agent to the Windows Firewall exception list.  (By
     default: `No`)
 
     *It is not implemented yet*.
 
 `/ca-cert-uri`{#ca-cert-uri}=*URI*
+
 :   *URI* from where to obtain the file or files of certificate of authorities
     (CA). (By default: `''`)
 
@@ -130,20 +133,25 @@ behaviour](#specific-options-of-the-agent).
     *It is not implemented yet*.
 
 `/dumphelp`{#dumphelp}
+
 :   This option has been deprecated in FusionInventory Agent Windows Installer
     2.3.13.
 
 `/execmode`{#execmode}=*mode*
+
 :   Sets the agent execution mode. (By default: `Current`)
 
     *mode* can be any of the following values:
 
     > `Service` [^Service]
     > :   The agent runs as a Windows Service
+    >
     > `Task` [^Task]
     > :   The agent runs as a Windows Task
+    >
     > `Manual` [^Manual]
     > :   The agent doesn't run automatically
+    >
     > `Current` [^Current]
     > :   The agent runs in the same way that the agent already installed runs
 
@@ -170,10 +178,12 @@ behaviour](#specific-options-of-the-agent).
     [FusionInventory Agent Usage] in [FusionInventory] web site.
 
 `/help`{#help}
+
 :   This help. If the `/help` option is present, shows this help and aborts the
     installation.
 
 `/installdir`{#installdir}=*pathname*
+
 :   Sets the installation base directory of the agent. (By default:
     `%ProgramFiles%\FusionInventory-Agent`)
 
@@ -182,22 +192,29 @@ behaviour](#specific-options-of-the-agent).
     *It is not implemented yet*.
 
 `/installtasks`{#installtasks}={*task*[,*task*[...]] | *macro*}
+
 :   Selects the tasks to install. (By default: `Default`)
 
     *task* can be any of the following values:
 
     > `Collect`
     > :   Collect task
+    >
     > `Deploy`
     > :   Deploy task
+    >
     > `ESX`
     > :   ESX task
+    >
     > `Inventory`
     > :   Inventory task
+    >
     > `NetDiscovery`
     > :   Network Discovery task
+    >
     > `NetInventory`
     > :   Network Inventory task
+    >
     > `WakeOnLan`
     > :   Wake on LAN task
 
@@ -206,17 +223,21 @@ behaviour](#specific-options-of-the-agent).
 
     > `Minimal`
     > :   It is equivalent to `Inventory`
+    >
     > `Default`
     > :   It is equivalent to `Inventory`
+    >
     > `Full`
     > :   It is equivalent to
-    >     `Collect`,`Deploy`,`ESX`,`Inventory`,`NetDiscovery`,`NetInventory`,`WakeOnLan`
+    >     `Collect`,`Deploy`,`ESX`,`Inventory`,`NetDiscovery`,`NetInventory`,
+    >     `WakeOnLan`
 
     It should be noted that the `Inventory` task will be always installed and
     that the `NetDiscovery` and `NetInventory` tasks are inter-dependent.
     Nowadays `Minimal` and `Default` are the same configuration.
 
 `/installtype`{#installtype}={`from-scratch` | `from-current-config`}
+
 :   Selects between an installation from the beginning (`from-scratch`) or,
     whether the system has a previously installed agent, an installation based
     on the current configuration (`from-current-config`).  (By default:
@@ -231,6 +252,7 @@ behaviour](#specific-options-of-the-agent).
     systems in which it exists.
 
 `/no-start-menu`{#no-start-menu}
+
 :   Do not create the *FusionInventory Agent* folder on the Start Menu.  (By
     default: `No`)
 
@@ -238,6 +260,7 @@ behaviour](#specific-options-of-the-agent).
     users.
 
 `/runnow`{#runnow}
+
 :   Launches the agent immediately[^runnow] after its installation. (By
     default: `No`)
 
@@ -245,17 +268,20 @@ behaviour](#specific-options-of-the-agent).
     within 70 seconds following the end of the installer.
 
 `/S`{#S}
+
 :   Silent installation. (By default: `No`)
 
     You must accept the license in a explicit way if you perform the
     installation in silent mode (see [`/acceptlicense`](#acceptlicense)).
 
 `/start-menu`{#start-menu}
+
 :   This option is the opposite of `/no-start-menu`.
 
     See [`/no-start-menu`](#no-start-menu) for more information.
 
 `/task-daily-modifier`{#task-daily-modifier}=*modifier*
+
 :   Daily task schedule modifier. (By default: `1`)
 
     *modifier* can take values between 1 and 30 (days), both included.
@@ -265,6 +291,7 @@ behaviour](#specific-options-of-the-agent).
     option.
 
 `/task-frequency`{#task-frequency}=*frequency*
+
 :   Frequency for task schedule. (By default: `Hourly`)
 
     *frequency* can be any of the following values:
@@ -272,14 +299,17 @@ behaviour](#specific-options-of-the-agent).
     > `Minute`
     > :   At minute intervals
     >     (see option [`/task-minute-modifier`](#task-minute-modifier))
+    >
     > `Hourly`
     > :   At hour intervals
     >     (see option [`/task-hourly-modifier`](#task-hourly-modifier))
+    >
     > `Daily`
     > :   At day intervals
     >     (see option [`/task-daily-modifier`](#task-daily-modifier))
 
 `/task-hourly-modifier`{#task-hourly-modifier}=*modifier*
+
 :   Hourly task schedule modifier. (By default: `1`)
 
     *modifier* can take values between 1 and 23 (hours), both included.
@@ -289,6 +319,7 @@ behaviour](#specific-options-of-the-agent).
     option.
 
 `/task-minute-modifier`{#task-minute-modifier}=*modifier*
+
 :   Minute task schedule modifier. (By default: `15`)
 
     *modifier* can take the following values: 15, 20 or 30 (minutes).
@@ -319,6 +350,7 @@ information about how to configure and how to use FusionInventory Agent in
     [`/ssl-check`](#ssl-check).
 
 `/backend-collect-timeout`{#backend-collect-timeout}=*timeout*
+
 :   Timeout for task `Inventory` modules execution. (By default: `180`)
 
     *timeout* is expressed in seconds.
@@ -327,6 +359,7 @@ information about how to configure and how to use FusionInventory Agent in
     > 2.4.0*
 
 `/ca-cert-dir`{#ca-cert-dir}=*pathname*
+
 :   Absolute path to the standard certificate directory [^scd] of certificate
     authorities (CA). (By default: `''`)
 
@@ -360,6 +393,7 @@ information about how to configure and how to use FusionInventory Agent in
         signing utility of OpenSSL.
 
 `/ca-cert-file`{#ca-cert-file}=*filename*
+
 :   Full path to the certificates file of certification authorities (CA). (By default: `''`)
 
     *filename* must be in PEM (Privacy Enhanced Mail) encoding and its
@@ -375,17 +409,21 @@ information about how to configure and how to use FusionInventory Agent in
             C:\> copy.exe FICert_Class1.pem+FICert_Class2.pem FICerts.pem
 
 `/debug`{#debug}=*level*
+
 :   Sets the debug level of the agent. (By default: `0`)
 
     *level* can be any of the following values:
 
     > `0`
     > :   It records the basic process of FusionInventory Agent
+    >
     > `1`
     > :   It records in depth the process of FusionInventory Agent
+    >
     > `2`
     > :   It records communications of FusionInventory Agent with remote
     >     destinations (see [`/server`](#server))
+    >
     > `3`
     > :   It records additional traces for some external Perl libraries (as
     >     *Net::SSLeay* and others)
@@ -394,6 +432,7 @@ information about how to configure and how to use FusionInventory Agent in
     *level* `3` only has sense whether [`/logger`](#logger) is set to `Stderr`.
 
 `/delaytime`{#delaytime}=*limit*
+
 :   Sets an initial delay before first contact with a remote destination (By
     default: `3600`).
 
@@ -409,23 +448,28 @@ information about how to configure and how to use FusionInventory Agent in
     *limit* is expressed in seconds.
 
 `/html`{#html}
+
 :   Save the result of Inventory task as HTML instead of XML. (By default:
     `No`)
 
 `/httpd`{#httpd}
+
 :   This option is the opposite of `/no-httpd`.
 
     See [`/no-httpd`](#ho-httpd) for more information.
 
 `/httpd-ip`{#httpd-ip}=*ip*
+
 :   IP address by which the embedded web server should listen.  (By default:
     `0.0.0.0`)
 
 `/httpd-port`{#httpd-port}=*port*
+
 :   IP port by which the embedded web server should listen. (By default:
     `62354`)
 
 `/httpd-trust`{#httpd-trust}={*ip* | *range* | *hostname*}[,{*ip* | *range* | *hostname*}[...]]
+
 :   Trusted IP addresses that do not require authentication token by the
     integrated web server. (By default: `127.0.0.1/32`)
 
@@ -434,10 +478,12 @@ information about how to configure and how to use FusionInventory Agent in
     > *ip*
     > :   It is an IP address in dot-decimal notation (ex. `'127.0.0.1'`) or in
     >     CIDR notation (ex. `'127.0.0.1/32'`)
+    >
     > *range*
     > :   It is an IP address range in dot-decimal notation (ex. `'192.168.0.0
     >     - 192.168.0.255'` or `'192.168.0.0 + 255'`) or in CIDR notation (ex.
     >     `'192.168.0.0/24'`)
+    >
     > *hostname*
     > :   It is a name of a host (ex. `'itms.acme.org'`)
 
@@ -474,6 +520,7 @@ information about how to configure and how to use FusionInventory Agent in
         > `/server='http://itms.acme.org/glpi/plugins/fusioninventory/'`
 
 `/local`{#local}=*pathname*
+
 :   Writes the results of tasks execution into the given directory. (By
     default: `''`)
 
@@ -484,6 +531,7 @@ information about how to configure and how to use FusionInventory Agent in
     You can use the `/local` and [`/server`](#server) options simultaneously.
 
 `/logfile`{#logfile}=*filename*
+
 :   Writes log messages into the file *filename*. (By default:
     `%ProgramFiles%\FusionInventory-Agent\fusioninventory-agent.log`)
 
@@ -493,18 +541,21 @@ information about how to configure and how to use FusionInventory Agent in
 
 
 `/logfile-maxsize`{#logfile-maxsize}=*size*
+
 :   Sets the maximum size of the file indicated in [`/logfile`](#logfile) to
     *size*. (By default: `16`)
 
     *size* is expressed in MBytes.
 
 `/logger`{#logger}=*backend*[,*backend*]
+
 :   Sets the logger backends. (By default: `File`)
 
     *backend* can be any of the following values[^logger-syslog]:
 
     > `File`
     > :   Sends the log messages to a file (see [`/logfile`](#logfile))
+    >
     > `Stderr`
     > :   Sends the log messages to console
 
@@ -512,58 +563,82 @@ information about how to configure and how to use FusionInventory Agent in
        sense on Windows operating systems.
 
 `/no-category`{#no-category}=*category*[,*category*[...]]
+
 :   Do not inventory the indicated categories of elements. (By default: `''`)
 
     *category* can be any of the following values:
 
     > `Battery`
     > :   For batteries
+    >
     > `Controller`
     > :   For motherboard controllers
+    >
     > `CPU`
     > :   For processors
+    >
     > `Drive`
     > :   For unit drives
+    >
     > `Environment`
     > :   For environment variables
+    >
     > `Input`
     > :   For input devices (*keyboard*, *mouse*, *smart card reader*,
     >     *fingerprint scanner*, etc.)
+    >
     > `License`
     > :   For software licenses
+    >
     > `Local_Group`
     > :   For user's local groups
+    >
     > `Local_User`
     > :   For local users
+    >
     > `LVM`
     > :   For Logic Volume Manager (it has no effect on Microsoft Windows
     >     systems)
+    >
     > `Memory`
     > :   For memory modules
+    >
     > `Modem`
     > :   For modem devices
+    >
     > `Monitor`
     > :   For monitors
+    >
     > `Network`
     > :   For network devices
+    >
     > `Printer`
     > :   For printers
+    >
     > `Process`
     > :   For system processes (it has no effect on Microsoft Windows systems)
+    >
     > `Slot`
     > :   For slots
+    >
     > `Software`
     > :   For software
+    >
     > `Sound`
     > :   For sound subsystem
+    >
     > `Storage`
     > :   For storage subsystem
+    >
     > `USB`
     > :   For USB devices
+    >
     > `User`
     > :   For users
+    >
     > `Video`
     > :   For video devices
+    >
     > `VirtualMachine`
     > :   For virtual machines
 
@@ -571,49 +646,62 @@ information about how to configure and how to use FusionInventory Agent in
     categories of elements will be inventoried.
 
 `/no-html`{#no-html}
+
 :   This option is the opposite of `/html`.
 
     See [`/html`](#html) for more information.
 
 `/no-httpd`{#no-httpd}
+
 :   Disables the embedded web server. (By default: `No`)
 
 `/no-p2p`
+
 :   Do not use peer to peer to download files. (By default: `No`)
 
 `/no-scan-homedirs`{#no-scan-homedirs}
+
 :   This option is the opposite of `/scan-homedirs`.
 
     See [`/scan-homedirs`](#scan-homedirs) for more information.
 
 `/no-scan-profiles`{#no-scan-profiles}
+
 :   This option is the opposite of `/scan-profiles`.
 
     See [`/scan-profiles`](#scan-profiles) for more information.
 
 `/no-ssl-check`{#no-ssl-check}
+
 :   Do not check certificates of remote destinations. (By default: `No`)
 
     See [`/ca-cert-dir`](#ca-cert-dir), [`/ca-cert-file`](#ca-cert-file) and
     [`/server`](#server) for more information.
 
 `/no-task`{#no-task}=*task*[,*task*[...]]
+
 :   Disables the given tasks. (By default: `''`)
 
     *task* can be any of the following values:
 
     > `Collect`
     > :   Collect task
+    >
     > `Deploy`
     > :   Deploy task
+    >
     > `ESX`
     > :   ESX task
+    >
     > `Inventory`
     > :   Inventory task
+    >
     > `NetDiscovery`
     > :   Network Discovery task
+    >
     > `NetInventory`
     > :   Network Inventory task
+    >
     > `WakeOnLan`
     > :   Wake on LAN task
 
@@ -621,11 +709,13 @@ information about how to configure and how to use FusionInventory Agent in
     will be executed.
 
 `/p2p`{#p2p}
+
 :   This option is the opposite of `/no-p2p`.
 
     See [`/no-p2p`](#no-p2p) for more information.
 
 `/password`{#password}=*password*
+
 :   Uses *password* as password for authentication on remote destinations. (By
     default: `''`)
 
@@ -633,16 +723,19 @@ information about how to configure and how to use FusionInventory Agent in
     for the [`/server`](#server) option. (See also [`/user`](#user))
 
 `/proxy`{#proxy}=*URI*
+
 :   Uses *URI* as HTTP/S proxy server. (By default: `''`)
 
     The `/proxy` option has effect only if you have also indicated a value for
     the [`/server`](#server) option.
 
 `/scan-homedirs`{#scan-homedirs}
+
 :   Allows the agent to scan home directories for virtual machines.
     (By default: `No`)
 
 `/scan-profiles`{#scan-profiles}
+
 :   Allows the agent to scan user profiles for software. (By default: `No`)
 
     The `/scan-profiles` option has effect only on Windows operating
@@ -653,6 +746,7 @@ information about how to configure and how to use FusionInventory Agent in
         more information.
 
 `/server`{#server}=*URI*[,*URI*[...]]
+
 :   Sends results of tasks execution to given servers. (By default: `''`)
 
     If you indicate an empty string (`''`) ---the default value--- the results
@@ -661,10 +755,12 @@ information about how to configure and how to use FusionInventory Agent in
     You can use the `/server` and [`/local`](#local) options simultaneously.
 
 `/ssl-check`{#ssl-check}
+
 :   This option is the opposite of `/no-ssl-check`.
     See [`/no-ssl-check`](#no-ssl-check) for more information.
 
 `/tag`=*tag*
+
 :   Marks the computer with the tag *tag* . (By default: `''`)
 
 `/timeout`{#timeout}=*timeout*
@@ -677,6 +773,7 @@ information about how to configure and how to use FusionInventory Agent in
     *timeout* is expressed in MBytes.
 
 `/user`{#user}=*user*
+
 :   Uses *user* as user for authentication on remote destinations. (By default:
     `''`)
 
