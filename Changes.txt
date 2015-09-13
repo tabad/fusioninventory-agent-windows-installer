@@ -1,5 +1,20 @@
 FusionInventory Agent Windows Installer - History of Revisions and Changes
 
+2.3.17 (Not yet released)
+agent:
+* FusionInventory Agent 2.3.x (commit: f16831f613 | date: sep 01 2015)
+
+core:
+* Add support for task Collect (#8).
+* Update PCI IDs database (pci.ids file) from 2015.03.01 to 2015.09.10
+* Update USB IDs database (usb.ids file) from 2015.02.21 to 2015.09.04
+
+documentation:
+* New references to GitHub.
+
+strawberry perl package:
+* Based on Strawbarry Perl 5.22.0.1 (Jun 2015) (#7).
+
 2.3.16 Wed, 18 Mar 2015
 agent:
 * FusionInventory Agent 2.3.16 (commit: 73531ae127)
