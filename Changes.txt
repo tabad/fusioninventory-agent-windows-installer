@@ -1,13 +1,13 @@
 FusionInventory Agent Windows Installer - History of Revisions and Changes
 
-2.3.17 (Not yet released)
+2.3.17 Thu, 29 Sep 2015
 agent:
-* FusionInventory Agent 2.3.x (commit: f16831f613 | date: sep 01 2015)
+* FusionInventory Agent 2.3.17 (commit: dd340384b0 | date: sep 27 2015)
 
 core:
 * Add support for task Collect (#8).
-* Update PCI IDs database (pci.ids file) from 2015.03.01 to 2015.09.10
-* Update USB IDs database (usb.ids file) from 2015.02.21 to 2015.09.04
+* Update PCI IDs database (pci.ids file) from 2015.03.01 to 2015.09.29
+* Update USB IDs database (usb.ids file) from 2015.02.21 to 2015.09.28
 
 documentation:
 * New references to GitHub.
