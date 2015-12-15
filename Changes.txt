@@ -1,34 +1,19 @@
 FusionInventory Agent Windows Installer - History of Revisions and Changes
 
-2.3.17 Mon, 20 Jul 2015
-inventory:
-* fix CPU frequency retrieval on Windows (#2876)
-* fix CPU core and thread retrieval on Windows (#2894)
-* small fixes for DragonFlyBSD (#2899)
-* fix interface speed retrieval in Solaris zones (#2939)
-* fix memory information retrieval on Solaris (#2907)
-* fix recurrent timeout for system_profile usage on MacOS (#2913)
-* fix hangup when enumerating ovirt virtual machines (#2917)
-* fix virtuozzo virtual machines identification (reported on mailing-list)
-* fix offline xen virtual machines properties retrieval (#2988)
-* retrieve Rudder agent information for all kind of Unix systems (#2999)
+2.3.17 Thu, 29 Sep 2015
+agent:
+* FusionInventory Agent 2.3.17 (commit: dd340384b0 | date: sep 27 2015)
 
-netinventory:
-* better serial retrieval (#2912)
-* fix firmware retrieval issues leading to malformed XML (#2908, #2956, #2994)
-* additional devices in sysobject.ids (#2912, #2932, #2965, #2966, #2994)
-* minor fixes in sysobject.ids
-* relax constraints on sysobjectid syntax
-* better VLAN retrieval for non-Cisco devices
+core:
+* Add support for task Collect (#8).
+* Update PCI IDs database (pci.ids file) from 2015.03.01 to 2015.09.29
+* Update USB IDs database (usb.ids file) from 2015.02.21 to 2015.09.28
 
-wake-on-lan:
-* fix communication issue with latest FusionInventory for GLPI (#2937)
+documentation:
+* New references to GitHub.
 
-fusioninventory-injector:
-* allow to mimic agent in user-agent HTTP header
-
-test suite:
-* more robust SSL connection tests
+strawberry perl package:
+* Based on Strawbarry Perl 5.22.0.1 (Jun 2015) (#7).
 
 2.3.16 Wed, 18 Mar 2015
 agent:
