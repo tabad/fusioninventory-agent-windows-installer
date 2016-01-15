@@ -290,19 +290,19 @@ v2.3.0 (it is also an assumption) so you want to change it to get the
 installers with the last releases.
 
    In GitHub you can find all releases of FusionInventory-Agent. In
-https://github.com/fusinv are registered most of the projects of
+https://github.com/fusioninventory are registered most of the projects of
 FusionInventory but here we are only interested in one of them. It is,
 with its URL, the following
 
       FusionInventory-Agent
-         https://github.com/fusinv/fusioninventory-agent
+         https://github.com/fusioninventory/fusioninventory-agent
 
    You can see the tag (or release) names, the branch names or the commit names
 of this project the same way you see them of this one. For more information,
 see section 'How to generate the installers' above.
 
-   By taking a look at https://github.com/fusinv/fusioninventory-agent/tags you
-see that new release is v2.3.1 (it is also an assumption). These are the
+   By taking a look at https://github.com/fusioninventory/fusioninventory-agent/tags
+you see that new release is v2.3.1 (it is also an assumption). These are the
 changes you should to carry out.
 
    Edit the './Perl/Scripts/load-perl-environment' file and change the value of
@@ -348,7 +348,7 @@ dences' of './Perl/Scripts/load-perl-environment' file to reflect these changes.
 
    Let's look at an example for FusionInventory-Agent.
 
-   In https://github.com/fusinv/fusioninventory-agent/tags you can see all
+   In https://github.com/fusioninventory/fusioninventory-agent/tags you can see all
 stable releases of FusionInventory-Agent. In that, below '2.3.1.zip - 2.3.1 re-
 lease' appears the sequence '6f67b7d6f6' (it is an assumption); the short form
 for its SHA1 commit.  Do click on it, and after, do click on 'Browse code'
