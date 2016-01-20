@@ -1,5 +1,17 @@
 FusionInventory Agent Windows Installer - History of Revisions and Changes
 
+2.3.18 (Not yet released)
+agent:
+* FusionInventory Agent 2.3.x (commit: e5901780ed | date: jan 20 2016)
+
+core:
+* Update PCI IDs database (pci.ids file) from 2015.03.01 to 2016.01.20
+* Update USB IDs database (usb.ids file) from 2015.02.21 to 2015.12.17
+
+strawberry perl package:
+* Based on Strawbarry Perl 5.22.1.2 (Jan 2016) (#21)
+* Add missing Perl modules regarding SNMPv3 (#11)
+
 2.3.17 Thu, 29 Sep 2015
 agent:
 * FusionInventory Agent 2.3.17 (commit: dd340384b0 | date: sep 27 2015)
