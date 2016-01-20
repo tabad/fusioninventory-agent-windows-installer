@@ -69,7 +69,7 @@ declare -r fusinv_agent_mod_dependences='Archive::Extract Compress::Zlib Digest:
 declare -r fusinv_agent_mod_specific_dependences=''
 declare -r fusinv_agent_mod_uses='base Compress::Zlib Config constant Crypt::DES Cwd Data::Dumper Digest::MD5 Digest::SHA Encode English Fcntl File::Basename File::Copy::Recursive File::Find File::Glob File::Path File::Spec File::stat File::Temp File::Which Getopt::Long HTTP::Cookies HTTP::Daemon HTTP::Headers HTTP::Request HTTP::Status IO::Handle IO::Socket::SSL JSON List::Util LWP LWP::UserAgent Memoize MIME::Base64 Net::Domain Net::hostent Net::IP Net::Ping Net::SNMP Parallel::ForkManager Pod::Usage POSIX Scalar::Util Socket Storable Sys::Hostname Text::Template threads Thread::Queue threads::shared Time::HiRes Time::Local Time::localtime UNIVERSAL::require URI URI::Escape User::pwent Win32 Win32::API Win32::Daemon Win32::Job Win32::OLE Win32::OLE::Const Win32::OLE::Variant XML::TreePP'
 
-declare -r fusinv_mod_uses_not_detected_by_par='Encode::Byte Encode::CN Encode::JP Encode::KR Encode::TW Encode::Unicode Tie::Hash::NamedCapture'
+declare -r fusinv_mod_uses_not_detected_by_par='Encode::Byte Encode::CN Encode::JP Encode::KR Encode::TW Encode::Unicode Net::SNMP::Security::USM Net::SNMP::Transport::IPv4::TCP Net::SNMP::Transport::IPv6::TCP Net::SNMP::Transport::IPv6::UDP Tie::Hash::NamedCapture'
 
 if (( ${#fusinv_agent_commit} > ${maximum_commit_length} )); then
    fusinv_agent_commit="${fusinv_agent_commit:0:${maximum_commit_length}}"
