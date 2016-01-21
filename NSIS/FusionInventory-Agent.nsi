@@ -115,7 +115,7 @@ SetCompressor /FINAL /SOLID lzma
 
 ; Release of FusionInventory Agent and FusionInventory Agent Tasks
 !define FIA_RELEASE "e5901780ed"
-!define FIA_TASK_COLLECT_RELEASE "2.3.17"
+!define FIA_TASK_COLLECT_RELEASE "2.3.18"
 !define FIA_TASK_DEPLOY_RELEASE "2.0.4"
 !define FIA_TASK_ESX_RELEASE "2.2.1"
 !define FIA_TASK_INVENTORY_RELEASE "1.0"
