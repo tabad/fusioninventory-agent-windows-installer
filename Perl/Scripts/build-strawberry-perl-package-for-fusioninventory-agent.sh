@@ -153,8 +153,7 @@ tmpdir="$(${mktemp} -d --tmpdir=/tmp spepfia.XXXXXXXX)"
 fusinv_mod_uses="${fusinv_agent_mod_dependences}          \
                  ${fusinv_agent_mod_uses}                 \
                  ${fusinv_agent_mod_dependences_for_test} \
-                 ${fusinv_agent_mod_uses_for_test}        \
-                 ${fusinv_mod_uses_not_detected_by_par}"
+                 ${fusinv_agent_mod_uses_for_test}"
 fusinv_mod_uses="$(echo ${fusinv_mod_uses} | \
                    ${tr} '[:space:]' '\n'  | \
                    ${sort} -i              | \
