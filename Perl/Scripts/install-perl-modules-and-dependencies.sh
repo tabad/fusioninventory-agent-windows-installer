@@ -116,10 +116,11 @@ if [ ! -d "${strawberry_path}" ]; then
 fi
 
 # Select perl modules to install
-fusinv_mod_dependences="$(echo ${fusinv_agent_mod_dependences} | \
-                        ${tr} '[:space:]' '\n'                 | \
-                        ${sort} -i                             | \
-                        ${uniq}                                | \
+fusinv_mod_dependences="$(echo ${fusinv_agent_mod_dependences}            \
+                               ${fusinv_agent_mod_dependences_for_test} | \
+                        ${tr} '[:space:]' '\n'                          | \
+                        ${sort} -i                                      | \
+                        ${uniq}                                         | \
                         ${tr} '\n' ' ')"
 fusinv_mod_dependences="${fusinv_mod_dependences% *}"
 
