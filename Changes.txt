@@ -5,12 +5,15 @@ agent:
 * FusionInventory Agent 2.3.x (commit: e5901780ed | date: jan 20 2016)
 
 core:
-* Update PCI IDs database (pci.ids file) from 2015.03.01 to 2016.01.20
+* Update PCI IDs database (pci.ids file) from 2015.03.01 to 2016.02.06
 * Update USB IDs database (usb.ids file) from 2015.02.21 to 2015.12.17
 
 strawberry perl package:
 * Based on Strawbarry Perl 5.22.1.2 (Jan 2016) (#21)
 * Add missing Perl modules regarding SNMPv3 (#11)
+* Add Perl Modules for testing FIA (#22)
+* Add Sys::Syslog Perl module (#23)
+
 
 2.3.17 Thu, 29 Sep 2015
 agent:
