@@ -183,21 +183,21 @@ SetCompressor /FINAL /SOLID lzma
 !else
    !if "${PRODUCT_RELEASE_TYPE}" == "${RELEASE_TYPE_CANDIDATE}"
       ; Product version for candidate releases
-      !define PRODUCT_VERSION "2.3.18-rc1"
+      !define PRODUCT_VERSION "2.3.18-rc2"
 
       ; If PRODUCT_VERSION is a commit then
       ;    define the following symbols as empty string
       !define PRODUCT_VERSION_MAJOR "2"
       !define PRODUCT_VERSION_MINOR "3"
       !define PRODUCT_VERSION_RELEASE "18"
-      !define PRODUCT_VERSION_CANDIDATE "1"
+      !define PRODUCT_VERSION_CANDIDATE "2"
 
       ; File version
       ;    for Windows Version Information
       ;
       ; If PRODUCT_VERSION is a commit then
       ;    define the following symbols as '0.0.0.0'
-      !define FILE_VERSION "2.3.17.9901"
+      !define FILE_VERSION "2.3.17.9902"
 
    ; Bitmaps for stable releases
       ; Bitmaps for candidate releases
