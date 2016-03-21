@@ -150,9 +150,10 @@ done
 tmpdir="$(${mktemp} -d --tmpdir=/tmp spepfia.XXXXXXXX)"
 
 # Build Perl script file
-fusinv_mod_uses="${fusinv_agent_mod_dependences}        \
-                 ${fusinv_agent_mod_uses}               \
-                 ${fusinv_mod_uses_not_detected_by_par}"
+fusinv_mod_uses="${fusinv_agent_mod_dependences}          \
+                 ${fusinv_agent_mod_uses}                 \
+                 ${fusinv_agent_mod_dependences_for_test} \
+                 ${fusinv_agent_mod_uses_for_test}"
 fusinv_mod_uses="$(echo ${fusinv_mod_uses} | \
                    ${tr} '[:space:]' '\n'  | \
                    ${sort} -i              | \
@@ -240,6 +241,11 @@ while (( ${iter} < ${#archs[@]} )); do
        "${tmpdir}/${strawberry_pepfia_par_template_file}" > /dev/null 2>&1
    )
 
+   # Partial clean
+   #    It seems "${tmpdir}/inc" is created when pp takes into account
+   #    the Perl module inc::Module::Install
+   ${rm} -rf "${tmpdir}/inc" > /dev/null 2>&1
+
    # Remove perl_path from PATH
    PATH="${PATH/${perl_path}/}"
 
@@ -247,7 +253,7 @@ while (( ${iter} < ${#archs[@]} )); do
    echo "Selecting files from Strawberry Perl ${strawberry_release} (${strawberry_version}-${arch_label}s)..."
 
    # Build structure
-   ${install} --mode 0775 --directory "${tmpdir}/Strawberry/${strawberry_version}/${arch}/c/bin"
+   ${install} --mode 0775 --directory "${tmpdir}/Strawberry/${strawberry_version}/${arch}/c/bin/startup/winnt/mingw"
    ${install} --mode 0775 --directory "${tmpdir}/Strawberry/${strawberry_version}/${arch}/cpan/sources"
    ${install} --mode 0775 --directory "${tmpdir}/Strawberry/${strawberry_version}/${arch}/perl/bin"
    ${install} --mode 0775 --directory "${tmpdir}/Strawberry/${strawberry_version}/${arch}/perl/lib"
@@ -267,12 +273,19 @@ while (( ${iter} < ${#archs[@]} )); do
    eval ${rm} -f "${tmpdir}/${strawberry_pepfia_par_file}" > /dev/null 2>&1
 
    # Copy files
+   eval ${install} "${strawberry_arch_path}/portable.perl" "${tmpdir}/Strawberry/${strawberry_version}/${arch}"
+   eval ${install} "${strawberry_arch_path}/portableshell.bat" "${tmpdir}/Strawberry/${strawberry_version}/${arch}"
+   eval ${install} "${strawberry_arch_path}/c/bin/dmake.exe" "${tmpdir}/Strawberry/${strawberry_version}/${arch}/c/bin"
    eval ${install} "${strawberry_arch_path}/c/bin/libbz2-1*.dll" "${tmpdir}/Strawberry/${strawberry_version}/${arch}/c/bin"
    eval ${install} "${strawberry_arch_path}/c/bin/libeay32*.dll" "${tmpdir}/Strawberry/${strawberry_version}/${arch}/c/bin"
    eval ${install} "${strawberry_arch_path}/c/bin/liblzma-5*.dll" "${tmpdir}/Strawberry/${strawberry_version}/${arch}/c/bin"
    eval ${install} "${strawberry_arch_path}/c/bin/ssleay32*.dll" "${tmpdir}/Strawberry/${strawberry_version}/${arch}/c/bin"
    eval ${install} "${strawberry_arch_path}/c/bin/zlib1*.dll" "${tmpdir}/Strawberry/${strawberry_version}/${arch}/c/bin"
+   eval ${install} "${strawberry_arch_path}/c/bin/startup/*.mk" "${tmpdir}/Strawberry/${strawberry_version}/${arch}/c/bin/startup"
+   eval ${install} "${strawberry_arch_path}/c/bin/startup/winnt/*.mk" "${tmpdir}/Strawberry/${strawberry_version}/${arch}/c/bin/startup/winnt"
+   eval ${install} "${strawberry_arch_path}/c/bin/startup/winnt/mingw/*.mk" "${tmpdir}/Strawberry/${strawberry_version}/${arch}/c/bin/startup/winnt/mingw"
    eval ${install} "${strawberry_arch_path}/perl/bin/perl{.exe,*.*.*.exe,*.dll}" "${tmpdir}/Strawberry/${strawberry_version}/${arch}/perl/bin"
+   eval ${install} "${strawberry_arch_path}/perl/bin/pl2bat.bat" "${tmpdir}/Strawberry/${strawberry_version}/${arch}/perl/bin"
    eval ${install} "${strawberry_arch_path}/perl/bin/libstdc++-6.dll" "${tmpdir}/Strawberry/${strawberry_version}/${arch}/perl/bin"
    eval ${install} "${strawberry_arch_path}/perl/bin/libgcc_s_sjlj-1.dll" "${tmpdir}/Strawberry/${strawberry_version}/${arch}/perl/bin"
    eval ${install} "${strawberry_arch_path}/perl/bin/libwinpthread-1.dll" "${tmpdir}/Strawberry/${strawberry_version}/${arch}/perl/bin"
@@ -309,6 +322,8 @@ while (( ${iter} < ${#archs[@]} )); do
    echo -n "Packing Strawberry Perl ${strawberry_release} (${strawberry_version}-${arch_label}s)."
    ${tar} -r -f "${strawberry_pepfia_path}/${strawberry_pepfia_file%*.xz}" \
           -C "${tmpdir}/Strawberry"                                        \
+          "${base_path}/portable.perl"                                     \
+          "${base_path}/portableshell.bat"                                 \
           "${base_path}/c/bin/"                                            \
           "${base_path}/cpan/sources/"                                     \
           "${base_path}/perl/bin/"                                         \
