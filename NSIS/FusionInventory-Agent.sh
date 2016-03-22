@@ -137,10 +137,10 @@ for arch in ${archs[@]}; do
    # Build ${arch} installer
 
    echo -n "Compilling ${arch} installer..."
-   eval ${makensis} ${option_nsis_log_level} \
-                    ${option_nsis_log_file}  \
-                    ${option_nsis_define}    \
-                    ${nsis_script}
+   eval "${makensis}" ${option_nsis_log_level} \
+                      ${option_nsis_log_file}  \
+                      ${option_nsis_define}    \
+                      ${nsis_script}
 
    if (( $? == 0 )); then
       echo '.Done!'
