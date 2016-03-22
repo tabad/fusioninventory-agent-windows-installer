@@ -129,7 +129,7 @@ for lang in ${langs[@]}; do
       --from markdown                  \
       --to html                        \
       --output "${help_file%.md}.html" \
-      "${help_file}" > /dev/null 2>&1
+      "${help_file}"
 done
 
 # Build installers
