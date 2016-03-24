@@ -45,15 +45,15 @@ declare arch_label=''
 declare -a -r archs=(x64 x86)
 declare -a -r arch_labels=(64bit 32bit)
 
-declare -r strawberry_version='5.22.1.2'
-declare -r strawberry_release='Jan 2016'
+declare -r strawberry_version='5.22.0.1'
+declare -r strawberry_release='Jun 2015'
 declare -r strawberry_path="../Strawberry/${strawberry_version}"
 
 declare -r strawberry_arch_path='${strawberry_path}/${arch}'
 declare -r strawberry_arch_url='http://strawberryperl.com/download/${strawberry_version}/strawberry-perl-${strawberry_version}-${arch_label}-portable.zip'
 
 declare -r strawberry_pepfia_branch='2.3.x'
-declare -r strawberry_pepfia_build_id='2'
+declare -r strawberry_pepfia_build_id='1'
 declare -r strawberry_pepfia_path="${strawberry_path%/${strawberry_version}}"
 declare -r strawberry_pepfia_file="strawberry-perl-${strawberry_version}-all-pepfia-${strawberry_pepfia_branch}-${strawberry_pepfia_build_id}.tar.xz"
 declare -r strawberry_pepfia_par_file='strawberry-perl-${strawberry_version}-${arch}-par-pepfia-${strawberry_pepfia_branch}-${strawberry_pepfia_build_id}.zip'
@@ -62,7 +62,7 @@ declare -r strawberry_pepfia_url='https://sourceforge.net/projects/fiawi/files/s
 
 declare -i -r maximum_commit_length=10
 
-declare +r fusinv_agent_commit='d5860ece56'
+declare +r fusinv_agent_commit='37233348c4'
 declare -r fusinv_agent_mod_name='FusionInventory-Agent'
 declare -r fusinv_agent_repository='https://github.com/g-bougard/fusioninventory-agent.git'
 
