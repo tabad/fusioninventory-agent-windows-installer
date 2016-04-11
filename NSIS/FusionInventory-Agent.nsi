@@ -111,7 +111,7 @@ SetCompressor /FINAL /SOLID lzma
 !endif
 
 ; Release of Strawberry Perl Portable Edition Package for FusionInventory Agent
-!define STRAWBERRY_RELEASE "5.22.0.1"
+!define STRAWBERRY_RELEASE "5.22.1.3"
 
 ; Release of FusionInventory Agent and FusionInventory Agent Tasks
 !define FIA_RELEASE "37233348c4"
