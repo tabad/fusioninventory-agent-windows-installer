@@ -45,7 +45,7 @@ declare arch_label=''
 declare -a -r archs=(x64 x86)
 declare -a -r arch_labels=(64bit 32bit)
 
-declare -r strawberry_version='5.20.3.3'
+declare -r strawberry_version='5.22.1.3'
 declare -r strawberry_release='Mar 2016'
 declare -r strawberry_path="../Strawberry/${strawberry_version}"
 
@@ -62,7 +62,7 @@ declare -r strawberry_pepfia_url='https://sourceforge.net/projects/fiawi/files/s
 
 declare -i -r maximum_commit_length=10
 
-declare +r fusinv_agent_commit='37233348c4'
+declare +r fusinv_agent_commit='47ba5cc52b'
 declare -r fusinv_agent_mod_name='FusionInventory-Agent'
 declare -r fusinv_agent_repository='https://github.com/g-bougard/fusioninventory-agent.git'
 
