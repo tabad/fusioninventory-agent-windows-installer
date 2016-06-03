@@ -2,7 +2,7 @@ FusionInventory Agent Windows Installer - History of Revisions and Changes
 
 2.3.18 (Not yet released)
 agent:
-* FusionInventory Agent g-bougard/2.3.x (commit: 9170ff376f | date: jun  1 2016)
+* FusionInventory Agent g-bougard/2.3.x (commit: 85de35e623 | date: jun  3 2016)
 * Win32 service refactoring
 * Fixed & enhanced P2P support
 

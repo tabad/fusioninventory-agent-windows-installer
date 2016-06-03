@@ -122,9 +122,9 @@ while (( ${iter} < ${#archs[@]} )); do
    echo -n "Patching FusionInventory-Agent ${fusinv_agent_commit} for Strawberry Perl ${strawberry_release} (${strawberry_version}-${arch_label}s)."
 
    # Patches for file ${base_path}/bin/fusioninventory-agent
-   if [ ! -f "${base_path}/bin/fusioninventory-agent.org" ]; then
+   if [ ! -f "${base_path}/bin/fusioninventory-agent.orig" ]; then
       ${rsync} -a "${base_path}/bin/fusioninventory-agent" \
-                  "${base_path}/bin/fusioninventory-agent.org"
+                  "${base_path}/bin/fusioninventory-agent.orig"
       echo -n "."
    fi
    ${sed} -i -e "s,\(use lib '\)./lib\(';\),\1../agent\2,"          \
@@ -135,28 +135,28 @@ while (( ${iter} < ${#archs[@]} )); do
              "${base_path}/bin/fusioninventory-agent"
    echo -n "."
    (cd "${base_path}/bin";                  \
-    ${diff} -u "fusioninventory-agent.org"  \
+    ${diff} -u "fusioninventory-agent.orig"  \
                "fusioninventory-agent"  > "fusioninventory-agent.patch")
    echo -n "."
 
    # Patches for file ${base_path}/bin/fusioninventory-esx
-   if [ ! -f "${base_path}/bin/fusioninventory-esx.org" ]; then
+   if [ ! -f "${base_path}/bin/fusioninventory-esx.orig" ]; then
       ${rsync} -a "${base_path}/bin/fusioninventory-esx" \
-                  "${base_path}/bin/fusioninventory-esx.org"
+                  "${base_path}/bin/fusioninventory-esx.orig"
       echo -n "."
    fi
    ${sed} -i -e "s,\(use lib '\)./lib\(';\),\1../agent\2," \
              "${base_path}/bin/fusioninventory-esx"
    echo -n "."
    (cd "${base_path}/bin";               \
-    ${diff} -u "fusioninventory-esx.org" \
+    ${diff} -u "fusioninventory-esx.orig" \
                "fusioninventory-esx"  > "fusioninventory-esx.patch")
    echo -n "."
 
    # Patches for file ${base_path}/bin/fusioninventory-inventory
-   if [ ! -f "${base_path}/bin/fusioninventory-inventory.org" ]; then
+   if [ ! -f "${base_path}/bin/fusioninventory-inventory.orig" ]; then
       ${rsync} -a "${base_path}/bin/fusioninventory-inventory" \
-                  "${base_path}/bin/fusioninventory-inventory.org"
+                  "${base_path}/bin/fusioninventory-inventory.orig"
       echo -n "."
    fi
    ${sed} -i -e "s,\(use lib '\)./lib\(';\),\1../agent\2,"          \
@@ -167,14 +167,14 @@ while (( ${iter} < ${#archs[@]} )); do
              "${base_path}/bin/fusioninventory-inventory"
    echo -n "."
    (cd "${base_path}/bin";                      \
-    ${diff} -u "fusioninventory-inventory.org"  \
+    ${diff} -u "fusioninventory-inventory.orig"  \
                "fusioninventory-inventory"  > "fusioninventory-inventory.patch")
    echo -n "."
 
    # Patches for file ${base_path}/bin/fusioninventory-netdiscovery
-   if [ ! -f "${base_path}/bin/fusioninventory-netdiscovery.org" ]; then
+   if [ ! -f "${base_path}/bin/fusioninventory-netdiscovery.orig" ]; then
       ${rsync} -a "${base_path}/bin/fusioninventory-netdiscovery" \
-                  "${base_path}/bin/fusioninventory-netdiscovery.org"
+                  "${base_path}/bin/fusioninventory-netdiscovery.orig"
       echo -n "."
    fi
    ${sed} -i -e "s,\(use lib '\)./lib\(';\),\1../agent\2,"          \
@@ -185,14 +185,14 @@ while (( ${iter} < ${#archs[@]} )); do
              "${base_path}/bin/fusioninventory-netdiscovery"
    echo -n "."
    (cd "${base_path}/bin";                        \
-    ${diff} -u "fusioninventory-netdiscovery.org" \
+    ${diff} -u "fusioninventory-netdiscovery.orig" \
                "fusioninventory-netdiscovery"  > "fusioninventory-netdiscovery.patch")
    echo -n "."
 
    # Patches for file ${base_path}/bin/fusioninventory-netinventory
-   if [ ! -f "${base_path}/bin/fusioninventory-netinventory.org" ]; then
+   if [ ! -f "${base_path}/bin/fusioninventory-netinventory.orig" ]; then
       ${rsync} -a "${base_path}/bin/fusioninventory-netinventory" \
-                  "${base_path}/bin/fusioninventory-netinventory.org"
+                  "${base_path}/bin/fusioninventory-netinventory.orig"
       echo -n "."
    fi
    ${sed} -i -e "s,\(use lib '\)./lib\(';\),\1../agent\2,"          \
@@ -203,28 +203,43 @@ while (( ${iter} < ${#archs[@]} )); do
              "${base_path}/bin/fusioninventory-netinventory"
    echo -n "."
    (cd "${base_path}/bin";                        \
-    ${diff} -u "fusioninventory-netinventory.org" \
+    ${diff} -u "fusioninventory-netinventory.orig" \
                "fusioninventory-netinventory"  > "fusioninventory-netinventory.patch")
    echo -n "."
 
    # Patches for file ${base_path}/bin/fusioninventory-wakeonlan
-   if [ ! -f "${base_path}/bin/fusioninventory-wakeonlan.org" ]; then
+   if [ ! -f "${base_path}/bin/fusioninventory-wakeonlan.orig" ]; then
       ${rsync} -a "${base_path}/bin/fusioninventory-wakeonlan" \
-                  "${base_path}/bin/fusioninventory-wakeonlan.org"
+                  "${base_path}/bin/fusioninventory-wakeonlan.orig"
       echo -n "."
    fi
    ${sed} -i -e "s,\(use lib '\)./lib\(';\),\1../agent\2," \
              "${base_path}/bin/fusioninventory-wakeonlan"
    echo -n "."
    (cd "${base_path}/bin";                     \
-    ${diff} -u "fusioninventory-wakeonlan.org" \
+    ${diff} -u "fusioninventory-wakeonlan.orig" \
                "fusioninventory-wakeonlan"  > "fusioninventory-wakeonlan.patch")
    echo -n "."
 
+   # Patches for file ${base_path}/lib/FusionInventory/Agent.pm with version tag
+   if [ -n "${fusinv_agent_tag}" ]; then
+       if [ ! -f "${base_path}/lib/FusionInventory/Agent.pm.orig" ]; then
+          ${rsync} -a "${base_path}/lib/FusionInventory/Agent.pm" \
+                      "${base_path}/lib/FusionInventory/Agent.pm.orig"
+          echo -n "."
+       fi
+       ${sed} -i -e "s,\(our \$VERSION = '.*\)\(';\),\1-${fusinv_agent_tag}\2," \
+                 "${base_path}/lib/FusionInventory/Agent.pm"
+       echo -n "."
+       (cd "${base_path}/lib/FusionInventory";         \
+        ${diff} -u "Agent.pm.orig" "Agent.pm"  > "Agent.pm.patch")
+       echo -n "."
+    fi
+
    # Patches for file ${base_path}/bin/fusioninventory-win32-service
-   if [ ! -f "${base_path}/bin/fusioninventory-win32-service.org" ]; then
+   if [ ! -f "${base_path}/bin/fusioninventory-win32-service.orig" ]; then
       ${rsync} -a "${base_path}/bin/fusioninventory-win32-service" \
-                  "${base_path}/bin/fusioninventory-win32-service.org"
+                  "${base_path}/bin/fusioninventory-win32-service.orig"
       echo -n "."
    fi
    ${sed} -i -e "s,\(use lib '\)./lib\(';\),\1../agent\2,"                           \
@@ -235,7 +250,7 @@ while (( ${iter} < ${#archs[@]} )); do
              "${base_path}/bin/fusioninventory-win32-service"
    echo -n "."
    (cd "${base_path}/bin";                          \
-    ${diff} -u "fusioninventory-win32-service.org"  \
+    ${diff} -u "fusioninventory-win32-service.orig"  \
                "fusioninventory-win32-service"  > "fusioninventory-win32-service.patch")
    echo ".Done!"
 
