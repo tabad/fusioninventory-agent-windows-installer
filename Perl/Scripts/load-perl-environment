@@ -62,8 +62,8 @@ declare -r strawberry_pepfia_url='https://sourceforge.net/projects/fiawi/files/s
 
 declare -i -r maximum_commit_length=10
 
-declare +r fusinv_agent_commit='85de35e623'
-declare +r fusinv_agent_tag='rc7'
+declare +r fusinv_agent_commit='fcfe01628b'
+declare +r fusinv_agent_tag='rc8'
 declare -r fusinv_agent_mod_name='FusionInventory-Agent'
 declare -r fusinv_agent_repository='https://github.com/g-bougard/fusioninventory-agent.git'
 

@@ -114,9 +114,9 @@ SetCompressor /FINAL /SOLID lzma
 !define STRAWBERRY_RELEASE "5.22.1.3"
 
 ; Release of FusionInventory Agent and FusionInventory Agent Tasks
-!define FIA_RELEASE "85de35e623"
+!define FIA_RELEASE "fcfe01628b"
 !define FIA_TASK_COLLECT_RELEASE "2.3.18"
-!define FIA_TASK_DEPLOY_RELEASE "2.0.5"
+!define FIA_TASK_DEPLOY_RELEASE "2.0.4"
 !define FIA_TASK_ESX_RELEASE "2.2.1"
 !define FIA_TASK_INVENTORY_RELEASE "1.0"
 !define FIA_TASK_NETDISCOVERY_RELEASE "2.2.1"
@@ -183,21 +183,21 @@ SetCompressor /FINAL /SOLID lzma
 !else
    !if "${PRODUCT_RELEASE_TYPE}" == "${RELEASE_TYPE_CANDIDATE}"
       ; Product version for candidate releases
-      !define PRODUCT_VERSION "2.3.18-rc7"
+      !define PRODUCT_VERSION "2.3.18-rc8"
 
       ; If PRODUCT_VERSION is a commit then
       ;    define the following symbols as empty string
       !define PRODUCT_VERSION_MAJOR "2"
       !define PRODUCT_VERSION_MINOR "3"
       !define PRODUCT_VERSION_RELEASE "18"
-      !define PRODUCT_VERSION_CANDIDATE "7"
+      !define PRODUCT_VERSION_CANDIDATE "8"
 
       ; File version
       ;    for Windows Version Information
       ;
       ; If PRODUCT_VERSION is a commit then
       ;    define the following symbols as '0.0.0.0'
-      !define FILE_VERSION "2.3.17.9907"
+      !define FILE_VERSION "2.3.17.9908"
 
    ; Bitmaps for stable releases
       ; Bitmaps for candidate releases
@@ -207,7 +207,7 @@ SetCompressor /FINAL /SOLID lzma
       !define MUI_UNWELCOMEFINISHPAGE_BITMAP_FILE "${FIAI_DIR}\Contrib\Skins\Default\WelcomeMUI2CandidateVersion.bmp"
    !else
       ; Product version for development releases
-      !define PRODUCT_VERSION "85de35e623-dev"
+      !define PRODUCT_VERSION "fcfe01628b-dev"
 
       ; File version
       ;    for Windows Version Information
