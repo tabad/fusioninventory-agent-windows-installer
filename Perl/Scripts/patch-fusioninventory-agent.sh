@@ -136,7 +136,7 @@ while (( ${iter} < ${#archs[@]} )); do
    echo -n "."
    (cd "${base_path}/bin";                  \
     ${diff} -u "fusioninventory-agent.org"  \
-               "fusioninventory-agent"  > "fusioninventory-agent.patch")
+               "fusioninventory-agent" > "fusioninventory-agent.patch")
    echo -n "."
 
    # Patches for file ${base_path}/bin/fusioninventory-esx
@@ -150,7 +150,7 @@ while (( ${iter} < ${#archs[@]} )); do
    echo -n "."
    (cd "${base_path}/bin";               \
     ${diff} -u "fusioninventory-esx.org" \
-               "fusioninventory-esx"  > "fusioninventory-esx.patch")
+               "fusioninventory-esx" > "fusioninventory-esx.patch")
    echo -n "."
 
    # Patches for file ${base_path}/bin/fusioninventory-inventory
@@ -168,7 +168,7 @@ while (( ${iter} < ${#archs[@]} )); do
    echo -n "."
    (cd "${base_path}/bin";                      \
     ${diff} -u "fusioninventory-inventory.org"  \
-               "fusioninventory-inventory"  > "fusioninventory-inventory.patch")
+               "fusioninventory-inventory" > "fusioninventory-inventory.patch")
    echo -n "."
 
    # Patches for file ${base_path}/bin/fusioninventory-netdiscovery
@@ -186,7 +186,7 @@ while (( ${iter} < ${#archs[@]} )); do
    echo -n "."
    (cd "${base_path}/bin";                        \
     ${diff} -u "fusioninventory-netdiscovery.org" \
-               "fusioninventory-netdiscovery"  > "fusioninventory-netdiscovery.patch")
+               "fusioninventory-netdiscovery" > "fusioninventory-netdiscovery.patch")
    echo -n "."
 
    # Patches for file ${base_path}/bin/fusioninventory-netinventory
@@ -204,7 +204,7 @@ while (( ${iter} < ${#archs[@]} )); do
    echo -n "."
    (cd "${base_path}/bin";                        \
     ${diff} -u "fusioninventory-netinventory.org" \
-               "fusioninventory-netinventory"  > "fusioninventory-netinventory.patch")
+               "fusioninventory-netinventory" > "fusioninventory-netinventory.patch")
    echo -n "."
 
    # Patches for file ${base_path}/bin/fusioninventory-wakeonlan
@@ -218,7 +218,7 @@ while (( ${iter} < ${#archs[@]} )); do
    echo -n "."
    (cd "${base_path}/bin";                     \
     ${diff} -u "fusioninventory-wakeonlan.org" \
-               "fusioninventory-wakeonlan"  > "fusioninventory-wakeonlan.patch")
+               "fusioninventory-wakeonlan" > "fusioninventory-wakeonlan.patch")
    echo -n "."
 
    # Patches for file ${base_path}/bin/fusioninventory-win32-service
@@ -234,7 +234,7 @@ while (( ${iter} < ${#archs[@]} )); do
    echo -n "."
    (cd "${base_path}/bin";                          \
     ${diff} -u "fusioninventory-win32-service.org"  \
-               "fusioninventory-win32-service"  > "fusioninventory-win32-service.patch")
+               "fusioninventory-win32-service" > "fusioninventory-win32-service.patch")
    echo ".Done!"
 
    # Show files patched
