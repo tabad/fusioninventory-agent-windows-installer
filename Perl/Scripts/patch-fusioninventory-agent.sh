@@ -227,9 +227,11 @@ while (( ${iter} < ${#archs[@]} )); do
                   "${base_path}/bin/fusioninventory-win32-service.org"
       echo -n "."
    fi
-   ${sed} -i -e "s,\(use lib '\)./lib\(';\),\1../agent\2,"                                          \
-             -e "s,\(confdir => \$directory . '\)/../../etc/fusioninventory\('\,\),\1/../../etc\2," \
-             -e "s,\(libdir  => \$directory . '\)/../../lib\('\,\),\1/../agent\2,"                  \
+   ${sed} -i -e "s,\(use lib '\)./lib\(';\),\1../agent\2,"                           \
+             -e "s,\(confdir => \$directory . '\)/../etc\('\,\),\1/../../etc\2,"     \
+             -e "s,\(datadir => \$directory . '\)/../share\('\,\),\1/../../share\2," \
+             -e "s,\(vardir  => \$directory . '\)/../var\('\,\),\1/../../var\2,"     \
+             -e "s,\(libdir  => \$directory . '\)/../lib\('\,\),\1/../agent\2,"      \
              "${base_path}/bin/fusioninventory-win32-service"
    echo -n "."
    (cd "${base_path}/bin";                          \
