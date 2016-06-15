@@ -130,6 +130,7 @@
 
 
 ; Define INI options values
+!define CATEGORY_ANTIVIRUS "antivirus"
 !define CATEGORY_BATTERY "battery"
 !define CATEGORY_CONTROLLER "controller"
 !define CATEGORY_CPU "cpu"
@@ -144,8 +145,10 @@
 !define CATEGORY_MODEM "modem"
 !define CATEGORY_MONITOR "monitor"
 !define CATEGORY_NETWORK "network"
+!define CATEGORY_PORT "port"
 !define CATEGORY_PRINTER "printer"
 !define CATEGORY_PROCESS "process"
+!define CATEGORY_REMOTE-MGMT "remote_mgmt"
 !define CATEGORY_SLOT "slot"
 !define CATEGORY_SOFTWARE "software"
 !define CATEGORY_SOUND "sound"
@@ -276,6 +279,7 @@
 
 !macro GetValidCategoryCommaUStr ResultVar
    StrCpy ${ResultVar} ""
+   ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_ANTIVIRUS}" ${ResultVar}
    ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_BATTERY}" ${ResultVar}
    ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_CONTROLLER}" ${ResultVar}
    ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_CPU}" ${ResultVar}
@@ -290,8 +294,10 @@
    ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_MODEM}" ${ResultVar}
    ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_MONITOR}" ${ResultVar}
    ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_NETWORK}" ${ResultVar}
+   ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_PORT}" ${ResultVar}
    ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_PRINTER}" ${ResultVar}
    ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_PROCESS}" ${ResultVar}
+   ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_REMOTE-MGMT}" ${ResultVar}
    ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_SLOT}" ${ResultVar}
    ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_SOFTWARE}" ${ResultVar}
    ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_SOUND}" ${ResultVar}
