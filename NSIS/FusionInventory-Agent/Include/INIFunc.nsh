@@ -136,7 +136,7 @@
 !define CATEGORY_DRIVE "Drive"
 !define CATEGORY_ENVIRONMENT "Environment"
 !define CATEGORY_INPUT "Input"
-!define CATEGORY_LICENSE "License"
+!define CATEGORY_LICENSE-INFO "LicenseInfo"
 !define CATEGORY_LOCAL-GROUP "Local_Group"
 !define CATEGORY_LOCAL-USER "Local_User"
 !define CATEGORY_LVM "LVM"
@@ -282,7 +282,7 @@
    ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_DRIVE}" ${ResultVar}
    ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_ENVIRONMENT}" ${ResultVar}
    ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_INPUT}" ${ResultVar}
-   ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_LICENSE}" ${ResultVar}
+   ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_LICENSE-INFO}" ${ResultVar}
    ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_LOCAL-GROUP}" ${ResultVar}
    ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_LOCAL-USER}" ${ResultVar}
    ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_LVM}" ${ResultVar}
