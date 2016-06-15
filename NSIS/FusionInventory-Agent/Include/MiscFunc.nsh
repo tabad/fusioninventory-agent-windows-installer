@@ -833,6 +833,12 @@ Function NormalizeOptions
    ${NormalizeOption} "$R1" "$R2" $R3
    ${WriteINIOption} "$R0" "${IO_INSTALLTASKS}" "$R3"
 
+   ; Normalize 'no-category' option
+   ${GetValidCategoryCommaUStr} $R1
+   ${ReadINIOption} $R2 "$R0" "${IO_NO-CATEGORY}"
+   ${NormalizeOption} "$R1" "$R2" $R3
+   ${WriteINIOption} "$R0" "${IO_NO-CATEGORY}" "$R3"
+
    ; Normalize 'no-task' option
    ${GetValidTasksCommaUStr} $R1
    ${ReadINIOption} $R2 "$R0" "${IO_NO-TASK}"
