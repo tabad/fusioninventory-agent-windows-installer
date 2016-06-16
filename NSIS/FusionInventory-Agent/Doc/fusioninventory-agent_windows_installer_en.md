@@ -786,6 +786,37 @@ information about how to configure and how to use FusionInventory Agent in
 
 :   Marks the computer with the tag *tag* . (By default: `''`)
 
+`/tasks`{#tasks}={*task*[,*task*[...]]}
+
+:   It runs given tasks in given order. (By default: `''`)
+
+    *task* can be any of the following values:
+
+    > `Collect`
+    > :   Collect task
+    >
+    > `Deploy`
+    > :   Deploy task
+    >
+    > `ESX`
+    > :   ESX task
+    >
+    > `Inventory`
+    > :   Inventory task
+    >
+    > `NetDiscovery`
+    > :   Network Discovery task
+    >
+    > `NetInventory`
+    > :   Network Inventory task
+    >
+    > `WakeOnLan`
+    > :   Wake on LAN task
+
+    It is possible write `...` (three dots) at the end of the list as value
+    of *task* as synonymous of *the rest of tasks*. Also, it should be noted
+    that it is possible to indicate the same *task* more than once.
+
 `/timeout`{#timeout}=*timeout*
 :   Sets the limit time (in seconds) to connect with the server.
     (By default: `180`)

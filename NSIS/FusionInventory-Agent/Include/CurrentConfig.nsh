@@ -327,6 +327,16 @@ Function GetCurrentOptions
       ${EndIf}
    ${EndIf}
 
+   ; Get option 'tasks'
+   ${registry::Read} "${PRODUCT_INST_ROOT_KEY}\$R1" "${IO_TASKS}" $R2 $R3
+   ${If} "$R3" == "REG_SZ"
+      ${Trim} "$R2" $R2
+      ${If} ${IsValidOptionTasksValue} "$R2"
+         ; Write option into $R0 section
+         ${WriteINIOption} "$R0" "${IO_TASKS}" "$R2"
+      ${EndIf}
+   ${EndIf}
+
    ; Get option 'timeout'
    ${registry::Read} "${PRODUCT_INST_ROOT_KEY}\$R1" "${IO_TIMEOUT}" $R2 $R3
    ${If} "$R3" == "REG_SZ"

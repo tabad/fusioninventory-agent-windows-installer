@@ -2061,6 +2061,54 @@ Function IsValidOptionTagValue
 FunctionEnd
 
 
+; IsValidOptionTasksValue
+!define IsValidOptionTasksValue `"" IsValidOptionTasksValue`
+
+!macro _IsValidOptionTasksValue _a _b _t _f
+   !insertmacro _LOGICLIB_TEMP
+   Push `${_b}`
+   Call IsValidOptionTasksValue
+   Pop $_LOGICLIB_TEMP
+   !insertmacro _= $_LOGICLIB_TEMP 0 `${_t}` `${_f}`
+!macroend
+
+Function IsValidOptionTasksValue
+   ; $R0 Option value
+   ; $R1 Error code
+   ; $R2 Valid values
+
+   ; Note: $R0 is used also as output variable
+
+   ; Get parameter
+   Exch $R0
+
+   ; Push $R1 & R2 onto the stack
+   Push $R1
+   Push $R2
+
+   ; Initialize $R1
+   StrCpy $R1 0
+
+   ; Check (ToDo)
+   ${IfNot} "$R0" == ""
+      ${If} "$R0" != "$R0"
+         ; $R0 is an invalid value
+         StrCpy $R1 1
+      ${EndIf}
+   ${EndIf}
+
+   ; Copy return value in $R0
+   StrCpy $R0 "$R1"
+
+   ; Pop $R2 & $R1 off of the stack
+   Pop $R2
+   Pop $R1
+
+   ; Exchange the top element of the stack with $R0
+   Exch $R0
+FunctionEnd
+
+
 ; IsValidOptionTaskDailyModifierValue
 !define IsValidOptionTaskDailyModifierValue `"" IsValidOptionTaskDailyModifierValue`
 

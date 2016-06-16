@@ -553,6 +553,10 @@ Function WriteConfigurationOptions
    ${ReadINIOption} $R1 "$R0" "${IO_TAG}"
    ${registry::Write} "${PRODUCT_INST_ROOT_KEY}\$PRODUCT_INST_SUBKEY" "${IO_TAG}" "$R1" "REG_SZ" $R2
 
+   ; Register key '${IO_TASKS}'
+   ${ReadINIOption} $R1 "$R0" "${IO_TASKS}"
+   ${registry::Write} "${PRODUCT_INST_ROOT_KEY}\$PRODUCT_INST_SUBKEY" "${IO_TASKS}" "$R1" "REG_SZ" $R2
+
    ; Register key '${IO_TIMEOUT}'
    ${ReadINIOption} $R1 "$R0" "${IO_TIMEOUT}"
    ${registry::Write} "${PRODUCT_INST_ROOT_KEY}\$PRODUCT_INST_SUBKEY" "${IO_TIMEOUT}" "$R1" "REG_SZ" $R2
