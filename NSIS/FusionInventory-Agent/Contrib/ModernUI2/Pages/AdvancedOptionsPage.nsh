@@ -52,6 +52,7 @@
 !include LogicLib.nsh
 !include "${FIAI_DIR}\Include\INIFunc.nsh"
 !include "${FIAI_DIR}\Include\StrFunc.nsh"
+!include "${FIAI_DIR}\Include\MiscFunc.nsh"
 !include "${FIAI_DIR}\Include\OptionChecks.nsh"
 !include "${FIAI_DIR}\Include\CommaUStrFunc.nsh"
 !include "${FIAI_DIR}\Contrib\ModernUI2\Pages\AdvancedOptionsPageLangStrings.nsh"
@@ -217,10 +218,11 @@ FunctionEnd
 
 
 Function AdvancedOptionsPage_Leave
-   ; Push $R0, $R1 & $R2 onto the stack
+   ; Push $R0, $R1, $R2 & $R3 onto the stack
    Push $R0
    Push $R1
    Push $R2
+   Push $R3
 
    ; Set default section
    StrCpy $R0 "${IOS_GUI}"
@@ -308,14 +310,22 @@ Function AdvancedOptionsPage_Leave
 
    ; Is it necessary to abort?
    ${If} $R1 = 0
-      ; Pop $R2, $R1 & $R0 off of the stack
+      ; Pop $R3, $R2, $R1 & $R0 off of the stack
+      Pop $R3
       Pop $R2
       Pop $R1
       Pop $R0
       ; Abort
       Abort
    ${Else}
-      ; Pop $R2, $R1 & $R0 off of the stack
+      ; Normalize TextBox2 Text
+      ${GetValidCategoryCommaUStr} $R1
+      ${ReadINIOption} $R2 "$R0" "${IO_NO-CATEGORY}"
+      ${NormalizeOption} "$R1" "$R2" $R3
+      ${WriteINIOption} "$R0" "${IO_NO-CATEGORY}" "$R3"
+
+      ; Pop $R3, $R2, $R1 & $R0 off of the stack
+      Pop $R3
       Pop $R2
       Pop $R1
       Pop $R0
