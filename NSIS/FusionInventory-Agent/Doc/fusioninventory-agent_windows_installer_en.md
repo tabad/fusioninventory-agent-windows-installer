@@ -564,6 +564,9 @@ information about how to configure and how to use FusionInventory Agent in
 
     *category* can be any of the following values:
 
+    > `Antivirus`
+    > :   For antivirus solutions (it has effect on Microsoft Windows systems only)
+    >
     > `Battery`
     > :   For batteries
     >
@@ -583,7 +586,7 @@ information about how to configure and how to use FusionInventory Agent in
     > :   For input devices (*keyboard*, *mouse*, *smart card reader*,
     >     *fingerprint scanner*, etc.)
     >
-    > `License`
+    > `LicenseInfo`
     > :   For software licenses
     >
     > `Local_Group`
@@ -608,11 +611,17 @@ information about how to configure and how to use FusionInventory Agent in
     > `Network`
     > :   For network devices
     >
+    > `Port`
+    > :   For ports
+    >
     > `Printer`
     > :   For printers
     >
     > `Process`
-    > :   For system processes (it has no effect on Microsoft Windows systems)
+    > :   For system processes
+    >
+    > `Remote_Mgmt`
+    > :   For remote management solutions
     >
     > `Slot`
     > :   For slots
