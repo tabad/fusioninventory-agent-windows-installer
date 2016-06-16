@@ -187,10 +187,8 @@
 
    ; Install $R0\perl\agent\FusionInventory\Agent\*.pm
    ; but not $R0\perl\agent\FusionInventory\Agent\SNMP.pm
-   ;         $R0\perl\agent\FusionInventory\Agent\Threads.pm
    SetOutPath "$R0\perl\agent\FusionInventory\Agent"
    File /x "SNMP.pm"    \
-        /x "Threads.pm" \
         "${FIA_DIR}\lib\FusionInventory\Agent\*.pm"
 
    ; Install $R0\perl\agent\FusionInventory\Agent\HTTP\*.*
@@ -458,10 +456,8 @@
       CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Tools"
 
       ; Install $R0\perl\agent\FusionInventory\Agent\SNMP.pm
-      ;         $R0\perl\agent\FusionInventory\Agent\Threads.pm
       SetOutPath "$R0\perl\agent\FusionInventory\Agent"
       File "${FIA_DIR}\lib\FusionInventory\Agent\SNMP.pm"
-      File "${FIA_DIR}\lib\FusionInventory\Agent\Threads.pm"
 
       ; Install $R0\perl\agent\FusionInventory\Agent\SNMP\*.*
       SetOutPath "$R0\perl\agent\FusionInventory\Agent\SNMP"
