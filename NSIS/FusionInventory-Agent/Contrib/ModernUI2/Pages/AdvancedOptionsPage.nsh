@@ -318,6 +318,12 @@ Function AdvancedOptionsPage_Leave
       ; Abort
       Abort
    ${Else}
+      ; Normalize TextBox1 Text
+      ${GetValidTasksCommaUStr} $R1
+      ${ReadINIOption} $R2 "$R0" "${IO_NO-TASK}"
+      ${NormalizeOption} "$R1" "$R2" $R3
+      ${WriteINIOption} "$R0" "${IO_NO-TASK}" "$R3"
+
       ; Normalize TextBox2 Text
       ${GetValidCategoryCommaUStr} $R1
       ${ReadINIOption} $R2 "$R0" "${IO_NO-CATEGORY}"
