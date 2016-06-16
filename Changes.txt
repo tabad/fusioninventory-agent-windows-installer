@@ -2,16 +2,22 @@ FusionInventory Agent Windows Installer - History of Revisions and Changes
 
 2.3.18 (Not yet released)
 agent:
-* FusionInventory Agent 2.3.x (commit: 2c0de3d549 | date: jun 14 2016)
+* FusionInventory Agent 2.3.18 (commit: b7c47ea3d5 | date: jun 16 2016)
+
+command line interface:
+* Add support to the new --tasks option
+* Add support to the new --conf-reload-interval option
 
 core:
-* Include missing categories for no-category option
-* Fix of the processing of values of no-category option because of
+* Include missing categories for /no-category option
+* Fix of the processing of values of /no-category option because of
   they are case-sensitive and must be in lower case
 * Update PCI IDs database (pci.ids file) from 2015.03.01 to 2016.06.07
 * Update USB IDs database (usb.ids file) from 2015.02.21 to 2016.03.03
 
 documentation:
+* New entry for /tasks option
+* New entry for /conf-reload-interval option
 * New categories 'antivirus', 'port' and 'remote_mgmt'
 
 strawberry perl package:
