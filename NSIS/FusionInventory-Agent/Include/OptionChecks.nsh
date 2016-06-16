@@ -267,6 +267,56 @@ Function IsValidOptionCaCertUriValue
 FunctionEnd
 
 
+; IsValidOptionConfReloadIntervalValue
+!define IsValidOptionConfReloadIntervalValue `"" IsValidOptionConfReloadIntervalValue`
+
+!macro _IsValidOptionConfReloadIntervalValue _a _b _t _f
+   !insertmacro _LOGICLIB_TEMP
+   Push `${_b}`
+   Call IsValidOptionConfReloadIntervalValue
+   Pop $_LOGICLIB_TEMP
+   !insertmacro _= $_LOGICLIB_TEMP 0 `${_t}` `${_f}`
+!macroend
+
+Function IsValidOptionConfReloadIntervalValue
+   ; $R0 Option value
+   ; $R1 Error code
+
+   ; Note: $R0 is used also as output variable
+
+   ; Get parameter
+   Exch $R0
+
+   ; Push $R1 onto the stack
+   Push $R1
+
+   ; Initialize $R1
+   StrCpy $R1 0
+
+   ; Check
+   ${IfNot} ${IsAnIntegerNumber} "$R0"
+      ; $R0 is an invalid value
+      StrCpy $R1 1
+   ${ElseIf} $R0 < 0
+      ; $R0 is an invalid value
+      StrCpy $R1 1
+   ${ElseIf} $R0 > 0
+   ${AndIf} $R0 < 60
+      ; $R0 is an invalid value
+      StrCpy $R1 1
+   ${EndIf}
+
+   ; Copy return value in $R0
+   StrCpy $R0 "$R1"
+
+   ; Pop $R1 off of the stack
+   Pop $R1
+
+   ; Exchange the top element of the stack with $R0
+   Exch $R0
+FunctionEnd
+
+
 ; IsValidOptionDebugValue
 !define IsValidOptionDebugValue `"" IsValidOptionDebugValue`
 

@@ -291,6 +291,20 @@ Function GetCommandLineOptions
       ${EndIf}
    ${EndCommandLineOptionsSearchBlock}
 
+   ; Search for '/conf-reload-interval' option
+   ${CommandLineOptionsSearchBlock} "/conf-reload-interval=" "${IO_CONF-RELOAD-INTERVAL}"
+      ; Wipe $R3
+      ${Trim} "$R3" $R3
+
+      ; Check $R3 domain
+      ${IfNot} ${IsValidOptionConfReloadIntervalValue} "$R3"
+         ; Syntax error
+         StrCpy $CommandLineSyntaxError 0
+         ${FileWriteLine} $R9 "Syntax error. The value '$R3' is not allowed."
+         ${Break}
+      ${EndIf}
+   ${EndCommandLineOptionsSearchBlock}
+
    ; Search for '/debug' option
    ${CommandLineOptionsSearchBlock} "/debug=" "${IO_DEBUG}"
       ; Wipe $R3

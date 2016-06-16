@@ -465,6 +465,10 @@ Function WriteConfigurationOptions
    ${ReadINIOption} $R1 "$R0" "${IO_CA-CERT-FILE}"
    ${registry::Write} "${PRODUCT_INST_ROOT_KEY}\$PRODUCT_INST_SUBKEY" "${IO_CA-CERT-FILE}" "$R1" "REG_SZ" $R2
 
+   ; Register key '${IO_CONF-RELOAD-INTERVAL}'
+   ${ReadINIOption} $R1 "$R0" "${IO_CONF-RELOAD-INTERVAL}"
+   ${registry::Write} "${PRODUCT_INST_ROOT_KEY}\$PRODUCT_INST_SUBKEY" "${IO_CONF-RELOAD-INTERVAL}" "$R1" "REG_SZ" $R2
+
    ; Register key '${IO_DEBUG}'
    ${ReadINIOption} $R1 "$R0" "${IO_DEBUG}"
    ${registry::Write} "${PRODUCT_INST_ROOT_KEY}\$PRODUCT_INST_SUBKEY" "${IO_DEBUG}" "$R1" "REG_SZ" $R2

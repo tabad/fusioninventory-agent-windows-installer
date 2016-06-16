@@ -404,6 +404,24 @@ information about how to configure and how to use FusionInventory Agent in
 
             C:\> copy.exe FICert_Class1.pem+FICert_Class2.pem FICerts.pem
 
+`/conf-reload-interval`{#conf-reload-interval}=*frequency*
+
+:   Frequency for configuration reloading. (By default: `0`)
+
+    *frequency* can be any of the following values:
+
+    > `0`
+    > :   It disables configuration reloading.
+    >
+    > *`f`*
+    > :   It sets configuration reloading each *`f`* seconds. The lower
+    >     value for *`f`* is 60.
+
+    The `/conf-reload-interval` option has effect only if FusionInventory Agent
+    runs in *server mode* (see [`/execmode`](#execmode)).
+
+    *frequency* is expressed in seconds.
+
 `/debug`{#debug}=*level*
 
 :   Sets the debug level of the agent. (By default: `0`)

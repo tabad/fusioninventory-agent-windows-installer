@@ -100,6 +100,16 @@ Function GetCurrentOptions
       ${EndIf}
    ${EndIf}
 
+   ; Get option 'conf-reload-interval'
+   ${registry::Read} "${PRODUCT_INST_ROOT_KEY}\$R1" "${IO_CONF-RELOAD-INTERVAL}" $R2 $R3
+   ${If} "$R3" == "REG_SZ"
+      ${Trim} "$R2" $R2
+      ${If} ${IsValidOptionConfReloadIntervalValue} "$R2"
+         ; Write option into $R0 section
+         ${WriteINIOption} "$R0" "${IO_CONF-RELOAD-INTERVAL}" "$R2"
+      ${EndIf}
+   ${EndIf}
+
    ; Get option 'debug'
    ${registry::Read} "${PRODUCT_INST_ROOT_KEY}\$R1" "${IO_DEBUG}" $R2 $R3
    ${If} "$R3" == "REG_SZ"
