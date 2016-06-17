@@ -21,7 +21,7 @@ documentation:
 * New categories 'antivirus', 'port' and 'remote_mgmt'
 
 strawberry perl package:
-* Based on Strawbarry Perl 5.22.1.3 (Mar 2016)
+* Based on Strawbarry Perl 5.22.2.1 (May 2016)
 * Add missing Perl modules regarding SNMPv3 (#11)
 * Add Perl Modules for testing FIA (#22)
 * Add Sys::Syslog Perl module (#23)
