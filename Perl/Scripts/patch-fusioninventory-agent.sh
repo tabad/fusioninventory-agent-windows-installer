@@ -49,9 +49,9 @@ declare basename=''
 declare base_path=''
 declare script_suffix=''
 
+declare -r cp=$(type -P cp)
 declare -r diff=$(type -P diff)
 declare -r find=$(type -P find)
-declare -r rsync=$(type -P rsync)
 declare -r sed=$(type -P sed)
 
 # Check the OS
@@ -123,8 +123,8 @@ while (( ${iter} < ${#archs[@]} )); do
 
    # Patches for file ${base_path}/bin/fusioninventory-agent
    if [ ! -f "${base_path}/bin/fusioninventory-agent.org" ]; then
-      ${rsync} -a "${base_path}/bin/fusioninventory-agent" \
-                  "${base_path}/bin/fusioninventory-agent.org"
+      ${cp} -p "${base_path}/bin/fusioninventory-agent" \
+               "${base_path}/bin/fusioninventory-agent.org"
       echo -n "."
    fi
    ${sed} -i -e "s,\(use lib '\)./lib\(';\),\1../agent\2,"          \
@@ -141,8 +141,8 @@ while (( ${iter} < ${#archs[@]} )); do
 
    # Patches for file ${base_path}/bin/fusioninventory-esx
    if [ ! -f "${base_path}/bin/fusioninventory-esx.org" ]; then
-      ${rsync} -a "${base_path}/bin/fusioninventory-esx" \
-                  "${base_path}/bin/fusioninventory-esx.org"
+      ${cp} -p "${base_path}/bin/fusioninventory-esx" \
+               "${base_path}/bin/fusioninventory-esx.org"
       echo -n "."
    fi
    ${sed} -i -e "s,\(use lib '\)./lib\(';\),\1../agent\2," \
@@ -155,8 +155,8 @@ while (( ${iter} < ${#archs[@]} )); do
 
    # Patches for file ${base_path}/bin/fusioninventory-inventory
    if [ ! -f "${base_path}/bin/fusioninventory-inventory.org" ]; then
-      ${rsync} -a "${base_path}/bin/fusioninventory-inventory" \
-                  "${base_path}/bin/fusioninventory-inventory.org"
+      ${cp} -p "${base_path}/bin/fusioninventory-inventory" \
+               "${base_path}/bin/fusioninventory-inventory.org"
       echo -n "."
    fi
    ${sed} -i -e "s,\(use lib '\)./lib\(';\),\1../agent\2,"          \
@@ -173,8 +173,8 @@ while (( ${iter} < ${#archs[@]} )); do
 
    # Patches for file ${base_path}/bin/fusioninventory-netdiscovery
    if [ ! -f "${base_path}/bin/fusioninventory-netdiscovery.org" ]; then
-      ${rsync} -a "${base_path}/bin/fusioninventory-netdiscovery" \
-                  "${base_path}/bin/fusioninventory-netdiscovery.org"
+      ${cp} -p "${base_path}/bin/fusioninventory-netdiscovery" \
+               "${base_path}/bin/fusioninventory-netdiscovery.org"
       echo -n "."
    fi
    ${sed} -i -e "s,\(use lib '\)./lib\(';\),\1../agent\2,"          \
@@ -191,8 +191,8 @@ while (( ${iter} < ${#archs[@]} )); do
 
    # Patches for file ${base_path}/bin/fusioninventory-netinventory
    if [ ! -f "${base_path}/bin/fusioninventory-netinventory.org" ]; then
-      ${rsync} -a "${base_path}/bin/fusioninventory-netinventory" \
-                  "${base_path}/bin/fusioninventory-netinventory.org"
+      ${cp} -p "${base_path}/bin/fusioninventory-netinventory" \
+               "${base_path}/bin/fusioninventory-netinventory.org"
       echo -n "."
    fi
    ${sed} -i -e "s,\(use lib '\)./lib\(';\),\1../agent\2,"          \
@@ -209,8 +209,8 @@ while (( ${iter} < ${#archs[@]} )); do
 
    # Patches for file ${base_path}/bin/fusioninventory-wakeonlan
    if [ ! -f "${base_path}/bin/fusioninventory-wakeonlan.org" ]; then
-      ${rsync} -a "${base_path}/bin/fusioninventory-wakeonlan" \
-                  "${base_path}/bin/fusioninventory-wakeonlan.org"
+      ${cp} -p "${base_path}/bin/fusioninventory-wakeonlan" \
+               "${base_path}/bin/fusioninventory-wakeonlan.org"
       echo -n "."
    fi
    ${sed} -i -e "s,\(use lib '\)./lib\(';\),\1../agent\2," \
@@ -223,8 +223,8 @@ while (( ${iter} < ${#archs[@]} )); do
 
    # Patches for file ${base_path}/bin/fusioninventory-win32-service
    if [ ! -f "${base_path}/bin/fusioninventory-win32-service.org" ]; then
-      ${rsync} -a "${base_path}/bin/fusioninventory-win32-service" \
-                  "${base_path}/bin/fusioninventory-win32-service.org"
+      ${cp} -p "${base_path}/bin/fusioninventory-win32-service" \
+               "${base_path}/bin/fusioninventory-win32-service.org"
       echo -n "."
    fi
    ${sed} -i -e "s,\(use lib '\)./lib\(';\),\1../agent\2,"                           \
