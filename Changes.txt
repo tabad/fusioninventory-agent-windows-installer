@@ -1,6 +1,6 @@
 FusionInventory Agent Windows Installer - History of Revisions and Changes
 
-2.3.18 (Not yet released)
+2.3.18 Sat, 18 Jun 2016
 agent:
 * FusionInventory Agent 2.3.18 (commit: b7c47ea3d5 | date: jun 16 2016)
 
