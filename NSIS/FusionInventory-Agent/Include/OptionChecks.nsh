@@ -293,17 +293,12 @@ Function IsValidOptionConfReloadIntervalValue
    ; Initialize $R1
    StrCpy $R1 0
 
-   ; Check
-   ${IfNot} ${IsAnIntegerNumber} "$R0"
-      ; $R0 is an invalid value
-      StrCpy $R1 1
-   ${ElseIf} $R0 < 0
-      ; $R0 is an invalid value
-      StrCpy $R1 1
-   ${ElseIf} $R0 > 0
-   ${AndIf} $R0 < 60
-      ; $R0 is an invalid value
-      StrCpy $R1 1
+   ; Check (ToDo)
+   ${IfNot} "$R0" == ""
+      ${If} "$R0" != "$R0"
+         ; $R0 is an invalid value
+         StrCpy $R1 1
+      ${EndIf}
    ${EndIf}
 
    ; Copy return value in $R0
