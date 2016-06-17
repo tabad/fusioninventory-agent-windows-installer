@@ -100,7 +100,7 @@ if [ ! -d "${strawberry_path}" ]; then
 fi
 
 # Set file names and URLs
-fusinv_agent_url="${fusinv_agent_repository%.git}/tarball/${fusinv_agent_commit}"
+fusinv_agent_url="${fusinv_agent_repository%.git}/archive/${fusinv_agent_commit}.tar.gz"
 fusinv_agent_filename="${fusinv_agent_mod_name}-${fusinv_agent_commit}.tar.gz"
 
 # Download FusionInventory-Agent
