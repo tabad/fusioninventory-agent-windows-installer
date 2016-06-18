@@ -1580,51 +1580,6 @@ Function IsValidOptionNoWakeonlanValue
 FunctionEnd
 
 
-; IsValidOptionNoWin32OleWorkaroundValue
-!define IsValidOptionNoWin32OleWorkaroundValue `"" IsValidOptionNoWin32OleWorkaroundValue`
-
-!macro _IsValidOptionNoWin32OleWorkaroundValue _a _b _t _f
-   !insertmacro _LOGICLIB_TEMP
-   Push `${_b}`
-   Call IsValidOptionNoWin32OleWorkaroundValue
-   Pop $_LOGICLIB_TEMP
-   !insertmacro _= $_LOGICLIB_TEMP 0 `${_t}` `${_f}`
-!macroend
-
-Function IsValidOptionNoWin32OleWorkaroundValue
-   ; $R0 Option value
-   ; $R1 Error code
-
-   ; Note: $R0 is used also as output variable
-
-   ; Get parameter
-   Exch $R0
-
-   ; Push $R1 onto the stack
-   Push $R1
-
-   ; Initialize $R1
-   StrCpy $R1 0
-
-   ; Check
-   ${If} $R0 < 0
-   ${OrIf} $R0 > 1
-   ${OrIfNot} ${IsAnIntegerNumber} "$R0"
-      ; $R0 is an invalid value
-      StrCpy $R1 1
-   ${EndIf}
-
-   ; Copy return value in $R0
-   StrCpy $R0 "$R1"
-
-   ; Pop $R1 off of the stack
-   Pop $R1
-
-   ; Exchange the top element of the stack with $R0
-   Exch $R0
-FunctionEnd
-
-
 ; IsValidOptionPasswordValue
 !define IsValidOptionPasswordValue `"" IsValidOptionPasswordValue`
 

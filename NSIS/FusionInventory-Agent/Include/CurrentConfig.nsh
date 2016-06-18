@@ -267,16 +267,6 @@ Function GetCurrentOptions
       ${EndIf}
    ${EndIf}
 
-   ; Get option 'no-win32-ole-workaround'
-   ${registry::Read} "${PRODUCT_INST_ROOT_KEY}\$R1" "${IO_NO-WIN32-OLE-WORKAROUND}" $R2 $R3
-   ${If} "$R3" == "REG_SZ"
-      ${Trim} "$R2" $R2
-      ${If} ${IsValidOptionNoWin32OleWorkaroundValue} "$R2"
-         ; Write option into $R0 section
-         ${WriteINIOption} "$R0" "${IO_NO-WIN32-OLE-WORKAROUND}" "$R2"
-      ${EndIf}
-   ${EndIf}
-
    ; Get option 'password'
    ${registry::Read} "${PRODUCT_INST_ROOT_KEY}\$R1" "${IO_PASSWORD}" $R2 $R3
    ${If} "$R3" == "REG_SZ"
