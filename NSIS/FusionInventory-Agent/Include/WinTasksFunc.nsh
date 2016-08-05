@@ -97,23 +97,27 @@ FunctionEnd
    ; $R0 Comspec full path
    ; $R1 String to look for
    ; $R2 ExecToStack's return value
+   ; $R3 Windir full path
 
-   ; Push $R0, $R1 & $R2 onto the stack
+   ; Push $R0, $R1, $R2 & $R3 onto the stack
    Push $R0
    Push $R1
    Push $R2
+   Push $R3
 
    ; Look for task
    !insertmacro _LOGICLIB_TEMP
    ExpandEnvStrings $R0 %COMSPEC%
+   ExpandEnvStrings $R3 %WINDIR%
    StrCpy $R1 '${PRODUCT_INTERNAL_NAME}'
-   nsExec::ExecToStack '"$R0" /c schtasks /query /fo csv | find /c "$R1"'
+   nsExec::ExecToStack '"$R0" /c schtasks /query /fo csv | "$R3\System32\find.exe" /c "$R1"'
 
    ; Get ExecToStack's return values
    Pop $R2
    Pop $_LOGICLIB_TEMP
 
-   ; Pop $R2, $R1 & $R0 off of the stack
+   ; Pop $R3, $R2, $R1 & $R0 off of the stack
+   Pop $R3
    Pop $R2
    Pop $R1
    Pop $R0
