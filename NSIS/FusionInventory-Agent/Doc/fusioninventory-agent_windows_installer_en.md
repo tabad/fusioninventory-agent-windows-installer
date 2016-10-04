@@ -1,7 +1,7 @@
 % FusionInventory Agent Windows Installer 2.3.18\
   User's Guide
 % Tomás Abad Gómez-Pastrana
-% Month Day, Year (Not yet released)
+% Jan 18, 2016
 
 ----------
 
@@ -406,6 +406,24 @@ information about how to configure and how to use FusionInventory Agent in
 
             C:\> copy.exe FICert_Class1.pem+FICert_Class2.pem FICerts.pem
 
+`/conf-reload-interval`{#conf-reload-interval}=*frequency*
+
+:   Frequency for configuration reloading. (By default: `0`)
+
+    *frequency* can be any of the following values:
+
+    > `0`
+    > :   It disables configuration reloading.
+    >
+    > *`f`*
+    > :   It sets configuration reloading each *`f`* seconds. The lower
+    >     value for *`f`* is 60.
+
+    The `/conf-reload-interval` option has effect only if FusionInventory Agent
+    runs in *server mode* (see [`/execmode`](#execmode)).
+
+    *frequency* is expressed in seconds.
+
 `/debug`{#debug}=*level*
 
 :   Sets the debug level of the agent. (By default: `0`)
@@ -566,6 +584,9 @@ information about how to configure and how to use FusionInventory Agent in
 
     *category* can be any of the following values:
 
+    > `Antivirus`
+    > :   For antivirus solutions (it has effect on Microsoft Windows systems only)
+    >
     > `Battery`
     > :   For batteries
     >
@@ -585,7 +606,7 @@ information about how to configure and how to use FusionInventory Agent in
     > :   For input devices (*keyboard*, *mouse*, *smart card reader*,
     >     *fingerprint scanner*, etc.)
     >
-    > `License`
+    > `LicenseInfo`
     > :   For software licenses
     >
     > `Local_Group`
@@ -610,11 +631,17 @@ information about how to configure and how to use FusionInventory Agent in
     > `Network`
     > :   For network devices
     >
+    > `Port`
+    > :   For ports
+    >
     > `Printer`
     > :   For printers
     >
     > `Process`
-    > :   For system processes (it has no effect on Microsoft Windows systems)
+    > :   For system processes
+    >
+    > `Remote_Mgmt`
+    > :   For remote management solutions
     >
     > `Slot`
     > :   For slots
@@ -762,6 +789,37 @@ information about how to configure and how to use FusionInventory Agent in
 `/tag`=*tag*
 
 :   Marks the computer with the tag *tag* . (By default: `''`)
+
+`/tasks`{#tasks}={*task*[,*task*[...]]}
+
+:   It runs given tasks in given order. (By default: `''`)
+
+    *task* can be any of the following values:
+
+    > `Collect`
+    > :   Collect task
+    >
+    > `Deploy`
+    > :   Deploy task
+    >
+    > `ESX`
+    > :   ESX task
+    >
+    > `Inventory`
+    > :   Inventory task
+    >
+    > `NetDiscovery`
+    > :   Network Discovery task
+    >
+    > `NetInventory`
+    > :   Network Inventory task
+    >
+    > `WakeOnLan`
+    > :   Wake on LAN task
+
+    It is possible write `...` (three dots) at the end of the list as value
+    of *task* as synonymous of *the rest of tasks*. Also, it should be noted
+    that it is possible to indicate the same *task* more than once.
 
 `/timeout`{#timeout}=*timeout*
 :   Sets the limit time (in seconds) to connect with the server.

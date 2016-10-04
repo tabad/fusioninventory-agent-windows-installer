@@ -71,6 +71,7 @@
 !define IO_CA-CERT-DIR "ca-cert-dir"
 !define IO_CA-CERT-FILE "ca-cert-file"
 !define IO_CA-CERT-URI "ca-cert-uri"
+!define IO_CONF-RELOAD-INTERVAL "conf-reload-interval"
 !define IO_DEBUG "debug"
 !define IO_DELAYTIME "delaytime"
 !define IO_EXECMODE "execmode"
@@ -103,6 +104,7 @@
 !define IO_SERVICE-STATUS "service-status"
 !define IO_SILENTMODE "silentmode"
 !define IO_TAG "tag"
+!define IO_TASKS "tasks"
 !define IO_TASK-DAILY-MODIFIER "task-daily-modifier"
 !define IO_TASK-FREQUENCY "task-frequency"
 !define IO_TASK-HOURLY-MODIFIER "task-hourly-modifier"
@@ -130,30 +132,33 @@
 
 
 ; Define INI options values
-!define CATEGORY_BATTERY "Battery"
-!define CATEGORY_CONTROLLER "Controller"
-!define CATEGORY_CPU "CPU"
-!define CATEGORY_DRIVE "Drive"
-!define CATEGORY_ENVIRONMENT "Environment"
-!define CATEGORY_INPUT "Input"
-!define CATEGORY_LICENSE "License"
-!define CATEGORY_LOCAL-GROUP "Local_Group"
-!define CATEGORY_LOCAL-USER "Local_User"
-!define CATEGORY_LVM "LVM"
-!define CATEGORY_MEMORY "Memory"
-!define CATEGORY_MODEM "Modem"
-!define CATEGORY_MONITOR "Monitor"
-!define CATEGORY_NETWORK "Network"
-!define CATEGORY_PRINTER "Printer"
-!define CATEGORY_PROCESS "Process"
-!define CATEGORY_SLOT "Slot"
-!define CATEGORY_SOFTWARE "Software"
-!define CATEGORY_SOUND "Sound"
-!define CATEGORY_STORAGE "Storage"
-!define CATEGORY_USB "USB"
-!define CATEGORY_USER "User"
-!define CATEGORY_VIDEO "Video"
-!define CATEGORY_VIRTUAL-MACHINE "VirtualMachine"
+!define CATEGORY_ANTIVIRUS "antivirus"
+!define CATEGORY_BATTERY "battery"
+!define CATEGORY_CONTROLLER "controller"
+!define CATEGORY_CPU "cpu"
+!define CATEGORY_DRIVE "drive"
+!define CATEGORY_ENVIRONMENT "environment"
+!define CATEGORY_INPUT "input"
+!define CATEGORY_LICENSE-INFO "licenseinfo"
+!define CATEGORY_LOCAL-GROUP "local_group"
+!define CATEGORY_LOCAL-USER "local_user"
+!define CATEGORY_LVM "lvm"
+!define CATEGORY_MEMORY "memory"
+!define CATEGORY_MODEM "modem"
+!define CATEGORY_MONITOR "monitor"
+!define CATEGORY_NETWORK "network"
+!define CATEGORY_PORT "port"
+!define CATEGORY_PRINTER "printer"
+!define CATEGORY_PROCESS "process"
+!define CATEGORY_REMOTE-MGMT "remote_mgmt"
+!define CATEGORY_SLOT "slot"
+!define CATEGORY_SOFTWARE "software"
+!define CATEGORY_SOUND "sound"
+!define CATEGORY_STORAGE "storage"
+!define CATEGORY_USB "usb"
+!define CATEGORY_USER "user"
+!define CATEGORY_VIDEO "video"
+!define CATEGORY_VIRTUAL-MACHINE "virtualmachine"
 
 !define EXECMODE_SERVICE "Service"
 !define EXECMODE_TASK "Task"
@@ -276,13 +281,14 @@
 
 !macro GetValidCategoryCommaUStr ResultVar
    StrCpy ${ResultVar} ""
+   ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_ANTIVIRUS}" ${ResultVar}
    ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_BATTERY}" ${ResultVar}
    ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_CONTROLLER}" ${ResultVar}
    ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_CPU}" ${ResultVar}
    ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_DRIVE}" ${ResultVar}
    ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_ENVIRONMENT}" ${ResultVar}
    ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_INPUT}" ${ResultVar}
-   ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_LICENSE}" ${ResultVar}
+   ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_LICENSE-INFO}" ${ResultVar}
    ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_LOCAL-GROUP}" ${ResultVar}
    ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_LOCAL-USER}" ${ResultVar}
    ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_LVM}" ${ResultVar}
@@ -290,8 +296,10 @@
    ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_MODEM}" ${ResultVar}
    ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_MONITOR}" ${ResultVar}
    ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_NETWORK}" ${ResultVar}
+   ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_PORT}" ${ResultVar}
    ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_PRINTER}" ${ResultVar}
    ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_PROCESS}" ${ResultVar}
+   ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_REMOTE-MGMT}" ${ResultVar}
    ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_SLOT}" ${ResultVar}
    ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_SOFTWARE}" ${ResultVar}
    ${AddStrCommaUStr} ${ResultVar} "${CATEGORY_SOUND}" ${ResultVar}
@@ -373,6 +381,7 @@ Function InitINIOptionSectionDefault
    ${WriteINIOption} "$R0" "${IO_CA-CERT-DIR}" ""
    ${WriteINIOption} "$R0" "${IO_CA-CERT-FILE}" ""
    ${WriteINIOption} "$R0" "${IO_CA-CERT-URI}" ""
+   ${WriteINIOption} "$R0" "${IO_CONF-RELOAD-INTERVAL}" "0"
    ${WriteINIOption} "$R0" "${IO_DEBUG}" "0"
    ${WriteINIOption} "$R0" "${IO_DELAYTIME}" "3600"
    ${WriteINIOption} "$R0" "${IO_EXECMODE}" "${EXECMODE_CURRENT}"
@@ -413,6 +422,7 @@ Function InitINIOptionSectionDefault
    ${WriteINIOption} "$R0" "${IO_SERVICE-STATUS}" "${SERVICE_STATUS_RUNNING}"
    ${WriteINIOption} "$R0" "${IO_SILENTMODE}" "0"
    ${WriteINIOption} "$R0" "${IO_TAG}" ""
+   ${WriteINIOption} "$R0" "${IO_TASKS}" ""
    ${WriteINIOption} "$R0" "${IO_TASK-DAILY-MODIFIER}" "1"
    ${WriteINIOption} "$R0" "${IO_TASK-FREQUENCY}" "${FREQUENCY_HOURLY}"
    ${WriteINIOption} "$R0" "${IO_TASK-HOURLY-MODIFIER}" "1"

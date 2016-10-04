@@ -91,7 +91,7 @@ SetCompressor /FINAL /SOLID lzma
 
 ; Type of release of the agent
 ;    (Symbol:  PRODUCT_RELEASE_TYPE)
-!define PRODUCT_RELEASE_TYPE "candidate"
+!define PRODUCT_RELEASE_TYPE "stable"
 
 ; Check symbol PRODUCT_RELEASE_TYPE
 !define RELEASE_TYPE_STABLE "stable"
@@ -111,12 +111,12 @@ SetCompressor /FINAL /SOLID lzma
 !endif
 
 ; Release of Strawberry Perl Portable Edition Package for FusionInventory Agent
-!define STRAWBERRY_RELEASE "5.22.1.3"
+!define STRAWBERRY_RELEASE "5.22.2.1"
 
 ; Release of FusionInventory Agent and FusionInventory Agent Tasks
 !define FIA_RELEASE "2db16bf89c"
 !define FIA_TASK_COLLECT_RELEASE "2.3.18"
-!define FIA_TASK_DEPLOY_RELEASE "2.0.4"
+!define FIA_TASK_DEPLOY_RELEASE "2.1.0"
 !define FIA_TASK_ESX_RELEASE "2.2.1"
 !define FIA_TASK_INVENTORY_RELEASE "1.0"
 !define FIA_TASK_NETDISCOVERY_RELEASE "2.2.1"

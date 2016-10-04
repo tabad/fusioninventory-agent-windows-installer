@@ -187,10 +187,8 @@
 
    ; Install $R0\perl\agent\FusionInventory\Agent\*.pm
    ; but not $R0\perl\agent\FusionInventory\Agent\SNMP.pm
-   ;         $R0\perl\agent\FusionInventory\Agent\Threads.pm
    SetOutPath "$R0\perl\agent\FusionInventory\Agent"
    File /x "SNMP.pm"    \
-        /x "Threads.pm" \
         "${FIA_DIR}\lib\FusionInventory\Agent\*.pm"
 
    ; Install $R0\perl\agent\FusionInventory\Agent\HTTP\*.*
@@ -458,10 +456,8 @@
       CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Tools"
 
       ; Install $R0\perl\agent\FusionInventory\Agent\SNMP.pm
-      ;         $R0\perl\agent\FusionInventory\Agent\Threads.pm
       SetOutPath "$R0\perl\agent\FusionInventory\Agent"
       File "${FIA_DIR}\lib\FusionInventory\Agent\SNMP.pm"
-      File "${FIA_DIR}\lib\FusionInventory\Agent\Threads.pm"
 
       ; Install $R0\perl\agent\FusionInventory\Agent\SNMP\*.*
       SetOutPath "$R0\perl\agent\FusionInventory\Agent\SNMP"
@@ -832,6 +828,12 @@ Function NormalizeOptions
    ${ReadINIOption} $R2 "$R0" "${IO_INSTALLTASKS}"
    ${NormalizeOption} "$R1" "$R2" $R3
    ${WriteINIOption} "$R0" "${IO_INSTALLTASKS}" "$R3"
+
+   ; Normalize 'no-category' option
+   ${GetValidCategoryCommaUStr} $R1
+   ${ReadINIOption} $R2 "$R0" "${IO_NO-CATEGORY}"
+   ${NormalizeOption} "$R1" "$R2" $R3
+   ${WriteINIOption} "$R0" "${IO_NO-CATEGORY}" "$R3"
 
    ; Normalize 'no-task' option
    ${GetValidTasksCommaUStr} $R1
