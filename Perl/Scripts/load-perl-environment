@@ -62,7 +62,7 @@ declare -r strawberry_pepfia_url='https://sourceforge.net/projects/fiawi/files/s
 
 declare -i -r maximum_commit_length=10
 
-declare -r fusinv_agent_commit='42b6abd08943d1b7b83e5825fda0c1d7fa4638e9'
+declare -r fusinv_agent_commit='921cb99ff0dae7bb4b5fc3a201b5b34d2272a3a0'
 declare -r fusinv_agent_release='2.3.19-teclib-4'
 #declare -r fusinv_agent_tag='teclib-1'
 declare -r fusinv_agent_mod_name='fusioninventory-agent'
