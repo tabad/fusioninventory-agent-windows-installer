@@ -122,9 +122,9 @@ while (( ${iter} < ${#archs[@]} )); do
    echo -n "Patching FusionInventory-Agent ${fusinv_agent_commit} for Strawberry Perl ${strawberry_release} (${strawberry_version}-${arch_label}s)."
 
    # Patches for file ${base_path}/bin/fusioninventory-agent
-   if [ ! -f "${base_path}/bin/fusioninventory-agent.orig" ]; then
+   if [ ! -f "${base_path}/bin/fusioninventory-agent.org" ]; then
       ${cp} -p "${base_path}/bin/fusioninventory-agent" \
-               "${base_path}/bin/fusioninventory-agent.orig"
+               "${base_path}/bin/fusioninventory-agent.org"
       echo -n "."
    fi
    ${sed} -i -e "s,\(use lib '\)./lib\(';\),\1../agent\2,"          \
@@ -135,28 +135,28 @@ while (( ${iter} < ${#archs[@]} )); do
              "${base_path}/bin/fusioninventory-agent"
    echo -n "."
    (cd "${base_path}/bin";                  \
-    ${diff} -u "fusioninventory-agent.orig"  \
+    ${diff} -u "fusioninventory-agent.org"  \
                "fusioninventory-agent" > "fusioninventory-agent.patch")
    echo -n "."
 
    # Patches for file ${base_path}/bin/fusioninventory-esx
-   if [ ! -f "${base_path}/bin/fusioninventory-esx.orig" ]; then
+   if [ ! -f "${base_path}/bin/fusioninventory-esx.org" ]; then
       ${cp} -p "${base_path}/bin/fusioninventory-esx" \
-               "${base_path}/bin/fusioninventory-esx.orig"
+               "${base_path}/bin/fusioninventory-esx.org"
       echo -n "."
    fi
    ${sed} -i -e "s,\(use lib '\)./lib\(';\),\1../agent\2," \
              "${base_path}/bin/fusioninventory-esx"
    echo -n "."
    (cd "${base_path}/bin";               \
-    ${diff} -u "fusioninventory-esx.orig" \
+    ${diff} -u "fusioninventory-esx.org" \
                "fusioninventory-esx" > "fusioninventory-esx.patch")
    echo -n "."
 
    # Patches for file ${base_path}/bin/fusioninventory-inventory
-   if [ ! -f "${base_path}/bin/fusioninventory-inventory.orig" ]; then
+   if [ ! -f "${base_path}/bin/fusioninventory-inventory.org" ]; then
       ${cp} -p "${base_path}/bin/fusioninventory-inventory" \
-               "${base_path}/bin/fusioninventory-inventory.orig"
+               "${base_path}/bin/fusioninventory-inventory.org"
       echo -n "."
    fi
    ${sed} -i -e "s,\(use lib '\)./lib\(';\),\1../agent\2,"          \
@@ -223,30 +223,18 @@ while (( ${iter} < ${#archs[@]} )); do
 
    # Patches for file ${base_path}/lib/FusionInventory/Agent.pm with version tag
    if [ -n "${fusinv_agent_release}" ]; then
-       if [ ! -f "${base_path}/lib/FusionInventory/Agent.pm.org" ]; then
-          ${cp} -p "${base_path}/lib/FusionInventory/Agent.pm" \
-                      "${base_path}/lib/FusionInventory/Agent.pm.org"
-          echo -n "."
-       fi
-       ${sed} -i -e "s,\(our \$VERSION = '\).*\(';\),\1${fusinv_agent_release}\2," \
-                 "${base_path}/lib/FusionInventory/Agent.pm"
-       echo -n "."
-       (cd "${base_path}/lib/FusionInventory";         \
-        ${diff} -u "Agent.pm.org" "Agent.pm"  > "Agent.pm.patch")
-       echo -n "."
-   elif [ -n "${fusinv_agent_tag}" ]; then
-       if [ ! -f "${base_path}/lib/FusionInventory/Agent.pm.org" ]; then
-          ${cp} -p "${base_path}/lib/FusionInventory/Agent.pm" \
-                      "${base_path}/lib/FusionInventory/Agent.pm.org"
-          echo -n "."
-       fi
-       ${sed} -i -e "s,\(our \$VERSION = '.*\)\(';\),\1-${fusinv_agent_tag}\2," \
-                 "${base_path}/lib/FusionInventory/Agent.pm"
-       echo -n "."
-       (cd "${base_path}/lib/FusionInventory";         \
-        ${diff} -u "Agent.pm.org" "Agent.pm"  > "Agent.pm.patch")
-       echo -n "."
-    fi
+      if [ ! -f "${base_path}/lib/FusionInventory/Agent.pm.org" ]; then
+         ${cp} -p "${base_path}/lib/FusionInventory/Agent.pm" \
+                  "${base_path}/lib/FusionInventory/Agent.pm.org"
+         echo -n "."
+      fi
+      ${sed} -i -e "s,\(our \$VERSION = '\).*\(';\),\1${fusinv_agent_release}\2," \
+                "${base_path}/lib/FusionInventory/Agent.pm"
+      echo -n "."
+      (cd "${base_path}/lib/FusionInventory";         \
+       ${diff} -u "Agent.pm.org" "Agent.pm"  > "Agent.pm.patch")
+      echo -n "."
+   fi
 
    # Patches for file ${base_path}/bin/fusioninventory-win32-service
    if [ ! -f "${base_path}/bin/fusioninventory-win32-service.org" ]; then

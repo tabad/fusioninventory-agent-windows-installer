@@ -62,9 +62,13 @@ declare -r strawberry_pepfia_url='https://sourceforge.net/projects/fiawi/files/s
 
 declare -i -r maximum_commit_length=10
 
-#declare -r fusinv_agent_commit='921cb99ff0'
-declare -r fusinv_agent_release='2.3.19-teclib-4'
-declare -r fusinv_agent_tag='2.3.19-teclib-4'
+# Set fusinv_agent_commit to a release tag to generate a release
+# If tag finishes with the '-rcXX' string, you'll obtain a release candidate
+# Set fusinv_agent_commit to a commit ref to generate a development release
+# Use +r for commit ref and -r for tag & release
+#declare -r fusinv_agent_commit='2.3.19-teclib-4'
+declare +r fusinv_agent_commit='921cb99ff0'
+declare -r fusinv_agent_release='2.3.19-teclib-rc6'
 declare -r fusinv_agent_mod_name='fusioninventory-agent'
 declare -r fusinv_agent_repository='https://github.com/devtom30/fusioninventory-agent.git'
 
@@ -75,8 +79,18 @@ declare -r fusinv_agent_mod_uses='base Config constant Crypt::DES Cwd Data::Dump
 declare -r fusinv_agent_mod_dependences_for_test='HTTP::Proxy HTTP::Server::Simple HTTP::Server::Simple::Authen IO::Capture::Stderr IPC::Run Test::Compile Test::Deep Test::Exception Test::MockModule Test::MockObject Test::More Test::NoWarnings'
 declare -r fusinv_agent_mod_uses_for_test='Authen::Simple::Adapter CGI ExtUtils::Command::MM ExtUtils::Install ExtUtils::Packlist File::Copy Getopt::Std HTTP::Response TAP::Formatter::Console TAP::Formatter::Console::Session TAP::Parser TAP::Parser::Scheduler Test::Harness Test::MockObject::Extends UNIVERSAL'
 
-if (( ${#fusinv_agent_commit} > ${maximum_commit_length} )); then
-   fusinv_agent_commit="${fusinv_agent_commit:0:${maximum_commit_length}}"
+# Try to fix too long commit ref
+if [ -z "$( echo ${fusinv_agent_commit} | tr -d [0-9a-f] )" ]; then
+   if [ -z "${fusinv_agent_commit}" ]; then
+      fusinv_agent_commit="$fusinv_agent_release"
+   elif (( ${#fusinv_agent_commit} > ${maximum_commit_length} )); then
+      # Only try to fix commit ref if possible
+      if ! typeset -p fusinv_agent_commit | grep -q 'declare -r'; then
+         fusinv_agent_commit="${fusinv_agent_commit:0:${maximum_commit_length}}"
+      else
+         echo "WARNING ! You set a too big commit ref as read-only" >&2
+      fi
+   fi
+   
+   declare -r fusinv_agent_commit
 fi
-
-declare -r fusinv_agent_commit

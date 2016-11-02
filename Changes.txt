@@ -10,6 +10,9 @@ core:
 * Update PCI IDs database (pci.ids file) from 2016.06.07 to 2016.10.03
 * Update USB IDs database (usb.ids file) from 2016.03.03 to 2016.09.29
 
+strawberry perl package:
+* Remove Time::Piece Perl module
+
 2.3.18 Sat, 18 Jun 2016
 agent:
 * FusionInventory Agent 2.3.18 (commit: b7c47ea3d5 | date: jun 16 2016)
@@ -40,6 +43,7 @@ strawberry perl package:
 * Add Sys::Syslog Perl module (#23)
 * Add Data::Structure::Util Perl module
 * Add JSON::PP Perl module
+* Add Time::Piece Perl module
 
 2.3.17 Thu, 29 Sep 2015
 agent:

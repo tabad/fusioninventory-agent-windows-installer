@@ -51,7 +51,7 @@ SetCompressor /FINAL /SOLID lzma
 ; Notes: FusionInventory Agent (FIA)
 ;        FusionInventory Agent Installer (FIAI)
 
-!define FIAI_RELEASE "2.3.1901"
+!define FIAI_RELEASE "${FIA_MAJOR}.${FIA_MINOR}.${FIA_SUB}01"
 !define FIAI_DIR ".\FusionInventory-Agent"
 
 ; Use MakeNSIS '/D' option for choose the debug mode
@@ -89,9 +89,8 @@ SetCompressor /FINAL /SOLID lzma
    !error "The symbol 'PRODUCT_PLATFORM_ARCHITECTURE' hasn't been defined!"
 !endif
 
-; Type of release of the agent
-;    (Symbol:  PRODUCT_RELEASE_TYPE)
-!define PRODUCT_RELEASE_TYPE "stable"
+; Use MakeNSIS '/D' option for choose the type of release of the agent
+;    (Symbol: PRODUCT_RELEASE_TYPE)
 
 ; Check symbol PRODUCT_RELEASE_TYPE
 !define RELEASE_TYPE_STABLE "stable"
@@ -111,10 +110,12 @@ SetCompressor /FINAL /SOLID lzma
 !endif
 
 ; Release of Strawberry Perl Portable Edition Package for FusionInventory Agent
-!define STRAWBERRY_RELEASE "5.22.2.1"
+!ifndef STRAWBERRY_RELEASE
+   !error "The symbol 'STRAWBERRY_RELEASE' hasn't been defined!"
+!endif
 
-; Release of FusionInventory Agent and FusionInventory Agent Tasks
-!define FIA_RELEASE "2.3.19-teclib-1"
+; Releases of FusionInventory Agent Tasks
+; TODO: We need to better read tasks release version while preparing sources
 !define FIA_TASK_COLLECT_RELEASE "2.3.19"
 !define FIA_TASK_DEPLOY_RELEASE "2.1.0"
 !define FIA_TASK_ESX_RELEASE "2.2.1"
@@ -159,21 +160,24 @@ SetCompressor /FINAL /SOLID lzma
 ;
 !if "${PRODUCT_RELEASE_TYPE}" == "${RELEASE_TYPE_STABLE}"
    ; Product version for stable releases
-   !define PRODUCT_VERSION "2.3.19-teclib-1"
+   !ifndef FIA_RELEASE
+      !error "The symbol 'FIA_RELEASE' hasn't been defined!"
+   !endif
+   !define PRODUCT_VERSION "${FIA_RELEASE}"
 
    ; If PRODUCT_VERSION is a commit then
    ;    define the following symbols as empty string
-   !define PRODUCT_VERSION_MAJOR "2"
-   !define PRODUCT_VERSION_MINOR "3"
-   !define PRODUCT_VERSION_RELEASE "19"
-   !define PRODUCT_VERSION_PATCH "1"
+   !define PRODUCT_VERSION_MAJOR "${FIA_MAJOR}"
+   !define PRODUCT_VERSION_MINOR "${FIA_MINOR}"
+   !define PRODUCT_VERSION_RELEASE "${FIA_SUB}"
+   !define PRODUCT_VERSION_PATCH "${FIA_PATCH}"
 
    ; File version
    ;    for Windows Version Information
    ;
    ; If PRODUCT_VERSION is a commit then
    ;    define the following symbols as '0.0.0.0'
-   !define FILE_VERSION "2.3.19.1"
+   !define FILE_VERSION "${FIA_MAJOR}.${FIA_MINOR}.${FIA_SUB}.${FIA_PATCH}"
 
    ; Bitmaps for stable releases
    !define MUI_HEADERIMAGE_BITMAP_FILE  "${FIAI_DIR}\Contrib\Skins\Default\HeaderRightMUI2.bmp"
@@ -183,21 +187,24 @@ SetCompressor /FINAL /SOLID lzma
 !else
    !if "${PRODUCT_RELEASE_TYPE}" == "${RELEASE_TYPE_CANDIDATE}"
       ; Product version for candidate releases
-      !define PRODUCT_VERSION "2.3.19-teclib-rc1"
+      !ifndef FIA_RELEASE
+         !error "The symbol 'FIA_RELEASE' hasn't been defined!"
+      !endif
+      !define PRODUCT_VERSION "${FIA_RELEASE}"
 
       ; If PRODUCT_VERSION is a commit then
       ;    define the following symbols as empty string
-      !define PRODUCT_VERSION_MAJOR "2"
-      !define PRODUCT_VERSION_MINOR "3"
-      !define PRODUCT_VERSION_RELEASE "19"
-      !define PRODUCT_VERSION_CANDIDATE "1"
+      !define PRODUCT_VERSION_MAJOR "${FIA_MAJOR}"
+      !define PRODUCT_VERSION_MINOR "${FIA_MINOR}"
+      !define PRODUCT_VERSION_RELEASE "${FIA_SUB}"
+      !define PRODUCT_VERSION_CANDIDATE "${FIA_RC}"
 
       ; File version
       ;    for Windows Version Information
       ;
       ; If PRODUCT_VERSION is a commit then
       ;    define the following symbols as '0.0.0.0'
-      !define FILE_VERSION "2.3.18.9901"
+      !define FILE_VERSION "${FIA_MAJOR}.${FIA_MINOR}.${FIA_SUB}.${FIA_FILERC}"
 
    ; Bitmaps for stable releases
       ; Bitmaps for candidate releases
@@ -207,7 +214,7 @@ SetCompressor /FINAL /SOLID lzma
       !define MUI_UNWELCOMEFINISHPAGE_BITMAP_FILE "${FIAI_DIR}\Contrib\Skins\Default\WelcomeMUI2CandidateVersion.bmp"
    !else
       ; Product version for development releases
-      !define PRODUCT_VERSION "68e4c5a37b-dev"
+      !define PRODUCT_VERSION "${FIA_COMMIT}-dev"
 
       ; File version
       ;    for Windows Version Information

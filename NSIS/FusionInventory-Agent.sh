@@ -40,6 +40,8 @@
 #
 # ------------------------------------------------------------------------
 
+# Load perl environment
+source ../Perl/Scripts/load-perl-environment
 
 declare -r installer_file='./fusioninventory-agent_windows-${arch}_*.exe'
 declare -r nsis_log_level='3'
@@ -102,6 +104,60 @@ else
 
    basename="${0##*/}"
    option_nsis_define='-DPRODUCT_PLATFORM_ARCHITECTURE=${arch}'
+fi
+
+# Check to select type checking fusinv_agent_commit
+if [ -z "$( echo ${fusinv_agent_commit} | tr -d [0-9a-f] )" ]; then
+   declare -r TYPE="development"
+elif [ -z "${fusinv_agent_commit##*-rc*}" ]; then
+   declare -r TYPE="candidate"
+else
+   declare -r TYPE="stable"
+fi
+option_nsis_define="$option_nsis_define -DPRODUCT_RELEASE_TYPE=$TYPE"
+
+# Define required NSI variables
+if [ -n "${strawberry_version}" ]; then
+   option_nsis_define="$option_nsis_define -DSTRAWBERRY_RELEASE=${strawberry_version}"
+else
+   echo "ERROR: strawberry_version not set" >&2
+   exit 1
+fi
+if [ -n "${fusinv_agent_release}" ]; then
+   option_nsis_define="$option_nsis_define -DFIA_RELEASE=${fusinv_agent_release}"
+fi
+if [ "$TYPE" != "development" ]; then
+   read MAJOR MINOR SUB <<<"${fusinv_agent_release/./ }"
+   if [ -n "${MAJOR}" ]; then
+      option_nsis_define="$option_nsis_define -DFIA_MAJOR=${MAJOR}"
+   else
+      echo "ERROR: Can't read MAJOR version number" >&2
+      exit 1
+   fi
+   if [ -n "${MINOR}" ]; then
+      option_nsis_define="$option_nsis_define -DFIA_MINOR=${MINOR}"
+   else
+      echo "ERROR: Can't read MINOR version number" >&2
+      exit 1
+   fi
+   if [ -n "${SUB}" ]; then
+      # Release number extacted from sub removing all chars with first '-'
+      option_nsis_define="$option_nsis_define -DFIA_SUB=${SUB%%-*}"
+      if [ "$TYPE" == "stable" ]; then
+         # Use last number separated with '-'
+         option_nsis_define="$option_nsis_define -DFIA_PATCH=${SUB##*-}"
+      else
+         # Use last number separated after "-rc"
+         RC="${SUB##*-rc}"
+         FILERC="99$( printf '%02i' $RC )"
+         option_nsis_define="$option_nsis_define -DFIA_RC=${RC} -DFIA_FILERC=${FILERC}"
+      fi
+   else
+      echo "ERROR: Can't read SUB version number" >&2
+      exit 1
+   fi
+else
+   option_nsis_define="$option_nsis_define -DFIA_COMMIT=${fusinv_agent_commit}"
 fi
 
 # All seems be correct...
