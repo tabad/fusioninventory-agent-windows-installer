@@ -245,7 +245,10 @@ SetCompressor /FINAL /SOLID lzma
 !define STRAWBERRY_DIR "..\Perl\Strawberry\${STRAWBERRY_RELEASE}\${PRODUCT_PLATFORM_ARCHITECTURE}"
 
 ; FusionInventory Agent sources directory
-!define FIA_DIR "${STRAWBERRY_DIR}\cpan\sources\FusionInventory-Agent-${FIA_RELEASE}"
+!ifndef FIA_COMMIT
+   !error "The symbol 'FIA_COMMIT' hasn't been defined!"
+!endif
+!define FIA_DIR "${STRAWBERRY_DIR}\cpan\sources\FusionInventory-Agent-${FIA_COMMIT}"
 
 ; Tools directories
 !define 7ZIP_DIR "..\Tools\7zip\${PRODUCT_PLATFORM_ARCHITECTURE}"

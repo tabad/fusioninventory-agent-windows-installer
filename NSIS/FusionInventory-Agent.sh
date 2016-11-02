@@ -54,7 +54,7 @@ declare lang=''
 declare digest=''
 declare basename=''
 declare installer=''
-declare -a -r archs=(x64 x86)
+#declare -a -r archs=(x64 x86)
 declare -a -r langs=(en es fr)
 declare -a -r digests=(md5 sha1 sha256)
 
@@ -125,6 +125,8 @@ else
 fi
 if [ -n "${fusinv_agent_release}" ]; then
    option_nsis_define="$option_nsis_define -DFIA_RELEASE=${fusinv_agent_release}"
+elif [ -n "${APPVEYOR_REPO_TAG_NAME)}" ]; then
+   option_nsis_define="$option_nsis_define -DFIA_RELEASE=${APPVEYOR_REPO_TAG_NAME}"
 fi
 if [ "$TYPE" != "development" ]; then
    read MAJOR MINOR SUB <<<"${fusinv_agent_release/./ }"
@@ -156,8 +158,14 @@ if [ "$TYPE" != "development" ]; then
       echo "ERROR: Can't read SUB version number" >&2
       exit 1
    fi
-else
+fi
+# In the case fusinv_agent_commit is not set, use fusinv_agent_release as commit tag
+if [ -n "${fusinv_agent_commit}" ]; then
    option_nsis_define="$option_nsis_define -DFIA_COMMIT=${fusinv_agent_commit}"
+elif [ -n "${fusinv_agent_release}" ]; then
+   option_nsis_define="$option_nsis_define -DFIA_COMMIT=${fusinv_agent_release}"
+elif [ -n "${APPVEYOR_REPO_TAG_NAME)}" ]; then
+   option_nsis_define="$option_nsis_define -DFIA_COMMIT=${APPVEYOR_REPO_TAG_NAME}"
 fi
 
 # All seems be correct...
