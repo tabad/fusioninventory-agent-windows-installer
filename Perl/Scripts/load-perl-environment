@@ -66,11 +66,11 @@ declare -i -r maximum_commit_length=10
 # If tag finishes with the '-rcXX' string, you'll obtain a release candidate
 # Set fusinv_agent_commit to a commit ref to generate a development release
 # Use +r for commit ref and -r for tag & release
-#declare -r fusinv_agent_commit='2.3.19-teclib-4'
-declare +r fusinv_agent_commit='921cb99ff0'
-declare -r fusinv_agent_release='2.3.19-teclib-rc6'
+declare -r fusinv_agent_commit='2.3.19-teclib-4'
+#declare +r fusinv_agent_commit='921cb99ff0'
+declare -r fusinv_agent_release='2.3.19-teclib-4'
 declare -r fusinv_agent_mod_name='fusioninventory-agent'
-declare -r fusinv_agent_repository='https://github.com/devtom30/fusioninventory-agent.git'
+declare -r fusinv_agent_repository='https://github.com/TECLIB/fusioninventory-agent.git'
 
 declare -r fusinv_agent_mod_specific_dependences=''
 declare -r fusinv_agent_mod_dependences='Archive::Extract Compress::Zlib Data::Structure::Util Digest::SHA File::Copy::Recursive File::Which HTTP::Daemon inc::Module::Install IO::Socket::SSL JSON LWP::Protocol::https LWP::UserAgent Net::IP Net::NBName Net::Ping Net::SNMP Net::Write::Layer2 Parallel::ForkManager Parse::EDID Text::Template Thread::Queue UNIVERSAL::require URI::Escape Win32::Daemon Win32::Job Win32::OLE Win32::TieRegistry Win32::Unicode::File XML::TreePP'
