@@ -129,7 +129,7 @@ elif [ -n "${APPVEYOR_REPO_TAG_NAME)}" ]; then
    option_nsis_define="$option_nsis_define -DFIA_RELEASE=${APPVEYOR_REPO_TAG_NAME}"
 fi
 if [ "$TYPE" != "development" ]; then
-   read MAJOR MINOR SUB <<<"${fusinv_agent_release/./ }"
+   read MAJOR MINOR SUB <<<"${fusinv_agent_release//./ }"
    if [ -n "${MAJOR}" ]; then
       option_nsis_define="$option_nsis_define -DFIA_MAJOR=${MAJOR}"
    else
