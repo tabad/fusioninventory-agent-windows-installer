@@ -1,9 +1,9 @@
 #!/bin/bash
 # ------------------------------------------------------------------------
 # FusionInventory Agent Installer for Microsoft Windows
-# Copyright (C) 2010-2013 by the FusionInventory Development Team.
+# Copyright (C) 2010-2016 by the FusionInventory Development Team.
 #
-# http://www.fusioninventory.org/ http://forge.fusioninventory.org/
+# http://www.fusioninventory.org/
 # ------------------------------------------------------------------------
 #
 # LICENSE
@@ -31,11 +31,11 @@
 # @package   FusionInventory Agent Installer for Microsoft Windows
 # @file      .\NSIS\FusionInventory-Agent.sh
 # @author    Tomas Abad <tabadgp@gmail.com>
-# @copyright Copyright (c) 2010-2013 FusionInventory Team
+# @copyright Copyright (c) 2010-2016 FusionInventory Team
 # @license   GNU GPL version 2 or (at your option) any later version
 #            http://www.gnu.org/licenses/old-licenses/gpl-2.0-standalone.html
 # @link      http://www.fusioninventory.org/
-# @link      http://forge.fusioninventory.org/projects/fusioninventory-agent
+# @link      https://github.com/fusioninventory/fusioninventory-agent
 # @since     2012
 #
 # ------------------------------------------------------------------------

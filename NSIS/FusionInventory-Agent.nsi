@@ -1,9 +1,9 @@
 /*
    ------------------------------------------------------------------------
    FusionInventory Agent Installer for Microsoft Windows
-   Copyright (C) 2010-2013 by the FusionInventory Development Team.
+   Copyright (C) 2010-2016 by the FusionInventory Development Team.
 
-   http://www.fusioninventory.org/ http://forge.fusioninventory.org/
+   http://www.fusioninventory.org/
    ------------------------------------------------------------------------
 
    LICENSE
@@ -31,11 +31,11 @@
    @package   FusionInventory Agent Installer for Microsoft Windows
    @file      .\FusionInventory-Agent.nsi
    @author    Tomas Abad <tabadgp@gmail.com>
-   @copyright Copyright (c) 2010-2013 FusionInventory Team
+   @copyright Copyright (c) 2010-2016 FusionInventory Team
    @license   GNU GPL version 2 or (at your option) any later version
               http://www.gnu.org/licenses/old-licenses/gpl-2.0-standalone.html
    @link      http://www.fusioninventory.org/
-   @link      http://forge.fusioninventory.org/projects/fusioninventory-agent
+   @link      https://github.com/fusioninventory/fusioninventory-agent
    @since     2012
 
    ------------------------------------------------------------------------
@@ -232,14 +232,14 @@ SetCompressor /FINAL /SOLID lzma
 !define PRODUCT_NAME "FusionInventory Agent"
 !define PRODUCT_INTERNAL_NAME "FusionInventory-Agent"
 !define PRODUCT_PUBLISHER "FusionInventory Team"
-!define PRODUCT_WEB_FOR_SUPPORT "http://forge.fusioninventory.org/projects/fusioninventory-agent"
+!define PRODUCT_WEB_FOR_SUPPORT "https://github.com/fusioninventory/fusioninventory-agent"
 !define PRODUCT_WEB_SITE "http://www.fusioninventory.org"
 !define PRODUCT_UNINSTALLER "Uninstall.exe"
 !define PRODUCT_INST_ROOT_KEY "HKEY_LOCAL_MACHINE"
 !define PRODUCT_UNINST_ROOT_KEY "HKEY_LOCAL_MACHINE"
 !define PRODUCT_HELP_FILE "fusioninventory-agent_windows-${PRODUCT_PLATFORM_ARCHITECTURE}_${PRODUCT_VERSION}.rtf"
 !define PRODUCT_INSTALLER "fusioninventory-agent_windows-${PRODUCT_PLATFORM_ARCHITECTURE}_${PRODUCT_VERSION}.exe"
-!define PRODUCT_WEB_FOR_UPDATES "http://prebuilt.fusioninventory.org/stable/windows-${PRODUCT_PLATFORM_ARCHITECTURE}/"
+!define PRODUCT_WEB_FOR_UPDATES "https://github.com/fusioninventory/fusioninventory-agent/releases"
 
 ; Strawberry Perl directory
 !define STRAWBERRY_DIR "..\Perl\Strawberry\${STRAWBERRY_RELEASE}\${PRODUCT_PLATFORM_ARCHITECTURE}"
