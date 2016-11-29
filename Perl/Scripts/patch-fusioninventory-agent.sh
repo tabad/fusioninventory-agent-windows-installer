@@ -119,106 +119,30 @@ while (( ${iter} < ${#archs[@]} )); do
    fi
 
    # Display task
-   echo -n "Patching FusionInventory-Agent ${fusinv_agent_commit} for Strawberry Perl ${strawberry_release} (${strawberry_version}-${arch_label}s)."
+   echo -n "Setting up FusionInventory-Agent ${fusinv_agent_commit} for Strawberry Perl ${strawberry_release} (${strawberry_version}-${arch_label}s)."
 
-   # Patches for file ${base_path}/bin/fusioninventory-agent
-   if [ ! -f "${base_path}/bin/fusioninventory-agent.org" ]; then
-      ${cp} -p "${base_path}/bin/fusioninventory-agent" \
-               "${base_path}/bin/fusioninventory-agent.org"
-      echo -n "."
-   fi
-   ${sed} -i -e "s,\(use lib '\)./lib\(';\),\1../agent\2,"          \
-             -e "s,\(confdir => '\)./etc\('\,\),\1../../etc\2,"     \
-             -e "s,\(datadir => '\)./share\('\,\),\1../../share\2," \
-             -e "s,\(libdir  => '\)./lib\('\,\),\1../agent\2,"      \
-             -e "s,\(vardir  => '\)./var\('\,\),\1../../var\2,"     \
-             "${base_path}/bin/fusioninventory-agent"
-   echo -n "."
-   (cd "${base_path}/bin";                  \
-    ${diff} -u "fusioninventory-agent.org"  \
-               "fusioninventory-agent" > "fusioninventory-agent.patch")
-   echo -n "."
+   # Push setup module in default perl lib folder
+   cat >"${base_path}/lib/setup.pm" <<-HERE_SETUP
+      package setup;
 
-   # Patches for file ${base_path}/bin/fusioninventory-esx
-   if [ ! -f "${base_path}/bin/fusioninventory-esx.org" ]; then
-      ${cp} -p "${base_path}/bin/fusioninventory-esx" \
-               "${base_path}/bin/fusioninventory-esx.org"
-      echo -n "."
-   fi
-   ${sed} -i -e "s,\(use lib '\)./lib\(';\),\1../agent\2," \
-             "${base_path}/bin/fusioninventory-esx"
-   echo -n "."
-   (cd "${base_path}/bin";               \
-    ${diff} -u "fusioninventory-esx.org" \
-               "fusioninventory-esx" > "fusioninventory-esx.patch")
-   echo -n "."
+      use strict;
+      use warnings;
+      use base qw(Exporter);
 
-   # Patches for file ${base_path}/bin/fusioninventory-inventory
-   if [ ! -f "${base_path}/bin/fusioninventory-inventory.org" ]; then
-      ${cp} -p "${base_path}/bin/fusioninventory-inventory" \
-               "${base_path}/bin/fusioninventory-inventory.org"
-      echo -n "."
-   fi
-   ${sed} -i -e "s,\(use lib '\)./lib\(';\),\1../agent\2,"          \
-             -e "s,\(confdir => '\)./etc\('\,\),\1../../etc\2,"     \
-             -e "s,\(datadir => '\)./share\('\,\),\1../../share\2," \
-             -e "s,\(libdir  => '\)./lib\('\,\),\1../agent\2,"      \
-             -e "s,\(vardir  => '\)./var\('\,\),\1../../var\2,"     \
-             "${base_path}/bin/fusioninventory-inventory"
-   echo -n "."
-   (cd "${base_path}/bin";                      \
-    ${diff} -u "fusioninventory-inventory.org"  \
-               "fusioninventory-inventory" > "fusioninventory-inventory.patch")
-   echo -n "."
+      our @EXPORT = ('%setup');
 
-   # Patches for file ${base_path}/bin/fusioninventory-netdiscovery
-   if [ ! -f "${base_path}/bin/fusioninventory-netdiscovery.org" ]; then
-      ${cp} -p "${base_path}/bin/fusioninventory-netdiscovery" \
-               "${base_path}/bin/fusioninventory-netdiscovery.org"
-      echo -n "."
-   fi
-   ${sed} -i -e "s,\(use lib '\)./lib\(';\),\1../agent\2,"          \
-             -e "s,\(confdir => '\)./etc\('\,\),\1../../etc\2,"     \
-             -e "s,\(datadir => '\)./share\('\,\),\1../../share\2," \
-             -e "s,\(libdir  => '\)./lib\('\,\),\1../agent\2,"      \
-             -e "s,\(vardir  => '\)./var\('\,\),\1../../var\2,"     \
-             "${base_path}/bin/fusioninventory-netdiscovery"
-   echo -n "."
-   (cd "${base_path}/bin";                        \
-    ${diff} -u "fusioninventory-netdiscovery.org" \
-               "fusioninventory-netdiscovery" > "fusioninventory-netdiscovery.patch")
-   echo -n "."
+      our %setup;
 
-   # Patches for file ${base_path}/bin/fusioninventory-netinventory
-   if [ ! -f "${base_path}/bin/fusioninventory-netinventory.org" ]; then
-      ${cp} -p "${base_path}/bin/fusioninventory-netinventory" \
-               "${base_path}/bin/fusioninventory-netinventory.org"
-      echo -n "."
-   fi
-   ${sed} -i -e "s,\(use lib '\)./lib\(';\),\1../agent\2,"          \
-             -e "s,\(confdir => '\)./etc\('\,\),\1../../etc\2,"     \
-             -e "s,\(datadir => '\)./share\('\,\),\1../../share\2," \
-             -e "s,\(libdir  => '\)./lib\('\,\),\1../agent\2,"      \
-             -e "s,\(vardir  => '\)./var\('\,\),\1../../var\2,"     \
-             "${base_path}/bin/fusioninventory-netinventory"
-   echo -n "."
-   (cd "${base_path}/bin";                        \
-    ${diff} -u "fusioninventory-netinventory.org" \
-               "fusioninventory-netinventory" > "fusioninventory-netinventory.patch")
-   echo -n "."
+      use lib '../agent';
 
-   # Patches for file ${base_path}/bin/fusioninventory-wakeonlan
-   if [ ! -f "${base_path}/bin/fusioninventory-wakeonlan.org" ]; then
-      ${cp} -p "${base_path}/bin/fusioninventory-wakeonlan" \
-               "${base_path}/bin/fusioninventory-wakeonlan.org"
-      echo -n "."
-   fi
-   ${sed} -i -e "s,\(use lib '\)./lib\(';\),\1../agent\2," \
-             "${base_path}/bin/fusioninventory-wakeonlan"
-   echo -n "."
-   (cd "${base_path}/bin";                     \
-    ${diff} -u "fusioninventory-wakeonlan.org" \
-               "fusioninventory-wakeonlan" > "fusioninventory-wakeonlan.patch")
+      %setup = (
+         confdir => '../../etc',
+         datadir => '../../share',
+         libdir  => '../agent',
+         vardir  => '../../var',
+      );
+   HERE_SETUP
+
    echo -n "."
 
    # Updated version release ${base_path}/lib/FusionInventory/Agent/Version.pm
@@ -245,27 +169,7 @@ while (( ${iter} < ${#archs[@]} )); do
       echo -n "."
    fi
 
-   # Patches for file ${base_path}/bin/fusioninventory-win32-service
-   if [ ! -f "${base_path}/bin/fusioninventory-win32-service.org" ]; then
-      ${cp} -p "${base_path}/bin/fusioninventory-win32-service" \
-               "${base_path}/bin/fusioninventory-win32-service.org"
-      echo -n "."
-   fi
-   ${sed} -i -e "s,\(use lib '\)./lib\(';\),\1../agent\2,"                           \
-             -e "s,\(confdir => \$directory . '\)/../etc\('\,\),\1/../../etc\2,"     \
-             -e "s,\(datadir => \$directory . '\)/../share\('\,\),\1/../../share\2," \
-             -e "s,\(vardir  => \$directory . '\)/../var\('\,\),\1/../../var\2,"     \
-             -e "s,\(libdir  => \$directory . '\)/../lib\('\,\),\1/../agent\2,"      \
-             "${base_path}/bin/fusioninventory-win32-service"
-   echo -n "."
-   (cd "${base_path}/bin";                          \
-    ${diff} -u "fusioninventory-win32-service.org"  \
-               "fusioninventory-win32-service" > "fusioninventory-win32-service.patch")
    echo ".Done!"
-
-   # Show files patched
-   echo "List of patch files..."
-   (cd "${base_path}"; ${find} . -type f -name '*.patch')
 
    # New architecture
    iter=$(( ${iter} + 1 ))
