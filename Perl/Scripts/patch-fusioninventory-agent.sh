@@ -221,18 +221,27 @@ while (( ${iter} < ${#archs[@]} )); do
                "fusioninventory-wakeonlan" > "fusioninventory-wakeonlan.patch")
    echo -n "."
 
-   # Patches for file ${base_path}/lib/FusionInventory/Agent.pm with version tag
+   # Updated version release ${base_path}/lib/FusionInventory/Agent/Version.pm
+   # with version tag
    if [ -n "${fusinv_agent_release}" ]; then
-      if [ ! -f "${base_path}/lib/FusionInventory/Agent.pm.org" ]; then
-         ${cp} -p "${base_path}/lib/FusionInventory/Agent.pm" \
-                  "${base_path}/lib/FusionInventory/Agent.pm.org"
-         echo -n "."
-      fi
-      ${sed} -i -e "s,\(our \$VERSION = '\).*\(';\),\1${fusinv_agent_release}\2," \
-                "${base_path}/lib/FusionInventory/Agent.pm"
-      echo -n "."
-      (cd "${base_path}/lib/FusionInventory";         \
-       ${diff} -u "Agent.pm.org" "Agent.pm"  > "Agent.pm.patch")
+      PACKAGE_TIME=$(LANG=C date)
+
+      cat >"${base_path}/lib/FusionInventory/Agent/Version.pm" <<-HERE_VERSION
+         package FusionInventory::Agent::Version;
+         
+         use strict;
+         use warnings;
+         
+         our \$VERSION = "${fusinv_agent_release}";
+         our \$PROVIDER = "FusionInventory";
+         our \$COMMENTS = [
+            "Provided by Teclib",
+            "Built on Appveyor on $PACKAGE_TIME"
+         ];
+         
+         1;
+      HERE_VERSION
+
       echo -n "."
    fi
 
