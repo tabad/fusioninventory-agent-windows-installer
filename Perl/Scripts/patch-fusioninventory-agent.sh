@@ -118,32 +118,6 @@ while (( ${iter} < ${#archs[@]} )); do
    # Display task
    echo -n "Setting up FusionInventory-Agent ${fusinv_agent_commit} for Strawberry Perl ${strawberry_release} (${strawberry_version}-${arch_label}s)."
 
-   # Prepare setup module
-   ${cat} >"${base_path}/lib/setup.pm" <<HERE_SETUP
-package setup;
-
-use strict;
-use warnings;
-use base qw(Exporter);
-
-our @EXPORT = ('%setup');
-
-our %setup;
-
-use lib '../agent';
-
-%setup = (
-    confdir => '../../etc',
-    datadir => '../../share',
-    libdir  => '../agent',
-    vardir  => '../../var',
-);
-
-1;
-HERE_SETUP
-
-   echo -n "."
-
    # Updated version release ${base_path}/lib/FusionInventory/Agent/Version.pm
    # with version tag
    if [ -n "${fusinv_agent_release}" ]; then

@@ -708,8 +708,6 @@
    ; Install $R0\perl\lib
    SetOutPath "$R0\perl\lib\"
    File /r "${STRAWBERRY_DIR}\perl\lib\*.*"
-   ; Install FusionInventory Agent setup module in perl default lib folder
-   File "${FIA_DIR}\lib\setup.pm"
 
    ; Install $R0\perl\site
    SetOutPath "$R0\perl\site\"
@@ -718,6 +716,23 @@
    ; Install $R0\perl\vendor
    SetOutPath "$R0\perl\vendor\"
    File /r "${STRAWBERRY_DIR}\perl\vendor\*.*"
+
+   ; Create $R0\perl\lib\setup.pm
+   FileOpen $R1 "$R0\perl\lib\setup.pm" w
+   ${FileWriteLine} $R1 "package setup;"
+   ${FileWriteLine} $R1 "use strict;"
+   ${FileWriteLine} $R1 "use warnings;"
+   ${FileWriteLine} $R1 "use base qw(Exporter);"
+   ${FileWriteLine} $R1 "our @EXPORT = ('%setup');"
+   ${FileWriteLine} $R1 "use lib '../agent';"
+   ${FileWriteLine} $R1 "our %setup = ("
+   ${FileWriteLine} $R1 "    confdir => '../../etc',"
+   ${FileWriteLine} $R1 "    datadir => '../../share',"
+   ${FileWriteLine} $R1 "    vardir  => '../../var',"
+   ${FileWriteLine} $R1 "    libdir  => '../agent',"
+   ${FileWriteLine} $R1 ");"
+   ${FileWriteLine} $R1 "1;"
+   FileClose $R1
 
    ; Set mode at which commands print their status
    SetDetailsPrint lastused
