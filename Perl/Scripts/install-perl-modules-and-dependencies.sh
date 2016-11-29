@@ -57,6 +57,7 @@ declare -r rm=$(type -P rm)
 declare -r sort=$(type -P sort)
 declare -r tr=$(type -P tr)
 declare -r uniq=$(type -P uniq)
+declare -r p7za=$(type -P 7za)
 
 # Check the OS
 if [ "${MSYSTEM}" = "MSYS" ]; then
@@ -156,17 +157,22 @@ while (( ${iter} < ${#archs[@]} )); do
 
    # Update cpanm
    echo "Updating 'cpanm'..."
-   ${perl} ${cpanm} --install --auto-cleanup 1 --skip-installed --notest --quiet App::cpanminus
+   ${perl} ${cpanm} --install --auto-cleanup 0 --no-man-pages --skip-installed --notest --quiet App::cpanminus
 
    # Install specific modules
    if [ -n "${fusinv_mod_specific_dependences}" ]; then
       echo "Installing specific modules..."
-      ${perl} ${cpanm} --install --auto-cleanup 1 --notest --quiet ${fusinv_mod_specific_dependences}
+      ${perl} ${cpanm} --install --auto-cleanup 0 --no-man-pages --notest --quiet ${fusinv_mod_specific_dependences}
    fi
 
    # Install modules
    echo "Installing modules..."
-   ${perl} ${cpanm} --install --auto-cleanup 1 --skip-satisfied --notest --quiet ${fusinv_mod_dependences}
+   ${perl} ${cpanm} --install --auto-cleanup 0 --no-man-pages --skip-satisfied --notest --quiet ${fusinv_mod_dependences}
+   echo
+
+   # Archive build.log
+   echo "Keeping build logs..."
+   ${p7za} a -bd -mx=9 -- "$(pwd)/all-build.log.${arch_label}.xz" "$(pwd)/${strawberry_arch_path}/data/.cpanm/*/*/build.log"
    echo
 
    # Remove perl_path from PATH
