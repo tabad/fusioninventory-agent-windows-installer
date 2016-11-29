@@ -57,7 +57,7 @@ declare -r rm=$(type -P rm)
 declare -r sort=$(type -P sort)
 declare -r tr=$(type -P tr)
 declare -r uniq=$(type -P uniq)
-declare -r p7za=$(type -P 7za)
+declare -r tar=$(type -P tar)
 
 # Check the OS
 if [ "${MSYSTEM}" = "MSYS" ]; then
@@ -172,10 +172,7 @@ while (( ${iter} < ${#archs[@]} )); do
 
    # Archive build.log to debug cpanm install problems
    echo "Keeping build logs..."
-   for buildlog in $(find ${strawberry_arch_path}/data/.cpanm -type f -name build.log); do
-      echo "${buildlog}"
-   done
-   eval ${p7za} a -bd -mx=9 -- "$(pwd)/all-build.log.${arch_label}.xz" "$(pwd)/${strawberry_arch_path}/data/.cpanm/*/*/build.log"
+   ${tar} -cvf all-build.log.${arch_label}.tar ${strawberry_arch_path}/data/.cpanm/*/*/build.log
    echo
 
    # Remove perl_path from PATH
