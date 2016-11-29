@@ -57,7 +57,7 @@ declare -r rm=$(type -P rm)
 declare -r sort=$(type -P sort)
 declare -r tr=$(type -P tr)
 declare -r uniq=$(type -P uniq)
-declare -r tar=$(type -P tar)
+declare -r find=$(type -P find)
 
 # Check the OS
 if [ "${MSYSTEM}" = "MSYS" ]; then
@@ -167,12 +167,12 @@ while (( ${iter} < ${#archs[@]} )); do
 
    # Install modules
    echo "Installing modules..."
-   ${perl} ${cpanm} --install --auto-cleanup 0 --no-man-pages --skip-satisfied --notest --quiet ${fusinv_mod_dependences}
+   ${perl} ${cpanm} --install --auto-cleanup 0 --no-man-pages --skip-satisfied --notest ${fusinv_mod_dependences}
    echo
 
-   # Archive build.log to debug cpanm install problems
-   echo "Keeping build logs..."
-   ${tar} -cvf all-build.log.${arch_label}.tar $( find -name build.log )
+   # build.log can be used to debug cpanm install problems
+   echo "Checking build logs..."
+   ${find} -name build.log
    echo
 
    # Remove perl_path from PATH
