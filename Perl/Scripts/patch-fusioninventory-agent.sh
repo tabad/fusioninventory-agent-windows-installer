@@ -118,7 +118,7 @@ while (( ${iter} < ${#archs[@]} )); do
    # Display task
    echo -n "Setting up FusionInventory-Agent ${fusinv_agent_commit} for Strawberry Perl ${strawberry_release} (${strawberry_version}-${arch_label}s)."
 
-   # Push setup module in default perl lib folder
+   # Prepare setup module
    ${cat} >"${base_path}/lib/setup.pm" <<HERE_SETUP
 package setup;
 
@@ -147,7 +147,7 @@ HERE_SETUP
    # Updated version release ${base_path}/lib/FusionInventory/Agent/Version.pm
    # with version tag
    if [ -n "${fusinv_agent_release}" ]; then
-      PACKAGE_TIME=$(LANG=C date)
+      PACKAGE_TIME=$(LANG=C date -u)
 
       ${cat} >"${base_path}/lib/FusionInventory/Agent/Version.pm" <<HERE_VERSION
 package FusionInventory::Agent::Version;

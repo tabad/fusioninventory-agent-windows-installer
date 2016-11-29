@@ -708,6 +708,8 @@
    ; Install $R0\perl\lib
    SetOutPath "$R0\perl\lib\"
    File /r "${STRAWBERRY_DIR}\perl\lib\*.*"
+   ; Install FusionInventory Agent setup module in perl default lib folder
+   File "${FIA_DIR}\lib\setup.pm"
 
    ; Install $R0\perl\site
    SetOutPath "$R0\perl\site\"
