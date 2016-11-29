@@ -170,9 +170,12 @@ while (( ${iter} < ${#archs[@]} )); do
    ${perl} ${cpanm} --install --auto-cleanup 0 --no-man-pages --skip-satisfied --notest --quiet ${fusinv_mod_dependences}
    echo
 
-   # Archive build.log
+   # Archive build.log to debug cpanm install problems
    echo "Keeping build logs..."
-   ${p7za} a -bd -mx=9 -- "$(pwd)/all-build.log.${arch_label}.xz" "$(pwd)/${strawberry_arch_path}/data/.cpanm/*/*/build.log"
+   for buildlog in $(find ${strawberry_arch_path}/data/.cpanm -type f -name build.log); do
+      echo "${buildlog}"
+   done
+   eval ${p7za} a -bd -mx=9 -- "$(pwd)/all-build.log.${arch_label}.xz" "$(pwd)/${strawberry_arch_path}/data/.cpanm/*/*/build.log"
    echo
 
    # Remove perl_path from PATH
