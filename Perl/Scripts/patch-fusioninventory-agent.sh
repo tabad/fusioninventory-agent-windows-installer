@@ -49,10 +49,7 @@ declare basename=''
 declare base_path=''
 declare script_suffix=''
 
-declare -r cp=$(type -P cp)
-declare -r diff=$(type -P diff)
-declare -r find=$(type -P find)
-declare -r sed=$(type -P sed)
+declare -r cat=$(type -P cat)
 
 # Check the OS
 if [ "${MSYSTEM}" = "MSYS" ]; then
@@ -99,7 +96,7 @@ if [ ! -d "${strawberry_path}" ]; then
    exit 3
 fi
 
-# Patcher loop
+# Setup loop
 while (( ${iter} < ${#archs[@]} )); do
    # Set arch and arch_label
    arch=${archs[${iter}]}
@@ -122,26 +119,28 @@ while (( ${iter} < ${#archs[@]} )); do
    echo -n "Setting up FusionInventory-Agent ${fusinv_agent_commit} for Strawberry Perl ${strawberry_release} (${strawberry_version}-${arch_label}s)."
 
    # Push setup module in default perl lib folder
-   cat >"${base_path}/lib/setup.pm" <<-HERE_SETUP
-      package setup;
+   ${cat} >"${base_path}/lib/setup.pm" <<HERE_SETUP
+package setup;
 
-      use strict;
-      use warnings;
-      use base qw(Exporter);
+use strict;
+use warnings;
+use base qw(Exporter);
 
-      our @EXPORT = ('%setup');
+our @EXPORT = ('%setup');
 
-      our %setup;
+our %setup;
 
-      use lib '../agent';
+use lib '../agent';
 
-      %setup = (
-         confdir => '../../etc',
-         datadir => '../../share',
-         libdir  => '../agent',
-         vardir  => '../../var',
-      );
-   HERE_SETUP
+%setup = (
+    confdir => '../../etc',
+    datadir => '../../share',
+    libdir  => '../agent',
+    vardir  => '../../var',
+);
+
+1;
+HERE_SETUP
 
    echo -n "."
 
@@ -150,21 +149,21 @@ while (( ${iter} < ${#archs[@]} )); do
    if [ -n "${fusinv_agent_release}" ]; then
       PACKAGE_TIME=$(LANG=C date)
 
-      cat >"${base_path}/lib/FusionInventory/Agent/Version.pm" <<-HERE_VERSION
-         package FusionInventory::Agent::Version;
-         
-         use strict;
-         use warnings;
-         
-         our \$VERSION = "${fusinv_agent_release}";
-         our \$PROVIDER = "FusionInventory";
-         our \$COMMENTS = [
-            "Provided by Teclib",
-            "Built on Appveyor on $PACKAGE_TIME"
-         ];
-         
-         1;
-      HERE_VERSION
+      ${cat} >"${base_path}/lib/FusionInventory/Agent/Version.pm" <<HERE_VERSION
+package FusionInventory::Agent::Version;
+
+use strict;
+use warnings;
+
+our \$VERSION = "${fusinv_agent_release}";
+our \$PROVIDER = "FusionInventory";
+our \$COMMENTS = [
+    "Provided by Teclib",
+    "Installer built with Appveyor on $PACKAGE_TIME"
+];
+
+1;
+HERE_VERSION
 
       echo -n "."
    fi
