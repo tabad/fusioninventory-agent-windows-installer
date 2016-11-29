@@ -172,7 +172,7 @@ while (( ${iter} < ${#archs[@]} )); do
 
    # Archive build.log to debug cpanm install problems
    echo "Keeping build logs..."
-   ${tar} -cvf all-build.log.${arch_label}.tar ${strawberry_arch_path}/data/.cpanm/*/*/build.log
+   ${tar} -cvf all-build.log.${arch_label}.tar $( find -name build.log )
    echo
 
    # Remove perl_path from PATH
