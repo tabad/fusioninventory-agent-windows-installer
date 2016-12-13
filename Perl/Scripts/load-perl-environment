@@ -66,9 +66,9 @@ declare -i -r maximum_commit_length=10
 # If tag finishes with the '-rcXX' string, you'll obtain a release candidate
 # Set fusinv_agent_commit to a commit ref to generate a development release
 # Use +r for commit ref and -r for tag & release
-declare -r fusinv_agent_commit='2.3.19-teclib-rc6'
+declare -r fusinv_agent_commit='2.3.19-teclib-rc7'
 #declare +r fusinv_agent_commit='e7caad04c5'
-declare -r fusinv_agent_release='2.3.19-teclib-rc6'
+declare -r fusinv_agent_release='2.3.19-teclib-rc7'
 declare -r fusinv_agent_mod_name='fusioninventory-agent'
 declare -r fusinv_agent_repository='https://github.com/TECLIB/fusioninventory-agent.git'
 
