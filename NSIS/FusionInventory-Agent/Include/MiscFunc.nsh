@@ -260,10 +260,13 @@
    CreateDirectory "$R0\perl\agent\FusionInventory"
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent"
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Task"
+   CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Task\Collect"
 
    ; Install $R0\perl\agent\FusionInventory\Agent\Task\Collect.pm
    SetOutPath "$R0\perl\agent\FusionInventory\Agent\Task"
    File "${FIA_DIR}\lib\FusionInventory\Agent\Task\Collect.pm"
+   SetOutPath "$R0\perl\agent\FusionInventory\Agent\Task\Collect"
+   File "${FIA_DIR}\lib\FusionInventory\Agent\Task\Collect\Version.pm"
 
    ; Set mode at which commands print their status
    SetDetailsPrint lastused
@@ -331,6 +334,7 @@
    CreateDirectory "$R0\perl\agent\FusionInventory"
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent"
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Task"
+   CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Task\ESX"
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent\SOAP"
    CreateDirectory "$R0\perl\bin"
 
@@ -350,6 +354,8 @@
    ; Install $R0\perl\agent\FusionInventory\Agent\Task\ESX.pm
    SetOutPath "$R0\perl\agent\FusionInventory\Agent\Task"
    File "${FIA_DIR}\lib\FusionInventory\Agent\Task\ESX.pm"
+   SetOutPath "$R0\perl\agent\FusionInventory\Agent\Task\ESX"
+   File "${FIA_DIR}\lib\FusionInventory\Agent\Task\ESX\Version.pm"
 
    ; Install $R0\perl\bin\fusioninventory-esx
    SetOutPath "$R0\perl\bin\"
@@ -496,6 +502,7 @@
    CreateDirectory "$R0\perl\agent\FusionInventory"
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent"
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Task"
+   CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Task\NetDiscovery"
    CreateDirectory "$R0\perl\bin"
 
    ; Create $R0\fusioninventory-netdiscovery.bat
@@ -510,6 +517,8 @@
    ; Install $R0\perl\agent\FusionInventory\Agent\Task\NetDiscovery.pm
    SetOutPath "$R0\perl\agent\FusionInventory\Agent\Task"
    File "${FIA_DIR}\lib\FusionInventory\Agent\Task\NetDiscovery.pm"
+   SetOutPath "$R0\perl\agent\FusionInventory\Agent\Task\NetDiscovery"
+   File "${FIA_DIR}\lib\FusionInventory\Agent\Task\NetDiscovery\Version.pm"
 
    ; Install $R0\perl\bin\fusioninventory-netdiscovery
    SetOutPath "$R0\perl\bin\"
@@ -546,6 +555,7 @@
    CreateDirectory "$R0\perl\agent\FusionInventory"
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent"
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Task"
+   CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Task\NetInventory"
    CreateDirectory "$R0\perl\bin"
 
    ; Create $R0\fusioninventory-netinventory.bat
@@ -560,6 +570,8 @@
    ; Install $R0\perl\agent\FusionInventory\Agent\Task\NetInventory.pm
    SetOutPath "$R0\perl\agent\FusionInventory\Agent\Task"
    File "${FIA_DIR}\lib\FusionInventory\Agent\Task\NetInventory.pm"
+   SetOutPath "$R0\perl\agent\FusionInventory\Agent\Task\NetInventory"
+   File "${FIA_DIR}\lib\FusionInventory\Agent\Task\NetInventory\Version.pm"
 
    ; Install $R0\perl\bin\fusioninventory-netinventory
    SetOutPath "$R0\perl\bin\"
@@ -593,6 +605,7 @@
    CreateDirectory "$R0\perl\agent\FusionInventory"
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent"
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Task"
+   CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Task\WakeOnLan"
 
    ; Create $R0\fusioninventory-wakeonlan.bat
    FileOpen $R1 "$R0\fusioninventory-wakeonlan.bat" w
@@ -606,6 +619,8 @@
    ; Install $R0\perl\agent\FusionInventory\Agent\Task\WakeOnLan.pm
    SetOutPath "$R0\perl\agent\FusionInventory\Agent\Task"
    File "${FIA_DIR}\lib\FusionInventory\Agent\Task\WakeOnLan.pm"
+   SetOutPath "$R0\perl\agent\FusionInventory\Agent\Task\WakeOnLan"
+   File "${FIA_DIR}\lib\FusionInventory\Agent\Task\WakeOnLan\Version.pm"
 
    ; Install $R0\perl\bin\fusioninventory-wakeonlan
    SetOutPath "$R0\perl\bin\"
