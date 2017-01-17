@@ -1,7 +1,8 @@
 FusionInventory Agent Windows Installer - History of Revisions and Changes
 
-2.3.19-teclib-1 Tue,  4 Oct 2016
-* FusionInventory Agent 2.3.19-teclib-1 (commit: 68e4c5a37b | date: oct  4 2016)
+2.3.19-teclib-rc9 Tue, 17 Jan 2017
+agent:
+* FusionInventory Agent 2.3.19-teclib-rc9 (commit: dcabd495b5 | date: jan 16 2017)
 
 core:
 * Minor memory leak fix
@@ -12,6 +13,9 @@ core:
 
 strawberry perl package:
 * Remove Time::Piece Perl module
+
+tools:
+* Updated dmidecode v3.0
 
 2.3.18 Sat, 18 Jun 2016
 agent:
