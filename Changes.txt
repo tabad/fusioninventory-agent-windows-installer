@@ -1,15 +1,22 @@
 FusionInventory Agent Windows Installer - History of Revisions and Changes
 
-2.3.19-teclib-rc9 Tue, 17 Jan 2017
+2.3.19 Sat, 18 Feb 2017
 agent:
-* FusionInventory Agent 2.3.19-teclib-rc9 (commit: dcabd495b5 | date: jan 16 2017)
-
-core:
-* Minor memory leak fix
+* FusionInventory Agent 2.3.19 (commit: 26ea32d6d0 | date: feb 17 2017)
+* Reduced agent memory footprint on win32
 * Hyper-V inventory fix
 * Acer monitor inventory update
-* Update PCI IDs database (pci.ids file) from 2016.06.07 to 2016.10.03
-* Update USB IDs database (usb.ids file) from 2016.03.03 to 2016.09.29
+* TeamviewerID support
+* Version & provider refactoring to simplify release process
+* Service shutdown fix & optimizations
+* Try to reschedule target sooner on network error
+* Fix win32 key registry reading while it contains white space
+* Bump Deploy task version to 2.2
+* Deploy task audit refactoring
+* Add support for fileSHA512mismatch check processor in audit
+* Fix #205 - Improve software package's audits
+* Update PCI IDs database (pci.ids file) from 2016.10.03 to 2017.02.15
+* Update USB IDs database (usb.ids file) from 2016.09.29 to 2017.02.12
 
 strawberry perl package:
 * Remove Time::Piece Perl module
