@@ -140,6 +140,8 @@
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Logger"
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Target"
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Tools"
+   CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Tools\Screen"
+   CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Tools\Win32"
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent\XML"
    CreateDirectory "$R0\perl\bin"
    CreateDirectory "$R0\share"
@@ -209,6 +211,14 @@
    SetOutPath "$R0\perl\agent\FusionInventory\Agent\Tools"
    File /x "Hardware.pm" \
         "${FIA_DIR}\lib\FusionInventory\Agent\Tools\*.pm"
+
+   ; Install $R0\perl\agent\FusionInventory\Agent\Tools\Win32\*.*
+   SetOutPath "$R0\perl\agent\FusionInventory\Agent\Tools\Win32"
+   File /r "${FIA_DIR}\lib\FusionInventory\Agent\Tools\Win32\*.*"
+
+   ; Install $R0\perl\agent\FusionInventory\Agent\Tools\Screen\*.*
+   SetOutPath "$R0\perl\agent\FusionInventory\Agent\Tools\Screen"
+   File /r "${FIA_DIR}\lib\FusionInventory\Agent\Tools\Screen\*.*"
 
    ; Install $R0\perl\agent\FusionInventory\Agent\XML\*.*
    SetOutPath "$R0\perl\agent\FusionInventory\Agent\XML"
@@ -461,6 +471,7 @@
       CreateDirectory "$R0\perl\agent\FusionInventory\Agent"
       CreateDirectory "$R0\perl\agent\FusionInventory\Agent\SNMP"
       CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Tools"
+      CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Tools\Hardware"
 
       ; Install $R0\perl\agent\FusionInventory\Agent\SNMP.pm
       SetOutPath "$R0\perl\agent\FusionInventory\Agent"
@@ -473,6 +484,10 @@
       ; Install $R0\perl\agent\FusionInventory\Agent\Tools\Hardware.pm
       SetOutPath "$R0\perl\agent\FusionInventory\Agent\Tools"
       File "${FIA_DIR}\lib\FusionInventory\Agent\Tools\Hardware.pm"
+
+      ; Install $R0\perl\agent\FusionInventory\Agent\Tools\Hardware\*.*
+      SetOutPath "$R0\perl\agent\FusionInventory\Agent\Tools\Hardware"
+      File /r "${FIA_DIR}\lib\FusionInventory\Agent\Tools\Hardware\*.*"
    ${EndIf}
 
    ; Pop $R0 off of the stack
