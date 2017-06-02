@@ -1,5 +1,28 @@
 FusionInventory Agent Windows Installer - History of Revisions and Changes
 
+2.3.20 Fri, 2 Jun 2017
+agent:
+* FusionInventory Agent 2.3.20 (commit: 79b8a4a653 | date: jun 1 2017)
+* Fixed rare condition crashes
+* Inventory task bumped to 1.2
+* Added Firewall status support
+* Added Software category support
+* Added CPU CORECOUNT support based on dmidecode output
+* Deploy task bumped to 2.3
+* Better Deploy task actions reporting
+* Enhanced Deploy task audit reporting
+* Added Deploy task audit type, needs a server upgrade
+* Fixed Deploy task registry key audit check
+* NetInventory and NetDiscovery tasks sysobject.ids database BIG update
+* Updated PCI IDS database
+* WakeOnLan task bumped to 2.2
+
+strawberry perl package:
+* Based on Strawbarry Perl 5.24.1.1 (May 2017), thanks to tabad
+
+tools:
+* Updated dmidecode v3.1
+
 2.3.19 Sat, 18 Feb 2017
 agent:
 * FusionInventory Agent 2.3.19 (commit: 26ea32d6d0 | date: feb 17 2017)
