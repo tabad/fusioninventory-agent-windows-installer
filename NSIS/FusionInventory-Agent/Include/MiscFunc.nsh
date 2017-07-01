@@ -736,8 +736,9 @@
    File "${STRAWBERRY_DIR}\perl\bin\*.dll"
    File "${STRAWBERRY_DIR}\perl\bin\*.exe"
 
-   ; Install perl.exe as fusioninventory-agent.exe
-   CopyFiles "${STRAWBERRY_DIR}\perl\bin\perl.exe" "$R0\perl\bin\fusioninventory-agent.exe"
+   ; Rename perl.exe as fusioninventory-agent.exe and re-install it
+   Rename "perl.exe" "fusioninventory-agent.exe"
+   File "${STRAWBERRY_DIR}\perl\bin\perl.exe"
 
    ; Install $R0\perl\lib
    SetOutPath "$R0\perl\lib\"
