@@ -1,8 +1,8 @@
 # ------------------------------------------------------------------------
 # FusionInventory
-# Copyright (C) 2010-2013 by the FusionInventory Development Team.
+# Copyright (C) 2010-2017 by the FusionInventory Development Team.
 #
-# http://www.fusioninventory.org/   http://forge.fusioninventory.org/
+# http://www.fusioninventory.org/   http://fusioninventory.org/
 # ------------------------------------------------------------------------
 #
 # LICENSE
@@ -35,7 +35,7 @@
 # @license   GNU GPL version 2 or (at your option) any later version
 #            http://www.gnu.org/licenses/old-licenses/gpl-2.0-standalone.html
 # @link      http://www.fusioninventory.org/
-# @link      http://forge.fusioninventory.org/projects/fusioninventory-agent
+# @link      http://github.com/fusioninventory/fusioninventory-agent
 # @since     2012
 #
 # ------------------------------------------------------------------------
@@ -67,11 +67,11 @@ declare -i -r maximum_commit_length=10
 # If tag finishes with the '-rcXX' string, you'll obtain a release candidate
 # Set fusinv_agent_commit to a commit ref to generate a development release
 # Use +r for commit ref and -r for tag & release
-declare -r fusinv_agent_commit='2.3.20'
-#declare +r fusinv_agent_commit='29c32931a8'
-declare -r fusinv_agent_release='2.3.20'
+declare -r fusinv_agent_commit='2.3.21-rc1'
+#declare +r fusinv_agent_commit='2c2545ccbc'
+declare -r fusinv_agent_release='2.3.21-rc1'
 declare -r fusinv_agent_mod_name='fusioninventory-agent'
-declare -r fusinv_agent_repository='https://github.com/fusioninventory/fusioninventory-agent.git'
+declare -r fusinv_agent_repository='https://github.com/TECLIB/fusioninventory-agent.git'
 
 declare -r fusinv_agent_mod_specific_dependences=''
 declare -r fusinv_agent_mod_dependences='Archive::Extract Compress::Zlib Data::Structure::Util Digest::SHA File::Copy::Recursive File::Which HTTP::Daemon inc::Module::Install IO::Socket::SSL JSON LWP::Protocol::https LWP::UserAgent Net::IP Net::NBName Net::Ping Net::SNMP Net::Pcap Net::Write::Layer2 Parallel::ForkManager Parse::EDID Text::Template Thread::Queue UNIVERSAL::require URI::Escape Win32::Daemon Win32::Job Win32::OLE Win32::TieRegistry Win32::Unicode::File XML::TreePP'

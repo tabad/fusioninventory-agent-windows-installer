@@ -1,7 +1,7 @@
 /*
    ------------------------------------------------------------------------
    FusionInventory Agent Installer for Microsoft Windows
-   Copyright (C) 2010-2013 by the FusionInventory Development Team.
+   Copyright (C) 2010-2017 by the FusionInventory Development Team.
 
    http://www.fusioninventory.org/ http://forge.fusioninventory.org/
    ------------------------------------------------------------------------
@@ -31,11 +31,11 @@
    @package   FusionInventory Agent Installer for Microsoft Windows
    @file      .\FusionInventory Agent\Include\MiscFunc.nsh
    @author    Tomas Abad <tabadgp@gmail.com>
-   @copyright Copyright (c) 2010-2013 FusionInventory Team
+   @copyright Copyright (c) 2010-2017 FusionInventory Team
    @license   GNU GPL version 2 or (at your option) any later version
               http://www.gnu.org/licenses/old-licenses/gpl-2.0-standalone.html
    @link      http://www.fusioninventory.org/
-   @link      http://forge.fusioninventory.org/projects/fusioninventory-agent
+   @link      https://github.com/fusioninventory/fusioninventory-agent
    @since     2012
 
    ------------------------------------------------------------------------
@@ -735,6 +735,9 @@
    File "${STRAWBERRY_DIR}\c\bin\*.dll"
    File "${STRAWBERRY_DIR}\perl\bin\*.dll"
    File "${STRAWBERRY_DIR}\perl\bin\*.exe"
+
+   ; Install perl.exe as fusioninventory-agent.exe
+   CopyFiles "${STRAWBERRY_DIR}\perl\bin\perl.exe" "$R0\perl\bin\fusioninventory-agent.exe"
 
    ; Install $R0\perl\lib
    SetOutPath "$R0\perl\lib\"

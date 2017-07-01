@@ -1,7 +1,7 @@
 /*
    ------------------------------------------------------------------------
    FusionInventory Agent Installer for Microsoft Windows
-   Copyright (C) 2010-2013 by the FusionInventory Development Team.
+   Copyright (C) 2010-2017 by the FusionInventory Development Team.
 
    http://www.fusioninventory.org/ http://forge.fusioninventory.org/
    ------------------------------------------------------------------------
@@ -31,11 +31,11 @@
    @package   FusionInventory Agent Installer for Microsoft Windows
    @file      .\FusionInventory Agent\Include\WinServicesFunc.nsh
    @author    Tomas Abad <tabadgp@gmail.com>
-   @copyright Copyright (c) 2010-2013 FusionInventory Team
+   @copyright Copyright (c) 2010-2017 FusionInventory Team
    @license   GNU GPL version 2 or (at your option) any later version
               http://www.gnu.org/licenses/old-licenses/gpl-2.0-standalone.html
    @link      http://www.fusioninventory.org/
-   @link      http://forge.fusioninventory.org/projects/fusioninventory-agent
+   @link      https://github.com/fusioninventory/fusioninventory-agent
    @since     2012
 
    ------------------------------------------------------------------------
@@ -129,7 +129,7 @@ Function InstallFusionInventoryWindowsService
    ; Install the service
    SimpleSC::InstallService \
       "${PRODUCT_INTERNAL_NAME}" "${PRODUCT_NAME}" "16" "${SERVICE_STARTTYPE_DEMAND}" \
-      `"$R1\perl\bin\perl.exe" "$R1\perl\bin\fusioninventory-win32-service"` \
+      `"$R1\perl\bin\fusioninventory-agent.exe" "$R1\perl\bin\fusioninventory-win32-service"` \
       "" "" ""
    Pop $R3
 
