@@ -1,15 +1,17 @@
 FusionInventory Agent Windows Installer - History of Revisions and Changes
 
-2.3.21-rc1 Tue, 4 Jul 2017
+2.3.21-rc1 Wed, 5 Jul 2017
 agent:
-* FusionInventory Agent 2.3.20 (commit: 2c2545ccbc | date: jun 30 2017)
+* FusionInventory Agent 2.3.20 (commit: db9aeb23a7 | date: jul 5 2017)
 * perl.exe also named as fusioninventory-agent.exe to make agent process appears
   as fusioninventory-agent.exe, not perl.exe while registered as service
 * Deploy task bumped to 2.4
 * Deploy task includes user interaction handling
+* Deploy audit also support to check win key value not equals case
 * Fix dmidecode last element not read from output
 * Fix dmidecode memory inventory
 * Report proxy error when possible
+* Service refactoring
 
 tools:
 * Updated dmidecode v3.1

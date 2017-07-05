@@ -68,7 +68,7 @@ declare -i -r maximum_commit_length=10
 # Set fusinv_agent_commit to a commit ref to generate a development release
 # Use +r for commit ref and -r for tag & release
 declare -r fusinv_agent_commit='2.3.21-rc1'
-#declare +r fusinv_agent_commit='2c2545ccbc'
+#declare +r fusinv_agent_commit='db9aeb23a7'
 declare -r fusinv_agent_release='2.3.21-rc1'
 declare -r fusinv_agent_mod_name='fusioninventory-agent'
 declare -r fusinv_agent_repository='https://github.com/TECLIB/fusioninventory-agent.git'
