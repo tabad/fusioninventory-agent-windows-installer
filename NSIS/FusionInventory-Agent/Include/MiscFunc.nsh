@@ -139,6 +139,7 @@
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent\HTTP"
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Logger"
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Target"
+   CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Daemon"
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Tools"
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Tools\Screen"
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Tools\Win32"
@@ -205,6 +206,10 @@
    ; Install $R0\perl\agent\FusionInventory\Agent\Target\*.*
    SetOutPath "$R0\perl\agent\FusionInventory\Agent\Target"
    File /r "${FIA_DIR}\lib\FusionInventory\Agent\Target\*.*"
+
+   ; Install $R0\perl\agent\FusionInventory\Agent\Daemon\*.*
+   SetOutPath "$R0\perl\agent\FusionInventory\Agent\Daemon"
+   File /r "${FIA_DIR}\lib\FusionInventory\Agent\Daemon\*.*"
 
    ; Install $R0\perl\agent\FusionInventory\Agent\Tools\*.pm
    ; but not $R0\perl\agent\FusionInventory\Agent\Tools\Hardware.pm
