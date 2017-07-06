@@ -1,8 +1,8 @@
 FusionInventory Agent Windows Installer - History of Revisions and Changes
 
-2.3.21-rc1 Wed, 5 Jul 2017
+2.3.21-rc1 Thu, 6 Jul 2017
 agent:
-* FusionInventory Agent 2.3.20 (commit: db9aeb23a7 | date: jul 5 2017)
+* FusionInventory Agent 2.3.21-rc1 by Teclib (commit: 0c9b87e13f | date: jul 6 2017)
 * perl.exe also named as fusioninventory-agent.exe to make agent process appears
   as fusioninventory-agent.exe, not perl.exe while registered as service
 * Deploy task bumped to 2.4
