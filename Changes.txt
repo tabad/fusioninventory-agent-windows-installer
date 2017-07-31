@@ -1,8 +1,8 @@
 FusionInventory Agent Windows Installer - History of Revisions and Changes
 
-2.3.21-rc1 Fri, 7 Jul 2017
+2.3.21 Mon, 31 Jul 2017
 agent:
-* FusionInventory Agent 2.3.21-rc1 by Teclib (commit: 0b2acbd164 | date: jul 7 2017)
+* FusionInventory Agent 2.3.21 (commit: c73b781e57 | date: jul 31 2017)
 * perl.exe also named as fusioninventory-agent.exe to make agent process appears
   as fusioninventory-agent.exe, not perl.exe while registered as service
 * Deploy task bumped to 2.4
@@ -11,7 +11,14 @@ agent:
 * Fix dmidecode last element not read from output
 * Fix dmidecode memory inventory
 * Report proxy error when possible
-* Service refactoring
+* Service refactoring: win32 service can be paused
+* Fixed win32 softwares finally missing when 2 'inventory' are set in tasks
+* Fixed bug: last dmidecode block wasn't parsed
+* Update memory component capacity on virtual systems
+* Fix lenovo system information product name read from dmidecode
+* Many NetInventory and NetDiscovery tasks fixes and updates
+* Fixed injector script returned code on error
+* Updated PCI, USB & SysObject IDS databases
 
 tools:
 * Updated dmidecode v3.1
