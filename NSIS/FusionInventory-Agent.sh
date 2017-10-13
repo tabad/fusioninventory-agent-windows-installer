@@ -137,26 +137,23 @@ if [ "$TYPE" != "development" ]; then
       exit 1
    fi
    if [ -n "${MINOR}" ]; then
-      option_nsis_define="$option_nsis_define -DFIA_MINOR=${MINOR}"
+      option_nsis_define="$option_nsis_define -DFIA_MINOR=${MINOR%%-*}"
    else
       echo "ERROR: Can't read MINOR version number" >&2
       exit 1
    fi
-   if [ -n "${SUB}" ]; then
-      # Release number extacted from sub removing all chars with first '-'
-      option_nsis_define="$option_nsis_define -DFIA_SUB=${SUB%%-*}"
-      if [ "$TYPE" == "stable" ]; then
-         # Use last number separated with '-'
-         option_nsis_define="$option_nsis_define -DFIA_PATCH=${SUB##*-}"
-      else
-         # Use last number separated after "-rc"
-         RC="${SUB##*-rc}"
-         FILERC="99$( printf '%02i' $RC )"
-         option_nsis_define="$option_nsis_define -DFIA_RC=${RC} -DFIA_FILERC=${FILERC}"
-      fi
+   # Support numbering with empty SUB as zero sub
+   [ -n "${SUB}" ] || SUB="0"
+   # Release number extacted from sub removing all chars with first '-'
+   option_nsis_define="$option_nsis_define -DFIA_SUB=${SUB%%-*}"
+   if [ "$TYPE" == "stable" ]; then
+      # Use last number separated with '-'
+      option_nsis_define="$option_nsis_define -DFIA_PATCH=${SUB##*-}"
    else
-      echo "ERROR: Can't read SUB version number" >&2
-      exit 1
+      # Use last number separated after "-rc"
+      RC="${fusinv_agent_release##*-rc}"
+      FILERC="99$( printf '%02i' $RC )"
+      option_nsis_define="$option_nsis_define -DFIA_RC=${RC} -DFIA_FILERC=${FILERC}"
    fi
 fi
 # In the case fusinv_agent_commit is not set, use fusinv_agent_release as commit tag
