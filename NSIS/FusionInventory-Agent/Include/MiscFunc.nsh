@@ -213,8 +213,9 @@
 
    ; Install $R0\perl\agent\FusionInventory\Agent\Tools\*.pm
    ; but not $R0\perl\agent\FusionInventory\Agent\Tools\Hardware.pm
+   ; and not $R0\perl\agent\FusionInventory\Agent\Tools\SNMP.pm
    SetOutPath "$R0\perl\agent\FusionInventory\Agent\Tools"
-   File /x "Hardware.pm" \
+   File /x "Hardware.pm" /x "SNMP.pm" \
         "${FIA_DIR}\lib\FusionInventory\Agent\Tools\*.pm"
 
    ; Install $R0\perl\agent\FusionInventory\Agent\Tools\Win32\*.*
@@ -406,6 +407,7 @@
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent"
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Task"
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Task\Inventory"
+   CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Task\Wmi"
    CreateDirectory "$R0\perl\bin"
 
    ; Create $R0\fusioninventory-injector.bat
@@ -426,19 +428,36 @@
    ${FileWriteLine} $R1 "popd"
    FileClose $R1
 
+   ; Create $R0\fusioninventory-wmi.bat
+   FileOpen $R1 "$R0\fusioninventory-wmi.bat" w
+   ${FileWriteLine} $R1 "@echo off"
+   ${FileWriteLine} $R1 "for %%p in ($\".$\") do pushd $\"%%~fsp$\""
+   ${FileWriteLine} $R1 "cd /d $\"%~dp0\perl\bin$\""
+   ${FileWriteLine} $R1 "perl.exe fusioninventory-wmi %*"
+   ${FileWriteLine} $R1 "popd"
+   FileClose $R1
+
    ; Install $R0\perl\agent\FusionInventory\Agent\Task\Inventory.pm
+   ;         $R0\perl\agent\FusionInventory\Agent\Task\Wmi.pm
    SetOutPath "$R0\perl\agent\FusionInventory\Agent\Task"
    File "${FIA_DIR}\lib\FusionInventory\Agent\Task\Inventory.pm"
+   File "${FIA_DIR}\lib\FusionInventory\Agent\Task\Wmi.pm"
 
    ; Install $R0\perl\agent\FusionInventory\Agent\Task\Inventory\*.*
    SetOutPath "$R0\perl\agent\FusionInventory\Agent\Task\Inventory"
    File /r "${FIA_DIR}\lib\FusionInventory\Agent\Task\Inventory\*.*"
 
+   ; Install $R0\perl\agent\FusionInventory\Agent\Task\Wmi\*.*
+   SetOutPath "$R0\perl\agent\FusionInventory\Agent\Task\Wmi"
+   File /r "${FIA_DIR}\lib\FusionInventory\Agent\Task\Wmi\*.*"
+
    ; Install $R0\perl\bin\fusioninventory-injector
    ;         $R0\perl\bin\fusioninventory-inventory
+   ;         $R0\perl\bin\fusioninventory-wmi
    SetOutPath "$R0\perl\bin\"
    File "${FIA_DIR}\bin\fusioninventory-injector"
    File "${FIA_DIR}\bin\fusioninventory-inventory"
+   File "${FIA_DIR}\bin\fusioninventory-wmi
 
    ; Set mode at which commands print their status
    SetDetailsPrint lastused
@@ -487,8 +506,10 @@
       File /r "${FIA_DIR}\lib\FusionInventory\Agent\SNMP\*.*"
 
       ; Install $R0\perl\agent\FusionInventory\Agent\Tools\Hardware.pm
+      ;         $R0\perl\agent\FusionInventory\Agent\Tools\SNMP.pm
       SetOutPath "$R0\perl\agent\FusionInventory\Agent\Tools"
       File "${FIA_DIR}\lib\FusionInventory\Agent\Tools\Hardware.pm"
+      File "${FIA_DIR}\lib\FusionInventory\Agent\Tools\SNMP.pm"
 
       ; Install $R0\perl\agent\FusionInventory\Agent\Tools\Hardware\*.*
       SetOutPath "$R0\perl\agent\FusionInventory\Agent\Tools\Hardware"
