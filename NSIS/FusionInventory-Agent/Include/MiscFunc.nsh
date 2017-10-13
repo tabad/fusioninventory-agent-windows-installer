@@ -457,7 +457,7 @@
    SetOutPath "$R0\perl\bin\"
    File "${FIA_DIR}\bin\fusioninventory-injector"
    File "${FIA_DIR}\bin\fusioninventory-inventory"
-   File "${FIA_DIR}\bin\fusioninventory-wmi
+   File "${FIA_DIR}\bin\fusioninventory-wmi"
 
    ; Set mode at which commands print their status
    SetDetailsPrint lastused
