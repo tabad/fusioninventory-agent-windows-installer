@@ -7,7 +7,6 @@ notifications:
     url: https://hooks.aethonan.pro/appveyor/-1001137546384/
 
 install:
-  - SET PATH=C:\NSIS\;%PATH%
   - cinst nsis --version 3.02
   - cinst pandoc --version 1.17.0.2
   - cd Perl\Scripts
