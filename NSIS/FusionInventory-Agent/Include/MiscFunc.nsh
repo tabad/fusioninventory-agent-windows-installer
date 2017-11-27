@@ -787,7 +787,6 @@
    ${FileWriteLine} $R1 "our @EXPORT = ('%setup');"
    ${FileWriteLine} $R1 "use lib '$R0/perl/agent';"
    ${FileWriteLine} $R1 "our %setup = ("
-   ${FileWriteLine} $R1 "    confdir => '$R0/etc',"
    ${FileWriteLine} $R1 "    datadir => '$R0/share',"
    ${FileWriteLine} $R1 "    vardir  => '$R0/var',"
    ${FileWriteLine} $R1 "    libdir  => '$R0/perl/agent',"
