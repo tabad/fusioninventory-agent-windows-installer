@@ -141,8 +141,8 @@ else
    exit 1
 fi
 
-# Support numbering with empty SUB as zero sub
-[ -n "${SUB}" ] || SUB="0"
+# Support numbering with empty or 'x' SUB as zero sub
+[ -n "${SUB%x}" ] || SUB="0"
 # Release number extacted from sub removing all chars with first '-'
 option_nsis_define="$option_nsis_define -DFIA_SUB=${SUB%%-*}"
 if [ "$TYPE" == "stable" ]; then
