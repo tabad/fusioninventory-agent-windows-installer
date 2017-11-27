@@ -4,7 +4,7 @@ shallow_clone: true
 
 notifications:
   - provider: Webhook
-    url: https://hooks.aethonan.pro/appveyor/-1001137546384/
+    url: https://hooks.aethonan.pro/appveyor/388950989/
 
 install:
   - cinst nsis --version 3.02
