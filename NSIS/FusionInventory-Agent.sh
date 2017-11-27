@@ -156,7 +156,7 @@ elif [ "$TYPE" == "candidate" ]; then
 fi
 
 BUILD="$( printf '%04i' $APPVEYOR_BUILD_NUMBER )"
-option_nsis_define="$option_nsis_define -DFIAI_BUILD=${RC}"
+option_nsis_define="$option_nsis_define -DFIAI_BUILD=${BUILD}"
 
 # In the case fusinv_agent_commit is not set, use fusinv_agent_release as commit tag
 if [ -n "${fusinv_agent_commit}" ]; then
