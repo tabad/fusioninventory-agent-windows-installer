@@ -8,7 +8,7 @@ notifications:
 
 install:
   - SET PATH=C:\NSIS\;%PATH%
-  - cinst nsis
+  - cinst nsis --version 3.02
   - cinst pandoc --version 1.17.0.2
   - cd Perl\Scripts
   - .\install-gnu-utilities-collection.bat
