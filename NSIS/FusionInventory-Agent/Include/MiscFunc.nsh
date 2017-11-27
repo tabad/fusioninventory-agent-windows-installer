@@ -195,6 +195,9 @@
    File /x "SNMP.pm"    \
         "${FIA_DIR}\lib\FusionInventory\Agent\*.pm"
 
+   ; Fix SYSCONFDIR setup as normally done in Makefile under Unix system
+   nsExec::Exec '"$PLUGINSDIR\sed.exe" -i -e "s|=> undef, # SYSCONFDIR.*|=> '$R0/etc',|" "$R0\perl\agent\FusionInventory\Agent\Config.pm"'
+
    ; Install $R0\perl\agent\FusionInventory\Agent\HTTP\*.*
    SetOutPath "$R0\perl\agent\FusionInventory\Agent\HTTP"
    File /r "${FIA_DIR}\lib\FusionInventory\Agent\HTTP\*.*"
