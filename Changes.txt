@@ -1,5 +1,10 @@
 FusionInventory Agent Windows Installer - History of Revisions and Changes
 
+2.4-rc2 not released yet
+build process:
+* Include appveyor YAML
+* use last nsis v3.02 from chocolatey to help support windows 10
+
 tools:
 * Updated 7z to 7-Zip v16.04 (2016-10-04)
 
