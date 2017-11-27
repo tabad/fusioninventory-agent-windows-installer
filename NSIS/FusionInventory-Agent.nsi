@@ -174,10 +174,12 @@ SetCompressor /FINAL /SOLID lzma
 
    ; File version
    ;    for Windows Version Information
-   ;
-   ; If PRODUCT_VERSION is a commit then
-   ;    define the following symbols as '0.0.0.0'
-   !define FILE_VERSION "${FIA_MAJOR}.${FIA_MINOR}.${FIA_SUB}.${FIA_PATCH}"
+   !ifdef FIAI_BUILD
+      !define PRODUCT_VERSION_BUILD "${FIAI_BUILD}"
+      !define FILE_VERSION "${FIA_MAJOR}.${FIA_MINOR}.${FIA_SUB}.${FIAI_BUILD}"
+   !else
+      !define FILE_VERSION "${FIA_MAJOR}.${FIA_MINOR}.${FIA_SUB}.${FIA_PATCH}"
+   !endif
 
    ; Bitmaps for stable releases
    !define MUI_HEADERIMAGE_BITMAP_FILE  "${FIAI_DIR}\Contrib\Skins\Default\HeaderRightMUI2.bmp"
@@ -201,9 +203,6 @@ SetCompressor /FINAL /SOLID lzma
 
       ; File version
       ;    for Windows Version Information
-      ;
-      ; If PRODUCT_VERSION is a commit then
-      ;    define the following symbols as '0.0.0.0'
       !define FILE_VERSION "${FIA_MAJOR}.${FIA_MINOR}.${FIA_SUB}.${FIA_FILERC}"
 
    ; Bitmaps for stable releases
@@ -213,12 +212,25 @@ SetCompressor /FINAL /SOLID lzma
       !define MUI_WELCOMEFINISHPAGE_BITMAP_FILE "${FIAI_DIR}\Contrib\Skins\Default\WelcomeMUI2CandidateVersion.bmp"
       !define MUI_UNWELCOMEFINISHPAGE_BITMAP_FILE "${FIAI_DIR}\Contrib\Skins\Default\WelcomeMUI2CandidateVersion.bmp"
    !else
-      ; Product version for development releases
-      !define PRODUCT_VERSION "${FIA_COMMIT}-dev"
+      !ifdef FIAI_BUILD
+         ; Product version for development releases with build number
+         !define PRODUCT_VERSION "${FIA_MAJOR}.${FIA_MINOR}.${FIA_SUB}-build${FIAI_BUILD}-dev"
+         !define PRODUCT_VERSION_BUILD "${FIAI_BUILD}"
 
-      ; File version
-      ;    for Windows Version Information
-      !define FILE_VERSION "0.0.0.0"
+         ; File version
+         ;    for Windows Version Information
+         !define FILE_VERSION "${FIA_MAJOR}.${FIA_MINOR}.${FIA_SUB}.${FIAI_BUILD}"
+      !else
+         ; Product version for development releases
+         !define PRODUCT_VERSION "${FIA_COMMIT}-dev"
+
+         ; File version
+         ;    for Windows Version Information
+         ;
+         ; If PRODUCT_VERSION is a commit then
+         ;    define the following symbols as '0.0.0.0'
+         !define FILE_VERSION "0.0.0.0"
+      !endif
 
       ; Bitmaps for development releases
       !define MUI_HEADERIMAGE_BITMAP_FILE  "${FIAI_DIR}\Contrib\Skins\Default\HeaderRightMUI2DevelopmentVersion.bmp"

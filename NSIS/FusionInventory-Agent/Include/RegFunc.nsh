@@ -121,6 +121,13 @@ Function AddUninstallInformation
       !endif
    !endif
 
+   ; Register key 'VersionBuild'
+   !ifdef PRODUCT_VERSION_BUILD
+      !if ${PRODUCT_VERSION_BUILD} != ""
+         ${registry::Write} "${PRODUCT_UNINST_ROOT_KEY}\$PRODUCT_UNINST_SUBKEY" "VersionBuild" "${PRODUCT_VERSION_BUILD}" "REG_DWORD" $R2
+      !endif
+   !endif
+
    ; Register key 'VersionMajor'
    !ifdef PRODUCT_VERSION_MAJOR
       !if ${PRODUCT_VERSION_MAJOR} != ""

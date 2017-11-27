@@ -126,34 +126,38 @@ else
    exit 1
 fi
 option_nsis_define="$option_nsis_define -DFIA_RELEASE=${fusinv_agent_release}"
-if [ "$TYPE" != "development" ]; then
-   read MAJOR MINOR SUB <<<"${fusinv_agent_release//./ }"
-   if [ -n "${MAJOR}" ]; then
-      option_nsis_define="$option_nsis_define -DFIA_MAJOR=${MAJOR}"
-   else
-      echo "ERROR: Can't read MAJOR version number" >&2
-      exit 1
-   fi
-   if [ -n "${MINOR}" ]; then
-      option_nsis_define="$option_nsis_define -DFIA_MINOR=${MINOR%%-*}"
-   else
-      echo "ERROR: Can't read MINOR version number" >&2
-      exit 1
-   fi
-   # Support numbering with empty SUB as zero sub
-   [ -n "${SUB}" ] || SUB="0"
-   # Release number extacted from sub removing all chars with first '-'
-   option_nsis_define="$option_nsis_define -DFIA_SUB=${SUB%%-*}"
-   if [ "$TYPE" == "stable" ]; then
-      # Use last number separated with '-'
-      option_nsis_define="$option_nsis_define -DFIA_PATCH=${SUB##*-}"
-   else
-      # Use last number separated after "-rc"
-      RC="${fusinv_agent_release##*-rc}"
-      FILERC="99$( printf '%02i' $RC )"
-      option_nsis_define="$option_nsis_define -DFIA_RC=${RC} -DFIA_FILERC=${FILERC}"
-   fi
+
+read MAJOR MINOR SUB <<<"${fusinv_agent_release//./ }"
+if [ -n "${MAJOR}" ]; then
+   option_nsis_define="$option_nsis_define -DFIA_MAJOR=${MAJOR}"
+else
+   echo "ERROR: Can't read MAJOR version number" >&2
+   exit 1
 fi
+if [ -n "${MINOR}" ]; then
+   option_nsis_define="$option_nsis_define -DFIA_MINOR=${MINOR%%-*}"
+else
+   echo "ERROR: Can't read MINOR version number" >&2
+   exit 1
+fi
+
+# Support numbering with empty SUB as zero sub
+[ -n "${SUB}" ] || SUB="0"
+# Release number extacted from sub removing all chars with first '-'
+option_nsis_define="$option_nsis_define -DFIA_SUB=${SUB%%-*}"
+if [ "$TYPE" == "stable" ]; then
+   # Use last number separated with '-'
+   option_nsis_define="$option_nsis_define -DFIA_PATCH=${SUB##*-}"
+elif [ "$TYPE" == "candidate" ]; then
+   # Use last number separated after "-rc"
+   RC="${fusinv_agent_release##*-rc}"
+   FILERC="99$( printf '%02i' $RC )"
+   option_nsis_define="$option_nsis_define -DFIA_RC=${RC} -DFIA_FILERC=${FILERC}"
+fi
+
+BUILD="$( printf '%04i' $APPVEYOR_BUILD_NUMBER )"
+option_nsis_define="$option_nsis_define -DFIAI_BUILD=${RC}"
+
 # In the case fusinv_agent_commit is not set, use fusinv_agent_release as commit tag
 if [ -n "${fusinv_agent_commit}" ]; then
    option_nsis_define="$option_nsis_define -DFIA_COMMIT=${fusinv_agent_commit}"
