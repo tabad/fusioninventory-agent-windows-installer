@@ -70,13 +70,10 @@ declare -i -r maximum_commit_length=10
 if [ -n "${APPVEYOR_REPO_TAG_NAME}" ]; then
    declare -r fusinv_agent_commit="${APPVEYOR_REPO_TAG_NAME}"
    declare -r fusinv_agent_release="${APPVEYOR_REPO_TAG_NAME}"
-elif [ -n "${APPVEYOR_REPO_COMMIT}" ]; then
-   if (( ${#APPVEYOR_REPO_COMMIT} > ${maximum_commit_length} )); then
-      declare -r fusinv_agent_commit="${APPVEYOR_REPO_COMMIT:0:${maximum_commit_length}}"
-   else
-      declare -r fusinv_agent_commit="${APPVEYOR_REPO_COMMIT}"
-   fi
+elif [ -n "${APPVEYOR_REPO_BRANCH}" ]; then
+   declare -r fusinv_agent_commit="${APPVEYOR_REPO_BRANCH}"
    declare -r fusinv_agent_release="${APPVEYOR_REPO_BRANCH}"
+   declare -r TYPE="development"
 elif [ -n "${FIA_RELEASE}" ]; then
    declare -r fusinv_agent_release="${FIA_RELEASE}"
 else

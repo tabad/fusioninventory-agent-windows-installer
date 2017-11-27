@@ -107,12 +107,14 @@ else
 fi
 
 # Check to select type checking fusinv_agent_commit
-if [ -z "$( echo ${fusinv_agent_commit} | tr -d [0-9a-f] )" ]; then
-   declare -r TYPE="development"
-elif [ -z "${fusinv_agent_commit##*-rc*}" ]; then
-   declare -r TYPE="candidate"
-else
-   declare -r TYPE="stable"
+if [ -z "${TYPE}" ]; then
+   if [ -z "$( echo ${fusinv_agent_commit} | tr -d [0-9a-f] )" ]; then
+      declare -r TYPE="development"
+   elif [ -z "${fusinv_agent_commit##*-rc*}" ]; then
+      declare -r TYPE="candidate"
+   else
+      declare -r TYPE="stable"
+   fi
 fi
 option_nsis_define="$option_nsis_define -DPRODUCT_RELEASE_TYPE=$TYPE"
 
@@ -123,11 +125,7 @@ else
    echo "ERROR: strawberry_version not set" >&2
    exit 1
 fi
-if [ -n "${fusinv_agent_release}" ]; then
-   option_nsis_define="$option_nsis_define -DFIA_RELEASE=${fusinv_agent_release}"
-elif [ -n "${APPVEYOR_REPO_TAG_NAME)}" ]; then
-   option_nsis_define="$option_nsis_define -DFIA_RELEASE=${APPVEYOR_REPO_TAG_NAME}"
-fi
+option_nsis_define="$option_nsis_define -DFIA_RELEASE=${fusinv_agent_release}"
 if [ "$TYPE" != "development" ]; then
    read MAJOR MINOR SUB <<<"${fusinv_agent_release//./ }"
    if [ -n "${MAJOR}" ]; then
