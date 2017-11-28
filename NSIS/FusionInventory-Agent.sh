@@ -110,8 +110,10 @@ fi
 if [ -z "${TYPE}" ]; then
    if [ -z "$( echo ${fusinv_agent_commit} | tr -d [0-9a-f] )" ]; then
       declare -r TYPE="development"
+      option_nsis_define="$option_nsis_define -DFIAI_DEBUG_LEVEL=1"
    elif [ -z "${fusinv_agent_commit##*-rc*}" ]; then
       declare -r TYPE="candidate"
+      option_nsis_define="$option_nsis_define -DFIAI_DEBUG_LEVEL=1"
    else
       declare -r TYPE="stable"
    fi
