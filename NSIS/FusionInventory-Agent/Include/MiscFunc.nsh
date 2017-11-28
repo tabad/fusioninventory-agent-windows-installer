@@ -197,7 +197,7 @@
 
    ; Fix SYSCONFDIR setup as normally done in Makefile under Unix system
    ${WordReplace} "$R0" "\" "\\" "+" $R1
-   nsExec::Exec '"$PLUGINSDIR\sed.exe" -i -e "s|=> undef, # SYSCONFDIR.*|=> \"$R1\\etc\",|" "$R0\perl\agent\FusionInventory\Agent\Config.pm"'
+   nsExec::Exec '"$PLUGINSDIR\sed.exe" -i -e "s|=> undef, # SYSCONFDIR.*|=> q/$R1\\etc/,|" "$R0\perl\agent\FusionInventory\Agent\Config.pm"'
 
    ; Install $R0\perl\agent\FusionInventory\Agent\HTTP\*.*
    SetOutPath "$R0\perl\agent\FusionInventory\Agent\HTTP"
