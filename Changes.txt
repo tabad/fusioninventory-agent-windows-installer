@@ -2,7 +2,7 @@ FusionInventory Agent Windows Installer - History of Revisions and Changes
 
 2.4-rc2 Tue, 28 Nov 2017
 agent:
-* FusionInventory Agent 2.4-rc2 (commit: cc72e3631c | date: nov 28 2017)
+* FusionInventory Agent 2.4-rc2 (commit: fe7bf37b1c | date: nov 28 2017)
 * Make backend-collect-timeout working even while waiting on command output
   or wmi call
 * Fix #161: Support retrieving License software via WMI, including Office 2016
