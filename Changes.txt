@@ -1,6 +1,19 @@
 FusionInventory Agent Windows Installer - History of Revisions and Changes
 
-2.4-rc2 not released yet
+2.4-rc2 Tue, 28 Nov 2017
+agent:
+* FusionInventory Agent 2.4-rc2 (commit: cc72e3631c | date: nov 28 2017)
+* Make backend-collect-timeout working even while waiting on command output
+  or wmi call
+* Fix #161: Support retrieving License software via WMI, including Office 2016
+
+core:
+* Fix old #9 issue: We can now change installation path in interative mode
+* Correctly set SYSCONFDIR in source during installation to follow confdir cleanup
+  in agent
+* Update PCI IDs database (pci.ids file) to 2017.10.21
+* Update USB IDs database (usb.ids file) to 2017.11.27
+
 build process:
 * Include appveyor YAML
 * use last nsis v3.02 from chocolatey to help support windows 10
