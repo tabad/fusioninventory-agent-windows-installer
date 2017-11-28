@@ -123,13 +123,20 @@ while (( ${iter} < ${#archs[@]} )); do
    if [ -n "${fusinv_agent_release}" ]; then
       PACKAGE_TIME=$(LANG=C date -u)
 
+      FIA_VERSION="${fusinv_agent_release}"
+      if [ "${TYPE}" = "development" ]; then
+         BUILD=${APPVEYOR_BUILD_NUMBER}
+         : ${BUILD:=99}
+         FIA_VERSION="${fusinv_agent_release%.*}.${BUILD}-dev"
+      fi
+
       ${cat} >"${base_path}/lib/FusionInventory/Agent/Version.pm" <<HERE_VERSION
 package FusionInventory::Agent::Version;
 
 use strict;
 use warnings;
 
-our \$VERSION = "${fusinv_agent_release}";
+our \$VERSION = "${FIA_VERSION}";
 our \$PROVIDER = "FusionInventory";
 our \$COMMENTS = [
     "Provided by Teclib",
