@@ -1585,6 +1585,14 @@ Function .onSelChange
 FunctionEnd
 
 
+Function .onVerifyInstDir
+
+   ; Just save set $INSTDIR ${IO_INSTALLDIR} option in ${IOS_GUI}
+   ${WriteINIOption} "${IOS_GUI}" "${IO_INSTALLDIR}" "$INSTDIR"
+
+FunctionEnd
+
+
 ; SyncNSISSectionsWithInstallTasksOption
 Function SyncNSISSectionsWithInstallTasksOption
    ; $R0 INISection
