@@ -1,7 +1,7 @@
 #!/bin/bash
 # ------------------------------------------------------------------------
 # FusionInventory Agent Installer for Microsoft Windows
-# Copyright (C) 2010-2016 by the FusionInventory Development Team.
+# Copyright (C) 2010-2017 by the FusionInventory Development Team.
 #
 # http://www.fusioninventory.org/
 # ------------------------------------------------------------------------
@@ -31,7 +31,8 @@
 # @package   FusionInventory Agent Installer for Microsoft Windows
 # @file      .\NSIS\FusionInventory-Agent.sh
 # @author    Tomas Abad <tabadgp@gmail.com>
-# @copyright Copyright (c) 2010-2016 FusionInventory Team
+#            Guillaume Bougard <gbougard@teclib.com>
+# @copyright Copyright (c) 2010-2017 FusionInventory Team
 # @license   GNU GPL version 2 or (at your option) any later version
 #            http://www.gnu.org/licenses/old-licenses/gpl-2.0-standalone.html
 # @link      http://www.fusioninventory.org/
@@ -157,7 +158,7 @@ elif [ "$TYPE" == "candidate" ]; then
    option_nsis_define="$option_nsis_define -DFIA_RC=${RC} -DFIA_FILERC=${FILERC}"
 fi
 
-BUILD="$( printf '%04i' $APPVEYOR_BUILD_NUMBER )"
+BUILD="$( printf '%i' $APPVEYOR_BUILD_NUMBER )"
 option_nsis_define="$option_nsis_define -DFIAI_BUILD=${BUILD}"
 
 # In the case fusinv_agent_commit is not set, use fusinv_agent_release as commit tag
