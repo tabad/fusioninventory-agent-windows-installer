@@ -6,6 +6,14 @@ notifications:
   - provider: Webhook
     url: https://hooks.aethonan.pro/appveyor/-1001137546384/
 
+only_commits:
+  files:
+    - **/*.sh
+    - **/*.nsi
+    - **/*.nsh
+    - **/*.bat
+    - Perl/Scripts/load-perl-environment
+
 install:
   - cinst nsis --version 3.02
   - cinst pandoc --version 1.17.0.2
