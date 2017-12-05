@@ -1,5 +1,4 @@
-# FusionInventory Agent
-# Windows Installer
+# FusionInventory Agent Windows Installer
 
 [![Build status](https://ci.appveyor.com/api/projects/status/kgj8wyfygavkipuh?svg=true)](https://ci.appveyor.com/project/teclib/fusioninventory-agent-windows-installer)
 
