@@ -33,7 +33,6 @@ artifacts:
     name: chks
 
 deploy:
-  release: 'FIA Windows Installer $(APPVEYOR_REPO_TAG_NAME)'
   description: 'Release candidate by Teclib'
   provider: GitHub
   auth_token:
