@@ -71,6 +71,18 @@ Softwares used for building:
  * [NSIS](http://nsis.sourceforge.net/Download) 3.02
  * Pandoc 1.17.0.2
 
+## Release process
+
+ * For a release candidate:
+    1. Set a tag matching `2.4(.1)-rc1` scheme on [TECLIB/fusioninventory-agent](/TECLIB/fusioninventory-agent) repository
+    1. Set the same tag on this repository
+    1. Release candidates are then available in [this Teclib repository releases](/TECLIB/fusioninventory-agent-windows-installer/releases)
+
+ * For any development release:
+    1. Update agent code if necessary on [TECLIB/fusioninventory-agent](/TECLIB/fusioninventory-agent) repository default branch
+    1. Update [Changes.txt](Changes.txt) as needed, keeping agent commit ref in comment
+    1. Development builds are then available at [built artifacts page](https://ci.appveyor.com/project/teclib/fusioninventory-agent-windows-installer/build/artifacts)
+
 ## Manual build
 
 See [Legacy build section in Readme.txt file](Readme.txt)
