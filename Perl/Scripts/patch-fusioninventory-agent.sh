@@ -129,6 +129,7 @@ while (( ${iter} < ${#archs[@]} )); do
          : ${BUILD:=0000}
          FIA_VERSION="${fusinv_agent_release}-build-${BUILD}"
       fi
+      : ${APPVEYOR_ACCOUNT_NAME:=$USERNAME}
 
       ${cat} >"${base_path}/lib/FusionInventory/Agent/Version.pm" <<HERE_VERSION
 package FusionInventory::Agent::Version;
@@ -139,7 +140,7 @@ use warnings;
 our \$VERSION = "${FIA_VERSION}";
 our \$PROVIDER = "FusionInventory";
 our \$COMMENTS = [
-    "Provided by Teclib",
+    "Provided by ${APPVEYOR_ACCOUNT_NAME^?}",
     "Installer built with Appveyor on $PACKAGE_TIME"
 ];
 
