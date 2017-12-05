@@ -50,6 +50,7 @@ declare base_path=''
 declare script_suffix=''
 
 declare -r cat=$(type -P cat)
+declare -r tr=$(type -P tr)
 
 # Check the OS
 if [ "${MSYSTEM}" = "MSYS" ]; then
@@ -130,6 +131,7 @@ while (( ${iter} < ${#archs[@]} )); do
          FIA_VERSION="${fusinv_agent_release}-build-${BUILD}"
       fi
       : ${APPVEYOR_ACCOUNT_NAME:=$USERNAME}
+      APPVEYOR_ACCOUNT_NAME="$( echo -n ${APPVEYOR_ACCOUNT_NAME:0:1} | ${tr} 'a-z' 'A-Z' )${APPVEYOR_ACCOUNT_NAME#?}"
 
       ${cat} >"${base_path}/lib/FusionInventory/Agent/Version.pm" <<HERE_VERSION
 package FusionInventory::Agent::Version;
@@ -140,7 +142,7 @@ use warnings;
 our \$VERSION = "${FIA_VERSION}";
 our \$PROVIDER = "FusionInventory";
 our \$COMMENTS = [
-    "Provided by ${APPVEYOR_ACCOUNT_NAME^?}",
+    "Provided by ${APPVEYOR_ACCOUNT_NAME}",
     "Installer built with Appveyor on $PACKAGE_TIME"
 ];
 
