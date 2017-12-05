@@ -8,10 +8,10 @@ notifications:
 
 only_commits:
   files:
-    - **/*.sh
-    - **/*.nsi
-    - **/*.nsh
-    - **/*.bat
+    - '**/*.sh'
+    - '**/*.nsi'
+    - '**/*.nsh'
+    - '**/*.bat'
     - Perl/Scripts/load-perl-environment
 
 install:
