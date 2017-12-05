@@ -126,8 +126,8 @@ while (( ${iter} < ${#archs[@]} )); do
       FIA_VERSION="${fusinv_agent_release}"
       if [ "${TYPE}" = "development" ]; then
          BUILD=${APPVEYOR_BUILD_NUMBER}
-         : ${BUILD:=99}
-         FIA_VERSION="${fusinv_agent_release%.*}.${BUILD}-dev"
+         : ${BUILD:=0000}
+         FIA_VERSION="${fusinv_agent_release}-build-${BUILD}"
       fi
 
       ${cat} >"${base_path}/lib/FusionInventory/Agent/Version.pm" <<HERE_VERSION
