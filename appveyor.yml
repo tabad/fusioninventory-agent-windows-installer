@@ -34,10 +34,10 @@ artifacts:
 
 deploy:
   release: 'FIA Windows Installer $(APPVEYOR_REPO_TAG_NAME)'
-  description: 'Teclib release candidate'
+  description: 'Release candidate by Teclib'
   provider: GitHub
   auth_token:
-    secure: 2bHwACjD0EnWh8Y+X7Z49T9Yjp6tP9mAM+5cPXGSZ4VcSmptsZz0G0pgXjLVMTgp
+    secure: YBbTdTUzqgeUZl4OJKHvP0TFOtBR+omjfsUcxgf92+ht/4jCqCDbd/rbaswueKTe
   artifact: exes,chks
   draft: false
   prerelease: true
