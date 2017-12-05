@@ -33,7 +33,13 @@ artifacts:
     name: chks
 
 deploy:
-  - provider: Environment
-    name: FIA win32 installer Teclib releases
-    on:
-      APPVEYOR_REPO_TAG: true
+  release: 'FIA Windows Installer $(APPVEYOR_REPO_TAG_NAME)'
+  description: 'Teclib release candidate'
+  provider: GitHub
+  auth_token:
+    secure: 2bHwACjD0EnWh8Y+X7Z49T9Yjp6tP9mAM+5cPXGSZ4VcSmptsZz0G0pgXjLVMTgp
+  artifact: exes,chks
+  draft: false
+  prerelease: true
+  on:
+    appveyor_repo_tag: true
