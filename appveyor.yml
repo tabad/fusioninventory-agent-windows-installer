@@ -6,13 +6,10 @@ notifications:
   - provider: Webhook
     url: https://hooks.aethonan.pro/appveyor/-1001137546384/
 
-only_commits:
+skip_commits:
   files:
-    - '**/*.sh'
-    - '**/*.nsi'
-    - '**/*.nsh'
-    - '**/*.bat'
-    - Perl/Scripts/load-perl-environment
+    - '**/*.md'
+    - '*.txt'
 
 install:
   - cinst nsis --version 3.02
