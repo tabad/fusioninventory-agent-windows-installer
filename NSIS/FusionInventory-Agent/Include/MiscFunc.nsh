@@ -142,6 +142,7 @@
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Daemon"
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Tools"
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Tools\Screen"
+   CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Tools\Standards"
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Tools\Win32"
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent\XML"
    CreateDirectory "$R0\perl\bin"
@@ -229,6 +230,10 @@
    ; Install $R0\perl\agent\FusionInventory\Agent\Tools\Screen\*.*
    SetOutPath "$R0\perl\agent\FusionInventory\Agent\Tools\Screen"
    File /r "${FIA_DIR}\lib\FusionInventory\Agent\Tools\Screen\*.*"
+
+   ; Install $R0\perl\agent\FusionInventory\Agent\Tools\Standards\*.*
+   SetOutPath "$R0\perl\agent\FusionInventory\Agent\Tools\Standards"
+   File /r "${FIA_DIR}\lib\FusionInventory\Agent\Tools\Standards\*.*"
 
    ; Install $R0\perl\agent\FusionInventory\Agent\XML\*.*
    SetOutPath "$R0\perl\agent\FusionInventory\Agent\XML"
