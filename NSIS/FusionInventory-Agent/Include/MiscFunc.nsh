@@ -416,7 +416,7 @@
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent"
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Task"
    CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Task\Inventory"
-   CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Task\Wmi"
+   CreateDirectory "$R0\perl\agent\FusionInventory\Agent\Task\WMI"
    CreateDirectory "$R0\perl\bin"
 
    ; Create $R0\fusioninventory-injector.bat
@@ -447,18 +447,18 @@
    FileClose $R1
 
    ; Install $R0\perl\agent\FusionInventory\Agent\Task\Inventory.pm
-   ;         $R0\perl\agent\FusionInventory\Agent\Task\Wmi.pm
+   ;         $R0\perl\agent\FusionInventory\Agent\Task\WMI.pm
    SetOutPath "$R0\perl\agent\FusionInventory\Agent\Task"
    File "${FIA_DIR}\lib\FusionInventory\Agent\Task\Inventory.pm"
-   File "${FIA_DIR}\lib\FusionInventory\Agent\Task\Wmi.pm"
+   File "${FIA_DIR}\lib\FusionInventory\Agent\Task\WMI.pm"
 
    ; Install $R0\perl\agent\FusionInventory\Agent\Task\Inventory\*.*
    SetOutPath "$R0\perl\agent\FusionInventory\Agent\Task\Inventory"
    File /r "${FIA_DIR}\lib\FusionInventory\Agent\Task\Inventory\*.*"
 
-   ; Install $R0\perl\agent\FusionInventory\Agent\Task\Wmi\*.*
-   SetOutPath "$R0\perl\agent\FusionInventory\Agent\Task\Wmi"
-   File /r "${FIA_DIR}\lib\FusionInventory\Agent\Task\Wmi\*.*"
+   ; Install $R0\perl\agent\FusionInventory\Agent\Task\WMI\*.*
+   SetOutPath "$R0\perl\agent\FusionInventory\Agent\Task\WMI"
+   File /r "${FIA_DIR}\lib\FusionInventory\Agent\Task\WMI\*.*"
 
    ; Install $R0\perl\bin\fusioninventory-injector
    ;         $R0\perl\bin\fusioninventory-inventory
