@@ -1,5 +1,4 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/kgj8wyfygavkipuh?svg=true)](https://ci.appveyor.com/project/teclib/fusioninventory-agent-windows-installer)
-
+[![Build status](https://ci.appveyor.com/api/projects/status/ymdjaaa9nk63gsm2?svg=true)](https://ci.appveyor.com/project/fusioninventory/fusioninventory-agent-windows-installer)
 # FusionInventory Agent Windows Installer
 
 ## Description
@@ -64,7 +63,7 @@ See [Changes.txt file](Changes.txt)
 
 ## Automatic build integration
 
-This project uses [Appveyor CI platform](https://ci.appveyor.com/project/teclib/fusioninventory-agent-windows-installer) to build the installer
+This project uses [Appveyor CI platform](https://ci.appveyor.com/project/fusioninventory/fusioninventory-agent-windows-installer) to build the installer
 
 Softwares used for building:
 
@@ -73,15 +72,15 @@ Softwares used for building:
 
 ## Release process
 
- * For a release candidate:
-    1. Set a tag matching `2.4(.1)-rc1` scheme on [TECLIB/fusioninventory-agent](https://github.com/TECLIB/fusioninventory-agent) repository
+ * For a release:
+    1. Set a tag matching `2.4(.1)` scheme on [fusioninventory/fusioninventory-agent](https://github.com/fusioninventory/fusioninventory-agent) repository
     1. Set the same tag on this repository
-    1. Release candidates are then available in [this Teclib repository releases](https://github.com/TECLIB/fusioninventory-agent-windows-installer/releases)
+    1. Release are then available in [this fusioninventory repository releases](https://github.com/fusioninventory/fusioninventory-agent-windows-installer/releases)
 
  * For any development release:
-    1. Update agent code if necessary on [TECLIB/fusioninventory-agent](https://github.com/TECLIB/fusioninventory-agent) repository default branch
+    1. Update agent code if necessary on [fusioninventory/fusioninventory-agent](https://github.com/fusioninventory/fusioninventory-agent) repository default branch
     1. Update [Changes.txt](Changes.txt) as needed, keeping agent commit ref in comment
-    1. Development builds are then available at [built artifacts page](https://ci.appveyor.com/project/teclib/fusioninventory-agent-windows-installer/build/artifacts)
+    1. Development builds are then available at [built artifacts page](https://ci.appveyor.com/project/fusioninventory/fusioninventory-agent-windows-installer/build/artifacts)
 
 ## Manual build
 
