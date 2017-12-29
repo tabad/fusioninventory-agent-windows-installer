@@ -1,5 +1,32 @@
 FusionInventory Agent Windows Installer - History of Revisions and Changes
 
+2.4 Fri, 29 Dec 2017
+agent:
+* FusionInventory Agent 2.4 (commit: 56edbcd9f6 | date: dec 29 2017)
+* Fix WMI calls to also time out under win32
+* Fix #161: Support retrieving License software via WMI, including Office 2016
+* Fix #349: Include last logged user as usual computer user on win32 platform
+* Fix #364: [win32] Get antivirus version from software installation and get
+  Windows Defender version via WMI
+* Added Windows 10 version support
+* Fixed HyperV VM issue while BIOSGUID is not defined
+* Experimental feature: Added new Wmi task and fusioninventory-wmi script to
+  permit agent-less inventory from and to win32 platform based on WMI support
+
+core:
+* Fix old #9 issue: We can now change installation path in interative mode
+* Correctly set SYSCONFDIR in source during installation to follow confdir cleanup
+  in agent
+* Update PCI IDs database (pci.ids file) to 2017.12.20
+* Update USB IDs database (usb.ids file) to 2017.12.28
+
+build process:
+* Include appveyor YAML
+* use last nsis v3.02 from chocolatey to help support windows 10
+
+tools:
+* Updated 7z to 7-Zip v16.04 (2016-10-04)
+
 2.4-rc2 Tue, 28 Nov 2017
 agent:
 * FusionInventory Agent 2.4-rc2 (commit: fe7bf37b1c | date: nov 28 2017)
