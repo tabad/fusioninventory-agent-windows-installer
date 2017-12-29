@@ -50,7 +50,7 @@ deploy:
   description: 'Public Release'
   provider: GitHub
   auth_token:
-    secure: YBbTdTUzqgeUZl4OJKHvP0TFOtBR+omjfsUcxgf92+ht/4jCqCDbd/rbaswueKTe
+    secure: Fj7kDVdTteWqhYzCHzJWzD396lEPluN+bku+qD+mpPWhAACk1inaAdRzdEQkmgre
   artifact: exes,chks
   draft: false
   prerelease: false
