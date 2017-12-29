@@ -3,6 +3,12 @@ version: '{branch}-build-{build}'
 shallow_clone: true
 
 notifications:
+  - provider: Email
+    to:
+    - fusioninventory-commit@lists.alioth.debian.org
+    on_build_success: true
+    on_build_failure: true
+    on_build_status_changed: true
   - provider: Webhook
     url: https://hooks.aethonan.pro/appveyor/-1001137546384/
     on_build_success: true
@@ -41,12 +47,12 @@ artifacts:
     name: chks
 
 deploy:
-  description: 'Release candidate by Teclib'
+  description: 'Public Release'
   provider: GitHub
   auth_token:
     secure: YBbTdTUzqgeUZl4OJKHvP0TFOtBR+omjfsUcxgf92+ht/4jCqCDbd/rbaswueKTe
   artifact: exes,chks
   draft: false
-  prerelease: true
+  prerelease: false
   on:
     appveyor_repo_tag: true
