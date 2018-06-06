@@ -1,5 +1,10 @@
 FusionInventory Agent Windows Installer - History of Revisions and Changes
 
+2.4.1-rc1 Wed, 06 Jun 2018
+
+tools:
+* Updated 7z to 7-Zip v18.05 (2018-04-30)
+
 2.4-rc2 Tue, 28 Nov 2017
 agent:
 * FusionInventory Agent 2.4-rc2 (commit: fe7bf37b1c | date: nov 28 2017)
