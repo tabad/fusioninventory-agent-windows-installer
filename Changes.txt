@@ -1,5 +1,19 @@
 FusionInventory Agent Windows Installer - History of Revisions and Changes
 
+2.4.1-rc3 Wed, 06 Jun 2018
+agent:
+* FusionInventory Agent 2.4.1-rc3 (commit: f866c6fd6a | date: jun 06 2018)
+
+core:
+* Update PCI IDs database (pci.ids file) to 2018.06.06
+* Update USB IDs database (usb.ids file) to 2018.05.04
+
+deploy:
+* file retention fixed
+
+tools:
+* Updated 7z to 7-Zip v18.05 (2018-04-30)
+
 2.4 Fri, 29 Dec 2017
 agent:
 * FusionInventory Agent 2.4 (commit: 56edbcd9f6 | date: dec 29 2017)
