@@ -43,6 +43,9 @@
 @echo off
 
 del /q /f "%TEMP%\curl-ca-bundle.crt" 2> NUL
+del /q /f "%TEMP%\brotlicommon.dll" 2> NUL
+del /q /f "%TEMP%\brotlidec.dll" 2> NUL
+del /q /f "%TEMP%\brotlienc.dll" 2> NUL
 del /q /f "%TEMP%\curl.exe" 2> NUL
 del /q /f "%TEMP%\7z.dll" 2> NUL
 del /q /f "%TEMP%\7z.exe" 2> NUL
