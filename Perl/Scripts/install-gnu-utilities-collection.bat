@@ -69,7 +69,7 @@ if not exist "%TEMP%\mingw-get-bin.zip" (
 
 :: unpackage mingw-get-bin.zip
 mkdir "%MINGW_PATH%"
-..\..\Tools\7zip\x86\7za x -bd -y -o"%MINGW_PATH%" "%TEMP%\mingw-get-bin.zip" > NUL
+..\..\Tools\7zip\x86\7z x -bd -y -o"%MINGW_PATH%" "%TEMP%\mingw-get-bin.zip" > NUL
 del /q /f %TEMP%\mingw-get-bin.zip
 
 :: install mingw-get

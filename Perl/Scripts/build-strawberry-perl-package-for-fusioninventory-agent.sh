@@ -72,7 +72,7 @@ declare -r grep=$(type -P grep)
 declare -r install=$(type -P install)
 declare -r mktemp=$(type -P mktemp)
 declare -r openssl=$(type -P openssl)
-declare -r p7za=$(type -P 7za)
+declare -r p7z=$(type -P 7z)
 declare -r rm=$(type -P rm)
 declare -r sort=$(type -P sort)
 declare -r tar=$(type -P tar)
@@ -262,8 +262,8 @@ while (( ${iter} < ${#archs[@]} )); do
    ${install} --mode 0775 --directory "${tmpdir}/Strawberry/${strawberry_version}/${arch}/perl/vendor/lib"
 
    # Extract PAR package files
-   eval ${p7za} x -y -bd -o"${tmpdir}/Strawberry/${strawberry_version}/${arch}/perl/packer" \
-      "${tmpdir}/${strawberry_pepfia_par_file}"                                             \
+   eval ${p7z} x -bd -y -o"${tmpdir}/Strawberry/${strawberry_version}/${arch}/perl/packer" \
+      "${tmpdir}/${strawberry_pepfia_par_file}"                                            \
       "lib/*" > /dev/null 2>&1
 
    # Delete some innecesary PAR package files
@@ -338,8 +338,8 @@ done
 
 # Compressing
 echo -n "Compressing package Strawberry Perl ${strawberry_release} (${strawberry_version}-32/64bits)."
-${p7za} a -bd -mx=9 -- "${strawberry_pepfia_path}/${strawberry_pepfia_file}" \
-                       "${strawberry_pepfia_path}/${strawberry_pepfia_file%*.xz}" > /dev/null 2>&1
+${p7z} a -bd -mx=9 -- "${strawberry_pepfia_path}/${strawberry_pepfia_file}" \
+                      "${strawberry_pepfia_path}/${strawberry_pepfia_file%*.xz}" > /dev/null 2>&1
 echo -n "."
 ${rm} -f "${strawberry_pepfia_path}/${strawberry_pepfia_file%*.xz}" > /dev/null 2>&1
 echo ".Done!"

@@ -50,7 +50,8 @@ set HOME=%USERPROFILE%
 set USER=%USERNAME%
 set HISTFILE=%HOME%
 
-copy /y ..\..\Tools\7zip\x86\7za.exe "%TEMP%" > NUL
+copy /y ..\..\Tools\7zip\x86\7z.exe "%TEMP%" > NUL
+copy /y ..\..\Tools\7zip\x86\7z.dll "%TEMP%" > NUL
 copy /y ..\..\Tools\Curl\x86\curl.exe "%TEMP%" > NUL
 copy /y ..\..\Tools\Curl\x86\curl-ca-bundle.crt "%TEMP%" > NUL
 
