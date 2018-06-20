@@ -172,7 +172,7 @@ while (( ${iter} < ${#archs[@]} )); do
 
    # build.log can be used to debug cpanm install problems
    echo "Checking build logs..."
-   ${find} -name build.log
+   eval ${find} "$(pwd)/${strawberry_arch_path}/data/.cpanm" -type f -name build.log
    echo
 
    # Remove perl_path from PATH
