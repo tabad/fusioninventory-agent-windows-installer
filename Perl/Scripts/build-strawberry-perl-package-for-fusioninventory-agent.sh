@@ -237,7 +237,7 @@ while (( ${iter} < ${#archs[@]} )); do
    echo "Building the Perl ARchive (PAR) package for Strawberry Perl ${strawberry_release} (${strawberry_version}-${arch_label}s)..."
 
    (eval cd "${strawberry_arch_path}"
-    eval ${perl} ${pp} -p -B -c -o ${tmpdir}/${strawberry_pepfia_par_file} \
+    eval ${perl} ${pp} -p -B -c -u -o ${tmpdir}/${strawberry_pepfia_par_file} \
        "${tmpdir}/${strawberry_pepfia_par_template_file}" > /dev/null 2>&1
    )
 
