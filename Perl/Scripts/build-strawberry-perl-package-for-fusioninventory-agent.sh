@@ -194,7 +194,7 @@ while (( ${iter} < ${#archs[@]} )); do
 
    # Install modules
    echo "Installing Strawberry Perl ${strawberry_release} (${strawberry_version}-${arch_label}s) modules..."
-   ${perl} ${cpanm} --install --auto-cleanup 1 --skip-installed --notest --quiet PAR::Packer
+   ${perl} ${cpanm} --install --auto-cleanup 0 --no-man-pages --skip-installed --notest --quiet PAR::Packer
 
    # Check whether there is an error
    if (( $? != 0 )); then
@@ -227,7 +227,7 @@ while (( ${iter} < ${#archs[@]} )); do
 
       # Install modules again
       echo "Installing (again) Strawberry Perl ${strawberry_release} (${strawberry_version}-${arch_label}s) modules..."
-      ${perl} ${cpanm} --install --auto-cleanup 1 --skip-installed --notest --quiet PAR::Packer
+      ${perl} ${cpanm} --install --auto-cleanup 0 --no-man-pages --skip-installed --notest --quiet PAR::Packer
    fi
 
    # Set pp
