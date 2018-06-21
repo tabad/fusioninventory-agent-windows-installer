@@ -74,6 +74,7 @@ declare -r mktemp=$(type -P mktemp)
 declare -r openssl=$(type -P openssl)
 declare -r p7z=$(type -P 7z)
 declare -r rm=$(type -P rm)
+declare -r sed=$(type -P sed)
 declare -r sort=$(type -P sort)
 declare -r tar=$(type -P tar)
 declare -r tr=$(type -P tr)
@@ -161,15 +162,25 @@ fusinv_mod_uses="$(echo ${fusinv_mod_uses} | \
                    ${tr} '\n' ' ')"
 
 ${cat} > "${tmpdir}/${strawberry_pepfia_par_template_file}" <<EndOfFile
-$(for mod_use in ${fusinv_mod_uses}; do echo use ${mod_use}\;; done)
-
 use lib '.';
 use lib 'lib';
 use lib 'site/lib';
 use lib 'vendor/lib';
 
+$(for mod_use in ${fusinv_mod_uses}; do echo use ${mod_use}\;; done)
+
 print "Welcome to FusionInventory!\n";
 EndOfFile
+
+# Workaround for 'threads' Perl module with StrawberryPerl v5.24.4.1
+#
+#   PAR::Packer shows this error when process 'threads' module:
+#      <<Can't locate object method "tid" via package "threads" at ....>>
+#
+#   The workaround is remove 'threads' module from the previous file and
+#   include it directly in the comand line of 'pp' comand widh '-M' option.
+#
+${sed} -i -e '/^\(use threads;\)$/s//# \1/' "${tmpdir}/${strawberry_pepfia_par_template_file}"
 
 # Builder loop
 while (( ${iter} < ${#archs[@]} )); do
@@ -237,7 +248,7 @@ while (( ${iter} < ${#archs[@]} )); do
    echo "Building the Perl ARchive (PAR) package for Strawberry Perl ${strawberry_release} (${strawberry_version}-${arch_label}s)..."
 
    (eval cd "${strawberry_arch_path}"
-    eval ${perl} ${pp} -p -B -c -u -o ${tmpdir}/${strawberry_pepfia_par_file} \
+    eval ${perl} ${pp} -p -B -c -u -M threads -o ${tmpdir}/${strawberry_pepfia_par_file} \
        "${tmpdir}/${strawberry_pepfia_par_template_file}" > /dev/null 2>&1
    )
 
