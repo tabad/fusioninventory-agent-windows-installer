@@ -209,36 +209,13 @@ while (( ${iter} < ${#archs[@]} )); do
 
    # Check whether there is an error
    if (( $? != 0 )); then
-      # Note: PAR-Packer-1.014 (21 Dec 2012) installs without problems
-      #       into Strawberry Perl Portable Edition v5.16.2.2 (32/64bits) (Feb 2013).
-      #       Perhaps this code could be removed in the future.
+      echo
+      echo "There has been an error downloading 'PAR::Packer' Perl module."
+      echo
+      echo "Whether you are behind a proxy system, please, edit file"
+      echo "'load-proxy-environment.bat', follow its instructions and try again."
 
-      # Workaround: http://www.asciiville.com/musings/par-packer-for-strawberry-perl-516
-      cpanm_workpath="$(eval ${grep} \'Work directory is \' \"${strawberry_arch_path}/data/.cpanm/build.log\")"
-      cpanm_workpath=${cpanm_workpath##*/}
-      (eval cd "${strawberry_arch_path}/data/.cpanm/work/${cpanm_workpath}/PAR-Packer-*" > /dev/null 2>&1
-       if (( $? == 0 )); then
-          echo "Oops! Working around..."
-          cd myldr
-          if [ "${arch}" = "x64" ]; then
-             ${windres} -F pe-x86-64 -o ppresource.coff winres/pp.rc
-          else
-             ${windres} -F pe-i386 -o ppresource.coff winres/pp.rc
-          fi
-          cd ..
-          ${dmake} -f Makefile install > /dev/null 2>&1
-       else
-         echo
-         echo "There has been an error downloading 'PAR::Packer' Perl module."
-         echo
-         echo "Whether you are behind a proxy system, please, edit file"
-         echo "'load-proxy-environment.bat', follow its instructions and try again."
-       fi
-      )
-
-      # Install modules again
-      echo "Installing (again) Strawberry Perl ${strawberry_release} (${strawberry_version}-${arch_label}s) modules..."
-      ${perl} ${cpanm} --install --auto-cleanup 0 --no-man-pages --skip-installed --notest --quiet PAR::Packer
+      exit 4
    fi
 
    # Set pp
