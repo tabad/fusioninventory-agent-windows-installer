@@ -166,7 +166,7 @@ if [ -n "${fusinv_agent_commit}" ]; then
    option_nsis_define="$option_nsis_define -DFIA_COMMIT=${fusinv_agent_commit}"
 elif [ -n "${fusinv_agent_release}" ]; then
    option_nsis_define="$option_nsis_define -DFIA_COMMIT=${fusinv_agent_release}"
-elif [ -n "${APPVEYOR_REPO_TAG_NAME)}" ]; then
+elif [ -n "${APPVEYOR_REPO_TAG_NAME}" ]; then
    option_nsis_define="$option_nsis_define -DFIA_COMMIT=${APPVEYOR_REPO_TAG_NAME}"
 fi
 
