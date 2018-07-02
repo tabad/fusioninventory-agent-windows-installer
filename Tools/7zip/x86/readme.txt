@@ -5,13 +5,13 @@
 
 7-Zip Copyright (C) 1999-2018 Igor Pavlov.
 
-The main features of 7-Zip: 
+The main features of 7-Zip:
 
   - High compression ratio in the new 7z format
   - Supported formats:
      - Packing / unpacking: 7z, XZ, BZIP2, GZIP, TAR, ZIP and WIM.
      - Unpacking only: AR, ARJ, CAB, CHM, CPIO, CramFS, DMG, EXT, FAT, GPT, HFS,
-                       IHEX, ISO, LZH, LZMA, MBR, MSI, NSIS, NTFS, QCOW2, RAR, 
+                       IHEX, ISO, LZH, LZMA, MBR, MSI, NSIS, NTFS, QCOW2, RAR,
                        RPM, SquashFS, UDF, UEFI, VDI, VHD, VMDK, XAR and Z.
   - Fast compression and decompression
   - Self-extracting capability for 7z format
@@ -30,7 +30,7 @@ Read License.txt for more information about license.
 
   7zFM.exe      - 7-Zip File Manager
   7-zip.dll     - Plugin for Windows Shell
-  7-zip32.dll   - Plugin for Windows Shell (32-bit plugin for 64-bit system) 
+  7-zip32.dll   - Plugin for Windows Shell (32-bit plugin for 64-bit system)
   7zg.exe       - GUI module
   7z.exe        - Command line version
   7z.dll        - 7-Zip engine module
