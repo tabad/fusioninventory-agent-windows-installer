@@ -49,7 +49,7 @@ declare basename=''
 
 declare -r curl=$(type -P curl)
 declare -r install=$(type -P install)
-declare -r p7za=$(type -P 7za)
+declare -r p7z=$(type -P 7z)
 declare -r rm=$(type -P rm)
 
 # Check the OS
@@ -111,7 +111,7 @@ while (( ${iter} < ${#archs[@]} )); do
       echo -n "."
       eval ${install} --mode 0755 --directory "${strawberry_arch_path}"
       echo -n "."
-      eval ${p7za} x -y -bd -o"${strawberry_arch_path}/" "/tmp/${strawberry_arch_url##*/}" > /dev/null 2>&1
+      eval ${p7z} x -bd -y -o"${strawberry_arch_path}/" "/tmp/${strawberry_arch_url##*/}" > /dev/null 2>&1
       if (( $? == 0 )); then
          echo -n "."
          eval ${rm} -f "/tmp/${strawberry_arch_url##*/}" > /dev/null 2>&1
