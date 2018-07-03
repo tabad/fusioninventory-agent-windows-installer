@@ -1,18 +1,37 @@
 FusionInventory Agent Windows Installer - History of Revisions and Changes
 
-2.4.1-rc3 Wed, 06 Jun 2018
+2.4.1 Tue, 03 Jul 2018
 agent:
-* FusionInventory Agent 2.4.1-rc3 (commit: f866c6fd6a | date: jun 06 2018)
+* FusionInventory Agent 2.4.1 (commit: 7c7db6661f | date: jun 29 2018)
+* Don't try to run dmidecode inventories if it returns no output. Under
+  windows, this will fix few cases switching them to WMI based inventory.
+* Add PowerSupplies support
+* Fix #439: Wrong network interface speed under win32
+* Fix #500: Add Acer monitor EDID id match
+* Better SQL Server software inventory under win32
+* Bump Deploy task version to 2.6
+* Fix file retention support using the new Maintenance task
+* Add P2P peers caching to reduce peers discovery load in the meantime
+* Reduced timeout for peer discovery and file parts downloading for P2P. This
+  efficiently limits the time passed to discover the local peers and disqualify
+  any busy or not responding peers in a more acceptable delay.
+* For better P2P support, agent ajusts its 404 message to "Nothing found" when it
+  has nothing to share with other agents. So peers won't ask again and again for
+  any file part during 20 minutes by default.
+* Bump NetDiscovery task version to 2.6
+* Bump NetInventory task version to 3.0
+* Many fix and enhancements for NetDiscovery & NetInventory tasks, see
+  the agent Changes file for details
+* Get rid of nmap support for NetDiscovery task. This should enhanced the
+  NetDiscovery task while run under windows.
 
 core:
-* Update PCI IDs database (pci.ids file) to 2018.06.06
+* Update PCI IDs database (pci.ids file) to 2018.06.29
 * Update USB IDs database (usb.ids file) to 2018.05.04
-
-deploy:
-* file retention fixed
 
 tools:
 * Updated 7z to 7-Zip v18.05 (2018-04-30)
+* Updated curl to curl v7.60.0 (2018-03-07)
 
 2.4 Fri, 29 Dec 2017
 agent:
