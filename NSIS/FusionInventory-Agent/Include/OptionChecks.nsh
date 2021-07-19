@@ -90,7 +90,7 @@ Function IsValidOptionCollectTimeoutValue
 
    ; Check
    ${If} $R0 < 0
-   ${OrIf} $R0 > 600
+   ${OrIf} $R0 > 3600
    ${OrIfNot} ${IsAnIntegerNumber} "$R0"
       ; $R0 is an invalid value
       StrCpy $R1 1
